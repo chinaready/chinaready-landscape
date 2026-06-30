@@ -203,10 +203,10 @@ landscape:
         name: Payments & In-App Purchases
         items:
           - item:
-            name: AppInChina Payments
-            homepage_url: https://documentation.appinchina.co/payments
-            logo: appinchina-payments.svg
-            description: AppInChina Payments is referenced in the Archive as an option for China mobile payment and in-app purchase workflows.
+            name: Chinaready Payments
+            homepage_url: https://chinaready.co
+            logo: chinaready-payments.svg
+            description: Chinaready Payments is referenced in the Archive as an option for China mobile payment and in-app purchase workflows.
             extra:
               annotations:
                 global_analogs: Stripe, RevenueCat, Apple In-App Purchase, Google Play Billing
@@ -466,15 +466,15 @@ landscape:
         name: Web Fonts & Iconography
         items:
           - item:
-            name: AIC Google Fonts Hosting
-            homepage_url: https://www.appinchina.co/
-            logo: appinchina-google-fonts.svg
-            description: AIC Google Fonts Hosting is referenced as a China-accessible hosting route for Google Fonts assets.
+            name: Chinaready Google Fonts Hosting
+            homepage_url: https://chinaready.co
+            logo: chinaready-google-fonts.svg
+            description: Chinaready Google Fonts Hosting is referenced as a China-accessible hosting route for Google Fonts assets.
             extra:
               annotations:
                 global_analogs: Google Fonts
                 replacement_fit: compatible-route
-                china_context: Archive feedback mentions AIC-hosted Google Fonts; self-hosting remains a guide note rather than a product item.
+                china_context: Archive feedback mentions Chinaready-hosted Google Fonts; self-hosting remains a guide note rather than a product item.
                 vendor_type: consulting-service
                 evidence_level: low
                 archive_rows: "2"

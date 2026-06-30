@@ -26,6 +26,15 @@ header,
   border-bottom: 1px solid var(--cr-border) !important;
 }
 
+header img[src*="chinaready-landscape-logo"],
+.navbar img[src*="chinaready-landscape-logo"],
+.header img[src*="chinaready-landscape-logo"] {
+  height: 44px !important;
+  max-height: 44px !important;
+  width: auto !important;
+  max-width: min(390px, calc(100vw - 96px)) !important;
+}
+
 button,
 input,
 select,

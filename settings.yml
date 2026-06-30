@@ -31,7 +31,7 @@ featured_items:
 
 footer:
   links:
-    github: "https://github.com/cncf/landscape2"
+    github: "https://github.com/chinaready/chinaready-landscape.git"
     homepage: "https://chinaready.co"
   logo: "vendor/chinaready-design-system/release/chinaready-logo-v1.1.0/svg/logo-horizontal-white.svg"
   text: |
@@ -41,7 +41,7 @@ grid_items_size: large
 
 header:
   links:
-    github: "https://github.com/cncf/landscape2"
+    github: "https://github.com/chinaready/chinaready-landscape.git"
   logo: "assets/chinaready-landscape-logo.svg"
 
 screenshot_width: 1500

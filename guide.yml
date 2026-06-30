@@ -1,4 +1,16 @@
 categories:
+  - category: "Overview"
+    content: |
+      Chinaready Landscape is an open-source map of China-ready developer services for global software teams. It helps developers translate familiar global-service keywords into practical China-market alternatives, understand local operating constraints, and discover source-backed product profiles before planning a China launch.
+
+      The project deliberately reuses CNCF `landscape2` conventions: contributors edit YAML data, add SVG logos, run validation, and review changes through pull requests. This keeps the workflow familiar for landscape2 contributors while making the taxonomy and profiles specific to China's internet technology ecosystem.
+    subcategories:
+      - subcategory: "README"
+        content: |
+          Start with `landscape.yml` for product entries, `hosted_logos/` for logos, `settings.yml` for site configuration, and this guide for category-level context.
+
+          Contributions should add or improve source-backed entries, refine China-market context, and keep global-to-China replacement mappings understandable for foreign developers. Before opening a pull request, run `npm run validate`, `npm run build`, and `npm run verify`.
+
   - category: "Infrastructure & Edge"
     content: |
       Chinaready tracks infrastructure and edge services that global software teams need when preparing a China launch. This category covers cloud platforms, DNS, and CDN providers used to host and accelerate applications for mainland China users. China deployments often require region-specific cloud accounts, ICP filing, and CDN choices that differ from a global default stack.
