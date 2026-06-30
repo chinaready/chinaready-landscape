@@ -1,0 +1,21 @@
+{
+  "name": "chinaready-landscape",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Chinaready China technology landscape built with CNCF landscape2.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node scripts/build-preview.mjs",
+    "verify": "node scripts/verify-chinaready-brand.mjs",
+    "validate": "npm run validate:data && npm run validate:settings && npm run validate:guide && npm run validate:games",
+    "validate:data": "node scripts/landscape2.mjs validate data --data-file landscape.yml",
+    "validate:settings": "node scripts/landscape2.mjs validate settings --settings-file settings.yml",
+    "validate:guide": "node scripts/landscape2.mjs validate guide --guide-file guide.yml",
+    "validate:games": "node scripts/landscape2.mjs validate games --games-file games.yml"
+  },
+  "devDependencies": {
+    "wrangler": "^4.25.0"
+  }
+}

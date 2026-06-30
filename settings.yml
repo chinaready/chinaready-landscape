@@ -1,0 +1,47 @@
+foundation: Chinaready
+
+url: https://landscape.chinaready.co
+
+colors:
+  color1: "rgba(0, 91, 172, 1)"
+  color2: "rgba(12, 30, 62, 1)"
+  color3: "rgba(0, 91, 172, 1)"
+  color4: "rgba(12, 30, 62, 0.78)"
+  color5: "rgba(12, 30, 62, 0.76)"
+  color6: "rgba(0, 91, 172, 0.72)"
+  color7: "rgba(221, 227, 238, 1)"
+
+description: An open-source Chinaready landscape mapping global developer services to China-ready alternatives and operating notes.
+
+featured_items:
+  - field: vendor_type
+    options:
+      - value: china-cloud
+        order: 1
+        label: China Cloud
+      - value: china-saas
+        order: 2
+        label: China SaaS
+      - value: china-super-app
+        order: 3
+        label: Super App Ecosystem
+      - value: global-provider-china-region
+        order: 4
+        label: Global Provider China Region
+
+footer:
+  links:
+    github: "https://github.com/cncf/landscape2"
+    homepage: "https://chinaready.co"
+  logo: "vendor/chinaready-design-system/release/chinaready-logo-v1.1.0/svg/logo-horizontal-white.svg"
+  text: |
+    Chinaready Landscape is an open-source landscape2 site for global software teams evaluating China-market developer services. Visit [chinaready.co](https://chinaready.co) for Chinaready's main site.
+
+grid_items_size: large
+
+header:
+  links:
+    github: "https://github.com/cncf/landscape2"
+  logo: "assets/chinaready-landscape-logo.svg"
+
+screenshot_width: 1500

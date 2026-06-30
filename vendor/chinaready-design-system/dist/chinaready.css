@@ -1,0 +1,594 @@
+/*!
+ * Chinaready Design System — chinaready.css
+ * Single-file bundle of tokens, base reset, and state utilities.
+ *
+ * Version: 1.1.0
+ * Built:   2026-05-25
+ * Source:  /colors_and_type.css — do not hand-edit this dist file.
+ *
+ * Usage:
+ *   <link rel="stylesheet" href="dist/chinaready.css">
+ *   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+ *
+ * Dark theme (product UI only, opt in):
+ *   <html data-theme="dark"> ...
+ */
+/* ==========================================================================
+   Chinaready Design System — Foundations
+   Colors + Type as both base tokens and semantic tokens.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Web fonts
+   --------------------------------------------------------------------------
+   Primary: Inter (UI + body, 400/500/600/700)
+   Display alt: DM Sans (optional, for hero/display)
+   Chinese: PingFang SC (system) → Noto Sans SC fallback
+   -------------------------------------------------------------------------- */
+
+/* Latin display + UI faces are self-hosted as variable woff2 (small, deterministic).
+   Chinese is loaded from Google Fonts CDN — Google's served CSS auto-subsets Noto Sans SC
+   into ~100 unicode-range chunks and only the chunks containing rendered glyphs are
+   fetched. This matches how downstream products consume the system in production and
+   keeps the design-system repo free of a multi-megabyte TTF.
+
+   Offline / air-gapped fallback: the `local()` lookups below catch system installs
+   first (Noto on Linux/Android, PingFang SC on Apple, Microsoft YaHei on Windows),
+   so the design system still renders correctly with the CDN unreachable. A bundled
+   ~200KB subset could be slotted in later as a `url()` after the local()s — see
+   README.md § Roadmap. */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('../fonts/DMSans-Variable.woff2') format('woff2');
+  font-weight: 100 1000;
+  font-style: normal;
+  font-display: swap;
+}
+/* Offline / system-font fallback for Noto Sans SC. Declared after the Google @import
+   so it does NOT override the CDN's per-chunk faces (it has no overlapping src that
+   would replace them — only local() lookups). When the CDN is reachable, Google's
+   chunked faces win for any unicode-range they cover; when offline, the browser
+   falls through to these local() names. */
+@font-face {
+  font-family: 'Noto Sans SC';
+  src: local('Noto Sans SC'),
+       local('NotoSansSC-Regular'),
+       local('PingFang SC'),
+       local('Microsoft YaHei');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+4E00-9FFF, U+3000-303F, U+FF00-FFEF, U+2E80-2EFF, U+3400-4DBF;
+}
+
+:root {
+  /* ========================================================================
+     COLORS — Brand
+     ======================================================================== */
+  --cr-primary:           #0C1E3E;   /* Deep navy — nav, dark sections, footers, headlines */
+  --cr-brand-blue:        #005BAC;   /* Action color — buttons, links, CTA */
+  --cr-brand-blue-hover:  #004A8F;   /* Brand blue darkened ~15% */
+
+  /* COLORS — Neutrals */
+  --cr-text-primary:      #0D1B2A;   /* Headlines, body emphasis */
+  --cr-text-secondary:    #5A6A80;   /* Descriptions, labels, secondary info */
+  --cr-border:            #DDE3EE;   /* Dividers, input borders, card outlines */
+  --cr-surface:           #F4F6FA;   /* Alt section background (rhythm with white) */
+  --cr-background:        #FFFFFF;   /* Page background */
+  --cr-dark-surface:      #0C1E3E;   /* Dark CTA blocks, footer (== primary) */
+
+  /* COLORS — On-dark text variants (Inizio-style dark CTA blocks) */
+  --cr-on-dark-primary:   #FFFFFF;
+  --cr-on-dark-secondary: #B7C2D6;
+  --cr-on-dark-tertiary:  #7F95B8;   /* Muted eyebrows, footer legal, sub-headline tint */
+  --cr-on-dark-border:    rgba(255,255,255,0.16);
+
+  /* COLORS — Product-UI surface layers
+     The bg/surface tokens above carry the marketing system. Product UI needs
+     more elevation steps and a hover/active state ladder. These tokens
+     compose with [data-theme="dark"] below to give a coherent two-mode scale.
+     Use these in SaaS surfaces (sidebar, topbar, tables, drawers, modals);
+     keep the marketing components on the simpler bg/surface pair. */
+  --cr-bg-raised:    #FFFFFF;                  /* dropdowns / drawers / modals (lift with --cr-shadow-raised) */
+  --cr-bg-sunken:    #EEF1F6;                  /* input fields, well surfaces sitting below the page */
+  --cr-bg-hover:     rgba(12, 30, 62, 0.04);   /* hovered row / list item — token, not magic alpha */
+  --cr-bg-active:    rgba(0, 91, 172, 0.08);   /* selected row / active nav item */
+  --cr-text-tertiary:#5E6B7B;                  /* AA on white (5.43), surface (5.02), sunken (4.80) */
+  --cr-border-subtle:#EEF1F6;                  /* hairline between table rows */
+  --cr-border-strong:#C2CCDB;                  /* focused input outline, selected row edge */
+  --cr-shadow-raised:0 8px 24px rgba(12, 30, 62, 0.10); /* floating panels */
+
+  /* COLORS — Semantic */
+  --cr-success:           #0A8754;
+  --cr-warning:           #D97706;
+  --cr-error:             #DC2626;
+  --cr-info:              #005BAC;   /* alias of brand blue */
+
+  /* Semantic text aliases — use these for TEXT/LABELS on top of the *-bg tints.
+     The base --cr-* tokens above are tuned for icons / borders / chip fills,
+     not for text contrast. The -text variants pass WCAG AA on their matching
+     *-bg surface (≥4.5:1 for normal text). */
+  --cr-success-text:      #066B43;   /* on --cr-success-bg → 5.81:1 */
+  --cr-warning-text:      #A85300;   /* on --cr-warning-bg → 4.83:1 (was #B85C00 / 4.13 — darkened May-2026 to clear AA for normal text) */
+  --cr-error-text:        #B91C1C;   /* on --cr-error-bg   → 5.58:1 */
+
+  /* Tinted backgrounds for semantic states (subtle, not loud) */
+  --cr-success-bg:        #E6F4EE;
+  --cr-warning-bg:        #FDF1E2;
+  --cr-error-bg:          #FCEAEA;
+  --cr-info-bg:           #E6EFF7;
+
+  /* ========================================================================
+     TYPE — Families
+     ======================================================================== */
+  --cr-font-display: 'Inter', 'DM Sans', 'PingFang SC', 'Noto Sans SC',
+                     -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --cr-font-sans:    'Inter', 'PingFang SC', 'Noto Sans SC',
+                     -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --cr-font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular,
+                     Menlo, Consolas, monospace;
+
+  /* TYPE — Scale (Inizio-inspired — large, bold display; tight leading).
+     Fluid by default: clamp(min, viewport-fluid, max). The MAX value matches the
+     documented desktop scale (Display 96 / H1 64 / H2 44 / H3 28); the MIN keeps
+     the design readable on a 360px phone. To force the fixed desktop scale, use
+     the --cr-fs-*-fixed aliases below. */
+  --cr-fs-display:      clamp(40px, 7.5vw, 96px);   /* hero — "We are Chinaready." */
+  --cr-fs-h1:           clamp(36px, 5.5vw, 64px);
+  --cr-fs-h2:           clamp(28px, 3.8vw, 44px);
+  --cr-fs-h3:           clamp(22px, 2.4vw, 28px);
+  --cr-fs-body-lg:      clamp(17px, 1.4vw, 20px);
+  --cr-fs-body:         16px;
+  --cr-fs-small:        14px;
+  --cr-fs-caption:      12px;
+
+  /* Fixed-scale aliases — opt in when the layout must not reflow */
+  --cr-fs-display-fixed: 96px;
+  --cr-fs-h1-fixed:      64px;
+  --cr-fs-h2-fixed:      44px;
+  --cr-fs-h3-fixed:      28px;
+  --cr-fs-body-lg-fixed: 20px;
+
+  --cr-lh-display:      1.0;
+  --cr-lh-h1:           1.05;
+  --cr-lh-h2:           1.15;
+  --cr-lh-h3:           1.3;
+  --cr-lh-body-lg:      1.7;
+  --cr-lh-body:         1.65;
+  --cr-lh-small:        1.5;
+  --cr-lh-caption:      1.5;
+
+  --cr-fw-regular:      400;
+  --cr-fw-medium:       500;
+  --cr-fw-semibold:     600;
+  --cr-fw-bold:         700;
+
+  --cr-tracking-display: -0.035em;  /* tight, magazine-display feel */
+  --cr-tracking-h1:      -0.025em;
+  --cr-tracking-h2:      -0.015em;
+  --cr-tracking-tight:   -0.005em;
+  --cr-tracking-normal:   0;
+  --cr-tracking-wide:     0.04em;   /* uppercase eyebrows, labels */
+
+  /* ========================================================================
+     SPACING — 4px base scale
+     ======================================================================== */
+  --cr-space-1:  4px;
+  --cr-space-2:  8px;
+  --cr-space-3:  12px;
+  --cr-space-4:  16px;
+  --cr-space-5:  24px;
+  --cr-space-6:  32px;
+  --cr-space-7:  48px;
+  --cr-space-8:  64px;
+  --cr-space-9:  80px;
+  --cr-space-10: 120px;
+
+  /* Layout */
+  --cr-container-max:    1280px;
+  --cr-prose-max:        760px;
+  --cr-section-py:       96px;     /* desktop section vertical padding (80–120 range) */
+  --cr-module-px:        56px;     /* desktop module inner padding */
+  --cr-card-p:           28px;
+
+  /* ========================================================================
+     LAYOUT — Breakpoints, z-index, grid
+     ======================================================================== */
+  /* Breakpoints — use in media queries: @media (min-width: 768px) { ... }
+     These are CSS custom properties for reference + JS reads; CSS @media itself
+     cannot consume var() values directly. Keep these in sync with any media
+     queries you write. */
+  --cr-bp-sm:   480px;    /* small phone landscape, small tablet portrait */
+  --cr-bp-md:   768px;    /* tablet */
+  --cr-bp-lg:   1024px;   /* small laptop */
+  --cr-bp-xl:   1280px;   /* desktop — container width */
+  --cr-bp-xxl:  1536px;   /* large desktop */
+
+  /* Grid — desktop 12-col / mobile 4-col, per visual-foundations §spacing */
+  --cr-grid-cols-desktop: 12;
+  --cr-grid-cols-mobile:  4;
+  --cr-grid-gutter-desktop: 24px;
+  --cr-grid-gutter-mobile:  16px;
+
+  /* Z-index — single ladder, no improvisation */
+  --cr-z-base:        0;
+  --cr-z-raised:      1;     /* hover-lifted card, focus highlight */
+  --cr-z-sticky:      50;    /* sticky header, sticky filter bar */
+  --cr-z-dropdown:    100;   /* popover, dropdown menu, tooltip-as-popover */
+  --cr-z-overlay:     200;   /* dialog backdrop */
+  --cr-z-modal:       210;   /* dialog content */
+  --cr-z-toast:       300;   /* transient notifications */
+  --cr-z-tooltip:     400;   /* hover tooltip (above everything) */
+
+  /* ========================================================================
+     RADIUS — strict ladder (max 8px)
+     ======================================================================== */
+  --cr-radius-button:    4px;
+  --cr-radius-input:     4px;
+  --cr-radius-card:      8px;
+  --cr-radius-image:     0px;       /* explicit: images stay sharp */
+
+  /* ========================================================================
+     SHADOW — used sparingly, only on hover/overlay
+     ======================================================================== */
+  --cr-shadow-none:    none;
+  --cr-shadow-card:    0 4px 16px rgba(12, 30, 62, 0.08);    /* card hover */
+  --cr-shadow-overlay: 0 16px 48px rgba(12, 30, 62, 0.14);   /* dialogs / dropdowns */
+
+  /* ========================================================================
+     BORDERS
+     ======================================================================== */
+  --cr-border-thin:  1px solid var(--cr-border);
+  --cr-border-focus: 2px solid var(--cr-brand-blue);
+
+  /* ========================================================================
+     MOTION
+     ======================================================================== */
+  --cr-ease-standard:  cubic-bezier(0.2, 0.0, 0.0, 1.0);
+  --cr-ease-emphasized: cubic-bezier(0.2, 0.0, 0.0, 1.2);
+  --cr-dur-fast:    120ms;
+  --cr-dur-base:    180ms;
+  --cr-dur-slow:    320ms;
+
+  /* Motion intent guide — pick a duration to match the action:
+     fast (120ms): micro hover / press / focus ring / color swap
+     base (180ms): default — most transitions on color, bg, border, shadow
+     slow (320ms): page-level — first-paint reveal, route change, panel slide-in
+     Anything above 320ms is a deliberate hero motion and should be motion-
+     storyboarded with the brand owner. */
+}
+
+/* ==========================================================================
+   Dark theme — opt in via [data-theme="dark"] on <html> or any parent.
+   This is for product/app surfaces only; marketing pages use explicit on-dark
+   variants (see Hero / CTABlock / Footer), which intentionally stay light
+   regardless of the document theme (those components live on a permanent
+   navy ground). The --cr-on-dark-* tokens are therefore NOT inverted here —
+   marketing dark blocks should look identical in either theme.
+   ========================================================================== */
+[data-theme="dark"] {
+  --cr-background:       #0A1628;   /* near-black navy */
+  --cr-surface:          #122340;   /* one step up from background */
+  --cr-text-primary:     #FFFFFF;
+  --cr-text-secondary:   #B7C2D6;
+  --cr-border:           rgba(255, 255, 255, 0.16);
+  --cr-primary:          #FFFFFF;   /* inverted: light is the "strong" color */
+  --cr-dark-surface:     #0A1628;
+  --cr-brand-blue:       #4D9CE8;   /* lifted ~25% for AA contrast on dark bg */
+  --cr-brand-blue-hover: #6FB0EE;
+
+  /* Product-UI surface layers — dark counterparts. The raised step lifts above
+     surface so drawers/modals read as floating; sunken sits below base for
+     input wells. Hover/active are alpha overlays so they ride any surface. */
+  --cr-bg-raised:        #1A2E4D;
+  --cr-bg-sunken:        #061121;
+  --cr-bg-hover:         rgba(255, 255, 255, 0.04);
+  --cr-bg-active:        rgba(77, 156, 232, 0.16);
+  --cr-text-tertiary:    #8AA0C0;   /* AA on dark bg (6.79), surface (5.87), raised (5.10) */
+  --cr-border-subtle:    rgba(255, 255, 255, 0.06);
+  --cr-border-strong:    rgba(255, 255, 255, 0.28);
+  --cr-shadow-raised:    0 8px 24px rgba(0, 0, 0, 0.50);
+
+  /* Tinted semantic backgrounds need much less alpha on dark */
+  --cr-success-bg:        rgba(10, 135, 84, 0.18);
+  --cr-warning-bg:        rgba(217, 119, 6, 0.18);
+  --cr-error-bg:          rgba(220, 38, 38, 0.18);
+  --cr-info-bg:           rgba(77, 156, 232, 0.18);
+
+  /* Shadows: pure black with higher alpha, since navy-tinted shadows disappear */
+  --cr-shadow-card:    0 4px 16px rgba(0, 0, 0, 0.40);
+  --cr-shadow-overlay: 0 16px 48px rgba(0, 0, 0, 0.56);
+}
+
+/* ==========================================================================
+   Semantic resets — hooks the system into raw HTML
+   ========================================================================== */
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--cr-font-sans);
+  font-size: var(--cr-fs-body);
+  line-height: var(--cr-lh-body);
+  font-weight: var(--cr-fw-regular);
+  color: var(--cr-text-primary);
+  background: var(--cr-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.cr-display, h1.cr-display {
+  font-family: var(--cr-font-display);
+  font-size: var(--cr-fs-display);
+  line-height: var(--cr-lh-display);
+  font-weight: 800;                       /* extra-bold, Inizio-style */
+  letter-spacing: var(--cr-tracking-display);
+  color: var(--cr-text-primary);
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* Period after a display headline (signature Inizio device) */
+.cr-display::after, h1.cr-display::after { content: "."; color: var(--cr-brand-blue); }
+
+h1, .cr-h1 {
+  font-family: var(--cr-font-display);
+  font-size: var(--cr-fs-h1);
+  line-height: var(--cr-lh-h1);
+  font-weight: 800;
+  letter-spacing: var(--cr-tracking-h1);
+  color: var(--cr-text-primary);
+  margin: 0 0 var(--cr-space-5);
+  text-wrap: balance;
+}
+
+h2, .cr-h2 {
+  font-family: var(--cr-font-display);
+  font-size: var(--cr-fs-h2);
+  line-height: var(--cr-lh-h2);
+  font-weight: 700;
+  letter-spacing: var(--cr-tracking-h2);
+  color: var(--cr-text-primary);
+  margin: 0 0 var(--cr-space-4);
+  text-wrap: balance;
+}
+
+h3, .cr-h3 {
+  font-family: var(--cr-font-sans);
+  font-size: var(--cr-fs-h3);
+  line-height: var(--cr-lh-h3);
+  font-weight: var(--cr-fw-semibold);
+  letter-spacing: var(--cr-tracking-tight);
+  color: var(--cr-text-primary);
+  margin: 0 0 var(--cr-space-3);
+}
+
+p, .cr-body {
+  font-size: var(--cr-fs-body);
+  line-height: var(--cr-lh-body);
+  color: var(--cr-text-primary);
+  margin: 0 0 var(--cr-space-4);
+  text-wrap: pretty;
+}
+
+.cr-body-lg {
+  font-size: var(--cr-fs-body-lg);
+  line-height: var(--cr-lh-body-lg);
+  color: var(--cr-text-secondary);
+  text-wrap: pretty;
+}
+
+.cr-small {
+  font-size: var(--cr-fs-small);
+  line-height: var(--cr-lh-small);
+  color: var(--cr-text-secondary);
+}
+
+.cr-caption {
+  font-size: var(--cr-fs-caption);
+  line-height: var(--cr-lh-caption);
+  color: var(--cr-text-secondary);
+}
+
+.cr-eyebrow {
+  font-size: var(--cr-fs-caption);
+  font-weight: var(--cr-fw-semibold);
+  letter-spacing: var(--cr-tracking-wide);
+  text-transform: uppercase;
+  color: var(--cr-brand-blue);
+}
+
+a {
+  color: var(--cr-brand-blue);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color var(--cr-dur-base) var(--cr-ease-standard),
+              border-color var(--cr-dur-base) var(--cr-ease-standard);
+}
+a:hover { color: var(--cr-brand-blue-hover); border-bottom-color: currentColor; }
+a:focus-visible {
+  outline: var(--cr-border-focus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+code, pre, .cr-mono {
+  font-family: var(--cr-font-mono);
+  font-size: 0.92em;
+}
+
+/* ==========================================================================
+   State utilities — focus, disabled, loading, screen-reader-only
+   ========================================================================== */
+
+/* Focus ring — apply to any interactive element that doesn't get one from
+   the browser by default (e.g. custom buttons, div role="button"). */
+.cr-focus-ring:focus-visible {
+  outline: var(--cr-border-focus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Disabled — single class for non-form elements (form elements use :disabled).
+   Removes hover/press interactivity and dims to ~50% perceived strength. */
+.cr-is-disabled,
+:disabled,
+[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  pointer-events: auto;   /* allow tooltip on hover but no clicks */
+}
+
+/* Loading — adds an aria-busy spinner overlay. Apply to a button or container.
+   The element's own content stays in place (for layout stability) but is
+   visually hidden; the spinner is centered. */
+.cr-is-loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+  cursor: wait;
+}
+.cr-is-loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  color: var(--cr-brand-blue);
+  opacity: 1;
+  animation: cr-spin var(--cr-dur-slow) linear infinite;
+  animation-duration: 800ms;
+}
+.cr-is-loading.cr-is-loading--on-dark::after { color: var(--cr-on-dark-primary); }
+
+@keyframes cr-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Honor user motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Screen-reader only — visually hidden, still announced */
+.cr-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Print stylesheet — Chinaready audience (regulatory / enterprise) prints to
+   PDF heavily. Goals:
+     - kill sticky/blurred chrome that prints as a duplicated band
+     - force backgrounds to print (navy CTAs and dark Hero must render in colour,
+       not be optimised away by the browser)
+     - reflow desktop padding into A4-friendly margins (96px page padding looks
+       cramped at 72 dpi; mm units are predictable across printers)
+     - keep cards together across pages
+     - hide chat-style affordances (contact panel, the floating "Talk to expert"
+       button) that have no place on paper
+   Add the class `cr-print-hide` to anything bespoke you want dropped at print
+   time; add `cr-print-keep` to force a block to stay together.
+   ========================================================================== */
+@media print {
+  /* Force browsers to actually render brand backgrounds + colours. Without
+     these flags Chrome/Safari strip section fills to save toner. */
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+  }
+
+  html, body {
+    background: #FFFFFF !important;
+    color: var(--cr-text-primary) !important;
+  }
+
+  /* Page geometry. A4 with 14 mm margin pairs well with the 12-col grid at
+     reduced scale. */
+  @page { size: A4; margin: 14mm; }
+
+  /* Kill sticky / fixed chrome — these duplicate on every page in print preview. */
+  header, .cr-sticky, [style*="position: sticky"], [style*="position:fixed"] {
+    position: static !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: transparent !important;
+    border-bottom: 0 !important;
+  }
+
+  /* Hide overlays / panels / floating affordances. */
+  [role="dialog"],
+  [aria-modal="true"],
+  .cr-print-hide {
+    display: none !important;
+  }
+
+  /* Reflow section padding to mm so output isn't cramped against the page edge.
+     Desktop horizontal padding (32px) becomes margin; verticals collapse. */
+  section, footer {
+    padding: 16mm 0 !important;
+    page-break-inside: auto;
+  }
+  section:first-of-type { padding-top: 0 !important; }
+
+  /* Cards / cells should not split across pages. */
+  article, .cr-card, .cr-print-keep,
+  [style*="border-radius: var(--cr-radius-card)"],
+  [style*="border-radius:8px"] {
+    page-break-inside: avoid;
+    box-shadow: none !important;
+  }
+
+  /* Type — slightly tighter for paper density. Headlines stay with the next
+     element so a Hx never lands as the last line of a page. */
+  h1, h2, h3, .cr-display, .cr-h1, .cr-h2, .cr-h3 {
+    page-break-after: avoid;
+    text-wrap: balance;
+  }
+  p, .cr-body, .cr-body-lg { orphans: 3; widows: 3; }
+
+  /* Links — show the URL alongside the anchor text, but only for external
+     references (skip in-page #anchors). */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: var(--cr-text-secondary);
+    word-break: break-all;
+  }
+
+  /* Drop noisy chrome that's irrelevant on paper. */
+  nav, .cr-toolbar { display: none !important; }
+}

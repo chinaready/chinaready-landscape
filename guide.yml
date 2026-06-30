@@ -1,0 +1,90 @@
+categories:
+  - category: "Infrastructure & Edge"
+    content: |
+      Chinaready tracks infrastructure and edge services that global software teams need when preparing a China launch. This category covers cloud platforms, DNS, and CDN providers used to host and accelerate applications for mainland China users. China deployments often require region-specific cloud accounts, ICP filing, and CDN choices that differ from a global default stack.
+    subcategories:
+      - subcategory: "Cloud Platform & Hosting"
+        content: |
+          Use this category for cloud platforms or China-region cloud offerings that can host application workloads.
+      - subcategory: "Managed DNS Provider"
+        content: |
+          Use this category for managed DNS services. Archive evidence currently contains more ICP and domain-routing guidance than explicit DNS product recommendations.
+      - subcategory: "Content Delivery Network (CDN)"
+        content: |
+          Use this category for CDN and edge acceleration products. Profile notes should distinguish product availability from ICP filing requirements.
+
+  - category: "Application Platform"
+    content: |
+      Application platform services support app frameworks, backend services, and remote configuration. Chinaready keeps this category conservative: Firebase-style suites, app hosting platforms, and remote configuration products are only mapped when the China-market service covers a comparable workflow.
+    subcategories:
+      - subcategory: "Cross-Platform UI & Frameworks"
+        content: |
+          Use this category for developer frameworks and UI runtimes. The Archive does not yet provide enough China-specific alternatives for initial population.
+      - subcategory: "Mobile Backend-as-a-Service (MBaaS)"
+        content: |
+          Use this category for managed backend services for mobile and web apps. Some Archive suggestions are partial deployment routes rather than full MBaaS replacements.
+      - subcategory: "Feature Flags & Remote Config"
+        content: |
+          Use this category for remote configuration and feature flag services. Cross-listed mobile suites should clarify which module provides this capability.
+
+  - category: "Release, Quality & Operations"
+    content: |
+      Release, quality, and operations services help teams test, distribute, monitor, and stabilize applications after launch. Chinaready profile notes should call out mobile device fragmentation, app-store distribution, local telemetry compliance, and whether a global tool remains viable through self-hosting or China-region deployment.
+    subcategories:
+      - subcategory: "CI/CD & App Distribution"
+        content: |
+          Use this category for build, deployment, and app distribution products. The first Archive pass has limited explicit China alternative evidence.
+      - subcategory: "Automated Testing & Device Farms"
+        content: |
+          Use this category for real-device testing, cloud phones, and automated QA platforms.
+      - subcategory: "Crash Reporting & Performance Monitoring"
+        content: |
+          Use this category for crash, stability, and mobile performance tools. Self-hosted global tools can be referenced in notes but should not be treated as China products by default.
+      - subcategory: "Monitoring & Observability (APM / RUM)"
+        content: |
+          Use this category for infrastructure and application monitoring. Archive evidence is currently thin and should be expanded with official product references.
+
+  - category: "Users, Trust & Monetization"
+    content: |
+      Users, trust, and monetization services cover identity, payment, in-app purchase, CAPTCHA, and anti-bot workflows. For Chinaready, this is a core decision area because China-market implementations often depend on local payment rails, real-name expectations, and ecosystem-specific login.
+    subcategories:
+      - subcategory: "Authentication & Identity"
+        content: |
+          Use this category for identity providers, login systems, and authentication platforms.
+      - subcategory: "Payments & In-App Purchases"
+        content: |
+          Use this category for payment rails and app monetization services. Profile notes should distinguish payment gateways, super-app payment ecosystems, and managed integration services.
+      - subcategory: "Bot Protection & CAPTCHA"
+        content: |
+          Use this category for human verification, CAPTCHA, bot defense, and abuse-prevention products.
+
+  - category: "Engagement & Communication"
+    content: |
+      Engagement and communication services cover push, SMS, email, real-time media, chat, and support messaging. Chinaready treats push and messaging as a China-specific operating concern because Google FCM is often unavailable or unreliable for mainland China Android devices.
+    subcategories:
+      - subcategory: "Push Notifications & Multichannel Messaging"
+        content: |
+          Use this category for push notification, SMS, email, and messaging-delivery products.
+      - subcategory: "Real-Time Communication (Voice / Video / Chat)"
+        content: |
+          Use this category for RTC, voice, video, and chat infrastructure.
+      - subcategory: "Customer Support & In-App Messaging"
+        content: |
+          Use this category for support chat, helpdesk, and in-app customer messaging. The Archive evidence needs expansion before first-class product population.
+
+  - category: "Growth, Content & Experience"
+    content: |
+      Growth, content, and experience services support analytics, attribution, maps, fonts, and user-facing product experience. The landscape separates China product alternatives from compatibility routes, because global maps, attribution, and font CDNs may be unavailable or slow in mainland China.
+    subcategories:
+      - subcategory: "Product Analytics & User Insights"
+        content: |
+          Use this category for analytics platforms and user behavior insight products.
+      - subcategory: "Location & Map Services"
+        content: |
+          Use this category for map, location, geocoding, routing, and navigation APIs.
+      - subcategory: "App-Store Intelligence & Attribution (ASO)"
+        content: |
+          Use this category for app-store intelligence, attribution, and ASO tooling. China app-store fragmentation should be covered in profile notes.
+      - subcategory: "Web Fonts & Iconography"
+        content: |
+          Use this category for font and icon delivery services. Self-hosting is an implementation route and belongs in guide notes unless represented by a concrete service.
