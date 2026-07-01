@@ -19,9 +19,17 @@ landscape:
                 china_context: China-region cloud option frequently recommended when global AWS infrastructure is not suitable for mainland China deployments.
                 vendor_type: global-provider-china-region
                 evidence_level: high
-                archive_rows: "13"
-                archive_files: "13"
-                source_hint: initial archive source batch
+                metadata_name: "AWS China Regions"
+                primary_category: "Infrastructure & Edge"
+                official_website: "https://www.amazonaws.cn/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "AWS China Regions provide AWS cloud services operated for the China market through local partners."
+                alternative_to: "China-market alternative or deployment route for: AWS, Amazon Web Services."
+                global_alternatives: "AWS, Amazon Web Services"
+                organization: "Amazon Web Services"
+                organization_overview: "Amazon Web Services provides cloud infrastructure and platform services; this profile covers its China-market regions operated through local partners."
+                developer_docs: "https://docs.amazonaws.cn/en_us/"
           - item:
             name: Azure China
             homepage_url: https://www.azure.cn/
@@ -34,9 +42,17 @@ landscape:
                 china_context: China-region cloud option for teams already using Microsoft Azure globally.
                 vendor_type: global-provider-china-region
                 evidence_level: high
-                archive_rows: "6"
-                archive_files: "6"
-                source_hint: initial archive source batch
+                metadata_name: "Azure China"
+                primary_category: "Infrastructure & Edge"
+                official_website: "https://www.azure.cn/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Azure China provides Microsoft Azure cloud services operated for the China market by a local operator."
+                alternative_to: "China-market alternative or deployment route for: Microsoft Azure."
+                global_alternatives: "Microsoft Azure"
+                organization: "Microsoft Azure China"
+                organization_overview: "Microsoft Azure China provides Azure services for mainland China through a local operating model."
+                developer_docs: "https://docs.azure.cn/en-us/"
           - item:
             name: Alibaba Cloud
             homepage_url: https://www.alibabacloud.com/
@@ -49,9 +65,17 @@ landscape:
                 china_context: Native China cloud platform with broad mainland China service coverage.
                 vendor_type: china-cloud
                 evidence_level: medium
-                archive_rows: "3"
-                archive_files: "3"
-                source_hint: initial archive source batch
+                metadata_name: "Alibaba Cloud"
+                primary_category: "Infrastructure & Edge"
+                official_website: "https://www.alibabacloud.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Alibaba Cloud is a major China cloud platform offering compute, storage, networking, security, data, and application services."
+                alternative_to: "China-market alternative or deployment route for: AWS, Microsoft Azure, Google Cloud."
+                global_alternatives: "AWS, Microsoft Azure, Google Cloud"
+                organization: "Alibaba Cloud"
+                organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
+                developer_docs: "https://www.alibabacloud.com/help/en/"
       - subcategory:
         name: Managed DNS Provider
         items: []
@@ -67,12 +91,20 @@ landscape:
               annotations:
                 global_analogs: Amazon CloudFront, Akamai, Cloudflare CDN
                 replacement_fit: direct
-                china_context: Archive feedback repeatedly notes ICP filing requirements for mainland China CDN usage.
+                china_context: Mainland China CDN deployments commonly require ICP filing and China-specific acceleration planning.
                 vendor_type: china-cloud
                 evidence_level: high
-                archive_rows: "11"
-                archive_files: "11"
-                source_hint: initial archive source batch
+                metadata_name: "Alibaba Cloud CDN"
+                primary_category: "Infrastructure & Edge"
+                official_website: "https://www.alibabacloud.com/product/cdn"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Alibaba Cloud CDN accelerates content delivery through Alibaba Cloud edge infrastructure."
+                alternative_to: "China-market alternative or deployment route for: Amazon CloudFront, Akamai, Cloudflare CDN."
+                global_alternatives: "Amazon CloudFront, Akamai, Cloudflare CDN"
+                organization: "Alibaba Cloud"
+                organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
+                developer_docs: "https://www.alibabacloud.com/help/en/cdn/"
           - item:
             name: Cloudflare China Network
             homepage_url: https://www.cloudflare.com/network/china/
@@ -85,9 +117,17 @@ landscape:
                 china_context: Global-provider China-market route; classify separately from domestic CDN products.
                 vendor_type: global-provider-china-region
                 evidence_level: low
-                archive_rows: "1"
-                archive_files: "1"
-                source_hint: initial archive source batch
+                metadata_name: "Cloudflare China Network"
+                primary_category: "Infrastructure & Edge"
+                official_website: "https://www.cloudflare.com/network/china/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Cloudflare China Network is a China-market acceleration option for Cloudflare customers that need mainland China performance."
+                alternative_to: "China-market alternative or deployment route for: Cloudflare CDN."
+                global_alternatives: "Cloudflare CDN"
+                organization: "Cloudflare"
+                organization_overview: "Cloudflare provides global edge, security, and performance services; this profile covers its China network option for mainland acceleration."
+                developer_docs: "https://developers.cloudflare.com/china-network/"
 
   - category:
     name: Application Platform
@@ -102,7 +142,7 @@ landscape:
             name: Alibaba Cloud Serverless App Engine
             homepage_url: https://help.aliyun.com/zh/sae/
             logo: alibaba-cloud-sae.svg
-            description: Alibaba Cloud Serverless App Engine is an application hosting service referenced as an MBaaS-adjacent China alternative in the Archive.
+            description: Alibaba Cloud Serverless App Engine is an application hosting service that can support China-market backend deployment needs.
             extra:
               annotations:
                 global_analogs: Firebase, AWS Amplify, Heroku
@@ -110,9 +150,17 @@ landscape:
                 china_context: Needs product-profile review because SAE is application hosting rather than a full Firebase-style MBaaS.
                 vendor_type: china-cloud
                 evidence_level: low
-                archive_rows: "1"
-                archive_files: "1"
-                source_hint: initial archive source batch
+                metadata_name: "Alibaba Cloud Serverless App Engine"
+                primary_category: "Application Platform"
+                official_website: "https://help.aliyun.com/zh/sae/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Alibaba Cloud Serverless App Engine is an application hosting service that can support China-market backend deployment needs."
+                alternative_to: "China-market alternative or deployment route for: Firebase, AWS Amplify, Heroku."
+                global_alternatives: "Firebase, AWS Amplify, Heroku"
+                organization: "Alibaba Cloud"
+                organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
+                developer_docs: "https://help.aliyun.com/zh/sae/"
           - item:
             name: Alibaba Cloud RDS for Supabase
             homepage_url: https://help.aliyun.com/zh/rds/apsaradb-rds-for-postgresql/supabase/
@@ -125,9 +173,17 @@ landscape:
                 china_context: Treat as a China deployment path for Supabase-style backend use cases, not a complete MBaaS replacement.
                 vendor_type: china-cloud
                 evidence_level: low
-                archive_rows: "1"
-                archive_files: "1"
-                source_hint: initial archive source batch
+                metadata_name: "Alibaba Cloud RDS for Supabase"
+                primary_category: "Application Platform"
+                official_website: "https://help.aliyun.com/zh/rds/apsaradb-rds-for-postgresql/supabase/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Alibaba Cloud RDS for Supabase is referenced as a Supabase-related China deployment option."
+                alternative_to: "China-market alternative or deployment route for: Supabase, Firebase."
+                global_alternatives: "Supabase, Firebase"
+                organization: "Alibaba Cloud"
+                organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
+                developer_docs: "https://help.aliyun.com/zh/rds/apsaradb-rds-for-postgresql/supabase/"
       - subcategory:
         name: Feature Flags & Remote Config
         items: []
@@ -150,12 +206,20 @@ landscape:
               annotations:
                 global_analogs: AWS Device Farm, Firebase Test Lab, BrowserStack App Automate
                 replacement_fit: direct
-                china_context: Archive feedback recommends WeTest when AWS Device Farm is unavailable for China use cases.
+                china_context: Tencent WeTest provides a China-market alternative to AWS Device Farm for mobile device testing.
                 vendor_type: china-saas
                 evidence_level: medium
-                archive_rows: "2"
-                archive_files: "2"
-                source_hint: initial archive source batch
+                metadata_name: "Tencent WeTest"
+                primary_category: "Release, Quality & Operations"
+                official_website: "https://wetest.qq.com/products/cloud-phone"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Tencent WeTest provides cloud device and testing services for mobile application quality assurance."
+                alternative_to: "China-market alternative or deployment route for: AWS Device Farm, Firebase Test Lab, BrowserStack App Automate."
+                global_alternatives: "AWS Device Farm, Firebase Test Lab, BrowserStack App Automate"
+                organization: "Tencent WeTest"
+                organization_overview: "Tencent WeTest provides mobile quality, compatibility, cloud device, and testing services for app teams."
+                developer_docs: "https://wetest.qq.com/docs/"
       - subcategory:
         name: Crash Reporting & Performance Monitoring
         items: []
@@ -178,12 +242,20 @@ landscape:
               annotations:
                 global_analogs: Auth0, Okta, Firebase Authentication, Amazon Cognito
                 replacement_fit: direct
-                china_context: Archive feedback recommends Authing for China authentication and identity needs.
+                china_context: Authing provides a China-market identity platform alternative to Auth0, Okta, and Firebase Authentication.
                 vendor_type: china-saas
                 evidence_level: medium
-                archive_rows: "4"
-                archive_files: "4"
-                source_hint: initial archive source batch
+                metadata_name: "Authing"
+                primary_category: "Users, Trust & Monetization"
+                official_website: "https://www.authing.cn/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Authing is a China identity platform for authentication, authorization, and user identity management."
+                alternative_to: "China-market alternative or deployment route for: Auth0, Okta, Firebase Authentication, Amazon Cognito."
+                global_alternatives: "Auth0, Okta, Firebase Authentication, Amazon Cognito"
+                organization: "Authing"
+                organization_overview: "Authing is a China identity platform focused on authentication, authorization, and user management for developers."
+                developer_docs: "https://docs.authing.cn/"
           - item:
             name: WeChat Login
             homepage_url: https://developers.weixin.qq.com/
@@ -196,27 +268,20 @@ landscape:
                 china_context: Important for China consumer applications, especially when WeChat ecosystem integration is expected.
                 vendor_type: china-super-app
                 evidence_level: low
-                archive_rows: "1"
-                archive_files: "1"
-                source_hint: initial archive source batch
+                metadata_name: "WeChat Login"
+                primary_category: "Users, Trust & Monetization"
+                official_website: "https://developers.weixin.qq.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "WeChat Login lets applications authenticate users through the WeChat ecosystem."
+                alternative_to: "China-market alternative or deployment route for: Sign in with Apple, Google Sign-In, Facebook Login."
+                global_alternatives: "Sign in with Apple, Google Sign-In, Facebook Login"
+                organization: "Tencent WeChat"
+                organization_overview: "Tencent WeChat is a major China super-app ecosystem that provides identity, payment, mini-program, and messaging capabilities."
+                developer_docs: "https://developers.weixin.qq.com/doc/"
       - subcategory:
         name: Payments & In-App Purchases
         items:
-          - item:
-            name: Chinaready Payments
-            homepage_url: https://chinaready.co
-            logo: chinaready-payments.svg
-            description: Chinaready Payments is referenced in the Archive as an option for China mobile payment and in-app purchase workflows.
-            extra:
-              annotations:
-                global_analogs: Stripe, RevenueCat, Apple In-App Purchase, Google Play Billing
-                replacement_fit: ecosystem-specific
-                china_context: Treat as a consulting or managed integration route for China app monetization rather than a generic payment gateway.
-                vendor_type: consulting-service
-                evidence_level: high
-                archive_rows: "9"
-                archive_files: "9"
-                source_hint: initial archive source batch
           - item:
             name: WeChat Pay
             homepage_url: https://pay.weixin.qq.com/
@@ -229,9 +294,17 @@ landscape:
                 china_context: Core China payment rail for WeChat ecosystem and many consumer payment scenarios.
                 vendor_type: china-super-app
                 evidence_level: low
-                archive_rows: "1"
-                archive_files: "1"
-                source_hint: initial archive source batch
+                metadata_name: "WeChat Pay"
+                primary_category: "Users, Trust & Monetization"
+                official_website: "https://pay.weixin.qq.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "WeChat Pay is a dominant China payment method integrated with the WeChat ecosystem."
+                alternative_to: "China-market alternative or deployment route for: Stripe, PayPal, Apple Pay."
+                global_alternatives: "Stripe, PayPal, Apple Pay"
+                organization: "Tencent WeChat"
+                organization_overview: "Tencent WeChat is a major China super-app ecosystem that provides identity, payment, mini-program, and messaging capabilities."
+                developer_docs: "https://pay.weixin.qq.com/wiki/doc/apiv3/index.shtml"
           - item:
             name: Alipay
             homepage_url: https://global.alipay.com/
@@ -244,9 +317,17 @@ landscape:
                 china_context: Core China payment rail for consumer payments outside the WeChat-only ecosystem.
                 vendor_type: china-super-app
                 evidence_level: low
-                archive_rows: "1"
-                archive_files: "1"
-                source_hint: initial archive source batch
+                metadata_name: "Alipay"
+                primary_category: "Users, Trust & Monetization"
+                official_website: "https://global.alipay.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Alipay is a major China digital wallet and payment platform."
+                alternative_to: "China-market alternative or deployment route for: Stripe, PayPal, Apple Pay."
+                global_alternatives: "Stripe, PayPal, Apple Pay"
+                organization: "Ant Group"
+                organization_overview: "Ant Group operates Alipay and related digital payment and financial technology services."
+                developer_docs: "https://opendocs.alipay.com/"
           - item:
             name: Youzan Cloud
             homepage_url: https://www.youzanyun.com/developer
@@ -256,12 +337,20 @@ landscape:
               annotations:
                 global_analogs: Shopify, Stripe, commerce platform APIs
                 replacement_fit: partial
-                china_context: Archive feedback references Youzan Cloud as an alternative for payment and commerce integration use cases.
+                china_context: Youzan Cloud provides China-market commerce and payment integration capabilities.
                 vendor_type: china-saas
                 evidence_level: medium
-                archive_rows: "2"
-                archive_files: "2"
-                source_hint: initial archive source batch
+                metadata_name: "Youzan Cloud"
+                primary_category: "Users, Trust & Monetization"
+                official_website: "https://www.youzanyun.com/developer"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Youzan Cloud provides commerce and payment-related developer capabilities for China-market digital commerce."
+                alternative_to: "China-market alternative or deployment route for: Shopify, Stripe, commerce platform APIs."
+                global_alternatives: "Shopify, Stripe, commerce platform APIs"
+                organization: "Youzan"
+                organization_overview: "Youzan provides commerce SaaS and developer capabilities for merchants and digital commerce integrations in China."
+                developer_docs: "https://doc.youzanyun.com/"
       - subcategory:
         name: Bot Protection & CAPTCHA
         items:
@@ -274,12 +363,20 @@ landscape:
               annotations:
                 global_analogs: Google reCAPTCHA, hCaptcha, Cloudflare Turnstile
                 replacement_fit: direct
-                china_context: Archive feedback recommends GeeTest when global bot protection services are unsuitable for China.
+                china_context: GeeTest provides a China-market alternative to global CAPTCHA and bot protection services.
                 vendor_type: china-saas
                 evidence_level: medium
-                archive_rows: "4"
-                archive_files: "4"
-                source_hint: initial archive source batch
+                metadata_name: "GeeTest"
+                primary_category: "Users, Trust & Monetization"
+                official_website: "https://www.geetest.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "GeeTest provides bot protection and CAPTCHA verification services."
+                alternative_to: "China-market alternative or deployment route for: Google reCAPTCHA, hCaptcha, Cloudflare Turnstile."
+                global_alternatives: "Google reCAPTCHA, hCaptcha, Cloudflare Turnstile"
+                organization: "GeeTest"
+                organization_overview: "GeeTest provides bot mitigation, CAPTCHA, and risk-control verification services."
+                developer_docs: "https://docs.geetest.com/"
           - item:
             name: Alibaba Cloud CAPTCHA
             homepage_url: https://www.aliyun.com/product/security/captcha
@@ -289,12 +386,20 @@ landscape:
               annotations:
                 global_analogs: Google reCAPTCHA, hCaptcha, Cloudflare Turnstile
                 replacement_fit: direct
-                china_context: Archive feedback includes Alibaba Cloud CAPTCHA as a China alternative for CAPTCHA use cases.
+                china_context: Alibaba Cloud CAPTCHA provides a China-market alternative for CAPTCHA and bot protection use cases.
                 vendor_type: china-cloud
                 evidence_level: low
-                archive_rows: "1"
-                archive_files: "1"
-                source_hint: initial archive source batch
+                metadata_name: "Alibaba Cloud CAPTCHA"
+                primary_category: "Users, Trust & Monetization"
+                official_website: "https://www.aliyun.com/product/security/captcha"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Alibaba Cloud CAPTCHA provides human verification and bot-protection capabilities on Alibaba Cloud."
+                alternative_to: "China-market alternative or deployment route for: Google reCAPTCHA, hCaptcha, Cloudflare Turnstile."
+                global_alternatives: "Google reCAPTCHA, hCaptcha, Cloudflare Turnstile"
+                organization: "Alibaba Cloud"
+                organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
+                developer_docs: "https://help.aliyun.com/zh/captcha/"
 
   - category:
     name: Engagement & Communication
@@ -317,9 +422,17 @@ landscape:
                 china_context: Archive rows mention EMAS across push, analytics, and crash/performance contexts; profile should clarify exact modules.
                 vendor_type: china-cloud
                 evidence_level: high
-                archive_rows: "9"
-                archive_files: "9"
-                source_hint: initial archive source batch
+                metadata_name: "Alibaba Cloud EMAS"
+                primary_category: "Engagement & Communication"
+                official_website: "https://www.aliyun.com/product/emas"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Alibaba Cloud EMAS provides mobile application services including push, analytics, and stability-related capabilities."
+                alternative_to: "China-market alternative or deployment route for: Firebase Cloud Messaging, Firebase Crashlytics, Firebase Analytics."
+                global_alternatives: "Firebase Cloud Messaging, Firebase Crashlytics, Firebase Analytics"
+                organization: "Alibaba Cloud"
+                organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
+                developer_docs: "https://help.aliyun.com/zh/emas/"
           - item:
             name: JPush
             homepage_url: https://www.jiguang.cn/jpush/
@@ -329,12 +442,20 @@ landscape:
               annotations:
                 global_analogs: Firebase Cloud Messaging, OneSignal, Braze
                 replacement_fit: direct
-                china_context: Archive feedback most frequently recommends JPush when FCM is unavailable or unreliable in China.
+                china_context: JPush provides a China-market alternative to Firebase Cloud Messaging for mobile push notifications.
                 vendor_type: china-saas
                 evidence_level: high
-                archive_rows: "14"
-                archive_files: "14"
-                source_hint: initial archive source batch
+                metadata_name: "JPush"
+                primary_category: "Engagement & Communication"
+                official_website: "https://www.jiguang.cn/jpush/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "JPush is a China mobile push notification service from Jiguang."
+                alternative_to: "China-market alternative or deployment route for: Firebase Cloud Messaging, OneSignal, Braze."
+                global_alternatives: "Firebase Cloud Messaging, OneSignal, Braze"
+                organization: "Jiguang"
+                organization_overview: "Jiguang provides mobile developer services including push notification, analytics, and engagement infrastructure."
+                developer_docs: "https://docs.jiguang.cn/jpush/"
           - item:
             name: Alibaba Cloud SMS
             homepage_url: https://www.aliyun.com/product/dysms
@@ -344,12 +465,20 @@ landscape:
               annotations:
                 global_analogs: Twilio SMS, AWS SNS, MessageBird
                 replacement_fit: direct
-                china_context: Archive feedback recommends Aliyun SMS for China notification and verification use cases.
+                china_context: Alibaba Cloud SMS provides a China-market alternative for SMS notification and verification workflows.
                 vendor_type: china-cloud
                 evidence_level: medium
-                archive_rows: "5"
-                archive_files: "5"
-                source_hint: initial archive source batch
+                metadata_name: "Alibaba Cloud SMS"
+                primary_category: "Engagement & Communication"
+                official_website: "https://www.aliyun.com/product/dysms"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Alibaba Cloud SMS provides SMS messaging services for verification and notification workflows."
+                alternative_to: "China-market alternative or deployment route for: Twilio SMS, AWS SNS, MessageBird."
+                global_alternatives: "Twilio SMS, AWS SNS, MessageBird"
+                organization: "Alibaba Cloud"
+                organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
+                developer_docs: "https://help.aliyun.com/zh/sms/"
           - item:
             name: Alibaba Cloud DirectMail
             homepage_url: https://www.aliyun.com/product/directmail
@@ -359,12 +488,20 @@ landscape:
               annotations:
                 global_analogs: SendGrid, Amazon SES, Mailgun
                 replacement_fit: partial
-                china_context: Archive feedback mentions DirectMail as part of a China notification stack with SMS and push.
+                china_context: Alibaba Cloud DirectMail supports China-market notification stacks alongside SMS and push messaging.
                 vendor_type: china-cloud
                 evidence_level: low
-                archive_rows: "1"
-                archive_files: "1"
-                source_hint: initial archive source batch
+                metadata_name: "Alibaba Cloud DirectMail"
+                primary_category: "Engagement & Communication"
+                official_website: "https://www.aliyun.com/product/directmail"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Alibaba Cloud DirectMail provides transactional and bulk email sending services."
+                alternative_to: "China-market alternative or deployment route for: SendGrid, Amazon SES, Mailgun."
+                global_alternatives: "SendGrid, Amazon SES, Mailgun"
+                organization: "Alibaba Cloud"
+                organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
+                developer_docs: "https://help.aliyun.com/zh/direct-mail/"
           - item:
             name: SendCloud
             homepage_url: https://www.sendcloud.net/
@@ -374,12 +511,20 @@ landscape:
               annotations:
                 global_analogs: SendGrid, Mailgun, Amazon SES
                 replacement_fit: partial
-                china_context: Archive feedback mentions SendCloud as a replacement for email notification needs.
+                china_context: SendCloud provides a China-market alternative for application email delivery and notification needs.
                 vendor_type: china-saas
                 evidence_level: low
-                archive_rows: "1"
-                archive_files: "1"
-                source_hint: initial archive source batch
+                metadata_name: "SendCloud"
+                primary_category: "Engagement & Communication"
+                official_website: "https://www.sendcloud.net/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "SendCloud provides email delivery services for application notifications and marketing email."
+                alternative_to: "China-market alternative or deployment route for: SendGrid, Mailgun, Amazon SES."
+                global_alternatives: "SendGrid, Mailgun, Amazon SES"
+                organization: "SendCloud"
+                organization_overview: "SendCloud provides email delivery and notification infrastructure for application and marketing workflows."
+                developer_docs: "https://www.sendcloud.net/doc/"
       - subcategory:
         name: Real-Time Communication (Voice / Video / Chat)
         items:
@@ -392,12 +537,20 @@ landscape:
               annotations:
                 global_analogs: Twilio Video, Agora, Daily
                 replacement_fit: direct
-                china_context: Archive feedback recommends Aliyun RTC or VMS for real-time communication use cases.
+                china_context: Alibaba Cloud RTC provides a China-market alternative for real-time audio and video communication use cases.
                 vendor_type: china-cloud
                 evidence_level: medium
-                archive_rows: "2"
-                archive_files: "2"
-                source_hint: initial archive source batch
+                metadata_name: "Alibaba Cloud RTC"
+                primary_category: "Engagement & Communication"
+                official_website: "https://www.aliyun.com/product/rtc"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Alibaba Cloud RTC provides real-time audio and video communication capabilities."
+                alternative_to: "China-market alternative or deployment route for: Twilio Video, Agora, Daily."
+                global_alternatives: "Twilio Video, Agora, Daily"
+                organization: "Alibaba Cloud"
+                organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
+                developer_docs: "https://help.aliyun.com/zh/rtc/"
       - subcategory:
         name: Customer Support & In-App Messaging
         items: []
@@ -417,12 +570,20 @@ landscape:
               annotations:
                 global_analogs: Mixpanel, Amplitude, PostHog
                 replacement_fit: direct
-                china_context: Archive feedback mentions Sensors Data as an alternative for product analytics and in-house analytics use cases.
+                china_context: Sensors Data provides a China-market alternative for product analytics and user behavior analysis.
                 vendor_type: china-saas
                 evidence_level: low
-                archive_rows: "1"
-                archive_files: "1"
-                source_hint: initial archive source batch
+                metadata_name: "Sensors Data"
+                primary_category: "Growth, Content & Experience"
+                official_website: "https://www.sensorsdata.cn/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Sensors Data provides product analytics and user behavior analysis for digital products."
+                alternative_to: "China-market alternative or deployment route for: Mixpanel, Amplitude, PostHog."
+                global_alternatives: "Mixpanel, Amplitude, PostHog"
+                organization: "Sensors Data"
+                organization_overview: "Sensors Data provides product analytics, user behavior analysis, and data intelligence products."
+                developer_docs: "https://manual.sensorsdata.cn/"
           - item:
             name: Umeng+
             homepage_url: https://www.umeng.com/
@@ -435,12 +596,20 @@ landscape:
               annotations:
                 global_analogs: Firebase Analytics, Mixpanel, Amplitude
                 replacement_fit: direct
-                china_context: Archive feedback repeatedly recommends Umeng for China analytics and compliance-sensitive mobile analytics use cases.
+                china_context: Umeng+ provides China-market mobile analytics and engagement tooling for apps operating in China.
                 vendor_type: china-saas
                 evidence_level: high
-                archive_rows: "13"
-                archive_files: "13"
-                source_hint: initial archive source batch
+                metadata_name: "Umeng+"
+                primary_category: "Growth, Content & Experience"
+                official_website: "https://www.umeng.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Umeng+ provides mobile analytics and user insight capabilities for China-market applications."
+                alternative_to: "China-market alternative or deployment route for: Firebase Analytics, Mixpanel, Amplitude."
+                global_alternatives: "Firebase Analytics, Mixpanel, Amplitude"
+                organization: "Umeng+"
+                organization_overview: "Umeng+ provides mobile analytics and developer services for China-market applications."
+                developer_docs: "https://developer.umeng.com/docs/"
       - subcategory:
         name: Location & Map Services
         items:
@@ -453,12 +622,20 @@ landscape:
               annotations:
                 global_analogs: Google Maps Platform, Mapbox, Apple MapKit
                 replacement_fit: direct
-                china_context: Archive feedback repeatedly recommends Amap when Google Maps SDK is unsuitable for China.
+                china_context: Amap provides a China-market alternative to Google Maps Platform for maps, location, and navigation APIs.
                 vendor_type: china-saas
                 evidence_level: high
-                archive_rows: "10"
-                archive_files: "10"
-                source_hint: initial archive source batch
+                metadata_name: "Amap"
+                primary_category: "Growth, Content & Experience"
+                official_website: "https://lbs.amap.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Amap provides China map, location, and navigation APIs for web and mobile applications."
+                alternative_to: "China-market alternative or deployment route for: Google Maps Platform, Mapbox, Apple MapKit."
+                global_alternatives: "Google Maps Platform, Mapbox, Apple MapKit"
+                organization: "Amap"
+                organization_overview: "Amap provides China map, location, navigation, geocoding, and routing services for developers."
+                developer_docs: "https://lbs.amap.com/api"
       - subcategory:
         name: App-Store Intelligence & Attribution (ASO)
         items: []
@@ -474,9 +651,17 @@ landscape:
               annotations:
                 global_analogs: Google Fonts
                 replacement_fit: compatible-route
-                china_context: Archive feedback mentions Chinaready-hosted Google Fonts; self-hosting remains a guide note rather than a product item.
+                china_context: Chinaready Google Fonts Hosting provides a China-accessible route for Google Fonts assets.
                 vendor_type: consulting-service
                 evidence_level: low
-                archive_rows: "2"
-                archive_files: "2"
-                source_hint: initial archive source batch
+                metadata_name: "Chinaready Google Fonts Hosting"
+                primary_category: "Growth, Content & Experience"
+                official_website: "https://chinaready.co"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Chinaready Google Fonts Hosting is referenced as a China-accessible hosting route for Google Fonts assets."
+                alternative_to: "China-market alternative or deployment route for: Google Fonts."
+                global_alternatives: "Google Fonts"
+                organization: "Chinaready"
+                organization_overview: "Chinaready helps global software teams understand and implement China-ready product, infrastructure, and go-to-market requirements."
+                developer_docs: "https://chinaready.co"

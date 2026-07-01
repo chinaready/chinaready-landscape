@@ -55,15 +55,13 @@ Required repository secrets:
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ACCOUNT_ID`
 
-See `docs/deployment.md` for the Cloudflare Pages project, custom domain, and CI model.
-
 ## Main Files
 
 - `landscape.yml` - categories, subcategories, and product entries.
 - `hosted_logos/` - SVG logos referenced by `landscape.yml`.
+- `assets/` - Chinaready logo assets and landscape-specific CSS used by the preview.
 - `settings.yml` - `landscape2` site configuration and Chinaready brand settings.
 - `guide.yml` - explanatory guide content.
-- `vendor/chinaready-design-system/` - vendored Chinaready design system assets used by the local preview.
 - `assets/chinaready-landscape.css` - small landscape-specific Chinaready CSS override.
 - `scripts/landscape2.mjs` - cross-platform wrapper around the official `landscape2` release binary.
 

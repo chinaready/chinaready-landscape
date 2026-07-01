@@ -3,13 +3,48 @@ categories:
     content: |
       Chinaready Landscape is an open-source map of China-ready developer services for global software teams. It helps developers translate familiar global-service keywords into practical China-market alternatives, understand local operating constraints, and discover source-backed product profiles before planning a China launch.
 
-      The project deliberately reuses CNCF `landscape2` conventions: contributors edit YAML data, add SVG logos, run validation, and review changes through pull requests. This keeps the workflow familiar for landscape2 contributors while making the taxonomy and profiles specific to China's internet technology ecosystem.
-    subcategories:
-      - subcategory: "README"
-        content: |
-          Start with `landscape.yml` for product entries, `hosted_logos/` for logos, `settings.yml` for site configuration, and this guide for category-level context.
+      The primary audience is foreign developer and product teams evaluating how to adapt a global software stack for mainland China.
 
-          Contributions should add or improve source-backed entries, refine China-market context, and keep global-to-China replacement mappings understandable for foreign developers. Before opening a pull request, run `npm run validate`, `npm run build`, and `npm run verify`.
+      The project deliberately reuses CNCF `landscape2` conventions: contributors edit YAML data, add SVG logos, run validation, and review changes through pull requests. This keeps the workflow familiar for landscape2 contributors while making the taxonomy and profiles specific to China's internet technology ecosystem.
+
+      <table>
+        <thead>
+          <tr>
+            <th>Level 1 Category</th>
+            <th>Level 2 Subcategories</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Infrastructure & Edge</td>
+            <td>Cloud Platform & Hosting; Managed DNS Provider; Content Delivery Network (CDN)</td>
+          </tr>
+          <tr>
+            <td>Application Platform</td>
+            <td>Cross-Platform UI & Frameworks; Mobile Backend-as-a-Service (MBaaS); Feature Flags & Remote Config</td>
+          </tr>
+          <tr>
+            <td>Release, Quality & Operations</td>
+            <td>CI/CD & App Distribution; Automated Testing & Device Farms; Crash Reporting & Performance Monitoring; Monitoring & Observability (APM / RUM)</td>
+          </tr>
+          <tr>
+            <td>Users, Trust & Monetization</td>
+            <td>Authentication & Identity; Payments & In-App Purchases; Bot Protection & CAPTCHA</td>
+          </tr>
+          <tr>
+            <td>Engagement & Communication</td>
+            <td>Push Notifications & Multichannel Messaging; Real-Time Communication (Voice / Video / Chat); Customer Support & In-App Messaging</td>
+          </tr>
+          <tr>
+            <td>Growth, Content & Experience</td>
+            <td>Product Analytics & User Insights; Location & Map Services; App-Store Intelligence & Attribution (ASO); Web Fonts & Iconography</td>
+          </tr>
+        </tbody>
+      </table>
+
+      Companies can participate by opening a pull request that adds or improves company profiles in `landscape.yml`, supplies SVG logos in `hosted_logos/`, and includes concise source-backed notes for China-market relevance. A complete contribution should identify the product category, official website, developer documentation, global alternatives, organization overview, and any GitHub or social links that help foreign developers evaluate the service.
+
+      Before opening a pull request, run `npm run validate`, `npm run build`, and `npm run verify`.
 
   - category: "Infrastructure & Edge"
     content: |

@@ -1,4 +1,5 @@
 build/
+docs/
 .tools/
 node_modules/
 .superpowers/

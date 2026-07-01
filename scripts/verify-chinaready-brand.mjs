@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
 
 const root = process.cwd();
 
@@ -20,9 +21,90 @@ function assert(condition, message) {
 const settings = read("settings.yml");
 const landscape = read("landscape.yml");
 const guide = read("guide.yml");
+const gitignore = read(".gitignore");
 const headerLogo = read("assets/chinaready-landscape-logo.svg");
 const repositoryUrl = "https://github.com/chinaready/chinaready-landscape.git";
 const legacySourceBrandPattern = new RegExp(`${["A", "IC"].join("")}|${["App", "In", "China"].join("")}`, "i");
+const requiredProfileFields = [
+  "metadata_name",
+  "primary_category",
+  "official_website",
+  "github",
+  "social_media",
+  "product_overview",
+  "alternative_to",
+  "global_alternatives",
+  "organization",
+  "organization_overview",
+  "developer_docs",
+];
+
+function unquote(value) {
+  return value.trim().replace(/^["']|["']$/g, "");
+}
+
+function collectLandscapeItems(source) {
+  const items = [];
+  let currentCategory = "";
+  let currentSubcategory = "";
+  let currentItem = null;
+
+  function finishItem() {
+    if (currentItem) {
+      items.push(currentItem);
+      currentItem = null;
+    }
+  }
+
+  for (const line of source.split("\n")) {
+    const categoryMatch = line.match(/^    name: (.+)$/);
+    const subcategoryMatch = line.match(/^        name: (.+)$/);
+    const itemNameMatch = line.match(/^            name: (.+)$/);
+    const homepageMatch = line.match(/^            homepage_url: (.+)$/);
+    const logoMatch = line.match(/^            logo: (.+)$/);
+    const annotationMatch = line.match(/^                ([a-zA-Z0-9_]+):\s*(.*)$/);
+
+    if (line.match(/^          - item:/)) {
+      finishItem();
+      currentItem = {
+        name: "",
+        homepageUrl: "",
+        category: currentCategory,
+        subcategory: currentSubcategory,
+        annotations: {},
+      };
+      continue;
+    }
+    if (categoryMatch) {
+      finishItem();
+      currentCategory = unquote(categoryMatch[1]);
+      continue;
+    }
+    if (subcategoryMatch) {
+      finishItem();
+      currentSubcategory = unquote(subcategoryMatch[1]);
+      continue;
+    }
+    if (currentItem && itemNameMatch) {
+      currentItem.name = unquote(itemNameMatch[1]);
+      continue;
+    }
+    if (currentItem && homepageMatch) {
+      currentItem.homepageUrl = unquote(homepageMatch[1]);
+      continue;
+    }
+    if (currentItem && logoMatch) {
+      currentItem.logo = unquote(logoMatch[1]);
+      continue;
+    }
+    if (currentItem && annotationMatch) {
+      currentItem.annotations[annotationMatch[1]] = unquote(annotationMatch[2]);
+    }
+  }
+
+  finishItem();
+  return items;
+}
 
 assert(settings.includes("foundation: Chinaready"), "settings.yml must use Chinaready as the foundation name");
 assert(settings.includes("rgba(12, 30, 62, 1)"), "settings.yml must use Chinaready deep navy");
@@ -33,41 +115,118 @@ assert(settings.includes("assets/chinaready-landscape-logo.svg"), "settings.yml 
 assert(settings.includes("homepage: \"https://chinaready.co\""), "settings.yml footer must link back to the Chinaready main site");
 assert(settings.includes(`github: "${repositoryUrl}"`), "settings.yml GitHub links must point to the Chinaready landscape repository");
 assert(!settings.includes("https://github.com/cncf/landscape2"), "settings.yml must not link header or footer GitHub actions to upstream landscape2");
-assert(settings.includes("vendor/chinaready-design-system/release/chinaready-logo-v1.1.0/svg/logo-horizontal-white.svg"), "settings.yml must use the vendored Chinaready footer logo");
+assert(settings.includes("assets/chinaready-logo-horizontal-white.svg"), "settings.yml must use the copied Chinaready footer logo asset");
+assert(!settings.includes("vendor/chinaready-design-system"), "settings.yml must not reference the removed vendored design system");
 assert(!settings.match(/^groups:/m), "settings.yml must not define groups so the default view shows the full landscape");
 assert(!settings.match(legacySourceBrandPattern), "settings.yml must not contain legacy source brand text");
 assert(!landscape.match(legacySourceBrandPattern), "landscape.yml must not contain legacy source brand text");
 assert(landscape.includes("Chinaready Google Fonts Hosting"), "landscape.yml must use Chinaready Google Fonts Hosting");
+assert(!landscape.match(/Archive feedback|in the Archive|referenced in the Archive|archive_rows|archive_files|source_hint/i), "landscape.yml must not expose Archive extraction context");
 assert(guide.includes('category: "Overview"'), "guide.yml must include a top-level Overview section");
-assert(guide.includes('subcategory: "README"'), "guide.yml Overview must include a README subcategory");
+assert(!guide.includes('subcategory: "README"'), "guide.yml Overview must not expose a README submenu");
+assert(guide.includes("<table>") && guide.includes("<th>Level 1 Category</th>"), "guide.yml Overview must include a taxonomy table");
+assert(guide.includes("company profiles"), "guide.yml Overview must explain how companies can contribute profiles");
 assert(headerLogo.includes('font-size="24"'), "header logo must use a larger Chinaready Landscape wordmark");
 assert(!headerLogo.includes(">Chinaready</text>"), "header logo text must be a single-line Chinaready Landscape lockup");
 
-assert(exists("vendor/chinaready-design-system/dist/chinaready.css"), "vendored Chinaready CSS is missing");
-assert(exists("vendor/chinaready-design-system/release/chinaready-logo-v1.1.0/svg/logo-horizontal.svg"), "vendored Chinaready logo is missing");
+assert(!exists("vendor/chinaready-design-system"), "vendor/chinaready-design-system must be removed");
+assert(exists("assets/chinaready-logo-horizontal-white.svg"), "copied Chinaready footer logo asset is missing");
 assert(exists("assets/chinaready-landscape.css"), "Chinaready landscape override CSS is missing");
 assert(exists("scripts/build-preview.mjs"), "build-preview wrapper is missing");
 
 const brandCss = read("assets/chinaready-landscape.css");
 assert(brandCss.includes("footer[role=\"contentinfo\"].bg-black"), "Chinaready CSS must override the landscape2 bg-black footer");
 assert(brandCss.includes("header img"), "Chinaready CSS must tune the landscape header logo rendering");
+assert(brandCss.includes("main table th") && brandCss.includes("border: 1px solid var(--cr-border)"), "Chinaready CSS must render visible table separators");
+assert(brandCss.includes(".cr-landscape-profile"), "Chinaready CSS must style item profile sections");
+assert(brandCss.includes("border: 1px solid #d9dfe7"), "Chinaready CSS must use CNCF-style thin section borders");
+assert(brandCss.includes("font-size: 13px") && brandCss.includes("letter-spacing: 0"), "Chinaready CSS must tune CNCF-style summary heading typography");
+assert(brandCss.includes("min-height: 22px") && brandCss.includes("border-radius: 0"), "Chinaready CSS must render CNCF-style rectangular blue badges");
+assert(!brandCss.includes(".cr-summary-more"), "Chinaready CSS must not render a Show more truncation control");
+assert(brandCss.includes(".cr-detail-dialog") && brandCss.includes("max-height: 72vh"), "Chinaready CSS must shorten the item detail modal height");
+assert(brandCss.includes(".cr-hover-use-case"), "Chinaready CSS must style hover card use-case content");
+assert(brandCss.includes(".cr-hover-badge"), "Chinaready CSS must style hover card global alternative badges");
+assert(brandCss.includes(".cr-hover-row") && brandCss.includes(".cr-hover-extra"), "Chinaready CSS must keep the hover website link inline with alternative tags");
+assert(!brandCss.includes(".cr-hover-card [class*=\"_extra_\"]"), "Chinaready CSS must not absolutely position the hover website link away from tags");
+assert(brandCss.includes("text-transform: none"), "Chinaready CSS must allow hover card badges to render title case");
+assert(!brandCss.includes(".cr-hover-card {\n  position:"), "Chinaready CSS must not override landscape2 hover card positioning");
+
+assert(gitignore.match(/^docs\/$/m), ".gitignore must exclude docs/");
+const trackedDocs = spawnSync("git", ["ls-files", "docs"], { cwd: root, encoding: "utf8" });
+assert(trackedDocs.status === 0, "git ls-files docs must run successfully");
+assert(trackedDocs.stdout.trim() === "", "docs/ must not contain tracked files");
+assert(exists("assets/chinaready-landscape-details.js"), "Chinaready item detail extension script is missing");
+const detailsScript = read("assets/chinaready-landscape-details.js");
+assert(detailsScript.includes("Summary"), "detail extension must render a CNCF-style Summary section");
+assert(detailsScript.includes("USE CASE"), "detail extension must expose product overview as a CNCF-style use case field");
+assert(detailsScript.includes("CHINA MARKET FIT"), "detail extension must expose China context as a Summary field");
+assert(detailsScript.includes("ALTERNATIVE TO"), "detail extension must expose alternatives as a Summary field");
+assert(detailsScript.includes("DEVELOPER RESOURCES"), "detail extension must expose developer references as a Summary field");
+assert(detailsScript.includes("cr-profile-badge"), "detail extension must render badge-style metadata");
+assert(detailsScript.includes("candidateHoverCards"), "detail extension must detect landscape2 hover cards");
+assert(detailsScript.includes("titleCase"), "detail extension must format hover card badges as title case");
+assert(detailsScript.includes("cr-hover-card"), "detail extension must mark landscape2 hover cards for Chinaready styling");
+assert(detailsScript.includes("moveHoverLinksIntoTagRow"), "detail extension must move the hover website link into the tag row");
+assert(detailsScript.includes("cr-hover-use-case"), "detail extension must render hover card use-case content under the product name");
+assert(!detailsScript.includes('heading.textContent = "USE CASE"'), "hover card must not render a USE CASE heading");
+assert(!detailsScript.includes('compactBadgeBlock("GLOBAL ALTERNATIVES"'), "hover card must not render a GLOBAL ALTERNATIVES heading");
+assert(!detailsScript.includes("Show more") && !detailsScript.includes("cr-summary-more"), "detail extension must show full text without truncation");
+assert(detailsScript.includes("section(\"Organization\""), "detail extension must render organization as a standalone fieldset");
+assert(!detailsScript.includes("gridSection(\"Metadata\""), "detail extension must not render a Metadata fieldset");
+assert(!detailsScript.includes("gridSection(\"Archive Evidence\""), "detail extension must not render an Archive Evidence fieldset");
+assert(detailsScript.includes("modal-body"), "detail extension must mount profile fields inside the visible modal body");
 
 if (exists("build/index.html")) {
   const index = read("build/index.html");
-  assert(index.includes("vendor/chinaready-design-system/dist/chinaready.css"), "build/index.html must link the Chinaready DS CSS");
+  assert(!index.includes("vendor/chinaready-design-system"), "build/index.html must not link the removed vendored design system");
   assert(index.includes("assets/chinaready-landscape.css"), "build/index.html must link the Chinaready landscape override CSS");
+  assert(index.includes("assets/chinaready-landscape-details.js?v=20260701-no-archive-no-truncate"), "build/index.html must load the cache-busted Chinaready item detail extension");
   assert(index.includes(repositoryUrl), "build/index.html must include the Chinaready landscape repository link");
   assert(!index.match(legacySourceBrandPattern), "build/index.html must not contain legacy source brand text");
 }
+
+assert(!exists("build/vendor/chinaready-design-system"), "build output must not contain the removed vendored design system");
 
 if (exists("build/assets/chinaready-landscape.css")) {
   const buildCss = read("build/assets/chinaready-landscape.css");
   assert(buildCss.includes("footer[role=\"contentinfo\"].bg-black"), "published CSS must override the landscape2 bg-black footer");
   assert(buildCss.includes("header img"), "published CSS must tune the landscape header logo rendering");
+  assert(buildCss.includes("main table th") && buildCss.includes(".cr-landscape-profile"), "published CSS must include table and profile section styles");
+  assert(buildCss.includes("border: 1px solid #d9dfe7") && !buildCss.includes(".cr-summary-more"), "published CSS must include refined detail styles without Show more truncation");
+  assert(buildCss.includes(".cr-detail-dialog") && buildCss.includes("max-height: 72vh"), "published CSS must shorten the item detail modal height");
+  assert(buildCss.includes(".cr-hover-use-case") && buildCss.includes(".cr-hover-badge"), "published CSS must include hover card styles");
+  assert(buildCss.includes(".cr-hover-row") && buildCss.includes(".cr-hover-extra"), "published CSS must keep the hover website link inline with alternative tags");
+  assert(!buildCss.includes(".cr-hover-card [class*=\"_extra_\"]"), "published CSS must not absolutely position the hover website link away from tags");
+  assert(!buildCss.includes(".cr-hover-card {\n  position:"), "published CSS must not override landscape2 hover card positioning");
+}
+
+if (exists("build/assets/chinaready-landscape-details.js")) {
+  const buildDetailsScript = read("build/assets/chinaready-landscape-details.js");
+  assert(buildDetailsScript.includes("Summary"), "published detail extension must render a CNCF-style Summary section");
+  assert(buildDetailsScript.includes("USE CASE"), "published detail extension must expose product overview");
+  assert(buildDetailsScript.includes("cr-profile-badge"), "published detail extension must render badge-style metadata");
+  assert(buildDetailsScript.includes("candidateHoverCards"), "published detail extension must detect landscape2 hover cards");
+  assert(buildDetailsScript.includes("titleCase"), "published detail extension must format hover card badges as title case");
+  assert(buildDetailsScript.includes("cr-hover-card"), "published detail extension must mark landscape2 hover cards for Chinaready styling");
+  assert(buildDetailsScript.includes("moveHoverLinksIntoTagRow"), "published detail extension must move the hover website link into the tag row");
+  assert(buildDetailsScript.includes("cr-hover-use-case"), "published detail extension must render hover card use-case content under the product name");
+  assert(!buildDetailsScript.includes('heading.textContent = "USE CASE"'), "published hover card must not render a USE CASE heading");
+  assert(!buildDetailsScript.includes('compactBadgeBlock("GLOBAL ALTERNATIVES"'), "published hover card must not render a GLOBAL ALTERNATIVES heading");
+  assert(!buildDetailsScript.includes("Show more") && !buildDetailsScript.includes("cr-summary-more"), "published detail extension must show full text without truncation");
+  assert(buildDetailsScript.includes("section(\"Organization\""), "published detail extension must render organization as a standalone fieldset");
+  assert(!buildDetailsScript.includes("gridSection(\"Metadata\""), "published detail extension must not render a Metadata fieldset");
+  assert(!buildDetailsScript.includes("gridSection(\"Archive Evidence\""), "published detail extension must not render an Archive Evidence fieldset");
 }
 
 if (exists("build/data/base.json")) {
   const base = JSON.parse(read("build/data/base.json"));
+  const baseSearchText = (name) => {
+    const item = base.items.find((candidate) => candidate.name === name);
+    return (item?.summary?.tags || []).join(" ");
+  };
+  assert(baseSearchText("SendCloud").match(/Amazon SES/i), "base.json search index tags must let SES find SendCloud");
+  assert(baseSearchText("Alibaba Cloud DirectMail").match(/Amazon SES/i), "base.json search index tags must let SES find Alibaba Cloud DirectMail");
+  assert(baseSearchText("JPush").match(/\bFCM\b/i), "base.json search index tags must let FCM find JPush");
   const subcategoryCount = base.categories.reduce((total, category) => total + category.subcategories.length, 0);
   assert(base.categories.length === 6, "base.json must expose all 6 top-level categories");
   assert(subcategoryCount === 20, "base.json must expose all 20 subcategories");
@@ -86,6 +245,61 @@ if (exists("build/data/base.json")) {
       assert(visibleSubcategories.has(key), `preview must render subcategory: ${key}`);
     }
   }
+}
+
+if (exists("build/data/guide.json")) {
+  const guideData = JSON.parse(read("build/data/guide.json"));
+  const overview = guideData.categories.find((category) => category.category === "Overview");
+  assert(overview, "guide.json must include Overview");
+  assert(!overview.subcategories || overview.subcategories.length === 0, "guide.json Overview must not expose README or other submenu entries");
+  assert(overview.content.includes("<table>"), "guide.json Overview content must render a real taxonomy table");
+  assert(overview.content.includes("foreign developer and product teams"), "guide.json Overview must name foreign developer and product teams as the audience");
+  assert(!overview.content.includes("<img"), "guide.json Overview content must not render a logo image");
+}
+
+if (exists("build/data/full.json")) {
+  const full = JSON.parse(read("build/data/full.json"));
+  const alibabaCloud = full.items.find((item) => item.name === "Alibaba Cloud");
+  const jpush = full.items.find((item) => item.name === "JPush");
+  const fullSearchText = (name) => {
+    const item = full.items.find((candidate) => candidate.name === name);
+    return (item?.summary?.tags || []).join(" ");
+  };
+  assert(alibabaCloud, "full.json must include Alibaba Cloud");
+  assert(alibabaCloud.annotations?.product_overview, "Alibaba Cloud details must include product_overview");
+  assert(alibabaCloud.annotations?.developer_docs, "Alibaba Cloud details must include developer_docs");
+  assert(alibabaCloud.annotations?.organization_overview, "Alibaba Cloud details must include organization_overview");
+  assert(jpush?.annotations?.china_context === "JPush provides a China-market alternative to Firebase Cloud Messaging for mobile push notifications.", "JPush China context must be direct product copy");
+  assert(fullSearchText("SendCloud").match(/Amazon SES/i), "full.json search index tags must let SES find SendCloud");
+  assert(fullSearchText("Alibaba Cloud DirectMail").match(/Amazon SES/i), "full.json search index tags must let SES find Alibaba Cloud DirectMail");
+  assert(fullSearchText("JPush").match(/\bFCM\b/i), "full.json search index tags must let FCM find JPush");
+}
+
+if (exists("hosted_logos/alibaba-cloud.svg")) {
+  const alibabaLogo = read("hosted_logos/alibaba-cloud.svg");
+  assert(alibabaLogo.includes("Alibaba Cloud (member) logo"), "Alibaba Cloud logo must use the CNCF hosted logo asset");
+  assert(!alibabaLogo.includes("China-ready"), "Alibaba Cloud logo must not use the placeholder Chinaready generated logo");
+}
+
+const items = collectLandscapeItems(landscape);
+assert(items.length > 0, "landscape.yml must contain product entries");
+for (const item of items) {
+  assert(item.logo, `${item.name} must define a logo`);
+  const logoPath = `hosted_logos/${item.logo}`;
+  assert(exists(logoPath), `${item.name} logo file must exist: ${logoPath}`);
+  const logoSource = read(logoPath);
+  assert(!logoSource.includes("China-ready"), `${item.name} logo must not use the generated China-ready placeholder`);
+  assert(!logoSource.includes("Open for contribution"), `${item.name} logo must not use the empty-category placeholder`);
+  assert(!logoSource.includes("@import url("), `${item.name} logo must not import external fonts or styles`);
+  for (const field of requiredProfileFields) {
+    assert(
+      item.annotations[field] && item.annotations[field] !== "not-collected",
+      `${item.name} must define product profile field: ${field}`,
+    );
+  }
+  assert(item.annotations.metadata_name === item.name, `${item.name} metadata_name must match the item name`);
+  assert(item.annotations.primary_category === item.category, `${item.name} primary_category must match its main category`);
+  assert(item.annotations.official_website === item.homepageUrl, `${item.name} official_website must match homepage_url`);
 }
 
 console.log("Chinaready brand verification passed");

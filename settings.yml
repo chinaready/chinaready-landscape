@@ -33,7 +33,7 @@ footer:
   links:
     github: "https://github.com/chinaready/chinaready-landscape.git"
     homepage: "https://chinaready.co"
-  logo: "vendor/chinaready-design-system/release/chinaready-logo-v1.1.0/svg/logo-horizontal-white.svg"
+  logo: "assets/chinaready-logo-horizontal-white.svg"
   text: |
     Chinaready Landscape is an open-source landscape2 site for global software teams evaluating China-market developer services. Visit [chinaready.co](https://chinaready.co) for Chinaready's main site.
 
