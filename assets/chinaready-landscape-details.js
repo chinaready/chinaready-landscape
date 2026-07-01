@@ -76,6 +76,108 @@
     return text(raw);
   }
 
+  function footerLink(label, href) {
+    const item = document.createElement("li");
+    const anchor = document.createElement("a");
+    anchor.href = href;
+    anchor.textContent = label;
+    anchor.className = "cr-footer-link";
+    if (/^https?:\/\//i.test(href)) {
+      anchor.target = "_blank";
+      anchor.rel = "noreferrer";
+    }
+    item.append(anchor);
+    return item;
+  }
+
+  function footerColumn(title, links) {
+    const column = document.createElement("section");
+    column.className = "cr-footer-column";
+
+    const heading = document.createElement("h2");
+    heading.className = "cr-footer-heading";
+    heading.textContent = title;
+
+    const list = document.createElement("ul");
+    list.className = "cr-footer-list";
+    for (const { label, href } of links) {
+      list.append(footerLink(label, href));
+    }
+
+    column.append(heading, list);
+    return column;
+  }
+
+  function enhanceFooter() {
+    const footer = document.querySelector('footer[role="contentinfo"]');
+    if (!footer || footer.dataset.chinareadyFooter === "ready") return;
+
+    const existingLogo = footer.querySelector("img");
+    const logoSrc = existingLogo?.getAttribute("src") || "images/chinaready-logo-horizontal-white.svg";
+    const poweredLink = footer.querySelector('a[href="https://github.com/cncf/landscape2"]')?.cloneNode(true);
+
+    const inner = document.createElement("div");
+    inner.className = "cr-footer-inner";
+
+    const grid = document.createElement("div");
+    grid.className = "cr-footer-grid";
+
+    const brand = document.createElement("section");
+    brand.className = "cr-footer-brand";
+
+    const logoLink = document.createElement("a");
+    logoLink.href = "https://chinaready.co";
+    logoLink.className = "cr-footer-logo-link";
+    logoLink.setAttribute("aria-label", "Chinaready home");
+
+    const logo = document.createElement("img");
+    logo.src = logoSrc;
+    logo.alt = "Chinaready";
+    logo.className = "cr-footer-logo";
+    logoLink.append(logo);
+
+    const description = document.createElement("p");
+    description.className = "cr-footer-description";
+    description.textContent =
+      "Chinaready Landscape is an open-source landscape2 site for global software teams evaluating China-market developer services.";
+
+    brand.append(logoLink, description);
+
+    grid.append(
+      brand,
+      footerColumn("Chinaready", [
+        { label: "Start Assessment", href: "https://chinaready.co/intake" },
+        { label: "Book a Call", href: "https://chinaready.co/book-call" },
+        { label: "All Services", href: "https://chinaready.co/services/" },
+      ]),
+      footerColumn("Stackbreak Lab", [
+        { label: "Beijing View", href: "https://stackbreak.launchready.cn/demos/beijing-view.html" },
+        { label: "Firebase", href: "https://stackbreak.launchready.cn/public/results/firebase.html" },
+        {
+          label: "Netlify",
+          href: "https://stackbreak.launchready.cn/public/results/netlify.html#netlify-latency",
+        },
+        { label: "Vercel", href: "https://stackbreak.launchready.cn/public/results/vercel.html" },
+      ]),
+    );
+
+    const bottom = document.createElement("div");
+    bottom.className = "cr-footer-bottom";
+    const powered = document.createElement("p");
+    powered.className = "cr-footer-powered";
+    powered.append("Powered by ");
+    if (poweredLink) {
+      powered.append(poweredLink);
+    } else {
+      powered.append("CNCF interactive landscapes generator.");
+    }
+    bottom.append(powered);
+
+    inner.append(grid, bottom);
+    footer.replaceChildren(inner);
+    footer.dataset.chinareadyFooter = "ready";
+  }
+
   function splitValues(value) {
     if (!hasValue(value)) return [];
     return String(value)
@@ -118,6 +220,20 @@
     content.append(linkOrText(value));
 
     block.append(heading, content);
+    return block;
+  }
+
+  function textBlock(value) {
+    if (!hasValue(value)) return null;
+
+    const block = document.createElement("div");
+    block.className = "cr-summary-block";
+
+    const content = document.createElement("p");
+    content.className = "cr-profile-text";
+    content.append(linkOrText(value));
+
+    block.append(content);
     return block;
   }
 
@@ -185,10 +301,6 @@
     const block = document.createElement("div");
     block.className = "cr-summary-block";
 
-    const heading = document.createElement("h3");
-    heading.className = "cr-summary-heading";
-    heading.textContent = label;
-
     const list = document.createElement("div");
     list.className = "cr-profile-links";
     for (const { label: linkLabel, value } of visibleLinks) {
@@ -202,7 +314,13 @@
       list.append(item);
     }
 
-    block.append(heading, list);
+    if (hasValue(label)) {
+      const heading = document.createElement("h3");
+      heading.className = "cr-summary-heading";
+      heading.textContent = label;
+      block.append(heading);
+    }
+    block.append(list);
     return block;
   }
 
@@ -238,18 +356,17 @@
 
     const sections = [
       section("Summary", [
-        summaryBlock("USE CASE", annotations.product_overview || item.description),
-        summaryBlock("CHINA MARKET FIT", annotations.china_context),
-        summaryBlock("ALTERNATIVE TO", annotations.alternative_to),
+        textBlock(annotations.product_overview || item.description),
+        textBlock(annotations.china_context),
         badgeBlock("GLOBAL ALTERNATIVES", alternativeBadges),
       ]),
       section("Organization", [
-        summaryBlock("ORGANIZATION", annotations.organization_overview || annotations.organization),
-        linkBlock("DEVELOPER RESOURCES", [
-          { label: "Official website", value: annotations.official_website || item.homepage_url || item.website },
-          { label: "Developer docs", value: annotations.developer_docs },
+        textBlock(annotations.organization_overview || annotations.organization),
+        linkBlock("", [
+          { label: "Official Website", value: annotations.official_website || item.homepage_url || item.website },
+          { label: "Developer Docs", value: annotations.developer_docs },
           { label: "GitHub", value: annotations.github },
-          { label: "Social media", value: annotations.social_media },
+          { label: "Social Media", value: annotations.social_media },
         ]),
         badgeBlock("TAGS", metadataBadges),
       ]),
@@ -259,6 +376,20 @@
       wrapper.append(profileSection);
     }
     return wrapper;
+  }
+
+  function removeNativeSummary(root) {
+    const nativeSections = Array.from(root.querySelectorAll(".position-relative.border")).filter((section) => {
+      if (section.closest(".cr-landscape-profile")) return false;
+      if (section.id === "item-view" || section.classList.contains("modal-content")) return false;
+      const sectionText = (section.textContent || "").toLowerCase();
+      return sectionText.includes("summary") && sectionText.includes("tags");
+    });
+
+    for (const section of nativeSections) {
+      section.classList.add("cr-native-summary-hidden");
+      section.setAttribute("aria-hidden", "true");
+    }
   }
 
   function mountContainer(dialog, item) {
@@ -282,6 +413,8 @@
 
   function appendProfile(dialog, item) {
     dialog.classList.add("cr-detail-dialog");
+    removeNativeSummary(document);
+    removeNativeSummary(dialog);
     const existing = dialog.querySelector(`[data-chinaready-profile-for="${CSS.escape(item.id)}"]`);
     const mount = mountContainer(dialog, item);
     if (existing) {
@@ -324,8 +457,16 @@
   }
 
   async function refresh() {
+    enhanceFooter();
+
     const dialogs = candidateDialogs();
     const hoverCards = candidateHoverCards();
+    if (dialogs.length > 0) {
+      removeNativeSummary(document);
+      for (const dialog of dialogs) {
+        removeNativeSummary(dialog);
+      }
+    }
     if (dialogs.length === 0 && hoverCards.length === 0) return;
 
     try {
@@ -358,4 +499,5 @@
   window.addEventListener("hashchange", refresh);
   window.addEventListener("click", () => window.setTimeout(refresh, 0), true);
   window.addEventListener("load", refresh);
+  window.requestAnimationFrame(enhanceFooter);
 })();

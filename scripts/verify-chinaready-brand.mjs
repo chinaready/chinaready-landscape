@@ -139,6 +139,7 @@ assert(brandCss.includes("footer[role=\"contentinfo\"].bg-black"), "Chinaready C
 assert(brandCss.includes("header img"), "Chinaready CSS must tune the landscape header logo rendering");
 assert(brandCss.includes("main table th") && brandCss.includes("border: 1px solid var(--cr-border)"), "Chinaready CSS must render visible table separators");
 assert(brandCss.includes(".cr-landscape-profile"), "Chinaready CSS must style item profile sections");
+assert(brandCss.includes(".cr-native-summary-hidden"), "Chinaready CSS must hide the landscape2 native Summary/TAGS block");
 assert(brandCss.includes("border: 1px solid #d9dfe7"), "Chinaready CSS must use CNCF-style thin section borders");
 assert(brandCss.includes("font-size: 13px") && brandCss.includes("letter-spacing: 0"), "Chinaready CSS must tune CNCF-style summary heading typography");
 assert(brandCss.includes("min-height: 22px") && brandCss.includes("border-radius: 0"), "Chinaready CSS must render CNCF-style rectangular blue badges");
@@ -150,6 +151,12 @@ assert(brandCss.includes(".cr-hover-row") && brandCss.includes(".cr-hover-extra"
 assert(!brandCss.includes(".cr-hover-card [class*=\"_extra_\"]"), "Chinaready CSS must not absolutely position the hover website link away from tags");
 assert(brandCss.includes("text-transform: none"), "Chinaready CSS must allow hover card badges to render title case");
 assert(!brandCss.includes(".cr-hover-card {\n  position:"), "Chinaready CSS must not override landscape2 hover card positioning");
+assert(brandCss.includes(".cr-footer-grid"), "Chinaready CSS must render the custom footer grid");
+assert(
+  brandCss.includes("grid-template-columns: repeat(3, minmax(0, 1fr))"),
+  "Chinaready footer grid must use equal-width columns",
+);
+assert(brandCss.includes(".cr-footer-description"), "Chinaready CSS must place the project description under the footer logo");
 
 assert(gitignore.match(/^docs\/$/m), ".gitignore must exclude docs/");
 const trackedDocs = spawnSync("git", ["ls-files", "docs"], { cwd: root, encoding: "utf8" });
@@ -158,10 +165,11 @@ assert(trackedDocs.stdout.trim() === "", "docs/ must not contain tracked files")
 assert(exists("assets/chinaready-landscape-details.js"), "Chinaready item detail extension script is missing");
 const detailsScript = read("assets/chinaready-landscape-details.js");
 assert(detailsScript.includes("Summary"), "detail extension must render a CNCF-style Summary section");
-assert(detailsScript.includes("USE CASE"), "detail extension must expose product overview as a CNCF-style use case field");
-assert(detailsScript.includes("CHINA MARKET FIT"), "detail extension must expose China context as a Summary field");
-assert(detailsScript.includes("ALTERNATIVE TO"), "detail extension must expose alternatives as a Summary field");
-assert(detailsScript.includes("DEVELOPER RESOURCES"), "detail extension must expose developer references as a Summary field");
+assert(detailsScript.includes("removeNativeSummary"), "detail extension must remove the landscape2 native Summary/TAGS block");
+assert(detailsScript.includes("textBlock(annotations.product_overview"), "detail extension must render product overview without a USE CASE subheading");
+assert(detailsScript.includes("textBlock(annotations.china_context"), "detail extension must render China context without a CHINA MARKET FIT subheading");
+assert(!detailsScript.includes('summaryBlock("ALTERNATIVE TO"'), "detail extension must not render an Alternative To text block");
+assert(!detailsScript.includes("DEVELOPER RESOURCES"), "detail extension must not render a developer resources subheading");
 assert(detailsScript.includes("cr-profile-badge"), "detail extension must render badge-style metadata");
 assert(detailsScript.includes("candidateHoverCards"), "detail extension must detect landscape2 hover cards");
 assert(detailsScript.includes("titleCase"), "detail extension must format hover card badges as title case");
@@ -172,9 +180,24 @@ assert(!detailsScript.includes('heading.textContent = "USE CASE"'), "hover card 
 assert(!detailsScript.includes('compactBadgeBlock("GLOBAL ALTERNATIVES"'), "hover card must not render a GLOBAL ALTERNATIVES heading");
 assert(!detailsScript.includes("Show more") && !detailsScript.includes("cr-summary-more"), "detail extension must show full text without truncation");
 assert(detailsScript.includes("section(\"Organization\""), "detail extension must render organization as a standalone fieldset");
+assert(!detailsScript.includes('summaryBlock("ORGANIZATION"'), "detail extension must render organization copy without an ORGANIZATION subheading");
+assert(detailsScript.includes("Official Website") && detailsScript.includes("Developer Docs"), "detail extension must render link labels in title case");
 assert(!detailsScript.includes("gridSection(\"Metadata\""), "detail extension must not render a Metadata fieldset");
 assert(!detailsScript.includes("gridSection(\"Archive Evidence\""), "detail extension must not render an Archive Evidence fieldset");
 assert(detailsScript.includes("modal-body"), "detail extension must mount profile fields inside the visible modal body");
+assert(detailsScript.includes("enhanceFooter"), "detail extension must enhance the landscape2 footer");
+assert(detailsScript.includes('footerColumn("Chinaready"'), "detail extension footer must title the Chinaready column correctly");
+assert(!detailsScript.includes('{ label: "Chinaready", href: "https://chinaready.co" }'), "detail extension footer must not duplicate the Chinaready home link");
+assert(
+  detailsScript.includes("Start Assessment") &&
+    detailsScript.includes("Book a Call") &&
+    detailsScript.includes("All Services") &&
+    detailsScript.includes("https://chinaready.co/services/"),
+  "detail extension footer must include Chinaready conversion and services links",
+);
+assert(detailsScript.includes("Stackbreak Lab"), "detail extension footer must include the Stackbreak Lab column");
+assert(detailsScript.includes("Beijing View") && detailsScript.includes("https://stackbreak.launchready.cn/demos/beijing-view.html"), "detail extension footer must include the Stackbreak Beijing View link");
+assert(detailsScript.includes("https://stackbreak.launchready.cn/public/results/firebase.html"), "detail extension footer must include Stackbreak Firebase results");
 
 if (exists("build/index.html")) {
   const index = read("build/index.html");
@@ -192,18 +215,29 @@ if (exists("build/assets/chinaready-landscape.css")) {
   assert(buildCss.includes("footer[role=\"contentinfo\"].bg-black"), "published CSS must override the landscape2 bg-black footer");
   assert(buildCss.includes("header img"), "published CSS must tune the landscape header logo rendering");
   assert(buildCss.includes("main table th") && buildCss.includes(".cr-landscape-profile"), "published CSS must include table and profile section styles");
+  assert(buildCss.includes(".cr-native-summary-hidden"), "published CSS must hide the landscape2 native Summary/TAGS block");
   assert(buildCss.includes("border: 1px solid #d9dfe7") && !buildCss.includes(".cr-summary-more"), "published CSS must include refined detail styles without Show more truncation");
   assert(buildCss.includes(".cr-detail-dialog") && buildCss.includes("max-height: 72vh"), "published CSS must shorten the item detail modal height");
   assert(buildCss.includes(".cr-hover-use-case") && buildCss.includes(".cr-hover-badge"), "published CSS must include hover card styles");
   assert(buildCss.includes(".cr-hover-row") && buildCss.includes(".cr-hover-extra"), "published CSS must keep the hover website link inline with alternative tags");
   assert(!buildCss.includes(".cr-hover-card [class*=\"_extra_\"]"), "published CSS must not absolutely position the hover website link away from tags");
   assert(!buildCss.includes(".cr-hover-card {\n  position:"), "published CSS must not override landscape2 hover card positioning");
+  assert(buildCss.includes(".cr-footer-grid"), "published CSS must include the custom footer grid");
+  assert(
+    buildCss.includes("grid-template-columns: repeat(3, minmax(0, 1fr))"),
+    "published footer grid must use equal-width columns",
+  );
+  assert(buildCss.includes(".cr-footer-description"), "published CSS must place the project description under the footer logo");
 }
 
 if (exists("build/assets/chinaready-landscape-details.js")) {
   const buildDetailsScript = read("build/assets/chinaready-landscape-details.js");
   assert(buildDetailsScript.includes("Summary"), "published detail extension must render a CNCF-style Summary section");
-  assert(buildDetailsScript.includes("USE CASE"), "published detail extension must expose product overview");
+  assert(buildDetailsScript.includes("removeNativeSummary"), "published detail extension must remove the landscape2 native Summary/TAGS block");
+  assert(buildDetailsScript.includes("textBlock(annotations.product_overview"), "published detail extension must render product overview without a USE CASE subheading");
+  assert(buildDetailsScript.includes("textBlock(annotations.china_context"), "published detail extension must render China context without a CHINA MARKET FIT subheading");
+  assert(!buildDetailsScript.includes('summaryBlock("ALTERNATIVE TO"'), "published detail extension must not render an Alternative To text block");
+  assert(!buildDetailsScript.includes("DEVELOPER RESOURCES"), "published detail extension must not render a developer resources subheading");
   assert(buildDetailsScript.includes("cr-profile-badge"), "published detail extension must render badge-style metadata");
   assert(buildDetailsScript.includes("candidateHoverCards"), "published detail extension must detect landscape2 hover cards");
   assert(buildDetailsScript.includes("titleCase"), "published detail extension must format hover card badges as title case");
@@ -214,8 +248,23 @@ if (exists("build/assets/chinaready-landscape-details.js")) {
   assert(!buildDetailsScript.includes('compactBadgeBlock("GLOBAL ALTERNATIVES"'), "published hover card must not render a GLOBAL ALTERNATIVES heading");
   assert(!buildDetailsScript.includes("Show more") && !buildDetailsScript.includes("cr-summary-more"), "published detail extension must show full text without truncation");
   assert(buildDetailsScript.includes("section(\"Organization\""), "published detail extension must render organization as a standalone fieldset");
+  assert(!buildDetailsScript.includes('summaryBlock("ORGANIZATION"'), "published detail extension must render organization copy without an ORGANIZATION subheading");
+  assert(buildDetailsScript.includes("Official Website") && buildDetailsScript.includes("Developer Docs"), "published detail extension must render link labels in title case");
   assert(!buildDetailsScript.includes("gridSection(\"Metadata\""), "published detail extension must not render a Metadata fieldset");
   assert(!buildDetailsScript.includes("gridSection(\"Archive Evidence\""), "published detail extension must not render an Archive Evidence fieldset");
+  assert(buildDetailsScript.includes("enhanceFooter"), "published detail extension must enhance the landscape2 footer");
+  assert(buildDetailsScript.includes('footerColumn("Chinaready"'), "published footer must title the Chinaready column correctly");
+  assert(!buildDetailsScript.includes('{ label: "Chinaready", href: "https://chinaready.co" }'), "published footer must not duplicate the Chinaready home link");
+  assert(
+    buildDetailsScript.includes("Start Assessment") &&
+      buildDetailsScript.includes("Book a Call") &&
+      buildDetailsScript.includes("All Services") &&
+      buildDetailsScript.includes("https://chinaready.co/services/"),
+    "published footer must include Chinaready conversion and services links",
+  );
+  assert(buildDetailsScript.includes("Stackbreak Lab"), "published footer must include the Stackbreak Lab column");
+  assert(buildDetailsScript.includes("Beijing View") && buildDetailsScript.includes("https://stackbreak.launchready.cn/demos/beijing-view.html"), "published footer must include the Stackbreak Beijing View link");
+  assert(buildDetailsScript.includes("https://stackbreak.launchready.cn/public/results/firebase.html"), "published footer must include Stackbreak Firebase results");
 }
 
 if (exists("build/data/base.json")) {
