@@ -139,12 +139,17 @@
     const description = document.createElement("p");
     description.className = "cr-footer-description";
     description.textContent =
-      "Chinaready Landscape is an open-source landscape2 site for global software teams evaluating China-market developer services.";
+      "Chinaready Landscape maps global developer services to China-ready alternatives and operating notes for mainland China launches.";
 
     brand.append(logoLink, description);
 
     grid.append(
       brand,
+      footerColumn("Learn", [
+        { label: "China Alternatives", href: "/alternatives/" },
+        { label: "Landscape Guide", href: "/guide" },
+        { label: "China Launch Guides", href: "https://chinaready.co" },
+      ]),
       footerColumn("Chinaready", [
         { label: "Start Assessment", href: "https://chinaready.co/intake" },
         { label: "Book a Call", href: "https://chinaready.co/book-call" },

@@ -5,6 +5,33 @@ categories:
 
       The primary audience is foreign developer and product teams evaluating how to adapt a global software stack for mainland China.
 
+      Start with the interactive landscape grid, then use the dedicated [China alternatives index](https://landscape.chinaready.co/alternatives/) when you already know a global dependency such as Firebase, FCM, AWS, Stripe, or Google Maps. For the broader launch operating model beyond vendor selection, continue on [chinaready.co](https://chinaready.co).
+
+      ## Common global stack translations
+
+      These are high-intent starting points, not exhaustive endorsements:
+
+      - Firebase / FCM style mobile backends and push often need China SaaS or China cloud modules instead of a global Firebase default.
+      - AWS, Azure, and similar clouds may require China-region accounts or a domestic cloud platform.
+      - Stripe, PayPal, and Apple Pay style checkout usually map to WeChat Pay, Alipay, or a local commerce integration path.
+      - Google Maps, Google Fonts, and some global CDNs may be unavailable, slow, or operationally constrained in mainland China.
+
+      Browse the full keyword map at [landscape.chinaready.co/alternatives](https://landscape.chinaready.co/alternatives/).
+
+      ## FAQ
+
+      **What is Chinaready Landscape?**
+      It is an open-source, continuously updated catalog of China-market developer services and China-region routes, organized so global teams can compare familiar tools with practical mainland China options.
+
+      **Is a China alternative always a one-to-one product swap?**
+      No. Some entries are direct alternatives, some are China-region deployments of global providers, and others are partial or ecosystem-specific routes. Read the replacement fit and China context before changing architecture.
+
+      **Who maintains this resource?**
+      Chinaready maintains the landscape as a public research resource. Product inclusion is source-backed and incomplete by design; empty subcategories remain visible so contributors can fill gaps.
+
+      **Where should teams go after shortlisting vendors?**
+      Use this site to understand the service map, then use [chinaready.co](https://chinaready.co) for launch process, compliance, distribution, and go-to-market guidance.
+
       The project deliberately reuses CNCF `landscape2` conventions: contributors edit YAML data, add SVG logos, run validation, and review changes through pull requests. This keeps the workflow familiar for landscape2 contributors while making the taxonomy and profiles specific to China's internet technology ecosystem.
 
       <table>
@@ -55,7 +82,7 @@ categories:
           Use this category for cloud platforms or China-region cloud offerings that can host application workloads.
       - subcategory: "Managed DNS Provider"
         content: |
-          Use this category for managed DNS services. Archive evidence currently contains more ICP and domain-routing guidance than explicit DNS product recommendations.
+          Use this category for managed DNS services. Current coverage is thin; prefer products with clear mainland China DNS and domain-routing documentation.
       - subcategory: "Content Delivery Network (CDN)"
         content: |
           Use this category for CDN and edge acceleration products. Profile notes should distinguish product availability from ICP filing requirements.
@@ -66,10 +93,10 @@ categories:
     subcategories:
       - subcategory: "Cross-Platform UI & Frameworks"
         content: |
-          Use this category for developer frameworks and UI runtimes. The Archive does not yet provide enough China-specific alternatives for initial population.
+          Use this category for developer frameworks and UI runtimes. China-specific alternatives are still sparse and should be added with source-backed product evidence.
       - subcategory: "Mobile Backend-as-a-Service (MBaaS)"
         content: |
-          Use this category for managed backend services for mobile and web apps. Some Archive suggestions are partial deployment routes rather than full MBaaS replacements.
+          Use this category for managed backend services for mobile and web apps. Some mapped options are partial deployment routes rather than full MBaaS replacements.
       - subcategory: "Feature Flags & Remote Config"
         content: |
           Use this category for remote configuration and feature flag services. Cross-listed mobile suites should clarify which module provides this capability.
@@ -80,7 +107,7 @@ categories:
     subcategories:
       - subcategory: "CI/CD & App Distribution"
         content: |
-          Use this category for build, deployment, and app distribution products. The first Archive pass has limited explicit China alternative evidence.
+          Use this category for build, deployment, and app distribution products. Explicit China alternative evidence is still limited and should be expanded carefully.
       - subcategory: "Automated Testing & Device Farms"
         content: |
           Use this category for real-device testing, cloud phones, and automated QA platforms.
@@ -89,7 +116,7 @@ categories:
           Use this category for crash, stability, and mobile performance tools. Self-hosted global tools can be referenced in notes but should not be treated as China products by default.
       - subcategory: "Monitoring & Observability (APM / RUM)"
         content: |
-          Use this category for infrastructure and application monitoring. Archive evidence is currently thin and should be expanded with official product references.
+          Use this category for infrastructure and application monitoring. Coverage is currently thin and should be expanded with official product references.
 
   - category: "Users, Trust & Monetization"
     content: |
@@ -117,7 +144,7 @@ categories:
           Use this category for RTC, voice, video, and chat infrastructure.
       - subcategory: "Customer Support & In-App Messaging"
         content: |
-          Use this category for support chat, helpdesk, and in-app customer messaging. The Archive evidence needs expansion before first-class product population.
+          Use this category for support chat, helpdesk, and in-app customer messaging. Evidence needs expansion before first-class product population.
 
   - category: "Growth, Content & Experience"
     content: |

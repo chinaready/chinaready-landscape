@@ -1,6 +1,7 @@
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
+import { applySeoGeoEnhancements } from "./seo-geo.mjs";
 
 const root = process.cwd();
 const buildDir = path.join(root, "build");
@@ -254,5 +255,8 @@ fs.copyFileSync(path.join(root, "assets", "chinaready-landscape.css"), assetsTar
 const detailsTarget = path.join(buildDir, "assets", "chinaready-landscape-details.js");
 fs.copyFileSync(path.join(root, "assets", "chinaready-landscape-details.js"), detailsTarget);
 
-fs.writeFileSync(indexPath, index);
-console.log("Chinaready landscape preview built at build/");
+const seo = applySeoGeoEnhancements({ root, buildDir, indexHtml: index });
+fs.writeFileSync(indexPath, seo.indexHtml);
+console.log(
+  `Chinaready landscape preview built at build/ (SEO/GEO: ${seo.groupCount} alternative pages from ${seo.itemCount} items)`,
+);

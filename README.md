@@ -64,6 +64,16 @@ Required repository secrets:
 - `guide.yml` - explanatory guide content.
 - `assets/chinaready-landscape.css` - small landscape-specific Chinaready CSS override.
 - `scripts/landscape2.mjs` - cross-platform wrapper around the official `landscape2` release binary.
+- `scripts/seo-geo.mjs` - post-build SEO/GEO assets: meta enhancements, `robots.txt`, `sitemap.xml`, `llms.txt`, and `/alternatives/` pages.
+
+## SEO / GEO Surface
+
+The build publishes crawlable alternative pages generated from each product's `global_analogs`:
+
+- `https://landscape.chinaready.co/alternatives/`
+- `https://landscape.chinaready.co/alternatives/<service>.html`
+- `https://landscape.chinaready.co/llms.txt`
+- `https://landscape.chinaready.co/sitemap.xml`
 
 ## Upstream
 

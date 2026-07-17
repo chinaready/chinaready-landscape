@@ -96,8 +96,8 @@ footer[role="contentinfo"] img[alt*="Logo"] {
 
 .cr-footer-grid {
   display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: clamp(28px, 5vw, 88px) !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: clamp(24px, 4vw, 64px) !important;
   align-items: start !important;
   padding: 18px 0 34px !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.16) !important;
