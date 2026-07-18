@@ -163,6 +163,59 @@ function dedupeItems(items) {
   return result;
 }
 
+export function renderGuideKeywordMap(groups) {
+  const rows = groups
+    .map((group) => {
+      const names = group.items.map((item) => escapeHtml(item.name)).join(", ");
+      return `<tr>
+        <td>${escapeHtml(group.name)}</td>
+        <td>${group.items.length}</td>
+        <td>${names}</td>
+      </tr>`;
+    })
+    .join("\n");
+
+  return `<div class="cr-guide-keyword-map" id="china-alternatives-keyword-map">
+<table>
+  <thead>
+    <tr>
+      <th>Global service</th>
+      <th>Options</th>
+      <th>China-ready candidates</th>
+    </tr>
+  </thead>
+  <tbody>
+${rows}
+  </tbody>
+</table>
+</div>`;
+}
+
+export function injectGuideKeywordMap({ buildDir, groups }) {
+  const guidePath = path.join(buildDir, "data", "guide.json");
+  if (!fs.existsSync(guidePath)) {
+    throw new Error("guide.json is missing; cannot inject the China alternatives keyword map");
+  }
+
+  const guide = JSON.parse(fs.readFileSync(guidePath, "utf8"));
+  const overview = guide.categories.find((category) => category.category === "Overview");
+  if (!overview) {
+    throw new Error("guide.json Overview is missing; cannot inject the China alternatives keyword map");
+  }
+
+  const marker = "CR_ALTERNATIVES_KEYWORD_MAP";
+  const mapHtml = renderGuideKeywordMap(groups);
+  if (overview.content.includes(marker)) {
+    overview.content = overview.content
+      .replace(`<p>${marker}</p>`, mapHtml)
+      .replace(marker, mapHtml);
+  } else if (!overview.content.includes("cr-guide-keyword-map")) {
+    overview.content += `\n${mapHtml}`;
+  }
+
+  fs.writeFileSync(guidePath, JSON.stringify(guide));
+}
+
 function pageShell({ title, description, canonicalPath, body, jsonLd = [], breadcrumbs = [] }) {
   const canonical = `${SITE_URL}${canonicalPath}`;
   const breadcrumbLd =
@@ -617,6 +670,8 @@ export function applySeoGeoEnhancements({ root, buildDir, indexHtml }) {
   if (groups.length === 0) {
     throw new Error("SEO/GEO generation found no global analog mappings");
   }
+
+  injectGuideKeywordMap({ buildDir, groups });
 
   const alternativesDir = path.join(buildDir, "alternatives");
   fs.mkdirSync(alternativesDir, { recursive: true });

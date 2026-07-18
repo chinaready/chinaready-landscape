@@ -5,7 +5,7 @@ categories:
 
       The primary audience is foreign developer and product teams evaluating how to adapt a global software stack for mainland China.
 
-      Start with the interactive landscape grid, then use the dedicated [China alternatives index](https://landscape.chinaready.co/alternatives/) when you already know a global dependency such as Firebase, FCM, AWS, Stripe, or Google Maps. For the broader launch operating model beyond vendor selection, continue on [chinaready.co](https://chinaready.co).
+      Start with the interactive landscape grid, then use the China alternatives keyword map below when you already know a global dependency such as Firebase, FCM, AWS, Stripe, or Google Maps. For the broader launch operating model beyond vendor selection, continue on [chinaready.co](https://chinaready.co).
 
       ## Common global stack translations
 
@@ -16,7 +16,11 @@ categories:
       - Stripe, PayPal, and Apple Pay style checkout usually map to WeChat Pay, Alipay, or a local commerce integration path.
       - Google Maps, Google Fonts, and some global CDNs may be unavailable, slow, or operationally constrained in mainland China.
 
-      Browse the full keyword map at [landscape.chinaready.co/alternatives](https://landscape.chinaready.co/alternatives/).
+      ## China alternatives keyword map
+
+      Browse the full keyword map below. Each row maps a familiar global service to China-ready candidates in this landscape.
+
+      CR_ALTERNATIVES_KEYWORD_MAP
 
       ## FAQ
 

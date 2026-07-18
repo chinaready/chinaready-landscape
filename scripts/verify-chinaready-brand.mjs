@@ -126,7 +126,9 @@ assert(guide.includes('category: "Overview"'), "guide.yml must include a top-lev
 assert(!guide.includes('subcategory: "README"'), "guide.yml Overview must not expose a README submenu");
 assert(guide.includes("<table>") && guide.includes("<th>Level 1 Category</th>"), "guide.yml Overview must include a taxonomy table");
 assert(guide.includes("company profiles"), "guide.yml Overview must explain how companies can contribute profiles");
-assert(guide.includes("landscape.chinaready.co/alternatives"), "guide.yml Overview must link to the China alternatives index");
+assert(guide.includes("CR_ALTERNATIVES_KEYWORD_MAP"), "guide.yml Overview must reserve a slot for the in-Guide keyword map");
+assert(guide.includes("## China alternatives keyword map"), "guide.yml Overview must include the China alternatives keyword map section");
+assert(!guide.includes("landscape.chinaready.co/alternatives"), "guide.yml Overview must keep the keyword map inside Guide instead of linking out");
 assert(guide.includes("## FAQ"), "guide.yml Overview must include an FAQ section for GEO-friendly answers");
 assert(guide.includes("chinaready.co"), "guide.yml Overview must route readers to the Chinaready main site");
 assert(exists("scripts/seo-geo.mjs"), "SEO/GEO generator script is missing");
@@ -163,6 +165,7 @@ assert(
   "Chinaready footer grid must use four equal-width columns",
 );
 assert(brandCss.includes(".cr-footer-description"), "Chinaready CSS must place the project description under the footer logo");
+assert(brandCss.includes(".cr-guide-keyword-map"), "Chinaready CSS must style the in-Guide alternatives keyword map");
 
 assert(gitignore.match(/^docs\/$/m), ".gitignore must exclude docs/");
 const trackedDocs = spawnSync("git", ["ls-files", "docs"], { cwd: root, encoding: "utf8" });
@@ -198,7 +201,7 @@ assert(detailsScript.includes("modal-body"), "detail extension must mount profil
 assert(detailsScript.includes("enhanceFooter"), "detail extension must enhance the landscape2 footer");
 assert(detailsScript.includes('footerColumn("Learn"'), "detail extension footer must include a Learn column");
 assert(detailsScript.includes('footerColumn("Chinaready"'), "detail extension footer must title the Chinaready column correctly");
-assert(detailsScript.includes("/alternatives/"), "detail extension footer must link to the China alternatives index");
+assert(detailsScript.includes('href: "/guide"'), "detail extension footer must route China Alternatives into the Guide frame");
 assert(detailsScript.includes("China Launch Guides"), "detail extension footer must include a content link to the main site");
 assert(!detailsScript.includes('{ label: "Chinaready", href: "https://chinaready.co" }'), "detail extension footer must not duplicate the Chinaready home link");
 assert(
@@ -216,7 +219,7 @@ if (exists("build/index.html")) {
   const index = read("build/index.html");
   assert(!index.includes("vendor/chinaready-design-system"), "build/index.html must not link the removed vendored design system");
   assert(index.includes("assets/chinaready-landscape.css"), "build/index.html must link the Chinaready landscape override CSS");
-  assert(index.includes("assets/chinaready-landscape-details.js?v=20260718-static-nav"), "build/index.html must load the cache-busted Chinaready item detail extension");
+  assert(index.includes("assets/chinaready-landscape-details.js?v=20260718-guide-keyword-map"), "build/index.html must load the cache-busted Chinaready item detail extension");
   assert(index.includes('rel="icon"') && index.includes("/images/chinaready-mark.svg"), "build/index.html must use the Chinaready mark favicon");
   assert(index.includes(repositoryUrl), "build/index.html must include the Chinaready landscape repository link");
   assert(!index.match(legacySourceBrandPattern), "build/index.html must not contain legacy source brand text");
@@ -292,6 +295,7 @@ if (exists("build/assets/chinaready-landscape.css")) {
     "published footer grid must use four equal-width columns",
   );
   assert(buildCss.includes(".cr-footer-description"), "published CSS must place the project description under the footer logo");
+  assert(buildCss.includes(".cr-guide-keyword-map"), "published CSS must style the in-Guide alternatives keyword map");
 }
 
 if (exists("build/assets/chinaready-landscape-details.js")) {
@@ -321,7 +325,7 @@ if (exists("build/assets/chinaready-landscape-details.js")) {
   assert(buildDetailsScript.includes("enhanceFooter"), "published detail extension must enhance the landscape2 footer");
   assert(buildDetailsScript.includes('footerColumn("Learn"'), "published footer must include a Learn column");
   assert(buildDetailsScript.includes('footerColumn("Chinaready"'), "published footer must title the Chinaready column correctly");
-  assert(buildDetailsScript.includes("/alternatives/"), "published footer must link to the China alternatives index");
+  assert(buildDetailsScript.includes('href: "/guide"'), "published footer must route China Alternatives into the Guide frame");
   assert(buildDetailsScript.includes("China Launch Guides"), "published footer must include a content link to the main site");
   assert(!buildDetailsScript.includes('{ label: "Chinaready", href: "https://chinaready.co" }'), "published footer must not duplicate the Chinaready home link");
   assert(
@@ -372,7 +376,10 @@ if (exists("build/data/guide.json")) {
   assert(!overview.subcategories || overview.subcategories.length === 0, "guide.json Overview must not expose README or other submenu entries");
   assert(overview.content.includes("<table>"), "guide.json Overview content must render a real taxonomy table");
   assert(overview.content.includes("foreign developer and product teams"), "guide.json Overview must name foreign developer and product teams as the audience");
-  assert(overview.content.includes("landscape.chinaready.co/alternatives"), "guide.json Overview must link to the alternatives index");
+  assert(overview.content.includes("cr-guide-keyword-map"), "guide.json Overview must embed the China alternatives keyword map");
+  assert(overview.content.includes("Global service"), "guide.json Overview keyword map must include the Global service column");
+  assert(overview.content.includes("Firebase"), "guide.json Overview keyword map must include Firebase mappings");
+  assert(!overview.content.includes("CR_ALTERNATIVES_KEYWORD_MAP"), "guide.json Overview must replace the keyword map marker");
   assert(overview.content.includes("FAQ"), "guide.json Overview must include FAQ content");
   assert(!overview.content.includes("<img"), "guide.json Overview content must not render a logo image");
 }

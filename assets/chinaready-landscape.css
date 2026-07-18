@@ -200,6 +200,17 @@ main table th {
   font-weight: 700 !important;
 }
 
+.cr-guide-keyword-map {
+  margin: 18px 0 28px !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cr-guide-keyword-map table {
+  width: 100% !important;
+  min-width: 560px !important;
+}
+
 .cr-landscape-profile {
   margin: 28px 0 0 !important;
   color: #1f2937 !important;

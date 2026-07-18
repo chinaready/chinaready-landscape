@@ -190,7 +190,7 @@
     grid.append(
       brand,
       footerColumn("Learn", [
-        { label: "China Alternatives", href: "/alternatives/" },
+        { label: "China Alternatives", href: "/guide" },
         { label: "Landscape Guide", href: "/guide" },
         { label: "China Launch Guides", href: "https://chinaready.co" },
       ]),
