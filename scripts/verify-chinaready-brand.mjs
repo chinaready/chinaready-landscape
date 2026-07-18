@@ -216,7 +216,7 @@ if (exists("build/index.html")) {
   const index = read("build/index.html");
   assert(!index.includes("vendor/chinaready-design-system"), "build/index.html must not link the removed vendored design system");
   assert(index.includes("assets/chinaready-landscape.css"), "build/index.html must link the Chinaready landscape override CSS");
-  assert(index.includes("assets/chinaready-landscape-details.js?v=20260718-static-assets"), "build/index.html must load the cache-busted Chinaready item detail extension");
+  assert(index.includes("assets/chinaready-landscape-details.js?v=20260718-static-nav"), "build/index.html must load the cache-busted Chinaready item detail extension");
   assert(index.includes('rel="icon"') && index.includes("/images/chinaready-mark.svg"), "build/index.html must use the Chinaready mark favicon");
   assert(index.includes(repositoryUrl), "build/index.html must include the Chinaready landscape repository link");
   assert(!index.match(legacySourceBrandPattern), "build/index.html must not contain legacy source brand text");

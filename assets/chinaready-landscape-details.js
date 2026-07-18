@@ -82,7 +82,9 @@
     anchor.href = href;
     anchor.textContent = label;
     anchor.className = "cr-footer-link";
-    if (/^https?:\/\//i.test(href)) {
+    const isExternal =
+      /^https?:\/\//i.test(href) && !href.startsWith("https://landscape.chinaready.co");
+    if (isExternal) {
       anchor.target = "_blank";
       anchor.rel = "noreferrer";
     }
@@ -188,7 +190,7 @@
     grid.append(
       brand,
       footerColumn("Learn", [
-        { label: "China Alternatives", href: "https://landscape.chinaready.co/alternatives/" },
+        { label: "China Alternatives", href: "/alternatives/" },
         { label: "Landscape Guide", href: "/guide" },
         { label: "China Launch Guides", href: "https://chinaready.co" },
       ]),

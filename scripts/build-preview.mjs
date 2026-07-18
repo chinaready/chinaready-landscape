@@ -229,7 +229,7 @@ index = index.replace(
   /window\.baseDS = .*?;\n/s,
   `window.baseDS = ${JSON.stringify(patchedBase)};\n`,
 );
-const cacheBust = "20260718-static-assets";
+const cacheBust = "20260718-static-nav";
 const links = [
   `<link rel="icon" href="/images/chinaready-mark.svg" type="image/svg+xml">`,
   `<link rel="apple-touch-icon" href="/images/chinaready-mark.svg">`,
