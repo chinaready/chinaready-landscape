@@ -258,18 +258,20 @@ function renderAlternativesIndex(groups) {
       </section>
       <section aria-labelledby="all-analogs">
         <h2 id="all-analogs">All mapped global services</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Global service</th>
-              <th>Options</th>
-              <th>China-ready candidates</th>
-            </tr>
-          </thead>
-          <tbody>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Global service</th>
+                <th>Options</th>
+                <th>China-ready candidates</th>
+              </tr>
+            </thead>
+            <tbody>
 ${rows}
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </section>`;
 
   return pageShell({

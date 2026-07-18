@@ -143,6 +143,11 @@ a:hover {
   margin-top: 6px;
 }
 
+.cr-alt-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -222,8 +227,13 @@ th {
     padding: 14px 0;
   }
 
-  th:nth-child(3),
-  td:nth-child(3) {
-    display: none;
+  .cr-alt-table-scroll table {
+    min-width: 560px;
+  }
+
+  th,
+  td {
+    padding: 10px 12px;
+    font-size: 13px;
   }
 }
