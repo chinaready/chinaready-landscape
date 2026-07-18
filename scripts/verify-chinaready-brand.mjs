@@ -173,6 +173,9 @@ const detailsScript = read("assets/chinaready-landscape-details.js");
 assert(detailsScript.includes("Summary"), "detail extension must render a CNCF-style Summary section");
 assert(detailsScript.includes("removeNativeSummary"), "detail extension must remove the landscape2 native Summary/TAGS block");
 assert(detailsScript.includes(".summaryBlock"), "detail extension must hide the current landscape2 Tags summaryBlock");
+assert(detailsScript.includes("forceStaticPageNavigation"), "detail extension must force full navigation to static /alternatives pages");
+assert(detailsScript.includes("absoluteAssetUrl"), "detail extension must use root-absolute footer logo URLs");
+assert(detailsScript.includes("/images/chinaready-logo-horizontal-white.svg"), "detail extension footer logo must use a root-absolute path");
 assert(detailsScript.includes("textBlock(annotations.product_overview"), "detail extension must render product overview without a USE CASE subheading");
 assert(detailsScript.includes("textBlock(annotations.china_context"), "detail extension must render China context without a CHINA MARKET FIT subheading");
 assert(!detailsScript.includes('summaryBlock("ALTERNATIVE TO"'), "detail extension must not render an Alternative To text block");
@@ -213,7 +216,8 @@ if (exists("build/index.html")) {
   const index = read("build/index.html");
   assert(!index.includes("vendor/chinaready-design-system"), "build/index.html must not link the removed vendored design system");
   assert(index.includes("assets/chinaready-landscape.css"), "build/index.html must link the Chinaready landscape override CSS");
-  assert(index.includes("assets/chinaready-landscape-details.js?v=20260718-hide-native-tags"), "build/index.html must load the cache-busted Chinaready item detail extension");
+  assert(index.includes("assets/chinaready-landscape-details.js?v=20260718-static-assets"), "build/index.html must load the cache-busted Chinaready item detail extension");
+  assert(index.includes('rel="icon"') && index.includes("/images/chinaready-mark.svg"), "build/index.html must use the Chinaready mark favicon");
   assert(index.includes(repositoryUrl), "build/index.html must include the Chinaready landscape repository link");
   assert(!index.match(legacySourceBrandPattern), "build/index.html must not contain legacy source brand text");
   assert(index.includes("China Alternatives to Firebase, AWS, Stripe"), "build/index.html title must target alternative long-tail queries");
@@ -248,6 +252,7 @@ if (exists("build/alternatives/index.html")) {
   assert(alternativesIndex.includes("China alternatives to global developer services"), "alternatives index must use a clear H1 topic");
   assert(alternativesIndex.includes("Firebase"), "alternatives index must include Firebase mappings");
   assert(alternativesIndex.includes("chinaready.co"), "alternatives index must route to the main site");
+  assert(alternativesIndex.includes("/images/chinaready-mark.svg"), "alternatives index must include the Chinaready mark favicon");
   assert(alternativesIndex.includes('"@type":"ItemList"') || alternativesIndex.includes('"@type": "ItemList"'), "alternatives index must include ItemList JSON-LD");
 }
 
@@ -259,6 +264,13 @@ if (exists("build/alternatives/firebase.html")) {
 }
 
 assert(exists("build/assets/chinaready-alternatives.css"), "published alternatives stylesheet must exist");
+assert(exists("assets/chinaready-mark.svg"), "Chinaready mark favicon source asset is missing");
+if (exists("build")) {
+  assert(exists("build/images/chinaready-mark.svg"), "published build must include /images/chinaready-mark.svg");
+  assert(exists("build/_redirects"), "published build must include Cloudflare Pages _redirects");
+  const redirects = read("build/_redirects");
+  assert(redirects.includes("/favicon.ico /images/chinaready-mark.svg 200"), "build/_redirects must map favicon.ico to the Chinaready mark");
+}
 
 assert(!exists("build/vendor/chinaready-design-system"), "build output must not contain the removed vendored design system");
 
@@ -286,6 +298,8 @@ if (exists("build/assets/chinaready-landscape-details.js")) {
   const buildDetailsScript = read("build/assets/chinaready-landscape-details.js");
   assert(buildDetailsScript.includes("Summary"), "published detail extension must render a CNCF-style Summary section");
   assert(buildDetailsScript.includes("removeNativeSummary"), "published detail extension must remove the landscape2 native Summary/TAGS block");
+  assert(buildDetailsScript.includes("forceStaticPageNavigation"), "published detail extension must force full navigation to static /alternatives pages");
+  assert(buildDetailsScript.includes("/images/chinaready-logo-horizontal-white.svg"), "published footer logo must use a root-absolute path");
   assert(buildDetailsScript.includes("textBlock(annotations.product_overview"), "published detail extension must render product overview without a USE CASE subheading");
   assert(buildDetailsScript.includes("textBlock(annotations.china_context"), "published detail extension must render China context without a CHINA MARKET FIT subheading");
   assert(!buildDetailsScript.includes('summaryBlock("ALTERNATIVE TO"'), "published detail extension must not render an Alternative To text block");

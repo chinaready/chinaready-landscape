@@ -229,11 +229,14 @@ index = index.replace(
   /window\.baseDS = .*?;\n/s,
   `window.baseDS = ${JSON.stringify(patchedBase)};\n`,
 );
+const cacheBust = "20260718-static-assets";
 const links = [
-  '<link rel="stylesheet" href="assets/chinaready-landscape.css?v=20260718-hide-native-tags">',
+  `<link rel="icon" href="/images/chinaready-mark.svg" type="image/svg+xml">`,
+  `<link rel="apple-touch-icon" href="/images/chinaready-mark.svg">`,
+  `<link rel="stylesheet" href="assets/chinaready-landscape.css?v=${cacheBust}">`,
 ];
 const scripts = [
-  '<script defer src="assets/chinaready-landscape-details.js?v=20260718-hide-native-tags"></script>',
+  `<script defer src="assets/chinaready-landscape-details.js?v=${cacheBust}"></script>`,
 ];
 
 for (const link of links) {
@@ -254,6 +257,15 @@ fs.copyFileSync(path.join(root, "assets", "chinaready-landscape.css"), assetsTar
 
 const detailsTarget = path.join(buildDir, "assets", "chinaready-landscape-details.js");
 fs.copyFileSync(path.join(root, "assets", "chinaready-landscape-details.js"), detailsTarget);
+
+const imagesDir = path.join(buildDir, "images");
+fs.mkdirSync(imagesDir, { recursive: true });
+fs.copyFileSync(path.join(root, "assets", "chinaready-mark.svg"), path.join(imagesDir, "chinaready-mark.svg"));
+fs.copyFileSync(path.join(root, "assets", "chinaready-mark.svg"), path.join(buildDir, "favicon.svg"));
+fs.writeFileSync(
+  path.join(buildDir, "_redirects"),
+  ["/favicon.ico /images/chinaready-mark.svg 200", "/favicon.svg /images/chinaready-mark.svg 200", ""].join("\n"),
+);
 
 const seo = applySeoGeoEnhancements({ root, buildDir, indexHtml: index });
 fs.writeFileSync(indexPath, seo.indexHtml);

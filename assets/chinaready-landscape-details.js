@@ -108,12 +108,54 @@
     return column;
   }
 
+  function absoluteAssetUrl(src) {
+    if (!src) return "/images/chinaready-logo-horizontal-white.svg";
+    if (/^https?:\/\//i.test(src) || src.startsWith("/")) return src;
+    return `/${src.replace(/^\.\//, "")}`;
+  }
+
+  function forceStaticPageNavigation() {
+    if (document.documentElement.dataset.chinareadyStaticNav === "ready") return;
+    document.documentElement.dataset.chinareadyStaticNav = "ready";
+
+    document.addEventListener(
+      "click",
+      (event) => {
+        const anchor = event.target.closest?.("a");
+        if (!anchor || event.defaultPrevented || event.button !== 0) return;
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        if (anchor.target && anchor.target !== "_self") return;
+
+        const href = anchor.getAttribute("href");
+        if (!href || href.startsWith("#")) return;
+
+        let url;
+        try {
+          url = new URL(href, window.location.href);
+        } catch {
+          return;
+        }
+
+        if (url.origin !== window.location.origin) return;
+        if (!url.pathname.startsWith("/alternatives")) return;
+
+        // Bypass landscape2 SPA routing so static /alternatives pages load.
+        event.preventDefault();
+        event.stopPropagation();
+        window.location.assign(url.href);
+      },
+      true,
+    );
+  }
+
   function enhanceFooter() {
     const footer = document.querySelector('footer[role="contentinfo"]');
     if (!footer || footer.dataset.chinareadyFooter === "ready") return;
 
     const existingLogo = footer.querySelector("img");
-    const logoSrc = existingLogo?.getAttribute("src") || "images/chinaready-logo-horizontal-white.svg";
+    const logoSrc = absoluteAssetUrl(
+      existingLogo?.getAttribute("src") || "/images/chinaready-logo-horizontal-white.svg",
+    );
     const poweredLink = footer.querySelector('a[href="https://github.com/cncf/landscape2"]')?.cloneNode(true);
 
     const inner = document.createElement("div");
@@ -146,7 +188,7 @@
     grid.append(
       brand,
       footerColumn("Learn", [
-        { label: "China Alternatives", href: "/alternatives/" },
+        { label: "China Alternatives", href: "https://landscape.chinaready.co/alternatives/" },
         { label: "Landscape Guide", href: "/guide" },
         { label: "China Launch Guides", href: "https://chinaready.co" },
       ]),
@@ -488,6 +530,7 @@
   }
 
   async function refresh() {
+    forceStaticPageNavigation();
     enhanceFooter();
 
     const dialogs = candidateDialogs();
@@ -530,5 +573,6 @@
   window.addEventListener("hashchange", refresh);
   window.addEventListener("click", () => window.setTimeout(refresh, 0), true);
   window.addEventListener("load", refresh);
+  forceStaticPageNavigation();
   window.requestAnimationFrame(enhanceFooter);
 })();

@@ -197,6 +197,8 @@ function pageShell({ title, description, canonicalPath, body, jsonLd = [], bread
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${escapeHtml(title)}" />
   <meta name="twitter:description" content="${escapeHtml(description)}" />
+  <link rel="icon" href="/images/chinaready-mark.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/images/chinaready-mark.svg" />
   <link rel="stylesheet" href="/assets/chinaready-alternatives.css" />
   ${allLd.map((block) => `<script type="application/ld+json">${JSON.stringify(block)}</script>`).join("\n  ")}
 </head>
