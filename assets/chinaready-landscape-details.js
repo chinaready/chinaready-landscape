@@ -383,17 +383,43 @@
     return wrapper;
   }
 
+  function hideNativeNode(node) {
+    if (!node || node.classList.contains("cr-native-summary-hidden")) return;
+    node.classList.add("cr-native-summary-hidden");
+    node.setAttribute("aria-hidden", "true");
+  }
+
   function removeNativeSummary(root) {
-    const nativeSections = Array.from(root.querySelectorAll(".position-relative.border")).filter((section) => {
+    // Older landscape2 builds wrapped Summary/TAGS in .position-relative.border.
+    const legacySections = Array.from(root.querySelectorAll(".position-relative.border")).filter((section) => {
       if (section.closest(".cr-landscape-profile")) return false;
       if (section.id === "item-view" || section.classList.contains("modal-content")) return false;
       const sectionText = (section.textContent || "").toLowerCase();
       return sectionText.includes("summary") && sectionText.includes("tags");
     });
 
-    for (const section of nativeSections) {
-      section.classList.add("cr-native-summary-hidden");
-      section.setAttribute("aria-hidden", "true");
+    // Current landscape2 renders a plain "Summary" heading plus a .summaryBlock of Tags.
+    const summaryHeadings = Array.from(root.querySelectorAll(".text-uppercase")).filter((element) => {
+      if (element.closest(".cr-landscape-profile")) return false;
+      return (element.textContent || "").trim().toLowerCase() === "summary";
+    });
+
+    const tagBlocks = Array.from(root.querySelectorAll(".summaryBlock")).filter((block) => {
+      if (block.closest(".cr-landscape-profile")) return false;
+      const heading = block.querySelector(".text-uppercase, .fw-bold");
+      const headingText = (heading?.textContent || "").trim().toLowerCase();
+      return headingText === "tags";
+    });
+
+    for (const section of legacySections) {
+      hideNativeNode(section);
+    }
+    for (const heading of summaryHeadings) {
+      hideNativeNode(heading);
+    }
+    for (const block of tagBlocks) {
+      const wrapper = block.parentElement?.classList.contains("my-2") ? block.parentElement : block;
+      hideNativeNode(wrapper);
     }
   }
 

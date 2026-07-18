@@ -172,6 +172,7 @@ assert(exists("assets/chinaready-landscape-details.js"), "Chinaready item detail
 const detailsScript = read("assets/chinaready-landscape-details.js");
 assert(detailsScript.includes("Summary"), "detail extension must render a CNCF-style Summary section");
 assert(detailsScript.includes("removeNativeSummary"), "detail extension must remove the landscape2 native Summary/TAGS block");
+assert(detailsScript.includes(".summaryBlock"), "detail extension must hide the current landscape2 Tags summaryBlock");
 assert(detailsScript.includes("textBlock(annotations.product_overview"), "detail extension must render product overview without a USE CASE subheading");
 assert(detailsScript.includes("textBlock(annotations.china_context"), "detail extension must render China context without a CHINA MARKET FIT subheading");
 assert(!detailsScript.includes('summaryBlock("ALTERNATIVE TO"'), "detail extension must not render an Alternative To text block");
@@ -212,7 +213,7 @@ if (exists("build/index.html")) {
   const index = read("build/index.html");
   assert(!index.includes("vendor/chinaready-design-system"), "build/index.html must not link the removed vendored design system");
   assert(index.includes("assets/chinaready-landscape.css"), "build/index.html must link the Chinaready landscape override CSS");
-  assert(index.includes("assets/chinaready-landscape-details.js?v=20260701-no-archive-no-truncate"), "build/index.html must load the cache-busted Chinaready item detail extension");
+  assert(index.includes("assets/chinaready-landscape-details.js?v=20260718-hide-native-tags"), "build/index.html must load the cache-busted Chinaready item detail extension");
   assert(index.includes(repositoryUrl), "build/index.html must include the Chinaready landscape repository link");
   assert(!index.match(legacySourceBrandPattern), "build/index.html must not contain legacy source brand text");
   assert(index.includes("China Alternatives to Firebase, AWS, Stripe"), "build/index.html title must target alternative long-tail queries");

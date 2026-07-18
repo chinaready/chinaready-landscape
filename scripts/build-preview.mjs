@@ -230,10 +230,10 @@ index = index.replace(
   `window.baseDS = ${JSON.stringify(patchedBase)};\n`,
 );
 const links = [
-  '<link rel="stylesheet" href="assets/chinaready-landscape.css?v=20260701-no-archive-no-truncate">',
+  '<link rel="stylesheet" href="assets/chinaready-landscape.css?v=20260718-hide-native-tags">',
 ];
 const scripts = [
-  '<script defer src="assets/chinaready-landscape-details.js?v=20260701-no-archive-no-truncate"></script>',
+  '<script defer src="assets/chinaready-landscape-details.js?v=20260718-hide-native-tags"></script>',
 ];
 
 for (const link of links) {
