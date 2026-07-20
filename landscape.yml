@@ -644,24 +644,24 @@ landscape:
         items:
           - item:
             name: Chinaready Google Fonts Hosting
-            homepage_url: https://chinaready.co
+            homepage_url: https://gfonts.launchready.cn/
             logo: chinaready-google-fonts.svg
-            description: Chinaready Google Fonts Hosting is referenced as a China-accessible hosting route for Google Fonts assets.
+            description: Free open-source Google Fonts CDN mirror for mainland China, delivering WOFF2 and CSS via Alibaba Cloud CDN for allowlisted Origins.
             extra:
               annotations:
                 global_analogs: Google Fonts
                 replacement_fit: compatible-route
-                china_context: Chinaready Google Fonts Hosting provides a China-accessible route for Google Fonts assets.
+                china_context: Practical alternative when fonts.googleapis.com is slow or blocked; allowlisted Origins only.
                 vendor_type: consulting-service
-                evidence_level: low
+                evidence_level: high
                 metadata_name: "Chinaready Google Fonts Hosting"
                 primary_category: "Growth, Content & Experience"
-                official_website: "https://chinaready.co"
+                official_website: "https://gfonts.launchready.cn/"
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
-                product_overview: "Chinaready Google Fonts Hosting is referenced as a China-accessible hosting route for Google Fonts assets."
+                product_overview: "Free open-source Google Fonts CDN mirror for mainland China, delivering WOFF2 and CSS via Alibaba Cloud CDN for allowlisted Origins."
                 alternative_to: "China-market alternative or deployment route for: Google Fonts."
                 global_alternatives: "Google Fonts"
                 organization: "Chinaready"
                 organization_overview: "Chinaready helps global software teams understand and implement China-ready product, infrastructure, and go-to-market requirements."
-                developer_docs: "https://chinaready.co"
+                developer_docs: "https://gfonts.launchready.cn/"
