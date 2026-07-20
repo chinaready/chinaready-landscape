@@ -37,7 +37,17 @@ const requiredProfileFields = [
   "organization",
   "organization_overview",
   "developer_docs",
+  "availability_status",
+  "global_availability_in_china",
 ];
+const allowedAvailabilityStatus = new Set([
+  "generally-available",
+  "china-region-only",
+  "invite-or-restricted",
+  "deprecated-or-sunset",
+  "unverified",
+]);
+const allowedGlobalAvailabilityInChina = new Set(["available", "limited", "unavailable", "unknown"]);
 
 function unquote(value) {
   return value.trim().replace(/^["']|["']$/g, "");
@@ -126,15 +136,30 @@ assert(guide.includes('category: "Overview"'), "guide.yml must include a top-lev
 assert(!guide.includes('subcategory: "README"'), "guide.yml Overview must not expose a README submenu");
 assert(guide.includes("<table>") && guide.includes("<th>Level 1 Category</th>"), "guide.yml Overview must include a taxonomy table");
 assert(guide.includes("company profiles"), "guide.yml Overview must explain how companies can contribute profiles");
-assert(guide.includes("CR_ALTERNATIVES_KEYWORD_MAP"), "guide.yml Overview must reserve a slot for the in-Guide keyword map");
-assert(guide.includes("## China alternatives keyword map"), "guide.yml Overview must include the China alternatives keyword map section");
+assert(!guide.includes("CR_ALTERNATIVES_KEYWORD_MAP"), "guide.yml Overview must not embed the alternatives keyword map marker");
+assert(!guide.includes("## China alternatives keyword map"), "guide.yml Overview must not include the China alternatives keyword map section");
 assert(guide.includes("/alternatives/"), "guide.yml Overview must link to the /alternatives/ index");
 assert(!guide.includes("landscape.chinaready.co/alternatives"), "guide.yml must use relative /alternatives/ paths, not absolute landscape host URLs");
 assert((guide.match(/Typical global services:/g) || []).length >= 19, "guide.yml must list typical global services under every subcategory");
 assert(guide.includes("## FAQ"), "guide.yml Overview must include an FAQ section for GEO-friendly answers");
 assert(guide.includes("chinaready.co"), "guide.yml Overview must route readers to the Chinaready main site");
+assert(guide.includes("Level 1"), "guide.yml Overview must emphasize the Level 1 taxonomy framing");
 assert(exists("scripts/seo-geo.mjs"), "SEO/GEO generator script is missing");
+const seoGeoScript = read("scripts/seo-geo.mjs");
+assert(seoGeoScript.includes("AVAILABILITY_STATUS_LABELS"), "SEO/GEO generator must label availability_status on alternatives pages");
+assert(seoGeoScript.includes("GLOBAL_AVAILABILITY_LABELS"), "SEO/GEO generator must label global_availability_in_china on alternatives pages");
+assert(seoGeoScript.includes("CHINA_AVAILABILITY_LABELS"), "SEO/GEO generator must expose China availability labels");
+assert(seoGeoScript.includes("mergeAnalogGroups"), "SEO/GEO generator must merge gap-catalog global services into alternatives");
+assert(seoGeoScript.includes("availability_status"), "SEO/GEO generator must read availability_status from landscape.yml");
+assert(seoGeoScript.includes("global_availability_in_china"), "SEO/GEO generator must read global_availability_in_china from landscape.yml");
+assert(!seoGeoScript.match(legacySourceBrandPattern), "SEO/GEO generator must not reference legacy competitor brand text");
+assert(exists("research/global-services-gap-catalog.json"), "gap catalog for taxonomy-relevant global services is missing");
+assert(!exists("research/aic-technologies-hub.json"), "legacy third-party research snapshot must be removed");
+const gapCatalogSource = read("research/global-services-gap-catalog.json");
+assert(!gapCatalogSource.match(legacySourceBrandPattern), "gap catalog must not contain legacy competitor brand text");
+assert(!gapCatalogSource.includes("aic_"), "gap catalog must not keep legacy research field prefixes");
 assert(exists("assets/chinaready-alternatives.css"), "alternatives page stylesheet is missing");
+assert(exists("assets/chinaready-alternatives-search.js"), "alternatives shared search script is missing");
 assert(settings.includes("Firebase, FCM, AWS, Stripe"), "settings.yml description must target high-intent alternative keywords");
 assert(headerLogo.includes('font-size="24"'), "header logo must use a larger Chinaready Landscape wordmark");
 assert(!headerLogo.includes(">Chinaready</text>"), "header logo text must be a single-line Chinaready Landscape lockup");
@@ -167,7 +192,8 @@ assert(
   "Chinaready footer grid must use four equal-width columns",
 );
 assert(brandCss.includes(".cr-footer-description"), "Chinaready CSS must place the project description under the footer logo");
-assert(brandCss.includes(".cr-guide-keyword-map"), "Chinaready CSS must style the in-Guide alternatives keyword map");
+assert(brandCss.includes(".cr-guide-global-link") || brandCss.includes("cr-guide-global-link"), "Chinaready CSS must style the Guide Global menu link");
+assert(brandCss.includes("cr-global-nav-link"), "Chinaready CSS must style the header Global nav link");
 
 assert(gitignore.match(/^docs\/$/m), ".gitignore must exclude docs/");
 const trackedDocs = spawnSync("git", ["ls-files", "docs"], { cwd: root, encoding: "utf8" });
@@ -179,10 +205,14 @@ assert(detailsScript.includes("Summary"), "detail extension must render a CNCF-s
 assert(detailsScript.includes("removeNativeSummary"), "detail extension must remove the landscape2 native Summary/TAGS block");
 assert(detailsScript.includes(".summaryBlock"), "detail extension must hide the current landscape2 Tags summaryBlock");
 assert(detailsScript.includes("forceStaticPageNavigation"), "detail extension must force full navigation to static /alternatives pages");
+assert(detailsScript.includes("enhanceHeaderGlobalNav"), "detail extension must inject Global into the top navigation");
+assert(detailsScript.includes("enhanceGuideGlobalMenu"), "detail extension must inject Global into the Guide sidebar");
 assert(detailsScript.includes("absoluteAssetUrl"), "detail extension must use root-absolute footer logo URLs");
 assert(detailsScript.includes("/images/chinaready-logo-horizontal-white.svg"), "detail extension footer logo must use a root-absolute path");
 assert(detailsScript.includes("textBlock(annotations.product_overview"), "detail extension must render product overview without a USE CASE subheading");
 assert(detailsScript.includes("textBlock(annotations.china_context"), "detail extension must render China context without a CHINA MARKET FIT subheading");
+assert(detailsScript.includes("annotations.availability_status"), "detail extension must surface availability_status");
+assert(detailsScript.includes("annotations.global_availability_in_china"), "detail extension must surface global_availability_in_china");
 assert(!detailsScript.includes('summaryBlock("ALTERNATIVE TO"'), "detail extension must not render an Alternative To text block");
 assert(!detailsScript.includes("DEVELOPER RESOURCES"), "detail extension must not render a developer resources subheading");
 assert(detailsScript.includes("cr-profile-badge"), "detail extension must render badge-style metadata");
@@ -203,7 +233,8 @@ assert(detailsScript.includes("modal-body"), "detail extension must mount profil
 assert(detailsScript.includes("enhanceFooter"), "detail extension must enhance the landscape2 footer");
 assert(detailsScript.includes('footerColumn("Learn"'), "detail extension footer must include a Learn column");
 assert(detailsScript.includes('footerColumn("Chinaready"'), "detail extension footer must title the Chinaready column correctly");
-assert(detailsScript.includes('href: "/guide"'), "detail extension footer must route China Alternatives into the Guide frame");
+assert(detailsScript.includes('href: "/alternatives/"'), "detail extension footer must route China Alternatives to /alternatives/");
+assert(detailsScript.includes('href: "/guide"'), "detail extension footer must keep Landscape Guide on /guide");
 assert(detailsScript.includes("China Launch Guides"), "detail extension footer must include a content link to the main site");
 assert(!detailsScript.includes('{ label: "Chinaready", href: "https://chinaready.co" }'), "detail extension footer must not duplicate the Chinaready home link");
 assert(
@@ -221,7 +252,7 @@ if (exists("build/index.html")) {
   const index = read("build/index.html");
   assert(!index.includes("vendor/chinaready-design-system"), "build/index.html must not link the removed vendored design system");
   assert(index.includes("assets/chinaready-landscape.css"), "build/index.html must link the Chinaready landscape override CSS");
-  assert(index.includes("assets/chinaready-landscape-details.js?v=20260718-guide-keyword-map"), "build/index.html must load the cache-busted Chinaready item detail extension");
+  assert(index.includes("assets/chinaready-landscape-details.js?v=20260720-seo-geo-ctr"), "build/index.html must load the cache-busted Chinaready item detail extension");
   assert(index.includes('rel="icon"') && index.includes("/images/chinaready-mark.svg"), "build/index.html must use the Chinaready mark favicon");
   assert(index.includes(repositoryUrl), "build/index.html must include the Chinaready landscape repository link");
   assert(!index.match(legacySourceBrandPattern), "build/index.html must not contain legacy source brand text");
@@ -249,21 +280,46 @@ if (exists("build/llms.txt")) {
   const llms = read("build/llms.txt");
   assert(llms.includes("# Chinaready Landscape"), "llms.txt must identify the project");
   assert(llms.includes("https://chinaready.co"), "llms.txt must cite the Chinaready main site");
-  assert(llms.includes("/alternatives/"), "llms.txt must expose the alternatives index");
+  assert(llms.includes("High-intent questions"), "llms.txt must expose high-intent question framing for GEO");
+  assert(llms.includes("Does Firebase"), "llms.txt must include common Firebase availability questions");
 }
 
 if (exists("build/alternatives/index.html")) {
   const alternativesIndex = read("build/alternatives/index.html");
   assert(alternativesIndex.includes("China alternatives to global developer services"), "alternatives index must use a clear H1 topic");
   assert(alternativesIndex.includes("Firebase"), "alternatives index must include Firebase mappings");
+  assert(alternativesIndex.includes("Availability in China"), "alternatives index must include Availability in China column");
+  assert(alternativesIndex.includes("cr-alt-availability"), "alternatives index must style availability labels");
+  assert(alternativesIndex.includes("Popular China alternative lookups"), "alternatives index must surface high-intent internal links");
+  assert(alternativesIndex.includes("Firebase alternatives in China"), "alternatives index must link popular Firebase lookup");
   assert(alternativesIndex.includes("chinaready.co"), "alternatives index must route to the main site");
+  assert(alternativesIndex.includes('"@type":"FAQPage"') || alternativesIndex.includes('"@type": "FAQPage"'), "alternatives index must include FAQPage JSON-LD");
   assert(alternativesIndex.includes("/images/chinaready-mark.svg"), "alternatives index must include the Chinaready mark favicon");
+  assert(alternativesIndex.includes("/images/chinaready-landscape-logo.svg"), "alternatives index must use the shared landscape header logo");
+  assert(alternativesIndex.includes('role="contentinfo"'), "alternatives index must use the shared contentinfo footer");
+  assert(alternativesIndex.includes("cr-footer-grid"), "alternatives index must reuse the homepage footer grid");
+  assert(alternativesIndex.includes("cr-site-header"), "alternatives index must use the shared site header");
+  assert(alternativesIndex.includes("/assets/chinaready-landscape.css"), "alternatives index must load shared landscape CSS");
+  assert(alternativesIndex.includes("cr-site-search"), "alternatives index must include the shared Guide-style header search");
+  assert(alternativesIndex.includes("chinaready-alternatives-search.js"), "alternatives index must load the shared search script");
+  assert(alternativesIndex.includes("Type"), "alternatives search must show the Type / to search items affordance");
+  assert(alternativesIndex.includes(">Global</a>") || alternativesIndex.includes(">Global</"), "alternatives chrome must label the Global nav item");
   assert(alternativesIndex.includes('"@type":"ItemList"') || alternativesIndex.includes('"@type": "ItemList"'), "alternatives index must include ItemList JSON-LD");
+  const gapCatalog = JSON.parse(read("research/global-services-gap-catalog.json"));
+  assert(gapCatalog.services?.length >= 100, "gap catalog must include the taxonomy-relevant unmapped global services");
+  assert(alternativesIndex.includes("Dynatrace") || alternativesIndex.includes("BunnyCDN"), "alternatives index must include gap-catalog research services");
+  assert(exists("build/alternatives/grpc.html"), "uncertain gap services such as gRPC must get a dedicated alternatives page");
+  assert(exists("build/alternatives/dynatrace.html") || exists("build/alternatives/bunnycdn.html"), "researched gap services must get dedicated alternatives pages");
+  const grpcPage = read("build/alternatives/grpc.html");
+  assert(grpcPage.includes("Contact Chinaready"), "uncertain alternatives pages must invite readers to contact Chinaready");
+  assert(grpcPage.includes("Availability in China"), "gap alternatives pages must show Availability in China");
 }
 
 if (exists("build/alternatives/firebase.html")) {
   const firebasePage = read("build/alternatives/firebase.html");
   assert(firebasePage.includes("Firebase alternatives in China"), "Firebase alternatives page must use an intent-matching H1");
+  assert(firebasePage.includes("Does Firebase work in China"), "Firebase alternatives page must answer the primary GEO question");
+  assert(firebasePage.includes("Quick answer"), "Firebase alternatives page must lead with a direct answer for CTR/GEO");
   assert(firebasePage.includes('"@type":"FAQPage"') || firebasePage.includes('"@type": "FAQPage"'), "Firebase alternatives page must include FAQPage JSON-LD");
   assert(firebasePage.includes("https://chinaready.co"), "Firebase alternatives page must link to the main site");
 }
@@ -297,7 +353,8 @@ if (exists("build/assets/chinaready-landscape.css")) {
     "published footer grid must use four equal-width columns",
   );
   assert(buildCss.includes(".cr-footer-description"), "published CSS must place the project description under the footer logo");
-  assert(buildCss.includes(".cr-guide-keyword-map"), "published CSS must style the in-Guide alternatives keyword map");
+  assert(buildCss.includes("cr-guide-global-link"), "published CSS must style the Guide Global menu link");
+  assert(buildCss.includes("cr-global-nav-link"), "published CSS must style the header Global nav link");
 }
 
 if (exists("build/assets/chinaready-landscape-details.js")) {
@@ -305,9 +362,13 @@ if (exists("build/assets/chinaready-landscape-details.js")) {
   assert(buildDetailsScript.includes("Summary"), "published detail extension must render a CNCF-style Summary section");
   assert(buildDetailsScript.includes("removeNativeSummary"), "published detail extension must remove the landscape2 native Summary/TAGS block");
   assert(buildDetailsScript.includes("forceStaticPageNavigation"), "published detail extension must force full navigation to static /alternatives pages");
+  assert(buildDetailsScript.includes("enhanceHeaderGlobalNav"), "published detail extension must inject Global into the top navigation");
+  assert(buildDetailsScript.includes("enhanceGuideGlobalMenu"), "published detail extension must inject Global into the Guide sidebar");
   assert(buildDetailsScript.includes("/images/chinaready-logo-horizontal-white.svg"), "published footer logo must use a root-absolute path");
   assert(buildDetailsScript.includes("textBlock(annotations.product_overview"), "published detail extension must render product overview without a USE CASE subheading");
   assert(buildDetailsScript.includes("textBlock(annotations.china_context"), "published detail extension must render China context without a CHINA MARKET FIT subheading");
+  assert(buildDetailsScript.includes("annotations.availability_status"), "published detail extension must surface availability_status");
+  assert(buildDetailsScript.includes("annotations.global_availability_in_china"), "published detail extension must surface global_availability_in_china");
   assert(!buildDetailsScript.includes('summaryBlock("ALTERNATIVE TO"'), "published detail extension must not render an Alternative To text block");
   assert(!buildDetailsScript.includes("DEVELOPER RESOURCES"), "published detail extension must not render a developer resources subheading");
   assert(buildDetailsScript.includes("cr-profile-badge"), "published detail extension must render badge-style metadata");
@@ -327,7 +388,8 @@ if (exists("build/assets/chinaready-landscape-details.js")) {
   assert(buildDetailsScript.includes("enhanceFooter"), "published detail extension must enhance the landscape2 footer");
   assert(buildDetailsScript.includes('footerColumn("Learn"'), "published footer must include a Learn column");
   assert(buildDetailsScript.includes('footerColumn("Chinaready"'), "published footer must title the Chinaready column correctly");
-  assert(buildDetailsScript.includes('href: "/guide"'), "published footer must route China Alternatives into the Guide frame");
+  assert(buildDetailsScript.includes('href: "/alternatives/"'), "published footer must route China Alternatives to /alternatives/");
+  assert(buildDetailsScript.includes('href: "/guide"'), "published footer must keep Landscape Guide on /guide");
   assert(buildDetailsScript.includes("China Launch Guides"), "published footer must include a content link to the main site");
   assert(!buildDetailsScript.includes('{ label: "Chinaready", href: "https://chinaready.co" }'), "published footer must not duplicate the Chinaready home link");
   assert(
@@ -378,13 +440,11 @@ if (exists("build/data/guide.json")) {
   assert(!overview.subcategories || overview.subcategories.length === 0, "guide.json Overview must not expose README or other submenu entries");
   assert(overview.content.includes("<table>"), "guide.json Overview content must render a real taxonomy table");
   assert(overview.content.includes("foreign developer and product teams"), "guide.json Overview must name foreign developer and product teams as the audience");
-  assert(overview.content.includes("cr-guide-keyword-map"), "guide.json Overview must embed the China alternatives keyword map");
-  assert(overview.content.includes("Global service"), "guide.json Overview keyword map must include the Global service column");
-  assert(overview.content.includes('href="/alternatives/') && overview.content.includes(".html"), "guide.json keyword map must link Global service names to /alternatives/*.html");
-  assert(overview.content.includes("Firebase"), "guide.json Overview keyword map must include Firebase mappings");
-  assert(!overview.content.includes("CR_ALTERNATIVES_KEYWORD_MAP"), "guide.json Overview must replace the keyword map marker");
+  assert(!overview.content.includes("cr-guide-keyword-map"), "guide.json Overview must not embed the China alternatives keyword map");
+  assert(!overview.content.includes("CR_ALTERNATIVES_KEYWORD_MAP"), "guide.json Overview must not keep the keyword map marker");
   assert(overview.content.includes("FAQ"), "guide.json Overview must include FAQ content");
   assert(overview.content.includes("/alternatives/"), "guide.json Overview must link to the /alternatives/ index");
+  assert(overview.content.includes("Level 1"), "guide.json Overview must keep Level 1 taxonomy framing");
   assert(!overview.content.includes("<img"), "guide.json Overview content must not render a logo image");
 }
 
@@ -431,6 +491,14 @@ for (const item of items) {
   assert(item.annotations.metadata_name === item.name, `${item.name} metadata_name must match the item name`);
   assert(item.annotations.primary_category === item.category, `${item.name} primary_category must match its main category`);
   assert(item.annotations.official_website === item.homepageUrl, `${item.name} official_website must match homepage_url`);
+  assert(
+    allowedAvailabilityStatus.has(item.annotations.availability_status),
+    `${item.name} availability_status must be one of: ${[...allowedAvailabilityStatus].join(", ")}`,
+  );
+  assert(
+    allowedGlobalAvailabilityInChina.has(item.annotations.global_availability_in_china),
+    `${item.name} global_availability_in_china must be one of: ${[...allowedGlobalAvailabilityInChina].join(", ")}`,
+  );
 }
 
 console.log("Chinaready brand verification passed");

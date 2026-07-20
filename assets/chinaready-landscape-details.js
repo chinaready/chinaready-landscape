@@ -150,6 +150,87 @@
     );
   }
 
+  function styleMatches(source, target, classTokens) {
+    const sourceClasses = String(source.className || "").split(/\s+/).filter(Boolean);
+    for (const token of classTokens) {
+      const match = sourceClasses.find((entry) => entry.includes(token));
+      if (match) target.classList.add(match);
+    }
+  }
+
+  function enhanceHeaderGlobalNav() {
+    const headers = Array.from(document.querySelectorAll("header"));
+    for (const header of headers) {
+      if (header.querySelector("[data-chinaready-global-nav]")) continue;
+
+      const guideControl =
+        header.querySelector('a[href="/guide"], a[href*="/guide"]') ||
+        Array.from(header.querySelectorAll("button, a")).find((node) => /^Guide$/i.test(node.textContent.trim()));
+      if (!guideControl) continue;
+
+      const globalLink = document.createElement("a");
+      globalLink.href = "/alternatives/";
+      globalLink.textContent = "Global";
+      globalLink.dataset.chinareadyGlobalNav = "true";
+      globalLink.setAttribute("aria-label", "Open Global alternatives index");
+
+      if (guideControl.tagName === "BUTTON" || guideControl.className) {
+        globalLink.className = guideControl.className;
+        globalLink.classList.remove("activeLink", "active");
+        // Keep desktop header link styling without inheriting Guide active state.
+        styleMatches(guideControl, globalLink, ["_link_", "btn", "text-uppercase", "fw-bold", "fw-semibold"]);
+        if (!globalLink.className) {
+          globalLink.className =
+            "btn btn-link position-relative text-uppercase fw-bold text-decoration-none p-0 cr-global-nav-link";
+        } else {
+          globalLink.classList.add("cr-global-nav-link");
+        }
+      } else {
+        globalLink.className = "cr-global-nav-link";
+      }
+
+      const mount = guideControl.parentElement;
+      if (!mount) continue;
+      if (guideControl.nextSibling) {
+        mount.insertBefore(globalLink, guideControl.nextSibling);
+      } else {
+        mount.append(globalLink);
+      }
+    }
+  }
+
+  function enhanceGuideGlobalMenu() {
+    if (!window.location.pathname.startsWith("/guide")) return;
+    const menu = document.getElementById("menu");
+    if (!menu || menu.querySelector("[data-chinaready-global-menu]")) return;
+
+    const overview = menu.querySelector("#btn_overview") || menu.querySelector("button");
+    if (!overview) return;
+
+    const globalLink = document.createElement("a");
+    globalLink.href = "/alternatives/";
+    globalLink.id = "btn_global";
+    globalLink.dataset.chinareadyGlobalMenu = "true";
+    globalLink.textContent = "Global";
+    globalLink.setAttribute("aria-label", "Open Global alternatives index");
+    globalLink.className =
+      "btn btn-link py-1 px-3 text-start w-100 rounded-0 position-relative text-truncate cr-guide-global-link";
+    styleMatches(overview, globalLink, ["_btn_", "_level-0_", "fw-semibold", "text-muted"]);
+
+    const spacer = document.createElement("div");
+    spacer.className = "mb-3";
+    spacer.dataset.chinareadyGlobalMenu = "spacer";
+
+    // Sit Global after Overview (and its empty subcategory spacer) as a peer Level-0 entry.
+    let insertAfter = overview;
+    const following = overview.nextElementSibling;
+    if (following && following.classList.contains("mb-3") && following.children.length === 0) {
+      insertAfter = following;
+    }
+    insertAfter.insertAdjacentElement("afterend", globalLink);
+    globalLink.insertAdjacentElement("afterend", spacer);
+  }
+
   function enhanceFooter() {
     const footer = document.querySelector('footer[role="contentinfo"]');
     if (!footer || footer.dataset.chinareadyFooter === "ready") return;
@@ -190,7 +271,7 @@
     grid.append(
       brand,
       footerColumn("Learn", [
-        { label: "China Alternatives", href: "/guide" },
+        { label: "China Alternatives", href: "/alternatives/" },
         { label: "Landscape Guide", href: "/guide" },
         { label: "China Launch Guides", href: "https://chinaready.co" },
       ]),
@@ -401,6 +482,8 @@
       annotations.replacement_fit,
       annotations.vendor_type,
       annotations.evidence_level,
+      annotations.availability_status,
+      annotations.global_availability_in_china,
     ];
 
     const sections = [
@@ -534,6 +617,8 @@
   async function refresh() {
     forceStaticPageNavigation();
     enhanceFooter();
+    enhanceHeaderGlobalNav();
+    enhanceGuideGlobalMenu();
 
     const dialogs = candidateDialogs();
     const hoverCards = candidateHoverCards();
@@ -576,5 +661,9 @@
   window.addEventListener("click", () => window.setTimeout(refresh, 0), true);
   window.addEventListener("load", refresh);
   forceStaticPageNavigation();
-  window.requestAnimationFrame(enhanceFooter);
+  window.requestAnimationFrame(() => {
+    enhanceFooter();
+    enhanceHeaderGlobalNav();
+    enhanceGuideGlobalMenu();
+  });
 })();

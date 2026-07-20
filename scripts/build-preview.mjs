@@ -22,6 +22,8 @@ const searchableAnnotationKeys = [
   "vendor_type",
   "replacement_fit",
   "evidence_level",
+  "availability_status",
+  "global_availability_in_china",
 ];
 
 function run(command, args) {
@@ -229,7 +231,7 @@ index = index.replace(
   /window\.baseDS = .*?;\n/s,
   `window.baseDS = ${JSON.stringify(patchedBase)};\n`,
 );
-const cacheBust = "20260718-guide-keyword-map";
+const cacheBust = "20260720-seo-geo-ctr";
 const links = [
   `<link rel="icon" href="/images/chinaready-mark.svg" type="image/svg+xml">`,
   `<link rel="apple-touch-icon" href="/images/chinaready-mark.svg">`,

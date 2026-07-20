@@ -23,6 +23,23 @@ Each item should include:
 - `extra.annotations.china_context`
 - `extra.annotations.vendor_type`
 - `extra.annotations.evidence_level`
+- `extra.annotations.availability_status` — status of **this China product / China-region route**
+- `extra.annotations.global_availability_in_china` — typical mainland China availability of the **listed global analogs** (primary / representative when several are listed)
+
+### `availability_status` values
+
+- `generally-available` — broadly usable China product or service
+- `china-region-only` — global vendor China-region / operated deployment (not a local SaaS substitute)
+- `invite-or-restricted` — limited signup, invite-only, or tightly gated access
+- `deprecated-or-sunset` — retiring or no longer recommended for new builds
+- `unverified` — status not yet confirmed from public sources
+
+### `global_availability_in_china` values
+
+- `available` — global analog generally works for mainland users without a China-specific route
+- `limited` — works with constraints (partner, region, compliance, degraded features, or unstable access)
+- `unavailable` — effectively unusable as a drop-in for mainland production stacks
+- `unknown` — not yet assessed
 
 ## Brand Rules
 

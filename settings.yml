@@ -11,7 +11,7 @@ colors:
   color6: "rgba(0, 91, 172, 0.72)"
   color7: "rgba(221, 227, 238, 1)"
 
-description: Open-source map of China-ready developer services for global teams. Find mainland China alternatives to Firebase, FCM, AWS, Stripe, Google Maps, and related stack dependencies, plus operating notes for China launches.
+description: Find mainland China alternatives to Firebase, FCM, AWS, Stripe, Google Maps, and related stack dependencies. Open-source Chinaready Landscape with availability notes and China-ready candidates for global teams.
 
 featured_items:
   - field: vendor_type
@@ -35,7 +35,7 @@ footer:
     homepage: "https://chinaready.co"
   logo: "assets/chinaready-logo-horizontal-white.svg"
   text: |
-    Chinaready Landscape is an open-source map of China-ready developer services for global software teams. Browse the China alternatives keyword map in the [Guide](https://landscape.chinaready.co/guide) or visit [chinaready.co](https://chinaready.co) for broader China launch guidance.
+    Chinaready Landscape is an open-source map of China-ready developer services for global software teams. Browse China-market categories in the [Guide](https://landscape.chinaready.co/guide), use the [Global alternatives index](https://landscape.chinaready.co/alternatives/) for international-to-China mappings, or visit [chinaready.co](https://chinaready.co) for broader China launch guidance.
 
 grid_items_size: large
 

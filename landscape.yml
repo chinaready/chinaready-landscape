@@ -19,6 +19,8 @@ landscape:
                 china_context: China-region cloud option frequently recommended when global AWS infrastructure is not suitable for mainland China deployments.
                 vendor_type: global-provider-china-region
                 evidence_level: high
+                availability_status: china-region-only
+                global_availability_in_china: limited
                 metadata_name: "AWS China Regions"
                 primary_category: "Infrastructure & Edge"
                 official_website: "https://www.amazonaws.cn/"
@@ -42,6 +44,8 @@ landscape:
                 china_context: China-region cloud option for teams already using Microsoft Azure globally.
                 vendor_type: global-provider-china-region
                 evidence_level: high
+                availability_status: china-region-only
+                global_availability_in_china: limited
                 metadata_name: "Azure China"
                 primary_category: "Infrastructure & Edge"
                 official_website: "https://www.azure.cn/"
@@ -65,6 +69,8 @@ landscape:
                 china_context: Native China cloud platform with broad mainland China service coverage.
                 vendor_type: china-cloud
                 evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: limited
                 metadata_name: "Alibaba Cloud"
                 primary_category: "Infrastructure & Edge"
                 official_website: "https://www.alibabacloud.com/"
@@ -78,7 +84,33 @@ landscape:
                 developer_docs: "https://www.alibabacloud.com/help/en/"
       - subcategory:
         name: Managed DNS Provider
-        items: []
+        items:
+          - item:
+            name: DNSPod
+            homepage_url: https://www.dnspod.cn/
+            logo: dnspod.svg
+            description: DNSPod is a China managed DNS and domain resolution service from Tencent Cloud.
+            extra:
+              annotations:
+                global_analogs: Cloudflare DNS, Amazon Route 53, Google Cloud DNS
+                replacement_fit: direct
+                china_context: DNSPod is a common China-market managed DNS option for teams that cannot rely on global DNS providers for mainland resolution and domain operations.
+                vendor_type: china-cloud
+                evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: limited
+                metadata_name: "DNSPod"
+                primary_category: "Infrastructure & Edge"
+                official_website: "https://www.dnspod.cn/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "DNSPod is a China managed DNS and domain resolution service from Tencent Cloud."
+                alternative_to: "China-market alternative or deployment route for: Cloudflare DNS, Amazon Route 53, Google Cloud DNS."
+                global_alternatives: "Cloudflare DNS, Amazon Route 53, Google Cloud DNS"
+                organization: "Tencent Cloud DNSPod"
+                organization_overview: "DNSPod provides managed DNS and domain services as part of Tencent Cloud."
+                developer_docs: "https://docs.dnspod.cn/"
+
       - subcategory:
         name: Content Delivery Network (CDN)
         items:
@@ -94,6 +126,8 @@ landscape:
                 china_context: Mainland China CDN deployments commonly require ICP filing and China-specific acceleration planning.
                 vendor_type: china-cloud
                 evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: limited
                 metadata_name: "Alibaba Cloud CDN"
                 primary_category: "Infrastructure & Edge"
                 official_website: "https://www.alibabacloud.com/product/cdn"
@@ -117,6 +151,8 @@ landscape:
                 china_context: Global-provider China-market route; classify separately from domestic CDN products.
                 vendor_type: global-provider-china-region
                 evidence_level: low
+                availability_status: china-region-only
+                global_availability_in_china: limited
                 metadata_name: "Cloudflare China Network"
                 primary_category: "Infrastructure & Edge"
                 official_website: "https://www.cloudflare.com/network/china/"
@@ -134,7 +170,33 @@ landscape:
     subcategories:
       - subcategory:
         name: Cross-Platform UI & Frameworks
-        items: []
+        items:
+          - item:
+            name: uni-app
+            homepage_url: https://uniapp.dcloud.net.cn/
+            logo: uni-app.svg
+            description: uni-app is a China cross-platform application framework for building apps across mini programs, H5, and native containers from one codebase.
+            extra:
+              annotations:
+                global_analogs: React Native, Flutter, Ionic
+                replacement_fit: partial
+                china_context: uni-app is widely used for China mini-program and multi-end distribution workflows where React Native or Flutter alone may not cover WeChat and other China runtimes.
+                vendor_type: china-saas
+                evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: limited
+                metadata_name: "uni-app"
+                primary_category: "Application Platform"
+                official_website: "https://uniapp.dcloud.net.cn/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "uni-app is a China cross-platform application framework for building apps across mini programs, H5, and native containers from one codebase."
+                alternative_to: "China-market alternative or deployment route for: React Native, Flutter, Ionic."
+                global_alternatives: "React Native, Flutter, Ionic"
+                organization: "DCloud"
+                organization_overview: "DCloud builds developer tools and cross-platform frameworks for China app and mini-program teams."
+                developer_docs: "https://uniapp.dcloud.net.cn/"
+
       - subcategory:
         name: Mobile Backend-as-a-Service (MBaaS)
         items:
@@ -150,6 +212,8 @@ landscape:
                 china_context: Needs product-profile review because SAE is application hosting rather than a full Firebase-style MBaaS.
                 vendor_type: china-cloud
                 evidence_level: low
+                availability_status: generally-available
+                global_availability_in_china: limited
                 metadata_name: "Alibaba Cloud Serverless App Engine"
                 primary_category: "Application Platform"
                 official_website: "https://help.aliyun.com/zh/sae/"
@@ -173,6 +237,8 @@ landscape:
                 china_context: Treat as a China deployment path for Supabase-style backend use cases, not a complete MBaaS replacement.
                 vendor_type: china-cloud
                 evidence_level: low
+                availability_status: generally-available
+                global_availability_in_china: limited
                 metadata_name: "Alibaba Cloud RDS for Supabase"
                 primary_category: "Application Platform"
                 official_website: "https://help.aliyun.com/zh/rds/apsaradb-rds-for-postgresql/supabase/"
@@ -186,14 +252,66 @@ landscape:
                 developer_docs: "https://help.aliyun.com/zh/rds/apsaradb-rds-for-postgresql/supabase/"
       - subcategory:
         name: Feature Flags & Remote Config
-        items: []
+        items:
+          - item:
+            name: Alibaba Cloud EMAS Remote Config
+            homepage_url: https://www.aliyun.com/product/emas
+            logo: alibaba-cloud-emas-remote-config.svg
+            description: Alibaba Cloud EMAS Remote Config provides remote configuration and feature rollout controls for mobile applications.
+            extra:
+              annotations:
+                global_analogs: LaunchDarkly, Firebase Remote Config, ConfigCat
+                replacement_fit: partial
+                china_context: EMAS Remote Config is a China-cloud remote configuration module commonly evaluated when LaunchDarkly or Firebase Remote Config is limited for mainland apps.
+                vendor_type: china-cloud
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: limited
+                metadata_name: "Alibaba Cloud EMAS Remote Config"
+                primary_category: "Application Platform"
+                official_website: "https://www.aliyun.com/product/emas"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Alibaba Cloud EMAS Remote Config provides remote configuration and feature rollout controls for mobile applications."
+                alternative_to: "China-market alternative or deployment route for: LaunchDarkly, Firebase Remote Config, ConfigCat."
+                global_alternatives: "LaunchDarkly, Firebase Remote Config, ConfigCat"
+                organization: "Alibaba Cloud"
+                organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
+                developer_docs: "https://help.aliyun.com/zh/emas/"
+
 
   - category:
     name: Release, Quality & Operations
     subcategories:
       - subcategory:
         name: CI/CD & App Distribution
-        items: []
+        items:
+          - item:
+            name: Pgyer
+            homepage_url: https://www.pgyer.com/
+            logo: pgyer.svg
+            description: Pgyer (蒲公英) provides China-market mobile app distribution, beta delivery, and related release tooling.
+            extra:
+              annotations:
+                global_analogs: Firebase App Distribution, Visual Studio App Center, Bitrise
+                replacement_fit: direct
+                china_context: Pgyer is a frequently used China alternative for internal and beta app distribution when Firebase App Distribution is unavailable for mainland testers.
+                vendor_type: china-saas
+                evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Pgyer"
+                primary_category: "Release, Quality & Operations"
+                official_website: "https://www.pgyer.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Pgyer (蒲公英) provides China-market mobile app distribution, beta delivery, and related release tooling."
+                alternative_to: "China-market alternative or deployment route for: Firebase App Distribution, Visual Studio App Center, Bitrise."
+                global_alternatives: "Firebase App Distribution, Visual Studio App Center, Bitrise"
+                organization: "Pgyer"
+                organization_overview: "Pgyer provides mobile app distribution and testing delivery services for China developer teams."
+                developer_docs: "https://www.pgyer.com/doc/view/api"
+
       - subcategory:
         name: Automated Testing & Device Farms
         items:
@@ -209,6 +327,8 @@ landscape:
                 china_context: Tencent WeTest provides a China-market alternative to AWS Device Farm for mobile device testing.
                 vendor_type: china-saas
                 evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: limited
                 metadata_name: "Tencent WeTest"
                 primary_category: "Release, Quality & Operations"
                 official_website: "https://wetest.qq.com/products/cloud-phone"
@@ -222,10 +342,62 @@ landscape:
                 developer_docs: "https://wetest.qq.com/docs/"
       - subcategory:
         name: Crash Reporting & Performance Monitoring
-        items: []
+        items:
+          - item:
+            name: Bugly
+            homepage_url: https://bugly.qq.com/
+            logo: bugly.svg
+            description: Bugly is a Tencent crash reporting and application quality monitoring service for mobile apps.
+            extra:
+              annotations:
+                global_analogs: Sentry, Firebase Crashlytics, Bugsnag
+                replacement_fit: direct
+                china_context: Bugly is a common China-market crash and quality monitoring alternative when Firebase Crashlytics or Sentry SaaS access is constrained for mainland apps.
+                vendor_type: china-saas
+                evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: limited
+                metadata_name: "Bugly"
+                primary_category: "Release, Quality & Operations"
+                official_website: "https://bugly.qq.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Bugly is a Tencent crash reporting and application quality monitoring service for mobile apps."
+                alternative_to: "China-market alternative or deployment route for: Sentry, Firebase Crashlytics, Bugsnag."
+                global_alternatives: "Sentry, Firebase Crashlytics, Bugsnag"
+                organization: "Tencent Bugly"
+                organization_overview: "Bugly is part of Tencent developer services for mobile crash reporting and quality insights."
+                developer_docs: "https://bugly.qq.com/docs/"
+
       - subcategory:
         name: Monitoring & Observability (APM / RUM)
-        items: []
+        items:
+          - item:
+            name: Alibaba Cloud ARMS
+            homepage_url: https://www.aliyun.com/product/arms
+            logo: alibaba-cloud-arms.svg
+            description: Alibaba Cloud ARMS provides application performance monitoring, tracing, and observability services.
+            extra:
+              annotations:
+                global_analogs: Datadog, New Relic, Grafana Cloud
+                replacement_fit: direct
+                china_context: ARMS is a China-cloud observability suite used when Datadog, New Relic, or Grafana Cloud SaaS models are limited for mainland production monitoring.
+                vendor_type: china-cloud
+                evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: limited
+                metadata_name: "Alibaba Cloud ARMS"
+                primary_category: "Release, Quality & Operations"
+                official_website: "https://www.aliyun.com/product/arms"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Alibaba Cloud ARMS provides application performance monitoring, tracing, and observability services."
+                alternative_to: "China-market alternative or deployment route for: Datadog, New Relic, Grafana Cloud."
+                global_alternatives: "Datadog, New Relic, Grafana Cloud"
+                organization: "Alibaba Cloud"
+                organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
+                developer_docs: "https://help.aliyun.com/zh/arms/"
+
 
   - category:
     name: Users, Trust & Monetization
@@ -245,6 +417,8 @@ landscape:
                 china_context: Authing provides a China-market identity platform alternative to Auth0, Okta, and Firebase Authentication.
                 vendor_type: china-saas
                 evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: limited
                 metadata_name: "Authing"
                 primary_category: "Users, Trust & Monetization"
                 official_website: "https://www.authing.cn/"
@@ -268,6 +442,8 @@ landscape:
                 china_context: Important for China consumer applications, especially when WeChat ecosystem integration is expected.
                 vendor_type: china-super-app
                 evidence_level: low
+                availability_status: generally-available
+                global_availability_in_china: unavailable
                 metadata_name: "WeChat Login"
                 primary_category: "Users, Trust & Monetization"
                 official_website: "https://developers.weixin.qq.com/"
@@ -294,6 +470,8 @@ landscape:
                 china_context: Core China payment rail for WeChat ecosystem and many consumer payment scenarios.
                 vendor_type: china-super-app
                 evidence_level: low
+                availability_status: generally-available
+                global_availability_in_china: unavailable
                 metadata_name: "WeChat Pay"
                 primary_category: "Users, Trust & Monetization"
                 official_website: "https://pay.weixin.qq.com/"
@@ -317,6 +495,8 @@ landscape:
                 china_context: Core China payment rail for consumer payments outside the WeChat-only ecosystem.
                 vendor_type: china-super-app
                 evidence_level: low
+                availability_status: generally-available
+                global_availability_in_china: unavailable
                 metadata_name: "Alipay"
                 primary_category: "Users, Trust & Monetization"
                 official_website: "https://global.alipay.com/"
@@ -340,6 +520,8 @@ landscape:
                 china_context: Youzan Cloud provides China-market commerce and payment integration capabilities.
                 vendor_type: china-saas
                 evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: limited
                 metadata_name: "Youzan Cloud"
                 primary_category: "Users, Trust & Monetization"
                 official_website: "https://www.youzanyun.com/developer"
@@ -366,6 +548,8 @@ landscape:
                 china_context: GeeTest provides a China-market alternative to global CAPTCHA and bot protection services.
                 vendor_type: china-saas
                 evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: limited
                 metadata_name: "GeeTest"
                 primary_category: "Users, Trust & Monetization"
                 official_website: "https://www.geetest.com/"
@@ -389,6 +573,8 @@ landscape:
                 china_context: Alibaba Cloud CAPTCHA provides a China-market alternative for CAPTCHA and bot protection use cases.
                 vendor_type: china-cloud
                 evidence_level: low
+                availability_status: generally-available
+                global_availability_in_china: limited
                 metadata_name: "Alibaba Cloud CAPTCHA"
                 primary_category: "Users, Trust & Monetization"
                 official_website: "https://www.aliyun.com/product/security/captcha"
@@ -422,6 +608,8 @@ landscape:
                 china_context: Archive rows mention EMAS across push, analytics, and crash/performance contexts; profile should clarify exact modules.
                 vendor_type: china-cloud
                 evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: unavailable
                 metadata_name: "Alibaba Cloud EMAS"
                 primary_category: "Engagement & Communication"
                 official_website: "https://www.aliyun.com/product/emas"
@@ -445,6 +633,8 @@ landscape:
                 china_context: JPush provides a China-market alternative to Firebase Cloud Messaging for mobile push notifications.
                 vendor_type: china-saas
                 evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: unavailable
                 metadata_name: "JPush"
                 primary_category: "Engagement & Communication"
                 official_website: "https://www.jiguang.cn/jpush/"
@@ -468,6 +658,8 @@ landscape:
                 china_context: Alibaba Cloud SMS provides a China-market alternative for SMS notification and verification workflows.
                 vendor_type: china-cloud
                 evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: limited
                 metadata_name: "Alibaba Cloud SMS"
                 primary_category: "Engagement & Communication"
                 official_website: "https://www.aliyun.com/product/dysms"
@@ -491,6 +683,8 @@ landscape:
                 china_context: Alibaba Cloud DirectMail supports China-market notification stacks alongside SMS and push messaging.
                 vendor_type: china-cloud
                 evidence_level: low
+                availability_status: generally-available
+                global_availability_in_china: limited
                 metadata_name: "Alibaba Cloud DirectMail"
                 primary_category: "Engagement & Communication"
                 official_website: "https://www.aliyun.com/product/directmail"
@@ -514,6 +708,8 @@ landscape:
                 china_context: SendCloud provides a China-market alternative for application email delivery and notification needs.
                 vendor_type: china-saas
                 evidence_level: low
+                availability_status: generally-available
+                global_availability_in_china: limited
                 metadata_name: "SendCloud"
                 primary_category: "Engagement & Communication"
                 official_website: "https://www.sendcloud.net/"
@@ -540,6 +736,8 @@ landscape:
                 china_context: Alibaba Cloud RTC provides a China-market alternative for real-time audio and video communication use cases.
                 vendor_type: china-cloud
                 evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: limited
                 metadata_name: "Alibaba Cloud RTC"
                 primary_category: "Engagement & Communication"
                 official_website: "https://www.aliyun.com/product/rtc"
@@ -553,7 +751,58 @@ landscape:
                 developer_docs: "https://help.aliyun.com/zh/rtc/"
       - subcategory:
         name: Customer Support & In-App Messaging
-        items: []
+        items:
+          - item:
+            name: Zhichi
+            homepage_url: https://www.sobot.com/
+            logo: zhichi.svg
+            description: Zhichi (智齿科技) provides China customer service, helpdesk, and omnichannel support messaging products.
+            extra:
+              annotations:
+                global_analogs: Zendesk, Freshdesk, Intercom
+                replacement_fit: direct
+                china_context: Zhichi is a China-market customer support platform alternative for teams that need local helpdesk and messaging workflows instead of Zendesk or Freshdesk.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Zhichi"
+                primary_category: "Engagement & Communication"
+                official_website: "https://www.sobot.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Zhichi (智齿科技) provides China customer service, helpdesk, and omnichannel support messaging products."
+                alternative_to: "China-market alternative or deployment route for: Zendesk, Freshdesk, Intercom."
+                global_alternatives: "Zendesk, Freshdesk, Intercom"
+                organization: "Zhichi (Sobot)"
+                organization_overview: "Zhichi provides customer service software and omnichannel support platforms for China businesses."
+                developer_docs: "https://www.sobot.com/developer/"
+          - item:
+            name: Easemob
+            homepage_url: https://www.easemob.com/
+            logo: easemob.svg
+            description: Easemob (环信) provides in-app messaging, chat, and customer communication SDKs for China applications.
+            extra:
+              annotations:
+                global_analogs: Intercom, Zendesk Messaging, Twilio Conversations
+                replacement_fit: partial
+                china_context: Easemob is a China messaging and customer-communication SDK option for in-app chat when Intercom-style global messaging stacks are limited.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: limited
+                metadata_name: "Easemob"
+                primary_category: "Engagement & Communication"
+                official_website: "https://www.easemob.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Easemob (环信) provides in-app messaging, chat, and customer communication SDKs for China applications."
+                alternative_to: "China-market alternative or deployment route for: Intercom, Zendesk Messaging, Twilio Conversations."
+                global_alternatives: "Intercom, Zendesk Messaging, Twilio Conversations"
+                organization: "Easemob"
+                organization_overview: "Easemob provides instant messaging and customer communication cloud services for China developers."
+                developer_docs: "https://docs-im.easemob.com/"
+
 
   - category:
     name: Growth, Content & Experience
@@ -573,6 +822,8 @@ landscape:
                 china_context: Sensors Data provides a China-market alternative for product analytics and user behavior analysis.
                 vendor_type: china-saas
                 evidence_level: low
+                availability_status: generally-available
+                global_availability_in_china: limited
                 metadata_name: "Sensors Data"
                 primary_category: "Growth, Content & Experience"
                 official_website: "https://www.sensorsdata.cn/"
@@ -599,6 +850,8 @@ landscape:
                 china_context: Umeng+ provides China-market mobile analytics and engagement tooling for apps operating in China.
                 vendor_type: china-saas
                 evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: limited
                 metadata_name: "Umeng+"
                 primary_category: "Growth, Content & Experience"
                 official_website: "https://www.umeng.com/"
@@ -610,6 +863,31 @@ landscape:
                 organization: "Umeng+"
                 organization_overview: "Umeng+ provides mobile analytics and developer services for China-market applications."
                 developer_docs: "https://developer.umeng.com/docs/"
+          - item:
+            name: GrowingIO
+            homepage_url: https://www.growingio.com/
+            logo: growingio.svg
+            description: GrowingIO provides product analytics, user behavior analysis, and growth insights for digital products in China.
+            extra:
+              annotations:
+                global_analogs: Google Analytics, FullStory, Microsoft Clarity, Mixpanel
+                replacement_fit: direct
+                china_context: GrowingIO is a China analytics alternative frequently considered when Google Analytics is unavailable for mainland product measurement.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "GrowingIO"
+                primary_category: "Growth, Content & Experience"
+                official_website: "https://www.growingio.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "GrowingIO provides product analytics, user behavior analysis, and growth insights for digital products in China."
+                alternative_to: "China-market alternative or deployment route for: Google Analytics, FullStory, Microsoft Clarity, Mixpanel."
+                global_alternatives: "Google Analytics, FullStory, Microsoft Clarity, Mixpanel"
+                organization: "GrowingIO"
+                organization_overview: "GrowingIO provides product analytics and growth intelligence products for China digital teams."
+                developer_docs: "https://docs.growingio.com/"
       - subcategory:
         name: Location & Map Services
         items:
@@ -625,6 +903,8 @@ landscape:
                 china_context: Amap provides a China-market alternative to Google Maps Platform for maps, location, and navigation APIs.
                 vendor_type: china-saas
                 evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: unavailable
                 metadata_name: "Amap"
                 primary_category: "Growth, Content & Experience"
                 official_website: "https://lbs.amap.com/"
@@ -636,9 +916,60 @@ landscape:
                 organization: "Amap"
                 organization_overview: "Amap provides China map, location, navigation, geocoding, and routing services for developers."
                 developer_docs: "https://lbs.amap.com/api"
+          - item:
+            name: Tencent Location Services
+            homepage_url: https://lbs.qq.com/
+            logo: tencent-location-services.svg
+            description: Tencent Location Services provides maps, geocoding, routing, and location APIs for China applications.
+            extra:
+              annotations:
+                global_analogs: Google Maps Platform, OpenStreetMap, Mapbox
+                replacement_fit: direct
+                china_context: Tencent Location Services is a China maps and location API alternative when Google Maps Platform is unavailable or unsuitable for mainland apps.
+                vendor_type: china-saas
+                evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Tencent Location Services"
+                primary_category: "Growth, Content & Experience"
+                official_website: "https://lbs.qq.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Tencent Location Services provides maps, geocoding, routing, and location APIs for China applications."
+                alternative_to: "China-market alternative or deployment route for: Google Maps Platform, OpenStreetMap, Mapbox."
+                global_alternatives: "Google Maps Platform, OpenStreetMap, Mapbox"
+                organization: "Tencent Location Services"
+                organization_overview: "Tencent Location Services provides map and location APIs for developers building China-market products."
+                developer_docs: "https://lbs.qq.com/webApi/javascriptGL/glGuide/glBasic"
       - subcategory:
         name: App-Store Intelligence & Attribution (ASO)
-        items: []
+        items:
+          - item:
+            name: Qimai Data
+            homepage_url: https://www.qimai.cn/
+            logo: qimai-data.svg
+            description: Qimai Data (七麦数据) provides China app-store intelligence, ASO research, and competitive app-market insights.
+            extra:
+              annotations:
+                global_analogs: AppsFlyer, Adjust, Branch
+                replacement_fit: partial
+                china_context: Qimai Data helps teams research China app-store rankings and ASO signals across fragmented domestic stores, which global attribution suites often cover only partially.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: limited
+                metadata_name: "Qimai Data"
+                primary_category: "Growth, Content & Experience"
+                official_website: "https://www.qimai.cn/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Qimai Data (七麦数据) provides China app-store intelligence, ASO research, and competitive app-market insights."
+                alternative_to: "China-market alternative or deployment route for: AppsFlyer, Adjust, Branch."
+                global_alternatives: "AppsFlyer, Adjust, Branch"
+                organization: "Qimai Data"
+                organization_overview: "Qimai Data provides app-store intelligence and ASO research products focused on China mobile markets."
+                developer_docs: "https://www.qimai.cn/"
+
       - subcategory:
         name: Web Fonts & Iconography
         items:
@@ -654,6 +985,8 @@ landscape:
                 china_context: Practical alternative when fonts.googleapis.com is slow or blocked; allowlisted Origins only.
                 vendor_type: consulting-service
                 evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: unavailable
                 metadata_name: "Chinaready Google Fonts Hosting"
                 primary_category: "Growth, Content & Experience"
                 official_website: "https://gfonts.launchready.cn/"

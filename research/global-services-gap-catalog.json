@@ -1,0 +1,2839 @@
+{
+  "source": "Chinaready Landscape research shortlist for taxonomy-relevant global services",
+  "generated_for": "alternatives index SEO expansion",
+  "counts": {
+    "services": 106,
+    "uncertain_alternatives": 30,
+    "researched_alternatives": 36,
+    "heuristic_alternatives": 40
+  },
+  "availability_lookup": {
+    "acast": {
+      "name": "Acast",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "activecampaign": {
+      "name": "ActiveCampaign",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "adtrace": {
+      "name": "Adtrace",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "airbase": {
+      "name": "Airbase",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "airtable": {
+      "name": "Airtable",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "alert logic": {
+      "name": "Alert Logic",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "altis": {
+      "name": "Altis",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "amazon cloudwatch": {
+      "name": "Amazon CloudWatch",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "apollo kotlin": {
+      "name": "Apollo Kotlin",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "authorize.net": {
+      "name": "Authorize.Net",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "auvik": {
+      "name": "Auvik",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "aweber": {
+      "name": "AWeber",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "azure monitor": {
+      "name": "Azure Monitor",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "barracuda": {
+      "name": "Barracuda",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "bigmarker": {
+      "name": "BigMarker",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "bitly": {
+      "name": "Bitly",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "bombbomb": {
+      "name": "BombBomb",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "bootstrapcdn": {
+      "name": "BootstrapCDN",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "brevo": {
+      "name": "Brevo",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "brightcove": {
+      "name": "Brightcove",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "bunnycdn": {
+      "name": "BunnyCDN",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "buzzsprout": {
+      "name": "Buzzsprout",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "callkit": {
+      "name": "CallKit",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "canvasjs": {
+      "name": "CanvasJS",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "captivate": {
+      "name": "Captivate",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "castle": {
+      "name": "Castle.io",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "castos": {
+      "name": "Castos",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "checkout.com": {
+      "name": "Checkout.com",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "cloudflare analytics insight": {
+      "name": "Cloudflare Analytics Insight",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "commerce layer": {
+      "name": "Commerce Layer",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "constant contact": {
+      "name": "Constant Contact",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "convertkit": {
+      "name": "ConvertKit",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "crowdstrike": {
+      "name": "CrowdStrike",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "dataset": {
+      "name": "DataSet",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
+    "datastax": {
+      "name": "DataStax",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "docker hub mirror": {
+      "name": "Docker Hub Mirror",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "drip": {
+      "name": "Drip",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "dynatrace": {
+      "name": "Dynatrace",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "elastic cloud": {
+      "name": "Elastic Cloud",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "embrace": {
+      "name": "Embrace.io",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "env0": {
+      "name": "env0",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "github pages": {
+      "name": "GitHub Pages",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "glitch": {
+      "name": "Glitch",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "google admob": {
+      "name": "Google AdMob",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
+    "google app review": {
+      "name": "Google App Review",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
+    "google app update": {
+      "name": "Google App Update",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
+    "google authenticator": {
+      "name": "Google Authenticator",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
+    "grpc": {
+      "name": "gRPC",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "hello audio": {
+      "name": "Hello Audio",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "hubspot": {
+      "name": "HubSpot",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "imperva": {
+      "name": "Imperva",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "ip-api.com": {
+      "name": "IP-API.com",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
+    "ipgeolocation": {
+      "name": "ipgeolocation.io",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "joy rewards loyalty program": {
+      "name": "Joy Rewards Loyalty Program",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "jw player": {
+      "name": "JW Player",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "kaltura": {
+      "name": "Kaltura",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "klaviyo": {
+      "name": "Klaviyo",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
+    "kong gateway": {
+      "name": "Kong Gateway",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "libsyn": {
+      "name": "Libsyn",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
+    "logicmonitor": {
+      "name": "LogicMonitor",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "logrocket": {
+      "name": "LogRocket",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "loyaltylion": {
+      "name": "LoyaltyLion",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "mailchimp": {
+      "name": "Mailchimp",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "mailerlite": {
+      "name": "MailerLite",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "marketo": {
+      "name": "Marketo",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "megaphone": {
+      "name": "Megaphone",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
+    "mia platform": {
+      "name": "Mia Platform",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "microsoft authenticator": {
+      "name": "Microsoft Authenticator",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "middleware": {
+      "name": "Middleware.io",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "n8n": {
+      "name": "n8n",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "okendo": {
+      "name": "Okendo",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "on24": {
+      "name": "ON24",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "openai gpt-4": {
+      "name": "OpenAI GPT-4",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
+    "paessler prtg": {
+      "name": "Paessler PRTG",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "pangle ads": {
+      "name": "Pangle Ads",
+      "availability": "Available",
+      "global_availability_in_china": "available"
+    },
+    "pantheon": {
+      "name": "Pantheon",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "pendo": {
+      "name": "Pendo",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "plausible": {
+      "name": "Plausible",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "podbean": {
+      "name": "Podbean",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "pusher channels": {
+      "name": "Pusher Channels",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "rapid7": {
+      "name": "Rapid7",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "salesforce knowledge": {
+      "name": "Salesforce Knowledge",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "salesforce marketing cloud": {
+      "name": "Salesforce Marketing Cloud",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "segment twilio": {
+      "name": "Segment Twilio",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "sendspark": {
+      "name": "Sendspark",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "servicenow": {
+      "name": "ServiceNow",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "simple analytics": {
+      "name": "Simple Analytics",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "smile": {
+      "name": "Smile.io",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "solarwinds": {
+      "name": "SolarWinds",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "splunk": {
+      "name": "Splunk",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "spotify for podcasters": {
+      "name": "Spotify for Podcasters",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
+    "statuspage": {
+      "name": "Statuspage",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "streamlit community cloud": {
+      "name": "Streamlit Community Cloud",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "substack": {
+      "name": "Substack",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "teleport": {
+      "name": "Teleport",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "transistor": {
+      "name": "Transistor",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "trustpilot": {
+      "name": "Trustpilot",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
+    "upcloud": {
+      "name": "UpCloud",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "virtuozzo": {
+      "name": "Virtuozzo",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "vmware vsphere": {
+      "name": "VMware vSphere",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "vwo": {
+      "name": "VWO",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "zenlayer": {
+      "name": "Zenlayer",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "zenlayer sd wan": {
+      "name": "Zenlayer SD WAN",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "zoho crm": {
+      "name": "Zoho CRM",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "zoom sdk": {
+      "name": "Zoom SDK",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    }
+  },
+  "services": [
+    {
+      "name": "Acast",
+      "categories": [
+        "Media Platforms",
+        "Creator Platforms"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "ActiveCampaign",
+      "categories": [
+        "Marketing & Automation",
+        "Customer Support & CRM"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "SendCloud",
+          "homepage_url": "https://www.sendcloud.net/",
+          "category": "Engagement & Communication",
+          "subcategory": "Push Notifications & Multichannel Messaging",
+          "source": "landscape"
+        },
+        {
+          "name": "JPush",
+          "homepage_url": "https://www.jiguang.cn/jpush/",
+          "category": "Engagement & Communication",
+          "subcategory": "Push Notifications & Multichannel Messaging",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Adtrace",
+      "categories": [
+        "Marketing & Automation",
+        "Business & Product Analytics"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Qimai Data",
+          "homepage_url": "https://www.qimai.cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "App-Store Intelligence & Attribution (ASO)",
+          "source": "landscape"
+        },
+        {
+          "name": "Umeng+",
+          "homepage_url": "https://www.umeng.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Airbase",
+      "categories": [
+        "Payment & Financial Tools"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Airtable",
+      "categories": [
+        "Developer Tools & APIs"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Alert Logic",
+      "categories": [
+        "Performance Monitoring & Alerting",
+        "Security & Identity"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud ARMS",
+          "homepage_url": "https://www.aliyun.com/product/arms",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "landscape"
+        },
+        {
+          "name": "GeeTest",
+          "homepage_url": "https://www.geetest.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Bot Protection & CAPTCHA",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Altis",
+      "categories": [
+        "Traditional/Enterprise CMS",
+        "Developer Platforms & CI/CD"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Pgyer",
+          "homepage_url": "https://www.pgyer.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "CI/CD & App Distribution",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Amazon CloudWatch",
+      "categories": [
+        "Performance Monitoring & Alerting",
+        "Hosting & Infrastructure"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud ARMS",
+          "homepage_url": "https://www.aliyun.com/product/arms",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Apollo Kotlin",
+      "categories": [
+        "Developer Tools & APIs"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "uni-app",
+          "homepage_url": "https://uniapp.dcloud.net.cn/",
+          "category": "Application Platform",
+          "subcategory": "Cross-Platform UI & Frameworks",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Authorize.Net",
+      "categories": [
+        "Payment & Financial Tools"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "WeChat Pay",
+          "homepage_url": "https://pay.weixin.qq.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Payments & In-App Purchases",
+          "source": "landscape"
+        },
+        {
+          "name": "Alipay",
+          "homepage_url": "https://global.alipay.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Payments & In-App Purchases",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Auvik",
+      "categories": [
+        "Performance Monitoring & Alerting"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud ARMS",
+          "homepage_url": "https://www.aliyun.com/product/arms",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "AWeber",
+      "categories": [
+        "Marketing & Automation"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Azure Monitor",
+      "categories": [
+        "Performance Monitoring & Alerting",
+        "Hosting & Infrastructure"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud ARMS",
+          "homepage_url": "https://www.aliyun.com/product/arms",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Barracuda",
+      "categories": [
+        "Network & Edge Security",
+        "Security & Identity"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "GeeTest",
+          "homepage_url": "https://www.geetest.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Bot Protection & CAPTCHA",
+          "source": "landscape"
+        },
+        {
+          "name": "Alibaba Cloud CAPTCHA",
+          "homepage_url": "https://www.aliyun.com/product/security/captcha",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Bot Protection & CAPTCHA",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "BigMarker",
+      "categories": [
+        "Communication & Collaboration",
+        "Media Platforms"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Bitly",
+      "categories": [
+        "Developer Tools & APIs",
+        "Marketing & Automation"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud",
+          "homepage_url": "https://www.alibabacloud.com/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "BombBomb",
+      "categories": [
+        "Marketing & Automation"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "BootstrapCDN",
+      "categories": [
+        "Hosting & Infrastructure"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud CDN",
+          "homepage_url": "https://www.alibabacloud.com/product/cdn",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Content Delivery Network (CDN)",
+          "source": "landscape"
+        },
+        {
+          "name": "Chinaready Google Fonts Hosting",
+          "homepage_url": "https://gfonts.launchready.cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Web Fonts & Iconography",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Brevo",
+      "categories": [
+        "Marketing & Automation"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "SendCloud",
+          "homepage_url": "https://www.sendcloud.net/",
+          "category": "Engagement & Communication",
+          "subcategory": "Push Notifications & Multichannel Messaging",
+          "source": "landscape"
+        },
+        {
+          "name": "Alibaba Cloud DirectMail",
+          "homepage_url": "https://www.aliyun.com/product/directmail",
+          "category": "Engagement & Communication",
+          "subcategory": "Push Notifications & Multichannel Messaging",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Brightcove",
+      "categories": [
+        "Media Platforms"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud RTC",
+          "homepage_url": "https://www.aliyun.com/product/rtc",
+          "category": "Engagement & Communication",
+          "subcategory": "Real-Time Communication (Voice / Video / Chat)",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "BunnyCDN",
+      "categories": [
+        "Hosting & Infrastructure"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud CDN",
+          "homepage_url": "https://www.alibabacloud.com/product/cdn",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Content Delivery Network (CDN)",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Buzzsprout",
+      "categories": [
+        "Media Platforms",
+        "Creator Platforms"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "CallKit",
+      "categories": [
+        "Developer Tools & APIs"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "uni-app",
+          "homepage_url": "https://uniapp.dcloud.net.cn/",
+          "category": "Application Platform",
+          "subcategory": "Cross-Platform UI & Frameworks",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "CanvasJS",
+      "categories": [
+        "Business & Product Analytics",
+        "Developer Tools & APIs"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Sensors Data",
+          "homepage_url": "https://www.sensorsdata.cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Umeng+",
+          "homepage_url": "https://www.umeng.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "GrowingIO",
+          "homepage_url": "https://www.growingio.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Captivate",
+      "categories": [
+        "Media Platforms",
+        "Creator Platforms"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Castle.io",
+      "categories": [
+        "Security & Identity"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "GeeTest",
+          "homepage_url": "https://www.geetest.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Bot Protection & CAPTCHA",
+          "source": "landscape"
+        },
+        {
+          "name": "Authing",
+          "homepage_url": "https://www.authing.cn/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Authentication & Identity",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Castos",
+      "categories": [
+        "Media Platforms",
+        "Creator Platforms"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Checkout.com",
+      "categories": [
+        "Payment & Financial Tools"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "WeChat Pay",
+          "homepage_url": "https://pay.weixin.qq.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Payments & In-App Purchases",
+          "source": "landscape"
+        },
+        {
+          "name": "Alipay",
+          "homepage_url": "https://global.alipay.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Payments & In-App Purchases",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Cloudflare Analytics Insight",
+      "categories": [
+        "Performance Monitoring & Alerting"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud ARMS",
+          "homepage_url": "https://www.aliyun.com/product/arms",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "landscape"
+        },
+        {
+          "name": "Umeng+",
+          "homepage_url": "https://www.umeng.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Commerce Layer",
+      "categories": [
+        "E-commerce Tools",
+        "Developer Tools & APIs"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "uni-app",
+          "homepage_url": "https://uniapp.dcloud.net.cn/",
+          "category": "Application Platform",
+          "subcategory": "Cross-Platform UI & Frameworks",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Constant Contact",
+      "categories": [
+        "Marketing & Automation"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "ConvertKit",
+      "categories": [
+        "Marketing & Automation",
+        "Creator Platforms"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "CrowdStrike",
+      "categories": [
+        "Identity & Endpoint Security"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "GeeTest",
+          "homepage_url": "https://www.geetest.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Bot Protection & CAPTCHA",
+          "source": "landscape"
+        },
+        {
+          "name": "Authing",
+          "homepage_url": "https://www.authing.cn/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Authentication & Identity",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "DataSet",
+      "categories": [
+        "Business & Product Analytics"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Sensors Data",
+          "homepage_url": "https://www.sensorsdata.cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Umeng+",
+          "homepage_url": "https://www.umeng.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "GrowingIO",
+          "homepage_url": "https://www.growingio.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "DataStax",
+      "categories": [
+        "Hosting & Infrastructure",
+        "Developer Tools & APIs"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud",
+          "homepage_url": "https://www.alibabacloud.com/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Docker Hub Mirror",
+      "categories": [
+        "Developer Tools & APIs"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud",
+          "homepage_url": "https://www.alibabacloud.com/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Drip",
+      "categories": [
+        "Marketing & Automation",
+        "E-commerce Tools"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Dynatrace",
+      "categories": [
+        "Performance Monitoring & Alerting"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud ARMS",
+          "homepage_url": "https://www.aliyun.com/product/arms",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Elastic Cloud",
+      "categories": [
+        "Performance Monitoring & Alerting"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud ARMS",
+          "homepage_url": "https://www.aliyun.com/product/arms",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Embrace.io",
+      "categories": [
+        "Developer Tools & APIs"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Bugly",
+          "homepage_url": "https://bugly.qq.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Crash Reporting & Performance Monitoring",
+          "source": "landscape"
+        },
+        {
+          "name": "Alibaba Cloud EMAS",
+          "homepage_url": "https://www.aliyun.com/product/emas",
+          "category": "Engagement & Communication",
+          "subcategory": "Push Notifications & Multichannel Messaging",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "env0",
+      "categories": [
+        "Developer Platforms & CI/CD"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud",
+          "homepage_url": "https://www.alibabacloud.com/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "GitHub Pages",
+      "categories": [
+        "Hosting & Infrastructure",
+        "Developer Platforms & CI/CD"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud",
+          "homepage_url": "https://www.alibabacloud.com/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Glitch",
+      "categories": [
+        "Developer Platforms & CI/CD"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud Serverless App Engine",
+          "homepage_url": "https://help.aliyun.com/zh/sae/",
+          "category": "Application Platform",
+          "subcategory": "Mobile Backend-as-a-Service (MBaaS)",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Google AdMob",
+      "categories": [
+        "Marketing & Automation"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Umeng+",
+          "homepage_url": "https://www.umeng.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Google App Review",
+      "categories": [
+        "Mobile Dev Ops"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Pgyer",
+          "homepage_url": "https://www.pgyer.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "CI/CD & App Distribution",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Bugly",
+          "homepage_url": "https://bugly.qq.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Crash Reporting & Performance Monitoring",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Alibaba Cloud EMAS Remote Config",
+          "homepage_url": "https://www.aliyun.com/product/emas",
+          "category": "Application Platform",
+          "subcategory": "Feature Flags & Remote Config",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Google App Update",
+      "categories": [
+        "Mobile Dev Ops"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Pgyer",
+          "homepage_url": "https://www.pgyer.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "CI/CD & App Distribution",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Bugly",
+          "homepage_url": "https://bugly.qq.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Crash Reporting & Performance Monitoring",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Alibaba Cloud EMAS Remote Config",
+          "homepage_url": "https://www.aliyun.com/product/emas",
+          "category": "Application Platform",
+          "subcategory": "Feature Flags & Remote Config",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Google Authenticator",
+      "categories": [
+        "Identity & Endpoint Security"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Authing",
+          "homepage_url": "https://www.authing.cn/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Authentication & Identity",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "WeChat Login",
+          "homepage_url": "https://developers.weixin.qq.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Authentication & Identity",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "gRPC",
+      "categories": [
+        "Developer Tools & APIs"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Hello Audio",
+      "categories": [
+        "Media Platforms",
+        "Creator Platforms"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "HubSpot",
+      "categories": [
+        "Marketing & Automation",
+        "Customer Support & CRM"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Zhichi",
+          "homepage_url": "https://www.sobot.com/",
+          "category": "Engagement & Communication",
+          "subcategory": "Customer Support & In-App Messaging",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Imperva",
+      "categories": [
+        "Network & Edge Security"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud CDN",
+          "homepage_url": "https://www.alibabacloud.com/product/cdn",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Content Delivery Network (CDN)",
+          "source": "landscape"
+        },
+        {
+          "name": "GeeTest",
+          "homepage_url": "https://www.geetest.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Bot Protection & CAPTCHA",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "IP-API.com",
+      "categories": [
+        "Geospatial & Location APIs",
+        "Developer Tools & APIs"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Amap",
+          "homepage_url": "https://lbs.amap.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Location & Map Services",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Tencent Location Services",
+          "homepage_url": "https://lbs.qq.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Location & Map Services",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "uni-app",
+          "homepage_url": "https://uniapp.dcloud.net.cn/",
+          "category": "Application Platform",
+          "subcategory": "Cross-Platform UI & Frameworks",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "ipgeolocation.io",
+      "categories": [
+        "Geospatial & Location APIs",
+        "Developer Tools & APIs"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Amap",
+          "homepage_url": "https://lbs.amap.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Location & Map Services",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Tencent Location Services",
+          "homepage_url": "https://lbs.qq.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Location & Map Services",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "uni-app",
+          "homepage_url": "https://uniapp.dcloud.net.cn/",
+          "category": "Application Platform",
+          "subcategory": "Cross-Platform UI & Frameworks",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Joy Rewards Loyalty Program",
+      "categories": [
+        "E-commerce Tools",
+        "Marketing & Automation"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "JW Player",
+      "categories": [
+        "Media Platforms"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Kaltura",
+      "categories": [
+        "Media Platforms"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Klaviyo",
+      "categories": [
+        "Marketing & Automation",
+        "E-commerce Tools"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "SendCloud",
+          "homepage_url": "https://www.sendcloud.net/",
+          "category": "Engagement & Communication",
+          "subcategory": "Push Notifications & Multichannel Messaging",
+          "source": "landscape"
+        },
+        {
+          "name": "Alibaba Cloud DirectMail",
+          "homepage_url": "https://www.aliyun.com/product/directmail",
+          "category": "Engagement & Communication",
+          "subcategory": "Push Notifications & Multichannel Messaging",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Kong Gateway",
+      "categories": [
+        "Hosting & Infrastructure",
+        "Security & Identity"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "AWS China Regions",
+          "homepage_url": "https://www.amazonaws.cn/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Azure China",
+          "homepage_url": "https://www.azure.cn/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Alibaba Cloud",
+          "homepage_url": "https://www.alibabacloud.com/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Libsyn",
+      "categories": [
+        "Media Platforms",
+        "Creator Platforms"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "LogicMonitor",
+      "categories": [
+        "Performance Monitoring & Alerting"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud ARMS",
+          "homepage_url": "https://www.aliyun.com/product/arms",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Bugly",
+          "homepage_url": "https://bugly.qq.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Crash Reporting & Performance Monitoring",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "LogRocket",
+      "categories": [
+        "User Experience & Behavior Analytics",
+        "Developer Tools & APIs"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Sensors Data",
+          "homepage_url": "https://www.sensorsdata.cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Umeng+",
+          "homepage_url": "https://www.umeng.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "GrowingIO",
+          "homepage_url": "https://www.growingio.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "LoyaltyLion",
+      "categories": [
+        "Marketing & Automation",
+        "E-commerce Tools"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Mailchimp",
+      "categories": [
+        "Marketing & Automation"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "SendCloud",
+          "homepage_url": "https://www.sendcloud.net/",
+          "category": "Engagement & Communication",
+          "subcategory": "Push Notifications & Multichannel Messaging",
+          "source": "landscape"
+        },
+        {
+          "name": "Alibaba Cloud DirectMail",
+          "homepage_url": "https://www.aliyun.com/product/directmail",
+          "category": "Engagement & Communication",
+          "subcategory": "Push Notifications & Multichannel Messaging",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "MailerLite",
+      "categories": [
+        "Marketing & Automation"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Marketo",
+      "categories": [
+        "Marketing & Automation"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Megaphone",
+      "categories": [
+        "Media Platforms",
+        "Creator Platforms"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Mia Platform",
+      "categories": [
+        "Developer Platforms & CI/CD"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Pgyer",
+          "homepage_url": "https://www.pgyer.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "CI/CD & App Distribution",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Microsoft Authenticator",
+      "categories": [
+        "Identity & Endpoint Security"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Authing",
+          "homepage_url": "https://www.authing.cn/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Authentication & Identity",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "WeChat Login",
+          "homepage_url": "https://developers.weixin.qq.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Authentication & Identity",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Microsoft Authenticator",
+      "categories": [
+        "Identity & Endpoint Security"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Authing",
+          "homepage_url": "https://www.authing.cn/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Authentication & Identity",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "WeChat Login",
+          "homepage_url": "https://developers.weixin.qq.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Authentication & Identity",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Middleware.io",
+      "categories": [
+        "Developer Tools & APIs",
+        "Workflow Automation & Integration"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "uni-app",
+          "homepage_url": "https://uniapp.dcloud.net.cn/",
+          "category": "Application Platform",
+          "subcategory": "Cross-Platform UI & Frameworks",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "n8n",
+      "categories": [
+        "Workflow Automation & Integration",
+        "Developer Tools & APIs"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "uni-app",
+          "homepage_url": "https://uniapp.dcloud.net.cn/",
+          "category": "Application Platform",
+          "subcategory": "Cross-Platform UI & Frameworks",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Okendo",
+      "categories": [
+        "Surveys & Feedback",
+        "Customer Support & CRM"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Zhichi",
+          "homepage_url": "https://www.sobot.com/",
+          "category": "Engagement & Communication",
+          "subcategory": "Customer Support & In-App Messaging",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Easemob",
+          "homepage_url": "https://www.easemob.com/",
+          "category": "Engagement & Communication",
+          "subcategory": "Customer Support & In-App Messaging",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "ON24",
+      "categories": [
+        "Communication & Collaboration",
+        "Media Platforms"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "OpenAI GPT-4",
+      "categories": [
+        "Developer Tools & APIs",
+        "Other"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "uni-app",
+          "homepage_url": "https://uniapp.dcloud.net.cn/",
+          "category": "Application Platform",
+          "subcategory": "Cross-Platform UI & Frameworks",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Paessler PRTG",
+      "categories": [
+        "Performance Monitoring & Alerting"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud ARMS",
+          "homepage_url": "https://www.aliyun.com/product/arms",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Bugly",
+          "homepage_url": "https://bugly.qq.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Crash Reporting & Performance Monitoring",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Pangle Ads",
+      "categories": [
+        "Marketing & Automation",
+        "Other"
+      ],
+      "availability": "Available",
+      "global_availability_in_china": "available",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Pantheon",
+      "categories": [
+        "Hosting & Infrastructure"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "AWS China Regions",
+          "homepage_url": "https://www.amazonaws.cn/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Azure China",
+          "homepage_url": "https://www.azure.cn/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Alibaba Cloud",
+          "homepage_url": "https://www.alibabacloud.com/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Pendo",
+      "categories": [
+        "User Experience & Behavior Analytics",
+        "Business & Product Analytics"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Sensors Data",
+          "homepage_url": "https://www.sensorsdata.cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "landscape"
+        },
+        {
+          "name": "GrowingIO",
+          "homepage_url": "https://www.growingio.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Plausible",
+      "categories": [
+        "Business & Product Analytics"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Sensors Data",
+          "homepage_url": "https://www.sensorsdata.cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Umeng+",
+          "homepage_url": "https://www.umeng.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "GrowingIO",
+          "homepage_url": "https://www.growingio.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Podbean",
+      "categories": [
+        "Media Platforms",
+        "Creator Platforms"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Pusher Channels",
+      "categories": [
+        "Cloud Communications Platforms (CPaaS)",
+        "Developer Tools & APIs"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "JPush",
+          "homepage_url": "https://www.jiguang.cn/jpush/",
+          "category": "Engagement & Communication",
+          "subcategory": "Push Notifications & Multichannel Messaging",
+          "source": "landscape"
+        },
+        {
+          "name": "Alibaba Cloud EMAS",
+          "homepage_url": "https://www.aliyun.com/product/emas",
+          "category": "Engagement & Communication",
+          "subcategory": "Push Notifications & Multichannel Messaging",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Rapid7",
+      "categories": [
+        "Identity & Endpoint Security",
+        "Performance Monitoring & Alerting"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Authing",
+          "homepage_url": "https://www.authing.cn/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Authentication & Identity",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "WeChat Login",
+          "homepage_url": "https://developers.weixin.qq.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Authentication & Identity",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Alibaba Cloud ARMS",
+          "homepage_url": "https://www.aliyun.com/product/arms",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Salesforce Knowledge",
+      "categories": [
+        "Customer Support & CRM"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Zhichi",
+          "homepage_url": "https://www.sobot.com/",
+          "category": "Engagement & Communication",
+          "subcategory": "Customer Support & In-App Messaging",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Easemob",
+          "homepage_url": "https://www.easemob.com/",
+          "category": "Engagement & Communication",
+          "subcategory": "Customer Support & In-App Messaging",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Salesforce Marketing Cloud",
+      "categories": [
+        "Marketing & Automation",
+        "Customer Support & CRM"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Zhichi",
+          "homepage_url": "https://www.sobot.com/",
+          "category": "Engagement & Communication",
+          "subcategory": "Customer Support & In-App Messaging",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Easemob",
+          "homepage_url": "https://www.easemob.com/",
+          "category": "Engagement & Communication",
+          "subcategory": "Customer Support & In-App Messaging",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Segment Twilio",
+      "categories": [
+        "Communication & Collaboration",
+        "Developer Tools & APIs"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Sensors Data",
+          "homepage_url": "https://www.sensorsdata.cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "landscape"
+        },
+        {
+          "name": "GrowingIO",
+          "homepage_url": "https://www.growingio.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Sendspark",
+      "categories": [
+        "Marketing & Automation"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "ServiceNow",
+      "categories": [
+        "Customer Support & CRM"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Zhichi",
+          "homepage_url": "https://www.sobot.com/",
+          "category": "Engagement & Communication",
+          "subcategory": "Customer Support & In-App Messaging",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Easemob",
+          "homepage_url": "https://www.easemob.com/",
+          "category": "Engagement & Communication",
+          "subcategory": "Customer Support & In-App Messaging",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Simple Analytics",
+      "categories": [
+        "Business & Product Analytics"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Sensors Data",
+          "homepage_url": "https://www.sensorsdata.cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Umeng+",
+          "homepage_url": "https://www.umeng.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "GrowingIO",
+          "homepage_url": "https://www.growingio.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Smile.io",
+      "categories": [
+        "Marketing & Automation",
+        "E-commerce Tools"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "SolarWinds",
+      "categories": [
+        "Performance Monitoring & Alerting"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud ARMS",
+          "homepage_url": "https://www.aliyun.com/product/arms",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Bugly",
+          "homepage_url": "https://bugly.qq.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Crash Reporting & Performance Monitoring",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Splunk",
+      "categories": [
+        "Performance Monitoring & Alerting",
+        "Security & Identity"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud ARMS",
+          "homepage_url": "https://www.aliyun.com/product/arms",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Spotify for Podcasters",
+      "categories": [
+        "Media Platforms",
+        "Creator Platforms"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Statuspage",
+      "categories": [
+        "Performance Monitoring & Alerting"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud ARMS",
+          "homepage_url": "https://www.aliyun.com/product/arms",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Bugly",
+          "homepage_url": "https://bugly.qq.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Crash Reporting & Performance Monitoring",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Streamlit Community Cloud",
+      "categories": [
+        "Developer Platforms & CI/CD"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Pgyer",
+          "homepage_url": "https://www.pgyer.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "CI/CD & App Distribution",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Substack",
+      "categories": [
+        "Creator Platforms",
+        "Marketing & Automation"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Teleport",
+      "categories": [
+        "Security & Identity"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Authing",
+          "homepage_url": "https://www.authing.cn/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Authentication & Identity",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "WeChat Login",
+          "homepage_url": "https://developers.weixin.qq.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Authentication & Identity",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "GeeTest",
+          "homepage_url": "https://www.geetest.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Bot Protection & CAPTCHA",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Transistor",
+      "categories": [
+        "Media Platforms",
+        "Creator Platforms"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Trustpilot",
+      "categories": [
+        "Surveys & Feedback",
+        "Customer Support & CRM"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Zhichi",
+          "homepage_url": "https://www.sobot.com/",
+          "category": "Engagement & Communication",
+          "subcategory": "Customer Support & In-App Messaging",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Easemob",
+          "homepage_url": "https://www.easemob.com/",
+          "category": "Engagement & Communication",
+          "subcategory": "Customer Support & In-App Messaging",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "UpCloud",
+      "categories": [
+        "Hosting & Infrastructure"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "AWS China Regions",
+          "homepage_url": "https://www.amazonaws.cn/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Azure China",
+          "homepage_url": "https://www.azure.cn/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Alibaba Cloud",
+          "homepage_url": "https://www.alibabacloud.com/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Virtuozzo",
+      "categories": [
+        "Hosting & Infrastructure"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "AWS China Regions",
+          "homepage_url": "https://www.amazonaws.cn/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Azure China",
+          "homepage_url": "https://www.azure.cn/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Alibaba Cloud",
+          "homepage_url": "https://www.alibabacloud.com/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "VMware vSphere",
+      "categories": [
+        "Hosting & Infrastructure"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Amap",
+          "homepage_url": "https://lbs.amap.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Location & Map Services",
+          "source": "landscape"
+        },
+        {
+          "name": "Tencent Location Services",
+          "homepage_url": "https://lbs.qq.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Location & Map Services",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "VWO",
+      "categories": [
+        "Feature Management & Experimentation",
+        "Marketing & Automation"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud EMAS Remote Config",
+          "homepage_url": "https://www.aliyun.com/product/emas",
+          "category": "Application Platform",
+          "subcategory": "Feature Flags & Remote Config",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Zenlayer",
+      "categories": [
+        "Hosting & Infrastructure"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "AWS China Regions",
+          "homepage_url": "https://www.amazonaws.cn/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Azure China",
+          "homepage_url": "https://www.azure.cn/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Alibaba Cloud",
+          "homepage_url": "https://www.alibabacloud.com/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Zenlayer SD WAN",
+      "categories": [
+        "Hosting & Infrastructure"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "AWS China Regions",
+          "homepage_url": "https://www.amazonaws.cn/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Azure China",
+          "homepage_url": "https://www.azure.cn/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Alibaba Cloud",
+          "homepage_url": "https://www.alibabacloud.com/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Zoho CRM",
+      "categories": [
+        "Customer Support & CRM"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Zhichi",
+          "homepage_url": "https://www.sobot.com/",
+          "category": "Engagement & Communication",
+          "subcategory": "Customer Support & In-App Messaging",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Easemob",
+          "homepage_url": "https://www.easemob.com/",
+          "category": "Engagement & Communication",
+          "subcategory": "Customer Support & In-App Messaging",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    },
+    {
+      "name": "Zoom SDK",
+      "categories": [
+        "Cloud Communications Platforms (CPaaS)",
+        "Developer Tools & APIs"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud EMAS",
+          "homepage_url": "https://www.aliyun.com/product/emas",
+          "category": "Engagement & Communication",
+          "subcategory": "Push Notifications & Multichannel Messaging",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "JPush",
+          "homepage_url": "https://www.jiguang.cn/jpush/",
+          "category": "Engagement & Communication",
+          "subcategory": "Push Notifications & Multichannel Messaging",
+          "source": "category-heuristic"
+        },
+        {
+          "name": "Alibaba Cloud SMS",
+          "homepage_url": "https://www.aliyun.com/product/dysms",
+          "category": "Engagement & Communication",
+          "subcategory": "Push Notifications & Multichannel Messaging",
+          "source": "category-heuristic"
+        }
+      ],
+      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
+      "confidence": "heuristic"
+    }
+  ]
+}

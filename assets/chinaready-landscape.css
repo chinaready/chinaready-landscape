@@ -211,6 +211,28 @@ main table th {
   min-width: 560px !important;
 }
 
+a.cr-global-nav-link,
+a[data-chinaready-global-nav] {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin-left: 0.75rem !important;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+a.cr-guide-global-link,
+a[data-chinaready-global-menu] {
+  display: block !important;
+  color: #5a6a80 !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+a.cr-guide-global-link:hover,
+a[data-chinaready-global-menu]:hover {
+  color: #005bac !important;
+}
+
 .cr-landscape-profile {
   margin: 28px 0 0 !important;
   color: #1f2937 !important;
