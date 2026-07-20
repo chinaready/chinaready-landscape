@@ -128,7 +128,9 @@ assert(guide.includes("<table>") && guide.includes("<th>Level 1 Category</th>"),
 assert(guide.includes("company profiles"), "guide.yml Overview must explain how companies can contribute profiles");
 assert(guide.includes("CR_ALTERNATIVES_KEYWORD_MAP"), "guide.yml Overview must reserve a slot for the in-Guide keyword map");
 assert(guide.includes("## China alternatives keyword map"), "guide.yml Overview must include the China alternatives keyword map section");
-assert(!guide.includes("landscape.chinaready.co/alternatives"), "guide.yml Overview must keep the keyword map inside Guide instead of linking out");
+assert(guide.includes("/alternatives/"), "guide.yml Overview must link to the /alternatives/ index");
+assert(!guide.includes("landscape.chinaready.co/alternatives"), "guide.yml must use relative /alternatives/ paths, not absolute landscape host URLs");
+assert((guide.match(/Typical global services:/g) || []).length >= 19, "guide.yml must list typical global services under every subcategory");
 assert(guide.includes("## FAQ"), "guide.yml Overview must include an FAQ section for GEO-friendly answers");
 assert(guide.includes("chinaready.co"), "guide.yml Overview must route readers to the Chinaready main site");
 assert(exists("scripts/seo-geo.mjs"), "SEO/GEO generator script is missing");
@@ -378,9 +380,11 @@ if (exists("build/data/guide.json")) {
   assert(overview.content.includes("foreign developer and product teams"), "guide.json Overview must name foreign developer and product teams as the audience");
   assert(overview.content.includes("cr-guide-keyword-map"), "guide.json Overview must embed the China alternatives keyword map");
   assert(overview.content.includes("Global service"), "guide.json Overview keyword map must include the Global service column");
+  assert(overview.content.includes('href="/alternatives/') && overview.content.includes(".html"), "guide.json keyword map must link Global service names to /alternatives/*.html");
   assert(overview.content.includes("Firebase"), "guide.json Overview keyword map must include Firebase mappings");
   assert(!overview.content.includes("CR_ALTERNATIVES_KEYWORD_MAP"), "guide.json Overview must replace the keyword map marker");
   assert(overview.content.includes("FAQ"), "guide.json Overview must include FAQ content");
+  assert(overview.content.includes("/alternatives/"), "guide.json Overview must link to the /alternatives/ index");
   assert(!overview.content.includes("<img"), "guide.json Overview content must not render a logo image");
 }
 

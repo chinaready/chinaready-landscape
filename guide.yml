@@ -1,11 +1,11 @@
 categories:
   - category: "Overview"
     content: |
-      Chinaready Landscape is an open-source map of China-ready developer services for global software teams. It helps developers translate familiar global-service keywords into practical China-market alternatives, understand local operating constraints, and discover source-backed product profiles before planning a China launch.
+      Chinaready Landscape is an open-source map of China-ready developer services for global software teams. Use it to find China alternatives to Firebase, FCM, AWS, Stripe, Google Maps, and related stack dependencies—then read source-backed product profiles and operating notes before you change architecture.
 
       The primary audience is foreign developer and product teams evaluating how to adapt a global software stack for mainland China.
 
-      Start with the interactive landscape grid, then use the China alternatives keyword map below when you already know a global dependency such as Firebase, FCM, AWS, Stripe, or Google Maps. For the broader launch operating model beyond vendor selection, continue on [chinaready.co](https://chinaready.co).
+      Start with the interactive landscape grid, or open the crawlable [China alternatives map](/alternatives/) when you already know a global dependency. For the broader launch operating model beyond vendor selection, continue on [chinaready.co](https://chinaready.co).
 
       ## Common global stack translations
 
@@ -18,7 +18,7 @@ categories:
 
       ## China alternatives keyword map
 
-      Browse the full keyword map below. Each row maps a familiar global service to China-ready candidates in this landscape.
+      Browse the summary map below. Each **Global service** name links to a dedicated alternatives page. For the full crawlable index, open the [China alternatives map](/alternatives/).
 
       CR_ALTERNATIVES_KEYWORD_MAP
 
@@ -29,6 +29,9 @@ categories:
 
       **Is a China alternative always a one-to-one product swap?**
       No. Some entries are direct alternatives, some are China-region deployments of global providers, and others are partial or ecosystem-specific routes. Read the replacement fit and China context before changing architecture.
+
+      **Where is the full China alternatives keyword index?**
+      The Guide embeds a summary map above. The dedicated crawlable index is the [China alternatives map](/alternatives/), with one page per global service keyword.
 
       **Who maintains this resource?**
       Chinaready maintains the landscape as a public research resource. Product inclusion is source-backed and incomplete by design; empty subcategories remain visible so contributors can fill gaps.
@@ -84,12 +87,18 @@ categories:
       - subcategory: "Cloud Platform & Hosting"
         content: |
           Use this category for cloud platforms or China-region cloud offerings that can host application workloads.
+
+          Typical global services: [AWS](/alternatives/aws.html), [Microsoft Azure](/alternatives/microsoft-azure.html), [Google Cloud](/alternatives/google-cloud.html).
       - subcategory: "Managed DNS Provider"
         content: |
           Use this category for managed DNS services. Current coverage is thin; prefer products with clear mainland China DNS and domain-routing documentation.
+
+          Typical global services: Cloudflare DNS, AWS Route 53, Google Cloud DNS.
       - subcategory: "Content Delivery Network (CDN)"
         content: |
           Use this category for CDN and edge acceleration products. Profile notes should distinguish product availability from ICP filing requirements.
+
+          Typical global services: [Amazon CloudFront](/alternatives/amazon-cloudfront.html), [Cloudflare CDN](/alternatives/cloudflare-cdn.html), [Akamai](/alternatives/akamai.html).
 
   - category: "Application Platform"
     content: |
@@ -98,12 +107,18 @@ categories:
       - subcategory: "Cross-Platform UI & Frameworks"
         content: |
           Use this category for developer frameworks and UI runtimes. China-specific alternatives are still sparse and should be added with source-backed product evidence.
+
+          Typical global services: React Native, Flutter, Ionic.
       - subcategory: "Mobile Backend-as-a-Service (MBaaS)"
         content: |
           Use this category for managed backend services for mobile and web apps. Some mapped options are partial deployment routes rather than full MBaaS replacements.
+
+          Typical global services: [Firebase](/alternatives/firebase.html), [AWS Amplify](/alternatives/aws-amplify.html), [Supabase](/alternatives/supabase.html), [Heroku](/alternatives/heroku.html).
       - subcategory: "Feature Flags & Remote Config"
         content: |
           Use this category for remote configuration and feature flag services. Cross-listed mobile suites should clarify which module provides this capability.
+
+          Typical global services: LaunchDarkly, Firebase Remote Config, ConfigCat.
 
   - category: "Release, Quality & Operations"
     content: |
@@ -112,15 +127,23 @@ categories:
       - subcategory: "CI/CD & App Distribution"
         content: |
           Use this category for build, deployment, and app distribution products. Explicit China alternative evidence is still limited and should be expanded carefully.
+
+          Typical global services: GitHub Actions, Bitrise, Fastlane.
       - subcategory: "Automated Testing & Device Farms"
         content: |
           Use this category for real-device testing, cloud phones, and automated QA platforms.
+
+          Typical global services: [AWS Device Farm](/alternatives/aws-device-farm.html), [Firebase Test Lab](/alternatives/firebase-test-lab.html), [BrowserStack App Automate](/alternatives/browserstack-app-automate.html).
       - subcategory: "Crash Reporting & Performance Monitoring"
         content: |
           Use this category for crash, stability, and mobile performance tools. Self-hosted global tools can be referenced in notes but should not be treated as China products by default.
+
+          Typical global services: Sentry, [Firebase Crashlytics](/alternatives/firebase-crashlytics.html), Bugsnag.
       - subcategory: "Monitoring & Observability (APM / RUM)"
         content: |
           Use this category for infrastructure and application monitoring. Coverage is currently thin and should be expanded with official product references.
+
+          Typical global services: Datadog, New Relic, Grafana Cloud.
 
   - category: "Users, Trust & Monetization"
     content: |
@@ -129,12 +152,18 @@ categories:
       - subcategory: "Authentication & Identity"
         content: |
           Use this category for identity providers, login systems, and authentication platforms.
+
+          Typical global services: [Auth0](/alternatives/auth0.html), [Okta](/alternatives/okta.html), [Firebase Authentication](/alternatives/firebase-authentication.html), [Amazon Cognito](/alternatives/amazon-cognito.html).
       - subcategory: "Payments & In-App Purchases"
         content: |
           Use this category for payment rails and app monetization services. Profile notes should distinguish payment gateways, super-app payment ecosystems, and managed integration services.
+
+          Typical global services: [Stripe](/alternatives/stripe.html), [PayPal](/alternatives/paypal.html), [Apple Pay](/alternatives/apple-pay.html).
       - subcategory: "Bot Protection & CAPTCHA"
         content: |
           Use this category for human verification, CAPTCHA, bot defense, and abuse-prevention products.
+
+          Typical global services: [Google reCAPTCHA](/alternatives/google-recaptcha.html), [hCaptcha](/alternatives/hcaptcha.html), [Cloudflare Turnstile](/alternatives/cloudflare-turnstile.html).
 
   - category: "Engagement & Communication"
     content: |
@@ -143,12 +172,18 @@ categories:
       - subcategory: "Push Notifications & Multichannel Messaging"
         content: |
           Use this category for push notification, SMS, email, and messaging-delivery products.
+
+          Typical global services: [Firebase Cloud Messaging](/alternatives/firebase-cloud-messaging.html), [OneSignal](/alternatives/onesignal.html), [Twilio SMS](/alternatives/twilio-sms.html), [SendGrid](/alternatives/sendgrid.html).
       - subcategory: "Real-Time Communication (Voice / Video / Chat)"
         content: |
           Use this category for RTC, voice, video, and chat infrastructure.
+
+          Typical global services: [Twilio Video](/alternatives/twilio-video.html), [Agora](/alternatives/agora.html), [Daily](/alternatives/daily.html).
       - subcategory: "Customer Support & In-App Messaging"
         content: |
           Use this category for support chat, helpdesk, and in-app customer messaging. Evidence needs expansion before first-class product population.
+
+          Typical global services: Intercom, Zendesk, Freshdesk.
 
   - category: "Growth, Content & Experience"
     content: |
@@ -157,12 +192,20 @@ categories:
       - subcategory: "Product Analytics & User Insights"
         content: |
           Use this category for analytics platforms and user behavior insight products.
+
+          Typical global services: [Mixpanel](/alternatives/mixpanel.html), [Amplitude](/alternatives/amplitude.html), [PostHog](/alternatives/posthog.html), [Firebase Analytics](/alternatives/firebase-analytics.html).
       - subcategory: "Location & Map Services"
         content: |
           Use this category for map, location, geocoding, routing, and navigation APIs.
+
+          Typical global services: [Google Maps Platform](/alternatives/google-maps-platform.html), [Mapbox](/alternatives/mapbox.html), [Apple MapKit](/alternatives/apple-mapkit.html).
       - subcategory: "App-Store Intelligence & Attribution (ASO)"
         content: |
           Use this category for app-store intelligence, attribution, and ASO tooling. China app-store fragmentation should be covered in profile notes.
+
+          Typical global services: AppsFlyer, Adjust, Branch.
       - subcategory: "Web Fonts & Iconography"
         content: |
           Use this category for font and icon delivery services. Self-hosting is an implementation route and belongs in guide notes unless represented by a concrete service.
+
+          Typical global services: [Google Fonts](/alternatives/google-fonts.html).

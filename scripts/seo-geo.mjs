@@ -168,7 +168,7 @@ export function renderGuideKeywordMap(groups) {
     .map((group) => {
       const names = group.items.map((item) => escapeHtml(item.name)).join(", ");
       return `<tr>
-        <td>${escapeHtml(group.name)}</td>
+        <td><a href="/alternatives/${escapeHtml(group.slug)}.html">${escapeHtml(group.name)}</a></td>
         <td>${group.items.length}</td>
         <td>${names}</td>
       </tr>`;
