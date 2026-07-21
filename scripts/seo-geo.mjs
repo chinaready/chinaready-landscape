@@ -40,6 +40,91 @@ const CHINA_AVAILABILITY_LABELS = {
 const CONTACT_CHINAREADY_URL = `${MAIN_SITE_URL}/book-call`;
 const GAP_CATALOG_RELATIVE = "research/global-services-gap-catalog.json";
 
+const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
+  onesignal: "limited",
+};
+
+/**
+ * High-intent editorial guidance for selected global services.
+ * Keeps the shared alternatives page template, but lets a few pages answer
+ * the China-launch decision more precisely than the generic mapping copy.
+ */
+const EDITORIAL_OVERRIDES = {
+  stripe: {
+    description: (availability, names) =>
+      clipMeta(
+        `Planning a China launch with Stripe? Decide by deployment location first. Mainland China deployments: prefer ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Before choosing Stripe for China, decide where the product will run. If it must be deployed in mainland China, Chinaready recommends not using Stripe for compliance reasons — map to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong> instead. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Decide by deployment location first",
+    guidanceHtml: `
+        <p>Planning to launch your product in China? The Stripe question that matters first is whether the product itself will run inside mainland China.</p>
+        <ul>
+          <li><strong>Product stays outside China:</strong> Stripe can still work as your global payment platform, including connecting Chinese users through Alipay and WeChat Pay.</li>
+          <li><strong>Product must run inside China:</strong> you usually do not need Stripe. Integrate directly with China-native payment providers such as WeChat Pay, Alipay, or Youzan Cloud so users can pay your China entity, or a trusted partner like Chinaready.</li>
+        </ul>
+        <p>This landscape maps those China payment options below.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Stripe work in China?",
+        answer: `Decide by deployment location first. Chinaready labels Stripe as ${availability} for mainland China production stacks and recommends against using it when the product itself must run inside mainland China, mainly for compliance reasons. If the product stays outside China, Stripe can still work as a global payment platform — including Alipay and WeChat Pay connections for Chinese users.`,
+      },
+      {
+        question: "What are the best China alternatives to Stripe?",
+        answer: `For products that must run inside China, Chinaready Landscape currently maps Stripe to ${namesText}. Integrate those China-native rails so users can pay your China entity, or a trusted partner like Chinaready. Replacement fit varies by product, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Stripe in mainland China?",
+        answer:
+          "Usually no. Mainland China checkout typically means WeChat Pay, Alipay, or a local commerce integration path such as Youzan Cloud, not a Stripe drop-in. Review replacement fit and China context for each candidate before migrating.",
+      },
+      {
+        question: "Where should teams go after shortlisting Stripe alternatives?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent payment services, then read Chinaready's main site for launch operating guidance covering compliance, China entity collection, distribution, and go-to-market constraints beyond vendor selection. If the path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
+  onesignal: {
+    description: (availability, names) =>
+      clipMeta(
+        `Does OneSignal work in China? iOS via APNs mostly works; Android coverage is incomplete without Google Play Services. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> OneSignal partially works in mainland China. iOS delivery through APNs is generally fine, but the default Android path depends on Google FCM, which is unavailable in China — so notifications to Xiaomi, OPPO, vivo, Honor, and mainland Huawei devices are unreliable. For full Android coverage, map to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "OneSignal coverage in mainland China: iOS vs Android",
+    guidanceHtml: `
+        <h3>iOS users: mostly works</h3>
+        <p>iPhone users in mainland China still receive notifications through the Apple Push Notification service (APNs), so the chain <strong>OneSignal → APNs → iPhone</strong> usually has no obvious problems. This is generally sufficient for SaaS apps, content apps, and enterprise applications with an iOS-heavy audience.</p>
+        <h3>Android users: incomplete coverage</h3>
+        <p>The core problem is that the mainland China Android ecosystem ships without Google Play Services. As a result:</p>
+        <ul>
+          <li>Google FCM is unavailable in mainland China, and OneSignal's default Android push path relies on FCM.</li>
+          <li>Delivery to Xiaomi, OPPO, and vivo devices fails; some Honor models fail; mainland Huawei devices require HMS instead.</li>
+        </ul>
+        <p>Typical symptoms include notifications never arriving, arriving late, or stopping entirely once the OS kills the app in the background. OneSignal's own documentation notes that devices in China need vendor channels such as Huawei HMS rather than a plain FCM dependency.</p>
+        <p>For reliable Android delivery inside mainland China, teams typically adopt a China push provider that aggregates the OEM vendor channels — mapped below.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does OneSignal work in China?",
+        answer: `Partially. iOS delivery through APNs generally works for mainland iPhone users, so OneSignal remains usable for iOS-heavy SaaS, content, and enterprise apps. Android delivery is unreliable because OneSignal's default Android path depends on Google FCM, which is unavailable in mainland China. Chinaready labels OneSignal as ${availability} for mainland production stacks.`,
+      },
+      {
+        question: "Why do OneSignal Android notifications fail in mainland China?",
+        answer: `Mainland Android devices ship without Google Play Services, so Google FCM is unavailable and OneSignal's FCM-based Android path breaks. Notifications to Xiaomi, OPPO, and vivo devices fail, some Honor models fail, and mainland Huawei devices require HMS. Symptoms include missing notifications, delayed delivery, and no push after the system kills the app in the background.`,
+      },
+      {
+        question: "What are the best China alternatives to OneSignal?",
+        answer: `For full mainland Android coverage, Chinaready Landscape currently maps OneSignal to ${namesText}. These providers aggregate the Chinese OEM vendor channels (Huawei, Xiaomi, OPPO, vivo, Honor) that FCM-based delivery cannot reach. Replacement fit varies by product, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Where should teams go after shortlisting OneSignal alternatives?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent messaging services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the alternative remains uncertain, book a call with Chinaready.`,
+      },
+    ],
+  },
+};
+
 const ANALOG_ALIASES = {
   "amazon web services": "AWS",
   aws: "AWS",
@@ -315,6 +400,11 @@ function mergeAnalogGroups(landscapeGroups, catalog) {
       confidence: service.confidence || "uncertain",
       availability_in_china: service.global_availability_in_china || "unknown",
     });
+  }
+
+  for (const [slug, availability] of Object.entries(GLOBAL_SERVICE_AVAILABILITY_OVERRIDES)) {
+    const group = bySlug.get(slug);
+    if (group) group.availability_in_china = availability;
   }
 
   return [...bySlug.values()].sort((a, b) => a.name.localeCompare(b.name, "en", { sensitivity: "base" }));
@@ -658,8 +748,11 @@ function renderAnalogPage(group) {
   const hasMapped = group.items.length > 0;
   const hasResearch = !hasMapped && (group.research_candidates || []).length > 0;
   const uncertain = !hasMapped && !hasResearch;
+  const editorial = EDITORIAL_OVERRIDES[group.slug] || null;
   const title = analogPageTitle(group, availability, names);
-  const description = analogPageDescription(group, availability, names, uncertain);
+  const description = editorial?.description
+    ? editorial.description(availability, names)
+    : analogPageDescription(group, availability, names, uncertain);
 
   const aliasNote =
     group.aliases.length > 0
@@ -711,7 +804,7 @@ function renderAnalogPage(group) {
       </article>`;
   }
 
-  const faq = [
+  const defaultFaq = [
     {
       question: `Does ${group.name} work in China?`,
       answer: `Chinaready currently labels ${group.name} as ${availability} for mainland China use. Treat this as an operating signal, then validate against your own account type, region, network path, and compliance constraints before relying on it in production.`,
@@ -733,6 +826,7 @@ function renderAnalogPage(group) {
       answer: `Use the interactive Chinaready Landscape to compare adjacent services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the alternative remains uncertain, book a call with Chinaready.`,
     },
   ];
+  const faq = editorial?.faq ? editorial.faq(availability, namesText) : defaultFaq;
 
   const sectionTitle = hasMapped
     ? "Mapped China-ready candidates"
@@ -740,11 +834,21 @@ function renderAnalogPage(group) {
       ? "Research shortlist for China"
       : "Need a precise China recommendation?";
 
-  const lede = uncertain
-    ? `<strong>Quick answer:</strong> ${escapeHtml(group.name)} is marked <strong>${escapeHtml(availability)}</strong> in China, and Chinaready has not yet confirmed a precise substitute. Use the contact path below for stack-specific help.`
-    : hasResearch
-      ? `<strong>Quick answer:</strong> Teams comparing <strong>${escapeHtml(group.name)}</strong> for mainland China usually evaluate: <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>. Confirm fit before production adoption.`
-      : `<strong>Quick answer:</strong> Chinaready currently maps <strong>${escapeHtml(group.name)}</strong> to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>. Review replacement fit below before changing architecture.`;
+  const lede = editorial?.lede
+    ? editorial.lede(availability, names)
+    : uncertain
+      ? `<strong>Quick answer:</strong> ${escapeHtml(group.name)} is marked <strong>${escapeHtml(availability)}</strong> in China, and Chinaready has not yet confirmed a precise substitute. Use the contact path below for stack-specific help.`
+      : hasResearch
+        ? `<strong>Quick answer:</strong> Teams comparing <strong>${escapeHtml(group.name)}</strong> for mainland China usually evaluate: <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>. Confirm fit before production adoption.`
+        : `<strong>Quick answer:</strong> Chinaready currently maps <strong>${escapeHtml(group.name)}</strong> to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>. Review replacement fit below before changing architecture.`;
+
+  const guidanceSection =
+    editorial?.guidanceTitle && editorial?.guidanceHtml
+      ? `<section class="cr-alt-guidance" aria-labelledby="guidance">
+        <h2 id="guidance">${escapeHtml(editorial.guidanceTitle)}</h2>
+        ${editorial.guidanceHtml}
+      </section>`
+      : "";
 
   const body = `
       <nav class="cr-alt-breadcrumbs" aria-label="Breadcrumb">
@@ -755,6 +859,7 @@ function renderAnalogPage(group) {
       <p class="cr-alt-lede">${lede}</p>
       ${availabilityBlock}
       ${aliasNote}
+      ${guidanceSection}
       <section aria-labelledby="candidates">
         <h2 id="candidates">${sectionTitle}</h2>
         <div class="cr-alt-grid">
@@ -936,6 +1041,7 @@ Chinaready Landscape is maintained by Chinaready. It is a research resource, not
 
 - Does Firebase / FCM / Google Analytics / Google Maps work in China?
 - What are China alternatives to AWS, Stripe, Sentry, Datadog, Auth0, or OneSignal?
+- Should a China launch keep Stripe or switch to WeChat Pay / Alipay / Youzan Cloud?
 - Which China-ready products map to a familiar global developer stack?
 
 ## High-intent alternative pages

@@ -1321,8 +1321,8 @@
         {
           "name": "Alibaba Cloud EMAS",
           "homepage_url": "https://www.aliyun.com/product/emas",
-          "category": "Engagement & Communication",
-          "subcategory": "Push Notifications & Multichannel Messaging",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Crash Reporting & Performance Monitoring",
           "source": "landscape"
         }
       ],
@@ -2204,8 +2204,15 @@
           "source": "landscape"
         },
         {
-          "name": "Alibaba Cloud EMAS",
-          "homepage_url": "https://www.aliyun.com/product/emas",
+          "name": "Alibaba Cloud Mobile Push",
+          "homepage_url": "https://www.alibabacloud.com/product/mobile-push",
+          "category": "Engagement & Communication",
+          "subcategory": "Push Notifications & Multichannel Messaging",
+          "source": "landscape"
+        },
+        {
+          "name": "Getui",
+          "homepage_url": "https://www.getui.com/",
           "category": "Engagement & Communication",
           "subcategory": "Push Notifications & Multichannel Messaging",
           "source": "landscape"

@@ -344,6 +344,33 @@ landscape:
         name: Crash Reporting & Performance Monitoring
         items:
           - item:
+            name: Alibaba Cloud EMAS
+            homepage_url: https://www.aliyun.com/product/emas
+            logo: alibaba-cloud-emas.svg
+            description: Alibaba Cloud EMAS provides mobile application services including analytics and stability-related capabilities; its push module is listed separately as Alibaba Cloud Mobile Push.
+            second_path:
+              - Growth, Content & Experience / Product Analytics & User Insights
+            extra:
+              annotations:
+                global_analogs: Firebase Crashlytics, Firebase Analytics
+                replacement_fit: partial
+                china_context: EMAS is Alibaba Cloud's mobile application suite covering crash/performance monitoring and analytics for China apps. Its push capability is profiled separately as Alibaba Cloud Mobile Push in Push Notifications & Multichannel Messaging.
+                vendor_type: china-cloud
+                evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Alibaba Cloud EMAS"
+                primary_category: "Release, Quality & Operations"
+                official_website: "https://www.aliyun.com/product/emas"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Alibaba Cloud EMAS provides mobile application services including analytics and stability-related capabilities."
+                alternative_to: "China-market alternative or deployment route for: Firebase Crashlytics, Firebase Analytics."
+                global_alternatives: "Firebase Crashlytics, Firebase Analytics"
+                organization: "Alibaba Cloud"
+                organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
+                developer_docs: "https://help.aliyun.com/zh/emas/"
+          - item:
             name: Bugly
             homepage_url: https://bugly.qq.com/
             logo: bugly.svg
@@ -467,7 +494,7 @@ landscape:
               annotations:
                 global_analogs: Stripe, PayPal, Apple Pay
                 replacement_fit: ecosystem-specific
-                china_context: Core China payment rail for WeChat ecosystem and many consumer payment scenarios.
+                china_context: Core China payment rail for WeChat ecosystem and many consumer payment scenarios. Common Stripe substitute when the product must run inside mainland China and collect into a China entity or trusted partner.
                 vendor_type: china-super-app
                 evidence_level: low
                 availability_status: generally-available
@@ -492,7 +519,7 @@ landscape:
               annotations:
                 global_analogs: Stripe, PayPal, Apple Pay
                 replacement_fit: ecosystem-specific
-                china_context: Core China payment rail for consumer payments outside the WeChat-only ecosystem.
+                china_context: Core China payment rail for consumer payments outside the WeChat-only ecosystem. Common Stripe substitute for mainland China deployments that need local collection instead of a global Stripe stack.
                 vendor_type: china-super-app
                 evidence_level: low
                 availability_status: generally-available
@@ -517,7 +544,7 @@ landscape:
               annotations:
                 global_analogs: Shopify, Stripe, commerce platform APIs
                 replacement_fit: partial
-                china_context: Youzan Cloud provides China-market commerce and payment integration capabilities.
+                china_context: China-market commerce and payment integration path. Useful when teams need managed commerce/payment capabilities instead of Stripe for products deployed inside mainland China.
                 vendor_type: china-saas
                 evidence_level: medium
                 availability_status: generally-available
@@ -594,34 +621,6 @@ landscape:
         name: Push Notifications & Multichannel Messaging
         items:
           - item:
-            name: Alibaba Cloud EMAS
-            homepage_url: https://www.aliyun.com/product/emas
-            logo: alibaba-cloud-emas.svg
-            description: Alibaba Cloud EMAS provides mobile application services including push, analytics, and stability-related capabilities.
-            second_path:
-              - Release, Quality & Operations / Crash Reporting & Performance Monitoring
-              - Growth, Content & Experience / Product Analytics & User Insights
-            extra:
-              annotations:
-                global_analogs: Firebase Cloud Messaging, Firebase Crashlytics, Firebase Analytics
-                replacement_fit: partial
-                china_context: Archive rows mention EMAS across push, analytics, and crash/performance contexts; profile should clarify exact modules.
-                vendor_type: china-cloud
-                evidence_level: high
-                availability_status: generally-available
-                global_availability_in_china: unavailable
-                metadata_name: "Alibaba Cloud EMAS"
-                primary_category: "Engagement & Communication"
-                official_website: "https://www.aliyun.com/product/emas"
-                github: "to-be-supplied-by-contributor"
-                social_media: "to-be-supplied-by-contributor"
-                product_overview: "Alibaba Cloud EMAS provides mobile application services including push, analytics, and stability-related capabilities."
-                alternative_to: "China-market alternative or deployment route for: Firebase Cloud Messaging, Firebase Crashlytics, Firebase Analytics."
-                global_alternatives: "Firebase Cloud Messaging, Firebase Crashlytics, Firebase Analytics"
-                organization: "Alibaba Cloud"
-                organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
-                developer_docs: "https://help.aliyun.com/zh/emas/"
-          - item:
             name: JPush
             homepage_url: https://www.jiguang.cn/jpush/
             logo: jpush.svg
@@ -646,6 +645,81 @@ landscape:
                 organization: "Jiguang"
                 organization_overview: "Jiguang provides mobile developer services including push notification, analytics, and engagement infrastructure."
                 developer_docs: "https://docs.jiguang.cn/jpush/"
+          - item:
+            name: Alibaba Cloud Mobile Push
+            homepage_url: https://www.alibabacloud.com/product/mobile-push
+            logo: alibaba-cloud-mobile-push.svg
+            description: Alibaba Cloud Mobile Push (EMAS) is Alibaba Cloud's native push notification service for Android, iOS, and HarmonyOS, with Chinese OEM channel support for high mainland delivery rates.
+            extra:
+              annotations:
+                global_analogs: Firebase Cloud Messaging, OneSignal, Braze
+                replacement_fit: direct
+                china_context: Native Alibaba Cloud / EMAS push for China apps. Integrates Huawei, Xiaomi, OPPO, vivo, Honor and other OEM channels, works without Google Play Services, and offers a REST API suited to enterprise stacks already on Alibaba Cloud. For global apps it is commonly paired with APNs and FCM overseas; this product primarily focuses on mainland delivery.
+                vendor_type: china-cloud
+                evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Alibaba Cloud Mobile Push"
+                primary_category: "Engagement & Communication"
+                official_website: "https://www.alibabacloud.com/product/mobile-push"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Alibaba Cloud Mobile Push (EMAS) is Alibaba Cloud's native push notification service for Android, iOS, and HarmonyOS. It integrates major Chinese Android vendor channels and is designed for high delivery rates within mainland China."
+                alternative_to: "China-market alternative or deployment route for: Firebase Cloud Messaging, OneSignal, Braze."
+                global_alternatives: "Firebase Cloud Messaging, OneSignal, Braze"
+                organization: "Alibaba Cloud"
+                organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
+                developer_docs: "https://help.aliyun.com/zh/emas/user-guide/mobile-push/"
+          - item:
+            name: Getui
+            homepage_url: https://www.getui.com/
+            logo: getui.svg
+            description: Getui (个推) is one of China's largest independent mobile push providers, aggregating manufacturer channels across Huawei, Xiaomi, OPPO, vivo, Honor and other Android vendors.
+            extra:
+              annotations:
+                global_analogs: Firebase Cloud Messaging, OneSignal, Braze
+                replacement_fit: direct
+                china_context: Independent China push SaaS widely used by consumer apps. Aggregates OEM push channels for high mainland delivery, with Android and iOS support plus user segmentation, scheduled push, and analytics. Strong fit for consumer apps, e-commerce, news, and content platforms replacing OneSignal or FCM in China.
+                vendor_type: china-saas
+                evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Getui"
+                primary_category: "Engagement & Communication"
+                official_website: "https://www.getui.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Getui (个推) is one of China's largest independent mobile push notification providers. It aggregates manufacturer push channels across Huawei, Xiaomi, OPPO, vivo, Honor, and other Android vendors to maximize delivery rates and is widely adopted by Chinese consumer apps."
+                alternative_to: "China-market alternative or deployment route for: Firebase Cloud Messaging, OneSignal, Braze."
+                global_alternatives: "Firebase Cloud Messaging, OneSignal, Braze"
+                organization: "Getui"
+                organization_overview: "Getui (个推) provides mobile push notification and developer engagement infrastructure for China-market applications."
+                developer_docs: "https://docs.getui.com/"
+          - item:
+            name: Umeng U-Push
+            homepage_url: https://www.umeng.com/push
+            logo: umeng-u-push.svg
+            description: Umeng U-Push is Alibaba-backed mobile push infrastructure with OEM channel support, user segmentation, analytics, and marketing automation for growth-oriented apps.
+            extra:
+              annotations:
+                global_analogs: Firebase Cloud Messaging, OneSignal, Braze
+                replacement_fit: direct
+                china_context: Alibaba-backed push module in the Umeng ecosystem. Supports Android OEM channels plus Android, iOS, and HarmonyOS, with segmentation, scheduled campaigns, analytics integration, and marketing automation. Good fit for marketing/growth teams and apps already using Umeng Analytics when replacing OneSignal or FCM in China.
+                vendor_type: china-saas
+                evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Umeng U-Push"
+                primary_category: "Engagement & Communication"
+                official_website: "https://www.umeng.com/push"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Umeng U-Push is Alibaba-backed mobile push infrastructure integrated with the Umeng analytics ecosystem. Besides notification delivery, it provides user segmentation, analytics, and marketing automation features, and supports manufacturer push channels on Android."
+                alternative_to: "China-market alternative or deployment route for: Firebase Cloud Messaging, OneSignal, Braze."
+                global_alternatives: "Firebase Cloud Messaging, OneSignal, Braze"
+                organization: "Umeng+"
+                organization_overview: "Umeng+ provides mobile analytics and developer services for China-market applications."
+                developer_docs: "https://developer.umeng.com/docs/67966/detail/99884"
           - item:
             name: Alibaba Cloud SMS
             homepage_url: https://www.aliyun.com/product/dysms

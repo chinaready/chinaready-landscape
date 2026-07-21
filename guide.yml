@@ -13,13 +13,13 @@ categories:
 
       - Firebase / FCM style mobile backends and push often need China SaaS or China cloud modules instead of a global Firebase default.
       - AWS, Azure, and similar clouds may require China-region accounts or a domestic cloud platform.
-      - Stripe, PayPal, and Apple Pay style checkout usually map to WeChat Pay, Alipay, or a local commerce integration path.
+      - Stripe, PayPal, and Apple Pay style checkout usually map to WeChat Pay, Alipay, or a local commerce integration path. Decide by deployment location first: products that stay outside China can often keep Stripe as a global platform (including Alipay and WeChat Pay for Chinese users); products that must run inside mainland China usually should not use Stripe for compliance reasons and should integrate native rails instead.
       - Google Maps, Google Fonts, and some global CDNs may be unavailable, slow, or operationally constrained in mainland China.
 
       ## FAQ
 
       **Does Firebase, AWS, or Stripe work in China?**
-      Often with limits or not as a drop-in default. Open **Global** to check Availability in China and compare mapped China-ready candidates before you change architecture.
+      Often with limits or not as a drop-in default. For Stripe specifically, answer the deployment question first: if the product must run in mainland China, Chinaready recommends native payment rails (WeChat Pay, Alipay, Youzan Cloud) rather than Stripe; if the product stays outside China, Stripe can still work globally. Open **Global** to check Availability in China and compare mapped China-ready candidates before you change architecture.
 
       **What is Chinaready Landscape?**
       It is an open-source, continuously updated catalog of China-market developer services and China-region routes, organized so global teams can compare familiar tools with practical mainland China options.
@@ -154,6 +154,8 @@ categories:
       - subcategory: "Payments & In-App Purchases"
         content: |
           Use this category for payment rails and app monetization services. Profile notes should distinguish payment gateways, super-app payment ecosystems, and managed integration services.
+
+          For Stripe-style checkout, decide by deployment location before picking a vendor. If the product stays outside mainland China, Stripe can still work as a global payment platform — including Alipay and WeChat Pay for Chinese users. If the product must run inside China, teams usually do not need Stripe; integrate directly with China-native providers such as WeChat Pay, Alipay, or Youzan Cloud so users can pay a China entity or a trusted partner like Chinaready. See the [Stripe alternatives map](/alternatives/stripe.html).
 
           Typical global services: [Stripe](/alternatives/stripe.html), [PayPal](/alternatives/paypal.html), [Apple Pay](/alternatives/apple-pay.html).
       - subcategory: "Bot Protection & CAPTCHA"

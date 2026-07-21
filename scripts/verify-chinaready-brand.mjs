@@ -324,6 +324,25 @@ if (exists("build/alternatives/firebase.html")) {
   assert(firebasePage.includes("https://chinaready.co"), "Firebase alternatives page must link to the main site");
 }
 
+if (exists("build/alternatives/stripe.html")) {
+  const stripePage = read("build/alternatives/stripe.html");
+  assert(stripePage.includes("Stripe alternatives in China"), "Stripe alternatives page must use an intent-matching H1");
+  assert(stripePage.includes("Decide by deployment location first"), "Stripe page must lead with the deployment-location decision");
+  assert(stripePage.includes("recommends not using Stripe"), "Stripe page must state Chinaready's mainland China Stripe recommendation");
+  assert(stripePage.includes("Product stays outside China"), "Stripe page must explain when Stripe can still work globally");
+  assert(stripePage.includes("WeChat Pay"), "Stripe page must map to WeChat Pay");
+  assert(stripePage.includes("Alipay"), "Stripe page must map to Alipay");
+  assert(stripePage.includes("Youzan Cloud"), "Stripe page must map to Youzan Cloud");
+}
+
+if (exists("build/alternatives/onesignal.html")) {
+  const oneSignalPage = read("build/alternatives/onesignal.html");
+  assert(
+    oneSignalPage.includes("cr-alt-availability-limited\">Limited</span>"),
+    "OneSignal page must label mainland China availability as Limited",
+  );
+}
+
 assert(exists("build/assets/chinaready-alternatives.css"), "published alternatives stylesheet must exist");
 assert(exists("assets/chinaready-mark.svg"), "Chinaready mark favicon source asset is missing");
 if (exists("build")) {
