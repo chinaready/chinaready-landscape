@@ -172,7 +172,7 @@ categories:
         content: |
           Use this category for push notification, SMS, email, and messaging-delivery products.
 
-          Typical global services: [Firebase Cloud Messaging](/alternatives/firebase-cloud-messaging.html), [OneSignal](/alternatives/onesignal.html), [Twilio SMS](/alternatives/twilio-sms.html), [SendGrid](/alternatives/sendgrid.html).
+          Typical global services: [Firebase Cloud Messaging](/alternatives/firebase-cloud-messaging.html), [OneSignal](/alternatives/onesignal.html), [Twilio SMS](/alternatives/twilio-sms.html), [Amazon SES](/alternatives/amazon-ses.html), [SendGrid](/alternatives/sendgrid.html).
       - subcategory: "Real-Time Communication (Voice / Video / Chat)"
         content: |
           Use this category for RTC, voice, video, and chat infrastructure.

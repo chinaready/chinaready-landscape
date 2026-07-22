@@ -42,6 +42,7 @@ const GAP_CATALOG_RELATIVE = "research/global-services-gap-catalog.json";
 
 const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   onesignal: "limited",
+  "amazon-ses": "unavailable",
 };
 
 /**
@@ -119,6 +120,50 @@ const EDITORIAL_OVERRIDES = {
       },
       {
         question: "Where should teams go after shortlisting OneSignal alternatives?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent messaging services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the alternative remains uncertain, book a call with Chinaready.`,
+      },
+    ],
+  },
+  "amazon-ses": {
+    description: (availability, names) =>
+      clipMeta(
+        `Amazon SES is not offered in AWS China (Beijing/Ningxia). For mainland delivery, compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Amazon SES is <strong>not available</strong> in AWS China regions (Beijing and Ningxia). Apps that must send mail from mainland China should map to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Replace Amazon SES for mainland China email delivery",
+    guidanceHtml: `
+        <p>AWS China regions do not offer Amazon SES. If your product must run in mainland China, plan a domestic email provider instead of assuming a China-region SES endpoint.</p>
+        <h3>Primary alternatives</h3>
+        <ul>
+          <li><strong>Alibaba Cloud DirectMail</strong> — closest common SES substitute. SMTP, REST API, templates, send queues, delivery stats, and SPF/DKIM domain authentication. SMTP-based apps often need only host, username, and password changes.</li>
+          <li><strong>SendCloud</strong> — developer-friendly independent provider with SMTP, API, template variables, webhooks, and SDKs. Feels like a Mailgun-plus-SES style workflow for teams migrating from SES APIs.</li>
+          <li><strong>Tencent Cloud SES</strong> — natural choice when the stack already runs on Tencent Cloud (CVM, COS, CDN, CLS). Supports SMTP, API, template mail, and send analytics.</li>
+        </ul>
+        <h3>Dual-provider pattern for global + China SaaS</h3>
+        <p>Many international SaaS products keep Amazon SES for global users and route mainland China users to Alibaba Cloud DirectMail or SendCloud. Switch providers by user region or deployment environment so global delivery stays on SES while China recipients get a mainland-friendly path.</p>
+        <p>Chinaready focuses the shortlist below on those three primary options. Review replacement fit before changing production mail infrastructure.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Amazon SES work in China?",
+        answer: `No for AWS China workloads. Amazon SES is not offered in the AWS China regions (Beijing and Ningxia). Chinaready labels Amazon SES as ${availability} for mainland China production stacks. Keep SES for global users if needed, but plan a China email provider for mainland deployments and recipients.`,
+      },
+      {
+        question: "What are the best China alternatives to Amazon SES?",
+        answer: `Chinaready Landscape currently maps Amazon SES to ${namesText}. Prioritize Alibaba Cloud DirectMail as the closest common substitute, SendCloud for developer experience, and Tencent Cloud SES when the stack is already on Tencent Cloud. Replacement fit varies by product, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Can SMTP apps migrate from Amazon SES with minimal code changes?",
+        answer:
+          "Often yes. If your application already sends mail over SMTP, providers such as Alibaba Cloud DirectMail typically require only SMTP host, username, and password changes. API-based SES clients need more work, but SendCloud and the China cloud email APIs still cover templates, transactional mail, and delivery webhooks.",
+      },
+      {
+        question: "Should global SaaS keep Amazon SES and add a China provider?",
+        answer:
+          "Yes, that dual-provider pattern is common. Use Amazon SES for global users and Alibaba Cloud DirectMail or SendCloud for China users, switching by region or deployment environment so mainland delivery does not depend on SES.",
+      },
+      {
+        question: "Where should teams go after shortlisting Amazon SES alternatives?",
         answer: `Use the interactive Chinaready Landscape to compare adjacent messaging services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the alternative remains uncertain, book a call with Chinaready.`,
       },
     ],

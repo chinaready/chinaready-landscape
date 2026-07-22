@@ -343,6 +343,22 @@ if (exists("build/alternatives/onesignal.html")) {
   );
 }
 
+if (exists("build/alternatives/amazon-ses.html")) {
+  const sesPage = read("build/alternatives/amazon-ses.html");
+  assert(sesPage.includes("Amazon SES alternatives in China"), "Amazon SES alternatives page must use an intent-matching H1");
+  assert(
+    sesPage.includes("cr-alt-availability-unavailable\">Unavailable</span>"),
+    "Amazon SES page must label mainland China availability as Unavailable",
+  );
+  assert(sesPage.includes("not available</strong> in AWS China regions"), "Amazon SES page must state AWS China does not offer SES");
+  assert(sesPage.includes("Alibaba Cloud DirectMail"), "Amazon SES page must map to Alibaba Cloud DirectMail");
+  assert(sesPage.includes("SendCloud"), "Amazon SES page must map to SendCloud");
+  assert(sesPage.includes("Tencent Cloud SES"), "Amazon SES page must map to Tencent Cloud SES");
+  assert(!sesPage.includes("Submail"), "Amazon SES page must not list Submail as a candidate");
+  assert(!sesPage.includes("NetEase"), "Amazon SES page must not list NetEase email push as a candidate");
+  assert(!/<h3><a[^>]*>Mailgun<\/a><\/h3>/.test(sesPage), "Amazon SES page must not list Mailgun as a China candidate");
+}
+
 assert(exists("build/assets/chinaready-alternatives.css"), "published alternatives stylesheet must exist");
 assert(exists("assets/chinaready-mark.svg"), "Chinaready mark favicon source asset is missing");
 if (exists("build")) {
@@ -431,6 +447,7 @@ if (exists("build/data/base.json")) {
   };
   assert(baseSearchText("SendCloud").match(/Amazon SES/i), "base.json search index tags must let SES find SendCloud");
   assert(baseSearchText("Alibaba Cloud DirectMail").match(/Amazon SES/i), "base.json search index tags must let SES find Alibaba Cloud DirectMail");
+  assert(baseSearchText("Tencent Cloud SES").match(/Amazon SES/i), "base.json search index tags must let SES find Tencent Cloud SES");
   assert(baseSearchText("JPush").match(/\bFCM\b/i), "base.json search index tags must let FCM find JPush");
   const subcategoryCount = base.categories.reduce((total, category) => total + category.subcategories.length, 0);
   assert(base.categories.length === 6, "base.json must expose all 6 top-level categories");
@@ -482,6 +499,7 @@ if (exists("build/data/full.json")) {
   assert(jpush?.annotations?.china_context === "JPush provides a China-market alternative to Firebase Cloud Messaging for mobile push notifications.", "JPush China context must be direct product copy");
   assert(fullSearchText("SendCloud").match(/Amazon SES/i), "full.json search index tags must let SES find SendCloud");
   assert(fullSearchText("Alibaba Cloud DirectMail").match(/Amazon SES/i), "full.json search index tags must let SES find Alibaba Cloud DirectMail");
+  assert(fullSearchText("Tencent Cloud SES").match(/Amazon SES/i), "full.json search index tags must let SES find Tencent Cloud SES");
   assert(fullSearchText("JPush").match(/\bFCM\b/i), "full.json search index tags must let FCM find JPush");
 }
 

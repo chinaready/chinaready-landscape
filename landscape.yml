@@ -749,22 +749,22 @@ landscape:
             name: Alibaba Cloud DirectMail
             homepage_url: https://www.aliyun.com/product/directmail
             logo: alibaba-cloud-directmail.svg
-            description: Alibaba Cloud DirectMail provides transactional and bulk email sending services.
+            description: Alibaba Cloud DirectMail provides transactional and bulk email sending with SMTP, REST API, templates, and delivery analytics for China apps.
             extra:
               annotations:
                 global_analogs: SendGrid, Amazon SES, Mailgun
-                replacement_fit: partial
-                china_context: Alibaba Cloud DirectMail supports China-market notification stacks alongside SMS and push messaging.
+                replacement_fit: direct
+                china_context: Closest common Amazon SES substitute for mainland China. Supports SMTP, REST API, templates, send queues, delivery stats, and SPF/DKIM domain authentication. If your app already sends over SMTP, migration is often a host/username/password change. Strong fit for signup verification, password reset, invoices, and SaaS notifications.
                 vendor_type: china-cloud
-                evidence_level: low
+                evidence_level: medium
                 availability_status: generally-available
-                global_availability_in_china: limited
+                global_availability_in_china: unavailable
                 metadata_name: "Alibaba Cloud DirectMail"
                 primary_category: "Engagement & Communication"
                 official_website: "https://www.aliyun.com/product/directmail"
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
-                product_overview: "Alibaba Cloud DirectMail provides transactional and bulk email sending services."
+                product_overview: "Alibaba Cloud DirectMail provides transactional and bulk email sending with SMTP, REST API, templates, and delivery analytics for China apps."
                 alternative_to: "China-market alternative or deployment route for: SendGrid, Amazon SES, Mailgun."
                 global_alternatives: "SendGrid, Amazon SES, Mailgun"
                 organization: "Alibaba Cloud"
@@ -774,27 +774,52 @@ landscape:
             name: SendCloud
             homepage_url: https://www.sendcloud.net/
             logo: sendcloud.svg
-            description: SendCloud provides email delivery services for application notifications and marketing email.
+            description: SendCloud provides developer-friendly transactional and marketing email delivery with SMTP, API, templates, webhooks, and SDKs.
             extra:
               annotations:
                 global_analogs: SendGrid, Mailgun, Amazon SES
-                replacement_fit: partial
-                china_context: SendCloud provides a China-market alternative for application email delivery and notification needs.
+                replacement_fit: direct
+                china_context: Independent China email provider with a strong developer experience. Offers SMTP, a simple API, template variables, webhooks, SDKs, and a usable console. Often compared to a Mailgun-plus-SES style workflow for teams that previously called SES APIs and need a mainland-friendly delivery path.
                 vendor_type: china-saas
-                evidence_level: low
+                evidence_level: medium
                 availability_status: generally-available
-                global_availability_in_china: limited
+                global_availability_in_china: unavailable
                 metadata_name: "SendCloud"
                 primary_category: "Engagement & Communication"
                 official_website: "https://www.sendcloud.net/"
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
-                product_overview: "SendCloud provides email delivery services for application notifications and marketing email."
+                product_overview: "SendCloud provides developer-friendly transactional and marketing email delivery with SMTP, API, templates, webhooks, and SDKs."
                 alternative_to: "China-market alternative or deployment route for: SendGrid, Mailgun, Amazon SES."
                 global_alternatives: "SendGrid, Mailgun, Amazon SES"
                 organization: "SendCloud"
                 organization_overview: "SendCloud provides email delivery and notification infrastructure for application and marketing workflows."
                 developer_docs: "https://www.sendcloud.net/doc/"
+          - item:
+            name: Tencent Cloud SES
+            homepage_url: https://cloud.tencent.com/product/ses
+            logo: tencent-cloud-ses.svg
+            description: Tencent Cloud SES (email push) provides transactional and marketing email delivery with SMTP, API, templates, and send analytics.
+            extra:
+              annotations:
+                global_analogs: Amazon SES, SendGrid, Mailgun
+                replacement_fit: ecosystem-specific
+                china_context: Natural email choice when the stack already runs on Tencent Cloud (CVM, COS, CDN, CLS, and related services). Supports SMTP, API, template mail, and delivery statistics for transactional and notification email inside a Tencent-centric architecture.
+                vendor_type: china-cloud
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Tencent Cloud SES"
+                primary_category: "Engagement & Communication"
+                official_website: "https://cloud.tencent.com/product/ses"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Tencent Cloud SES (email push) provides transactional and marketing email delivery with SMTP, API, templates, and send analytics."
+                alternative_to: "China-market alternative or deployment route for: Amazon SES, SendGrid, Mailgun."
+                global_alternatives: "Amazon SES, SendGrid, Mailgun"
+                organization: "Tencent Cloud"
+                organization_overview: "Tencent Cloud provides infrastructure, application, data, security, and developer platform services for China and global workloads."
+                developer_docs: "https://cloud.tencent.com/document/product/1288"
       - subcategory:
         name: Real-Time Communication (Voice / Video / Chat)
         items:
