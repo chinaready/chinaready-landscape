@@ -233,8 +233,10 @@ index = index.replace(
 );
 const cacheBust = "20260720-seo-geo-ctr";
 const links = [
-  `<link rel="icon" href="/images/chinaready-mark.svg" type="image/svg+xml">`,
-  `<link rel="apple-touch-icon" href="/images/chinaready-mark.svg">`,
+  `<link rel="icon" href="/favicon.ico" sizes="48x48">`,
+  `<link rel="icon" href="/favicon.svg" type="image/svg+xml">`,
+  `<link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">`,
+  `<link rel="apple-touch-icon" href="/apple-touch-icon.png">`,
   `<link rel="stylesheet" href="assets/chinaready-landscape.css?v=${cacheBust}">`,
 ];
 const scripts = [
@@ -264,10 +266,9 @@ const imagesDir = path.join(buildDir, "images");
 fs.mkdirSync(imagesDir, { recursive: true });
 fs.copyFileSync(path.join(root, "assets", "chinaready-mark.svg"), path.join(imagesDir, "chinaready-mark.svg"));
 fs.copyFileSync(path.join(root, "assets", "chinaready-mark.svg"), path.join(buildDir, "favicon.svg"));
-fs.writeFileSync(
-  path.join(buildDir, "_redirects"),
-  ["/favicon.ico /images/chinaready-mark.svg 200", "/favicon.svg /images/chinaready-mark.svg 200", ""].join("\n"),
-);
+for (const file of fs.readdirSync(path.join(root, "assets", "favicons"))) {
+  fs.copyFileSync(path.join(root, "assets", "favicons", file), path.join(buildDir, file));
+}
 
 const seo = applySeoGeoEnhancements({ root, buildDir, indexHtml: index });
 fs.writeFileSync(indexPath, seo.indexHtml);

@@ -253,7 +253,9 @@ if (exists("build/index.html")) {
   assert(!index.includes("vendor/chinaready-design-system"), "build/index.html must not link the removed vendored design system");
   assert(index.includes("assets/chinaready-landscape.css"), "build/index.html must link the Chinaready landscape override CSS");
   assert(index.includes("assets/chinaready-landscape-details.js?v=20260720-seo-geo-ctr"), "build/index.html must load the cache-busted Chinaready item detail extension");
-  assert(index.includes('rel="icon"') && index.includes("/images/chinaready-mark.svg"), "build/index.html must use the Chinaready mark favicon");
+  assert(index.includes('<link rel="icon" href="/favicon.ico"'), "build/index.html must declare the ICO favicon");
+  assert(index.includes('href="/favicon-96x96.png"'), "build/index.html must declare the 96x96 PNG favicon for search engines");
+  assert(index.includes('<link rel="apple-touch-icon" href="/apple-touch-icon.png"'), "build/index.html must declare the apple-touch-icon PNG");
   assert(index.includes(repositoryUrl), "build/index.html must include the Chinaready landscape repository link");
   assert(!index.match(legacySourceBrandPattern), "build/index.html must not contain legacy source brand text");
   assert(index.includes("China Alternatives to Firebase, AWS, Stripe"), "build/index.html title must target alternative long-tail queries");
@@ -294,7 +296,7 @@ if (exists("build/alternatives/index.html")) {
   assert(alternativesIndex.includes("Firebase alternatives in China"), "alternatives index must link popular Firebase lookup");
   assert(alternativesIndex.includes("chinaready.co"), "alternatives index must route to the main site");
   assert(alternativesIndex.includes('"@type":"FAQPage"') || alternativesIndex.includes('"@type": "FAQPage"'), "alternatives index must include FAQPage JSON-LD");
-  assert(alternativesIndex.includes("/images/chinaready-mark.svg"), "alternatives index must include the Chinaready mark favicon");
+  assert(alternativesIndex.includes('href="/favicon.ico"') && alternativesIndex.includes('href="/favicon-96x96.png"'), "alternatives index must declare the ICO and PNG favicons");
   assert(alternativesIndex.includes("/images/chinaready-landscape-logo.svg"), "alternatives index must use the shared landscape header logo");
   assert(alternativesIndex.includes('role="contentinfo"'), "alternatives index must use the shared contentinfo footer");
   assert(alternativesIndex.includes("cr-footer-grid"), "alternatives index must reuse the homepage footer grid");
@@ -361,11 +363,14 @@ if (exists("build/alternatives/amazon-ses.html")) {
 
 assert(exists("build/assets/chinaready-alternatives.css"), "published alternatives stylesheet must exist");
 assert(exists("assets/chinaready-mark.svg"), "Chinaready mark favicon source asset is missing");
+assert(exists("assets/favicons/favicon.ico"), "pre-rendered favicon.ico asset is missing");
+assert(exists("assets/favicons/favicon-96x96.png"), "pre-rendered 96x96 favicon asset is missing");
+assert(exists("assets/favicons/apple-touch-icon.png"), "pre-rendered apple-touch-icon asset is missing");
 if (exists("build")) {
   assert(exists("build/images/chinaready-mark.svg"), "published build must include /images/chinaready-mark.svg");
-  assert(exists("build/_redirects"), "published build must include Cloudflare Pages _redirects");
-  const redirects = read("build/_redirects");
-  assert(redirects.includes("/favicon.ico /images/chinaready-mark.svg 200"), "build/_redirects must map favicon.ico to the Chinaready mark");
+  assert(exists("build/favicon.ico"), "published build must serve a real /favicon.ico");
+  assert(exists("build/favicon-96x96.png"), "published build must serve /favicon-96x96.png");
+  assert(exists("build/apple-touch-icon.png"), "published build must serve /apple-touch-icon.png");
 }
 
 assert(!exists("build/vendor/chinaready-design-system"), "build output must not contain the removed vendored design system");
