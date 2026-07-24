@@ -417,6 +417,7 @@ if (exists("build/alternatives/google-admob.html")) {
   assert(admobPage.includes("Baidu Union") || admobPage.includes("百度联盟"), "AdMob page must map to Baidu Union");
   assert(admobPage.includes("Kuaishou Union") || admobPage.includes("快手联盟"), "AdMob page must map to Kuaishou Union");
   assert(admobPage.includes("Chinese corporate entity in April 2006"), "AdMob page must keep shared Google China presence context");
+  assert(admobPage.includes("Ad Monetization") || admobPage.includes("Users, Trust & Monetization"), "AdMob candidates must sit under Users, Trust & Monetization");
   assert(!admobPage.includes(">Umeng+</"), "AdMob page must not list Umeng+ as the primary monetization candidate");
 }
 
@@ -515,7 +516,7 @@ if (exists("build/data/base.json")) {
   assert(baseSearchText("JPush").match(/\bFCM\b/i), "base.json search index tags must let FCM find JPush");
   const subcategoryCount = base.categories.reduce((total, category) => total + category.subcategories.length, 0);
   assert(base.categories.length === 6, "base.json must expose all 6 top-level categories");
-  assert(subcategoryCount === 20, "base.json must expose all 20 subcategories");
+  assert(subcategoryCount === 21, "base.json must expose all 21 subcategories");
   assert(!base.groups || base.groups.length === 0, "base.json must not define groups so no group tab is selected by default");
 
   const visibleSubcategories = new Set();

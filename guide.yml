@@ -60,7 +60,7 @@ categories:
           </tr>
           <tr>
             <td>Users, Trust & Monetization</td>
-            <td>Authentication & Identity; Payments & In-App Purchases; Bot Protection & CAPTCHA</td>
+            <td>Authentication & Identity; Payments & In-App Purchases; Ad Monetization & Mediation; Bot Protection & CAPTCHA</td>
           </tr>
           <tr>
             <td>Engagement & Communication</td>
@@ -144,7 +144,7 @@ categories:
 
   - category: "Users, Trust & Monetization"
     content: |
-      Users, trust, and monetization services cover identity, payment, in-app purchase, CAPTCHA, and anti-bot workflows. For Chinaready, this is a core decision area because China-market implementations often depend on local payment rails, real-name expectations, and ecosystem-specific login.
+      Users, trust, and monetization services cover identity, payment, in-app purchase, ad monetization, CAPTCHA, and anti-bot workflows. For Chinaready, this is a core decision area because China-market implementations often depend on local payment rails, domestic ad networks, real-name expectations, and ecosystem-specific login.
     subcategories:
       - subcategory: "Authentication & Identity"
         content: |
@@ -158,6 +158,13 @@ categories:
           For Stripe-style checkout, decide by deployment location before picking a vendor. If the product stays outside mainland China, Stripe can still work as a global payment platform — including Alipay and WeChat Pay for Chinese users. If the product must run inside China, teams usually do not need Stripe; integrate directly with China-native providers such as WeChat Pay, Alipay, or Youzan Cloud so users can pay a China entity or a trusted partner like Chinaready. See the [Stripe alternatives map](/alternatives/stripe.html).
 
           Typical global services: [Stripe](/alternatives/stripe.html), [PayPal](/alternatives/paypal.html), [Apple Pay](/alternatives/apple-pay.html).
+      - subcategory: "Ad Monetization & Mediation"
+        content: |
+          Use this category for mainland China ad networks and mediation platforms used for in-app advertising revenue. Keep this separate from Payments & In-App Purchases: payments collect money from users, while ad networks monetize attention through domestic inventory.
+
+          Google AdMob is strongly discouraged for mainland China users because of GFW latency, near-zero local fill, and PIPL cross-border data risks. Prefer pure domestic networks such as Pangle, Tencent Ads, Baidu Union, and Kuaishou Union. See the [Google AdMob alternatives map](/alternatives/google-admob.html).
+
+          Typical global services: [Google AdMob](/alternatives/google-admob.html).
       - subcategory: "Bot Protection & CAPTCHA"
         content: |
           Use this category for human verification, CAPTCHA, bot defense, and abuse-prevention products.

@@ -228,7 +228,7 @@ const EDITORIAL_OVERRIDES = {
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> Google AdMob is <strong>Unavailable</strong> for mainland China users and is strongly discouraged. GFW filtering adds latency and lag, local inventory yields near-zero fill/revenue, and unauthorized cross-border data transfer risks PIPL enforcement and app-store removal. Map mainland monetization to <strong>${escapeHtml(names.slice(0, 4).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
     guidanceTitle: "Google AdMob in mainland China",
-    sectionTitle: "Pure domestic monetization checklist",
+    sectionTitle: "Mapped China-ready candidates",
     guidanceHtml: () => `
         <h3>Google's presence in mainland China</h3>
         ${googleChinaGuidanceHtml()}

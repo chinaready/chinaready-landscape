@@ -561,6 +561,109 @@ landscape:
                 organization_overview: "Youzan provides commerce SaaS and developer capabilities for merchants and digital commerce integrations in China."
                 developer_docs: "https://doc.youzanyun.com/"
       - subcategory:
+        name: Ad Monetization & Mediation
+        items:
+          - item:
+            name: Pangle
+            homepage_url: https://www.csjplatform.com/
+            logo: pangle.svg
+            description: Pangle (穿山甲) is ByteDance's mainland China mobile ad network for app monetization and developer growth.
+            extra:
+              annotations:
+                global_analogs: Google AdMob
+                replacement_fit: direct
+                china_context: Primary domestic AdMob alternative for mainland China. High eCPM and fill rates via ByteDance recommendation inventory; avoids GFW latency and PIPL cross-border AdMob risks.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Pangle"
+                primary_category: "Users, Trust & Monetization"
+                official_website: "https://www.csjplatform.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Pangle (穿山甲) is ByteDance's mainland China mobile ad network for app monetization and developer growth, with strong recommendation-driven fill and eCPM."
+                alternative_to: "China-market alternative or deployment route for: Google AdMob."
+                global_alternatives: "Google AdMob"
+                organization: "ByteDance Pangle"
+                organization_overview: "Pangle is ByteDance's advertising and developer growth platform serving mainland China publishers and advertisers."
+                developer_docs: "https://www.csjplatform.com/supportcenter"
+          - item:
+            name: Tencent Ads
+            homepage_url: https://e.qq.com/dev/
+            logo: tencent-ads.svg
+            description: Tencent Ads (优量汇) provides mainland China mobile ad inventory powered by WeChat, QQ, and Tencent ecosystem traffic.
+            extra:
+              annotations:
+                global_analogs: Google AdMob
+                replacement_fit: direct
+                china_context: Domestic AdMob alternative with large, stable inventory from WeChat and QQ. Common choice for apps already tied to the Tencent ecosystem.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Tencent Ads"
+                primary_category: "Users, Trust & Monetization"
+                official_website: "https://e.qq.com/dev/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Tencent Ads (优量汇) provides mainland China mobile ad inventory powered by WeChat, QQ, and related Tencent ecosystem traffic."
+                alternative_to: "China-market alternative or deployment route for: Google AdMob."
+                global_alternatives: "Google AdMob"
+                organization: "Tencent Ads"
+                organization_overview: "Tencent Ads operates Tencent's advertising and publisher monetization platforms, including 优量汇 for mobile app inventory."
+                developer_docs: "https://developers.e.qq.com/"
+          - item:
+            name: Baidu Union
+            homepage_url: https://union.baidu.com/
+            logo: baidu-union.svg
+            description: Baidu Union (百度联盟) is Baidu's mainland China publisher network for search-intent and contextual ad placements.
+            extra:
+              annotations:
+                global_analogs: Google AdMob
+                replacement_fit: partial
+                china_context: Domestic monetization option strong in search-intent and contextual placements. Useful when content or search-adjacent inventory matters more than pure social/short-video fill.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Baidu Union"
+                primary_category: "Users, Trust & Monetization"
+                official_website: "https://union.baidu.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Baidu Union (百度联盟) is Baidu's mainland China publisher network focused on search-intent targeting and contextual ad placements."
+                alternative_to: "China-market alternative or deployment route for: Google AdMob."
+                global_alternatives: "Google AdMob"
+                organization: "Baidu"
+                organization_overview: "Baidu operates search, advertising, and publisher-network products for mainland China digital marketing and monetization."
+                developer_docs: "https://union.baidu.com/"
+          - item:
+            name: Kuaishou Union
+            homepage_url: https://u.kuaishou.com/
+            logo: kuaishou-union.svg
+            description: Kuaishou Union (快手联盟) is Kuaishou's mainland China short-video ad network for app monetization and performance traffic.
+            extra:
+              annotations:
+                global_analogs: Google AdMob
+                replacement_fit: partial
+                china_context: Domestic AdMob alternative specializing in short-video formats with strong conversion and lower-tier market reach.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Kuaishou Union"
+                primary_category: "Users, Trust & Monetization"
+                official_website: "https://u.kuaishou.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Kuaishou Union (快手联盟) is Kuaishou's mainland China short-video advertising and publisher network for app monetization."
+                alternative_to: "China-market alternative or deployment route for: Google AdMob."
+                global_alternatives: "Google AdMob"
+                organization: "Kuaishou"
+                organization_overview: "Kuaishou operates short-video and live-streaming platforms with advertising and publisher-union products for mainland China monetization."
+                developer_docs: "https://u.kuaishou.com/"
+      - subcategory:
         name: Bot Protection & CAPTCHA
         items:
           - item:

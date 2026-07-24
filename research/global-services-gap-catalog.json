@@ -1403,35 +1403,35 @@
       "global_availability_in_china": "unavailable",
       "china_candidates": [
         {
-          "name": "Pangle (穿山甲)",
+          "name": "Pangle",
           "homepage_url": "https://www.csjplatform.com/",
-          "category": "Growth, Content & Experience",
-          "subcategory": "Mobile Ad Monetization",
-          "source": "research",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape",
           "note": "Backed by ByteDance; top-tier monetization efficiency (high eCPM) and exceptional fill rates driven by advanced recommendation algorithms."
         },
         {
-          "name": "Tencent Ads (优量汇)",
+          "name": "Tencent Ads",
           "homepage_url": "https://e.qq.com/dev/",
-          "category": "Growth, Content & Experience",
-          "subcategory": "Mobile Ad Monetization",
-          "source": "research",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape",
           "note": "Operated by Tencent; massive, highly stable ad inventory by leveraging the WeChat and QQ social ecosystems."
         },
         {
-          "name": "Baidu Union (百度联盟)",
+          "name": "Baidu Union",
           "homepage_url": "https://union.baidu.com/",
-          "category": "Growth, Content & Experience",
-          "subcategory": "Mobile Ad Monetization",
-          "source": "research",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape",
           "note": "Powered by Baidu; excels in search-intent targeting and robust contextual ad placements."
         },
         {
-          "name": "Kuaishou Union (快手联盟)",
+          "name": "Kuaishou Union",
           "homepage_url": "https://u.kuaishou.com/",
-          "category": "Growth, Content & Experience",
-          "subcategory": "Mobile Ad Monetization",
-          "source": "research",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape",
           "note": "Developed by Kuaishou; highly engaging short-video ad formats with strong conversion rates and deep penetration in lower-tier Chinese markets."
         }
       ],
