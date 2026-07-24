@@ -48,7 +48,7 @@ categories:
         <tbody>
           <tr>
             <td>Infrastructure & Edge</td>
-            <td>Cloud Platform & Hosting; Managed DNS Provider; Content Delivery Network (CDN)</td>
+            <td>Cloud Platform & Hosting; Managed DNS Provider; Content Delivery Network (CDN); Service Mesh & Gateway</td>
           </tr>
           <tr>
             <td>Application Platform</td>
@@ -79,7 +79,7 @@ categories:
 
   - category: "Infrastructure & Edge"
     content: |
-      Chinaready tracks infrastructure and edge services that global software teams need when preparing a China launch. This category covers cloud platforms, DNS, and CDN providers used to host and accelerate applications for mainland China users. China deployments often require region-specific cloud accounts, ICP filing, and CDN choices that differ from a global default stack.
+      Chinaready tracks infrastructure and edge services that global software teams need when preparing a China launch. This category covers cloud platforms, DNS, CDN, and service mesh / API gateway products used to host and route applications for mainland China users. China deployments often require region-specific cloud accounts, ICP filing, CDN choices, and in-country traffic-management stacks that differ from a global default.
     subcategories:
       - subcategory: "Cloud Platform & Hosting"
         content: |
@@ -96,6 +96,13 @@ categories:
           Use this category for CDN and edge acceleration products. Profile notes should distinguish product availability from ICP filing requirements.
 
           Typical global services: [Amazon CloudFront](/alternatives/amazon-cloudfront.html), [Cloudflare CDN](/alternatives/cloudflare-cdn.html), [Akamai](/alternatives/akamai.html).
+      - subcategory: "Service Mesh & Gateway"
+        content: |
+          Use this category for API gateways, service mesh dataplanes, and cloud-native traffic-management products.
+
+          For Kong Gateway, treat mainland self-hosted Kong OSS/Enterprise as generally workable, and treat Kong Konnect / cross-border control-plane sync as the Limited path. Prefer in-country self-hosting when staying on Kong; otherwise evaluate Apache APISIX, Flomesh, or Higress. See the [Kong Gateway alternatives map](/alternatives/kong-gateway.html).
+
+          Typical global services: [Kong Gateway](/alternatives/kong-gateway.html).
 
   - category: "Application Platform"
     content: |
