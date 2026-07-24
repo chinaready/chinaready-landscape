@@ -4,8 +4,8 @@
   "counts": {
     "services": 106,
     "uncertain_alternatives": 30,
-    "researched_alternatives": 36,
-    "heuristic_alternatives": 40
+    "researched_alternatives": 37,
+    "heuristic_alternatives": 39
   },
   "availability_lookup": {
     "acast": {
@@ -1407,35 +1407,31 @@
           "homepage_url": "https://www.csjplatform.com/",
           "category": "Users, Trust & Monetization",
           "subcategory": "Ad Monetization & Mediation",
-          "source": "landscape",
-          "note": "Backed by ByteDance; top-tier monetization efficiency (high eCPM) and exceptional fill rates driven by advanced recommendation algorithms."
+          "source": "landscape"
         },
         {
           "name": "Tencent Ads",
           "homepage_url": "https://e.qq.com/dev/",
           "category": "Users, Trust & Monetization",
           "subcategory": "Ad Monetization & Mediation",
-          "source": "landscape",
-          "note": "Operated by Tencent; massive, highly stable ad inventory by leveraging the WeChat and QQ social ecosystems."
+          "source": "landscape"
         },
         {
           "name": "Baidu Union",
           "homepage_url": "https://union.baidu.com/",
           "category": "Users, Trust & Monetization",
           "subcategory": "Ad Monetization & Mediation",
-          "source": "landscape",
-          "note": "Powered by Baidu; excels in search-intent targeting and robust contextual ad placements."
+          "source": "landscape"
         },
         {
           "name": "Kuaishou Union",
           "homepage_url": "https://u.kuaishou.com/",
           "category": "Users, Trust & Monetization",
           "subcategory": "Ad Monetization & Mediation",
-          "source": "landscape",
-          "note": "Developed by Kuaishou; highly engaging short-video ad formats with strong conversion rates and deep penetration in lower-tier Chinese markets."
+          "source": "landscape"
         }
       ],
-      "research_note": "Pure domestic China ad networks for mainland monetization when replacing Google AdMob. Confirm SDK access, settlement entity, and PIPL compliance before production adoption.",
+      "research_note": "Pure domestic China ad networks for mainland monetization when replacing Google AdMob. Confirm SDK access, settlement entity, and PIPL compliance before production adoption. AdMob is strongly discouraged for mainland users due to GFW latency, near-zero fill, and PIPL risk.",
       "confidence": "researched"
     },
     {
@@ -1738,29 +1734,29 @@
       "global_availability_in_china": "limited",
       "china_candidates": [
         {
-          "name": "AWS China Regions",
-          "homepage_url": "https://www.amazonaws.cn/",
+          "name": "Apache APISIX",
+          "homepage_url": "https://apisix.apache.org/",
           "category": "Infrastructure & Edge",
-          "subcategory": "Cloud Platform & Hosting",
-          "source": "category-heuristic"
+          "subcategory": "Service Mesh & Gateway",
+          "source": "landscape"
         },
         {
-          "name": "Azure China",
-          "homepage_url": "https://www.azure.cn/",
+          "name": "Flomesh",
+          "homepage_url": "https://flomesh.io/",
           "category": "Infrastructure & Edge",
-          "subcategory": "Cloud Platform & Hosting",
-          "source": "category-heuristic"
+          "subcategory": "Service Mesh & Gateway",
+          "source": "landscape"
         },
         {
-          "name": "Alibaba Cloud",
-          "homepage_url": "https://www.alibabacloud.com/",
+          "name": "Higress",
+          "homepage_url": "https://higress.ai/",
           "category": "Infrastructure & Edge",
-          "subcategory": "Cloud Platform & Hosting",
-          "source": "category-heuristic"
+          "subcategory": "Service Mesh & Gateway",
+          "source": "landscape"
         }
       ],
-      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
-      "confidence": "heuristic"
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
     },
     {
       "name": "Libsyn",

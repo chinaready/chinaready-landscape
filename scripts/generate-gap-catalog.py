@@ -149,6 +149,8 @@ OVERRIDES = {
     "bitly": ["Alibaba Cloud"],
     "cloudflare analytics": ["Alibaba Cloud ARMS", "Umeng+"],
     "vmware": ["Alibaba Cloud"],
+    "kong gateway": ["Apache APISIX", "Flomesh", "Higress"],
+    "kong": ["Apache APISIX", "Flomesh", "Higress"],
     "airtable": [],
     "airbase": [],
     "grpc": [],
