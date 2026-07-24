@@ -40,6 +40,20 @@ const CHINA_AVAILABILITY_LABELS = {
 
 const CONTACT_CHINAREADY_URL = `${MAIN_SITE_URL}/book-call`;
 const GAP_CATALOG_RELATIVE = "research/global-services-gap-catalog.json";
+const GA_MEASUREMENT_ID = "G-4BXLJXM1DY";
+
+/** Google Analytics 4 tag injected into every published HTML page head. */
+function googleTagSnippet() {
+  return `<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '${GA_MEASUREMENT_ID}');
+</script>`;
+}
 
 const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   onesignal: "limited",
@@ -207,6 +221,95 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
 };
+
+/**
+ * Shared China-operating context for every Google-branded global service page.
+ * Consumer products are widely blocked; Google's mainland presence is mainly
+ * enterprise (B2B), developer ecosystems, and hardware/supply-chain work.
+ */
+const GOOGLE_BLOCKED_PRODUCTS = [
+  "Google Search",
+  "YouTube",
+  "Gmail",
+  "Google Play",
+  "Google Maps",
+  "Google Drive",
+  "Google Docs",
+  "Google Photos",
+  "Google News",
+  "Blogger",
+];
+
+const GOOGLE_ACTIVE_BUSINESS_PRODUCTS = [
+  "Google Ads",
+  "Android Developer Ecosystem",
+  "TensorFlow",
+  "Flutter",
+  "Hardware R&D",
+  "Supply Chain Management",
+];
+
+function googleChinaGuidanceHtml() {
+  return `
+        <p>Google officially established its Chinese corporate entity in April 2006. Most core consumer services are blocked in mainland China due to strict local censorship regulations.</p>
+        <h3>Blocked products</h3>
+        <ul>
+          ${GOOGLE_BLOCKED_PRODUCTS.map((name) => `<li>${escapeHtml(name)}</li>`).join("\n          ")}
+        </ul>
+        <p>Google maintains local offices focused exclusively on enterprise (B2B) services, developer support for global expansion, and hardware manufacturing.</p>
+        <h3>Active business &amp; products</h3>
+        <ul>
+          ${GOOGLE_ACTIVE_BUSINESS_PRODUCTS.map((name) => `<li>${escapeHtml(name)}</li>`).join("\n          ")}
+        </ul>`;
+}
+
+function isGoogleService(group) {
+  const name = String(group?.name || "");
+  const slug = String(group?.slug || "");
+  return /^google(\s|$)/i.test(name) || slug.startsWith("google-");
+}
+
+function buildGoogleEditorial(group) {
+  const serviceName = group.name;
+  return {
+    description: (availability, names) =>
+      clipMeta(
+        `Does ${serviceName} work in China? Google's consumer services are mostly blocked; mainland offices focus on B2B, developers, and hardware. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      names.length > 0
+        ? `<strong>Quick answer:</strong> Google established a Chinese corporate entity in April 2006, but most core consumer services remain blocked in mainland China. Chinaready currently maps <strong>${escapeHtml(serviceName)}</strong> to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`
+        : `<strong>Quick answer:</strong> Google established a Chinese corporate entity in April 2006, but most core consumer services remain blocked in mainland China. Chinaready labels <strong>${escapeHtml(serviceName)}</strong> as <strong>${escapeHtml(availability)}</strong> and has not yet confirmed a precise mainland substitute.`,
+    guidanceTitle: "Google's presence in mainland China",
+    guidanceHtml: googleChinaGuidanceHtml(),
+    faq: (availability, namesText) => [
+      {
+        question: `Does ${serviceName} work in China?`,
+        answer: `Google officially established its Chinese corporate entity in April 2006, but most core consumer services are blocked in mainland China due to local censorship regulations. Chinaready currently labels ${serviceName} as ${availability} for mainland China use. Treat this as an operating signal, then validate against your own account type, region, network path, and compliance constraints before relying on it in production.`,
+      },
+      {
+        question: "Which Google products are blocked in mainland China?",
+        answer: `Blocked consumer products commonly include ${GOOGLE_BLOCKED_PRODUCTS.join(", ")}. Google's mainland offices focus on enterprise (B2B) services, developer support for global expansion, and hardware manufacturing — including active lines such as ${GOOGLE_ACTIVE_BUSINESS_PRODUCTS.join(", ")}.`,
+      },
+      {
+        question: `What are the best China alternatives to ${serviceName}?`,
+        answer: namesText
+          ? `Chinaready Landscape currently lists these China-market options for ${serviceName}: ${namesText}. Replacement fit varies by product, so treat this as a research shortlist rather than a one-to-one endorsement.`
+          : `A precise China-market alternative for ${serviceName} is not yet confirmed in Chinaready Landscape. Contact Chinaready for a stack-specific recommendation before changing production architecture.`,
+      },
+      {
+        question: `Where should teams go after shortlisting ${serviceName} alternatives?`,
+        answer: `Use the interactive Chinaready Landscape to compare adjacent services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the alternative remains uncertain, book a call with Chinaready.`,
+      },
+    ],
+  };
+}
+
+function resolveEditorial(group) {
+  if (EDITORIAL_OVERRIDES[group.slug]) return EDITORIAL_OVERRIDES[group.slug];
+  if (isGoogleService(group)) return buildGoogleEditorial(group);
+  return null;
+}
 
 const ANALOG_ALIASES = {
   "amazon web services": "AWS",
@@ -685,6 +788,7 @@ function pageShell({ title, description, canonicalPath, body, jsonLd = [], bread
   <link rel="stylesheet" href="/assets/chinaready-landscape.css" />
   <link rel="stylesheet" href="/assets/chinaready-alternatives.css" />
   ${allLd.map((block) => `<script type="application/ld+json">${JSON.stringify(block)}</script>`).join("\n  ")}
+  ${googleTagSnippet()}
 </head>
 <body class="cr-alt-body">
   <a class="cr-skip" href="#main">Skip to content</a>
@@ -833,7 +937,7 @@ function renderAnalogPage(group) {
   const hasMapped = group.items.length > 0;
   const hasResearch = !hasMapped && (group.research_candidates || []).length > 0;
   const uncertain = !hasMapped && !hasResearch;
-  const editorial = EDITORIAL_OVERRIDES[group.slug] || null;
+  const editorial = resolveEditorial(group);
   const title = analogPageTitle(group, availability, names);
   const description = editorial?.description
     ? editorial.description(availability, names)
@@ -1199,6 +1303,10 @@ function enhanceIndexHtml(indexHtml, groups) {
 
   if (!html.includes('property="og:locale"')) {
     html = html.replace("</head>", `  <meta property="og:locale" content="en_US" />\n</head>`);
+  }
+
+  if (!html.includes(`gtag/js?id=${GA_MEASUREMENT_ID}`)) {
+    html = html.replace("</head>", `  ${googleTagSnippet()}\n</head>`);
   }
 
   const websiteLd = {

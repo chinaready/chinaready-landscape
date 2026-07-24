@@ -146,6 +146,8 @@ assert(guide.includes("chinaready.co"), "guide.yml Overview must route readers t
 assert(guide.includes("Level 1"), "guide.yml Overview must emphasize the Level 1 taxonomy framing");
 assert(exists("scripts/seo-geo.mjs"), "SEO/GEO generator script is missing");
 const seoGeoScript = read("scripts/seo-geo.mjs");
+assert(seoGeoScript.includes('GA_MEASUREMENT_ID = "G-4BXLJXM1DY"'), "SEO/GEO script must define the Google Analytics measurement ID");
+assert(seoGeoScript.includes("googleTagSnippet"), "SEO/GEO script must inject the Google tag snippet");
 assert(seoGeoScript.includes("AVAILABILITY_STATUS_LABELS"), "SEO/GEO generator must label availability_status on alternatives pages");
 assert(seoGeoScript.includes("GLOBAL_AVAILABILITY_LABELS"), "SEO/GEO generator must label global_availability_in_china on alternatives pages");
 assert(seoGeoScript.includes("CHINA_AVAILABILITY_LABELS"), "SEO/GEO generator must expose China availability labels");
@@ -263,6 +265,11 @@ if (exists("build/index.html")) {
   assert(index.includes('"@type": "Organization"'), "build/index.html must include Organization JSON-LD");
   assert(index.includes("/llms.txt"), "build/index.html must advertise llms.txt");
   assert(index.includes("/alternatives/"), "build/index.html must advertise the alternatives index");
+  assert(
+    index.includes("googletagmanager.com/gtag/js?id=G-4BXLJXM1DY"),
+    "build/index.html must include the Google tag",
+  );
+  assert(index.includes("gtag('config', 'G-4BXLJXM1DY')"), "build/index.html must configure GA measurement ID");
 }
 
 if (exists("build/robots.txt")) {
@@ -307,6 +314,11 @@ if (exists("build/alternatives/index.html")) {
   assert(alternativesIndex.includes("Type"), "alternatives search must show the Type / to search items affordance");
   assert(alternativesIndex.includes(">Global</a>") || alternativesIndex.includes(">Global</"), "alternatives chrome must label the Global nav item");
   assert(alternativesIndex.includes('"@type":"ItemList"') || alternativesIndex.includes('"@type": "ItemList"'), "alternatives index must include ItemList JSON-LD");
+  assert(
+    alternativesIndex.includes("googletagmanager.com/gtag/js?id=G-4BXLJXM1DY"),
+    "alternatives index must include the Google tag",
+  );
+  assert(alternativesIndex.includes("gtag('config', 'G-4BXLJXM1DY')"), "alternatives index must configure GA measurement ID");
   const gapCatalog = JSON.parse(read("research/global-services-gap-catalog.json"));
   assert(gapCatalog.services?.length >= 100, "gap catalog must include the taxonomy-relevant unmapped global services");
   assert(alternativesIndex.includes("Dynatrace") || alternativesIndex.includes("BunnyCDN"), "alternatives index must include gap-catalog research services");
@@ -343,6 +355,35 @@ if (exists("build/alternatives/onesignal.html")) {
     oneSignalPage.includes("cr-alt-availability-limited\">Limited</span>"),
     "OneSignal page must label mainland China availability as Limited",
   );
+}
+
+for (const googleSlug of [
+  "google-maps-platform",
+  "google-analytics",
+  "google-fonts",
+  "google-cloud",
+  "google-cloud-dns",
+  "google-sign-in",
+  "google-recaptcha",
+]) {
+  const googlePagePath = `build/alternatives/${googleSlug}.html`;
+  if (!exists(googlePagePath)) continue;
+  const googlePage = read(googlePagePath);
+  assert(
+    googlePage.includes("presence in mainland China"),
+    `${googleSlug} page must include shared Google China presence guidance`,
+  );
+  assert(
+    googlePage.includes("Chinese corporate entity in April 2006"),
+    `${googleSlug} page must mention Google's April 2006 China entity`,
+  );
+  assert(googlePage.includes("Blocked products"), `${googleSlug} page must list blocked Google products`);
+  assert(googlePage.includes("Google Search"), `${googleSlug} page must list Google Search as blocked`);
+  assert(googlePage.includes("YouTube"), `${googleSlug} page must list YouTube as blocked`);
+  assert(googlePage.includes("Active business"), `${googleSlug} page must list active Google business lines`);
+  assert(googlePage.includes("Google Ads"), `${googleSlug} page must list Google Ads as active`);
+  assert(googlePage.includes("TensorFlow"), `${googleSlug} page must list TensorFlow as active`);
+  assert(googlePage.includes("Flutter"), `${googleSlug} page must list Flutter as active`);
 }
 
 if (exists("build/alternatives/amazon-ses.html")) {
