@@ -220,6 +220,60 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  "kong-gateway": {
+    description: (availability, names) =>
+      clipMeta(
+        `Kong Gateway self-host works in China; Kong Konnect and cross-border control planes are Limited. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Self-hosted Kong Gateway OSS/Enterprise is fully usable in mainland China. Availability is <strong>${escapeHtml(availability)}</strong> mainly because <strong>Kong Konnect</strong> and overseas control-plane sync are fragile across the border. If you replace Kong, compare <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>.`,
+    guidanceTitle: "Kong Gateway in mainland China: self-host vs Konnect",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: `
+        <p>For China launches, separate <strong>self-hosted Kong</strong> from <strong>Kong Konnect / cross-border control planes</strong>. Do not treat “Limited” as “Kong cannot run in China.”</p>
+        <h3>Local and private-cloud deployment (fully usable)</h3>
+        <ul>
+          <li><strong>OSS and Enterprise software:</strong> Download Kong OSS or run Enterprise on-prem or on China-region clouds (Alibaba Cloud, Tencent Cloud, AWS China, Azure China).</li>
+          <li><strong>Performance and ecosystem:</strong> OpenResty/Nginx lineage, Lua plugins, and mainland community adoption are unaffected by geography.</li>
+          <li><strong>Localization:</strong> From Kong 2.3 onward, UTF-8 naming supports Chinese characters for routes and services.</li>
+        </ul>
+        <h3>Managed SaaS and cross-border networking (constrained)</h3>
+        <ul>
+          <li><strong>Kong Konnect:</strong> Official hosted control planes sit on Western cloud infrastructure and can see high latency, instability, or blocking from mainland China.</li>
+          <li><strong>Split planes:</strong> Overseas control plane + China data plane sync is fragile under Great Firewall network conditions.</li>
+        </ul>
+        <h3>Compliance notes</h3>
+        <ul>
+          <li><strong>ICP filing:</strong> Public mainland API endpoints on China-hosted domains need ICP filing; without it, cloud providers cut ports 80/443.</li>
+          <li><strong>Data residency:</strong> Sensitive personal data on overseas Kong SaaS may conflict with China’s Data Security Law and PIPL export rules.</li>
+        </ul>
+        <h3>Recommendation</h3>
+        <p>For mainland operations, prefer in-country self-hosted Kong (Docker/Kubernetes) over Konnect. If you want a China-native substitute stack, evaluate the mapped options below — <strong>Apache APISIX</strong> as the closest OpenResty-lineage substitute, <strong>Flomesh</strong> for gateway plus mesh, and <strong>Higress</strong> for Envoy/cloud-native stacks.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Kong Gateway work in China?",
+        answer: `Yes for self-hosted deployments. Kong Gateway OSS and Enterprise run well on-prem or on China-region clouds. Chinaready labels Kong Gateway as ${availability} because Kong Konnect and cross-border control-plane architectures are unreliable or non-compliant for many mainland production stacks.`,
+      },
+      {
+        question: "Why is Kong Gateway labeled Limited if self-hosting works?",
+        answer:
+          "Limited refers to the Kong Konnect / overseas control-plane path and related compliance constraints, not to local Kong Gateway software. Mainland teams that self-host Kong inside China usually avoid the Limited failure modes.",
+      },
+      {
+        question: "What are the best China alternatives to Kong Gateway?",
+        answer: `Chinaready Landscape currently maps Kong Gateway to ${namesText}. Prefer Apache APISIX when you want the closest OpenResty/Nginx-style substitute, Flomesh when you need gateway plus service-mesh traffic management, and Higress for Envoy-based cloud-native stacks. Replacement fit varies, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Should teams use Kong Konnect with data planes in China?",
+        answer:
+          "Usually no. Syncing an overseas hosted control plane to China data planes is fragile under cross-border network conditions and can create data-residency risk. Prefer an in-country control plane and data plane, or a China-ready substitute gateway.",
+      },
+      {
+        question: "Where should teams go after shortlisting Kong Gateway alternatives?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent infrastructure services, then read Chinaready's main site for launch operating guidance covering ICP filing, data residency, distribution, and go-to-market constraints beyond vendor selection. If the path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
   "google-admob": {
     description: (availability, names) =>
       clipMeta(
