@@ -3,6 +3,7 @@ docs/
 .tools/
 node_modules/
 .superpowers/
+.worktrees/
 .DS_Store
 .wrangler/
 .env
