@@ -165,6 +165,85 @@ landscape:
                 organization_overview: "Cloudflare provides global edge, security, and performance services; this profile covers its China network option for mainland acceleration."
                 developer_docs: "https://developers.cloudflare.com/china-network/"
 
+      - subcategory:
+        name: Service Mesh & Gateway
+        items:
+          - item:
+            name: Apache APISIX
+            homepage_url: https://apisix.apache.org/
+            logo: apache-apisix.svg
+            description: Apache APISIX is a high-performance open-source API gateway built on OpenResty and Nginx, widely used for mainland China self-hosted API traffic management.
+            extra:
+              annotations:
+                global_analogs: Kong Gateway
+                replacement_fit: direct
+                china_context: Closest common Kong substitute in China. Same OpenResty/Nginx lineage and Lua plugin model; strong mainland community adoption and commercial support ecosystem.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: limited
+                metadata_name: "Apache APISIX"
+                primary_category: "Infrastructure & Edge"
+                official_website: "https://apisix.apache.org/"
+                github: "https://github.com/apache/apisix"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Apache APISIX is a high-performance open-source API gateway built on OpenResty and Nginx, widely used for mainland China self-hosted API traffic management."
+                alternative_to: "China-market alternative or deployment route for: Kong Gateway."
+                global_alternatives: "Kong Gateway"
+                organization: "Apache Software Foundation / API7"
+                organization_overview: "Apache APISIX is an Apache top-level project with strong China-origin community and commercial ecosystem around API gateway and traffic management."
+                developer_docs: "https://apisix.apache.org/docs/"
+          - item:
+            name: Flomesh
+            homepage_url: https://flomesh.io/
+            logo: flomesh.svg
+            description: Flomesh provides China-origin service mesh and API gateway capabilities using a Pipy dataplane for east-west and north-south traffic management.
+            extra:
+              annotations:
+                global_analogs: Kong Gateway
+                replacement_fit: partial
+                china_context: China vendor option when teams need gateway plus service-mesh traffic management rather than a pure Kong-style edge gateway replacement.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: limited
+                metadata_name: "Flomesh"
+                primary_category: "Infrastructure & Edge"
+                official_website: "https://flomesh.io/"
+                github: "https://github.com/flomesh-io/fsm"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Flomesh provides China-origin service mesh and API gateway capabilities using a Pipy dataplane for east-west and north-south traffic management."
+                alternative_to: "China-market alternative or deployment route for: Kong Gateway."
+                global_alternatives: "Kong Gateway"
+                organization: "Flomesh"
+                organization_overview: "Flomesh builds cloud-native traffic management products spanning API gateway and service mesh use cases for China and global Kubernetes environments."
+                developer_docs: "https://flomesh.io/"
+          - item:
+            name: Higress
+            homepage_url: https://higress.ai/
+            logo: higress.svg
+            description: Higress is a cloud-native API gateway based on Envoy, commonly evaluated in Alibaba Cloud-native stacks as a Kong-style traffic entry alternative.
+            extra:
+              annotations:
+                global_analogs: Kong Gateway
+                replacement_fit: partial
+                china_context: Strong fit for teams already on Alibaba Cloud-native infrastructure who want an Envoy-based API gateway rather than an OpenResty/Kong stack.
+                vendor_type: china-cloud
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: limited
+                metadata_name: "Higress"
+                primary_category: "Infrastructure & Edge"
+                official_website: "https://higress.ai/"
+                github: "https://github.com/alibaba/higress"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Higress is a cloud-native API gateway based on Envoy, commonly evaluated in Alibaba Cloud-native stacks as a Kong-style traffic entry alternative."
+                alternative_to: "China-market alternative or deployment route for: Kong Gateway."
+                global_alternatives: "Kong Gateway"
+                organization: "Alibaba Cloud / Higress"
+                organization_overview: "Higress is an Alibaba-origin open-source cloud-native API gateway project used for AI and microservice traffic management."
+                developer_docs: "https://higress.cn/en/docs/latest/overview/what-is-higress/"
+
   - category:
     name: Application Platform
     subcategories:
