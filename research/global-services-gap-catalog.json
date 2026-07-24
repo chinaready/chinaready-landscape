@@ -1338,6 +1338,13 @@
       "global_availability_in_china": "limited",
       "china_candidates": [
         {
+          "name": "AWS China Regions",
+          "homepage_url": "https://www.amazonaws.cn/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "landscape"
+        },
+        {
           "name": "Alibaba Cloud",
           "homepage_url": "https://www.alibabacloud.com/",
           "category": "Infrastructure & Edge",
@@ -1345,7 +1352,7 @@
           "source": "landscape"
         }
       ],
-      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "research_note": "For env0-managed Terraform in mainland China, prefer AWS China Regions as the primary cloud target. Alibaba Cloud is also workable because Terraform supports the Alibaba Cloud provider. Confirm compliance and operating constraints before production adoption.",
       "confidence": "researched"
     },
     {

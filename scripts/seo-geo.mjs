@@ -168,6 +168,42 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  env0: {
+    description: (availability, names) =>
+      clipMeta(
+        `env0 can run standard Terraform against AWS China (POC-verified). Prefer ${names.slice(0, 2).join(" or ")} as China cloud targets. Availability: ${availability}.`,
+      ),
+    lede: (availability) =>
+      `<strong>Quick answer:</strong> A practical Terraform POC confirmed that <strong>env0</strong> can authenticate to <strong>AWS China (<code>aws-cn</code>)</strong> and complete a standard plan / apply / state / destroy lifecycle with the official HashiCorp AWS provider. That check covers core Terraform execution — not a full evaluation of env0's advanced platform features. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China cloud targets for env0-managed Terraform",
+    guidanceHtml: `
+        <p>When env0 is already part of your Infrastructure as Code workflow, the practical China question is which mainland cloud target it should manage — not whether you must replace env0 itself.</p>
+        <ul>
+          <li><strong>AWS China Regions (preferred):</strong> For teams already on AWS + Terraform, AWS China is the first target to evaluate. env0 can drive the official Terraform AWS provider against the China partition for standard workflows.</li>
+          <li><strong>Alibaba Cloud (also workable):</strong> Terraform supports Alibaba Cloud through its provider, so env0 can also target Alibaba Cloud when that platform better fits the China architecture.</li>
+        </ul>
+        <p>What matters more than “can env0 manage AWS China?” is whether your product can be <strong>compliantly hosted and operated</strong> in mainland China — ICP/PSB filings, data residency, DNS/CDN, identity, payments, messaging, and the rest of the production stack. Chinaready helps teams assess that full China readiness path, not only the IaC control plane.</p>
+        <p>See the <a href="${REPO_URL}/tree/main/poc/env0">Terraform POC source</a> and the <a href="https://www.linkedin.com/pulse/verifying-env0-compatibility-aws-china-practical-terraform-martin-liu-9nwnc/">write-up on LinkedIn</a> for the verification details.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does env0 work with AWS China?",
+        answer: `For standard Terraform workflows, yes — a practical POC verified authentication to AWS China (aws-cn), resource create/read/destroy, and state management using the official HashiCorp AWS provider. Chinaready still labels env0 as ${availability} for mainland China use because that POC did not cover advanced env0 features (AssumeRole, OIDC, account integration, cost estimation, drift detection, policy as code, and similar).`,
+      },
+      {
+        question: "What China cloud should env0 manage?",
+        answer: `Prefer AWS China Regions when the team already standardizes on AWS and Terraform. Alibaba Cloud is also a workable target because Terraform supports the Alibaba Cloud provider. Chinaready Landscape currently lists: ${namesText}.`,
+      },
+      {
+        question: "Is Terraform success enough for a China product launch?",
+        answer:
+          "No. Successfully provisioning infrastructure in AWS China is only one milestone. Public hosting and operations typically also require compliance steps (such as ICP and PSB filings), China-compatible DNS/CDN, and China-ready choices for identity, payments, messaging, and observability. Infrastructure provisioning should not be confused with production readiness.",
+      },
+      {
+        question: "Where should teams go after confirming env0 can target AWS China?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent China cloud and platform services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond the IaC tool. If the China hosting path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
 };
 
 const ANALOG_ALIASES = {

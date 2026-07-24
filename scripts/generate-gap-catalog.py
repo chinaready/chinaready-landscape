@@ -139,7 +139,7 @@ OVERRIDES = {
     "barracuda": ["GeeTest", "Alibaba Cloud CAPTCHA"],
     "alert logic": ["Alibaba Cloud ARMS", "GeeTest"],
     "auvik": ["Alibaba Cloud ARMS"],
-    "env0": ["Alibaba Cloud"],
+    "env0": ["AWS China Regions", "Alibaba Cloud"],
     "docker hub": ["Alibaba Cloud"],
     "bitly": ["Alibaba Cloud"],
     "cloudflare analytics": ["Alibaba Cloud ARMS", "Umeng+"],
@@ -157,6 +157,13 @@ RESEARCH_NOTE = (
     "Research shortlist of China-market options commonly evaluated for this global service. "
     "Confirm replacement fit, compliance, and operating constraints before production adoption."
 )
+RESEARCH_NOTES = {
+    "env0": (
+        "For env0-managed Terraform in mainland China, prefer AWS China Regions as the primary cloud target. "
+        "Alibaba Cloud is also workable because Terraform supports the Alibaba Cloud provider. "
+        "Confirm compliance and operating constraints before production adoption."
+    ),
+}
 
 
 def normalize(value: str) -> str:
@@ -219,7 +226,7 @@ def main() -> None:
                 else:
                     candidates = resolve_names(names)
                     confidence = "researched"
-                    note = RESEARCH_NOTE
+                    note = RESEARCH_NOTES.get(override_key, RESEARCH_NOTE)
                 break
 
         availability = service.get("availability") or "Unknown"
