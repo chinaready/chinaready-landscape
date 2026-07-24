@@ -1403,14 +1403,39 @@
       "global_availability_in_china": "unavailable",
       "china_candidates": [
         {
-          "name": "Umeng+",
-          "homepage_url": "https://www.umeng.com/",
+          "name": "Pangle (穿山甲)",
+          "homepage_url": "https://www.csjplatform.com/",
           "category": "Growth, Content & Experience",
-          "subcategory": "Product Analytics & User Insights",
-          "source": "landscape"
+          "subcategory": "Mobile Ad Monetization",
+          "source": "research",
+          "note": "Backed by ByteDance; top-tier monetization efficiency (high eCPM) and exceptional fill rates driven by advanced recommendation algorithms."
+        },
+        {
+          "name": "Tencent Ads (优量汇)",
+          "homepage_url": "https://e.qq.com/dev/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile Ad Monetization",
+          "source": "research",
+          "note": "Operated by Tencent; massive, highly stable ad inventory by leveraging the WeChat and QQ social ecosystems."
+        },
+        {
+          "name": "Baidu Union (百度联盟)",
+          "homepage_url": "https://union.baidu.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile Ad Monetization",
+          "source": "research",
+          "note": "Powered by Baidu; excels in search-intent targeting and robust contextual ad placements."
+        },
+        {
+          "name": "Kuaishou Union (快手联盟)",
+          "homepage_url": "https://u.kuaishou.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile Ad Monetization",
+          "source": "research",
+          "note": "Developed by Kuaishou; highly engaging short-video ad formats with strong conversion rates and deep penetration in lower-tier Chinese markets."
         }
       ],
-      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "research_note": "Pure domestic China ad networks for mainland monetization when replacing Google AdMob. Confirm SDK access, settlement entity, and PIPL compliance before production adoption.",
       "confidence": "researched"
     },
     {

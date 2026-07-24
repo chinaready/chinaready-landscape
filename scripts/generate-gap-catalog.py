@@ -134,7 +134,12 @@ OVERRIDES = {
     "cordova": ["uni-app"],
     "xamarin": ["uni-app"],
     "apollo kotlin": ["uni-app"],
-    "google admob": ["Umeng+"],
+    "google admob": [
+        "Pangle (穿山甲)",
+        "Tencent Ads (优量汇)",
+        "Baidu Union (百度联盟)",
+        "Kuaishou Union (快手联盟)",
+    ],
     "crowdstrike": ["GeeTest", "Authing"],
     "barracuda": ["GeeTest", "Alibaba Cloud CAPTCHA"],
     "alert logic": ["Alibaba Cloud ARMS", "GeeTest"],
@@ -162,6 +167,11 @@ RESEARCH_NOTES = {
         "For env0-managed Terraform in mainland China, prefer AWS China Regions as the primary cloud target. "
         "Alibaba Cloud is also workable because Terraform supports the Alibaba Cloud provider. "
         "Confirm compliance and operating constraints before production adoption."
+    ),
+    "google admob": (
+        "Pure domestic China ad networks for mainland monetization when replacing Google AdMob. "
+        "Confirm SDK access, settlement entity, and PIPL compliance before production adoption. "
+        "AdMob is strongly discouraged for mainland users due to GFW latency, near-zero fill, and PIPL risk."
     ),
 }
 

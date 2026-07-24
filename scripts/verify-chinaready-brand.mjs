@@ -402,6 +402,24 @@ if (exists("build/alternatives/amazon-ses.html")) {
   assert(!/<h3><a[^>]*>Mailgun<\/a><\/h3>/.test(sesPage), "Amazon SES page must not list Mailgun as a China candidate");
 }
 
+if (exists("build/alternatives/google-admob.html")) {
+  const admobPage = read("build/alternatives/google-admob.html");
+  assert(admobPage.includes("Google AdMob alternatives in China"), "AdMob alternatives page must use an intent-matching H1");
+  assert(
+    admobPage.includes("cr-alt-availability-unavailable\">Unavailable</span>"),
+    "AdMob page must label mainland China availability as Unavailable",
+  );
+  assert(admobPage.includes("strongly discouraged"), "AdMob page must state AdMob is strongly discouraged for mainland China");
+  assert(admobPage.includes("Personal Information Protection Law"), "AdMob page must mention PIPL risk");
+  assert(admobPage.includes("Pure domestic monetization checklist"), "AdMob page must include the domestic monetization checklist");
+  assert(admobPage.includes("Pangle"), "AdMob page must map to Pangle");
+  assert(admobPage.includes("Tencent Ads") || admobPage.includes("优量汇"), "AdMob page must map to Tencent Ads");
+  assert(admobPage.includes("Baidu Union") || admobPage.includes("百度联盟"), "AdMob page must map to Baidu Union");
+  assert(admobPage.includes("Kuaishou Union") || admobPage.includes("快手联盟"), "AdMob page must map to Kuaishou Union");
+  assert(admobPage.includes("Chinese corporate entity in April 2006"), "AdMob page must keep shared Google China presence context");
+  assert(!admobPage.includes(">Umeng+</"), "AdMob page must not list Umeng+ as the primary monetization candidate");
+}
+
 assert(exists("build/assets/chinaready-alternatives.css"), "published alternatives stylesheet must exist");
 assert(exists("assets/chinaready-mark.svg"), "Chinaready mark favicon source asset is missing");
 assert(exists("assets/favicons/favicon.ico"), "pre-rendered favicon.ico asset is missing");

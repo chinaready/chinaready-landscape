@@ -220,6 +220,56 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  "google-admob": {
+    description: (availability, names) =>
+      clipMeta(
+        `Google AdMob is Unavailable for mainland China. GFW latency, near-zero fill, and PIPL risk make it strongly discouraged. Prefer ${names.slice(0, 3).join(", ")}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Google AdMob is <strong>Unavailable</strong> for mainland China users and is strongly discouraged. GFW filtering adds latency and lag, local inventory yields near-zero fill/revenue, and unauthorized cross-border data transfer risks PIPL enforcement and app-store removal. Map mainland monetization to <strong>${escapeHtml(names.slice(0, 4).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Google AdMob in mainland China",
+    sectionTitle: "Pure domestic monetization checklist",
+    guidanceHtml: () => `
+        <h3>Google's presence in mainland China</h3>
+        ${googleChinaGuidanceHtml()}
+        <h3>Why AdMob is strongly discouraged for mainland China users</h3>
+        <p>Integrating AdMob for users in mainland China is strongly discouraged due to three critical blockers:</p>
+        <ul>
+          <li><strong>GFW network filtering:</strong> high request latency and app lag.</li>
+          <li><strong>Near-zero local ad inventory:</strong> virtually no fill rate or revenue.</li>
+          <li><strong>PIPL compliance risk:</strong> unauthorized cross-border data transmission violates China's Personal Information Protection Law (PIPL), risking immediate app removal by regulators and app stores.</li>
+        </ul>
+        <h3>Pure domestic monetization checklist</h3>
+        <ul>
+          <li><strong>Pangle (穿山甲)</strong> — Backed by ByteDance; top-tier monetization efficiency (high eCPM) and exceptional fill rates driven by advanced recommendation algorithms.</li>
+          <li><strong>Tencent Ads (优量汇)</strong> — Operated by Tencent; massive, highly stable ad inventory via the WeChat and QQ social ecosystems.</li>
+          <li><strong>Baidu Union (百度联盟)</strong> — Powered by Baidu; strong search-intent targeting and contextual ad placements.</li>
+          <li><strong>Kuaishou Union (快手联盟)</strong> — Developed by Kuaishou; engaging short-video ad formats with strong conversion and deep lower-tier market penetration.</li>
+        </ul>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Google AdMob work in China?",
+        answer: `No for mainland China production monetization. Chinaready labels Google AdMob as ${availability}. Integrating AdMob for mainland users is strongly discouraged because GFW filtering causes high request latency and app lag, local inventory yields near-zero fill rate or revenue, and unauthorized cross-border data transmission violates China's Personal Information Protection Law (PIPL), risking regulatory and app-store removal.`,
+      },
+      {
+        question: "Why is Google AdMob strongly discouraged for mainland China users?",
+        answer:
+          "Three blockers dominate: GFW network filtering causes high request latency and app lag; near-zero local ad inventory yields virtually no fill rate or revenue; and unauthorized cross-border data transmission violates PIPL, risking immediate app removal by regulators and app stores.",
+      },
+      {
+        question: "What are the best China alternatives to Google AdMob?",
+        answer: `For pure domestic mainland monetization, Chinaready currently maps Google AdMob to ${namesText}. Prioritize Pangle (穿山甲) for eCPM and fill, Tencent Ads (优量汇) for WeChat/QQ inventory, Baidu Union (百度联盟) for search-intent and contextual placements, and Kuaishou Union (快手联盟) for short-video formats and lower-tier coverage. Treat this as a research shortlist and confirm SDK access, settlement entity, and PIPL compliance before production adoption.`,
+      },
+      {
+        question: "Which Google products are blocked in mainland China?",
+        answer: `Blocked consumer products commonly include ${GOOGLE_BLOCKED_PRODUCTS.join(", ")}. Google's mainland offices focus on enterprise (B2B) services, developer support for global expansion, and hardware manufacturing — including active lines such as ${GOOGLE_ACTIVE_BUSINESS_PRODUCTS.join(", ")}. AdMob is not a workable mainland consumer/ad-monetization path.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Google AdMob alternatives?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent growth and monetization services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the monetization path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
 };
 
 /**
@@ -340,6 +390,8 @@ const ANALOG_ALIASES = {
   "twilio sms": "Twilio SMS",
   "twilio video": "Twilio Video",
   "google fonts": "Google Fonts",
+  admob: "Google AdMob",
+  "google admob": "Google AdMob",
   "commerce platform apis": "Commerce platform APIs",
   launchdarkly: "LaunchDarkly",
   "firebase remote config": "Firebase Remote Config",
@@ -980,7 +1032,7 @@ function renderAnalogPage(group) {
         return `<article class="cr-alt-card">
         <h3>${href}</h3>
         <p class="cr-alt-meta">${escapeHtml(meta)}</p>
-        <p>${escapeHtml(group.research_note || "Research shortlist candidate for China-market evaluation.")}</p>
+        <p>${escapeHtml(item.note || group.research_note || "Research shortlist candidate for China-market evaluation.")}</p>
       </article>`;
       })
       .join("\n");
@@ -1017,11 +1069,13 @@ function renderAnalogPage(group) {
   ];
   const faq = editorial?.faq ? editorial.faq(availability, namesText) : defaultFaq;
 
-  const sectionTitle = hasMapped
-    ? "Mapped China-ready candidates"
-    : hasResearch
-      ? "Research shortlist for China"
-      : "Need a precise China recommendation?";
+  const sectionTitle = editorial?.sectionTitle
+    ? editorial.sectionTitle
+    : hasMapped
+      ? "Mapped China-ready candidates"
+      : hasResearch
+        ? "Research shortlist for China"
+        : "Need a precise China recommendation?";
 
   const lede = editorial?.lede
     ? editorial.lede(availability, names)
@@ -1031,11 +1085,13 @@ function renderAnalogPage(group) {
         ? `<strong>Quick answer:</strong> Teams comparing <strong>${escapeHtml(group.name)}</strong> for mainland China usually evaluate: <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>. Confirm fit before production adoption.`
         : `<strong>Quick answer:</strong> Chinaready currently maps <strong>${escapeHtml(group.name)}</strong> to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>. Review replacement fit below before changing architecture.`;
 
+  const guidanceHtml =
+    typeof editorial?.guidanceHtml === "function" ? editorial.guidanceHtml() : editorial?.guidanceHtml;
   const guidanceSection =
-    editorial?.guidanceTitle && editorial?.guidanceHtml
+    editorial?.guidanceTitle && guidanceHtml
       ? `<section class="cr-alt-guidance" aria-labelledby="guidance">
         <h2 id="guidance">${escapeHtml(editorial.guidanceTitle)}</h2>
-        ${editorial.guidanceHtml}
+        ${guidanceHtml}
       </section>`
       : "";
 
