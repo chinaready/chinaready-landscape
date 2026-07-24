@@ -1038,32 +1038,57 @@ landscape:
                 organization_overview: "Sensors Data provides product analytics, user behavior analysis, and data intelligence products."
                 developer_docs: "https://manual.sensorsdata.cn/"
           - item:
+            name: Baidu Tongji
+            homepage_url: https://tongji.baidu.com/
+            logo: baidu-tongji.svg
+            description: Baidu Tongji (百度统计) is Baidu's web analytics service for websites and H5 pages — the first-choice free traffic, SEO, and channel-source stack for mainland China web properties.
+            extra:
+              annotations:
+                global_analogs: Google Analytics
+                replacement_fit: direct
+                china_context: First-choice Google Analytics replacement for China websites and marketing landing pages. High free coverage, native Baidu Search SEO linkage, and Baidu paid-search/ad data in one workflow. Prefer Umeng+ when the primary surface is a native App.
+                vendor_type: china-saas
+                evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Baidu Tongji"
+                primary_category: "Growth, Content & Experience"
+                official_website: "https://tongji.baidu.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Baidu Tongji covers website and H5 traffic statistics, SEO effect tracking, and channel-source analysis for China web properties, including integration with Baidu Search and Baidu advertising data."
+                alternative_to: "China-market alternative or deployment route for: Google Analytics."
+                global_alternatives: "Google Analytics"
+                organization: "Baidu"
+                organization_overview: "Baidu Tongji is operated by Baidu, China's leading search and internet services company."
+                developer_docs: "https://tongji.baidu.com/"
+          - item:
             name: Umeng+
             homepage_url: https://www.umeng.com/
             logo: umeng-plus.svg
-            description: Umeng+ provides mobile analytics and user insight capabilities for China-market applications.
+            description: Umeng+ (友盟+) is Alibaba Group's mobile analytics platform and the industry standard for China App statistics — strong on device identification, retention, and mini-program / app-distribution channel monitoring.
             second_path:
               - Release, Quality & Operations / Crash Reporting & Performance Monitoring
               - Application Platform / Feature Flags & Remote Config
             extra:
               annotations:
-                global_analogs: Firebase Analytics, Mixpanel, Amplitude
+                global_analogs: Google Analytics, Firebase Analytics, Mixpanel, Amplitude
                 replacement_fit: direct
-                china_context: Umeng+ provides China-market mobile analytics and engagement tooling for apps operating in China.
+                china_context: Default Google Analytics / Firebase Analytics replacement when the product is a China App, mini-program, or H5-in-App experience. App SDK coverage across domestic distribution channels is extremely high. Prefer Baidu Tongji for standalone websites and SEO-led landing pages.
                 vendor_type: china-saas
                 evidence_level: high
                 availability_status: generally-available
-                global_availability_in_china: limited
+                global_availability_in_china: unavailable
                 metadata_name: "Umeng+"
                 primary_category: "Growth, Content & Experience"
                 official_website: "https://www.umeng.com/"
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
-                product_overview: "Umeng+ provides mobile analytics and user insight capabilities for China-market applications."
-                alternative_to: "China-market alternative or deployment route for: Firebase Analytics, Mixpanel, Amplitude."
-                global_alternatives: "Firebase Analytics, Mixpanel, Amplitude"
-                organization: "Umeng+"
-                organization_overview: "Umeng+ provides mobile analytics and developer services for China-market applications."
+                product_overview: "Umeng+ provides App and mini-program analytics, device identification, retention and funnel analysis, and distribution-channel monitoring for China-facing mobile products."
+                alternative_to: "China-market alternative or deployment route for: Google Analytics, Firebase Analytics, Mixpanel, Amplitude."
+                global_alternatives: "Google Analytics, Firebase Analytics, Mixpanel, Amplitude"
+                organization: "Umeng+ (Alibaba Group)"
+                organization_overview: "Umeng+ is operated by Umeng, a mobile data and marketing technology company under Alibaba Group."
                 developer_docs: "https://developer.umeng.com/docs/"
           - item:
             name: GrowingIO
@@ -1074,7 +1099,7 @@ landscape:
               annotations:
                 global_analogs: Google Analytics, FullStory, Microsoft Clarity, Mixpanel
                 replacement_fit: direct
-                china_context: GrowingIO is a China analytics alternative frequently considered when Google Analytics is unavailable for mainland product measurement.
+                china_context: Often shortlisted when teams need product-analytics depth beyond Baidu Tongji (web traffic/SEO) or Umeng+ (App retention/channels). Validate event taxonomy, consent flows, and activation tooling against your stack.
                 vendor_type: china-saas
                 evidence_level: medium
                 availability_status: generally-available

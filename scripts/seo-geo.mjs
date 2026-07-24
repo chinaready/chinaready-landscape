@@ -270,6 +270,50 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  "google-analytics": {
+    description: (availability, names) =>
+      clipMeta(
+        `Google Analytics is Unavailable for mainland China web/App traffic. Prefer Baidu Tongji for websites and Umeng+ for Apps. Compare ${names.slice(0, 3).join(", ")}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Google Analytics is <strong>Unavailable</strong> for reliable mainland China traffic measurement. For routine website, H5, and App monitoring — plus SEO effect tracking and channel-source analysis — map to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Prefer <strong>Baidu Tongji</strong> for web/H5 and <strong>Umeng+</strong> for native Apps. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Google Analytics in mainland China",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: () => `
+        <h3>Google's presence in mainland China</h3>
+        ${googleChinaGuidanceHtml()}
+        <h3>What this page covers</h3>
+        <p>Use these options for routine traffic monitoring on websites, H5, and Apps, plus SEO effect tracking and channel-source analysis inside mainland China — where Google Analytics collection and reporting are unreliable or blocked.</p>
+        <h3>Choose by surface</h3>
+        <ul>
+          <li><strong>Baidu Tongji (百度统计)</strong> — Operated by Baidu; the first choice for domestic web (Web) traffic statistics. High free coverage, seamless linkage to Baidu Search SEO and Baidu paid-search/ad data. Best fit for small-to-mid websites and marketing landing pages.</li>
+          <li><strong>Umeng+ (友盟+)</strong> — Under Alibaba Group; the industry standard for domestic mobile App statistics. Extremely high App SDK coverage across China distribution channels; strong at device identification, App retention analysis, and mini-program / app-distribution channel monitoring.</li>
+          <li><strong>GrowingIO</strong> — Product-analytics depth beyond basic web traffic or App retention dashboards when teams need richer event models and activation workflows.</li>
+        </ul>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Google Analytics work in China?",
+        answer: `No for reliable mainland China production measurement. Chinaready labels Google Analytics as ${availability}. Collection and reporting for mainland users are blocked or unreliable, so teams should plan a domestic analytics stack for websites, H5, and Apps.`,
+      },
+      {
+        question: "What are the best China alternatives to Google Analytics?",
+        answer: `Chinaready Landscape currently maps Google Analytics to ${namesText}. Prefer Baidu Tongji (百度统计) for website/H5 SEO and channel analytics, and Umeng+ (友盟+) for App retention and distribution-channel measurement. GrowingIO is useful when you need deeper product analytics. Treat this as a research shortlist and confirm consent, PIPL, and event taxonomy before production adoption.`,
+      },
+      {
+        question: "Should I use Baidu Tongji or Umeng+?",
+        answer:
+          "Choose by surface. Baidu Tongji is the first choice for China websites and marketing landing pages, with strong Baidu Search SEO and Baidu ads linkage. Umeng+ is the industry standard for China Apps, with high SDK coverage for device identification, retention, and mini-program / app-distribution channel monitoring.",
+      },
+      {
+        question: "Which Google products are blocked in mainland China?",
+        answer: `Blocked consumer products commonly include ${GOOGLE_BLOCKED_PRODUCTS.join(", ")}. Google's mainland offices focus on enterprise (B2B) services, developer support for global expansion, and hardware manufacturing — including active lines such as ${GOOGLE_ACTIVE_BUSINESS_PRODUCTS.join(", ")}. Google Analytics is not a workable mainland traffic-measurement path.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Google Analytics alternatives?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent growth and analytics services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the analytics path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
 };
 
 /**

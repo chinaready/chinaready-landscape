@@ -200,6 +200,8 @@ categories:
           Use this category for analytics platforms and user behavior insight products.
 
           Typical global services: [Google Analytics](/alternatives/google-analytics.html), [Mixpanel](/alternatives/mixpanel.html), [Amplitude](/alternatives/amplitude.html), [PostHog](/alternatives/posthog.html), [Firebase Analytics](/alternatives/firebase-analytics.html).
+
+          For Google Analytics replacements, choose by surface: [Baidu Tongji](https://tongji.baidu.com/) for website/H5 SEO and channel analytics, and [Umeng+](https://www.umeng.com/) for App retention and distribution-channel measurement. See the [Google Analytics alternatives map](/alternatives/google-analytics.html).
       - subcategory: "Location & Map Services"
         content: |
           Use this category for map, location, geocoding, routing, and navigation APIs.

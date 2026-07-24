@@ -421,6 +421,21 @@ if (exists("build/alternatives/google-admob.html")) {
   assert(!admobPage.includes(">Umeng+</"), "AdMob page must not list Umeng+ as the primary monetization candidate");
 }
 
+if (exists("build/alternatives/google-analytics.html")) {
+  const gaPage = read("build/alternatives/google-analytics.html");
+  assert(gaPage.includes("Google Analytics alternatives in China"), "GA alternatives page must use an intent-matching H1");
+  assert(
+    gaPage.includes("cr-alt-availability-unavailable\">Unavailable</span>"),
+    "GA page must label mainland China availability as Unavailable",
+  );
+  assert(gaPage.includes("Choose by surface"), "GA page must include web vs App surface guidance");
+  assert(gaPage.includes("Baidu Tongji") || gaPage.includes("百度统计"), "GA page must map to Baidu Tongji");
+  assert(gaPage.includes("Umeng+") || gaPage.includes("友盟+"), "GA page must map to Umeng+");
+  assert(gaPage.includes("GrowingIO"), "GA page must keep GrowingIO as a product-analytics option");
+  assert(gaPage.includes("Chinese corporate entity in April 2006"), "GA page must keep shared Google China presence context");
+  assert(gaPage.includes("SEO effect tracking") || gaPage.includes("channel-source"), "GA page must mention SEO/channel analytics use cases");
+}
+
 assert(exists("build/assets/chinaready-alternatives.css"), "published alternatives stylesheet must exist");
 assert(exists("assets/chinaready-mark.svg"), "Chinaready mark favicon source asset is missing");
 assert(exists("assets/favicons/favicon.ico"), "pre-rendered favicon.ico asset is missing");
