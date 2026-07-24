@@ -327,6 +327,21 @@ if (exists("build/alternatives/index.html")) {
   const grpcPage = read("build/alternatives/grpc.html");
   assert(grpcPage.includes("Contact Chinaready"), "uncertain alternatives pages must invite readers to contact Chinaready");
   assert(grpcPage.includes("Availability in China"), "gap alternatives pages must show Availability in China");
+  assert(exists("build/alternatives/kong-gateway.html"), "Kong Gateway must have a dedicated alternatives page");
+  const kongPage = read("build/alternatives/kong-gateway.html");
+  assert(kongPage.includes("Apache APISIX"), "Kong page must list Apache APISIX");
+  assert(kongPage.includes("Flomesh"), "Kong page must list Flomesh");
+  assert(kongPage.includes("Higress"), "Kong page must list Higress");
+  assert(!kongPage.includes("AWS China Regions"), "Kong page must not use cloud-platform heuristic candidates");
+  assert(
+    kongPage.includes("self-host") || kongPage.includes("self-hosted") || kongPage.includes("On-Premise") || kongPage.includes("on-premise"),
+    "Kong page must explain self-hosted Kong viability",
+  );
+  assert(
+    kongPage.includes("Konnect") || kongPage.includes("control plane") || kongPage.includes("control-plane"),
+    "Kong page must call out Konnect / control-plane constraints",
+  );
+  assert(kongPage.includes("cr-alt-guidance") || kongPage.includes("id=\"guidance\""), "Kong page must include editorial guidance");
 }
 
 if (exists("build/alternatives/firebase.html")) {
@@ -531,7 +546,7 @@ if (exists("build/data/base.json")) {
   assert(baseSearchText("JPush").match(/\bFCM\b/i), "base.json search index tags must let FCM find JPush");
   const subcategoryCount = base.categories.reduce((total, category) => total + category.subcategories.length, 0);
   assert(base.categories.length === 6, "base.json must expose all 6 top-level categories");
-  assert(subcategoryCount === 21, "base.json must expose all 21 subcategories");
+  assert(subcategoryCount === 22, "base.json must expose all 22 subcategories");
   assert(!base.groups || base.groups.length === 0, "base.json must not define groups so no group tab is selected by default");
 
   const visibleSubcategories = new Set();
