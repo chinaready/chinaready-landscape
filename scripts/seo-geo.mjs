@@ -35,6 +35,7 @@ const CHINA_AVAILABILITY_LABELS = {
   limited: "Limited",
   unavailable: "Unavailable",
   unknown: "Unknown",
+  "supported-terraform": "Supported (Terraform workflows)",
 };
 
 const CONTACT_CHINAREADY_URL = `${MAIN_SITE_URL}/book-call`;
@@ -43,6 +44,7 @@ const GAP_CATALOG_RELATIVE = "research/global-services-gap-catalog.json";
 const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   onesignal: "limited",
   "amazon-ses": "unavailable",
+  env0: "supported-terraform",
 };
 
 /**
@@ -169,12 +171,12 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   env0: {
-    description: (availability, names) =>
+    description: () =>
       clipMeta(
-        `env0 can run standard Terraform against AWS China (POC-verified). Prefer ${names.slice(0, 2).join(" or ")} as China cloud targets. Availability: ${availability}.`,
+        "env0 does not officially list AWS China as a supported cloud environment, but Terraform deployments using the AWS China partition (aws-cn) have been successfully verified. Standard Terraform workflows including authentication, resource creation, state management, and destroy operations work as expected.",
       ),
     lede: (availability) =>
-      `<strong>Quick answer:</strong> A practical Terraform POC confirmed that <strong>env0</strong> can authenticate to <strong>AWS China (<code>aws-cn</code>)</strong> and complete a standard plan / apply / state / destroy lifecycle with the official HashiCorp AWS provider. That check covers core Terraform execution — not a full evaluation of env0's advanced platform features. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+      `<strong>Quick answer:</strong> env0 does not officially list AWS China as a supported cloud environment, but Terraform deployments using the AWS China partition (<code>aws-cn</code>) have been successfully verified. Standard Terraform workflows including authentication, resource creation, state management, and destroy operations work as expected. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
     guidanceTitle: "China cloud targets for env0-managed Terraform",
     guidanceHtml: `
         <p>When env0 is already part of your Infrastructure as Code workflow, the practical China question is which mainland cloud target it should manage — not whether you must replace env0 itself.</p>
@@ -187,7 +189,7 @@ const EDITORIAL_OVERRIDES = {
     faq: (availability, namesText) => [
       {
         question: "Does env0 work with AWS China?",
-        answer: `For standard Terraform workflows, yes — a practical POC verified authentication to AWS China (aws-cn), resource create/read/destroy, and state management using the official HashiCorp AWS provider. Chinaready still labels env0 as ${availability} for mainland China use because that POC did not cover advanced env0 features (AssumeRole, OIDC, account integration, cost estimation, drift detection, policy as code, and similar).`,
+        answer: `env0 does not officially list AWS China as a supported cloud environment, but standard Terraform workflows against the AWS China partition (aws-cn) have been successfully verified — including authentication, resource creation, state management, and destroy. Chinaready labels env0 as ${availability}. Advanced env0 platform features (AssumeRole, OIDC, account integration, cost estimation, drift detection, policy as code, and similar) were not part of that verification.`,
       },
       {
         question: "What China cloud should env0 manage?",
@@ -1153,7 +1155,7 @@ ${top
 - Lead with a direct answer: availability in China, then named China candidates when known.
 - State that coverage is source-backed but incomplete; empty subcategories exist by design.
 - Distinguish direct alternatives, China-region deployments, partial substitutes, and ecosystem-specific routes.
-- Availability in China labels (Available / Limited / Unavailable) reflect Chinaready research when present.
+- Availability in China labels (Available / Limited / Unavailable / Supported) reflect Chinaready research when present.
 - Link readers to ${MAIN_SITE_URL} for launch process, compliance, and go-to-market context beyond vendor selection.
 - Source repository: ${REPO_URL}
 `;

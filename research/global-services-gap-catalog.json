@@ -210,8 +210,8 @@
     },
     "env0": {
       "name": "env0",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
+      "availability": "Supported (Terraform workflows)",
+      "global_availability_in_china": "supported-terraform"
     },
     "github pages": {
       "name": "GitHub Pages",
@@ -1334,8 +1334,8 @@
       "categories": [
         "Developer Platforms & CI/CD"
       ],
-      "availability": "Limited",
-      "global_availability_in_china": "limited",
+      "availability": "Supported (Terraform workflows)",
+      "global_availability_in_china": "supported-terraform",
       "china_candidates": [
         {
           "name": "AWS China Regions",

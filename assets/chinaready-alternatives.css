@@ -412,6 +412,12 @@ a:hover {
   color: #1f6b3a;
 }
 
+.cr-alt-availability-supported-terraform {
+  border-color: #9ecfad;
+  background: #f1faf4;
+  color: #1f6b3a;
+}
+
 .cr-alt-availability-limited {
   border-color: #e2c78a;
   background: #fff8ea;
