@@ -49,8 +49,11 @@ a:hover {
   z-index: 10;
 }
 
-/* Match landscape2 desktop header chrome */
+/* Match landscape2 desktop header chrome (sticky top:0 like Explore/Guide) */
 .cr-site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1040;
   flex-shrink: 0;
   background: var(--cr-background);
   border-bottom: 1px solid var(--cr-border);
@@ -487,6 +490,13 @@ a:hover {
   background: var(--cr-surface);
   border-top: 1px solid var(--cr-border);
   padding-bottom: env(safe-area-inset-bottom, 0);
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.cr-alt-sticky-cta.is-away {
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .cr-alt-sticky-cta-inner {
@@ -538,6 +548,10 @@ a:hover {
 
 .cr-alt-body--sticky .cr-site-footer {
   padding-bottom: calc(96px + env(safe-area-inset-bottom, 0));
+}
+
+.cr-alt-body--sticky.cr-alt-sticky-cta-away .cr-site-footer {
+  padding-bottom: 0;
 }
 
 @media (max-width: 720px) {

@@ -170,6 +170,30 @@ assert(!gapCatalogSource.match(legacySourceBrandPattern), "gap catalog must not 
 assert(!gapCatalogSource.includes("aic_"), "gap catalog must not keep legacy research field prefixes");
 assert(exists("assets/chinaready-alternatives.css"), "alternatives page stylesheet is missing");
 assert(exists("assets/chinaready-alternatives-search.js"), "alternatives shared search script is missing");
+const alternativesCss = read("assets/chinaready-alternatives.css");
+assert(
+  /\.cr-site-header\s*\{[^}]*position:\s*sticky/s.test(alternativesCss),
+  "alternatives header must be position:sticky like Explore/Guide",
+);
+assert(alternativesCss.includes("top: 0"), "alternatives sticky header must pin to top: 0");
+assert(alternativesCss.includes(".cr-alt-sticky-cta.is-away"), "alternatives CSS must hide sticky CTA when footer is visible");
+assert(
+  alternativesCss.includes(".cr-alt-body--sticky.cr-alt-sticky-cta-away .cr-site-footer"),
+  "alternatives CSS must clear footer padding while sticky CTA is away",
+);
+const alternativesSearchJs = read("assets/chinaready-alternatives-search.js");
+assert(
+  alternativesSearchJs.includes("bindStickyCtaHideOnFooter"),
+  "alternatives search script must bind sticky CTA hide-on-footer behavior",
+);
+assert(
+  alternativesSearchJs.includes("IntersectionObserver"),
+  "sticky CTA hide-on-footer must use IntersectionObserver against the footer",
+);
+assert(
+  alternativesSearchJs.includes('classList.toggle("is-away"') || alternativesSearchJs.includes("classList.toggle('is-away'"),
+  "sticky CTA hide-on-footer must toggle is-away class",
+);
 assert(settings.includes("Firebase, FCM, AWS, Stripe"), "settings.yml description must target high-intent alternative keywords");
 assert(headerLogo.includes('font-size="24"'), "header logo must use a larger Chinaready Landscape wordmark");
 assert(!headerLogo.includes(">Chinaready</text>"), "header logo text must be a single-line Chinaready Landscape lockup");
