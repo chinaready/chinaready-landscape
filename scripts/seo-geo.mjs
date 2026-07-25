@@ -908,6 +908,8 @@ function analogPageDescription(group, availability, names, uncertain) {
 
 function pageShell({ title, description, canonicalPath, body, jsonLd = [], breadcrumbs = [], activeNav = "global", stickyCta = "" }) {
   const canonical = `${SITE_URL}${canonicalPath}`;
+  const hasStickyCta = stickyCta.trim().length > 0;
+  const bodyClass = hasStickyCta ? "cr-alt-body cr-alt-body--sticky" : "cr-alt-body";
   const breadcrumbLd =
     breadcrumbs.length > 0
       ? {
@@ -951,7 +953,7 @@ function pageShell({ title, description, canonicalPath, body, jsonLd = [], bread
   ${allLd.map((block) => `<script type="application/ld+json">${JSON.stringify(block)}</script>`).join("\n  ")}
   ${googleTagSnippet()}
 </head>
-<body class="cr-alt-body">
+<body class="${bodyClass}">
   <a class="cr-skip" href="#main">Skip to content</a>
   ${renderSharedHeader({ activeNav })}
   <main id="main" class="cr-alt-main">

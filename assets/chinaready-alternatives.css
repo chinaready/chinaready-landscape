@@ -535,6 +535,10 @@ a:hover {
   margin-top: auto;
 }
 
+.cr-alt-body--sticky .cr-site-footer {
+  padding-bottom: calc(96px + env(safe-area-inset-bottom, 0));
+}
+
 @media (max-width: 720px) {
   .cr-site-header-inner {
     flex-wrap: wrap;
