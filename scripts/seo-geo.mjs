@@ -39,8 +39,8 @@ const CHINA_AVAILABILITY_LABELS = {
 };
 
 const CONTACT_CHINAREADY_URL = `${MAIN_SITE_URL}/book-call`;
-const GET_HELP_URL = `${MAIN_SITE_URL}/contact/`;
-const INTAKE_ASSESSMENT_URL = `${MAIN_SITE_URL}/intake/`;
+const GET_HELP_URL = "https://chinaready.co/contact/";
+const INTAKE_ASSESSMENT_URL = "https://chinaready.co/intake/";
 const GAP_CATALOG_RELATIVE = "research/global-services-gap-catalog.json";
 const GA_MEASUREMENT_ID = "G-4BXLJXM1DY";
 
