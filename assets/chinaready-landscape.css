@@ -220,6 +220,34 @@ a[data-chinaready-global-nav] {
   text-decoration: none !important;
 }
 
+header a.cr-site-get-help,
+.navbar a.cr-site-get-help,
+.header a.cr-site-get-help {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+  min-height: 36px;
+  padding: 0 14px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #005bac !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+header a.cr-site-get-help:hover,
+.navbar a.cr-site-get-help:hover,
+.header a.cr-site-get-help:hover {
+  background: #004a8f !important;
+  color: #ffffff !important;
+}
+
 a.cr-guide-global-link,
 a[data-chinaready-global-menu] {
   display: block !important;

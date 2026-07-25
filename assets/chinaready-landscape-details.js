@@ -158,6 +158,36 @@
     }
   }
 
+  function enhanceHeaderGetHelp() {
+    const headers = document.querySelectorAll("header, .navbar, .header");
+    for (const header of headers) {
+      if (header.dataset.chinareadyGetHelp === "ready") continue;
+
+      const githubLink = header.querySelector(
+        'a[href*="github.com/chinaready/chinaready-landscape"], a[aria-label="Open GitHub link"]',
+      );
+
+      const getHelp = document.createElement("a");
+      getHelp.className = "cr-site-get-help";
+      getHelp.href = "https://chinaready.co/contact/";
+      getHelp.target = "_blank";
+      getHelp.rel = "noopener noreferrer";
+      getHelp.textContent = "Get help";
+
+      if (githubLink) {
+        githubLink.replaceWith(getHelp);
+      } else {
+        const actions =
+          header.querySelector(".cr-site-header-actions") ||
+          header.querySelector("nav")?.parentElement ||
+          header;
+        actions.append(getHelp);
+      }
+
+      header.dataset.chinareadyGetHelp = "ready";
+    }
+  }
+
   function enhanceHeaderGlobalNav() {
     const headers = Array.from(document.querySelectorAll("header"));
     for (const header of headers) {
@@ -618,6 +648,7 @@
     forceStaticPageNavigation();
     enhanceFooter();
     enhanceHeaderGlobalNav();
+    enhanceHeaderGetHelp();
     enhanceGuideGlobalMenu();
 
     const dialogs = candidateDialogs();
@@ -664,6 +695,7 @@
   window.requestAnimationFrame(() => {
     enhanceFooter();
     enhanceHeaderGlobalNav();
+    enhanceHeaderGetHelp();
     enhanceGuideGlobalMenu();
   });
 })();
