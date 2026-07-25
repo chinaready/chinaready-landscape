@@ -928,6 +928,31 @@ landscape:
                 organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
                 developer_docs: "https://help.aliyun.com/zh/sms/"
           - item:
+            name: JPush SMS
+            homepage_url: https://www.jiguang.cn/sms
+            logo: jpush-sms.svg
+            description: JPush SMS (极光短信 / JSMS) provides China SMS verification, notification, and marketing delivery with carrier-integrated channels and REST APIs.
+            extra:
+              annotations:
+                global_analogs: Twilio SMS, AWS SNS, MessageBird
+                replacement_fit: direct
+                china_context: Jiguang SMS product for mainland China when Twilio SMS is unavailable. Covers text/voice verification codes, template notifications, and marketing SMS over China carrier channels, with REST API and console access. Strong fit for teams already using JPush who need SMS fallback or standalone SMS OTP/notification workflows.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: limited
+                metadata_name: "JPush SMS"
+                primary_category: "Engagement & Communication"
+                official_website: "https://www.jiguang.cn/sms"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "JPush SMS (极光短信 / JSMS) provides China SMS verification, notification, and marketing delivery with carrier-integrated channels and REST APIs."
+                alternative_to: "China-market alternative or deployment route for: Twilio SMS, AWS SNS, MessageBird."
+                global_alternatives: "Twilio SMS, AWS SNS, MessageBird"
+                organization: "Jiguang"
+                organization_overview: "Jiguang provides mobile developer services including push notification, SMS, analytics, and engagement infrastructure."
+                developer_docs: "https://docs.jiguang.cn/jsms"
+          - item:
             name: Alibaba Cloud DirectMail
             homepage_url: https://www.aliyun.com/product/directmail
             logo: alibaba-cloud-directmail.svg
@@ -1039,7 +1064,7 @@ landscape:
               annotations:
                 global_analogs: Twilio Voice
                 replacement_fit: direct
-                china_context: Current Chinaready-mapped China option when Twilio Voice is unavailable for mainland China. Covers voice notification, voice OTP/verification, IVR interaction, and related calling workflows through China carrier networks. Number provisioning and template/script approval are required before production use.
+                china_context: China-market voice option when Twilio Voice is unavailable for mainland China. Covers voice notification, voice OTP/verification, IVR interaction, and related calling workflows through China carrier networks. Number provisioning and template/script approval are required before production use.
                 vendor_type: china-cloud
                 evidence_level: medium
                 availability_status: generally-available
@@ -1055,6 +1080,31 @@ landscape:
                 organization: "Alibaba Cloud"
                 organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
                 developer_docs: "http://help.aliyun.com/zh/vms/product-overview/what-is-voice-service?spm=a2c4g.11174283.0.0.6f2d7ff9WtmXiL"
+          - item:
+            name: Tencent Cloud VMS
+            homepage_url: https://cloud.tencent.com/product/vms
+            logo: tencent-cloud-vms.svg
+            description: Tencent Cloud VMS (语音消息) provides China voice verification codes, voice notifications, and voice alerts over Tencent Cloud voice dedicated lines.
+            extra:
+              annotations:
+                global_analogs: Twilio Voice
+                replacement_fit: direct
+                china_context: Tencent Cloud Voice Message Service (VMS) closely parallels Alibaba Cloud VMS for mainland China when Twilio Voice is unavailable. Delivers voice OTP, voice notification, and voice alert workflows with high reach and low latency over Tencent Cloud voice dedicated lines; supports high concurrency (same infrastructure class as QQ/WeChat scale), dynamic variable templates, intelligent scheduling across regions and carriers, API/SDK/console access, and multi-dimension delivery analytics. Enterprise users only — enterprise real-name verification required.
+                vendor_type: china-cloud
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Tencent Cloud VMS"
+                primary_category: "Engagement & Communication"
+                official_website: "https://cloud.tencent.com/product/vms"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Tencent Cloud VMS (语音消息) provides China voice verification codes, voice notifications, and voice alerts over Tencent Cloud voice dedicated lines, with high reach, low latency, dynamic templates, intelligent scheduling, and multi-dimension analytics. Enterprise users only."
+                alternative_to: "China-market alternative or deployment route for: Twilio Voice."
+                global_alternatives: "Twilio Voice"
+                organization: "Tencent Cloud"
+                organization_overview: "Tencent Cloud provides infrastructure, application, data, security, and developer platform services for China and global workloads."
+                developer_docs: "https://cloud.tencent.com/document/product/1128/37378"
       - subcategory:
         name: Customer Support & In-App Messaging
         items:

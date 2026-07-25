@@ -482,6 +482,7 @@ if (exists("build/alternatives/twilio-sms.html")) {
     "Twilio SMS page must link to Twilio PRC messaging restrictions",
   );
   assert(twilioSmsPage.includes("Alibaba Cloud SMS"), "Twilio SMS page must map to Alibaba Cloud SMS");
+  assert(twilioSmsPage.includes("JPush SMS"), "Twilio SMS page must map to JPush SMS");
 }
 
 if (exists("build/alternatives/twilio-video.html")) {
@@ -506,10 +507,12 @@ if (exists("build/alternatives/twilio-voice.html")) {
     "Twilio Voice page must link to Twilio Calling Limitations to China",
   );
   assert(twilioVoicePage.includes("Alibaba Cloud VMS"), "Twilio Voice page must map to Alibaba Cloud VMS");
+  assert(twilioVoicePage.includes("Tencent Cloud VMS"), "Twilio Voice page must map to Tencent Cloud VMS");
   assert(
     twilioVoicePage.includes("http://help.aliyun.com/zh/vms/product-overview/what-is-voice-service"),
     "Twilio Voice page must link to Alibaba Cloud VMS overview",
   );
+  assert(twilioVoicePage.includes("enterprise"), "Twilio Voice page must note Tencent Cloud VMS is enterprise-only");
 }
 
 if (exists("build/alternatives/google-admob.html")) {

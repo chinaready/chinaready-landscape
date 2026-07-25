@@ -208,7 +208,7 @@ const EDITORIAL_OVERRIDES = {
     guidanceHtml: `
         <p>Chinaready marks Twilio SMS as <strong>Unavailable</strong> for mainland China. Twilio's official <a href="${TWILIO_PRC_MESSAGING_RESTRICTIONS_URL}" target="_blank" rel="noopener noreferrer">PRC messaging restrictions</a> (last updated March 30, 2021) define the China messaging constraints that make reliable production delivery impractical. Treat that date as the cutoff for planning: do not depend on Twilio for China SMS; use a China-market SMS option instead.</p>
         <p>Official notice: <a href="${TWILIO_PRC_MESSAGING_RESTRICTIONS_URL}" target="_blank" rel="noopener noreferrer">${TWILIO_PRC_MESSAGING_RESTRICTIONS_URL}</a></p>
-        <p>The shortlist below focuses on China-licensed SMS providers that can cover verification and notification workflows inside mainland China.</p>`,
+        <p>The shortlist below focuses on China-licensed SMS providers that can cover verification and notification workflows inside mainland China — including <strong>Alibaba Cloud SMS</strong> and <strong>JPush SMS</strong> (极光短信 / JSMS).</p>`,
     faq: (availability, namesText) => [
       {
         question: "Does Twilio SMS work in China?",
@@ -216,7 +216,7 @@ const EDITORIAL_OVERRIDES = {
       },
       {
         question: "What are the best China alternatives to Twilio SMS?",
-        answer: `Chinaready Landscape currently maps Twilio SMS to ${namesText}. Prefer China-licensed SMS providers for verification codes and notifications. Replacement fit varies by product, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+        answer: `Chinaready Landscape currently maps Twilio SMS to ${namesText}. Prefer China-licensed SMS providers such as Alibaba Cloud SMS and JPush SMS for verification codes and notifications. Replacement fit varies by product, so treat this as a research shortlist rather than a one-to-one endorsement.`,
       },
       {
         question: "Where should teams go after shortlisting Twilio SMS alternatives?",
@@ -263,7 +263,11 @@ const EDITORIAL_OVERRIDES = {
     guidanceHtml: `
         <p>Chinaready marks Twilio Voice as <strong>Unavailable</strong> for mainland China. Per Twilio's <a href="${TWILIO_CHINA_CALLING_LIMITATIONS_URL}" target="_blank" rel="noopener noreferrer">Calling Limitations to China</a> guidance, China voice routes are constrained by local regulations: outbound calls to Mainland China are not supported, and shorter contact use cases (OTP voice calls, brief voice alerts, and similar) are incompatible with those rules.</p>
         <p>Official notice: <a href="${TWILIO_CHINA_CALLING_LIMITATIONS_URL}" target="_blank" rel="noopener noreferrer">${TWILIO_CHINA_CALLING_LIMITATIONS_URL}</a></p>
-        <p>For voice notifications, voice verification codes, and related China calling workflows, Chinaready currently maps Twilio Voice to <strong>Alibaba Cloud VMS (语音服务)</strong> as the only listed option. See the <a href="${ALIBABA_CLOUD_VMS_OVERVIEW_URL}" target="_blank" rel="noopener noreferrer">Alibaba Cloud Voice Service overview</a> for product scope (voice notification, voice OTP, IVR, and related capabilities).</p>`,
+        <p>For voice notifications, voice verification codes, and related China calling workflows, Chinaready currently maps Twilio Voice to <strong>Alibaba Cloud VMS (语音服务)</strong> and <strong>Tencent Cloud VMS (语音消息)</strong>.</p>
+        <ul>
+          <li><strong>Alibaba Cloud VMS</strong> — voice notification, voice OTP, IVR, and related carrier-integrated calling. See the <a href="${ALIBABA_CLOUD_VMS_OVERVIEW_URL}" target="_blank" rel="noopener noreferrer">Alibaba Cloud Voice Service overview</a>.</li>
+          <li><strong>Tencent Cloud VMS</strong> — closely parallels Alibaba Cloud VMS for voice OTP, voice notification, and voice alerts. Delivers over Tencent Cloud voice dedicated lines with high reach and low latency; supports high concurrency, dynamic variable templates, intelligent multi-region/carrier scheduling, API/SDK/console access, and multi-dimension analytics. Enterprise users only.</li>
+        </ul>`,
     faq: (availability, namesText) => [
       {
         question: "Does Twilio Voice work in China?",
@@ -271,7 +275,7 @@ const EDITORIAL_OVERRIDES = {
       },
       {
         question: "What are the best China alternatives to Twilio Voice?",
-        answer: `Chinaready Landscape currently maps Twilio Voice to ${namesText}. Alibaba Cloud VMS is the only listed China option for voice notification, voice verification, and related calling workflows. Confirm number provisioning, template approval, and compliance requirements before production adoption.`,
+        answer: `Chinaready Landscape currently maps Twilio Voice to ${namesText}. Prefer Alibaba Cloud VMS or Tencent Cloud VMS for voice notification, voice verification, and related calling workflows. Tencent Cloud VMS is enterprise-only and closely parallels Alibaba Cloud VMS. Confirm number provisioning, template approval, and compliance requirements before production adoption.`,
       },
       {
         question: "Where should teams go after shortlisting Twilio Voice alternatives?",
