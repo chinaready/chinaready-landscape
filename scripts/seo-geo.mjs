@@ -1233,16 +1233,6 @@ ${cards}
         </div>`,
           )
           .join("\n")}
-      </section>
-      <section class="cr-alt-next" aria-labelledby="next">
-        <h2 id="next">Next reading</h2>
-        <ul>
-          <li><a href="/alternatives/">Browse all China alternatives</a></li>
-          <li><a href="${SITE_URL}/">Open the interactive Chinaready Landscape</a></li>
-          <li><a href="${SITE_URL}/guide">Read the landscape guide</a></li>
-          <li><a href="${MAIN_SITE_URL}">Learn the broader China launch model on chinaready.co</a></li>
-          <li><a href="${CONTACT_CHINAREADY_URL}">Contact Chinaready for a precise stack recommendation</a></li>
-        </ul>
       </section>`;
 
   const listItems = hasMapped

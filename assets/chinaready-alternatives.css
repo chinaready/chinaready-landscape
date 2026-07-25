@@ -473,14 +473,6 @@ a:hover {
   margin-top: 12px;
 }
 
-.cr-alt-next {
-  margin-top: 8px;
-  padding: 18px 20px;
-  background: var(--cr-surface);
-  border: 1px solid var(--cr-border);
-  border-radius: 8px;
-}
-
 .cr-alt-sticky-cta {
   position: fixed;
   left: 0;

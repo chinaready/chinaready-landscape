@@ -163,6 +163,8 @@ assert(seoGeoScript.includes("cr-alt-sticky-cta"), "seo-geo must define alternat
 assert(seoGeoScript.includes("Not sure which option fits your stack?"), "seo-geo sticky must use approved support copy");
 assert(seoGeoScript.includes("Start assessment"), "seo-geo sticky must use Start assessment label");
 assert(seoGeoScript.includes("https://chinaready.co/intake/"), "seo-geo sticky must link to /intake/");
+assert(!seoGeoScript.includes("Next reading"), "seo-geo alternatives detail pages must not render Next reading");
+assert(!seoGeoScript.includes("cr-alt-next"), "seo-geo must not emit the Next reading section class");
 assert(exists("research/global-services-gap-catalog.json"), "gap catalog for taxonomy-relevant global services is missing");
 assert(!exists("research/aic-technologies-hub.json"), "legacy third-party research snapshot must be removed");
 const gapCatalogSource = read("research/global-services-gap-catalog.json");
@@ -461,6 +463,8 @@ if (exists("build/alternatives/amazon-ses.html")) {
   assert(sesPage.includes("Not sure which option fits your stack?"), "Amazon SES sticky must use approved support copy");
   assert(sesPage.includes(">Start assessment</a>"), "Amazon SES sticky must show Start assessment");
   assert(sesPage.includes('href="https://chinaready.co/intake/"'), "Amazon SES sticky must link to /intake/");
+  assert(!sesPage.includes("Next reading"), "Amazon SES page must not include Next reading");
+  assert(!sesPage.includes("cr-alt-next"), "Amazon SES page must not include Next reading section markup");
 }
 
 if (exists("build/alternatives/google-admob.html")) {
