@@ -467,6 +467,51 @@ if (exists("build/alternatives/amazon-ses.html")) {
   assert(!sesPage.includes("cr-alt-next"), "Amazon SES page must not include Next reading section markup");
 }
 
+if (exists("build/alternatives/twilio-sms.html")) {
+  const twilioSmsPage = read("build/alternatives/twilio-sms.html");
+  assert(twilioSmsPage.includes("Twilio SMS alternatives in China"), "Twilio SMS alternatives page must use an intent-matching H1");
+  assert(
+    twilioSmsPage.includes("cr-alt-availability-unavailable\">Unavailable</span>"),
+    "Twilio SMS page must label mainland China availability as Unavailable",
+  );
+  assert(twilioSmsPage.includes("March 30, 2021"), "Twilio SMS page must cite the March 30, 2021 PRC messaging cutoff");
+  assert(
+    twilioSmsPage.includes(
+      "https://www.twilio.com/en-us/legal/service-country-specific-terms/prc-messaging-restrictions",
+    ),
+    "Twilio SMS page must link to Twilio PRC messaging restrictions",
+  );
+  assert(twilioSmsPage.includes("Alibaba Cloud SMS"), "Twilio SMS page must map to Alibaba Cloud SMS");
+}
+
+if (exists("build/alternatives/twilio-video.html")) {
+  const twilioVideoPage = read("build/alternatives/twilio-video.html");
+  assert(twilioVideoPage.includes("Twilio Video alternatives in China"), "Twilio Video alternatives page must use an intent-matching H1");
+  assert(
+    twilioVideoPage.includes("cr-alt-availability-unavailable\">Unavailable</span>"),
+    "Twilio Video page must label mainland China availability as Unavailable",
+  );
+  assert(twilioVideoPage.includes("Alibaba Cloud RTC"), "Twilio Video page must map to Alibaba Cloud RTC");
+}
+
+if (exists("build/alternatives/twilio-voice.html")) {
+  const twilioVoicePage = read("build/alternatives/twilio-voice.html");
+  assert(twilioVoicePage.includes("Twilio Voice alternatives in China"), "Twilio Voice alternatives page must use an intent-matching H1");
+  assert(
+    twilioVoicePage.includes("cr-alt-availability-unavailable\">Unavailable</span>"),
+    "Twilio Voice page must label mainland China availability as Unavailable",
+  );
+  assert(
+    twilioVoicePage.includes("https://help.twilio.com/articles/360016488474-Calling-Limitations-to-China"),
+    "Twilio Voice page must link to Twilio Calling Limitations to China",
+  );
+  assert(twilioVoicePage.includes("Alibaba Cloud VMS"), "Twilio Voice page must map to Alibaba Cloud VMS");
+  assert(
+    twilioVoicePage.includes("http://help.aliyun.com/zh/vms/product-overview/what-is-voice-service"),
+    "Twilio Voice page must link to Alibaba Cloud VMS overview",
+  );
+}
+
 if (exists("build/alternatives/google-admob.html")) {
   const admobPage = read("build/alternatives/google-admob.html");
   assert(admobPage.includes("Google AdMob alternatives in China"), "AdMob alternatives page must use an intent-matching H1");

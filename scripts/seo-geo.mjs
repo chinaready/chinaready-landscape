@@ -61,7 +61,17 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   onesignal: "limited",
   "amazon-ses": "unavailable",
   env0: "supported-terraform",
+  "twilio-sms": "unavailable",
+  "twilio-video": "unavailable",
+  "twilio-voice": "unavailable",
 };
+
+const TWILIO_PRC_MESSAGING_RESTRICTIONS_URL =
+  "https://www.twilio.com/en-us/legal/service-country-specific-terms/prc-messaging-restrictions";
+const TWILIO_CHINA_CALLING_LIMITATIONS_URL =
+  "https://help.twilio.com/articles/360016488474-Calling-Limitations-to-China";
+const ALIBABA_CLOUD_VMS_OVERVIEW_URL =
+  "http://help.aliyun.com/zh/vms/product-overview/what-is-voice-service?spm=a2c4g.11174283.0.0.6f2d7ff9WtmXiL";
 
 /**
  * High-intent editorial guidance for selected global services.
@@ -183,6 +193,89 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Where should teams go after shortlisting Amazon SES alternatives?",
         answer: `Use the interactive Chinaready Landscape to compare adjacent messaging services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the alternative remains uncertain, book a call with Chinaready.`,
+      },
+    ],
+  },
+  "twilio-sms": {
+    description: (availability, names) =>
+      clipMeta(
+        `Twilio SMS is Unavailable for mainland China since the March 30, 2021 PRC messaging restrictions. Use ${names.slice(0, 3).join(", ")}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Twilio SMS is <strong>Unavailable</strong> for mainland China production stacks. Since Twilio's PRC messaging restrictions notice (last updated <strong>March 30, 2021</strong>), China SMS is not a workable path — use China-licensed providers such as <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Twilio SMS discontinued for workable China delivery",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: `
+        <p>Chinaready marks Twilio SMS as <strong>Unavailable</strong> for mainland China. Twilio's official <a href="${TWILIO_PRC_MESSAGING_RESTRICTIONS_URL}" target="_blank" rel="noopener noreferrer">PRC messaging restrictions</a> (last updated March 30, 2021) define the China messaging constraints that make reliable production delivery impractical. Treat that date as the cutoff for planning: do not depend on Twilio for China SMS; use a China-market SMS option instead.</p>
+        <p>Official notice: <a href="${TWILIO_PRC_MESSAGING_RESTRICTIONS_URL}" target="_blank" rel="noopener noreferrer">${TWILIO_PRC_MESSAGING_RESTRICTIONS_URL}</a></p>
+        <p>The shortlist below focuses on China-licensed SMS providers that can cover verification and notification workflows inside mainland China.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Twilio SMS work in China?",
+        answer: `No for mainland China production stacks. Chinaready labels Twilio SMS as ${availability}. Since Twilio's PRC messaging restrictions notice (last updated March 30, 2021), China SMS is not a workable production path — plan a China-licensed SMS provider instead.`,
+      },
+      {
+        question: "What are the best China alternatives to Twilio SMS?",
+        answer: `Chinaready Landscape currently maps Twilio SMS to ${namesText}. Prefer China-licensed SMS providers for verification codes and notifications. Replacement fit varies by product, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Twilio SMS alternatives?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent messaging services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the alternative remains uncertain, book a call with Chinaready.`,
+      },
+    ],
+  },
+  "twilio-video": {
+    description: (availability, names) =>
+      clipMeta(
+        `Twilio Video is Unavailable for mainland China. Map real-time video to ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Twilio Video is <strong>Unavailable</strong> for reliable mainland China production stacks. Map real-time audio/video to China-ready RTC options such as <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Replace Twilio Video with China RTC options",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: `
+        <p>Chinaready marks Twilio Video as <strong>Unavailable</strong> for mainland China launches. Cross-border WebRTC media to Twilio's global infrastructure is unreliable under mainland network conditions, and there is no Twilio China-region Video path for production apps.</p>
+        <p>Use the China RTC options mapped below for in-country real-time audio and video. Review replacement fit before migrating SDKs, media routing, or recording workflows.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Twilio Video work in China?",
+        answer: `No for reliable mainland China production stacks. Chinaready labels Twilio Video as ${availability}. Plan a China-ready RTC provider for in-country real-time audio and video instead of depending on Twilio Video across the border.`,
+      },
+      {
+        question: "What are the best China alternatives to Twilio Video?",
+        answer: `Chinaready Landscape currently maps Twilio Video to ${namesText}. Prefer China-market RTC services for mainland users. Replacement fit varies by product, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Twilio Video alternatives?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent real-time communication services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the alternative remains uncertain, book a call with Chinaready.`,
+      },
+    ],
+  },
+  "twilio-voice": {
+    description: (availability, names) =>
+      clipMeta(
+        `Twilio Voice is Unavailable for mainland China. Outbound calling is unsupported; use ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Twilio Voice is <strong>Unavailable</strong> for mainland China. Twilio does not support outbound calls to Mainland China, and short-duration use cases such as OTP or voice alerts are incompatible with China calling regulations — map to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Twilio Voice calling limitations to China",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: `
+        <p>Chinaready marks Twilio Voice as <strong>Unavailable</strong> for mainland China. Per Twilio's <a href="${TWILIO_CHINA_CALLING_LIMITATIONS_URL}" target="_blank" rel="noopener noreferrer">Calling Limitations to China</a> guidance, China voice routes are constrained by local regulations: outbound calls to Mainland China are not supported, and shorter contact use cases (OTP voice calls, brief voice alerts, and similar) are incompatible with those rules.</p>
+        <p>Official notice: <a href="${TWILIO_CHINA_CALLING_LIMITATIONS_URL}" target="_blank" rel="noopener noreferrer">${TWILIO_CHINA_CALLING_LIMITATIONS_URL}</a></p>
+        <p>For voice notifications, voice verification codes, and related China calling workflows, Chinaready currently maps Twilio Voice to <strong>Alibaba Cloud VMS (语音服务)</strong> as the only listed option. See the <a href="${ALIBABA_CLOUD_VMS_OVERVIEW_URL}" target="_blank" rel="noopener noreferrer">Alibaba Cloud Voice Service overview</a> for product scope (voice notification, voice OTP, IVR, and related capabilities).</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Twilio Voice work in China?",
+        answer: `No for mainland China production stacks. Chinaready labels Twilio Voice as ${availability}. Twilio does not support outbound calls to Mainland China, and short-duration use cases such as OTP or voice alerts are incompatible with China calling regulations documented in Twilio's Calling Limitations to China article.`,
+      },
+      {
+        question: "What are the best China alternatives to Twilio Voice?",
+        answer: `Chinaready Landscape currently maps Twilio Voice to ${namesText}. Alibaba Cloud VMS is the only listed China option for voice notification, voice verification, and related calling workflows. Confirm number provisioning, template approval, and compliance requirements before production adoption.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Twilio Voice alternatives?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent engagement and communication services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the voice path remains unclear, book a call with Chinaready.`,
       },
     ],
   },
@@ -489,6 +582,7 @@ const ANALOG_ALIASES = {
   "facebook login": "Facebook Login",
   "twilio sms": "Twilio SMS",
   "twilio video": "Twilio Video",
+  "twilio voice": "Twilio Voice",
   "google fonts": "Google Fonts",
   admob: "Google AdMob",
   "google admob": "Google AdMob",

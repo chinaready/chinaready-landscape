@@ -911,7 +911,7 @@ landscape:
               annotations:
                 global_analogs: Twilio SMS, AWS SNS, MessageBird
                 replacement_fit: direct
-                china_context: Alibaba Cloud SMS provides a China-market alternative for SMS notification and verification workflows.
+                china_context: Alibaba Cloud SMS provides a China-market alternative for SMS notification and verification workflows when Twilio SMS is unavailable for mainland China.
                 vendor_type: china-cloud
                 evidence_level: medium
                 availability_status: generally-available
@@ -1014,7 +1014,7 @@ landscape:
               annotations:
                 global_analogs: Twilio Video, Agora, Daily
                 replacement_fit: direct
-                china_context: Alibaba Cloud RTC provides a China-market alternative for real-time audio and video communication use cases.
+                china_context: Alibaba Cloud RTC provides a China-market alternative for real-time audio and video communication use cases when Twilio Video is unavailable for mainland China.
                 vendor_type: china-cloud
                 evidence_level: medium
                 availability_status: generally-available
@@ -1030,6 +1030,31 @@ landscape:
                 organization: "Alibaba Cloud"
                 organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
                 developer_docs: "https://help.aliyun.com/zh/rtc/"
+          - item:
+            name: Alibaba Cloud VMS
+            homepage_url: https://www.aliyun.com/product/vms
+            logo: alibaba-cloud-vms.svg
+            description: Alibaba Cloud VMS (语音服务) provides China voice notification, voice verification codes, IVR, and related voice calling APIs with carrier-integrated delivery.
+            extra:
+              annotations:
+                global_analogs: Twilio Voice
+                replacement_fit: direct
+                china_context: Current Chinaready-mapped China option when Twilio Voice is unavailable for mainland China. Covers voice notification, voice OTP/verification, IVR interaction, and related calling workflows through China carrier networks. Number provisioning and template/script approval are required before production use.
+                vendor_type: china-cloud
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Alibaba Cloud VMS"
+                primary_category: "Engagement & Communication"
+                official_website: "https://www.aliyun.com/product/vms"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Alibaba Cloud VMS (语音服务) provides China voice notification, voice verification codes, IVR, and related voice calling APIs with carrier-integrated delivery."
+                alternative_to: "China-market alternative or deployment route for: Twilio Voice."
+                global_alternatives: "Twilio Voice"
+                organization: "Alibaba Cloud"
+                organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
+                developer_docs: "http://help.aliyun.com/zh/vms/product-overview/what-is-voice-service?spm=a2c4g.11174283.0.0.6f2d7ff9WtmXiL"
       - subcategory:
         name: Customer Support & In-App Messaging
         items:

@@ -186,12 +186,12 @@ categories:
         content: |
           Use this category for push notification, SMS, email, and messaging-delivery products.
 
-          Typical global services: [Firebase Cloud Messaging](/alternatives/firebase-cloud-messaging.html), [OneSignal](/alternatives/onesignal.html), [Twilio SMS](/alternatives/twilio-sms.html), [Amazon SES](/alternatives/amazon-ses.html), [SendGrid](/alternatives/sendgrid.html).
+          Typical global services: [Firebase Cloud Messaging](/alternatives/firebase-cloud-messaging.html), [OneSignal](/alternatives/onesignal.html), [Twilio SMS](/alternatives/twilio-sms.html) (Unavailable in China), [Amazon SES](/alternatives/amazon-ses.html), [SendGrid](/alternatives/sendgrid.html).
       - subcategory: "Real-Time Communication (Voice / Video / Chat)"
         content: |
           Use this category for RTC, voice, video, and chat infrastructure.
 
-          Typical global services: [Twilio Video](/alternatives/twilio-video.html), [Agora](/alternatives/agora.html), [Daily](/alternatives/daily.html).
+          Typical global services: [Twilio Video](/alternatives/twilio-video.html) (Unavailable in China), [Twilio Voice](/alternatives/twilio-voice.html) (Unavailable in China), [Agora](/alternatives/agora.html), [Daily](/alternatives/daily.html).
       - subcategory: "Customer Support & In-App Messaging"
         content: |
           Use this category for support chat, helpdesk, and in-app customer messaging.
