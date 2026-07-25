@@ -129,7 +129,6 @@ OVERRIDES = {
     "kochava": ["Qimai Data", "Umeng+"],
     "singular": ["Qimai Data", "Umeng+"],
     "react native": ["uni-app"],
-    "flutter": ["uni-app"],
     "ionic": ["uni-app"],
     "cordova": ["uni-app"],
     "xamarin": ["uni-app"],
@@ -148,12 +147,10 @@ OVERRIDES = {
     "docker hub": ["Alibaba Cloud"],
     "bitly": ["Alibaba Cloud"],
     "cloudflare analytics": ["Alibaba Cloud ARMS", "Umeng+"],
-    "vmware": ["Alibaba Cloud"],
     "kong gateway": ["Apache APISIX", "Flomesh", "Higress"],
     "kong": ["Apache APISIX", "Flomesh", "Higress"],
     "airtable": [],
     "airbase": [],
-    "grpc": [],
 }
 
 CONTACT_NOTE = (

@@ -618,7 +618,6 @@ const ANALOG_ALIASES = {
   adjust: "Adjust",
   branch: "Branch",
   "react native": "React Native",
-  flutter: "Flutter",
   ionic: "Ionic",
   openstreetmap: "OpenStreetMap",
   osm: "OpenStreetMap",

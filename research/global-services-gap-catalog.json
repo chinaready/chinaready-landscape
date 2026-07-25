@@ -2,17 +2,12 @@
   "source": "Chinaready Landscape research shortlist for taxonomy-relevant global services",
   "generated_for": "alternatives index SEO expansion",
   "counts": {
-    "services": 106,
-    "uncertain_alternatives": 30,
-    "researched_alternatives": 37,
-    "heuristic_alternatives": 39
+    "services": 101,
+    "uncertain_alternatives": 28,
+    "researched_alternatives": 36,
+    "heuristic_alternatives": 37
   },
   "availability_lookup": {
-    "acast": {
-      "name": "Acast",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
-    },
     "activecampaign": {
       "name": "ActiveCampaign",
       "availability": "Limited",
@@ -115,11 +110,6 @@
     },
     "buzzsprout": {
       "name": "Buzzsprout",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
-    },
-    "callkit": {
-      "name": "CallKit",
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
@@ -243,11 +233,6 @@
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
     },
-    "grpc": {
-      "name": "gRPC",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
-    },
     "hello audio": {
       "name": "Hello Audio",
       "availability": "Limited",
@@ -350,11 +335,6 @@
     },
     "middleware": {
       "name": "Middleware.io",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
-    },
-    "n8n": {
-      "name": "n8n",
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
@@ -503,11 +483,6 @@
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
-    "vmware vsphere": {
-      "name": "VMware vSphere",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
-    },
     "vwo": {
       "name": "VWO",
       "availability": "Limited",
@@ -535,18 +510,6 @@
     }
   },
   "services": [
-    {
-      "name": "Acast",
-      "categories": [
-        "Media Platforms",
-        "Creator Platforms"
-      ],
-      "availability": "Limited",
-      "global_availability_in_china": "limited",
-      "china_candidates": [],
-      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
-      "confidence": "uncertain"
-    },
     {
       "name": "ActiveCampaign",
       "categories": [
@@ -956,25 +919,6 @@
       "china_candidates": [],
       "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
       "confidence": "uncertain"
-    },
-    {
-      "name": "CallKit",
-      "categories": [
-        "Developer Tools & APIs"
-      ],
-      "availability": "Limited",
-      "global_availability_in_china": "limited",
-      "china_candidates": [
-        {
-          "name": "uni-app",
-          "homepage_url": "https://uniapp.dcloud.net.cn/",
-          "category": "Application Platform",
-          "subcategory": "Cross-Platform UI & Frameworks",
-          "source": "category-heuristic"
-        }
-      ],
-      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
-      "confidence": "heuristic"
     },
     {
       "name": "CanvasJS",
@@ -1527,17 +1471,6 @@
       "confidence": "heuristic"
     },
     {
-      "name": "gRPC",
-      "categories": [
-        "Developer Tools & APIs"
-      ],
-      "availability": "Limited",
-      "global_availability_in_china": "limited",
-      "china_candidates": [],
-      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
-      "confidence": "uncertain"
-    },
-    {
       "name": "Hello Audio",
       "categories": [
         "Media Platforms",
@@ -1978,26 +1911,6 @@
       "categories": [
         "Developer Tools & APIs",
         "Workflow Automation & Integration"
-      ],
-      "availability": "Limited",
-      "global_availability_in_china": "limited",
-      "china_candidates": [
-        {
-          "name": "uni-app",
-          "homepage_url": "https://uniapp.dcloud.net.cn/",
-          "category": "Application Platform",
-          "subcategory": "Cross-Platform UI & Frameworks",
-          "source": "category-heuristic"
-        }
-      ],
-      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
-      "confidence": "heuristic"
-    },
-    {
-      "name": "n8n",
-      "categories": [
-        "Workflow Automation & Integration",
-        "Developer Tools & APIs"
       ],
       "availability": "Limited",
       "global_availability_in_china": "limited",
@@ -2697,32 +2610,6 @@
       ],
       "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
       "confidence": "heuristic"
-    },
-    {
-      "name": "VMware vSphere",
-      "categories": [
-        "Hosting & Infrastructure"
-      ],
-      "availability": "Limited",
-      "global_availability_in_china": "limited",
-      "china_candidates": [
-        {
-          "name": "Amap",
-          "homepage_url": "https://lbs.amap.com/",
-          "category": "Growth, Content & Experience",
-          "subcategory": "Location & Map Services",
-          "source": "landscape"
-        },
-        {
-          "name": "Tencent Location Services",
-          "homepage_url": "https://lbs.qq.com/",
-          "category": "Growth, Content & Experience",
-          "subcategory": "Location & Map Services",
-          "source": "landscape"
-        }
-      ],
-      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
-      "confidence": "researched"
     },
     {
       "name": "VWO",
