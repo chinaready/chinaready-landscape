@@ -868,6 +868,20 @@ function renderSharedFooter() {
   </footer>`;
 }
 
+function renderStickyAssessmentCta() {
+  return `<aside class="cr-alt-sticky-cta" aria-label="China stack assessment">
+    <div class="cr-alt-sticky-cta-inner">
+      <p class="cr-alt-sticky-cta-copy">Not sure which option fits your stack?</p>
+      <a
+        class="cr-alt-sticky-cta-button"
+        href="${INTAKE_ASSESSMENT_URL}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Start assessment</a>
+    </div>
+  </aside>`;
+}
+
 function clipMeta(text, max = 155) {
   const clean = String(text).replace(/\s+/g, " ").trim();
   if (clean.length <= max) return clean;
@@ -892,7 +906,7 @@ function analogPageDescription(group, availability, names, uncertain) {
   );
 }
 
-function pageShell({ title, description, canonicalPath, body, jsonLd = [], breadcrumbs = [], activeNav = "global" }) {
+function pageShell({ title, description, canonicalPath, body, jsonLd = [], breadcrumbs = [], activeNav = "global", stickyCta = "" }) {
   const canonical = `${SITE_URL}${canonicalPath}`;
   const breadcrumbLd =
     breadcrumbs.length > 0
@@ -946,6 +960,7 @@ ${body}
     </div>
   </main>
   ${renderSharedFooter()}
+  ${stickyCta}
   <script defer src="/assets/chinaready-alternatives-search.js"></script>
 </body>
 </html>
@@ -1283,6 +1298,7 @@ ${cards}
       },
     ],
     body,
+    stickyCta: renderStickyAssessmentCta(),
   });
 }
 
