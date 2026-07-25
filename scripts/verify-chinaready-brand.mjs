@@ -155,6 +155,14 @@ assert(seoGeoScript.includes("mergeAnalogGroups"), "SEO/GEO generator must merge
 assert(seoGeoScript.includes("availability_status"), "SEO/GEO generator must read availability_status from landscape.yml");
 assert(seoGeoScript.includes("global_availability_in_china"), "SEO/GEO generator must read global_availability_in_china from landscape.yml");
 assert(!seoGeoScript.match(legacySourceBrandPattern), "SEO/GEO generator must not reference legacy competitor brand text");
+assert(seoGeoScript.includes("https://chinaready.co/contact/"), "seo-geo header Get help must link to /contact/");
+assert(seoGeoScript.includes("Get help"), "seo-geo must include Get help label");
+assert(seoGeoScript.includes("cr-site-get-help"), "seo-geo header must use cr-site-get-help class");
+assert(!seoGeoScript.includes("cr-site-github"), "seo-geo shared header must not render the GitHub icon control");
+assert(seoGeoScript.includes("cr-alt-sticky-cta"), "seo-geo must define alternatives sticky CTA markup");
+assert(seoGeoScript.includes("Not sure which option fits your stack?"), "seo-geo sticky must use approved support copy");
+assert(seoGeoScript.includes("Start assessment"), "seo-geo sticky must use Start assessment label");
+assert(seoGeoScript.includes("https://chinaready.co/intake/"), "seo-geo sticky must link to /intake/");
 assert(exists("research/global-services-gap-catalog.json"), "gap catalog for taxonomy-relevant global services is missing");
 assert(!exists("research/aic-technologies-hub.json"), "legacy third-party research snapshot must be removed");
 const gapCatalogSource = read("research/global-services-gap-catalog.json");
@@ -208,6 +216,9 @@ assert(detailsScript.includes("removeNativeSummary"), "detail extension must rem
 assert(detailsScript.includes(".summaryBlock"), "detail extension must hide the current landscape2 Tags summaryBlock");
 assert(detailsScript.includes("forceStaticPageNavigation"), "detail extension must force full navigation to static /alternatives pages");
 assert(detailsScript.includes("enhanceHeaderGlobalNav"), "detail extension must inject Global into the top navigation");
+assert(detailsScript.includes("enhanceHeaderGetHelp"), "detail extension must inject Get help into the top header");
+assert(detailsScript.includes("https://chinaready.co/contact/"), "detail extension Get help must link to /contact/");
+assert(detailsScript.includes(">Get help<") || detailsScript.includes('textContent = "Get help"'), "detail extension must use Get help label");
 assert(detailsScript.includes("enhanceGuideGlobalMenu"), "detail extension must inject Global into the Guide sidebar");
 assert(detailsScript.includes("absoluteAssetUrl"), "detail extension must use root-absolute footer logo URLs");
 assert(detailsScript.includes("/images/chinaready-logo-horizontal-white.svg"), "detail extension footer logo must use a root-absolute path");
@@ -319,6 +330,11 @@ if (exists("build/alternatives/index.html")) {
     "alternatives index must include the Google tag",
   );
   assert(alternativesIndex.includes("gtag('config', 'G-4BXLJXM1DY')"), "alternatives index must configure GA measurement ID");
+  assert(alternativesIndex.includes("cr-site-get-help"), "alternatives index header must include Get help CTA");
+  assert(alternativesIndex.includes("https://chinaready.co/contact/"), "alternatives index Get help must link to /contact/");
+  assert(alternativesIndex.includes(">Get help</a>"), "alternatives index must show Get help label");
+  assert(!alternativesIndex.includes("cr-site-github"), "alternatives index header must not include GitHub icon control");
+  assert(!alternativesIndex.includes("cr-alt-sticky-cta"), "alternatives index must not show sticky assessment CTA");
   const gapCatalog = JSON.parse(read("research/global-services-gap-catalog.json"));
   assert(gapCatalog.services?.length >= 100, "gap catalog must include the taxonomy-relevant unmapped global services");
   assert(alternativesIndex.includes("Dynatrace") || alternativesIndex.includes("BunnyCDN"), "alternatives index must include gap-catalog research services");
@@ -415,6 +431,12 @@ if (exists("build/alternatives/amazon-ses.html")) {
   assert(!sesPage.includes("Submail"), "Amazon SES page must not list Submail as a candidate");
   assert(!sesPage.includes("NetEase"), "Amazon SES page must not list NetEase email push as a candidate");
   assert(!/<h3><a[^>]*>Mailgun<\/a><\/h3>/.test(sesPage), "Amazon SES page must not list Mailgun as a China candidate");
+  assert(sesPage.includes("cr-site-get-help"), "Amazon SES page header must include Get help CTA");
+  assert(sesPage.includes("https://chinaready.co/contact/"), "Amazon SES Get help must link to /contact/");
+  assert(sesPage.includes("cr-alt-sticky-cta"), "Amazon SES page must include sticky assessment CTA");
+  assert(sesPage.includes("Not sure which option fits your stack?"), "Amazon SES sticky must use approved support copy");
+  assert(sesPage.includes(">Start assessment</a>"), "Amazon SES sticky must show Start assessment");
+  assert(sesPage.includes('href="https://chinaready.co/intake/"'), "Amazon SES sticky must link to /intake/");
 }
 
 if (exists("build/alternatives/google-admob.html")) {
