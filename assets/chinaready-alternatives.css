@@ -514,20 +514,21 @@ a:hover {
   flex-shrink: 0;
   min-height: 36px;
   padding: 0 14px;
-  border: 1px solid var(--cr-brand-blue);
+  border: 0;
   border-radius: 0;
-  background: transparent;
-  color: var(--cr-brand-blue);
+  background: var(--cr-brand-blue);
+  color: #ffffff;
   font-size: 14px;
   font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
   text-decoration: none;
   white-space: nowrap;
 }
 
 .cr-alt-sticky-cta-button:hover {
-  background: rgba(0, 91, 172, 0.06);
-  color: var(--cr-brand-blue-hover);
-  border-color: var(--cr-brand-blue-hover);
+  background: var(--cr-brand-blue-hover);
+  color: #ffffff;
 }
 
 .cr-site-footer {
