@@ -371,12 +371,16 @@ if (exists("build/alternatives/index.html")) {
   assert(airtablePage.includes("Availability in China"), "gap alternatives pages must show Availability in China");
   assert(!exists("build/alternatives/grpc.html"), "gRPC must be removed from Global alternatives");
   assert(!exists("build/alternatives/flutter.html"), "Flutter must be removed from Global alternatives");
+  assert(!exists("build/alternatives/react-native.html"), "React Native must be removed from Global alternatives");
+  assert(!exists("build/alternatives/ionic.html"), "Ionic must be removed from Global alternatives");
   assert(!exists("build/alternatives/acast.html"), "Acast must be removed from Global alternatives");
   assert(!exists("build/alternatives/callkit.html"), "CallKit must be removed from Global alternatives");
   assert(!exists("build/alternatives/n8n.html"), "n8n must be removed from Global alternatives");
   assert(!exists("build/alternatives/vmware-vsphere.html"), "VMware vSphere must be removed from Global alternatives");
   assert(!alternativesIndex.includes("gRPC"), "alternatives index must not list gRPC");
   assert(!alternativesIndex.includes("Flutter"), "alternatives index must not list Flutter");
+  assert(!alternativesIndex.includes("React Native"), "alternatives index must not list React Native");
+  assert(!alternativesIndex.includes(">Ionic<") && !alternativesIndex.includes("Ionic alternatives"), "alternatives index must not list Ionic");
   assert(!alternativesIndex.includes("Acast"), "alternatives index must not list Acast");
   assert(!alternativesIndex.includes("CallKit"), "alternatives index must not list CallKit");
   assert(!alternativesIndex.includes(">n8n<"), "alternatives index must not list n8n");

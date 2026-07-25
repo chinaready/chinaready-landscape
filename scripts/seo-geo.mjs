@@ -617,8 +617,6 @@ const ANALOG_ALIASES = {
   appsflyer: "AppsFlyer",
   adjust: "Adjust",
   branch: "Branch",
-  "react native": "React Native",
-  ionic: "Ionic",
   openstreetmap: "OpenStreetMap",
   osm: "OpenStreetMap",
   "twilio conversations": "Twilio Conversations",
@@ -676,7 +674,11 @@ for category in data.get("landscape", []):
                 "description": item.get("description") or "",
                 "category": category.get("name"),
                 "subcategory": subcategory.get("name"),
-                "global_analogs": annotations.get("global_analogs") or annotations.get("global_alternatives") or "",
+                "global_analogs": (
+                    annotations["global_analogs"]
+                    if "global_analogs" in annotations
+                    else (annotations.get("global_alternatives") or "")
+                ),
                 "replacement_fit": annotations.get("replacement_fit") or "",
                 "china_context": annotations.get("china_context") or "",
                 "vendor_type": annotations.get("vendor_type") or "",

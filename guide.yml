@@ -111,8 +111,6 @@ categories:
       - subcategory: "Cross-Platform UI & Frameworks"
         content: |
           Use this category for developer frameworks and UI runtimes. China options often prioritize mini-program and multi-end distribution alongside native containers.
-
-          Typical global services: [React Native](/alternatives/react-native.html), [Ionic](/alternatives/ionic.html).
       - subcategory: "Mobile Backend-as-a-Service (MBaaS)"
         content: |
           Use this category for managed backend services for mobile and web apps. Some mapped options are partial deployment routes rather than full MBaaS replacements.

@@ -128,8 +128,6 @@ OVERRIDES = {
     "branch": ["Qimai Data", "Umeng+"],
     "kochava": ["Qimai Data", "Umeng+"],
     "singular": ["Qimai Data", "Umeng+"],
-    "react native": ["uni-app"],
-    "ionic": ["uni-app"],
     "cordova": ["uni-app"],
     "xamarin": ["uni-app"],
     "apollo kotlin": ["uni-app"],

@@ -257,9 +257,9 @@ landscape:
             description: uni-app is a China cross-platform application framework for building apps across mini programs, H5, and native containers from one codebase.
             extra:
               annotations:
-                global_analogs: React Native, Ionic
+                global_analogs: ""
                 replacement_fit: partial
-                china_context: uni-app is widely used for China mini-program and multi-end distribution workflows where React Native alone may not cover WeChat and other China runtimes.
+                china_context: uni-app is widely used for China mini-program and multi-end distribution workflows across WeChat and other China runtimes, H5, and native containers.
                 vendor_type: china-saas
                 evidence_level: high
                 availability_status: generally-available
@@ -270,8 +270,8 @@ landscape:
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
                 product_overview: "uni-app is a China cross-platform application framework for building apps across mini programs, H5, and native containers from one codebase."
-                alternative_to: "China-market alternative or deployment route for: React Native, Ionic."
-                global_alternatives: "React Native, Ionic"
+                alternative_to: "China-market cross-platform framework for mini programs, H5, and native containers."
+                global_alternatives: "None — China-native framework (not listed on Global index)"
                 organization: "DCloud"
                 organization_overview: "DCloud builds developer tools and cross-platform frameworks for China app and mini-program teams."
                 developer_docs: "https://uniapp.dcloud.net.cn/"
