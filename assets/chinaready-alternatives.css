@@ -240,20 +240,28 @@ a:hover {
   font-size: 13px;
 }
 
-.cr-site-github {
+.cr-site-get-help {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
   margin-left: 12px;
-  color: var(--cr-primary);
+  min-height: 36px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 0;
+  background: var(--cr-brand-blue);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
   text-decoration: none;
-  font-size: 20px;
+  white-space: nowrap;
 }
 
-.cr-site-github:hover {
-  color: var(--cr-brand-blue);
+.cr-site-get-help:hover {
+  background: var(--cr-brand-blue-hover);
+  color: #ffffff;
 }
 
 .cr-alt-main {
