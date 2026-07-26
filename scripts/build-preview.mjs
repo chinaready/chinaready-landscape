@@ -232,18 +232,43 @@ index = index.replace(
   `window.baseDS = ${JSON.stringify(patchedBase)};\n`,
 );
 const cacheBust = "20260720-seo-geo-ctr";
-const links = [
-  `<link rel="icon" href="/favicon.ico" sizes="48x48">`,
-  `<link rel="icon" href="/favicon.svg" type="image/svg+xml">`,
+// Match chinaready.co favicon declarations that Google already shows in SERPs.
+// Prefer ICO + square PNGs (>=48px); avoid SVG-first so Googlebot picks a raster brand mark.
+const faviconLinks = [
+  `<link rel="icon" href="/favicon.ico" sizes="any">`,
+  `<link rel="icon" href="/favicon-48x48.png" type="image/png" sizes="48x48">`,
   `<link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">`,
-  `<link rel="apple-touch-icon" href="/apple-touch-icon.png">`,
+  `<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">`,
+];
+const links = [
+  ...faviconLinks,
   `<link rel="stylesheet" href="assets/chinaready-landscape.css?v=${cacheBust}">`,
 ];
 const scripts = [
   `<script defer src="assets/chinaready-landscape-details.js?v=${cacheBust}"></script>`,
 ];
 
-for (const link of links) {
+// Drop any prior favicon declarations so rebuilds cannot leave conflicting candidates.
+index = index.replace(
+  /\s*<link\s+rel=["'](?:shortcut\s+)?icon["'][^>]*>/gi,
+  "",
+);
+index = index.replace(/\s*<link\s+rel=["']apple-touch-icon["'][^>]*>/gi, "");
+
+// Place favicons early in <head> (near charset) for Googlebot discovery.
+const faviconBlock = faviconLinks.map((link) => `        ${link}`).join("\n");
+if (index.includes('<meta charset="UTF-8" />')) {
+  index = index.replace(
+    '<meta charset="UTF-8" />',
+    `<meta charset="UTF-8" />\n${faviconBlock}`,
+  );
+} else {
+  for (const link of faviconLinks) {
+    index = index.replace("</head>", `  ${link}\n</head>`);
+  }
+}
+
+for (const link of links.slice(faviconLinks.length)) {
   if (!index.includes(link)) {
     index = index.replace("</head>", `  ${link}\n</head>`);
   }

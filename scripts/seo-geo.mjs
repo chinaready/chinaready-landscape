@@ -1043,10 +1043,10 @@ function pageShell({ title, description, canonicalPath, body, jsonLd = [], bread
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${escapeHtml(title)}" />
   <meta name="twitter:description" content="${escapeHtml(description)}" />
-  <link rel="icon" href="/favicon.ico" sizes="48x48" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon-48x48.png" type="image/png" sizes="48x48" />
   <link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
   <link rel="stylesheet" href="/assets/chinaready-landscape.css" />
   <link rel="stylesheet" href="/assets/chinaready-alternatives.css" />
   ${allLd.map((block) => `<script type="application/ld+json">${JSON.stringify(block)}</script>`).join("\n  ")}
@@ -1598,6 +1598,7 @@ function enhanceIndexHtml(indexHtml, groups) {
     "@type": "Organization",
     name: "Chinaready",
     url: MAIN_SITE_URL,
+    logo: `${SITE_URL}/favicon-192x192.png`,
     sameAs: [REPO_URL, SITE_URL],
     description:
       "Chinaready helps global software teams understand and implement China-ready product, infrastructure, and go-to-market requirements.",
