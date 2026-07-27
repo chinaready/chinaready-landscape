@@ -1845,4 +1845,129 @@ landscape:
                 developer_docs: "https://cloud.baidu.com/doc/VDB/index.html"
       - subcategory:
         name: Agent / RAG Frameworks
-        items: []
+        items:
+          - item:
+            name: Dify
+            homepage_url: https://dify.ai/
+            logo: dify.svg
+            description: Dify is an open-source platform for building, orchestrating, evaluating, and operating LLM applications and retrieval-augmented generation workflows.
+            extra:
+              annotations:
+                global_analogs: LangChain, LlamaIndex, OpenAI GPTs
+                replacement_fit: direct
+                china_context: Dify provides a China-origin application platform that global teams can self-host or connect to mainland-reachable models for production agent and RAG workloads.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Dify"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://dify.ai/"
+                github: "https://github.com/langgenius/dify"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Dify is an open-source platform for building, orchestrating, evaluating, and operating LLM applications and retrieval-augmented generation workflows."
+                alternative_to: "China-market alternative or deployment route for: LangChain, LlamaIndex, OpenAI GPTs."
+                global_alternatives: "LangChain, LlamaIndex, OpenAI GPTs"
+                organization: "LangGenius / Dify"
+                organization_overview: "LangGenius develops Dify as an open-source platform for creating and operating production LLM applications."
+                developer_docs: "https://docs.dify.ai/"
+          - item:
+            name: RAGFlow
+            homepage_url: https://ragflow.io/
+            logo: ragflow.svg
+            description: RAGFlow is an open-source retrieval-augmented generation engine for document ingestion, knowledge bases, grounded search, and agent workflows.
+            extra:
+              annotations:
+                global_analogs: LlamaIndex, LangChain
+                replacement_fit: partial
+                china_context: RAGFlow offers a China-origin, self-hostable retrieval stack for teams that need document understanding and grounded generation inside mainland deployments.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: limited
+                metadata_name: "RAGFlow"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://ragflow.io/"
+                github: "https://github.com/infiniflow/ragflow"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "RAGFlow is an open-source retrieval-augmented generation engine for document ingestion, knowledge bases, grounded search, and agent workflows."
+                alternative_to: "China-market alternative or deployment route for: LlamaIndex, LangChain."
+                global_alternatives: "LlamaIndex, LangChain"
+                organization: "InfiniFlow"
+                organization_overview: "InfiniFlow develops open-source infrastructure for document understanding, retrieval, and AI application development."
+                developer_docs: "https://ragflow.io/docs/dev/"
+          - item:
+            name: FastGPT
+            homepage_url: https://fastgpt.in/
+            logo: fastgpt.svg
+            description: FastGPT is an open-source knowledge-base and visual workflow platform for building question-answering, RAG, and agent applications.
+            extra:
+              annotations:
+                global_analogs: OpenAI GPTs, LangChain
+                replacement_fit: partial
+                china_context: FastGPT can be self-hosted with mainland-reachable models and data services, supporting China-facing knowledge assistants without dependence on OpenAI GPTs.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "FastGPT"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://fastgpt.in/"
+                github: "https://github.com/labring/FastGPT"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "FastGPT is an open-source knowledge-base and visual workflow platform for building question-answering, RAG, and agent applications."
+                alternative_to: "China-market alternative or deployment route for: OpenAI GPTs, LangChain."
+                global_alternatives: "OpenAI GPTs, LangChain"
+                organization: "Labring"
+                organization_overview: "Labring develops cloud-native and open-source tools for deploying AI applications and infrastructure."
+                developer_docs: "https://doc.fastgpt.in/docs/introduction/"
+          - item:
+            name: Coze
+            homepage_url: https://www.coze.cn/
+            logo: coze.svg
+            description: Coze is ByteDance's visual platform for creating AI agents, workflows, knowledge bases, plugins, and multi-channel conversational applications.
+            extra:
+              annotations:
+                global_analogs: OpenAI GPTs, Botpress
+                replacement_fit: partial
+                china_context: Coze's mainland China service provides a locally reachable agent builder and publishing ecosystem for teams adapting conversational applications to the China market.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Coze"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://www.coze.cn/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Coze is ByteDance's visual platform for creating AI agents, workflows, knowledge bases, plugins, and multi-channel conversational applications."
+                alternative_to: "China-market alternative or deployment route for: OpenAI GPTs, Botpress."
+                global_alternatives: "OpenAI GPTs, Botpress"
+                organization: "ByteDance"
+                organization_overview: "ByteDance operates consumer and enterprise technology platforms and develops Coze as its AI agent creation environment."
+                developer_docs: "https://www.coze.cn/open/docs"
+          - item:
+            name: MaxKB
+            homepage_url: https://maxkb.cn/
+            logo: maxkb.svg
+            description: MaxKB is an open-source enterprise knowledge-base platform for building retrieval-augmented question-answering systems and AI assistants.
+            extra:
+              annotations:
+                global_analogs: LangChain, OpenAI GPTs
+                replacement_fit: partial
+                china_context: MaxKB supports self-hosted enterprise knowledge assistants with mainland-reachable models, helping teams retain data and deployment control in China.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "MaxKB"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://maxkb.cn/"
+                github: "https://github.com/1Panel-dev/MaxKB"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "MaxKB is an open-source enterprise knowledge-base platform for building retrieval-augmented question-answering systems and AI assistants."
+                alternative_to: "China-market alternative or deployment route for: LangChain, OpenAI GPTs."
+                global_alternatives: "LangChain, OpenAI GPTs"
+                organization: "1Panel / FIT2CLOUD"
+                organization_overview: "FIT2CLOUD and the 1Panel community develop open-source infrastructure and enterprise software including MaxKB."
+                developer_docs: "https://maxkb.cn/docs/"
