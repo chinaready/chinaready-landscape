@@ -18,7 +18,7 @@ except ImportError as exc:  # pragma: no cover
     raise SystemExit("PyYAML is required: python3 -m pip install pyyaml") from exc
 
 OVERRIDES = {
-    "sentry": ["Bugly", "Alibaba Cloud ARMS"],
+    "sentry": ["Alibaba Cloud EMAS", "Alibaba Cloud ARMS"],
     "datadog": ["Alibaba Cloud ARMS"],
     "new relic": ["Alibaba Cloud ARMS"],
     "grafana cloud": ["Alibaba Cloud ARMS"],
@@ -28,26 +28,28 @@ OVERRIDES = {
     "pagerduty": ["Alibaba Cloud ARMS"],
     "amazon cloudwatch": ["Alibaba Cloud ARMS"],
     "azure monitor": ["Alibaba Cloud ARMS"],
-    "bugsnag": ["Bugly"],
-    "rollbar": ["Bugly"],
-    "embrace": ["Bugly", "Alibaba Cloud EMAS"],
+    "bugsnag": ["Alibaba Cloud EMAS"],
+    "rollbar": ["Alibaba Cloud EMAS"],
+    "embrace": ["Alibaba Cloud EMAS"],
     "launchdarkly": ["Alibaba Cloud EMAS Remote Config"],
     "split": ["Alibaba Cloud EMAS Remote Config"],
     "optimizely": ["Alibaba Cloud EMAS Remote Config", "GrowingIO"],
     "flagsmith": ["Alibaba Cloud EMAS Remote Config"],
     "configcat": ["Alibaba Cloud EMAS Remote Config"],
     "firebase remote config": ["Alibaba Cloud EMAS Remote Config"],
-    "bitrise": ["Pgyer"],
-    "circleci": ["Pgyer"],
-    "travis ci": ["Pgyer"],
-    "codemagic": ["Pgyer"],
-    "app center": ["Pgyer"],
-    "visual studio app center": ["Pgyer"],
-    "firebase app distribution": ["Pgyer"],
-    "testflight": ["Pgyer"],
-    "fastlane": ["Pgyer"],
-    "github actions": ["Pgyer"],
-    "gitlab ci": ["Pgyer"],
+    "bitrise": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
+    "circleci": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
+    "travis ci": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
+    "codemagic": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
+    "app center": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
+    "visual studio app center": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
+    "firebase app distribution": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
+    "testflight": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
+    "fastlane": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
+    "github actions": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
+    "gitlab ci": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
+    "azure devops": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
+    "jenkins": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
     "zendesk": ["Zhichi", "Easemob"],
     "freshdesk": ["Zhichi"],
     "intercom": ["Zhichi", "Easemob"],
@@ -138,7 +140,7 @@ OVERRIDES = {
         "Kuaishou Union",
     ],
     "crowdstrike": ["GeeTest", "Authing"],
-    "barracuda": ["GeeTest", "Alibaba Cloud CAPTCHA"],
+    "barracuda": ["Coremail (CACTER邮件安全网关)", "Topsec"],
     "alert logic": ["Alibaba Cloud ARMS", "GeeTest"],
     "auvik": ["Alibaba Cloud ARMS"],
     "env0": ["AWS China Regions", "Alibaba Cloud"],
@@ -169,6 +171,12 @@ RESEARCH_NOTES = {
         "Pure domestic China ad networks for mainland monetization when replacing Google AdMob. "
         "Confirm SDK access, settlement entity, and PIPL compliance before production adoption. "
         "AdMob is strongly discouraged for mainland users due to GFW latency, near-zero fill, and PIPL risk."
+    ),
+    "barracuda": (
+        "Barracuda can be used in mainland China with caveats. Existing stable deployments may continue with "
+        "compliance monitoring; new projects — especially government, finance, and critical infrastructure — "
+        "should carefully evaluate domestic options. Prefer Coremail (CACTER邮件安全网关) for email security / "
+        "email gateway replacement and Topsec (天融信) for network, WAF, and adjacent edge-security controls."
     ),
 }
 
@@ -243,6 +251,19 @@ def main() -> None:
             "Unavailable": "unavailable",
             "Unknown": "unknown",
         }.get(availability, "unknown")
+
+        # Drop stale landscape/heuristic candidates that no longer exist in landscape.yml.
+        live_candidates = []
+        for candidate in candidates:
+            source = candidate.get("source") or confidence
+            name = candidate.get("name") or ""
+            if source in {"landscape", "category-heuristic"} and name.lower() not in item_by_name:
+                continue
+            live = item_by_name.get(name.lower())
+            if live and source in {"landscape", "category-heuristic"}:
+                candidate = {**candidate, **live, "source": source}
+            live_candidates.append(candidate)
+        candidates = live_candidates
 
         cleaned = {
             "name": service["name"],

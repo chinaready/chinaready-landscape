@@ -621,15 +621,7 @@
       ],
       "availability": "Limited",
       "global_availability_in_china": "limited",
-      "china_candidates": [
-        {
-          "name": "Pgyer",
-          "homepage_url": "https://www.pgyer.com/",
-          "category": "Release, Quality & Operations",
-          "subcategory": "CI/CD & App Distribution",
-          "source": "category-heuristic"
-        }
-      ],
+      "china_candidates": [],
       "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
       "confidence": "heuristic"
     },
@@ -758,21 +750,21 @@
       "global_availability_in_china": "limited",
       "china_candidates": [
         {
-          "name": "GeeTest",
-          "homepage_url": "https://www.geetest.com/",
-          "category": "Users, Trust & Monetization",
-          "subcategory": "Bot Protection & CAPTCHA",
+          "name": "Coremail (CACTER邮件安全网关)",
+          "homepage_url": "https://www.coremail.cn/product_13.html",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Network & Edge Security",
           "source": "landscape"
         },
         {
-          "name": "Alibaba Cloud CAPTCHA",
-          "homepage_url": "https://www.aliyun.com/product/security/captcha",
-          "category": "Users, Trust & Monetization",
-          "subcategory": "Bot Protection & CAPTCHA",
+          "name": "Topsec",
+          "homepage_url": "https://www.topsec.com.cn/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Network & Edge Security",
           "source": "landscape"
         }
       ],
-      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "research_note": "Barracuda can be used in mainland China with caveats. Existing stable deployments may continue with compliance monitoring; new projects — especially government, finance, and critical infrastructure — should carefully evaluate domestic options. Prefer Coremail (CACTER邮件安全网关) for email security / email gateway replacement and Topsec (天融信) for network, WAF, and adjacent edge-security controls.",
       "confidence": "researched"
     },
     {
@@ -1256,13 +1248,6 @@
       "global_availability_in_china": "limited",
       "china_candidates": [
         {
-          "name": "Bugly",
-          "homepage_url": "https://bugly.qq.com/",
-          "category": "Release, Quality & Operations",
-          "subcategory": "Crash Reporting & Performance Monitoring",
-          "source": "landscape"
-        },
-        {
           "name": "Alibaba Cloud EMAS",
           "homepage_url": "https://www.aliyun.com/product/emas",
           "category": "Release, Quality & Operations",
@@ -1387,20 +1372,6 @@
       "global_availability_in_china": "unavailable",
       "china_candidates": [
         {
-          "name": "Pgyer",
-          "homepage_url": "https://www.pgyer.com/",
-          "category": "Release, Quality & Operations",
-          "subcategory": "CI/CD & App Distribution",
-          "source": "category-heuristic"
-        },
-        {
-          "name": "Bugly",
-          "homepage_url": "https://bugly.qq.com/",
-          "category": "Release, Quality & Operations",
-          "subcategory": "Crash Reporting & Performance Monitoring",
-          "source": "category-heuristic"
-        },
-        {
           "name": "Alibaba Cloud EMAS Remote Config",
           "homepage_url": "https://www.aliyun.com/product/emas",
           "category": "Application Platform",
@@ -1419,20 +1390,6 @@
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable",
       "china_candidates": [
-        {
-          "name": "Pgyer",
-          "homepage_url": "https://www.pgyer.com/",
-          "category": "Release, Quality & Operations",
-          "subcategory": "CI/CD & App Distribution",
-          "source": "category-heuristic"
-        },
-        {
-          "name": "Bugly",
-          "homepage_url": "https://bugly.qq.com/",
-          "category": "Release, Quality & Operations",
-          "subcategory": "Crash Reporting & Performance Monitoring",
-          "source": "category-heuristic"
-        },
         {
           "name": "Alibaba Cloud EMAS Remote Config",
           "homepage_url": "https://www.aliyun.com/product/emas",
@@ -1717,13 +1674,6 @@
           "category": "Release, Quality & Operations",
           "subcategory": "Monitoring & Observability (APM / RUM)",
           "source": "category-heuristic"
-        },
-        {
-          "name": "Bugly",
-          "homepage_url": "https://bugly.qq.com/",
-          "category": "Release, Quality & Operations",
-          "subcategory": "Crash Reporting & Performance Monitoring",
-          "source": "category-heuristic"
         }
       ],
       "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
@@ -1842,15 +1792,7 @@
       ],
       "availability": "Limited",
       "global_availability_in_china": "limited",
-      "china_candidates": [
-        {
-          "name": "Pgyer",
-          "homepage_url": "https://www.pgyer.com/",
-          "category": "Release, Quality & Operations",
-          "subcategory": "CI/CD & App Distribution",
-          "source": "category-heuristic"
-        }
-      ],
+      "china_candidates": [],
       "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
       "confidence": "heuristic"
     },
@@ -1998,13 +1940,6 @@
           "homepage_url": "https://www.aliyun.com/product/arms",
           "category": "Release, Quality & Operations",
           "subcategory": "Monitoring & Observability (APM / RUM)",
-          "source": "category-heuristic"
-        },
-        {
-          "name": "Bugly",
-          "homepage_url": "https://bugly.qq.com/",
-          "category": "Release, Quality & Operations",
-          "subcategory": "Crash Reporting & Performance Monitoring",
           "source": "category-heuristic"
         }
       ],
@@ -2372,13 +2307,6 @@
           "category": "Release, Quality & Operations",
           "subcategory": "Monitoring & Observability (APM / RUM)",
           "source": "category-heuristic"
-        },
-        {
-          "name": "Bugly",
-          "homepage_url": "https://bugly.qq.com/",
-          "category": "Release, Quality & Operations",
-          "subcategory": "Crash Reporting & Performance Monitoring",
-          "source": "category-heuristic"
         }
       ],
       "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
@@ -2430,13 +2358,6 @@
           "category": "Release, Quality & Operations",
           "subcategory": "Monitoring & Observability (APM / RUM)",
           "source": "category-heuristic"
-        },
-        {
-          "name": "Bugly",
-          "homepage_url": "https://bugly.qq.com/",
-          "category": "Release, Quality & Operations",
-          "subcategory": "Crash Reporting & Performance Monitoring",
-          "source": "category-heuristic"
         }
       ],
       "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
@@ -2449,15 +2370,7 @@
       ],
       "availability": "Limited",
       "global_availability_in_china": "limited",
-      "china_candidates": [
-        {
-          "name": "Pgyer",
-          "homepage_url": "https://www.pgyer.com/",
-          "category": "Release, Quality & Operations",
-          "subcategory": "CI/CD & App Distribution",
-          "source": "category-heuristic"
-        }
-      ],
+      "china_candidates": [],
       "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
       "confidence": "heuristic"
     },
@@ -2735,8 +2648,8 @@
         {
           "name": "Alibaba Cloud EMAS",
           "homepage_url": "https://www.aliyun.com/product/emas",
-          "category": "Engagement & Communication",
-          "subcategory": "Push Notifications & Multichannel Messaging",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Crash Reporting & Performance Monitoring",
           "source": "category-heuristic"
         },
         {

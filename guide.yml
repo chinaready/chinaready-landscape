@@ -13,14 +13,14 @@ categories:
 
       - Firebase / FCM style mobile backends and push often need China SaaS or China cloud modules instead of a global Firebase default.
       - AWS, Azure, and similar clouds may require China-region accounts or a domestic cloud platform.
-      - Stripe, PayPal, and Apple Pay style checkout usually map to WeChat Pay, Alipay, or a local commerce integration path. Decide by deployment location first: products that stay outside China can often keep Stripe as a global platform (including Alipay and WeChat Pay for Chinese users); products that must run inside mainland China usually should not use Stripe for compliance reasons and should integrate native rails instead.
+      - Apple Pay is available in mainland China, but Chinese internet users more commonly pay with Alipay and WeChat Pay — keep Apple Pay for iPhone wallet checkout and still add those local rails for conversion. Stripe and PayPal style checkout for mainland deployments usually map to WeChat Pay, Alipay, or a local commerce integration path. Decide by deployment location first: products that stay outside China can often keep Stripe as a global platform (including Alipay and WeChat Pay for Chinese users); products that must run inside mainland China usually should not use Stripe for compliance reasons and should integrate native rails instead.
       - Google Maps, Google Fonts, and some global CDNs may be unavailable, slow, or operationally constrained in mainland China.
       - OpenAI, Anthropic, Gemini, and Pinecone-style AI stacks often need China-reachable model APIs, embeddings, vector databases, and agent/RAG platforms instead of a global default.
 
       ## FAQ
 
       **Does Firebase, AWS, or Stripe work in China?**
-      Often with limits or not as a drop-in default. For Stripe specifically, answer the deployment question first: if the product must run in mainland China, Chinaready recommends native payment rails (WeChat Pay, Alipay, Youzan Cloud) rather than Stripe; if the product stays outside China, Stripe can still work globally. Open **Global** to check Availability in China and compare mapped China-ready candidates before you change architecture.
+      Often with limits or not as a drop-in default. For Stripe specifically, answer the deployment question first: if the product must run in mainland China, Chinaready recommends native payment rails (WeChat Pay, Alipay, Youzan Cloud) rather than Stripe; if the product stays outside China, Stripe can still work globally. Apple Pay is Available in mainland China, but Alipay and WeChat Pay remain the habitual checkout methods for most Chinese internet users. Open **Global** to check Availability in China and compare mapped China-ready candidates before you change architecture.
 
       **What is Chinaready Landscape?**
       It is an open-source, continuously updated catalog of China-market developer services and China-region routes, organized so global teams can compare familiar tools with practical mainland China options.
@@ -93,7 +93,9 @@ categories:
           Typical global services: [AWS](/alternatives/aws.html), [Microsoft Azure](/alternatives/microsoft-azure.html), [Google Cloud](/alternatives/google-cloud.html).
       - subcategory: "Network & Edge Security"
         content: |
-          Use this category for WAF, DDoS protection, bot and abuse defense at the edge, and related network/web security gateways. Keep this separate from CDN acceleration and from application-layer CAPTCHA products under Bot Protection & CAPTCHA.
+          Use this category for WAF, DDoS protection, email security gateways, and related network/web security controls. Keep this separate from CDN acceleration and from application-layer CAPTCHA products under Bot Protection & CAPTCHA.
+
+          Barracuda can still be used in China with caveats, but new projects in government, finance, and critical infrastructure should carefully evaluate domestic options. Prefer Coremail (CACTER邮件安全网关) for email security / email gateway replacement and Topsec (天融信) for network, WAF, and adjacent edge-security controls. See the [Barracuda alternatives map](/alternatives/barracuda.html).
 
           Typical global services: [Barracuda](/alternatives/barracuda.html), [Imperva](/alternatives/imperva.html), [Sucuri](/alternatives/sucuri.html).
       - subcategory: "Content Delivery Network (CDN)"
@@ -133,9 +135,9 @@ categories:
     subcategories:
       - subcategory: "CI/CD & App Distribution"
         content: |
-          Use this category for build, deployment, and app distribution products. China beta-distribution tools are especially relevant when Firebase App Distribution is unavailable.
+          Use this category for China-market DevOps platforms covering code hosting, CI/CD pipelines, artifact repositories, and application delivery. Prefer Alibaba Cloud Yunxiao when the stack already runs on Alibaba Cloud, and Tencent Cloud DevOps (CODING) for Tencent-centric or large-scale finance/ecommerce delivery workflows.
 
-          Typical global services: [Firebase App Distribution](/alternatives/firebase-app-distribution.html), [Visual Studio App Center](/alternatives/visual-studio-app-center.html), [Bitrise](/alternatives/bitrise.html).
+          Typical global services: [GitHub Actions](/alternatives/github-actions.html), [GitLab CI](/alternatives/gitlab-ci.html), [Bitrise](/alternatives/bitrise.html), [Firebase App Distribution](/alternatives/firebase-app-distribution.html), [Visual Studio App Center](/alternatives/visual-studio-app-center.html).
       - subcategory: "Automated Testing & Device Farms"
         content: |
           Use this category for real-device testing, cloud phones, and automated QA platforms.

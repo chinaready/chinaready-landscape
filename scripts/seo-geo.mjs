@@ -65,6 +65,8 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "twilio-video": "unavailable",
   "twilio-voice": "unavailable",
   "sign-in-with-apple": "limited",
+  "apple-pay": "available",
+  "azure-devops": "limited",
 };
 
 /** Keep stable public URLs when display names change. */
@@ -327,6 +329,72 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  barracuda: {
+    description: (availability, names) =>
+      clipMeta(
+        `Barracuda can run in China with caveats. New projects — especially government, finance, and critical infrastructure — should carefully evaluate domestic options such as ${names.slice(0, 2).join(" and ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Barracuda products can be used in mainland China, but there are practical caveats and policy constraints. Under the current regulatory and security environment, new projects should evaluate carefully — especially in government, finance, and critical-infrastructure industries with higher compliance bars. Mapped China options include <strong>${escapeHtml(names.slice(0, 2).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Barracuda in mainland China: usable, with constraints",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: `
+        <p>Barracuda remains operable for many mainland deployments, but teams should not treat “usable” as “always the right long-term choice.” Compliance pressure, data-residency expectations, and Chinese-language threat quality all matter.</p>
+        <p>For new builds, prefer a cautious evaluation — particularly when the buyer is government, a central SOE, finance, or another regulated critical-infrastructure operator.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Scenario</th>
+                <th>Recommendation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Existing deployment already running stably</td>
+                <td>Can continue, but monitor compliance posture and product updates</td>
+              </tr>
+              <tr>
+                <td>New project for government / central SOE</td>
+                <td>Prefer domestic options to satisfy compliance expectations</td>
+              </tr>
+              <tr>
+                <td>Multinational or foreign-invested company in China</td>
+                <td>Can continue, but assess cross-border data / export compliance</td>
+              </tr>
+              <tr>
+                <td>High Chinese anti-spam / phishing quality requirements</td>
+                <td>Evaluate domestic gateways; Chinese-language detection is often stronger</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>When replacing Barracuda email security, start with <strong>Coremail (CACTER邮件安全网关)</strong>. For network / WAF / adjacent edge-security controls, evaluate <strong>Topsec (天融信)</strong>.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Barracuda work in China?",
+        answer: `Yes with caveats. Barracuda products can be used in mainland China, but Chinaready labels Barracuda as ${availability} because of compliance constraints, policy sensitivity in regulated industries, and cases where domestic Chinese-language threat detection is stronger. Existing stable deployments may continue with ongoing compliance review; new projects should evaluate carefully.`,
+      },
+      {
+        question: "Should new China projects still choose Barracuda?",
+        answer:
+          "Usually only after a careful compliance review. For government, central SOE, finance, and critical-infrastructure buyers, Chinaready recommends prioritizing domestic options. Multinational and foreign-invested companies may keep Barracuda, but should still assess cross-border data compliance.",
+      },
+      {
+        question: "What are the best China alternatives to Barracuda?",
+        answer: `Chinaready Landscape currently maps Barracuda to ${namesText}. Prefer Coremail (CACTER邮件安全网关) for email security / email gateway replacement, and Topsec (天融信) for network, WAF, and adjacent edge-security controls. Treat this as a research shortlist and confirm replacement fit before production adoption.`,
+      },
+      {
+        question: "When should teams prefer a domestic email gateway over Barracuda?",
+        answer:
+          "When the buyer has high China compliance expectations, when Chinese-language spam and phishing detection quality is critical, or when the project is a new build in government, finance, or critical infrastructure. Domestic gateways such as Coremail CACTER are commonly evaluated in those cases.",
+      },
+      {
+        question: "Where should teams go after shortlisting Barracuda alternatives?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent network and edge-security services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
   "kong-gateway": {
     description: (availability, names) =>
       clipMeta(
@@ -516,6 +584,92 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Where should teams go after shortlisting Firebase Analytics alternatives?",
         answer: `Use the interactive Chinaready Landscape to compare adjacent growth and analytics services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the analytics path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
+  "azure-devops": {
+    description: (availability, names) =>
+      clipMeta(
+        `Azure China does not host Azure DevOps, but Global Azure DevOps can deploy to Azure China and reuse existing pipelines. Also compare ${names.slice(0, 2).join(" and ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Azure China regions do <strong>not</strong> offer Azure DevOps as a local service. However, <strong>Azure China can still be a deployment target for Azure DevOps (Global)</strong>, so teams can usually reuse their existing DevOps pipelines for mainland Azure workloads. Chinaready labels Azure DevOps as <strong>${escapeHtml(availability)}</strong>. When you need a China-native DevOps platform instead, compare <strong>${escapeHtml(names.slice(0, 2).join(", "))}</strong>.`,
+    guidanceTitle: "Azure DevOps and Azure China",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: `
+        <p><strong>Key point first:</strong> Azure China regions do not provide Azure DevOps. That does not mean you must abandon Azure DevOps for China deployments.</p>
+        <ul>
+          <li><strong>Azure DevOps (Global) → Azure China:</strong> Keep using your global Azure DevOps organization, boards, repos, and pipelines, and configure Azure China subscriptions/resources as deployment targets. This path usually lets teams reuse most of their existing DevOps pipeline design.</li>
+          <li><strong>What “Limited” means:</strong> There is no Azure DevOps service hosted inside Azure China. Cross-border connectivity, identity, service connections, and compliance still need validation for your mainland workloads.</li>
+          <li><strong>When to switch:</strong> If you want a China-native DevOps control plane (code hosting, CI/CD, artifacts) instead of operating Global Azure DevOps against China targets, evaluate the mapped options below.</li>
+        </ul>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Azure DevOps work in China?",
+        answer: `Azure China regions do not offer Azure DevOps as a local product. Chinaready therefore labels Azure DevOps as ${availability}. In practice, Azure DevOps (Global) can still deploy to Azure China regions, so many teams reuse existing pipelines for China Azure targets after validating connectivity, identity, and compliance.`,
+      },
+      {
+        question: "Can Azure China be a deployment target for Azure DevOps (Global)?",
+        answer:
+          "Yes. Even though Azure China does not host Azure DevOps, Global Azure DevOps can target Azure China subscriptions and resources. That is usually the fastest path when you want to keep your current boards, repos, and pipeline definitions while shipping workloads into Azure China.",
+      },
+      {
+        question: "Do teams need to rebuild their DevOps pipelines for China?",
+        answer:
+          "Often no. If Azure China is only the runtime/deployment destination, you can typically reuse most of the existing Global Azure DevOps pipeline structure and adjust service connections, environments, secrets, and region-specific settings. A full platform switch is more common when you want a China-native DevOps control plane.",
+      },
+      {
+        question: "What are the best China alternatives to Azure DevOps?",
+        answer: `When a China-native DevOps platform is the better fit, Chinaready Landscape currently maps Azure DevOps to ${namesText}. Prefer Alibaba Cloud Yunxiao for Alibaba Cloud-centric stacks, and Tencent Cloud DevOps (CODING) for Tencent-centric or large-scale finance/ecommerce delivery workflows. Treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Azure DevOps options?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent CI/CD and cloud services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the Azure China deployment path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
+  "apple-pay": {
+    description: (availability, names) =>
+      clipMeta(
+        `Apple Pay is available in mainland China, but Chinese internet users prefer Alipay and WeChat Pay. Still plan ${names.slice(0, 2).join(" and ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Apple Pay</strong> is <strong>Available</strong> in mainland China. Keep it when iPhone wallet checkout already fits the product. Even so, Chinese internet users more commonly pay with local rails — especially <strong>Alipay</strong> and <strong>WeChat Pay</strong> — so most China launches still add <strong>${escapeHtml(names.slice(0, 2).join(" and "))}</strong> for conversion. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Apple Pay in mainland China",
+    sectionTitle: "Local payment methods Chinese users prefer",
+    guidanceHtml: `
+        <p>Apple Pay works in mainland China for supported cards and merchants. Chinaready labels it <strong>Available</strong> — do not treat the mapped China options as proof that Apple Pay is blocked.</p>
+        <h3>User habit matters more than technical availability</h3>
+        <p>Chinese internet users are far more accustomed to <strong>Alipay</strong> and <strong>WeChat Pay</strong> than to Apple Pay / card-wallet checkout. For consumer apps, mini programs, and everyday online payments, those local methods are the default expectation.</p>
+        <ul>
+          <li><strong>Keep Apple Pay</strong> when you already support Apple devices and want familiar wallet checkout for iPhone users.</li>
+          <li><strong>Add Alipay and WeChat Pay</strong> for mainstream mainland conversion — most users will look for those options first.</li>
+          <li><strong>Do not equate “Available” with “sufficient alone.”</strong> Availability means Apple Pay can work; habit and conversion usually still require local rails.</li>
+        </ul>
+        <h3>Chinaready recommendation</h3>
+        <p>Treat Apple Pay as an optional additive method for Apple users, and treat Alipay / WeChat Pay as the primary mainland checkout path for China-facing products.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Apple Pay work in China?",
+        answer: `Yes. Apple Pay is available in mainland China for supported cards and merchants. Chinaready labels Apple Pay as ${availability}. That does not mean Apple Pay alone is enough for most China launches — Chinese internet users more commonly pay with Alipay and WeChat Pay.`,
+      },
+      {
+        question: "If Apple Pay is available, why does Chinaready still list Alipay and WeChat Pay?",
+        answer:
+          "Because availability and user habit are different questions. Apple Pay can work, but mainland Chinese internet users strongly prefer local payment methods. Alipay and WeChat Pay are the everyday checkout defaults for most consumer and online commerce scenarios.",
+      },
+      {
+        question: "Should teams remove Apple Pay for a China launch?",
+        answer:
+          "No. Keep Apple Pay when it already fits iPhone wallet checkout. The usual China change is additive: add Alipay and WeChat Pay so mainland users can pay the way they already expect.",
+      },
+      {
+        question: "What are the best China payment options alongside Apple Pay?",
+        answer: `Chinaready Landscape currently maps complementary mainland payment options for Apple Pay to ${namesText}. Prefer Alipay and WeChat Pay for mainstream Chinese internet checkout. Treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Where should teams go after planning China payment options?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent commerce services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the payment path remains unclear, book a call with Chinaready.`,
       },
     ],
   },

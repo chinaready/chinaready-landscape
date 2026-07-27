@@ -84,7 +84,57 @@ landscape:
                 developer_docs: "https://www.alibabacloud.com/help/en/"
       - subcategory:
         name: Network & Edge Security
-        items: []
+        items:
+          - item:
+            name: Coremail (CACTER邮件安全网关)
+            homepage_url: https://www.coremail.cn/product_13.html
+            logo: coremail.svg
+            description: Coremail's CACTER email security gateway is a mainland China email-security product for anti-spam, anti-phishing, malware, and BEC defense, commonly evaluated when replacing Barracuda and similar foreign gateways.
+            extra:
+              annotations:
+                global_analogs: Barracuda
+                replacement_fit: direct
+                china_context: "Coremail is a well-known China email and email-security vendor with 22+ years in the category, and is frequently evaluated as a confidence choice when replacing foreign gateways such as Trend Micro (趋势科技), Barracuda (梭子鱼), and 守内安. CACTER strengths include high-precision interception and anti-phishing (claimed ~99.8% spam accuracy and <0.02% false positives), large-scale mainland honeypot/sample collection for evolving Chinese phishing tactics, exclusive in-domain anomaly detection plus automatic recall/isolation for delivered threats, and a China-hosted anti-spam big-data center (CAC) aligned with domestic data-security and Cybersecurity Law expectations. Mature replacement programs already cover banks, securities, funds, insurance, and government/enterprise users, with cloud, software, and hardware deployment options compatible with Coremail, Exchange, Microsoft 365, Gmail, and other mainstream mail systems."
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: limited
+                metadata_name: "Coremail (CACTER邮件安全网关)"
+                primary_category: "Infrastructure & Edge"
+                official_website: "https://www.coremail.cn/product_13.html"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Coremail's CACTER email security gateway provides mainland China email threat protection — anti-spam, anti-phishing, malware, and BEC defense — with in-domain recall, China-hosted threat intelligence, and cloud/software/hardware deployment options for replacing foreign email gateways."
+                alternative_to: "China-market alternative or deployment route for: Barracuda."
+                global_alternatives: "Barracuda"
+                organization: "Coremail"
+                organization_overview: "Coremail is a China email platform and email-security vendor. Its CACTER gateway is commonly evaluated for mainland replacements of Barracuda and other foreign email security gateways."
+                developer_docs: "https://www.coremail.cn/product_13.html"
+          - item:
+            name: Topsec
+            homepage_url: https://www.topsec.com.cn/
+            logo: topsec.svg
+            description: Topsec (天融信) provides China-market network and application security products including next-generation firewalls, WAF, and related edge security controls.
+            extra:
+              annotations:
+                global_analogs: Barracuda
+                replacement_fit: direct
+                china_context: Common mainland China evaluation path when replacing Barracuda network, WAF, and adjacent edge-security appliances. Topsec (天融信) covers next-generation firewall, Web application firewall, and broader perimeter/application security stacks used in domestic enterprise and government environments.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: limited
+                metadata_name: "Topsec"
+                primary_category: "Infrastructure & Edge"
+                official_website: "https://www.topsec.com.cn/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Topsec (天融信) provides China-market network and application security products including next-generation firewalls, WAF, and related edge security controls."
+                alternative_to: "China-market alternative or deployment route for: Barracuda."
+                global_alternatives: "Barracuda"
+                organization: "Topsec (天融信)"
+                organization_overview: "Topsec (天融信) is a China cybersecurity vendor offering network security, application security, and related enterprise security products for mainland deployments."
+                developer_docs: "https://www.topsec.com.cn/products/TopWAF"
 
       - subcategory:
         name: Content Delivery Network (CDN)
@@ -341,30 +391,55 @@ landscape:
         name: CI/CD & App Distribution
         items:
           - item:
-            name: Pgyer
-            homepage_url: https://www.pgyer.com/
-            logo: pgyer.svg
-            description: Pgyer (蒲公英) provides China-market mobile app distribution, beta delivery, and related release tooling.
+            name: Alibaba Cloud Yunxiao
+            homepage_url: https://www.aliyun.com/product/yunxiao
+            logo: alibaba-cloud-yunxiao.svg
+            description: Alibaba Cloud Yunxiao (云效) is a one-stop DevOps platform with Codeup code hosting, Flow pipelines, artifact repositories, and AppStack application delivery.
             extra:
               annotations:
-                global_analogs: Firebase App Distribution, Visual Studio App Center, Bitrise
+                global_analogs: GitHub Actions, GitLab CI, Azure DevOps, Bitrise, Firebase App Distribution
                 replacement_fit: direct
-                china_context: Pgyer is a frequently used China alternative for internal and beta app distribution when Firebase App Distribution is unavailable for mainland testers.
-                vendor_type: china-saas
+                china_context: Alibaba Cloud's one-stop DevOps platform for mainland teams. Includes Codeup (code hosting), Flow (CI/CD pipelines), artifact repositories, and AppStack application delivery, with deep integration into the Alibaba Cloud ecosystem — a natural fit for teams already running on Alibaba Cloud infrastructure.
+                vendor_type: china-cloud
                 evidence_level: high
                 availability_status: generally-available
                 global_availability_in_china: unavailable
-                metadata_name: "Pgyer"
+                metadata_name: "Alibaba Cloud Yunxiao"
                 primary_category: "Release, Quality & Operations"
-                official_website: "https://www.pgyer.com/"
+                official_website: "https://www.aliyun.com/product/yunxiao"
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
-                product_overview: "Pgyer (蒲公英) provides China-market mobile app distribution, beta delivery, and related release tooling."
-                alternative_to: "China-market alternative or deployment route for: Firebase App Distribution, Visual Studio App Center, Bitrise."
-                global_alternatives: "Firebase App Distribution, Visual Studio App Center, Bitrise"
-                organization: "Pgyer"
-                organization_overview: "Pgyer provides mobile app distribution and testing delivery services for China developer teams."
-                developer_docs: "https://www.pgyer.com/doc/view/api"
+                product_overview: "Alibaba Cloud Yunxiao (云效) is a one-stop DevOps platform with Codeup code hosting, Flow pipelines, artifact repositories, and AppStack application delivery."
+                alternative_to: "China-market alternative or deployment route for: GitHub Actions, GitLab CI, Azure DevOps, Bitrise, Firebase App Distribution."
+                global_alternatives: "GitHub Actions, GitLab CI, Azure DevOps, Bitrise, Firebase App Distribution"
+                organization: "Alibaba Cloud"
+                organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
+                developer_docs: "https://help.aliyun.com/zh/yunxiao/"
+          - item:
+            name: Tencent Cloud DevOps (CODING)
+            homepage_url: https://coding.net/
+            logo: tencent-cloud-devops-coding.svg
+            description: Tencent Cloud DevOps (CODING) is a one-stop R&D management platform covering code hosting, project management, continuous integration, and artifact repositories.
+            extra:
+              annotations:
+                global_analogs: GitHub Actions, GitLab CI, Azure DevOps, Bitrise, Firebase App Distribution
+                replacement_fit: direct
+                china_context: Tencent Cloud's one-stop R&D management platform (CODING) for mainland teams. Covers code management, project management, continuous integration, and artifact repositories, with high concurrency capacity commonly evaluated for finance, ecommerce, and other large-scale delivery scenarios.
+                vendor_type: china-cloud
+                evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Tencent Cloud DevOps (CODING)"
+                primary_category: "Release, Quality & Operations"
+                official_website: "https://coding.net/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Tencent Cloud DevOps (CODING) is a one-stop R&D management platform covering code hosting, project management, continuous integration, and artifact repositories."
+                alternative_to: "China-market alternative or deployment route for: GitHub Actions, GitLab CI, Azure DevOps, Bitrise, Firebase App Distribution."
+                global_alternatives: "GitHub Actions, GitLab CI, Azure DevOps, Bitrise, Firebase App Distribution"
+                organization: "Tencent Cloud / CODING"
+                organization_overview: "Tencent Cloud provides infrastructure and developer platform services; CODING is its one-stop DevOps and R&D collaboration suite for China teams."
+                developer_docs: "https://cloud.tencent.com/document/product/1726"
 
       - subcategory:
         name: Automated Testing & Device Farms
@@ -424,32 +499,6 @@ landscape:
                 organization: "Alibaba Cloud"
                 organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
                 developer_docs: "https://help.aliyun.com/zh/emas/"
-          - item:
-            name: Bugly
-            homepage_url: https://bugly.qq.com/
-            logo: bugly.svg
-            description: Bugly is a Tencent crash reporting and application quality monitoring service for mobile apps.
-            extra:
-              annotations:
-                global_analogs: Sentry, Firebase Crashlytics, Bugsnag
-                replacement_fit: direct
-                china_context: Bugly is a common China-market crash and quality monitoring alternative when Firebase Crashlytics or Sentry SaaS access is constrained for mainland apps.
-                vendor_type: china-saas
-                evidence_level: high
-                availability_status: generally-available
-                global_availability_in_china: limited
-                metadata_name: "Bugly"
-                primary_category: "Release, Quality & Operations"
-                official_website: "https://bugly.qq.com/"
-                github: "to-be-supplied-by-contributor"
-                social_media: "to-be-supplied-by-contributor"
-                product_overview: "Bugly is a Tencent crash reporting and application quality monitoring service for mobile apps."
-                alternative_to: "China-market alternative or deployment route for: Sentry, Firebase Crashlytics, Bugsnag."
-                global_alternatives: "Sentry, Firebase Crashlytics, Bugsnag"
-                organization: "Tencent Bugly"
-                organization_overview: "Bugly is part of Tencent developer services for mobile crash reporting and quality insights."
-                developer_docs: "https://bugly.qq.com/docs/"
-
       - subcategory:
         name: Monitoring & Observability (APM / RUM)
         items:
@@ -1541,31 +1590,6 @@ landscape:
         name: Embeddings & Reranking
         items:
           - item:
-            name: BGE (BAAI FlagEmbedding)
-            homepage_url: https://github.com/FlagOpen/FlagEmbedding
-            logo: bge-baai-flagembedding.svg
-            description: BGE provides open-source embedding and reranking models for multilingual semantic search, retrieval, and RAG pipelines.
-            extra:
-              annotations:
-                global_analogs: OpenAI Embeddings, Sentence-BERT
-                replacement_fit: partial
-                china_context: BGE models can be self-hosted in mainland China for retrieval and RAG stacks that need local control, although teams must operate their own inference infrastructure.
-                vendor_type: china-saas
-                evidence_level: medium
-                availability_status: generally-available
-                global_availability_in_china: unavailable
-                metadata_name: "BGE (BAAI FlagEmbedding)"
-                primary_category: "AI Models & Platforms"
-                official_website: "https://github.com/FlagOpen/FlagEmbedding"
-                github: "https://github.com/FlagOpen/FlagEmbedding"
-                social_media: "to-be-supplied-by-contributor"
-                product_overview: "BGE provides open-source embedding and reranking models for multilingual semantic search, retrieval, and RAG pipelines."
-                alternative_to: "China-market alternative or deployment route for: OpenAI Embeddings, Sentence-BERT."
-                global_alternatives: "OpenAI Embeddings, Sentence-BERT"
-                organization: "BAAI"
-                organization_overview: "BAAI develops open research models and tools, including the FlagEmbedding family for text retrieval and reranking."
-                developer_docs: "https://github.com/FlagOpen/FlagEmbedding"
-          - item:
             name: Qwen Embeddings (DashScope)
             homepage_url: https://help.aliyun.com/zh/model-studio/developer-reference/text-embedding-quick-start-1
             logo: qwen-embeddings-dashscope.svg
@@ -1615,31 +1639,6 @@ landscape:
                 organization: "Zhipu AI"
                 organization_overview: "Zhipu AI develops the GLM model family and managed AI APIs for enterprise and developer applications."
                 developer_docs: "https://open.bigmodel.cn/dev/api#embedding"
-          - item:
-            name: BCE (NetEase Youdao)
-            homepage_url: https://github.com/netease-youdao/BCEmbedding
-            logo: bce-netease-youdao.svg
-            description: BCE provides open-source bilingual Chinese-English embedding and reranking models optimized for semantic retrieval and RAG.
-            extra:
-              annotations:
-                global_analogs: OpenAI Embeddings, Cohere Rerank
-                replacement_fit: partial
-                china_context: BCE can be self-hosted for mainland China RAG stacks that need Chinese-English retrieval and reranking, with deployment and scaling managed by the adopting team.
-                vendor_type: china-saas
-                evidence_level: medium
-                availability_status: generally-available
-                global_availability_in_china: unavailable
-                metadata_name: "BCE (NetEase Youdao)"
-                primary_category: "AI Models & Platforms"
-                official_website: "https://github.com/netease-youdao/BCEmbedding"
-                github: "https://github.com/netease-youdao/BCEmbedding"
-                social_media: "to-be-supplied-by-contributor"
-                product_overview: "BCE provides open-source bilingual Chinese-English embedding and reranking models optimized for semantic retrieval and RAG."
-                alternative_to: "China-market alternative or deployment route for: OpenAI Embeddings, Cohere Rerank."
-                global_alternatives: "OpenAI Embeddings, Cohere Rerank"
-                organization: "NetEase Youdao"
-                organization_overview: "NetEase Youdao develops language AI products and the BCEmbedding model family for bilingual retrieval and reranking."
-                developer_docs: "https://github.com/netease-youdao/BCEmbedding"
           - item:
             name: GTE (Alibaba)
             homepage_url: https://huggingface.co/Alibaba-NLP

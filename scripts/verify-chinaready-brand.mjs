@@ -520,6 +520,71 @@ if (exists("build/alternatives/twilio-sms.html")) {
   assert(twilioSmsPage.includes("JPush SMS"), "Twilio SMS page must map to JPush SMS");
 }
 
+if (exists("build/alternatives/barracuda.html")) {
+  const barracudaPage = read("build/alternatives/barracuda.html");
+  assert(barracudaPage.includes("Barracuda alternatives in China"), "Barracuda alternatives page must use an intent-matching H1");
+  assert(
+    barracudaPage.includes('cr-alt-availability-limited">Limited</span>'),
+    "Barracuda page must label mainland China availability as Limited",
+  );
+  assert(
+    barracudaPage.includes("can be used in mainland China"),
+    "Barracuda page must state the product can be used in mainland China",
+  );
+  assert(
+    barracudaPage.includes("government, finance, and critical-infrastructure") ||
+      barracudaPage.includes("government, finance, and critical infrastructure"),
+    "Barracuda page must call out regulated-industry caution for new projects",
+  );
+  assert(barracudaPage.includes("Scenario"), "Barracuda page must include the scenario recommendation table");
+  assert(barracudaPage.includes("Coremail (CACTER邮件安全网关)"), "Barracuda page must map to Coremail CACTER");
+  assert(barracudaPage.includes("Topsec"), "Barracuda page must map to Topsec");
+}
+
+assert(exists("build/alternatives/azure-devops.html"), "Azure DevOps alternatives page must exist");
+{
+  const azureDevOpsPage = read("build/alternatives/azure-devops.html");
+  assert(azureDevOpsPage.includes("Azure DevOps alternatives in China"), "Azure DevOps page must use an intent-matching H1");
+  assert(
+    azureDevOpsPage.includes('cr-alt-availability-limited">Limited</span>'),
+    "Azure DevOps page must label mainland China availability as Limited",
+  );
+  assert(
+    azureDevOpsPage.includes("do not offer Azure DevOps") || azureDevOpsPage.includes("do <strong>not</strong> offer Azure DevOps"),
+    "Azure DevOps page must state Azure China does not host Azure DevOps",
+  );
+  assert(
+    azureDevOpsPage.includes("deployment target") && azureDevOpsPage.includes("Azure DevOps (Global)"),
+    "Azure DevOps page must explain Global Azure DevOps can target Azure China",
+  );
+  assert(
+    azureDevOpsPage.includes("reuse") && azureDevOpsPage.includes("pipeline"),
+    "Azure DevOps page must note existing pipelines can usually be reused",
+  );
+  assert(!azureDevOpsPage.includes("labels Azure DevOps as Unavailable"), "Azure DevOps FAQ must not claim Unavailable");
+  assert(azureDevOpsPage.includes("Alibaba Cloud Yunxiao"), "Azure DevOps page must map to Yunxiao");
+  assert(azureDevOpsPage.includes("Tencent Cloud DevOps (CODING)"), "Azure DevOps page must map to CODING");
+}
+
+assert(exists("build/alternatives/apple-pay.html"), "Apple Pay alternatives page must exist");
+{
+  const applePayPage = read("build/alternatives/apple-pay.html");
+  assert(applePayPage.includes("Apple Pay alternatives in China"), "Apple Pay page must use an intent-matching H1");
+  assert(
+    applePayPage.includes('cr-alt-availability-available">Available</span>'),
+    "Apple Pay page must label mainland China availability as Available",
+  );
+  assert(!applePayPage.includes("labels Apple Pay as Unavailable"), "Apple Pay FAQ must not claim Unavailable");
+  assert(
+    applePayPage.includes("Chinese internet users") && applePayPage.includes("Alipay") && applePayPage.includes("WeChat Pay"),
+    "Apple Pay page must explain local payment preference for Alipay and WeChat Pay",
+  );
+  assert(
+    applePayPage.includes("Should teams remove Apple Pay") || applePayPage.includes("Keep Apple Pay"),
+    "Apple Pay page must advise keeping Apple Pay while adding local rails",
+  );
+}
+
 assert(exists("build/alternatives/sign-in-with-apple.html"), "Apple Login must keep the stable sign-in-with-apple URL");
 {
   const appleLoginPage = read("build/alternatives/sign-in-with-apple.html");
