@@ -15,6 +15,7 @@ categories:
       - AWS, Azure, and similar clouds may require China-region accounts or a domestic cloud platform.
       - Stripe, PayPal, and Apple Pay style checkout usually map to WeChat Pay, Alipay, or a local commerce integration path. Decide by deployment location first: products that stay outside China can often keep Stripe as a global platform (including Alipay and WeChat Pay for Chinese users); products that must run inside mainland China usually should not use Stripe for compliance reasons and should integrate native rails instead.
       - Google Maps, Google Fonts, and some global CDNs may be unavailable, slow, or operationally constrained in mainland China.
+      - OpenAI, Anthropic, Gemini, and Pinecone-style AI stacks often need China-reachable model APIs, embeddings, vector databases, and agent/RAG platforms instead of a global default.
 
       ## FAQ
 
@@ -69,6 +70,10 @@ categories:
           <tr>
             <td>Growth, Content & Experience</td>
             <td>Product Analytics & User Insights; Location & Map Services; App-Store Intelligence & Attribution (ASO); Web Fonts & Iconography</td>
+          </tr>
+          <tr>
+            <td>AI Models & Platforms</td>
+            <td>Foundation Models & LLM APIs; Embeddings & Reranking; Vector Databases & Retrieval; Agent / RAG Frameworks</td>
           </tr>
         </tbody>
       </table>
@@ -222,3 +227,28 @@ categories:
           Use this category for font and icon delivery services. Self-hosting is an implementation route and belongs in guide notes unless represented by a concrete service.
 
           Typical global services: [Google Fonts](/alternatives/google-fonts.html).
+
+  - category: "AI Models & Platforms"
+    content: |
+      AI Models & Platforms maps China-reachable generative AI developer services for global teams adapting LLM apps for mainland China. Use this category for foundation model APIs, embeddings/reranking, vector retrieval, and agent/RAG application platforms. Chinaready deliberately excludes AI chips, training clusters, and embodied robotics from this taxonomy—those are industry layers, not drop-in developer-service alternatives for app stacks.
+    subcategories:
+      - subcategory: "Foundation Models & LLM APIs"
+        content: |
+          Use this subcategory for mainland-reachable foundation model APIs and Model-as-a-Service consoles that can substitute chat/completions-style workloads.
+
+          Typical global services: OpenAI, Anthropic Claude, Google Gemini, Azure OpenAI.
+      - subcategory: "Embeddings & Reranking"
+        content: |
+          Use this subcategory for embedding and reranking models or APIs used in semantic search and RAG pipelines.
+
+          Typical global services: OpenAI Embeddings, Cohere, Voyage, Sentence-BERT.
+      - subcategory: "Vector Databases & Retrieval"
+        content: |
+          Use this subcategory for vector databases and managed vector retrieval services used to store and query embeddings.
+
+          Typical global services: Pinecone, Weaviate, Qdrant.
+      - subcategory: "Agent / RAG Frameworks"
+        content: |
+          Use this subcategory for China-origin agent builders and RAG application platforms. Global orchestration libraries may appear as analogs in profiles but are not listed as landscape items here.
+
+          Typical global services: OpenAI GPTs, LangChain, LlamaIndex, Botpress.
