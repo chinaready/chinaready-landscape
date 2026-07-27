@@ -543,9 +543,9 @@ landscape:
             description: WeChat Login lets applications authenticate users through the WeChat ecosystem.
             extra:
               annotations:
-                global_analogs: Sign in with Apple, Google Sign-In, Facebook Login
+                global_analogs: Apple Login, Google Sign-In, Facebook Login
                 replacement_fit: ecosystem-specific
-                china_context: Important for China consumer applications, especially when WeChat ecosystem integration is expected.
+                china_context: Important for China consumer applications, especially when WeChat ecosystem integration is expected. Often added alongside Apple Login rather than as a hard replacement, because Apple Login itself remains usable in mainland China.
                 vendor_type: china-super-app
                 evidence_level: low
                 availability_status: generally-available
@@ -556,8 +556,8 @@ landscape:
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
                 product_overview: "WeChat Login lets applications authenticate users through the WeChat ecosystem."
-                alternative_to: "China-market alternative or deployment route for: Sign in with Apple, Google Sign-In, Facebook Login."
-                global_alternatives: "Sign in with Apple, Google Sign-In, Facebook Login"
+                alternative_to: "China-market alternative or deployment route for: Apple Login, Google Sign-In, Facebook Login."
+                global_alternatives: "Apple Login, Google Sign-In, Facebook Login"
                 organization: "Tencent WeChat"
                 organization_overview: "Tencent WeChat is a major China super-app ecosystem that provides identity, payment, mini-program, and messaging capabilities."
                 developer_docs: "https://developers.weixin.qq.com/doc/"
@@ -909,9 +909,9 @@ landscape:
             description: Alibaba Cloud SMS provides SMS messaging services for verification and notification workflows.
             extra:
               annotations:
-                global_analogs: Twilio SMS, AWS SNS, MessageBird
+                global_analogs: Twilio SMS, AWS SNS, MessageBird, Apple Login
                 replacement_fit: direct
-                china_context: Alibaba Cloud SMS provides a China-market alternative for SMS notification and verification workflows when Twilio SMS is unavailable for mainland China.
+                china_context: China-market SMS for verification and notifications when Twilio SMS is unavailable. Commonly used to power phone-number OTP login alongside WeChat Login when international apps add mainland login options — Apple Login itself remains usable, but Chinese users often prefer phone or WeChat login.
                 vendor_type: china-cloud
                 evidence_level: medium
                 availability_status: generally-available
@@ -921,9 +921,9 @@ landscape:
                 official_website: "https://www.aliyun.com/product/dysms"
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
-                product_overview: "Alibaba Cloud SMS provides SMS messaging services for verification and notification workflows."
-                alternative_to: "China-market alternative or deployment route for: Twilio SMS, AWS SNS, MessageBird."
-                global_alternatives: "Twilio SMS, AWS SNS, MessageBird"
+                product_overview: "Alibaba Cloud SMS provides SMS messaging services for verification and notification workflows, including phone-number OTP login."
+                alternative_to: "China-market alternative or deployment route for: Twilio SMS, AWS SNS, MessageBird, Apple Login."
+                global_alternatives: "Twilio SMS, AWS SNS, MessageBird, Apple Login"
                 organization: "Alibaba Cloud"
                 organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
                 developer_docs: "https://help.aliyun.com/zh/sms/"

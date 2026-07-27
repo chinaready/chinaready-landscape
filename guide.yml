@@ -160,7 +160,9 @@ categories:
         content: |
           Use this category for identity providers, login systems, and authentication platforms.
 
-          Typical global services: [Auth0](/alternatives/auth0.html), [Okta](/alternatives/okta.html), [Firebase Authentication](/alternatives/firebase-authentication.html), [Amazon Cognito](/alternatives/amazon-cognito.html).
+          Apple Login (Sign in with Apple) remains usable in mainland China; teams usually add WeChat Login and phone-number OTP (for example via Alibaba Cloud SMS) for local habit fit rather than because Apple Login is blocked. See the [Apple Login alternatives map](/alternatives/sign-in-with-apple.html).
+
+          Typical global services: [Apple Login](/alternatives/sign-in-with-apple.html), [Auth0](/alternatives/auth0.html), [Okta](/alternatives/okta.html), [Firebase Authentication](/alternatives/firebase-authentication.html), [Amazon Cognito](/alternatives/amazon-cognito.html).
       - subcategory: "Payments & In-App Purchases"
         content: |
           Use this category for payment rails and app monetization services. Profile notes should distinguish payment gateways, super-app payment ecosystems, and managed integration services.

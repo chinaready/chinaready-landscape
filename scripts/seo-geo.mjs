@@ -64,6 +64,12 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "twilio-sms": "unavailable",
   "twilio-video": "unavailable",
   "twilio-voice": "unavailable",
+  "sign-in-with-apple": "available",
+};
+
+/** Keep stable public URLs when display names change. */
+const SLUG_OVERRIDES = {
+  "apple-login": "sign-in-with-apple",
 };
 
 const TWILIO_PRC_MESSAGING_RESTRICTIONS_URL =
@@ -513,6 +519,75 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  "sign-in-with-apple": {
+    description: (availability, names) =>
+      clipMeta(
+        `Apple Login (Sign in with Apple) works in mainland China. Keep it, then usually add ${names.slice(0, 2).join(" and ")} for local habit fit. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Apple Login</strong> (Sign in with Apple) is <strong>Available</strong> in mainland China — Apple ID works, AuthenticationServices does not need replacing, and global and China apps can share the same Apple Login path. Teams usually still add <strong>${escapeHtml(names.slice(0, 2).join(" and "))}</strong> because Chinese users prefer WeChat or phone-number login. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Apple Login in mainland China",
+    sectionTitle: "Common China login options to add alongside Apple Login",
+    guidanceHtml: `
+        <h3>1. Apple Login capability</h3>
+        <p>No product change is required for the Apple Login feature itself. Apple ID works normally in mainland China, so:</p>
+        <ul>
+          <li>Sign in with Apple / Apple Login can be used as usual</li>
+          <li>Apple Authentication Services (<code>AuthenticationServices.framework</code>) does not need to be replaced</li>
+          <li>Apple Developer console configuration can stay the same</li>
+          <li>App Review will not require China-specific changes to Apple Login merely because the app targets China</li>
+        </ul>
+        <p>Global and China-market apps can share the same Apple Login implementation.</p>
+        <h3>2. User data storage (often the real focus)</h3>
+        <p>If the app serves mainland China users and the backend is deployed in mainland China, treat Apple Login return data carefully. Typical fields include:</p>
+        <ul>
+          <li>Apple User ID (stable unique ID)</li>
+          <li>Email (real address or Private Relay)</li>
+          <li>User name (on first authorization)</li>
+        </ul>
+        <p>These are personal information. For servers in mainland China, teams need PIPL-aligned handling, a clear privacy policy, and extra scrutiny if the same identity data is synced across borders. Apple Login itself is fine; the compliance question is the backend data flow.</p>
+        <h3>3. ICP and China deployment</h3>
+        <p>If the app backend runs on AWS China, Alibaba Cloud, or Tencent Cloud China regions and serves mainland users online, plan for the broader China operating stack — not only login:</p>
+        <ul>
+          <li>ICP filing</li>
+          <li>Public Security Bureau (PSB) filing</li>
+          <li>China payments (WeChat Pay, Alipay)</li>
+          <li>China SMS</li>
+          <li>China push providers in some Android scenarios</li>
+        </ul>
+        <h3>4. Chinaready recommendation</h3>
+        <p>Many international apps keep Apple Login, Google Login, and email login. After entering China, they usually add WeChat Login and phone-number login — not because Apple Login is unavailable, but because Chinese users are more accustomed to WeChat or phone OTP.</p>
+        <p>A common mainland login set becomes:</p>
+        <ul>
+          <li>Apple Login</li>
+          <li>WeChat Login</li>
+          <li>Phone-number OTP login (for example via Alibaba Cloud SMS)</li>
+        </ul>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Apple Login (Sign in with Apple) work in China?",
+        answer: `Yes. Chinaready labels Apple Login as ${availability} for mainland China. Apple ID works normally, AuthenticationServices does not need replacing, Apple Developer configuration can stay consistent, and App Review does not require China-specific Apple Login changes merely because the app targets China. Global and China apps can share the same Apple Login path.`,
+      },
+      {
+        question: "Do teams need to remove Apple Login for a China launch?",
+        answer:
+          "No. Keep Apple Login when it already fits the product. The usual China change is additive: add WeChat Login and phone-number OTP login because local users prefer those methods, not because Apple Login is blocked.",
+      },
+      {
+        question: "What China login options should teams add alongside Apple Login?",
+        answer: `Chinaready Landscape currently maps complementary China login options for Apple Login to ${namesText}. Prefer WeChat Login for consumer WeChat-ecosystem apps, and Alibaba Cloud SMS when you need phone-number OTP login. Treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "What compliance issues matter more than Apple Login availability?",
+        answer:
+          "If the backend stores Apple User ID, email, or name in mainland China, handle those fields as personal information under PIPL, disclose them in the privacy policy, and review cross-border sync. For China-hosted online services, also plan ICP filing, PSB filing, and China-ready payments, SMS, and push where required.",
+      },
+      {
+        question: "Where should teams go after planning China login options?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent identity and messaging services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the login path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
 };
 
 /**
@@ -627,7 +702,8 @@ const ANALOG_ALIASES = {
   "aws device farm": "AWS Device Farm",
   "aws sns": "AWS SNS",
   "apple mapkit": "Apple MapKit",
-  "sign in with apple": "Sign in with Apple",
+  "sign in with apple": "Apple Login",
+  "apple login": "Apple Login",
   "google sign-in": "Google Sign-In",
   "facebook login": "Facebook Login",
   "twilio sms": "Twilio SMS",
@@ -678,11 +754,12 @@ function escapeHtml(value) {
 }
 
 function slugify(value) {
-  return String(value)
+  const base = String(value)
     .toLowerCase()
     .replace(/&/g, "and")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+  return SLUG_OVERRIDES[base] || base;
 }
 
 function splitList(value) {

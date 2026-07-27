@@ -520,6 +520,27 @@ if (exists("build/alternatives/twilio-sms.html")) {
   assert(twilioSmsPage.includes("JPush SMS"), "Twilio SMS page must map to JPush SMS");
 }
 
+assert(exists("build/alternatives/sign-in-with-apple.html"), "Apple Login must keep the stable sign-in-with-apple URL");
+{
+  const appleLoginPage = read("build/alternatives/sign-in-with-apple.html");
+  assert(appleLoginPage.includes("Apple Login alternatives in China"), "Apple Login page must use Apple Login in the H1");
+  assert(!appleLoginPage.includes("<h1>Sign in with Apple"), "Apple Login page must not keep Sign in with Apple as the H1 name");
+  assert(
+    appleLoginPage.includes('cr-alt-availability-available">Available</span>'),
+    "Apple Login page must label mainland China availability as Available",
+  );
+  assert(appleLoginPage.includes("AuthenticationServices"), "Apple Login page must note AuthenticationServices does not need replacing");
+  assert(appleLoginPage.includes("PIPL"), "Apple Login page must cover PIPL / personal-information storage");
+  assert(appleLoginPage.includes("ICP"), "Apple Login page must cover ICP / China deployment context");
+  assert(appleLoginPage.includes("WeChat Login"), "Apple Login page must map to WeChat Login");
+  assert(appleLoginPage.includes("Alibaba Cloud SMS"), "Apple Login page must map phone OTP to Alibaba Cloud SMS");
+  assert(
+    appleLoginPage.includes("Common China login options to add alongside Apple Login"),
+    "Apple Login page must frame candidates as additive login options",
+  );
+  assert(appleLoginPage.includes("sign in with apple") || appleLoginPage.includes("Sign in with Apple"), "Apple Login page must keep Sign in with Apple as an alias/search term");
+}
+
 if (exists("build/alternatives/twilio-video.html")) {
   const twilioVideoPage = read("build/alternatives/twilio-video.html");
   assert(twilioVideoPage.includes("Twilio Video alternatives in China"), "Twilio Video alternatives page must use an intent-matching H1");
