@@ -1386,7 +1386,182 @@ landscape:
     subcategories:
       - subcategory:
         name: Foundation Models & LLM APIs
-        items: []
+        items:
+          - item:
+            name: DeepSeek
+            homepage_url: https://www.deepseek.com/
+            logo: deepseek.svg
+            description: DeepSeek provides open-weight and API-accessible foundation models optimized for reasoning and coding with competitive inference cost.
+            extra:
+              annotations:
+                global_analogs: OpenAI, Anthropic
+                replacement_fit: direct
+                china_context: DeepSeek offers mainland-reachable APIs and widely used open weights as a practical alternative when OpenAI or Anthropic are unavailable for China production stacks.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "DeepSeek"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://www.deepseek.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "DeepSeek provides open-weight and API-accessible foundation models optimized for reasoning and coding with competitive inference cost."
+                alternative_to: "China-market alternative or deployment route for: OpenAI, Anthropic."
+                global_alternatives: "OpenAI, Anthropic"
+                organization: "DeepSeek"
+                organization_overview: "DeepSeek builds efficient foundation models and developer APIs with a strong open-weight strategy."
+                developer_docs: "https://api-docs.deepseek.com/"
+          - item:
+            name: Moonshot AI (Kimi)
+            homepage_url: https://www.moonshot.cn/
+            logo: moonshot-ai-kimi.svg
+            description: Moonshot AI provides Kimi long-context language models and APIs for chat, document analysis, and application development.
+            extra:
+              annotations:
+                global_analogs: OpenAI, Anthropic
+                replacement_fit: direct
+                china_context: Kimi provides mainland-reachable long-context model APIs for teams replacing OpenAI or Anthropic in document-heavy China applications.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Moonshot AI (Kimi)"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://www.moonshot.cn/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Moonshot AI provides Kimi long-context language models and APIs for chat, document analysis, and application development."
+                alternative_to: "China-market alternative or deployment route for: OpenAI, Anthropic."
+                global_alternatives: "OpenAI, Anthropic"
+                organization: "Moonshot AI"
+                organization_overview: "Moonshot AI develops Kimi foundation models and long-context AI services for consumer and developer use."
+                developer_docs: "https://platform.moonshot.cn/docs"
+          - item:
+            name: Qwen (Alibaba Cloud Model Studio)
+            homepage_url: https://www.alibabacloud.com/product/model-studio
+            logo: qwen-alibaba-cloud-model-studio.svg
+            description: Alibaba Cloud Model Studio provides managed access to Qwen models and DashScope APIs for building generative AI applications.
+            extra:
+              annotations:
+                global_analogs: OpenAI, Google Gemini, Azure OpenAI
+                replacement_fit: direct
+                china_context: Model Studio and DashScope provide mainland-hosted Qwen APIs and enterprise cloud integration for China deployments that cannot rely on global model endpoints.
+                vendor_type: china-cloud
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Qwen (Alibaba Cloud Model Studio)"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://www.alibabacloud.com/product/model-studio"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Alibaba Cloud Model Studio provides managed access to Qwen models and DashScope APIs for building generative AI applications."
+                alternative_to: "China-market alternative or deployment route for: OpenAI, Google Gemini, Azure OpenAI."
+                global_alternatives: "OpenAI, Google Gemini, Azure OpenAI"
+                organization: "Alibaba Cloud"
+                organization_overview: "Alibaba Cloud develops the Qwen model family and operates Model Studio and DashScope for managed generative AI workloads."
+                developer_docs: "https://www.alibabacloud.com/help/en/model-studio/"
+          - item:
+            name: Zhipu AI (GLM)
+            homepage_url: https://www.zhipuai.cn/
+            logo: zhipu-ai-glm.svg
+            description: Zhipu AI provides bilingual GLM foundation models and APIs for enterprise chat, reasoning, and application development.
+            extra:
+              annotations:
+                global_analogs: OpenAI, Anthropic
+                replacement_fit: direct
+                china_context: Zhipu AI offers mainland-reachable bilingual model APIs and enterprise services for production workloads that need a China-based alternative to OpenAI or Anthropic.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Zhipu AI (GLM)"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://www.zhipuai.cn/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Zhipu AI provides bilingual GLM foundation models and APIs for enterprise chat, reasoning, and application development."
+                alternative_to: "China-market alternative or deployment route for: OpenAI, Anthropic."
+                global_alternatives: "OpenAI, Anthropic"
+                organization: "Zhipu AI"
+                organization_overview: "Zhipu AI develops the GLM family of bilingual foundation models and enterprise AI platforms."
+                developer_docs: "https://open.bigmodel.cn/dev/api"
+          - item:
+            name: Baichuan
+            homepage_url: https://www.baichuan-ai.com/
+            logo: baichuan.svg
+            description: Baichuan provides foundation models, enterprise APIs, and private deployment options for generative AI applications.
+            extra:
+              annotations:
+                global_analogs: OpenAI
+                replacement_fit: direct
+                china_context: Baichuan supports mainland enterprise deployments with hosted APIs and private deployment options for teams replacing OpenAI in regulated or data-sensitive environments.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Baichuan"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://www.baichuan-ai.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Baichuan provides foundation models, enterprise APIs, and private deployment options for generative AI applications."
+                alternative_to: "China-market alternative or deployment route for: OpenAI."
+                global_alternatives: "OpenAI"
+                organization: "Baichuan Intelligence"
+                organization_overview: "Baichuan Intelligence develops foundation models and enterprise AI solutions with hosted and private deployment choices."
+                developer_docs: "https://platform.baichuan-ai.com/"
+          - item:
+            name: MiniMax
+            homepage_url: https://www.minimaxi.com/
+            logo: minimax.svg
+            description: MiniMax provides multimodal foundation models and developer APIs for text, speech, image, video, and agent applications.
+            extra:
+              annotations:
+                global_analogs: OpenAI
+                replacement_fit: direct
+                china_context: MiniMax offers mainland-reachable multimodal APIs for China applications that need local text, speech, image, or video generation instead of OpenAI services.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "MiniMax"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://www.minimaxi.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "MiniMax provides multimodal foundation models and developer APIs for text, speech, image, video, and agent applications."
+                alternative_to: "China-market alternative or deployment route for: OpenAI."
+                global_alternatives: "OpenAI"
+                organization: "MiniMax"
+                organization_overview: "MiniMax develops multimodal foundation models and API products for consumer and enterprise AI applications."
+                developer_docs: "https://platform.minimaxi.com/document/guides/introduction"
+          - item:
+            name: Volcengine Ark (Doubao)
+            homepage_url: https://www.volcengine.com/product/ark
+            logo: volcengine-ark-doubao.svg
+            description: Volcengine Ark provides managed access to ByteDance Doubao models and model services for enterprise generative AI development.
+            extra:
+              annotations:
+                global_analogs: OpenAI, Azure OpenAI
+                replacement_fit: partial
+                china_context: Ark provides mainland-hosted Doubao model endpoints and Volcengine integration for China workloads, though model behavior and platform interfaces are not fully drop-in compatible with global APIs.
+                vendor_type: china-cloud
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Volcengine Ark (Doubao)"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://www.volcengine.com/product/ark"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Volcengine Ark provides managed access to ByteDance Doubao models and model services for enterprise generative AI development."
+                alternative_to: "China-market alternative or deployment route for: OpenAI, Azure OpenAI."
+                global_alternatives: "OpenAI, Azure OpenAI"
+                organization: "ByteDance / Volcengine"
+                organization_overview: "ByteDance and Volcengine develop Doubao models and operate the Ark model service for enterprise AI workloads."
+                developer_docs: "https://www.volcengine.com/docs/82379"
       - subcategory:
         name: Embeddings & Reranking
         items: []
