@@ -1717,7 +1717,132 @@ landscape:
                 developer_docs: "https://cloud.baidu.com/product/wenxinworkshop"
       - subcategory:
         name: Vector Databases & Retrieval
-        items: []
+        items:
+          - item:
+            name: Milvus
+            homepage_url: https://milvus.io/
+            logo: milvus.svg
+            description: Milvus is an open-source vector database for scalable similarity search, semantic retrieval, and retrieval-augmented generation workloads.
+            extra:
+              annotations:
+                global_analogs: Pinecone, Weaviate, Qdrant
+                replacement_fit: direct
+                china_context: Milvus can be self-hosted in mainland China for production vector search and RAG stacks that need local infrastructure control instead of an overseas managed endpoint.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Milvus"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://milvus.io/"
+                github: "https://github.com/milvus-io/milvus"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Milvus is an open-source vector database for scalable similarity search, semantic retrieval, and retrieval-augmented generation workloads."
+                alternative_to: "China-market alternative or deployment route for: Pinecone, Weaviate, Qdrant."
+                global_alternatives: "Pinecone, Weaviate, Qdrant"
+                organization: "Zilliz / LF AI"
+                organization_overview: "Zilliz originated Milvus, which is developed as an open-source vector database project under the LF AI & Data Foundation."
+                developer_docs: "https://milvus.io/docs"
+          - item:
+            name: Zilliz Cloud
+            homepage_url: https://zilliz.com/
+            logo: zilliz-cloud.svg
+            description: Zilliz Cloud provides a fully managed Milvus service for scalable vector search, semantic retrieval, and production RAG applications.
+            extra:
+              annotations:
+                global_analogs: Pinecone, Weaviate Cloud
+                replacement_fit: direct
+                china_context: Zilliz Cloud offers a managed route for teams using the Milvus ecosystem, with deployment options suited to China-facing vector retrieval workloads.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Zilliz Cloud"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://zilliz.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Zilliz Cloud provides a fully managed Milvus service for scalable vector search, semantic retrieval, and production RAG applications."
+                alternative_to: "China-market alternative or deployment route for: Pinecone, Weaviate Cloud."
+                global_alternatives: "Pinecone, Weaviate Cloud"
+                organization: "Zilliz"
+                organization_overview: "Zilliz develops Milvus and operates managed vector database services for enterprise AI and retrieval workloads."
+                developer_docs: "https://docs.zilliz.com/"
+          - item:
+            name: Tencent Cloud VectorDB
+            homepage_url: https://cloud.tencent.com/product/vdb
+            logo: tencent-cloud-vectordb.svg
+            description: Tencent Cloud VectorDB is a managed vector database for high-dimensional data storage, similarity search, and retrieval-augmented generation.
+            extra:
+              annotations:
+                global_analogs: Pinecone
+                replacement_fit: direct
+                china_context: Tencent Cloud VectorDB provides mainland-hosted vector storage and retrieval integrated with Tencent Cloud for China production stacks that cannot depend on Pinecone.
+                vendor_type: china-cloud
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Tencent Cloud VectorDB"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://cloud.tencent.com/product/vdb"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Tencent Cloud VectorDB is a managed vector database for high-dimensional data storage, similarity search, and retrieval-augmented generation."
+                alternative_to: "China-market alternative or deployment route for: Pinecone."
+                global_alternatives: "Pinecone"
+                organization: "Tencent Cloud"
+                organization_overview: "Tencent Cloud provides cloud infrastructure and managed data services for applications operating in mainland China."
+                developer_docs: "https://cloud.tencent.com/document/product/1709"
+          - item:
+            name: Alibaba Cloud DashVector
+            homepage_url: https://www.aliyun.com/product/dashvector
+            logo: alibaba-cloud-dashvector.svg
+            description: Alibaba Cloud DashVector provides managed vector storage and similarity search for semantic retrieval, recommendation, and RAG applications.
+            extra:
+              annotations:
+                global_analogs: Pinecone, Amazon OpenSearch Serverless
+                replacement_fit: direct
+                china_context: DashVector offers mainland-hosted vector retrieval integrated with Alibaba Cloud, giving China applications a managed alternative to overseas vector search services.
+                vendor_type: china-cloud
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Alibaba Cloud DashVector"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://www.aliyun.com/product/dashvector"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Alibaba Cloud DashVector provides managed vector storage and similarity search for semantic retrieval, recommendation, and RAG applications."
+                alternative_to: "China-market alternative or deployment route for: Pinecone, Amazon OpenSearch Serverless."
+                global_alternatives: "Pinecone, Amazon OpenSearch Serverless"
+                organization: "Alibaba Cloud"
+                organization_overview: "Alibaba Cloud operates cloud infrastructure and managed AI and data services for enterprise applications in mainland China."
+                developer_docs: "https://help.aliyun.com/zh/vs/"
+          - item:
+            name: Baidu VectorDB
+            homepage_url: https://cloud.baidu.com/product/vdb.html
+            logo: baidu-vectordb.svg
+            description: Baidu VectorDB is a managed vector database for embedding storage, similarity search, and knowledge retrieval in AI applications.
+            extra:
+              annotations:
+                global_analogs: Pinecone
+                replacement_fit: direct
+                china_context: Baidu VectorDB supplies mainland-hosted vector retrieval within Baidu Cloud for China-facing RAG and semantic search systems that cannot rely on Pinecone.
+                vendor_type: china-cloud
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Baidu VectorDB"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://cloud.baidu.com/product/vdb.html"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Baidu VectorDB is a managed vector database for embedding storage, similarity search, and knowledge retrieval in AI applications."
+                alternative_to: "China-market alternative or deployment route for: Pinecone."
+                global_alternatives: "Pinecone"
+                organization: "Baidu Cloud"
+                organization_overview: "Baidu Cloud provides cloud infrastructure, AI platforms, and managed data services for enterprise applications."
+                developer_docs: "https://cloud.baidu.com/doc/VDB/index.html"
       - subcategory:
         name: Agent / RAG Frameworks
         items: []
