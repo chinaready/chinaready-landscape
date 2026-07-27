@@ -1564,7 +1564,157 @@ landscape:
                 developer_docs: "https://www.volcengine.com/docs/82379"
       - subcategory:
         name: Embeddings & Reranking
-        items: []
+        items:
+          - item:
+            name: BGE (BAAI FlagEmbedding)
+            homepage_url: https://github.com/FlagOpen/FlagEmbedding
+            logo: bge-baai-flagembedding.svg
+            description: BGE provides open-source embedding and reranking models for multilingual semantic search, retrieval, and RAG pipelines.
+            extra:
+              annotations:
+                global_analogs: OpenAI Embeddings, Sentence-BERT
+                replacement_fit: partial
+                china_context: BGE models can be self-hosted in mainland China for retrieval and RAG stacks that need local control, although teams must operate their own inference infrastructure.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "BGE (BAAI FlagEmbedding)"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://github.com/FlagOpen/FlagEmbedding"
+                github: "https://github.com/FlagOpen/FlagEmbedding"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "BGE provides open-source embedding and reranking models for multilingual semantic search, retrieval, and RAG pipelines."
+                alternative_to: "China-market alternative or deployment route for: OpenAI Embeddings, Sentence-BERT."
+                global_alternatives: "OpenAI Embeddings, Sentence-BERT"
+                organization: "BAAI"
+                organization_overview: "BAAI develops open research models and tools, including the FlagEmbedding family for text retrieval and reranking."
+                developer_docs: "https://github.com/FlagOpen/FlagEmbedding"
+          - item:
+            name: Qwen Embeddings (DashScope)
+            homepage_url: https://help.aliyun.com/zh/model-studio/developer-reference/text-embedding-quick-start-1
+            logo: qwen-embeddings-dashscope.svg
+            description: Qwen Embeddings provides managed text embedding APIs through Alibaba Cloud Model Studio and DashScope for semantic retrieval and RAG.
+            extra:
+              annotations:
+                global_analogs: OpenAI Embeddings, Voyage
+                replacement_fit: direct
+                china_context: DashScope provides mainland-hosted embedding endpoints for Alibaba Cloud applications that need production RAG and semantic retrieval without relying on global APIs.
+                vendor_type: china-cloud
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Qwen Embeddings (DashScope)"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://help.aliyun.com/zh/model-studio/developer-reference/text-embedding-quick-start-1"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Qwen Embeddings provides managed text embedding APIs through Alibaba Cloud Model Studio and DashScope for semantic retrieval and RAG."
+                alternative_to: "China-market alternative or deployment route for: OpenAI Embeddings, Voyage."
+                global_alternatives: "OpenAI Embeddings, Voyage"
+                organization: "Alibaba Cloud"
+                organization_overview: "Alibaba Cloud operates Model Studio and DashScope, providing managed Qwen model APIs for enterprise AI applications."
+                developer_docs: "https://help.aliyun.com/zh/model-studio/developer-reference/text-embedding-quick-start-1"
+          - item:
+            name: Zhipu Embeddings
+            homepage_url: https://open.bigmodel.cn/dev/api#embedding
+            logo: zhipu-embeddings.svg
+            description: Zhipu Embeddings provides API-accessible text vector representations for semantic search, clustering, and retrieval-augmented generation.
+            extra:
+              annotations:
+                global_analogs: OpenAI Embeddings, Cohere
+                replacement_fit: direct
+                china_context: Zhipu offers mainland-reachable embedding APIs for China-hosted semantic search and RAG pipelines that cannot depend on OpenAI or Cohere endpoints.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Zhipu Embeddings"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://open.bigmodel.cn/dev/api#embedding"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Zhipu Embeddings provides API-accessible text vector representations for semantic search, clustering, and retrieval-augmented generation."
+                alternative_to: "China-market alternative or deployment route for: OpenAI Embeddings, Cohere."
+                global_alternatives: "OpenAI Embeddings, Cohere"
+                organization: "Zhipu AI"
+                organization_overview: "Zhipu AI develops the GLM model family and managed AI APIs for enterprise and developer applications."
+                developer_docs: "https://open.bigmodel.cn/dev/api#embedding"
+          - item:
+            name: BCE (NetEase Youdao)
+            homepage_url: https://github.com/netease-youdao/BCEmbedding
+            logo: bce-netease-youdao.svg
+            description: BCE provides open-source bilingual Chinese-English embedding and reranking models optimized for semantic retrieval and RAG.
+            extra:
+              annotations:
+                global_analogs: OpenAI Embeddings, Cohere Rerank
+                replacement_fit: partial
+                china_context: BCE can be self-hosted for mainland China RAG stacks that need Chinese-English retrieval and reranking, with deployment and scaling managed by the adopting team.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "BCE (NetEase Youdao)"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://github.com/netease-youdao/BCEmbedding"
+                github: "https://github.com/netease-youdao/BCEmbedding"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "BCE provides open-source bilingual Chinese-English embedding and reranking models optimized for semantic retrieval and RAG."
+                alternative_to: "China-market alternative or deployment route for: OpenAI Embeddings, Cohere Rerank."
+                global_alternatives: "OpenAI Embeddings, Cohere Rerank"
+                organization: "NetEase Youdao"
+                organization_overview: "NetEase Youdao develops language AI products and the BCEmbedding model family for bilingual retrieval and reranking."
+                developer_docs: "https://github.com/netease-youdao/BCEmbedding"
+          - item:
+            name: GTE (Alibaba)
+            homepage_url: https://huggingface.co/Alibaba-NLP
+            logo: gte-alibaba.svg
+            description: GTE provides open text embedding models from Alibaba for multilingual semantic similarity, retrieval, and RAG workloads.
+            extra:
+              annotations:
+                global_analogs: OpenAI Embeddings, Voyage
+                replacement_fit: partial
+                china_context: GTE models support self-hosted embedding inference for mainland China retrieval stacks, reducing reliance on overseas APIs while requiring local model operations.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "GTE (Alibaba)"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://huggingface.co/Alibaba-NLP"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "GTE provides open text embedding models from Alibaba for multilingual semantic similarity, retrieval, and RAG workloads."
+                alternative_to: "China-market alternative or deployment route for: OpenAI Embeddings, Voyage."
+                global_alternatives: "OpenAI Embeddings, Voyage"
+                organization: "Alibaba"
+                organization_overview: "Alibaba develops the GTE family of text embedding models for multilingual and general-purpose retrieval."
+                developer_docs: "https://huggingface.co/Alibaba-NLP"
+          - item:
+            name: Baidu Qianfan Embeddings
+            homepage_url: https://cloud.baidu.com/product/wenxinworkshop
+            logo: baidu-qianfan-embeddings.svg
+            description: Baidu Qianfan provides managed embedding models and APIs for semantic search, knowledge retrieval, and enterprise RAG applications.
+            extra:
+              annotations:
+                global_analogs: OpenAI Embeddings
+                replacement_fit: direct
+                china_context: Qianfan provides mainland-hosted embedding services within Baidu Cloud for production retrieval and RAG stacks that need a China-based alternative to OpenAI APIs.
+                vendor_type: china-cloud
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Baidu Qianfan Embeddings"
+                primary_category: "AI Models & Platforms"
+                official_website: "https://cloud.baidu.com/product/wenxinworkshop"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Baidu Qianfan provides managed embedding models and APIs for semantic search, knowledge retrieval, and enterprise RAG applications."
+                alternative_to: "China-market alternative or deployment route for: OpenAI Embeddings."
+                global_alternatives: "OpenAI Embeddings"
+                organization: "Baidu Cloud"
+                organization_overview: "Baidu Cloud operates Qianfan, a managed platform for foundation models and enterprise generative AI development."
+                developer_docs: "https://cloud.baidu.com/product/wenxinworkshop"
       - subcategory:
         name: Vector Databases & Retrieval
         items: []
