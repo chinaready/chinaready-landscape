@@ -574,6 +574,32 @@ if (exists("build/alternatives/google-analytics.html")) {
   assert(gaPage.includes("SEO effect tracking") || gaPage.includes("channel-source"), "GA page must mention SEO/channel analytics use cases");
 }
 
+if (exists("build/alternatives/firebase-analytics.html")) {
+  const firebaseAnalyticsPage = read("build/alternatives/firebase-analytics.html");
+  assert(
+    firebaseAnalyticsPage.includes("Firebase Analytics alternatives in China"),
+    "Firebase Analytics alternatives page must use an intent-matching H1",
+  );
+  assert(
+    firebaseAnalyticsPage.includes("cr-alt-availability-unavailable\">Unavailable</span>"),
+    "Firebase Analytics page must label mainland China availability as Unavailable",
+  );
+  assert(
+    firebaseAnalyticsPage.includes("https://stackbreak.launchready.cn/public/results/firebase.html#backend"),
+    "Firebase Analytics page must link to Stack Break Lab Firebase backend results",
+  );
+  assert(
+    firebaseAnalyticsPage.includes("does not recommend") || firebaseAnalyticsPage.includes("not recommend"),
+    "Firebase Analytics page must state that reachable Firebase hosts are not recommended",
+  );
+  assert(
+    firebaseAnalyticsPage.includes("compliance risk") || firebaseAnalyticsPage.includes("Personal Information Protection Law"),
+    "Firebase Analytics page must call out mainland China compliance risk",
+  );
+  assert(firebaseAnalyticsPage.includes("Umeng+") || firebaseAnalyticsPage.includes("友盟+"), "Firebase Analytics page must map to Umeng+");
+  assert(firebaseAnalyticsPage.includes("Alibaba Cloud EMAS"), "Firebase Analytics page must map to Alibaba Cloud EMAS");
+}
+
 assert(exists("build/assets/chinaready-alternatives.css"), "published alternatives stylesheet must exist");
 assert(exists("assets/chinaready-mark.svg"), "Chinaready mark favicon source asset is missing");
 assert(exists("assets/favicons/favicon.ico"), "pre-rendered favicon.ico asset is missing");

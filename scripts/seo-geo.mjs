@@ -72,6 +72,8 @@ const TWILIO_CHINA_CALLING_LIMITATIONS_URL =
   "https://help.twilio.com/articles/360016488474-Calling-Limitations-to-China";
 const ALIBABA_CLOUD_VMS_OVERVIEW_URL =
   "http://help.aliyun.com/zh/vms/product-overview/what-is-voice-service?spm=a2c4g.11174283.0.0.6f2d7ff9WtmXiL";
+const STACKBREAK_FIREBASE_BACKEND_URL =
+  "https://stackbreak.launchready.cn/public/results/firebase.html#backend";
 
 /**
  * High-intent editorial guidance for selected global services.
@@ -463,6 +465,50 @@ const EDITORIAL_OVERRIDES = {
       },
       {
         question: "Where should teams go after shortlisting Google Analytics alternatives?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent growth and analytics services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the analytics path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
+  "firebase-analytics": {
+    description: (availability, names) =>
+      clipMeta(
+        `Firebase Analytics is Unavailable for mainland China. Stack Break Lab shows core Firebase services blocked; even reachable hosts are not recommended. Prefer ${names.slice(0, 3).join(", ")}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Firebase Analytics is <strong>Unavailable</strong> for mainland China production stacks. Chinaready <a href="${STACKBREAK_FIREBASE_BACKEND_URL}" target="_blank" rel="noopener noreferrer">Stack Break Lab probes</a> show that core Firebase services are inaccessible from mainland China; a few hosts may still connect, but Chinaready does not recommend using them. Google cloud services of this class are effectively disabled for mainland China and carry explicit compliance risk. Map App analytics to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Firebase Analytics in mainland China",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: () => `
+        <h3>Stack Break Lab findings</h3>
+        <p>Chinaready's <a href="${STACKBREAK_FIREBASE_BACKEND_URL}" target="_blank" rel="noopener noreferrer">Firebase Stack Break Lab results</a> (frontend, backend Admin SDK, and transport probes from a mainland China node) show that core Firebase services — including Authentication, Cloud Firestore, Cloud Storage, Cloud Functions, FCM, and Remote Config — are blocked or otherwise inaccessible. A small number of hosts may still appear reachable at the transport layer (including Firebase Analytics), but Chinaready does not recommend depending on those paths for production App analytics in mainland China.</p>
+        <h3>Compliance risk</h3>
+        <p>Google cloud services such as Firebase Analytics are effectively disabled for mainland China use. Keeping them in a China-facing product stack creates explicit compliance risk — including cross-border personal-information transfer under China's Personal Information Protection Law (PIPL), data-residency expectations, and app-store / regulator scrutiny. Prefer a domestic analytics stack instead of treating partial connectivity as a go-ahead signal.</p>
+        <h3>What to use instead</h3>
+        <ul>
+          <li><strong>Umeng+ (友盟+)</strong> — Default Firebase Analytics / Google Analytics replacement for China Apps, mini-programs, and H5-in-App surfaces, with high SDK coverage across domestic distribution channels.</li>
+          <li><strong>Alibaba Cloud EMAS</strong> — Alibaba Cloud mobile suite covering analytics alongside crash and performance monitoring when you need a broader China-cloud mobile operations path.</li>
+        </ul>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Firebase Analytics work in China?",
+        answer: `No for mainland China production analytics. Chinaready labels Firebase Analytics as ${availability}. Stack Break Lab probes from a mainland China node show that core Firebase services are inaccessible; a few hosts may still connect, but Chinaready does not recommend using them. Google cloud services of this class are effectively disabled for mainland China and carry explicit compliance risk.`,
+      },
+      {
+        question: "What do Chinaready Firebase connectivity tests show?",
+        answer:
+          "Chinaready Stack Break Lab measures Firebase from a mainland China node across frontend (browser / client SDK), backend (Admin SDK), and transport (raw host reachability). Core services such as Authentication, Firestore, Storage, Functions, FCM, and Remote Config are blocked. Occasional transport-level reachability for Firebase Analytics or similar hosts should not be treated as production readiness.",
+      },
+      {
+        question: "Why is Firebase Analytics a compliance risk in mainland China?",
+        answer:
+          "Firebase Analytics is a Google cloud service that is effectively disabled for mainland China. Continuing to collect App telemetry through it exposes the product to explicit compliance risk under China's Personal Information Protection Law (PIPL) and related cross-border data rules, plus app-store and regulator scrutiny. Use a domestic analytics provider for China-facing traffic.",
+      },
+      {
+        question: "What are the best China alternatives to Firebase Analytics?",
+        answer: `Chinaready Landscape currently maps Firebase Analytics to ${namesText}. Prefer Umeng+ for App, mini-program, and H5-in-App measurement, and Alibaba Cloud EMAS when you want analytics inside a broader China-cloud mobile operations suite. Treat this as a research shortlist and confirm consent, PIPL, and event taxonomy before production adoption.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Firebase Analytics alternatives?",
         answer: `Use the interactive Chinaready Landscape to compare adjacent growth and analytics services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the analytics path remains unclear, book a call with Chinaready.`,
       },
     ],
