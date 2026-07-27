@@ -83,33 +83,8 @@ landscape:
                 organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
                 developer_docs: "https://www.alibabacloud.com/help/en/"
       - subcategory:
-        name: Managed DNS Provider
-        items:
-          - item:
-            name: DNSPod
-            homepage_url: https://www.dnspod.cn/
-            logo: dnspod.svg
-            description: DNSPod is a China managed DNS and domain resolution service from Tencent Cloud.
-            extra:
-              annotations:
-                global_analogs: Cloudflare DNS, Amazon Route 53, Google Cloud DNS
-                replacement_fit: direct
-                china_context: DNSPod is a common China-market managed DNS option for teams that cannot rely on global DNS providers for mainland resolution and domain operations.
-                vendor_type: china-cloud
-                evidence_level: high
-                availability_status: generally-available
-                global_availability_in_china: limited
-                metadata_name: "DNSPod"
-                primary_category: "Infrastructure & Edge"
-                official_website: "https://www.dnspod.cn/"
-                github: "to-be-supplied-by-contributor"
-                social_media: "to-be-supplied-by-contributor"
-                product_overview: "DNSPod is a China managed DNS and domain resolution service from Tencent Cloud."
-                alternative_to: "China-market alternative or deployment route for: Cloudflare DNS, Amazon Route 53, Google Cloud DNS."
-                global_alternatives: "Cloudflare DNS, Amazon Route 53, Google Cloud DNS"
-                organization: "Tencent Cloud DNSPod"
-                organization_overview: "DNSPod provides managed DNS and domain services as part of Tencent Cloud."
-                developer_docs: "https://docs.dnspod.cn/"
+        name: Network & Edge Security
+        items: []
 
       - subcategory:
         name: Content Delivery Network (CDN)

@@ -49,7 +49,7 @@ categories:
         <tbody>
           <tr>
             <td>Infrastructure & Edge</td>
-            <td>Cloud Platform & Hosting; Managed DNS Provider; Content Delivery Network (CDN); Service Mesh & Gateway</td>
+            <td>Cloud Platform & Hosting; Network & Edge Security; Content Delivery Network (CDN); Service Mesh & Gateway</td>
           </tr>
           <tr>
             <td>Application Platform</td>
@@ -84,18 +84,18 @@ categories:
 
   - category: "Infrastructure & Edge"
     content: |
-      Chinaready tracks infrastructure and edge services that global software teams need when preparing a China launch. This category covers cloud platforms, DNS, CDN, and service mesh / API gateway products used to host and route applications for mainland China users. China deployments often require region-specific cloud accounts, ICP filing, CDN choices, and in-country traffic-management stacks that differ from a global default.
+      Chinaready tracks infrastructure and edge services that global software teams need when preparing a China launch. This category covers cloud platforms, network and edge security, CDN, and service mesh / API gateway products used to host and protect applications for mainland China users. China deployments often require region-specific cloud accounts, ICP filing, CDN choices, and in-country traffic-management stacks that differ from a global default. Managed DNS is treated as part of the chosen China cloud platform rather than a separate subcategory.
     subcategories:
       - subcategory: "Cloud Platform & Hosting"
         content: |
-          Use this category for cloud platforms or China-region cloud offerings that can host application workloads.
+          Use this category for cloud platforms or China-region cloud offerings that can host application workloads. Mainland DNS and domain resolution are usually selected with the cloud platform (for example Alibaba Cloud DNS or Tencent Cloud DNS) rather than as a standalone landscape subcategory.
 
           Typical global services: [AWS](/alternatives/aws.html), [Microsoft Azure](/alternatives/microsoft-azure.html), [Google Cloud](/alternatives/google-cloud.html).
-      - subcategory: "Managed DNS Provider"
+      - subcategory: "Network & Edge Security"
         content: |
-          Use this category for managed DNS services. Prefer products with clear mainland China DNS and domain-routing documentation.
+          Use this category for WAF, DDoS protection, bot and abuse defense at the edge, and related network/web security gateways. Keep this separate from CDN acceleration and from application-layer CAPTCHA products under Bot Protection & CAPTCHA.
 
-          Typical global services: [Cloudflare DNS](/alternatives/cloudflare-dns.html), [Amazon Route 53](/alternatives/amazon-route-53.html), [Google Cloud DNS](/alternatives/google-cloud-dns.html).
+          Typical global services: [Barracuda](/alternatives/barracuda.html), [Imperva](/alternatives/imperva.html), [Sucuri](/alternatives/sucuri.html).
       - subcategory: "Content Delivery Network (CDN)"
         content: |
           Use this category for CDN and edge acceleration products. Profile notes should distinguish product availability from ICP filing requirements.
