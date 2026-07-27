@@ -236,19 +236,19 @@ categories:
         content: |
           Use this subcategory for mainland-reachable foundation model APIs and Model-as-a-Service consoles that can substitute chat/completions-style workloads.
 
-          Typical global services: OpenAI, Anthropic Claude, Google Gemini, Azure OpenAI.
+          Typical global services: [OpenAI](/alternatives/openai.html), [Anthropic Claude](/alternatives/anthropic.html), [Google Gemini](/alternatives/google-gemini.html), [Azure OpenAI](/alternatives/azure-openai.html).
       - subcategory: "Embeddings & Reranking"
         content: |
           Use this subcategory for embedding and reranking models or APIs used in semantic search and RAG pipelines.
 
-          Typical global services: OpenAI Embeddings, Cohere, Voyage, Sentence-BERT.
+          Typical global services: [OpenAI Embeddings](/alternatives/openai-embeddings.html), [Cohere](/alternatives/cohere.html), [Voyage](/alternatives/voyage.html), [Sentence-BERT](/alternatives/sentence-bert.html).
       - subcategory: "Vector Databases & Retrieval"
         content: |
           Use this subcategory for vector databases and managed vector retrieval services used to store and query embeddings.
 
-          Typical global services: Pinecone, Weaviate, Qdrant.
+          Typical global services: [Pinecone](/alternatives/pinecone.html), [Weaviate](/alternatives/weaviate.html), [Qdrant](/alternatives/qdrant.html).
       - subcategory: "Agent / RAG Frameworks"
         content: |
           Use this subcategory for China-origin agent builders and RAG application platforms. Global orchestration libraries may appear as analogs in profiles but are not listed as landscape items here.
 
-          Typical global services: OpenAI GPTs, LangChain, LlamaIndex, Botpress.
+          Typical global services: [OpenAI GPTs](/alternatives/openai-gpts.html), [LangChain](/alternatives/langchain.html), [LlamaIndex](/alternatives/llamaindex.html), [Botpress](/alternatives/botpress.html).
