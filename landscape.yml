@@ -1379,3 +1379,20 @@ landscape:
                 organization: "Chinaready"
                 organization_overview: "Chinaready helps global software teams understand and implement China-ready product, infrastructure, and go-to-market requirements."
                 developer_docs: "https://gfonts.launchready.cn/"
+
+
+  - category:
+    name: AI Models & Platforms
+    subcategories:
+      - subcategory:
+        name: Foundation Models & LLM APIs
+        items: []
+      - subcategory:
+        name: Embeddings & Reranking
+        items: []
+      - subcategory:
+        name: Vector Databases & Retrieval
+        items: []
+      - subcategory:
+        name: Agent / RAG Frameworks
+        items: []
