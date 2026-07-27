@@ -24,7 +24,7 @@ const guide = read("guide.yml");
 const gitignore = read(".gitignore");
 const headerLogo = read("assets/chinaready-landscape-logo.svg");
 const repositoryUrl = "https://github.com/chinaready/chinaready-landscape.git";
-const legacySourceBrandPattern = new RegExp(`${["A", "IC"].join("")}|${["App", "In", "China"].join("")}`, "i");
+const legacySourceBrandPattern = new RegExp(`\\b${["A", "IC"].join("")}\\b|${["App", "In", "China"].join("")}`, "i");
 const requiredProfileFields = [
   "metadata_name",
   "primary_category",
@@ -141,6 +141,11 @@ assert(!guide.includes("## China alternatives keyword map"), "guide.yml Overview
 assert(guide.includes("/alternatives/"), "guide.yml Overview must link to the /alternatives/ index");
 assert(!guide.includes("landscape.chinaready.co/alternatives"), "guide.yml must use relative /alternatives/ paths, not absolute landscape host URLs");
 assert((guide.match(/Typical global services:/g) || []).length >= 19, "guide.yml must list typical global services under every subcategory");
+assert(guide.includes("AI Models & Platforms"), "guide.yml must document AI Models & Platforms");
+assert(guide.includes("Foundation Models & LLM APIs"), "guide.yml must list Foundation Models & LLM APIs");
+assert(guide.includes("Embeddings & Reranking"), "guide.yml must list Embeddings & Reranking");
+assert(guide.includes("Vector Databases & Retrieval"), "guide.yml must list Vector Databases & Retrieval");
+assert(guide.includes("Agent / RAG Frameworks"), "guide.yml must list Agent / RAG Frameworks");
 assert(guide.includes("## FAQ"), "guide.yml Overview must include an FAQ section for GEO-friendly answers");
 assert(guide.includes("chinaready.co"), "guide.yml Overview must route readers to the Chinaready main site");
 assert(guide.includes("Level 1"), "guide.yml Overview must emphasize the Level 1 taxonomy framing");
@@ -439,6 +444,11 @@ if (exists("build/alternatives/onesignal.html")) {
   );
 }
 
+assert(exists("build/alternatives/openai.html"), "OpenAI alternatives page must exist after AI model entries are added");
+assert(exists("build/alternatives/anthropic.html"), "Anthropic alternatives page must exist after AI model entries are added");
+assert(exists("build/alternatives/google-gemini.html"), "Google Gemini alternatives page must exist after AI model entries are added");
+assert(exists("build/alternatives/pinecone.html"), "Pinecone alternatives page must exist after vector DB entries are added");
+
 for (const googleSlug of [
   "google-maps-platform",
   "google-analytics",
@@ -698,8 +708,8 @@ if (exists("build/data/base.json")) {
   assert(baseSearchText("Tencent Cloud SES").match(/Amazon SES/i), "base.json search index tags must let SES find Tencent Cloud SES");
   assert(baseSearchText("JPush").match(/\bFCM\b/i), "base.json search index tags must let FCM find JPush");
   const subcategoryCount = base.categories.reduce((total, category) => total + category.subcategories.length, 0);
-  assert(base.categories.length === 6, "base.json must expose all 6 top-level categories");
-  assert(subcategoryCount === 22, "base.json must expose all 22 subcategories");
+  assert(base.categories.length === 7, "base.json must expose all 7 top-level categories");
+  assert(subcategoryCount === 26, "base.json must expose all 26 subcategories");
   assert(!base.groups || base.groups.length === 0, "base.json must not define groups so no group tab is selected by default");
 
   const visibleSubcategories = new Set();
