@@ -526,8 +526,16 @@ assert(exists("build/alternatives/sign-in-with-apple.html"), "Apple Login must k
   assert(appleLoginPage.includes("Apple Login alternatives in China"), "Apple Login page must use Apple Login in the H1");
   assert(!appleLoginPage.includes("<h1>Sign in with Apple"), "Apple Login page must not keep Sign in with Apple as the H1 name");
   assert(
-    appleLoginPage.includes('cr-alt-availability-available">Available</span>'),
-    "Apple Login page must label mainland China availability as Available",
+    appleLoginPage.includes('cr-alt-availability-limited">Limited</span>'),
+    "Apple Login page must label mainland China availability as Limited",
+  );
+  assert(
+    appleLoginPage.includes("functionally usable") || appleLoginPage.includes("feature works"),
+    "Apple Login page must state the feature remains usable despite Limited status",
+  );
+  assert(
+    appleLoginPage.includes("Chinaready labels it") || appleLoginPage.includes("so Chinaready labels"),
+    "Apple Login page must explain why Chinaready sets Limited",
   );
   assert(appleLoginPage.includes("AuthenticationServices"), "Apple Login page must note AuthenticationServices does not need replacing");
   assert(appleLoginPage.includes("PIPL"), "Apple Login page must cover PIPL / personal-information storage");

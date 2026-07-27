@@ -160,7 +160,7 @@ categories:
         content: |
           Use this category for identity providers, login systems, and authentication platforms.
 
-          Apple Login (Sign in with Apple) remains usable in mainland China; teams usually add WeChat Login and phone-number OTP (for example via Alibaba Cloud SMS) for local habit fit rather than because Apple Login is blocked. See the [Apple Login alternatives map](/alternatives/sign-in-with-apple.html).
+          Apple Login (Sign in with Apple) remains functionally usable in mainland China, but Chinaready labels it Limited because backend user data from Apple Login is subject to China personal-information rules (PIPL). Teams usually also add WeChat Login and phone-number OTP (for example via Alibaba Cloud SMS) for local habit fit. See the [Apple Login alternatives map](/alternatives/sign-in-with-apple.html).
 
           Typical global services: [Apple Login](/alternatives/sign-in-with-apple.html), [Auth0](/alternatives/auth0.html), [Okta](/alternatives/okta.html), [Firebase Authentication](/alternatives/firebase-authentication.html), [Amazon Cognito](/alternatives/amazon-cognito.html).
       - subcategory: "Payments & In-App Purchases"

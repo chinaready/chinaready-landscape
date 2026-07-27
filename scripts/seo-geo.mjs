@@ -64,7 +64,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "twilio-sms": "unavailable",
   "twilio-video": "unavailable",
   "twilio-voice": "unavailable",
-  "sign-in-with-apple": "available",
+  "sign-in-with-apple": "limited",
 };
 
 /** Keep stable public URLs when display names change. */
@@ -522,10 +522,10 @@ const EDITORIAL_OVERRIDES = {
   "sign-in-with-apple": {
     description: (availability, names) =>
       clipMeta(
-        `Apple Login (Sign in with Apple) works in mainland China. Keep it, then usually add ${names.slice(0, 2).join(" and ")} for local habit fit. Availability: ${availability}.`,
+        `Apple Login works in mainland China, but backend user data is constrained by China compliance law. Chinaready labels it ${availability}. Usually add ${names.slice(0, 2).join(" and ")}.`,
       ),
     lede: (availability, names) =>
-      `<strong>Quick answer:</strong> <strong>Apple Login</strong> (Sign in with Apple) is <strong>Available</strong> in mainland China — Apple ID works, AuthenticationServices does not need replacing, and global and China apps can share the same Apple Login path. Teams usually still add <strong>${escapeHtml(names.slice(0, 2).join(" and "))}</strong> because Chinese users prefer WeChat or phone-number login. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+      `<strong>Quick answer:</strong> <strong>Apple Login</strong> (Sign in with Apple) is functionally usable in mainland China — Apple ID works, AuthenticationServices does not need replacing, and global and China apps can share the same Apple Login path. However, Apple Login returns personal information that a China-hosted backend must handle under PIPL and related data rules, so Chinaready labels it <strong>${escapeHtml(availability)}</strong>: the feature works, but it is constrained. Teams usually still add <strong>${escapeHtml(names.slice(0, 2).join(" and "))}</strong> because Chinese users prefer WeChat or phone-number login.`,
     guidanceTitle: "Apple Login in mainland China",
     sectionTitle: "Common China login options to add alongside Apple Login",
     guidanceHtml: `
@@ -566,7 +566,12 @@ const EDITORIAL_OVERRIDES = {
     faq: (availability, namesText) => [
       {
         question: "Does Apple Login (Sign in with Apple) work in China?",
-        answer: `Yes. Chinaready labels Apple Login as ${availability} for mainland China. Apple ID works normally, AuthenticationServices does not need replacing, Apple Developer configuration can stay consistent, and App Review does not require China-specific Apple Login changes merely because the app targets China. Global and China apps can share the same Apple Login path.`,
+        answer: `Yes functionally. Apple ID works normally, AuthenticationServices does not need replacing, Apple Developer configuration can stay consistent, and App Review does not require China-specific Apple Login changes merely because the app targets China. Chinaready still labels Apple Login as ${availability} because Apple Login returns personal information that a China-hosted backend must handle under PIPL and related data rules.`,
+      },
+      {
+        question: "Why does Chinaready label Apple Login as Limited if the feature works?",
+        answer:
+          "Limited refers to compliance and data-flow constraints, not SDK availability. Apple Login itself can stay in the product, but Apple User ID, email, and name are personal information. When the backend serves mainland users — especially if hosted in China — teams must align storage, privacy policy, and any cross-border sync with China law.",
       },
       {
         question: "Do teams need to remove Apple Login for a China launch?",
