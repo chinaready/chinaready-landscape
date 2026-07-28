@@ -766,14 +766,14 @@ const EDITORIAL_OVERRIDES = {
   "castle-io": {
     description: (availability, names) =>
       clipMeta(
-        `Castle.io API is unavailable across mainland China. Chinaready probes of api.castle.io returned HTTP 404 nationwide. Compare ${names.slice(0, 4).join(", ")}. Availability: ${availability}.`,
+        `Castle.io API is unavailable across mainland China. Chinaready probes of api.castle.io returned HTTP and DNS high latency nationwide. Compare ${names.slice(0, 4).join(", ")}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
-      `<strong>Quick answer:</strong> Chinaready's nationwide mainland probes of <code>api.castle.io</code> across 148 city/carrier paths all returned HTTP 404 — treat the Castle API as <strong>unavailable</strong> for China production stacks. Domestic vendors offer highly similar substitutes, but none fully cover Castle's complete feature set. Map to <strong>${escapeHtml(names.slice(0, 4).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+      `<strong>Quick answer:</strong> Chinaready's nationwide mainland probes of <code>api.castle.io</code> across 148 city/carrier paths all returned HTTP and DNS high latency — treat the Castle API as <strong>unavailable</strong> for China production stacks. Domestic vendors offer highly similar substitutes, but none fully cover Castle's complete feature set. Map to <strong>${escapeHtml(names.slice(0, 4).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
     guidanceTitle: "Replace Castle.io for mainland China account and bot risk",
     sectionTitle: "Mapped China-ready candidates",
     guidanceHtml: `
-        <p>Chinaready's nationwide mainland probes of <code>api.castle.io</code> across 148 city and carrier paths all returned HTTP 404 — treat the Castle API as unavailable for China production stacks.</p>
+        <p>Chinaready's nationwide mainland probes of <code>api.castle.io</code> across 148 city/carrier paths all returned HTTP and DNS high latency — treat the Castle API as unavailable for China production stacks.</p>
         <p>Multiple mainland vendors offer highly similar “drop-in style” substitutes, but none fully cover Castle's complete feature set. Use the shortlist below as a research map, then validate replacement fit for registration, login, device, and abuse workflows.</p>
         <h3>Mainland China options</h3>
         <ul>
@@ -790,7 +790,7 @@ const EDITORIAL_OVERRIDES = {
     faq: (availability, namesText) => [
       {
         question: "Does Castle.io work in China?",
-        answer: `No for mainland production stacks. Chinaready's nationwide probes of api.castle.io across 148 city/carrier paths all returned HTTP 404, so Chinaready labels Castle.io as ${availability}. Plan a China account-abuse and bot-risk provider instead of depending on Castle's API from mainland networks.`,
+        answer: `No for mainland production stacks. Chinaready's nationwide mainland probes of api.castle.io across 148 city/carrier paths all returned HTTP and DNS high latency, so Chinaready labels Castle.io as ${availability}. Plan a China account-abuse and bot-risk provider instead of depending on Castle's API from mainland networks.`,
       },
       {
         question: "What are the best China alternatives to Castle.io?",

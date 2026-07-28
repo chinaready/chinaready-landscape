@@ -184,8 +184,8 @@ RESEARCH_NOTES = {
         "email gateway replacement and Topsec (天融信) for network, WAF, and adjacent edge-security controls."
     ),
     "castle": (
-        "Chinaready nationwide probes of api.castle.io returned non-usable HTTP 404 from all sampled mainland "
-        "city/carrier paths — treat the Castle API as unavailable in China. Multiple domestic vendors offer "
+        "Chinaready's nationwide mainland probes of api.castle.io across 148 city/carrier paths all returned "
+        "HTTP and DNS high latency — treat the Castle API as unavailable in China. Multiple domestic vendors offer "
         "highly similar substitutes, but none fully cover Castle's complete feature set. Prefer NetEase Yidun "
         "and GeeTest for lightweight SaaS trials; prefer Alibaba Cloud Risk Identification or Tencent Cloud "
         "Tianyu when you already run on those clouds."
