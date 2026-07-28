@@ -139,12 +139,29 @@
         }
 
         if (url.origin !== window.location.origin) return;
-        if (!url.pathname.startsWith("/alternatives")) return;
+        const isAlternatives = url.pathname.startsWith("/alternatives");
+        const isGuide = url.pathname === "/guide" || url.pathname === "/guide/";
+        if (!isAlternatives && !isGuide) return;
 
-        // Bypass landscape2 SPA routing so static /alternatives pages load.
+        // Bypass landscape2 SPA routing so static /alternatives and /guide pages load.
         event.preventDefault();
         event.stopPropagation();
         window.location.assign(url.href);
+      },
+      true,
+    );
+
+    document.addEventListener(
+      "click",
+      (event) => {
+        const button = event.target.closest?.("button");
+        if (!button || event.defaultPrevented || event.button !== 0) return;
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        if (!button.closest("header")) return;
+        if (!/^Guide$/i.test((button.textContent || "").trim())) return;
+        event.preventDefault();
+        event.stopPropagation();
+        window.location.assign("/guide");
       },
       true,
     );

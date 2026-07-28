@@ -102,10 +102,13 @@ OVERRIDES = {
     "daily": ["Alibaba Cloud RTC"],
     "mux": ["Alibaba Cloud RTC"],
     "brightcove": ["Alibaba Cloud RTC"],
-    "bunnycdn": ["Alibaba Cloud CDN"],
-    "fastly": ["Alibaba Cloud CDN", "Cloudflare China Network"],
-    "imperva": ["Alibaba Cloud CDN", "GeeTest"],
-    "bootstrapcdn": ["Alibaba Cloud CDN", "Chinaready Google Fonts Hosting"],
+    "bunnycdn": ["Alibaba Cloud CDN", "Tencent Cloud CDN"],
+    "fastly": ["Alibaba Cloud CDN", "Tencent Cloud CDN", "Cloudflare China Network"],
+    "imperva": ["Alibaba Cloud CDN", "Tencent Cloud CDN", "GeeTest"],
+    "bootstrapcdn": ["Alibaba Cloud CDN", "Tencent Cloud CDN", "Chinaready Google Fonts Hosting"],
+    "amazon cloudfront": ["Alibaba Cloud CDN", "Tencent Cloud CDN"],
+    "akamai": ["Alibaba Cloud CDN", "Tencent Cloud CDN"],
+    "cloudflare cdn": ["Alibaba Cloud CDN", "Tencent Cloud CDN", "Cloudflare China Network"],
     "sucuri": ["GeeTest", "Alibaba Cloud CAPTCHA"],
     "hcaptcha": ["GeeTest", "Alibaba Cloud CAPTCHA"],
     "mapbox": ["Amap", "Tencent Location Services"],
@@ -143,6 +146,86 @@ OVERRIDES = {
         "Tencent Ads",
         "Baidu Union",
         "Kuaishou Union",
+        "Huawei Ads",
+    ],
+    "unity levelplay": [
+        "Pangle",
+        "Tencent Ads",
+        "Baidu Union",
+        "Kuaishou Union",
+        "Huawei Ads",
+    ],
+    "applovin max": [
+        "Pangle",
+        "Tencent Ads",
+        "Baidu Union",
+        "Kuaishou Union",
+        "Huawei Ads",
+    ],
+    "ironsource": [
+        "Pangle",
+        "Tencent Ads",
+        "Baidu Union",
+        "Kuaishou Union",
+        "Huawei Ads",
+    ],
+    "chartboost": [
+        "Pangle",
+        "Tencent Ads",
+        "Baidu Union",
+        "Kuaishou Union",
+        "Huawei Ads",
+    ],
+    "dt exchange": [
+        "Pangle",
+        "Tencent Ads",
+        "Baidu Union",
+        "Kuaishou Union",
+        "Huawei Ads",
+    ],
+    "liftoff": [
+        "Ocean Engine",
+        "Tencent Advertising",
+        "Pangle",
+        "Kuaishou Ads",
+    ],
+    "applovin": [
+        "Tencent Advertising",
+        "Ocean Engine",
+        "Kuaishou Ads",
+        "Baidu Marketing",
+        "Huawei Ads",
+    ],
+    "moloco": [
+        "Tencent Advertising",
+        "Ocean Engine",
+        "Kuaishou Ads",
+        "Baidu Marketing",
+        "Huawei Ads",
+    ],
+    "apple search ads": [
+        "Tencent Advertising",
+        "Ocean Engine",
+        "Baidu Marketing",
+        "Huawei Ads",
+    ],
+    "meta ads": [
+        "Tencent Advertising",
+        "Ocean Engine",
+        "Kuaishou Ads",
+        "Baidu Marketing",
+    ],
+    "google ads": [
+        "Tencent Advertising",
+        "Ocean Engine",
+        "Kuaishou Ads",
+        "Baidu Marketing",
+        "Huawei Ads",
+    ],
+    "tiktok ads": [
+        "Ocean Engine",
+        "Kuaishou Ads",
+        "Tencent Advertising",
     ],
     "crowdstrike": ["GeeTest", "Authing"],
     "barracuda": ["Coremail (CACTER邮件安全网关)", "Topsec"],
@@ -177,6 +260,55 @@ RESEARCH_NOTES = {
         "Confirm SDK access, settlement entity, and PIPL compliance before production adoption. "
         "AdMob is strongly discouraged for mainland users due to GFW latency, near-zero fill, and PIPL risk."
     ),
+    "unity levelplay": (
+        "Mainland China publisher networks for mediation and in-app monetization when replacing Unity LevelPlay. "
+        "Confirm mediation adapters, settlement entity, and PIPL constraints before production adoption."
+    ),
+    "applovin max": (
+        "Mainland China publisher networks for mediation and in-app monetization when replacing AppLovin MAX. "
+        "Confirm mediation adapters, settlement entity, and PIPL constraints before production adoption."
+    ),
+    "ironsource": (
+        "Mainland China publisher networks for mediation and in-app monetization when replacing ironSource. "
+        "Confirm mediation adapters, settlement entity, and PIPL constraints before production adoption."
+    ),
+    "chartboost": (
+        "Mainland China publisher networks for rewarded video and in-app monetization when replacing Chartboost. "
+        "Confirm SDK access, settlement entity, and PIPL constraints before production adoption."
+    ),
+    "dt exchange": (
+        "Mainland China publisher networks for programmatic monetization when replacing DT Exchange. "
+        "Confirm SDK access, settlement entity, and PIPL constraints before production adoption."
+    ),
+    "liftoff": (
+        "Mainland China alternatives for Liftoff user acquisition and performance growth. "
+        "Prefer Ocean Engine (巨量引擎) and Tencent Advertising (腾讯广告 / TMS) for paid app installs; "
+        "evaluate Pangle (穿山甲) when developer-side ad distribution matters; use Kuaishou Ads (快手磁力引擎) for Kuaishou short-video growth."
+    ),
+    "applovin": (
+        "Mainland China advertiser platforms for paid app installs and performance UA when replacing AppLovin. "
+        "Prefer Ocean Engine, Tencent Advertising, and Kuaishou Ads; confirm entity and compliance constraints."
+    ),
+    "moloco": (
+        "Mainland China advertiser platforms for programmatic / performance UA when replacing Moloco. "
+        "Prefer Ocean Engine, Tencent Advertising, and Kuaishou Ads; confirm entity and compliance constraints."
+    ),
+    "meta ads": (
+        "Meta Ads is unavailable for meaningful mainland China user acquisition. "
+        "Prefer Tencent Advertising, Ocean Engine, and Kuaishou Ads for domestic paid growth."
+    ),
+    "google ads": (
+        "Google Ads has limited utility for mainland China app installs. "
+        "Prefer Baidu Marketing for search intent and Ocean Engine / Tencent Advertising / Kuaishou Ads for scale."
+    ),
+    "tiktok ads": (
+        "For mainland China Douyin / ByteDance inventory, prefer Ocean Engine rather than global TikTok Ads. "
+        "Kuaishou Ads and Tencent Advertising are common complementary routes."
+    ),
+    "apple search ads": (
+        "Apple Search Ads can still matter for App Store traffic, but mainland acquisition usually also needs "
+        "domestic networks such as Huawei Ads (AppGallery), Ocean Engine, Tencent Advertising, and Baidu Marketing."
+    ),
     "barracuda": (
         "Barracuda can be used in mainland China with caveats. Existing stable deployments may continue with "
         "compliance monitoring; new projects — especially government, finance, and critical infrastructure — "
@@ -190,12 +322,46 @@ RESEARCH_NOTES = {
         "and GeeTest for lightweight SaaS trials; prefer Alibaba Cloud Risk Identification or Tencent Cloud "
         "Tianyu when you already run on those clouds."
     ),
+    "amazon cloudfront": (
+        "Amazon CloudFront is available in AWS China (Beijing and Ningxia) with mainland POPs, but differs from "
+        "global CloudFront (ICP/CNAME, no ACM, no Lambda@Edge, and other edge feature limits). Prefer Tencent Cloud "
+        "CDN or Alibaba Cloud CDN when a domestic CDN stack fits better than AWS China CloudFront."
+    ),
+    "akamai": (
+        "Mainland China CDN options commonly evaluated when replacing Akamai. Prefer Alibaba Cloud CDN or "
+        "Tencent Cloud CDN; confirm ICP filing and China acceleration planning before production adoption."
+    ),
+    "cloudflare cdn": (
+        "For mainland China acceleration, evaluate Cloudflare China Network for Cloudflare customers, or "
+        "domestic CDNs such as Alibaba Cloud CDN and Tencent Cloud CDN. Confirm ICP and operating constraints."
+    ),
 }
 
 
 def normalize(value: str) -> str:
     value = value.lower().strip()
     return re.sub(r"\.io$", "", value)
+
+
+def match_override_key(service_key: str) -> str | None:
+    """Match OVERRIDES without letting shorter keys steal longer service names.
+
+    Exact match wins. Otherwise accept an override that is a prefix of the
+    service key (e.g. override ``kong`` for service ``kong gateway``). Never
+    match the reverse (e.g. a longer override key must not claim a shorter
+    service key via substring containment).
+    """
+    if service_key in OVERRIDES:
+        return service_key
+    prefix_hits = [
+        override_key
+        for override_key in OVERRIDES
+        if service_key.startswith(f"{override_key} ")
+        or service_key.startswith(f"{override_key}-")
+    ]
+    if not prefix_hits:
+        return None
+    return max(prefix_hits, key=len)
 
 
 def main() -> None:
@@ -244,17 +410,17 @@ def main() -> None:
         candidates = list(service.get("china_candidates") or [])
         note = service.get("research_note") or CONTACT_NOTE
 
-        for override_key, names in OVERRIDES.items():
-            if override_key == key or override_key in key or key in override_key:
-                if not names:
-                    candidates = []
-                    confidence = "uncertain"
-                    note = CONTACT_NOTE
-                else:
-                    candidates = resolve_names(names)
-                    confidence = "researched"
-                    note = RESEARCH_NOTES.get(override_key, RESEARCH_NOTE)
-                break
+        matched_override = match_override_key(key)
+        if matched_override is not None:
+            names = OVERRIDES[matched_override]
+            if not names:
+                candidates = []
+                confidence = "uncertain"
+                note = CONTACT_NOTE
+            else:
+                candidates = resolve_names(names)
+                confidence = "researched"
+                note = RESEARCH_NOTES.get(matched_override, RESEARCH_NOTE)
 
         availability = service.get("availability") or "Unknown"
         global_availability = service.get("global_availability_in_china") or {

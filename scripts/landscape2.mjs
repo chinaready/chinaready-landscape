@@ -2,6 +2,7 @@ import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { arch, platform } from "node:os";
+import { startServer, parseArgs } from "./serve-preview.mjs";
 
 const root = process.cwd();
 const landscape2Version = "v1.1.0";
@@ -41,5 +42,12 @@ function ensureLandscape2() {
   return binary;
 }
 
-const binary = ensureLandscape2();
-run(binary, process.argv.slice(2));
+const args = process.argv.slice(2);
+// landscape2's static server does not implement Cloudflare Pages pretty URLs
+// (`/alternatives/foo` → `foo.html`). Use the Chinaready preview server for serve.
+if (args[0] === "serve") {
+  startServer(parseArgs(args.slice(1)));
+} else {
+  const binary = ensureLandscape2();
+  run(binary, args);
+}

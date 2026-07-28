@@ -2,9 +2,9 @@
   "source": "Chinaready Landscape research shortlist for taxonomy-relevant global services",
   "generated_for": "alternatives index SEO expansion",
   "counts": {
-    "services": 101,
+    "services": 117,
     "uncertain_alternatives": 28,
-    "researched_alternatives": 36,
+    "researched_alternatives": 52,
     "heuristic_alternatives": 37
   },
   "availability_lookup": {
@@ -47,6 +47,21 @@
       "name": "Apollo Kotlin",
       "availability": "Limited",
       "global_availability_in_china": "limited"
+    },
+    "apple search ads": {
+      "name": "Apple Search Ads",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "applovin": {
+      "name": "AppLovin",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
+    "applovin max": {
+      "name": "AppLovin MAX",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
     },
     "authorize.net": {
       "name": "Authorize.Net",
@@ -103,6 +118,11 @@
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
+    "bugsnag": {
+      "name": "Bugsnag",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
     "bunnycdn": {
       "name": "BunnyCDN",
       "availability": "Limited",
@@ -128,10 +148,10 @@
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
     },
-    "castos": {
-      "name": "Castos",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
+    "chartboost": {
+      "name": "Chartboost",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
     },
     "checkout.com": {
       "name": "Checkout.com",
@@ -183,6 +203,11 @@
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
+    "dt exchange": {
+      "name": "DT Exchange",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
     "dynatrace": {
       "name": "Dynatrace",
       "availability": "Limited",
@@ -217,6 +242,11 @@
       "name": "Google AdMob",
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
+    },
+    "google ads": {
+      "name": "Google Ads",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
     },
     "google app review": {
       "name": "Google App Review",
@@ -258,6 +288,11 @@
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
+    "ironsource": {
+      "name": "ironSource",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
     "joy rewards loyalty program": {
       "name": "Joy Rewards Loyalty Program",
       "availability": "Limited",
@@ -285,6 +320,11 @@
     },
     "libsyn": {
       "name": "Libsyn",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
+    "liftoff": {
+      "name": "Liftoff",
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
     },
@@ -323,6 +363,11 @@
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
     },
+    "meta ads": {
+      "name": "Meta Ads",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
     "mia platform": {
       "name": "Mia Platform",
       "availability": "Limited",
@@ -337,6 +382,11 @@
       "name": "Middleware.io",
       "availability": "Limited",
       "global_availability_in_china": "limited"
+    },
+    "moloco": {
+      "name": "Moloco",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
     },
     "okendo": {
       "name": "Okendo",
@@ -413,6 +463,16 @@
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
+    "sentence-bert": {
+      "name": "Sentence-BERT",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "sentry": {
+      "name": "Sentry",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
     "servicenow": {
       "name": "ServiceNow",
       "availability": "Limited",
@@ -458,8 +518,18 @@
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
+    "sucuri": {
+      "name": "Sucuri",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
     "teleport": {
       "name": "Teleport",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "tiktok ads": {
+      "name": "TikTok Ads",
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
@@ -473,6 +543,11 @@
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
     },
+    "unity levelplay": {
+      "name": "Unity LevelPlay",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
     "upcloud": {
       "name": "UpCloud",
       "availability": "Limited",
@@ -480,6 +555,11 @@
     },
     "virtuozzo": {
       "name": "Virtuozzo",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "visual studio app center": {
+      "name": "Visual Studio App Center",
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
@@ -550,7 +630,7 @@
           "name": "Qimai Data",
           "homepage_url": "https://www.qimai.cn/",
           "category": "Growth, Content & Experience",
-          "subcategory": "App-Store Intelligence & Attribution (ASO)",
+          "subcategory": "App Attribution & ASO",
           "source": "landscape"
         },
         {
@@ -662,6 +742,143 @@
         }
       ],
       "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Apple Search Ads",
+      "categories": [
+        "Mobile Advertising",
+        "App Store Advertising"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Tencent Advertising",
+          "homepage_url": "https://e.qq.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Ocean Engine",
+          "homepage_url": "https://www.oceanengine.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Baidu Marketing",
+          "homepage_url": "https://e.baidu.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Huawei Ads",
+          "homepage_url": "https://ads.huawei.com/cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Apple Search Ads can still matter for App Store traffic, but mainland acquisition usually also needs domestic networks such as Huawei Ads (AppGallery), Ocean Engine, Tencent Advertising, and Baidu Marketing.",
+      "confidence": "researched"
+    },
+    {
+      "name": "AppLovin",
+      "categories": [
+        "Mobile Advertising",
+        "User Acquisition"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Tencent Advertising",
+          "homepage_url": "https://e.qq.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Ocean Engine",
+          "homepage_url": "https://www.oceanengine.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Kuaishou Ads",
+          "homepage_url": "https://ad.e.kuaishou.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Baidu Marketing",
+          "homepage_url": "https://e.baidu.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Huawei Ads",
+          "homepage_url": "https://ads.huawei.com/cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Mainland China advertiser platforms for paid app installs and performance UA when replacing AppLovin. Prefer Ocean Engine, Tencent Advertising, and Kuaishou Ads; confirm entity and compliance constraints.",
+      "confidence": "researched"
+    },
+    {
+      "name": "AppLovin MAX",
+      "categories": [
+        "Ad Monetization",
+        "Mediation"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Pangle",
+          "homepage_url": "https://www.csjplatform.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Tencent Ads",
+          "homepage_url": "https://e.qq.com/dev/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Baidu Union",
+          "homepage_url": "https://union.baidu.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Kuaishou Union",
+          "homepage_url": "https://u.kuaishou.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Huawei Ads",
+          "homepage_url": "https://ads.huawei.com/cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Mainland China publisher networks for mediation and in-app monetization when replacing AppLovin MAX. Confirm mediation adapters, settlement entity, and PIPL constraints before production adoption.",
       "confidence": "researched"
     },
     {
@@ -826,6 +1043,13 @@
           "source": "landscape"
         },
         {
+          "name": "Tencent Cloud CDN",
+          "homepage_url": "https://www.tencentcloud.com/products/cdn",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Content Delivery Network (CDN)",
+          "source": "landscape"
+        },
+        {
           "name": "Chinaready Google Fonts Hosting",
           "homepage_url": "https://gfonts.launchready.cn/",
           "category": "Growth, Content & Experience",
@@ -882,6 +1106,25 @@
       "confidence": "researched"
     },
     {
+      "name": "Bugsnag",
+      "categories": [
+        "Crash Reporting & Error Tracking"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud EMAS",
+          "homepage_url": "https://www.aliyun.com/product/emas",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Crash Reporting & Performance Monitoring",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
       "name": "BunnyCDN",
       "categories": [
         "Hosting & Infrastructure"
@@ -892,6 +1135,13 @@
         {
           "name": "Alibaba Cloud CDN",
           "homepage_url": "https://www.alibabacloud.com/product/cdn",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Content Delivery Network (CDN)",
+          "source": "landscape"
+        },
+        {
+          "name": "Tencent Cloud CDN",
+          "homepage_url": "https://www.tencentcloud.com/products/cdn",
           "category": "Infrastructure & Edge",
           "subcategory": "Content Delivery Network (CDN)",
           "source": "landscape"
@@ -999,16 +1249,52 @@
       "confidence": "researched"
     },
     {
-      "name": "Castos",
+      "name": "Chartboost",
       "categories": [
-        "Media Platforms",
-        "Creator Platforms"
+        "Ad Monetization",
+        "Rewarded Video"
       ],
-      "availability": "Limited",
-      "global_availability_in_china": "limited",
-      "china_candidates": [],
-      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
-      "confidence": "uncertain"
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Pangle",
+          "homepage_url": "https://www.csjplatform.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Tencent Ads",
+          "homepage_url": "https://e.qq.com/dev/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Baidu Union",
+          "homepage_url": "https://union.baidu.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Kuaishou Union",
+          "homepage_url": "https://u.kuaishou.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Huawei Ads",
+          "homepage_url": "https://ads.huawei.com/cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Mainland China publisher networks for rewarded video and in-app monetization when replacing Chartboost. Confirm SDK access, settlement entity, and PIPL constraints before production adoption.",
+      "confidence": "researched"
     },
     {
       "name": "Checkout.com",
@@ -1216,6 +1502,54 @@
       "confidence": "uncertain"
     },
     {
+      "name": "DT Exchange",
+      "categories": [
+        "Ad Monetization",
+        "Programmatic"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Pangle",
+          "homepage_url": "https://www.csjplatform.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Tencent Ads",
+          "homepage_url": "https://e.qq.com/dev/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Baidu Union",
+          "homepage_url": "https://union.baidu.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Kuaishou Union",
+          "homepage_url": "https://u.kuaishou.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Huawei Ads",
+          "homepage_url": "https://ads.huawei.com/cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Mainland China publisher networks for programmatic monetization when replacing DT Exchange. Confirm SDK access, settlement entity, and PIPL constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
       "name": "Dynatrace",
       "categories": [
         "Performance Monitoring & Alerting"
@@ -1372,9 +1706,64 @@
           "category": "Users, Trust & Monetization",
           "subcategory": "Ad Monetization & Mediation",
           "source": "landscape"
+        },
+        {
+          "name": "Huawei Ads",
+          "homepage_url": "https://ads.huawei.com/cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
         }
       ],
       "research_note": "Pure domestic China ad networks for mainland monetization when replacing Google AdMob. Confirm SDK access, settlement entity, and PIPL compliance before production adoption. AdMob is strongly discouraged for mainland users due to GFW latency, near-zero fill, and PIPL risk.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Google Ads",
+      "categories": [
+        "Mobile Advertising",
+        "Search Advertising"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Tencent Advertising",
+          "homepage_url": "https://e.qq.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Ocean Engine",
+          "homepage_url": "https://www.oceanengine.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Kuaishou Ads",
+          "homepage_url": "https://ad.e.kuaishou.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Baidu Marketing",
+          "homepage_url": "https://e.baidu.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Huawei Ads",
+          "homepage_url": "https://ads.huawei.com/cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Google Ads has limited utility for mainland China app installs. Prefer Baidu Marketing for search intent and Ocean Engine / Tencent Advertising / Kuaishou Ads for scale.",
       "confidence": "researched"
     },
     {
@@ -1489,6 +1878,13 @@
           "source": "landscape"
         },
         {
+          "name": "Tencent Cloud CDN",
+          "homepage_url": "https://www.tencentcloud.com/products/cdn",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Content Delivery Network (CDN)",
+          "source": "landscape"
+        },
+        {
           "name": "GeeTest",
           "homepage_url": "https://www.geetest.com/",
           "category": "Users, Trust & Monetization",
@@ -1566,6 +1962,54 @@
       ],
       "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
       "confidence": "heuristic"
+    },
+    {
+      "name": "ironSource",
+      "categories": [
+        "Ad Monetization",
+        "Mediation"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Pangle",
+          "homepage_url": "https://www.csjplatform.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Tencent Ads",
+          "homepage_url": "https://e.qq.com/dev/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Baidu Union",
+          "homepage_url": "https://union.baidu.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Kuaishou Union",
+          "homepage_url": "https://u.kuaishou.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Huawei Ads",
+          "homepage_url": "https://ads.huawei.com/cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Mainland China publisher networks for mediation and in-app monetization when replacing ironSource. Confirm mediation adapters, settlement entity, and PIPL constraints before production adoption.",
+      "confidence": "researched"
     },
     {
       "name": "Joy Rewards Loyalty Program",
@@ -1673,6 +2117,47 @@
       "china_candidates": [],
       "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
       "confidence": "uncertain"
+    },
+    {
+      "name": "Liftoff",
+      "categories": [
+        "Mobile Advertising",
+        "User Acquisition"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Ocean Engine",
+          "homepage_url": "https://www.oceanengine.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Tencent Advertising",
+          "homepage_url": "https://e.qq.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Pangle",
+          "homepage_url": "https://www.csjplatform.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Kuaishou Ads",
+          "homepage_url": "https://ad.e.kuaishou.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Mainland China alternatives for Liftoff user acquisition and performance growth. Prefer Ocean Engine (巨量引擎) and Tencent Advertising (腾讯广告 / TMS) for paid app installs; evaluate Pangle (穿山甲) when developer-side ad distribution matters; use Kuaishou Ads (快手磁力引擎) for Kuaishou short-video growth.",
+      "confidence": "researched"
     },
     {
       "name": "LogicMonitor",
@@ -1800,6 +2285,47 @@
       "confidence": "uncertain"
     },
     {
+      "name": "Meta Ads",
+      "categories": [
+        "Mobile Advertising",
+        "Social Advertising"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Tencent Advertising",
+          "homepage_url": "https://e.qq.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Ocean Engine",
+          "homepage_url": "https://www.oceanengine.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Kuaishou Ads",
+          "homepage_url": "https://ad.e.kuaishou.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Baidu Marketing",
+          "homepage_url": "https://e.baidu.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Meta Ads is unavailable for meaningful mainland China user acquisition. Prefer Tencent Advertising, Ocean Engine, and Kuaishou Ads for domestic paid growth.",
+      "confidence": "researched"
+    },
+    {
       "name": "Mia Platform",
       "categories": [
         "Developer Platforms & CI/CD"
@@ -1881,6 +2407,54 @@
       ],
       "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
       "confidence": "heuristic"
+    },
+    {
+      "name": "Moloco",
+      "categories": [
+        "Mobile Advertising",
+        "User Acquisition"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Tencent Advertising",
+          "homepage_url": "https://e.qq.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Ocean Engine",
+          "homepage_url": "https://www.oceanengine.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Kuaishou Ads",
+          "homepage_url": "https://ad.e.kuaishou.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Baidu Marketing",
+          "homepage_url": "https://e.baidu.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Huawei Ads",
+          "homepage_url": "https://ads.huawei.com/cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Mainland China advertiser platforms for programmatic / performance UA when replacing Moloco. Prefer Ocean Engine, Tencent Advertising, and Kuaishou Ads; confirm entity and compliance constraints.",
+      "confidence": "researched"
     },
     {
       "name": "Okendo",
@@ -2237,6 +2811,44 @@
       "confidence": "uncertain"
     },
     {
+      "name": "Sentence-BERT",
+      "categories": [
+        "Embeddings & Vector Search"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [],
+      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "confidence": "uncertain"
+    },
+    {
+      "name": "Sentry",
+      "categories": [
+        "Monitoring & Observability (APM / RUM)",
+        "Crash Reporting & Error Tracking"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud EMAS",
+          "homepage_url": "https://www.aliyun.com/product/emas",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Crash Reporting & Performance Monitoring",
+          "source": "landscape"
+        },
+        {
+          "name": "Alibaba Cloud ARMS",
+          "homepage_url": "https://www.aliyun.com/product/arms",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
       "name": "ServiceNow",
       "categories": [
         "Customer Support & CRM"
@@ -2401,6 +3013,33 @@
       "confidence": "uncertain"
     },
     {
+      "name": "Sucuri",
+      "categories": [
+        "Network & Edge Security",
+        "Bot Protection & CAPTCHA"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "GeeTest",
+          "homepage_url": "https://www.geetest.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Bot Protection & CAPTCHA",
+          "source": "landscape"
+        },
+        {
+          "name": "Alibaba Cloud CAPTCHA",
+          "homepage_url": "https://www.aliyun.com/product/security/captcha",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Bot Protection & CAPTCHA",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
       "name": "Teleport",
       "categories": [
         "Security & Identity"
@@ -2432,6 +3071,40 @@
       ],
       "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
       "confidence": "heuristic"
+    },
+    {
+      "name": "TikTok Ads",
+      "categories": [
+        "Mobile Advertising",
+        "Social Advertising"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Ocean Engine",
+          "homepage_url": "https://www.oceanengine.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Kuaishou Ads",
+          "homepage_url": "https://ad.e.kuaishou.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        },
+        {
+          "name": "Tencent Advertising",
+          "homepage_url": "https://e.qq.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "For mainland China Douyin / ByteDance inventory, prefer Ocean Engine rather than global TikTok Ads. Kuaishou Ads and Tencent Advertising are common complementary routes.",
+      "confidence": "researched"
     },
     {
       "name": "Transistor",
@@ -2471,6 +3144,54 @@
       ],
       "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
       "confidence": "heuristic"
+    },
+    {
+      "name": "Unity LevelPlay",
+      "categories": [
+        "Ad Monetization",
+        "Mediation"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Pangle",
+          "homepage_url": "https://www.csjplatform.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Tencent Ads",
+          "homepage_url": "https://e.qq.com/dev/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Baidu Union",
+          "homepage_url": "https://union.baidu.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Kuaishou Union",
+          "homepage_url": "https://u.kuaishou.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Ad Monetization & Mediation",
+          "source": "landscape"
+        },
+        {
+          "name": "Huawei Ads",
+          "homepage_url": "https://ads.huawei.com/cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Mobile User Acquisition & Advertising",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Mainland China publisher networks for mediation and in-app monetization when replacing Unity LevelPlay. Confirm mediation adapters, settlement entity, and PIPL constraints before production adoption.",
+      "confidence": "researched"
     },
     {
       "name": "UpCloud",
@@ -2537,6 +3258,32 @@
       ],
       "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
       "confidence": "heuristic"
+    },
+    {
+      "name": "Visual Studio App Center",
+      "categories": [
+        "CI/CD & Mobile App Distribution"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud Yunxiao",
+          "homepage_url": "https://www.aliyun.com/product/yunxiao",
+          "category": "Release, Quality & Operations",
+          "subcategory": "CI/CD & App Distribution",
+          "source": "landscape"
+        },
+        {
+          "name": "Tencent Cloud DevOps (CODING)",
+          "homepage_url": "https://coding.net/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "CI/CD & App Distribution",
+          "source": "landscape"
+        }
+      ],
+      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
     },
     {
       "name": "VWO",

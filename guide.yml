@@ -69,7 +69,7 @@ categories:
           </tr>
           <tr>
             <td>Growth, Content & Experience</td>
-            <td>Product Analytics & User Insights; Location & Map Services; App-Store Intelligence & Attribution (ASO); Web Fonts & Iconography</td>
+            <td>Product Analytics & User Insights; Location & Map Services; App Attribution & ASO; Mobile User Acquisition & Advertising; Web Fonts & Iconography</td>
           </tr>
           <tr>
             <td>AI Models & Platforms</td>
@@ -103,6 +103,7 @@ categories:
           Use this category for CDN and edge acceleration products. Profile notes should distinguish product availability from ICP filing requirements.
 
           Typical global services: [Amazon CloudFront](/alternatives/amazon-cloudfront), [Cloudflare CDN](/alternatives/cloudflare-cdn), [Akamai](/alternatives/akamai).
+          China-ready options often evaluated: Alibaba Cloud CDN, Tencent Cloud CDN, Cloudflare China Network.
       - subcategory: "Service Mesh & Gateway"
         content: |
           Use this category for API gateways, service mesh dataplanes, and cloud-native traffic-management products.
@@ -178,7 +179,7 @@ categories:
 
           Google AdMob is strongly discouraged for mainland China users because of GFW latency, near-zero local fill, and PIPL cross-border data risks. Prefer pure domestic networks such as Pangle, Tencent Ads, Baidu Union, and Kuaishou Union. See the [Google AdMob alternatives map](/alternatives/google-admob).
 
-          Typical global services: [Google AdMob](/alternatives/google-admob).
+          Typical global services: [Google AdMob](/alternatives/google-admob), [Unity LevelPlay](/alternatives/unity-levelplay), [AppLovin MAX](/alternatives/applovin-max).
       - subcategory: "Bot Protection & CAPTCHA"
         content: |
           Use this category for human verification, CAPTCHA, bot defense, device fingerprinting, and account-abuse prevention products.
@@ -209,7 +210,7 @@ categories:
 
   - category: "Growth, Content & Experience"
     content: |
-      Growth, content, and experience services support analytics, attribution, maps, fonts, and user-facing product experience. The landscape separates China product alternatives from compatibility routes, because global maps, attribution, and font CDNs may be unavailable or slow in mainland China.
+      Growth, content, and experience services support analytics, attribution, mobile user acquisition, maps, fonts, and user-facing product experience. The landscape separates China product alternatives from compatibility routes, because global maps, attribution, ad platforms, and font CDNs may be unavailable or slow in mainland China.
     subcategories:
       - subcategory: "Product Analytics & User Insights"
         content: |
@@ -223,11 +224,18 @@ categories:
           Use this category for map, location, geocoding, routing, and navigation APIs.
 
           Typical global services: [Google Maps Platform](/alternatives/google-maps-platform), [OpenStreetMap](/alternatives/openstreetmap), [Mapbox](/alternatives/mapbox), [Apple MapKit](/alternatives/apple-mapkit).
-      - subcategory: "App-Store Intelligence & Attribution (ASO)"
+      - subcategory: "App Attribution & ASO"
         content: |
           Use this category for app-store intelligence, attribution, and ASO tooling. China app-store fragmentation should be covered in profile notes.
 
           Typical global services: [AppsFlyer](/alternatives/appsflyer), [Adjust](/alternatives/adjust), [Branch](/alternatives/branch).
+      - subcategory: "Mobile User Acquisition & Advertising"
+        content: |
+          Use this category for mobile user acquisition platforms, performance advertising networks, app-install campaigns, retargeting, and mobile growth platforms.
+
+          Typical global services: [Liftoff](/alternatives/liftoff), [AppLovin](/alternatives/applovin), [Moloco](/alternatives/moloco), [Meta Ads](/alternatives/meta-ads), [Google Ads](/alternatives/google-ads), [Apple Search Ads](/alternatives/apple-search-ads), [TikTok Ads](/alternatives/tiktok-ads).
+
+          Typical China alternatives: Tencent Advertising (腾讯广告), Ocean Engine (巨量引擎), Kuaishou Ads (快手广告), Baidu Marketing (百度营销), Huawei Ads (鲸鸿动能).
       - subcategory: "Web Fonts & Iconography"
         content: |
           Use this category for font and icon delivery services. Self-hosting is an implementation route and belongs in guide notes unless represented by a concrete service.

@@ -131,6 +131,13 @@
     });
 
     syncPlaceholder();
+    const params = new URLSearchParams(window.location.search);
+    const initialQuery = params.get("q");
+    if (initialQuery) {
+      input.value = initialQuery;
+      syncPlaceholder();
+      applyQuery(root, initialQuery);
+    }
   }
 
   function bindSlashShortcut() {

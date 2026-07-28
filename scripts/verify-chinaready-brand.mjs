@@ -246,6 +246,7 @@ assert(detailsScript.includes("Summary"), "detail extension must render a CNCF-s
 assert(detailsScript.includes("removeNativeSummary"), "detail extension must remove the landscape2 native Summary/TAGS block");
 assert(detailsScript.includes(".summaryBlock"), "detail extension must hide the current landscape2 Tags summaryBlock");
 assert(detailsScript.includes("forceStaticPageNavigation"), "detail extension must force full navigation to static /alternatives pages");
+assert(detailsScript.includes('pathname === "/guide"') || detailsScript.includes('startsWith("/guide")'), "detail extension must force full navigation to static /guide");
 assert(detailsScript.includes("enhanceHeaderGlobalNav"), "detail extension must inject Global into the top navigation");
 assert(detailsScript.includes("enhanceHeaderGetHelp"), "detail extension must inject Get help into the top header");
 assert(detailsScript.includes("https://chinaready.co/contact/"), "detail extension Get help must link to /contact/");
@@ -315,21 +316,41 @@ if (exists("build/index.html")) {
     "build/index.html must include the Google tag",
   );
   assert(index.includes("gtag('config', 'G-4BXLJXM1DY')"), "build/index.html must configure GA measurement ID");
+  assert(
+    index.includes('rel="canonical" href="https://landscape.chinaready.co/"'),
+    "build/index.html canonical must use the trailing-slash home URL",
+  );
+  assert(
+    index.includes('property="og:image" content="https://landscape.chinaready.co/favicon-512x512.png"'),
+    "build/index.html must declare og:image",
+  );
 }
 
 if (exists("build/robots.txt")) {
   const robots = read("build/robots.txt");
   assert(robots.includes("Sitemap: https://landscape.chinaready.co/sitemap.xml"), "robots.txt must declare the sitemap");
   assert(robots.includes("GPTBot"), "robots.txt must explicitly allow major AI crawlers");
+  assert(robots.includes("Disallow: /embed"), "robots.txt must disallow thin embed pages");
 }
 
 if (exists("build/sitemap.xml")) {
   const sitemap = read("build/sitemap.xml");
   assert(sitemap.includes("https://landscape.chinaready.co/alternatives/"), "sitemap.xml must include the alternatives index");
+  assert(sitemap.includes("<loc>https://landscape.chinaready.co/</loc>"), "sitemap.xml must include the trailing-slash home URL");
+  assert(sitemap.includes("https://landscape.chinaready.co/guide"), "sitemap.xml must include the Guide URL");
   assert(sitemap.includes("https://landscape.chinaready.co/alternatives/firebase"), "sitemap.xml must include the Firebase alternatives page");
   assert(sitemap.includes("https://landscape.chinaready.co/alternatives/firebase-cloud-messaging"), "sitemap.xml must include the FCM alternatives page");
+  assert(sitemap.includes("https://landscape.chinaready.co/alternatives/sentry"), "sitemap.xml must include the restored Sentry alternatives page");
   assert(!sitemap.includes("https://landscape.chinaready.co/alternatives/firebase.html"), "sitemap.xml must use extensionless Firebase URL (Cloudflare Pages pretty URL)");
   assert(!/\/alternatives\/[a-z0-9-]+\.html</.test(sitemap), "sitemap.xml must not list .html alternatives URLs that 308 to extensionless");
+  const sitemapLocs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+  const altHtmlPages = fs
+    .readdirSync("build/alternatives")
+    .filter((name) => name.endsWith(".html") && name !== "index.html");
+  assert(
+    sitemapLocs.length === 3 + altHtmlPages.length,
+    `sitemap.xml loc count must equal home+guide+alt-index+${altHtmlPages.length} detail pages (got ${sitemapLocs.length})`,
+  );
 }
 
 if (exists("build/llms.txt")) {
@@ -338,6 +359,59 @@ if (exists("build/llms.txt")) {
   assert(llms.includes("https://chinaready.co"), "llms.txt must cite the Chinaready main site");
   assert(llms.includes("High-intent questions"), "llms.txt must expose high-intent question framing for GEO");
   assert(llms.includes("Does Firebase"), "llms.txt must include common Firebase availability questions");
+  assert(llms.includes("/alternatives/sentry"), "llms.txt high-intent list must link the Sentry page when present");
+}
+
+if (exists("build/guide.html")) {
+  const guidePage = read("build/guide.html");
+  assert(guidePage.includes("Chinaready Landscape Guide"), "static guide page must use a Guide H1/title");
+  assert(
+    guidePage.includes('rel="canonical" href="https://landscape.chinaready.co/guide"'),
+    "static guide page canonical must be /guide, not the homepage",
+  );
+  assert(guidePage.includes('property="og:image"'), "static guide page must declare og:image");
+  assert(guidePage.includes("/alternatives/"), "static guide page must link to alternatives");
+}
+
+if (exists("build/404.html")) {
+  const notFound = read("build/404.html");
+  assert(notFound.includes("noindex"), "404.html must be noindex");
+  assert(notFound.includes("Page not found"), "404.html must explain the miss");
+  assert(notFound.includes("/alternatives/"), "404.html must link back to alternatives");
+}
+
+if (exists("build/_redirects")) {
+  const redirects = read("build/_redirects");
+  assert(redirects.includes("/guide /guide.html 200"), "_redirects must map /guide to static guide.html");
+  assert(!redirects.includes("/* /index.html"), "_redirects must not SPA-fallback all routes to index.html");
+}
+
+{
+  const searchJs = read("assets/chinaready-alternatives-search.js");
+  assert(searchJs.includes("URLSearchParams"), "alternatives search must read URLSearchParams for SearchAction ?q=");
+  assert(searchJs.includes('params.get("q")') || searchJs.includes("params.get('q')"), "alternatives search must apply the q query param");
+}
+
+{
+  const guideSource = read("guide.yml");
+  const guideAltSlugs = [...guideSource.matchAll(/\]\(\/alternatives\/([a-z0-9-]+)\)/g)].map((match) => match[1]);
+  assert(guideAltSlugs.length > 0, "guide.yml must link to alternatives pages");
+  for (const slug of new Set(guideAltSlugs)) {
+    assert(exists(`build/alternatives/${slug}.html`), `guide.yml link /alternatives/${slug} must have a built page`);
+  }
+  const popularSlugs = [
+    "firebase",
+    "firebase-cloud-messaging",
+    "aws",
+    "stripe",
+    "google-maps-platform",
+    "sentry",
+    "datadog",
+    "google-analytics",
+  ];
+  for (const slug of popularSlugs) {
+    assert(exists(`build/alternatives/${slug}.html`), `popular lookup /alternatives/${slug} must have a built page`);
+  }
 }
 
 if (exists("build/alternatives/index.html")) {
@@ -369,6 +443,8 @@ if (exists("build/alternatives/index.html")) {
   assert(alternativesIndex.includes("Type"), "alternatives search must show the Type / to search items affordance");
   assert(alternativesIndex.includes(">Global</a>") || alternativesIndex.includes(">Global</"), "alternatives chrome must label the Global nav item");
   assert(alternativesIndex.includes('"@type":"ItemList"') || alternativesIndex.includes('"@type": "ItemList"'), "alternatives index must include ItemList JSON-LD");
+  assert(alternativesIndex.includes('property="og:image"'), "alternatives index must declare og:image");
+  assert(alternativesIndex.includes('href="/guide"'), "alternatives index must use a relative Guide link");
   assert(
     alternativesIndex.includes("googletagmanager.com/gtag/js?id=G-4BXLJXM1DY"),
     "alternatives index must include the Google tag",
@@ -392,6 +468,8 @@ if (exists("build/alternatives/index.html")) {
   assert(!exists("build/alternatives/react-native.html"), "React Native must be removed from Global alternatives");
   assert(!exists("build/alternatives/ionic.html"), "Ionic must be removed from Global alternatives");
   assert(!exists("build/alternatives/acast.html"), "Acast must be removed from Global alternatives");
+  assert(!exists("build/alternatives/castos.html"), "Castos must be removed from Global alternatives");
+  assert(!exists("build/alternatives/liftoff-monetize.html"), "Liftoff Monetize must be removed from Global alternatives");
   assert(!exists("build/alternatives/callkit.html"), "CallKit must be removed from Global alternatives");
   assert(!exists("build/alternatives/n8n.html"), "n8n must be removed from Global alternatives");
   assert(!exists("build/alternatives/vmware-vsphere.html"), "VMware vSphere must be removed from Global alternatives");
@@ -400,6 +478,8 @@ if (exists("build/alternatives/index.html")) {
   assert(!alternativesIndex.includes("React Native"), "alternatives index must not list React Native");
   assert(!alternativesIndex.includes(">Ionic<") && !alternativesIndex.includes("Ionic alternatives"), "alternatives index must not list Ionic");
   assert(!alternativesIndex.includes("Acast"), "alternatives index must not list Acast");
+  assert(!alternativesIndex.includes("Castos"), "alternatives index must not list Castos");
+  assert(!alternativesIndex.includes("Liftoff Monetize"), "alternatives index must not list Liftoff Monetize");
   assert(!alternativesIndex.includes("CallKit"), "alternatives index must not list CallKit");
   assert(!alternativesIndex.includes(">n8n<"), "alternatives index must not list n8n");
   assert(!alternativesIndex.includes("VMware vSphere"), "alternatives index must not list VMware vSphere");
@@ -432,6 +512,22 @@ if (exists("build/alternatives/firebase.html")) {
     "Firebase canonical must be the Cloudflare Pages extensionless URL",
   );
   assert(!firebasePage.includes('rel="canonical" href="https://landscape.chinaready.co/alternatives/firebase.html"'), "Firebase canonical must not point at the .html redirect alias");
+  assert(firebasePage.includes('property="og:image"'), "Firebase page must declare og:image");
+  assert(firebasePage.includes("Related lookups"), "Firebase page must include related internal links");
+}
+
+if (exists("build/embed/embed.html")) {
+  const embed = read("build/embed/embed.html");
+  assert(embed.includes("noindex"), "embed.html must be noindex");
+}
+
+if (exists("build/alternatives/sentry.html")) {
+  const sentryPage = read("build/alternatives/sentry.html");
+  assert(sentryPage.includes("Sentry alternatives in China"), "Sentry page must use an intent-matching H1");
+  assert(
+    sentryPage.includes("Alibaba Cloud EMAS") || sentryPage.includes("Alibaba Cloud ARMS"),
+    "Sentry page must map China observability options",
+  );
 }
 
 if (exists("build/alternatives/stripe.html")) {
@@ -509,6 +605,27 @@ if (exists("build/alternatives/amazon-ses.html")) {
   assert(sesPage.includes('href="https://chinaready.co/intake/"'), "Amazon SES sticky must link to /intake/");
   assert(!sesPage.includes("Next reading"), "Amazon SES page must not include Next reading");
   assert(!sesPage.includes("cr-alt-next"), "Amazon SES page must not include Next reading section markup");
+}
+
+if (exists("build/alternatives/amazon-cloudfront.html")) {
+  const cloudfrontPage = read("build/alternatives/amazon-cloudfront.html");
+  assert(
+    cloudfrontPage.includes("Amazon CloudFront alternatives in China"),
+    "Amazon CloudFront page must use an intent-matching H1",
+  );
+  assert(
+    cloudfrontPage.includes('cr-alt-availability-available">Available</span>'),
+    "Amazon CloudFront page must label mainland China availability as Available",
+  );
+  assert(cloudfrontPage.includes("Beijing (cn-north-1)"), "Amazon CloudFront page must mention Beijing region");
+  assert(cloudfrontPage.includes("Ningxia (cn-northwest-1)"), "Amazon CloudFront page must mention Ningxia region");
+  assert(cloudfrontPage.includes("光环新网"), "Amazon CloudFront page must mention Sinnet operator");
+  assert(cloudfrontPage.includes("西云数据") || cloudfrontPage.includes("NWCD"), "Amazon CloudFront page must mention NWCD operator");
+  assert(cloudfrontPage.includes("Zhongwei"), "Amazon CloudFront page must mention Zhongwei POP");
+  assert(cloudfrontPage.includes("Lambda@Edge"), "Amazon CloudFront page must note Lambda@Edge limits");
+  assert(cloudfrontPage.includes("Tencent Cloud CDN"), "Amazon CloudFront page must map to Tencent Cloud CDN");
+  assert(cloudfrontPage.includes("Alibaba Cloud CDN"), "Amazon CloudFront page must map to Alibaba Cloud CDN");
+  assert(cloudfrontPage.includes("ICP filing"), "Amazon CloudFront page must mention ICP filing requirements");
 }
 
 if (exists("build/alternatives/twilio-sms.html")) {
@@ -667,9 +784,33 @@ if (exists("build/alternatives/google-admob.html")) {
   assert(admobPage.includes("Tencent Ads") || admobPage.includes("优量汇"), "AdMob page must map to Tencent Ads");
   assert(admobPage.includes("Baidu Union") || admobPage.includes("百度联盟"), "AdMob page must map to Baidu Union");
   assert(admobPage.includes("Kuaishou Union") || admobPage.includes("快手联盟"), "AdMob page must map to Kuaishou Union");
+  assert(admobPage.includes("Huawei Ads") || admobPage.includes("鲸鸿动能"), "AdMob page must map to Huawei Ads");
   assert(admobPage.includes("Chinese corporate entity in April 2006"), "AdMob page must keep shared Google China presence context");
   assert(admobPage.includes("Ad Monetization") || admobPage.includes("Users, Trust & Monetization"), "AdMob candidates must sit under Users, Trust & Monetization");
   assert(!admobPage.includes(">Umeng+</"), "AdMob page must not list Umeng+ as the primary monetization candidate");
+}
+
+if (exists("build/alternatives/meta-ads.html")) {
+  const metaAdsPage = read("build/alternatives/meta-ads.html");
+  assert(metaAdsPage.includes("Ocean Engine"), "Meta Ads page must map to Ocean Engine");
+  assert(metaAdsPage.includes("Tencent Advertising"), "Meta Ads page must map to Tencent Advertising");
+  assert(metaAdsPage.includes("Kuaishou Ads"), "Meta Ads page must map to Kuaishou Ads");
+}
+
+if (exists("build/alternatives/liftoff.html")) {
+  const liftoffPage = read("build/alternatives/liftoff.html");
+  assert(liftoffPage.includes("Liftoff alternatives in China"), "Liftoff page must use an intent-matching H1");
+  assert(liftoffPage.includes("Ocean Engine (巨量引擎)"), "Liftoff guidance must use English-first Ocean Engine heading");
+  assert(liftoffPage.includes("Tencent Advertising (腾讯广告)"), "Liftoff guidance must use English-first Tencent Advertising heading");
+  assert(liftoffPage.includes("Pangle (穿山甲)"), "Liftoff guidance must use English-first Pangle heading");
+  assert(liftoffPage.includes("Kuaishou Ads (快手磁力引擎)"), "Liftoff guidance must use English-first Kuaishou Ads heading");
+  assert(!liftoffPage.includes("<h3>巨量引擎"), "Liftoff guidance must not lead headings with Chinese names");
+  assert(!liftoffPage.includes("Huawei Ads"), "Liftoff UA page must not list Huawei Ads among the four primary alternatives");
+}
+
+if (exists("build/alternatives/tiktok-ads.html")) {
+  const tiktokAdsPage = read("build/alternatives/tiktok-ads.html");
+  assert(tiktokAdsPage.includes("Ocean Engine"), "TikTok Ads page must map to Ocean Engine");
 }
 
 if (exists("build/alternatives/google-analytics.html")) {
@@ -782,6 +923,10 @@ if (exists("build/assets/chinaready-landscape-details.js")) {
   assert(buildDetailsScript.includes("Summary"), "published detail extension must render a CNCF-style Summary section");
   assert(buildDetailsScript.includes("removeNativeSummary"), "published detail extension must remove the landscape2 native Summary/TAGS block");
   assert(buildDetailsScript.includes("forceStaticPageNavigation"), "published detail extension must force full navigation to static /alternatives pages");
+  assert(
+    buildDetailsScript.includes('pathname === "/guide"') || buildDetailsScript.includes('startsWith("/guide")'),
+    "published detail extension must force full navigation to static /guide",
+  );
   assert(buildDetailsScript.includes("enhanceHeaderGlobalNav"), "published detail extension must inject Global into the top navigation");
   assert(buildDetailsScript.includes("enhanceGuideGlobalMenu"), "published detail extension must inject Global into the Guide sidebar");
   assert(buildDetailsScript.includes("/images/chinaready-logo-horizontal-white.svg"), "published footer logo must use a root-absolute path");
@@ -836,7 +981,7 @@ if (exists("build/data/base.json")) {
   assert(baseSearchText("JPush").match(/\bFCM\b/i), "base.json search index tags must let FCM find JPush");
   const subcategoryCount = base.categories.reduce((total, category) => total + category.subcategories.length, 0);
   assert(base.categories.length === 7, "base.json must expose all 7 top-level categories");
-  assert(subcategoryCount === 26, "base.json must expose all 26 subcategories");
+  assert(subcategoryCount === 27, "base.json must expose all 27 subcategories");
   assert(!base.groups || base.groups.length === 0, "base.json must not define groups so no group tab is selected by default");
 
   const visibleSubcategories = new Set();

@@ -32,6 +32,9 @@ Serve the generated site:
 node scripts/landscape2.mjs serve --landscape-dir build
 ```
 
+This local server mirrors Cloudflare Pages pretty URLs, so links like
+`/alternatives/amazon-cloudwatch` resolve to the on-disk `.html` file.
+
 Open:
 
 ```text

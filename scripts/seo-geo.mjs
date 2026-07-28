@@ -58,6 +58,11 @@ const GET_HELP_URL = "https://chinaready.co/contact/";
 const INTAKE_ASSESSMENT_URL = "https://chinaready.co/intake/";
 const GAP_CATALOG_RELATIVE = "research/global-services-gap-catalog.json";
 const GA_MEASUREMENT_ID = "G-4BXLJXM1DY";
+const OG_IMAGE_PATH = "/favicon-512x512.png";
+const OG_IMAGE_URL = `${SITE_URL}${OG_IMAGE_PATH}`;
+const HOME_CANONICAL = `${SITE_URL}/`;
+const DEFAULT_ROBOTS = "index, follow, max-snippet:160, max-image-preview:large";
+const NOINDEX_ROBOTS = "noindex, follow";
 
 /** Google Analytics 4 tag injected into every published HTML page head. */
 function googleTagSnippet() {
@@ -75,6 +80,7 @@ function googleTagSnippet() {
 const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   onesignal: "limited",
   "amazon-ses": "unavailable",
+  "amazon-cloudfront": "available",
   env0: "supported-terraform",
   "twilio-sms": "unavailable",
   "twilio-video": "unavailable",
@@ -644,6 +650,64 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  "amazon-cloudfront": {
+    description: (availability, names) =>
+      clipMeta(
+        `Amazon CloudFront is Available in AWS China (Beijing and Ningxia), with ICP and feature limits vs global. Also compare ${names.slice(0, 2).join(" and ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Amazon CloudFront</strong> is <strong>Available</strong> in AWS China regions (Beijing and Ningxia), with four mainland edge locations. It is not feature-parity with global CloudFront — ICP filing, CNAME, certificate upload, and several edge features differ. Domestic CDNs such as <strong>${escapeHtml(names.slice(0, 2).join(" and "))}</strong> remain common China-stack alternatives. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Amazon CloudFront in AWS China",
+    sectionTitle: "China CDN options often evaluated alongside AWS China CloudFront",
+    guidanceHtml: `
+        <p>Amazon CloudFront is offered in both AWS China regions. Chinaready labels it <strong>Available</strong> — do not treat mapped domestic CDNs as proof that CloudFront is blocked in mainland China.</p>
+        <h3>AWS China regions</h3>
+        <ul>
+          <li><strong>Beijing (cn-north-1)</strong> — operated by Beijing Sinnet Technology Co., Ltd. (光环新网).</li>
+          <li><strong>Ningxia (cn-northwest-1)</strong> — operated by Ningxia Western Cloud Data Technology Co., Ltd. (NWCD / 西云数据).</li>
+        </ul>
+        <h3>Mainland edge locations (POPs)</h3>
+        <p>CloudFront has four edge locations in mainland China — <strong>Beijing, Shanghai, Zhongwei, and Shenzhen</strong>. These POPs connect to the Beijing and Ningxia regions over private dedicated network links for low-latency content delivery.</p>
+        <h3>Differences vs global CloudFront</h3>
+        <p>Compared with global CloudFront, AWS China CloudFront has important limits and operating requirements:</p>
+        <ul>
+          <li><strong>ICP filing:</strong> Required before use. Do not rely on the default <code>*.cloudfront.cn</code> domain — configure a CNAME (alternate domain name).</li>
+          <li><strong>SSL certificates:</strong> ACM is not supported; upload third-party certificates to IAM.</li>
+          <li><strong>IPv6:</strong> Not supported.</li>
+          <li><strong>Lambda@Edge / CloudFront Functions:</strong> Not available.</li>
+          <li><strong>Cache policies and origin request policies:</strong> Not available; use legacy cache settings only.</li>
+          <li><strong>Origin Shield, HTTP/3, gRPC, WebSocket:</strong> Not supported.</li>
+          <li><strong>Account isolation:</strong> AWS China accounts are fully separate from global AWS accounts and cannot share resources.</li>
+        </ul>
+        <h3>When to keep CloudFront vs map to a domestic CDN</h3>
+        <p>Keep AWS China CloudFront when the workload already runs in AWS China and the feature set above is enough. Evaluate domestic options such as <strong>Tencent Cloud CDN</strong> and <strong>Alibaba Cloud CDN</strong> when you need broader China CDN features, a non-AWS stack, or want to avoid China CloudFront operating constraints.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Amazon CloudFront work in China?",
+        answer: `Yes in AWS China. CloudFront is available in the Beijing (cn-north-1) and Ningxia (cn-northwest-1) regions, with mainland edge locations in Beijing, Shanghai, Zhongwei, and Shenzhen. Chinaready labels Amazon CloudFront as ${availability}. Feature parity with global CloudFront still differs — especially ICP/CNAME, certificates, and edge compute.`,
+      },
+      {
+        question: "Who operates AWS China CloudFront regions?",
+        answer:
+          "Beijing (cn-north-1) is operated by Beijing Sinnet Technology Co., Ltd. (光环新网). Ningxia (cn-northwest-1) is operated by Ningxia Western Cloud Data Technology Co., Ltd. (NWCD / 西云数据). AWS China accounts are isolated from global AWS accounts.",
+      },
+      {
+        question: "What are the main limits of CloudFront in AWS China?",
+        answer:
+          "ICP filing is required and you must use a CNAME rather than the default *.cloudfront.cn domain. ACM is unavailable (upload certificates to IAM). IPv6, Lambda@Edge, CloudFront Functions, cache/origin-request policies, Origin Shield, HTTP/3, gRPC, and WebSocket are not supported.",
+      },
+      {
+        question: "What are the best China alternatives to Amazon CloudFront?",
+        answer: namesText
+          ? `Chinaready Landscape currently maps China CDN options for Amazon CloudFront to ${namesText}. Prefer Tencent Cloud CDN or Alibaba Cloud CDN when you want a domestic CDN stack or need capabilities that AWS China CloudFront does not offer. Treat this as a research shortlist rather than a one-to-one endorsement.`
+          : `A precise China-market alternative for Amazon CloudFront is not yet confirmed in Chinaready Landscape. Contact Chinaready for a stack-specific recommendation before changing production architecture.`,
+      },
+      {
+        question: "Where should teams go after shortlisting CloudFront options?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent Infrastructure & Edge services, then read Chinaready's main site for launch operating guidance covering ICP, compliance, and go-to-market constraints beyond vendor selection. If the CDN path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
   "apple-pay": {
     description: (availability, names) =>
       clipMeta(
@@ -809,6 +873,50 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Where should teams go after shortlisting Castle.io alternatives?",
         answer: `Use the interactive Chinaready Landscape to compare adjacent trust and bot-protection services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the alternative remains uncertain, book a call with Chinaready.`,
+      },
+    ],
+  },
+  liftoff: {
+    description: (availability, names) =>
+      clipMeta(
+        `Liftoff is Unavailable for mainland China UA. Compare ${names.slice(0, 4).join(", ")} — Ocean Engine, Tencent Advertising (TMS), Pangle, and Kuaishou Magnet Engine. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Liftoff is <strong>${escapeHtml(availability)}</strong> for meaningful mainland China user acquisition. Map paid app installs and performance growth to domestic platforms — typically <strong>${escapeHtml(names.slice(0, 4).join(", "))}</strong> — rather than running Liftoff as the China UA stack.`,
+    guidanceTitle: "China alternatives for Liftoff user acquisition",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: `
+        <p>Liftoff's global UA and performance stack is not a practical mainland China acquisition path. Chinaready maps Liftoff to four domestic platforms that cover ByteDance, Tencent, developer-side distribution, and Kuaishou short-video growth.</p>
+        <h3>Ocean Engine (巨量引擎)</h3>
+        <p>ByteDance's advertising platform for mobile user acquisition, performance marketing, and app growth campaigns through Douyin and Toutiao ecosystems. Commonly used for app installs, gaming user acquisition, and conversion optimization in mainland China.</p>
+        <h3>Tencent Advertising (腾讯广告)</h3>
+        <p>Tencent's advertising platform (also known as Tencent Marketing Solutions) covering WeChat, QQ, and Tencent ecosystem traffic. Provides app install campaigns, user acquisition, and performance advertising — especially strong in gaming and social applications.</p>
+        <h3>Pangle (穿山甲)</h3>
+        <p>ByteDance's developer advertising platform focused on mobile app monetization and advertising distribution. Provides rewarded video, native ads, and in-app advertising solutions for developers in mainland China. Useful when Liftoff evaluations also cover developer-side inventory and distribution, not only pure advertiser UA.</p>
+        <h3>Kuaishou Ads (快手磁力引擎)</h3>
+        <p>Kuaishou's performance advertising platform (Kuaishou Marketing Platform / 磁力引擎) for user acquisition and brand growth. Provides mobile app promotion and conversion optimization through Kuaishou's short-video ecosystem.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Liftoff work in China?",
+        answer: `No for meaningful mainland China user acquisition. Chinaready labels Liftoff as ${availability}. Plan domestic advertiser and developer-side platforms instead of depending on Liftoff for China app installs.`,
+      },
+      {
+        question: "What are the best China alternatives to Liftoff?",
+        answer: `Chinaready Landscape currently maps Liftoff to ${namesText}. Prefer Ocean Engine (巨量引擎) for Douyin/Toutiao growth, Tencent Advertising (腾讯广告) for WeChat/QQ ecosystem installs, Pangle (穿山甲) when developer-side ad distribution matters, and Kuaishou Ads (快手磁力引擎) for Kuaishou short-video acquisition.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Liftoff in mainland China?",
+        answer:
+          "Usually no. China UA is ecosystem-specific across ByteDance, Tencent, and Kuaishou inventory, and Pangle covers developer-side distribution rather than a one-to-one Liftoff swap. Review replacement fit and China context for each candidate before migrating.",
+      },
+      {
+        question: "How should teams choose among Ocean Engine, Tencent Advertising, Pangle, and Kuaishou Ads?",
+        answer:
+          "Choose Ocean Engine for Douyin/Toutiao scale, Tencent Advertising when WeChat/QQ social inventory matters, Kuaishou Ads for Kuaishou short-video conversion, and Pangle when the evaluation includes developer-side monetization or ad distribution rather than advertiser buying alone.",
+      },
+      {
+        question: "Where should teams go after shortlisting Liftoff alternatives?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent mobile growth and monetization services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the path remains unclear, book a call with Chinaready.`,
       },
     ],
   },
@@ -1096,6 +1204,10 @@ const ANALOG_ALIASES = {
   openstreetmap: "OpenStreetMap",
   osm: "OpenStreetMap",
   "twilio conversations": "Twilio Conversations",
+  "sentence-bert": "Sentence-BERT",
+  "sentence bert": "Sentence-BERT",
+  "visual studio app center": "Visual Studio App Center",
+  "app center": "Visual Studio App Center",
 };
 
 function escapeHtml(value) {
@@ -1482,8 +1594,19 @@ function analogPageDescription(group, availability, names, uncertain) {
   );
 }
 
-function pageShell({ title, description, canonicalPath, body, jsonLd = [], breadcrumbs = [], activeNav = "global", stickyCta = "" }) {
-  const canonical = `${SITE_URL}${canonicalPath}`;
+function pageShell({
+  title,
+  description,
+  canonicalPath,
+  body,
+  jsonLd = [],
+  breadcrumbs = [],
+  activeNav = "global",
+  stickyCta = "",
+  robots = DEFAULT_ROBOTS,
+  includeSearchScript = true,
+}) {
+  const canonical = canonicalPath === "/" ? HOME_CANONICAL : `${SITE_URL}${canonicalPath}`;
   const hasStickyCta = stickyCta.trim().length > 0;
   const bodyClass = hasStickyCta ? "cr-alt-body cr-alt-body--sticky" : "cr-alt-body";
   const breadcrumbLd =
@@ -1495,11 +1618,14 @@ function pageShell({ title, description, canonicalPath, body, jsonLd = [], bread
             "@type": "ListItem",
             position: index + 1,
             name: crumb.name,
-            item: `${SITE_URL}${crumb.path}`,
+            item: crumb.path === "/" ? HOME_CANONICAL : `${SITE_URL}${crumb.path}`,
           })),
         }
       : null;
   const allLd = [...jsonLd, ...(breadcrumbLd ? [breadcrumbLd] : [])];
+  const searchScript = includeSearchScript
+    ? `<script defer src="/assets/chinaready-alternatives-search.js"></script>`
+    : "";
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -1509,7 +1635,7 @@ function pageShell({ title, description, canonicalPath, body, jsonLd = [], bread
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}" />
   <link rel="canonical" href="${escapeHtml(canonical)}" />
-  <meta name="robots" content="index, follow, max-snippet:160, max-image-preview:large" />
+  <meta name="robots" content="${escapeHtml(robots)}" />
   <meta name="author" content="Chinaready" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_US" />
@@ -1517,9 +1643,11 @@ function pageShell({ title, description, canonicalPath, body, jsonLd = [], bread
   <meta property="og:site_name" content="Chinaready Landscape" />
   <meta property="og:title" content="${escapeHtml(title)}" />
   <meta property="og:description" content="${escapeHtml(description)}" />
+  <meta property="og:image" content="${escapeHtml(OG_IMAGE_URL)}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${escapeHtml(title)}" />
   <meta name="twitter:description" content="${escapeHtml(description)}" />
+  <meta name="twitter:image" content="${escapeHtml(OG_IMAGE_URL)}" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/favicon-48x48.png" type="image/png" sizes="48x48" />
   <link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96" />
@@ -1539,7 +1667,7 @@ ${body}
   </main>
   ${renderSharedFooter()}
   ${stickyCta}
-  <script defer src="/assets/chinaready-alternatives-search.js"></script>
+  ${searchScript}
 </body>
 </html>
 `;
@@ -1570,7 +1698,7 @@ function renderAlternativesIndex(groups) {
   const body = `
       <p class="cr-alt-kicker">Global</p>
       <h1>China alternatives to global developer services</h1>
-      <p class="cr-alt-lede">Search ${serviceCount} global services alphabetically and jump to China-ready candidates, China-region routes, and availability notes. ${withOptions} pages already list concrete options. For the China taxonomy by category, read the <a href="${SITE_URL}/guide">Guide</a>; for broader launch guidance, continue on <a href="${MAIN_SITE_URL}">chinaready.co</a>.</p>
+      <p class="cr-alt-lede">Search ${serviceCount} global services alphabetically and jump to China-ready candidates, China-region routes, and availability notes. ${withOptions} pages already list concrete options. For the China taxonomy by category, read the <a href="/guide">Guide</a>; for broader launch guidance, continue on <a href="${MAIN_SITE_URL}">chinaready.co</a>.</p>
       <section aria-labelledby="how-to-use">
         <h2 id="how-to-use">How to use this map</h2>
         <ol>
@@ -1636,7 +1764,7 @@ ${rows}
         "@context": "https://schema.org",
         "@type": "ItemList",
         numberOfItems: groups.length,
-        itemListElement: groups.slice(0, 50).map((group, index) => ({
+        itemListElement: groups.map((group, index) => ({
           "@type": "ListItem",
           position: index + 1,
           name: group.name,
@@ -1670,7 +1798,33 @@ ${rows}
   });
 }
 
-function renderAnalogPage(group) {
+function relatedGroups(group, groups, limit = 5) {
+  const candidateSet = new Set(candidateNames(group).map((name) => name.toLowerCase()));
+  const scored = [];
+  for (const other of groups) {
+    if (other.slug === group.slug) continue;
+    let score = 0;
+    for (const name of candidateNames(other)) {
+      if (candidateSet.has(name.toLowerCase())) score += 2;
+    }
+    if (
+      group.availability_in_china &&
+      other.availability_in_china &&
+      other.availability_in_china === group.availability_in_china
+    ) {
+      score += 1;
+    }
+    if (score > 0) scored.push({ other, score });
+  }
+  scored.sort((a, b) => b.score - a.score || a.other.name.localeCompare(b.other.name, "en"));
+  if (scored.length >= limit) return scored.slice(0, limit).map((entry) => entry.other);
+  const extras = groups
+    .filter((other) => other.slug !== group.slug && !scored.some((entry) => entry.other.slug === other.slug))
+    .sort((a, b) => candidateCount(b) - candidateCount(a) || a.name.localeCompare(b.name, "en"));
+  return [...scored.map((entry) => entry.other), ...extras].slice(0, limit);
+}
+
+function renderAnalogPage(group, groups = []) {
   const names = candidateNames(group);
   const namesText = names.join(", ");
   const availability = availabilityLabel(group);
@@ -1786,6 +1940,22 @@ function renderAnalogPage(group) {
       </section>`
       : "";
 
+  const related = relatedGroups(group, groups);
+  const relatedSection =
+    related.length > 0
+      ? `<section aria-labelledby="related-lookups">
+        <h2 id="related-lookups">Related lookups</h2>
+        <ul class="cr-alt-popular">
+          ${related
+            .map(
+              (peer) =>
+                `<li><a href="${escapeHtml(analogPublicPath(peer.slug))}">${escapeHtml(peer.name)} alternatives in China</a></li>`,
+            )
+            .join("\n          ")}
+        </ul>
+      </section>`
+      : "";
+
   const body = `
       <nav class="cr-alt-breadcrumbs" aria-label="Breadcrumb">
         <a href="/">Home</a> / <a href="/alternatives/">Alternatives</a> / <span>${escapeHtml(group.name)}</span>
@@ -1802,6 +1972,7 @@ function renderAnalogPage(group) {
 ${cards}
         </div>
       </section>
+      ${relatedSection}
       <section aria-labelledby="faq">
         <h2 id="faq">FAQ</h2>
         ${faq
@@ -1876,6 +2047,8 @@ ${cards}
 function renderRobotsTxt() {
   return `User-agent: *
 Allow: /
+Disallow: /embed
+Disallow: /embed/
 
 User-agent: GPTBot
 Allow: /
@@ -1899,10 +2072,99 @@ Sitemap: ${SITE_URL}/sitemap.xml
 `;
 }
 
+function renderCloudflareRedirects() {
+  // Prefer static HTML for Guide. Do not add a catch-all SPA rewrite that would
+  // soft-404 missing /alternatives/* paths back to the explorer homepage.
+  return `# Chinaready Landscape — Cloudflare Pages redirects
+/guide /guide.html 200
+`;
+}
+
+function renderNotFoundPage() {
+  const description = clipMeta(
+    "The Chinaready Landscape page you requested was not found. Browse China alternatives or return to the interactive landscape map.",
+  );
+  const body = `
+      <p class="cr-alt-kicker">Error 404</p>
+      <h1>Page not found</h1>
+      <p class="cr-alt-lede">That URL is not part of Chinaready Landscape. It may have been removed, renamed, or never published.</p>
+      <ul class="cr-alt-popular">
+        <li><a href="/">Explore the China landscape</a></li>
+        <li><a href="/alternatives/">China alternatives index</a></li>
+        <li><a href="/guide">Landscape Guide</a></li>
+      </ul>`;
+  return pageShell({
+    title: "Page not found | Chinaready Landscape",
+    description,
+    canonicalPath: "/404",
+    robots: NOINDEX_ROBOTS,
+    activeNav: "",
+    body,
+    includeSearchScript: true,
+  });
+}
+
+function renderGuidePage(guide) {
+  const description = clipMeta(
+    "Chinaready Landscape Guide: China-ready developer taxonomy by category, with notes on familiar global services and links to China alternative maps.",
+  );
+  const categories = guide?.categories || [];
+  const sections = categories
+    .map((category) => {
+      const id = `guide-${slugify(category.category)}`;
+      const subcats = (category.subcategories || [])
+        .map((sub) => {
+          const subId = `${id}-${slugify(sub.subcategory)}`;
+          return `<section class="cr-alt-guide-sub" aria-labelledby="${escapeHtml(subId)}">
+        <h3 id="${escapeHtml(subId)}">${escapeHtml(sub.subcategory)}</h3>
+        <div class="cr-alt-prose">${sub.content || ""}</div>
+      </section>`;
+        })
+        .join("\n");
+      return `<section aria-labelledby="${escapeHtml(id)}">
+        <h2 id="${escapeHtml(id)}">${escapeHtml(category.category)}</h2>
+        <div class="cr-alt-prose">${category.content || ""}</div>
+        ${subcats}
+      </section>`;
+    })
+    .join("\n");
+
+  const body = `
+      <nav class="cr-alt-breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a> / <span>Guide</span>
+      </nav>
+      <p class="cr-alt-kicker">Guide</p>
+      <h1>Chinaready Landscape Guide</h1>
+      <p class="cr-alt-lede">Use this Guide for the China-side taxonomy and what typically belongs in each category. When you already know a global product keyword, open the <a href="/alternatives/">Global alternatives index</a> for China-ready candidates and availability notes.</p>
+      ${sections}`;
+
+  return pageShell({
+    title: "Chinaready Landscape Guide | China-ready Developer Taxonomy",
+    description,
+    canonicalPath: "/guide",
+    activeNav: "guide",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Guide", path: "/guide" },
+    ],
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: "Chinaready Landscape Guide",
+        description,
+        url: `${SITE_URL}/guide`,
+        isPartOf: { "@type": "WebSite", name: "Chinaready Landscape", url: HOME_CANONICAL },
+      },
+    ],
+    body,
+  });
+}
+
 function renderSitemap(groups) {
   const today = new Date().toISOString().slice(0, 10);
   const urls = [
-    { loc: `${SITE_URL}/`, priority: "1.0" },
+    { loc: HOME_CANONICAL, priority: "1.0" },
     { loc: `${SITE_URL}/guide`, priority: "0.9" },
     { loc: `${SITE_URL}/alternatives/`, priority: "0.95" },
     ...groups.map((group) => ({
@@ -2016,6 +2278,10 @@ function enhanceIndexHtml(indexHtml, groups) {
     `<meta name="description" content="${description}" />`,
   );
   html = html.replace(
+    /<link rel="canonical" href="[^"]*"\s*\/?>/,
+    `<link rel="canonical" href="${HOME_CANONICAL}" />`,
+  );
+  html = html.replace(
     /<meta property="og:title"\s*content="[^"]*"\s*\/?>/,
     `<meta property="og:title" content="${title}" />`,
   );
@@ -2031,6 +2297,22 @@ function enhanceIndexHtml(indexHtml, groups) {
     /<meta name="twitter:description" content="[^"]*"\s*\/?>/,
     `<meta name="twitter:description" content="${description}" />`,
   );
+
+  if (!html.includes('property="og:image"')) {
+    html = html.replace(
+      "</head>",
+      `  <meta property="og:image" content="${OG_IMAGE_URL}" />\n  <meta name="twitter:image" content="${OG_IMAGE_URL}" />\n</head>`,
+    );
+  }
+
+  if (!html.includes('property="og:url"')) {
+    html = html.replace("</head>", `  <meta property="og:url" content="${HOME_CANONICAL}" />\n</head>`);
+  } else {
+    html = html.replace(
+      /<meta property="og:url"\s*content="[^"]*"\s*\/?>/,
+      `<meta property="og:url" content="${HOME_CANONICAL}" />`,
+    );
+  }
 
   if (!html.includes('rel="alternate" type="text/plain"')) {
     html = html.replace(
@@ -2051,7 +2333,7 @@ function enhanceIndexHtml(indexHtml, groups) {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Chinaready Landscape",
-    url: SITE_URL,
+    url: HOME_CANONICAL,
     description,
     inLanguage: "en",
     publisher: {
@@ -2070,6 +2352,11 @@ function enhanceIndexHtml(indexHtml, groups) {
         name: "China alternatives to global developer services",
         url: `${SITE_URL}/alternatives/`,
       },
+      {
+        "@type": "WebPage",
+        name: "Chinaready Landscape Guide",
+        url: `${SITE_URL}/guide`,
+      },
     ],
   };
 
@@ -2079,7 +2366,7 @@ function enhanceIndexHtml(indexHtml, groups) {
     name: "Chinaready",
     url: MAIN_SITE_URL,
     logo: `${SITE_URL}/favicon-192x192.png`,
-    sameAs: [REPO_URL, SITE_URL],
+    sameAs: [REPO_URL, HOME_CANONICAL],
     description:
       "Chinaready helps global software teams understand and implement China-ready product, infrastructure, and go-to-market requirements.",
   };
@@ -2117,6 +2404,27 @@ function enhanceIndexHtml(indexHtml, groups) {
   return html;
 }
 
+function noindexEmbedPages(buildDir) {
+  const embedDir = path.join(buildDir, "embed");
+  if (!fs.existsSync(embedDir)) return;
+  for (const file of fs.readdirSync(embedDir)) {
+    if (!file.endsWith(".html")) continue;
+    const filePath = path.join(embedDir, file);
+    let html = fs.readFileSync(filePath, "utf8");
+    if (html.includes('name="robots"')) {
+      html = html.replace(
+        /<meta\s+name=["']robots["'][^>]*>/i,
+        `<meta name="robots" content="${NOINDEX_ROBOTS}" />`,
+      );
+    } else if (html.includes("</head>")) {
+      html = html.replace("</head>", `  <meta name="robots" content="${NOINDEX_ROBOTS}" />\n</head>`);
+    } else {
+      html = `<meta name="robots" content="${NOINDEX_ROBOTS}" />\n${html}`;
+    }
+    fs.writeFileSync(filePath, html);
+  }
+}
+
 export function applySeoGeoEnhancements({ root, buildDir, indexHtml }) {
   const items = loadLandscapeItems(root);
   const landscapeGroups = buildAnalogGroups(items);
@@ -2135,12 +2443,21 @@ export function applySeoGeoEnhancements({ root, buildDir, indexHtml }) {
   fs.writeFileSync(path.join(alternativesDir, "index.html"), renderAlternativesIndex(groups));
 
   for (const group of groups) {
-    fs.writeFileSync(path.join(alternativesDir, `${group.slug}.html`), renderAnalogPage(group));
+    fs.writeFileSync(path.join(alternativesDir, `${group.slug}.html`), renderAnalogPage(group, groups));
   }
 
+  const guidePath = path.join(buildDir, "data", "guide.json");
+  if (fs.existsSync(guidePath)) {
+    const guide = JSON.parse(fs.readFileSync(guidePath, "utf8"));
+    fs.writeFileSync(path.join(buildDir, "guide.html"), renderGuidePage(guide));
+  }
+
+  fs.writeFileSync(path.join(buildDir, "404.html"), renderNotFoundPage());
+  fs.writeFileSync(path.join(buildDir, "_redirects"), renderCloudflareRedirects());
   fs.writeFileSync(path.join(buildDir, "robots.txt"), renderRobotsTxt());
   fs.writeFileSync(path.join(buildDir, "sitemap.xml"), renderSitemap(groups));
   fs.writeFileSync(path.join(buildDir, "llms.txt"), renderLlmsTxt(groups));
+  noindexEmbedPages(buildDir);
 
   const cssSource = path.join(root, "assets", "chinaready-alternatives.css");
   const cssTarget = path.join(buildDir, "assets", "chinaready-alternatives.css");

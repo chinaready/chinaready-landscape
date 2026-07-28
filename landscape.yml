@@ -165,6 +165,31 @@ landscape:
                 organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
                 developer_docs: "https://www.alibabacloud.com/help/en/cdn/"
           - item:
+            name: Tencent Cloud CDN
+            homepage_url: https://www.tencentcloud.com/products/cdn
+            logo: tencent-cloud-cdn.svg
+            description: Tencent Cloud CDN accelerates content delivery through Tencent Cloud edge infrastructure in mainland China.
+            extra:
+              annotations:
+                global_analogs: Amazon CloudFront, Akamai, Cloudflare CDN
+                replacement_fit: direct
+                china_context: Common domestic CDN alternative when teams prefer a Tencent Cloud stack, or when AWS China CloudFront feature limits (ICP CNAME, no ACM, no Lambda@Edge) make a local CDN preferable.
+                vendor_type: china-cloud
+                evidence_level: high
+                availability_status: generally-available
+                global_availability_in_china: limited
+                metadata_name: "Tencent Cloud CDN"
+                primary_category: "Infrastructure & Edge"
+                official_website: "https://www.tencentcloud.com/products/cdn"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Tencent Cloud CDN accelerates content delivery through Tencent Cloud edge infrastructure in mainland China."
+                alternative_to: "China-market alternative or deployment route for: Amazon CloudFront, Akamai, Cloudflare CDN."
+                global_alternatives: "Amazon CloudFront, Akamai, Cloudflare CDN"
+                organization: "Tencent Cloud"
+                organization_overview: "Tencent Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
+                developer_docs: "https://www.tencentcloud.com/document/product/228"
+          - item:
             name: Cloudflare China Network
             homepage_url: https://www.cloudflare.com/network/china/
             logo: cloudflare-china-network.svg
@@ -673,9 +698,9 @@ landscape:
             description: Pangle (穿山甲) is ByteDance's mainland China mobile ad network for app monetization and developer growth.
             extra:
               annotations:
-                global_analogs: Google AdMob
+                global_analogs: Google AdMob, Liftoff, Unity LevelPlay, AppLovin MAX
                 replacement_fit: direct
-                china_context: Primary domestic AdMob alternative for mainland China. High eCPM and fill rates via ByteDance recommendation inventory; avoids GFW latency and PIPL cross-border AdMob risks.
+                china_context: Primary domestic AdMob alternative for mainland China. High eCPM and fill rates via ByteDance recommendation inventory; avoids GFW latency and PIPL cross-border AdMob risks. Also evaluated for Liftoff-style developer advertising distribution alongside Ocean Engine advertiser buying.
                 vendor_type: china-saas
                 evidence_level: medium
                 availability_status: generally-available
@@ -685,9 +710,9 @@ landscape:
                 official_website: "https://www.csjplatform.com/"
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
-                product_overview: "Pangle (穿山甲) is ByteDance's mainland China mobile ad network for app monetization and developer growth, with strong recommendation-driven fill and eCPM."
-                alternative_to: "China-market alternative or deployment route for: Google AdMob."
-                global_alternatives: "Google AdMob"
+                product_overview: "Pangle (穿山甲) is ByteDance's developer advertising platform for mobile app monetization and advertising distribution, including rewarded video, native ads, and in-app formats in mainland China."
+                alternative_to: "China-market alternative or deployment route for: Google AdMob, Liftoff, Unity LevelPlay, AppLovin MAX."
+                global_alternatives: "Google AdMob, Liftoff, Unity LevelPlay, AppLovin MAX"
                 organization: "ByteDance Pangle"
                 organization_overview: "Pangle is ByteDance's advertising and developer growth platform serving mainland China publishers and advertisers."
                 developer_docs: "https://www.csjplatform.com/supportcenter"
@@ -1422,7 +1447,7 @@ landscape:
                 organization_overview: "Tencent Location Services provides map and location APIs for developers building China-market products."
                 developer_docs: "https://lbs.qq.com/webApi/javascriptGL/glGuide/glBasic"
       - subcategory:
-        name: App-Store Intelligence & Attribution (ASO)
+        name: App Attribution & ASO
         items:
           - item:
             name: Qimai Data
@@ -1449,6 +1474,137 @@ landscape:
                 organization: "Qimai Data"
                 organization_overview: "Qimai Data provides app-store intelligence and ASO research products focused on China mobile markets."
                 developer_docs: "https://www.qimai.cn/"
+
+      - subcategory:
+        name: Mobile User Acquisition & Advertising
+        items:
+          - item:
+            name: Tencent Advertising
+            homepage_url: https://e.qq.com/
+            logo: tencent-advertising.svg
+            description: Tencent Advertising / Tencent Marketing Solutions (腾讯广告) is Tencent's mainland China advertiser platform for WeChat, QQ, and Tencent ecosystem user acquisition and performance campaigns.
+            extra:
+              annotations:
+                global_analogs: Meta Ads, Google Ads, Apple Search Ads, TikTok Ads, AppLovin, Liftoff, Moloco
+                replacement_fit: ecosystem-specific
+                china_context: Primary Tencent-ecosystem route for paid app install and performance campaigns — especially strong in gaming and social apps. Distinct from Tencent Ads (优量汇), which is the publisher monetization network.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Tencent Advertising"
+                primary_category: "Growth, Content & Experience"
+                official_website: "https://e.qq.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Tencent Advertising / Tencent Marketing Solutions (腾讯广告) covers WeChat, QQ, and Tencent ecosystem traffic for app install campaigns, user acquisition, and performance advertising in mainland China."
+                alternative_to: "China-market alternative or deployment route for: Meta Ads, Google Ads, Apple Search Ads, TikTok Ads, AppLovin, Liftoff, Moloco."
+                global_alternatives: "Meta Ads, Google Ads, Apple Search Ads, TikTok Ads, AppLovin, Liftoff, Moloco"
+                organization: "Tencent Ads"
+                organization_overview: "Tencent Ads operates Tencent's advertising platforms for advertisers and publishers in mainland China."
+                developer_docs: "https://developers.e.qq.com/"
+          - item:
+            name: Ocean Engine
+            homepage_url: https://www.oceanengine.com/
+            logo: ocean-engine.svg
+            description: Ocean Engine (巨量引擎) is ByteDance's mainland China marketing platform for Douyin, Toutiao, and related inventory — the primary paid-growth route for ByteDance traffic.
+            extra:
+              annotations:
+                global_analogs: TikTok Ads, Meta Ads, Google Ads, AppLovin, Liftoff, Moloco, Apple Search Ads
+                replacement_fit: ecosystem-specific
+                china_context: Default ByteDance advertiser stack for mainland China app installs, gaming UA, and conversion optimization through Douyin and Toutiao. Distinct from Pangle (穿山甲), which is ByteDance's publisher monetization network.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Ocean Engine"
+                primary_category: "Growth, Content & Experience"
+                official_website: "https://www.oceanengine.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Ocean Engine (巨量引擎) is ByteDance's advertising platform for mobile user acquisition, performance marketing, and app growth campaigns through Douyin and Toutiao ecosystems in mainland China."
+                alternative_to: "China-market alternative or deployment route for: TikTok Ads, Meta Ads, Google Ads, AppLovin, Liftoff, Moloco, Apple Search Ads."
+                global_alternatives: "TikTok Ads, Meta Ads, Google Ads, AppLovin, Liftoff, Moloco, Apple Search Ads"
+                organization: "ByteDance Ocean Engine"
+                organization_overview: "Ocean Engine is ByteDance's advertising and marketing technology platform for mainland China advertisers."
+                developer_docs: "https://open.oceanengine.com/"
+          - item:
+            name: Kuaishou Ads
+            homepage_url: https://ad.e.kuaishou.com/
+            logo: kuaishou-ads.svg
+            description: Kuaishou Ads / Kuaishou Marketing Platform (快手磁力引擎) is Kuaishou's mainland China advertiser platform for short-video and live-stream user acquisition and performance campaigns.
+            extra:
+              annotations:
+                global_analogs: TikTok Ads, Meta Ads, AppLovin, Liftoff, Moloco, Google Ads
+                replacement_fit: ecosystem-specific
+                china_context: Strong for lower-tier city and short-video conversion campaigns via 快手磁力引擎. Distinct from Kuaishou Union (快手联盟), which is the publisher monetization network.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Kuaishou Ads"
+                primary_category: "Growth, Content & Experience"
+                official_website: "https://ad.e.kuaishou.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Kuaishou Ads / Kuaishou Marketing Platform (快手磁力引擎) provides performance advertising for mobile app promotion, user acquisition, and conversion optimization through Kuaishou's short-video ecosystem."
+                alternative_to: "China-market alternative or deployment route for: TikTok Ads, Meta Ads, AppLovin, Liftoff, Moloco, Google Ads."
+                global_alternatives: "TikTok Ads, Meta Ads, AppLovin, Liftoff, Moloco, Google Ads"
+                organization: "Kuaishou"
+                organization_overview: "Kuaishou operates short-video and live-streaming platforms with advertising products for mainland China advertisers and publishers."
+                developer_docs: "https://ad.e.kuaishou.com/"
+          - item:
+            name: Baidu Marketing
+            homepage_url: https://e.baidu.com/
+            logo: baidu-marketing.svg
+            description: Baidu Marketing (百度营销) is Baidu's mainland China advertising platform spanning search, feed, and app-promotion campaigns.
+            extra:
+              annotations:
+                global_analogs: Google Ads, Apple Search Ads, Meta Ads, Moloco
+                replacement_fit: partial
+                china_context: Strong when search intent and Baidu ecosystem placements matter for mainland acquisition. Complements social/short-video networks rather than replacing them alone.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Baidu Marketing"
+                primary_category: "Growth, Content & Experience"
+                official_website: "https://e.baidu.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Baidu Marketing (百度营销) provides search, feed, and app-promotion advertising products for mainland China advertisers."
+                alternative_to: "China-market alternative or deployment route for: Google Ads, Apple Search Ads, Meta Ads, Moloco."
+                global_alternatives: "Google Ads, Apple Search Ads, Meta Ads, Moloco"
+                organization: "Baidu"
+                organization_overview: "Baidu operates search and digital advertising products for mainland China marketers and developers."
+                developer_docs: "https://dev2.baidu.com/"
+          - item:
+            name: Huawei Ads
+            homepage_url: https://ads.huawei.com/cn/
+            logo: huawei-ads.svg
+            description: Huawei Ads (鲸鸿动能 / Petal Ads) is Huawei's mainland China advertising platform for AppGallery and Huawei-ecosystem user acquisition and publisher monetization.
+            second_path:
+              - Users, Trust & Monetization / Ad Monetization & Mediation
+            extra:
+              annotations:
+                global_analogs: Apple Search Ads, Google Ads, Google AdMob, AppLovin, Moloco, Unity LevelPlay, AppLovin MAX
+                replacement_fit: ecosystem-specific
+                china_context: Important for Huawei / HarmonyOS and AppGallery reach. Covers both advertiser acquisition and publisher monetization (鲸鸿动能), so it also appears under Ad Monetization & Mediation.
+                vendor_type: china-saas
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: unavailable
+                metadata_name: "Huawei Ads"
+                primary_category: "Growth, Content & Experience"
+                official_website: "https://ads.huawei.com/cn/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Huawei Ads (鲸鸿动能 / Petal Ads) provides Huawei-ecosystem advertising for app promotion and publisher monetization across AppGallery and related inventory."
+                alternative_to: "China-market alternative or deployment route for: Apple Search Ads, Google Ads, Google AdMob, AppLovin, Moloco, Unity LevelPlay, AppLovin MAX."
+                global_alternatives: "Apple Search Ads, Google Ads, Google AdMob, AppLovin, Moloco, Unity LevelPlay, AppLovin MAX"
+                organization: "Huawei"
+                organization_overview: "Huawei operates Petal Ads / 鲸鸿动能 advertising products for advertisers and publishers across Huawei device and AppGallery ecosystems."
+                developer_docs: "https://developer.huawei.com/consumer/cn/hms/huawei-ads/"
 
       - subcategory:
         name: Web Fonts & Iconography
