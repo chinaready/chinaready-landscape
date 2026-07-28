@@ -74,7 +74,12 @@ OVERRIDES = {
     "ping identity": ["Authing"],
     "keycloak": ["Authing"],
     "clerk": ["Authing"],
-    "castle": ["GeeTest", "Authing"],
+    "castle": [
+        "NetEase Yidun",
+        "GeeTest",
+        "Alibaba Cloud Risk Identification",
+        "Tencent Cloud Tianyu",
+    ],
     "checkout.com": ["WeChat Pay", "Alipay"],
     "authorize.net": ["WeChat Pay", "Alipay"],
     "braintree": ["WeChat Pay", "Alipay"],
@@ -177,6 +182,13 @@ RESEARCH_NOTES = {
         "compliance monitoring; new projects — especially government, finance, and critical infrastructure — "
         "should carefully evaluate domestic options. Prefer Coremail (CACTER邮件安全网关) for email security / "
         "email gateway replacement and Topsec (天融信) for network, WAF, and adjacent edge-security controls."
+    ),
+    "castle": (
+        "Chinaready nationwide probes of api.castle.io returned non-usable HTTP 404 from all sampled mainland "
+        "city/carrier paths — treat the Castle API as unavailable in China. Multiple domestic vendors offer "
+        "highly similar substitutes, but none fully cover Castle's complete feature set. Prefer NetEase Yidun "
+        "and GeeTest for lightweight SaaS trials; prefer Alibaba Cloud Risk Identification or Tencent Cloud "
+        "Tianyu when you already run on those clouds."
     ),
 }
 

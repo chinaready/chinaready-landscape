@@ -82,6 +82,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "sign-in-with-apple": "limited",
   "apple-pay": "available",
   "azure-devops": "limited",
+  "castle-io": "unavailable",
 };
 
 /** Keep stable public URLs when display names change. */
@@ -759,6 +760,55 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Where should teams go after planning China login options?",
         answer: `Use the interactive Chinaready Landscape to compare adjacent identity and messaging services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the login path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
+  "castle-io": {
+    description: (availability, names) =>
+      clipMeta(
+        `Castle.io API is unavailable across mainland China. Chinaready probes of api.castle.io returned HTTP 404 nationwide. Compare ${names.slice(0, 4).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Chinaready's nationwide mainland probes of <code>api.castle.io</code> across 148 city/carrier paths all returned HTTP 404 — treat the Castle API as <strong>unavailable</strong> for China production stacks. Domestic vendors offer highly similar substitutes, but none fully cover Castle's complete feature set. Map to <strong>${escapeHtml(names.slice(0, 4).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Replace Castle.io for mainland China account and bot risk",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: `
+        <p>Chinaready's nationwide mainland probes of <code>api.castle.io</code> across 148 city and carrier paths all returned HTTP 404 — treat the Castle API as unavailable for China production stacks.</p>
+        <p>Multiple mainland vendors offer highly similar “drop-in style” substitutes, but none fully cover Castle's complete feature set. Use the shortlist below as a research map, then validate replacement fit for registration, login, device, and abuse workflows.</p>
+        <h3>Mainland China options</h3>
+        <ul>
+          <li><strong>NetEase Yidun (网易易盾 · business security)</strong> — registration protection, login protection, behavioral CAPTCHA, and device fingerprinting. Simple API integration with free trial quota for mid-size apps. Behavioral CAPTCHA can stay frictionless and follows a Castle-like risk-score path (allow, step-up, or block). Best for fast go-live with stronger UI customization.</li>
+          <li><strong>GeeTest (极验)</strong> — frictionless verification, identity anti-fraud, and device fingerprinting. Evolved from CAPTCHA into human verification plus risk control; returns real-time risk scores from device and behavior signals, with silent protection and custom block policies. Best for UX-sensitive apps, especially mobile, that want frictionless filtering of bots and account attacks.</li>
+          <li><strong>Alibaba Cloud Risk Identification (阿里云风险识别)</strong> — account security, login/registration protection, and marketing anti-cheat. Metered cloud APIs that integrate cleanly with the Alibaba stack; returns risk scores and labels (credential stuffing, junk registration, and similar) and can link to Alibaba Cloud CAPTCHA. Best when the app already runs on Alibaba Cloud.</li>
+          <li><strong>Tencent Cloud Tianyu (腾讯云天御 · business security)</strong> — registration protection, login protection, and campaign anti-abuse. Real-time risk scoring on Tencent security data across WeChat mini programs, apps, and web, with a free tier for early testing. Best for WeChat-ecosystem apps or teams that want Tencent social-graph signals for risk decisions.</li>
+        </ul>
+        <h3>How to choose</h3>
+        <ul>
+          <li><strong>Developer-friendly lightweight SaaS:</strong> try NetEase Yidun and GeeTest first — both offer free quota and clear API docs for a quick proof of value.</li>
+          <li><strong>Already on a cloud platform and want one console:</strong> choose Alibaba Cloud Risk Identification or Tencent Cloud Tianyu for unified billing, metering elasticity, and stack integration.</li>
+        </ul>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Castle.io work in China?",
+        answer: `No for mainland production stacks. Chinaready's nationwide probes of api.castle.io across 148 city/carrier paths all returned HTTP 404, so Chinaready labels Castle.io as ${availability}. Plan a China account-abuse and bot-risk provider instead of depending on Castle's API from mainland networks.`,
+      },
+      {
+        question: "What are the best China alternatives to Castle.io?",
+        answer: `Chinaready Landscape currently maps Castle.io to ${namesText}. Domestic options are highly similar for registration, login, device, and abuse workflows, but none fully cover Castle's complete feature set. Prefer NetEase Yidun and GeeTest for lightweight SaaS trials; prefer Alibaba Cloud Risk Identification or Tencent Cloud Tianyu when you already run on those clouds.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Castle.io in mainland China?",
+        answer:
+          "Usually no. Multiple mainland vendors offer highly similar substitutes for bot defense, device fingerprinting, and account-risk scoring, but none fully covers Castle's complete feature set. Review replacement fit and China context for each candidate before migrating.",
+      },
+      {
+        question: "How should teams choose among NetEase Yidun, GeeTest, Alibaba Cloud, and Tencent Cloud Tianyu?",
+        answer:
+          "For developer-friendly lightweight SaaS, try NetEase Yidun and GeeTest first — both have free quota and clear API docs. If you already use a China cloud and want one-stop console and metering, choose Alibaba Cloud Risk Identification or Tencent Cloud Tianyu.",
+      },
+      {
+        question: "Where should teams go after shortlisting Castle.io alternatives?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent trust and bot-protection services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the alternative remains uncertain, book a call with Chinaready.`,
       },
     ],
   },

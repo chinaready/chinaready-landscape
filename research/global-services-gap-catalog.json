@@ -125,8 +125,8 @@
     },
     "castle": {
       "name": "Castle.io",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
     },
     "castos": {
       "name": "Castos",
@@ -963,9 +963,16 @@
       "categories": [
         "Security & Identity"
       ],
-      "availability": "Limited",
-      "global_availability_in_china": "limited",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
       "china_candidates": [
+        {
+          "name": "NetEase Yidun",
+          "homepage_url": "https://dun.163.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Bot Protection & CAPTCHA",
+          "source": "landscape"
+        },
         {
           "name": "GeeTest",
           "homepage_url": "https://www.geetest.com/",
@@ -974,14 +981,21 @@
           "source": "landscape"
         },
         {
-          "name": "Authing",
-          "homepage_url": "https://www.authing.cn/",
+          "name": "Alibaba Cloud Risk Identification",
+          "homepage_url": "https://www.aliyun.com/product/saf",
           "category": "Users, Trust & Monetization",
-          "subcategory": "Authentication & Identity",
+          "subcategory": "Bot Protection & CAPTCHA",
+          "source": "landscape"
+        },
+        {
+          "name": "Tencent Cloud Tianyu",
+          "homepage_url": "https://cloud.tencent.com/product/tianyu",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Bot Protection & CAPTCHA",
           "source": "landscape"
         }
       ],
-      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "research_note": "Chinaready nationwide probes of api.castle.io returned non-usable HTTP 404 from all sampled mainland city/carrier paths — treat the Castle API as unavailable in China. Multiple domestic vendors offer highly similar substitutes, but none fully cover Castle's complete feature set. Prefer NetEase Yidun and GeeTest for lightweight SaaS trials; prefer Alibaba Cloud Risk Identification or Tencent Cloud Tianyu when you already run on those clouds.",
       "confidence": "researched"
     },
     {

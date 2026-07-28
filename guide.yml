@@ -181,9 +181,11 @@ categories:
           Typical global services: [Google AdMob](/alternatives/google-admob).
       - subcategory: "Bot Protection & CAPTCHA"
         content: |
-          Use this category for human verification, CAPTCHA, bot defense, and abuse-prevention products.
+          Use this category for human verification, CAPTCHA, bot defense, device fingerprinting, and account-abuse prevention products.
 
-          Typical global services: [Google reCAPTCHA](/alternatives/google-recaptcha), [hCaptcha](/alternatives/hcaptcha), [Cloudflare Turnstile](/alternatives/cloudflare-turnstile).
+          Castle.io is unavailable for mainland China production stacks — Chinaready nationwide probes of api.castle.io returned HTTP 404 across sampled city/carrier paths. Prefer NetEase Yidun, GeeTest, Alibaba Cloud Risk Identification, or Tencent Cloud Tianyu; none fully covers Castle's complete feature set. See the [Castle.io alternatives map](/alternatives/castle-io).
+
+          Typical global services: [Castle.io](/alternatives/castle-io), [Google reCAPTCHA](/alternatives/google-recaptcha), [hCaptcha](/alternatives/hcaptcha), [Cloudflare Turnstile](/alternatives/cloudflare-turnstile).
 
   - category: "Engagement & Communication"
     content: |
