@@ -13,7 +13,8 @@
     "validate:data": "node scripts/landscape2.mjs validate data --data-file landscape.yml",
     "validate:settings": "node scripts/landscape2.mjs validate settings --settings-file settings.yml",
     "validate:guide": "node scripts/landscape2.mjs validate guide --guide-file guide.yml",
-    "validate:games": "node scripts/landscape2.mjs validate games --games-file games.yml"
+    "validate:games": "node scripts/landscape2.mjs validate games --games-file games.yml",
+    "gsc:digest": "node /Users/martinliu/code/mvp-1/scripts/gsc-digest/cli.mjs --dir /Users/martinliu/Documents/Chinaready/ga-digest/"
   },
   "devDependencies": {
     "wrangler": "^4.25.0"

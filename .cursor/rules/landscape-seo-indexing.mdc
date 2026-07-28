@@ -1,0 +1,25 @@
+---
+description: SEO / Google indexing guardrails for landscape.chinaready.co
+globs: landscape.yml,guide.yml,settings.yml,scripts/**/*
+alwaysApply: false
+---
+
+# Landscape SEO indexing
+
+## Workflow
+
+1. Export GSC Coverage (+ Drilldowns) → `/Users/martinliu/Documents/Chinaready/ga-digest/`
+2. Run skill `gsc-digest` (shared CLI in mvp-1)
+3. Fix **landscape.chinaready.co** URLs in this repo only
+4. Ship via normal landscape deploy; user Validates in GSC after go-live
+
+## Hard rules
+
+- Prefer one canonical URL per alternative item; keep redirects only when they are deliberate aliases.
+- Do not remove working redirects solely to clear GSC “Page with redirect”.
+- Marketing site / workbench noindex issues are out of scope here (mvp-1).
+
+## Do not
+
+- Invent compliance or indexing claims
+- Edit mvp-1 `site/` from this repo unless the user explicitly asks
