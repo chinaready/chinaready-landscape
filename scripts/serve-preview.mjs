@@ -41,6 +41,9 @@ function contentTypeFor(filePath) {
   const base = path.basename(filePath);
   if (base === "api-catalog") return "application/linkset+json";
   if (base === "openapi.json") return "application/vnd.oai.openapi+json;version=3.1";
+  if (base === "oauth-protected-resource" || base === "oauth-authorization-server") {
+    return "application/json; charset=utf-8";
+  }
   const ext = path.extname(filePath).toLowerCase();
   return CONTENT_TYPES[ext] || "application/octet-stream";
 }

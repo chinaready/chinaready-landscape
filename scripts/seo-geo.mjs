@@ -2110,6 +2110,12 @@ function renderCloudflareHeaders() {
 /.well-known/api-catalog
   Content-Type: application/linkset+json
 
+/.well-known/oauth-protected-resource
+  Content-Type: application/json; charset=utf-8
+
+/.well-known/oauth-authorization-server
+  Content-Type: application/json; charset=utf-8
+
 /.well-known/agent-skills/index.json
   Content-Type: application/json; charset=utf-8
 
@@ -2315,35 +2321,173 @@ function renderOpenApi(groups) {
 function renderAuthMd() {
   return `# auth.md
 
-## Audience
+You are an agent. Chinaready Landscape supports **agentic registration** for discovery of how to access this service: discover → register (or skip when anonymous public access applies) → claim if needed → use credentials → handle revocation.
 
-AI agents, automated research clients, and developer tools that consume Chinaready Landscape public data.
+This origin publishes **public read-only landscape data**. Most agent workloads should use the **anonymous** method and call documented \`GET\` endpoints **without** an access token. OAuth-protected commercial Chinaready services are provisioned through the human claim / registration URIs below — not through fake token endpoints on this static site.
 
-## Authentication
+Examples use:
 
-**No authentication is required** for public landscape resources:
+- Resource server: \`${SITE_URL}/\`
+- Authorization / registration discovery: \`${SITE_URL}/\`
+- Human claim / commercial provisioning: \`${INTAKE_ASSESSMENT_URL}\` and \`${GET_HELP_URL}\`
 
-- Interactive explorer: \`/\`
-- Guide: \`/guide\`
-- Alternatives index and detail pages: \`/alternatives/\`
-- Datasets: \`/data/full.json\`, \`/data/base.json\`, \`/data/guide.json\`
-- Machine-readable overview: \`/llms.txt\`
-- OpenAPI: \`/openapi.json\`
-- API catalog: \`/.well-known/api-catalog\`
+## Step 1 — Discover
 
-This site does **not** publish OAuth/OIDC protected APIs, agent registration endpoints, or paid API gateways.
+### 1a. Fetch the Protected Resource Metadata
 
-## Registration / credentials
+\`\`\`http
+GET ${SITE_URL}/.well-known/oauth-protected-resource
+\`\`\`
 
-There is no agent registration flow for the public landscape.
+Fields that matter:
 
-- For human or commercial China-launch help, use [Contact Chinaready](${GET_HELP_URL}) or [Start assessment](${INTAKE_ASSESSMENT_URL}).
-- Source repository: ${REPO_URL}
+- \`resource\` — canonical resource identifier (\`${HOME_CANONICAL}\`)
+- \`authorization_servers\` — where Authorization Server metadata (and \`agent_auth\`) lives
+- \`scopes_supported\` — \`landscape.read\` for public landscape data
+- \`bearer_methods_supported\` — \`header\` when a bearer token is ever presented
 
-## Credential use
+### 1b. Fetch the Authorization Server metadata
 
-Do not send bearer tokens or API keys to landscape.chinaready.co public routes. Unauthenticated \`GET\` is sufficient.
+\`\`\`http
+GET ${SITE_URL}/.well-known/oauth-authorization-server
+\`\`\`
+
+Read the \`agent_auth\` block in full. It includes:
+
+- \`skill\` — this document
+- \`register_uri\` / \`identity_endpoint\` — registration entry for agents that need a provisioned relationship
+- \`claim_uri\` / \`claim_endpoint\` — human claim / commercial intake
+- \`revocation_uri\` — how to end a provisioned relationship
+- \`identity_types_supported\` — which registration methods this service accepts
+
+## Step 2 — Pick a method
+
+1. **You only need public landscape HTML/JSON (\`landscape.read\`)** → [anonymous](#anonymous). No token exchange.
+2. **You need Chinaready commercial / launch-ops access for a user** → [service_auth](#service_auth) via the claim / intake URIs (human in the loop).
+3. **You can mint an ID-JAG for a user** → [identity_assertion](#identity_assertion). Contact Chinaready before asserting; this origin does not yet verify ID-JAGs automatically.
+
+## Step 3 — Register
+
+### anonymous
+
+Supported. For public landscape resources, **registration is implicit**:
+
+1. Confirm the resource is \`${HOME_CANONICAL}\` and scope \`landscape.read\`.
+2. Do **not** POST a registration body for public \`GET\` routes.
+3. Call OpenAPI-documented endpoints directly (see \`${SITE_URL}/openapi.json\` and \`${SITE_URL}/.well-known/api-catalog\`).
+4. Treat the absence of \`Authorization\` as the credential for anonymous public read.
+
+Credential type for anonymous public access: \`none\` (unauthenticated \`GET\`).
+
+### service_auth
+
+Supported as a **human claim / provisioning** flow for commercial Chinaready help (not for unlocking public landscape JSON):
+
+1. Surface \`resource_name\` from Protected Resource Metadata to the user.
+2. Open the claim / registration URI: \`${INTAKE_ASSESSMENT_URL}\` (primary) or \`${GET_HELP_URL}\`.
+3. Complete the human intake / contact form (email + launch context).
+4. Chinaready provisions access offline; there is no automated \`access_token\` issuance on \`landscape.chinaready.co\` today.
+
+### identity_assertion
+
+Not automated on this origin yet. If your provider can mint \`urn:ietf:params:oauth:token-type:id-jag\` audience-bound to \`${HOME_CANONICAL}\`, contact Chinaready via \`${GET_HELP_URL}\` to arrange verification. Do not POST identity assertions to undocumented paths.
+
+## Step 4 — Claim ceremony
+
+For \`service_auth\`, the claim ceremony is the human intake at \`${INTAKE_ASSESSMENT_URL}\`. There is no device-code polling token grant on this static site.
+
+## Step 5 — Exchange / credentials
+
+- **anonymous + \`landscape.read\`**: no \`access_token\`. Skip token exchange.
+- **service_auth / commercial**: credentials are provisioned by Chinaready after claim; do not expect \`POST /oauth2/token\` on this origin.
+
+## Step 6 — Use access
+
+Public routes (no bearer required):
+
+- \`${SITE_URL}/\`
+- \`${SITE_URL}/guide\`
+- \`${SITE_URL}/alternatives/\`
+- \`${SITE_URL}/data/full.json\`
+- \`${SITE_URL}/llms.txt\`
+
+If you ever receive a bearer token from Chinaready for a future protected API, send \`Authorization: Bearer <token>\` per \`bearer_methods_supported: ["header"]\`.
+
+## Revocation
+
+- Anonymous public access has nothing to revoke.
+- To revoke a commercial / provisioned relationship, use \`${GET_HELP_URL}\` or the \`revocation_uri\` advertised in Authorization Server \`agent_auth\` metadata.
+
+## Errors
+
+| Situation | Agent action |
+|-----------|--------------|
+| Public \`GET\` returns 404 | Treat slug/path as unknown; do not retry registration |
+| You expected a token endpoint on this host | Re-read Steps 3–5 — public landscape does not issue tokens |
+| Commercial scope needed | Use \`service_auth\` claim URI, not anonymous |
+
+## Source
+
+Repository: ${REPO_URL}
 `;
+}
+
+function renderOauthProtectedResource() {
+  return `${JSON.stringify(
+    {
+      resource: HOME_CANONICAL,
+      resource_name: "Chinaready Landscape",
+      resource_logo_uri: `${SITE_URL}/favicon-512x512.png`,
+      authorization_servers: [HOME_CANONICAL],
+      scopes_supported: ["landscape.read"],
+      bearer_methods_supported: ["header"],
+    },
+    null,
+    2,
+  )}\n`;
+}
+
+function renderOauthAuthorizationServer() {
+  return `${JSON.stringify(
+    {
+      issuer: SITE_URL,
+      authorization_endpoint: INTAKE_ASSESSMENT_URL,
+      token_endpoint: `${SITE_URL}/.well-known/oauth-authorization-server`,
+      revocation_endpoint: GET_HELP_URL,
+      grant_types_supported: ["urn:ietf:params:oauth:grant-type:jwt-bearer"],
+      response_types_supported: ["none"],
+      scopes_supported: ["landscape.read"],
+      service_documentation: `${SITE_URL}/auth.md`,
+      agent_auth: {
+        skill: `${SITE_URL}/auth.md`,
+        register_uri: INTAKE_ASSESSMENT_URL,
+        identity_endpoint: INTAKE_ASSESSMENT_URL,
+        claim_uri: INTAKE_ASSESSMENT_URL,
+        claim_endpoint: INTAKE_ASSESSMENT_URL,
+        revocation_uri: GET_HELP_URL,
+        identity_types_supported: ["anonymous", "service_auth"],
+        anonymous: {
+          credential_types_supported: ["none"],
+          claim_uri: INTAKE_ASSESSMENT_URL,
+        },
+        identity_assertion: {
+          assertion_types_supported: ["verified_email"],
+          credential_types_supported: ["none"],
+          claim_uri: INTAKE_ASSESSMENT_URL,
+        },
+        events_supported: [],
+      },
+    },
+    null,
+    2,
+  )}\n`;
+}
+
+function writeOauthDiscovery(buildDir) {
+  const wellKnown = path.join(buildDir, ".well-known");
+  fs.mkdirSync(wellKnown, { recursive: true });
+  fs.writeFileSync(path.join(wellKnown, "oauth-protected-resource"), renderOauthProtectedResource());
+  fs.writeFileSync(path.join(wellKnown, "oauth-authorization-server"), renderOauthAuthorizationServer());
 }
 
 function writeAgentSkillsDiscovery({ root, buildDir }) {
@@ -2762,6 +2906,7 @@ export function applySeoGeoEnhancements({ root, buildDir, indexHtml }) {
   fs.writeFileSync(path.join(buildDir, "auth.md"), renderAuthMd());
   fs.mkdirSync(path.join(buildDir, ".well-known"), { recursive: true });
   fs.writeFileSync(path.join(buildDir, ".well-known", "api-catalog"), renderApiCatalog());
+  writeOauthDiscovery(buildDir);
   writeAgentSkillsDiscovery({ root, buildDir });
   noindexEmbedPages(buildDir);
 
