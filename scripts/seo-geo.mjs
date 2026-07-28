@@ -2073,10 +2073,12 @@ Sitemap: ${SITE_URL}/sitemap.xml
 }
 
 function renderCloudflareRedirects() {
-  // Prefer static HTML for Guide. Do not add a catch-all SPA rewrite that would
-  // soft-404 missing /alternatives/* paths back to the explorer homepage.
+  // Cloudflare Pages already serves guide.html at /guide via pretty URLs.
+  // Do not rewrite /guide -> /guide.html (that fights the .html→extensionless
+  // 308 and creates a redirect loop). Do not add a catch-all SPA rewrite that
+  // would soft-404 missing /alternatives/* paths back to the explorer homepage.
   return `# Chinaready Landscape — Cloudflare Pages redirects
-/guide /guide.html 200
+# Intentionally empty of SPA catch-alls. Static HTML + Pages pretty URLs are enough.
 `;
 }
 

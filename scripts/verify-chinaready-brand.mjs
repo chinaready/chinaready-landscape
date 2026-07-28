@@ -382,8 +382,9 @@ if (exists("build/404.html")) {
 
 if (exists("build/_redirects")) {
   const redirects = read("build/_redirects");
-  assert(redirects.includes("/guide /guide.html 200"), "_redirects must map /guide to static guide.html");
+  assert(redirects.includes("No SPA catch-all") || redirects.includes("pretty URLs"), "_redirects must document no SPA catch-all policy");
   assert(!redirects.includes("/* /index.html"), "_redirects must not SPA-fallback all routes to index.html");
+  assert(!/^\s*\/guide\s+\/guide\.html\s+200\s*$/m.test(redirects), "_redirects must not rewrite /guide to /guide.html (pretty-URL loop risk)");
 }
 
 {
