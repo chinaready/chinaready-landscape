@@ -2328,7 +2328,7 @@ This origin publishes **public read-only landscape data**. Most agent workloads 
 Examples use:
 
 - Resource server: \`${SITE_URL}/\`
-- Authorization / registration discovery: \`${SITE_URL}/\`
+- Authorization server issuer: \`${SITE_URL}\`
 - Human claim / commercial provisioning: \`${INTAKE_ASSESSMENT_URL}\` and \`${GET_HELP_URL}\`
 
 ## Step 1 — Discover
@@ -2438,7 +2438,8 @@ function renderOauthProtectedResource() {
       resource: HOME_CANONICAL,
       resource_name: "Chinaready Landscape",
       resource_logo_uri: `${SITE_URL}/favicon-512x512.png`,
-      authorization_servers: [HOME_CANONICAL],
+      // Must match AS `issuer` exactly (no trailing slash) for Auth.md scanners.
+      authorization_servers: [SITE_URL],
       scopes_supported: ["landscape.read"],
       bearer_methods_supported: ["header"],
     },
