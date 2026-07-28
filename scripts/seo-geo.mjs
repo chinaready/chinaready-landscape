@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 
 const SITE_URL = "https://landscape.chinaready.co";
@@ -1624,8 +1625,9 @@ function pageShell({
       : null;
   const allLd = [...jsonLd, ...(breadcrumbLd ? [breadcrumbLd] : [])];
   const searchScript = includeSearchScript
-    ? `<script defer src="/assets/chinaready-alternatives-search.js"></script>`
-    : "";
+    ? `<script defer src="/assets/chinaready-alternatives-search.js"></script>
+  <script defer src="/assets/chinaready-webmcp.js"></script>`
+    : `<script defer src="/assets/chinaready-webmcp.js"></script>`;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -2049,24 +2051,31 @@ function renderRobotsTxt() {
 Allow: /
 Disallow: /embed
 Disallow: /embed/
+Content-Signal: ai-train=no, search=yes, ai-input=yes
 
 User-agent: GPTBot
 Allow: /
+Content-Signal: ai-train=no, search=yes, ai-input=yes
 
 User-agent: ChatGPT-User
 Allow: /
+Content-Signal: ai-train=no, search=yes, ai-input=yes
 
 User-agent: ClaudeBot
 Allow: /
+Content-Signal: ai-train=no, search=yes, ai-input=yes
 
 User-agent: anthropic-ai
 Allow: /
+Content-Signal: ai-train=no, search=yes, ai-input=yes
 
 User-agent: PerplexityBot
 Allow: /
+Content-Signal: ai-train=no, search=yes, ai-input=yes
 
 User-agent: Google-Extended
 Allow: /
+Content-Signal: ai-train=no, search=yes, ai-input=yes
 
 Sitemap: ${SITE_URL}/sitemap.xml
 `;
@@ -2080,6 +2089,288 @@ function renderCloudflareRedirects() {
   return `# Chinaready Landscape — Cloudflare Pages redirects
 # Intentionally empty of SPA catch-alls. Static HTML + Pages pretty URLs are enough.
 `;
+}
+
+function renderCloudflareHeaders() {
+  return `# Chinaready Landscape agent discovery headers
+/
+  Link: </.well-known/api-catalog>; rel="api-catalog"
+  Link: </openapi.json>; rel="service-desc"; type="application/vnd.oai.openapi+json;version=3.1"
+  Link: </llms.txt>; rel="describedby"; type="text/plain"
+  Link: </auth.md>; rel="service-doc"; type="text/markdown"
+  Link: </.well-known/agent-skills/index.json>; rel="related"; type="application/json"
+
+/index.html
+  Link: </.well-known/api-catalog>; rel="api-catalog"
+  Link: </openapi.json>; rel="service-desc"; type="application/vnd.oai.openapi+json;version=3.1"
+  Link: </llms.txt>; rel="describedby"; type="text/plain"
+  Link: </auth.md>; rel="service-doc"; type="text/markdown"
+  Link: </.well-known/agent-skills/index.json>; rel="related"; type="application/json"
+
+/.well-known/api-catalog
+  Content-Type: application/linkset+json
+
+/.well-known/agent-skills/index.json
+  Content-Type: application/json; charset=utf-8
+
+/openapi.json
+  Content-Type: application/vnd.oai.openapi+json;version=3.1
+
+/auth.md
+  Content-Type: text/markdown; charset=utf-8
+`;
+}
+
+function renderApiCatalog() {
+  return `${JSON.stringify(
+    {
+      linkset: [
+        {
+          anchor: HOME_CANONICAL,
+          "service-desc": [
+            {
+              href: `${SITE_URL}/openapi.json`,
+              type: "application/vnd.oai.openapi+json;version=3.1",
+            },
+          ],
+          "service-doc": [
+            {
+              href: `${SITE_URL}/guide`,
+              type: "text/html",
+            },
+            {
+              href: `${SITE_URL}/llms.txt`,
+              type: "text/plain",
+            },
+            {
+              href: `${SITE_URL}/auth.md`,
+              type: "text/markdown",
+            },
+          ],
+        },
+        {
+          anchor: `${SITE_URL}/alternatives/`,
+          "service-desc": [
+            {
+              href: `${SITE_URL}/openapi.json`,
+              type: "application/vnd.oai.openapi+json;version=3.1",
+            },
+          ],
+          "service-doc": [
+            {
+              href: `${SITE_URL}/alternatives/`,
+              type: "text/html",
+            },
+            {
+              href: `${SITE_URL}/llms.txt`,
+              type: "text/plain",
+            },
+          ],
+        },
+        {
+          anchor: `${SITE_URL}/data/full.json`,
+          "service-desc": [
+            {
+              href: `${SITE_URL}/openapi.json`,
+              type: "application/vnd.oai.openapi+json;version=3.1",
+            },
+          ],
+          "service-doc": [
+            {
+              href: `${SITE_URL}/guide`,
+              type: "text/html",
+            },
+          ],
+        },
+      ],
+    },
+    null,
+    2,
+  )}\n`;
+}
+
+function renderOpenApi(groups) {
+  return `${JSON.stringify(
+    {
+      openapi: "3.1.0",
+      info: {
+        title: "Chinaready Landscape public read API",
+        version: "1.0.0",
+        description:
+          "Read-only public JSON and HTML discovery endpoints for the Chinaready Landscape map of China-ready developer services. No authentication required.",
+        contact: { name: "Chinaready", url: MAIN_SITE_URL },
+      },
+      servers: [{ url: SITE_URL }],
+      paths: {
+        "/data/full.json": {
+          get: {
+            operationId: "getFullLandscape",
+            summary: "Full landscape item dataset",
+            responses: {
+              "200": {
+                description: "Landscape items with annotations and search tags",
+                content: { "application/json": { schema: { type: "object" } } },
+              },
+            },
+          },
+        },
+        "/data/base.json": {
+          get: {
+            operationId: "getBaseLandscape",
+            summary: "Base landscape dataset for the interactive explorer",
+            responses: {
+              "200": {
+                description: "Base landscape dataset",
+                content: { "application/json": { schema: { type: "object" } } },
+              },
+            },
+          },
+        },
+        "/data/guide.json": {
+          get: {
+            operationId: "getGuide",
+            summary: "Guide taxonomy content",
+            responses: {
+              "200": {
+                description: "Guide categories and HTML content",
+                content: { "application/json": { schema: { type: "object" } } },
+              },
+            },
+          },
+        },
+        "/alternatives/": {
+          get: {
+            operationId: "getAlternativesIndex",
+            summary: "China alternatives HTML index",
+            parameters: [
+              {
+                name: "q",
+                in: "query",
+                required: false,
+                schema: { type: "string" },
+                description: "Client-side filter query for the alternatives table",
+              },
+            ],
+            responses: {
+              "200": {
+                description: "HTML index of global services and China candidates",
+                content: { "text/html": { schema: { type: "string" } } },
+              },
+            },
+          },
+        },
+        "/alternatives/{slug}": {
+          get: {
+            operationId: "getAlternativePage",
+            summary: "China alternatives detail page for a global service",
+            parameters: [
+              {
+                name: "slug",
+                in: "path",
+                required: true,
+                schema: { type: "string" },
+              },
+            ],
+            responses: {
+              "200": {
+                description: "HTML alternatives page",
+                content: { "text/html": { schema: { type: "string" } } },
+              },
+              "404": { description: "Unknown service slug" },
+            },
+          },
+        },
+        "/llms.txt": {
+          get: {
+            operationId: "getLlmsTxt",
+            summary: "Machine-readable GEO overview for AI agents",
+            responses: {
+              "200": {
+                description: "Plain-text landscape overview",
+                content: { "text/plain": { schema: { type: "string" } } },
+              },
+            },
+          },
+        },
+        "/sitemap.xml": {
+          get: {
+            operationId: "getSitemap",
+            summary: "XML sitemap including all alternative pages",
+            responses: {
+              "200": {
+                description: "Sitemap",
+                content: { "application/xml": { schema: { type: "string" } } },
+              },
+            },
+          },
+        },
+      },
+      "x-chinaready-service-count": groups.length,
+    },
+    null,
+    2,
+  )}\n`;
+}
+
+function renderAuthMd() {
+  return `# auth.md
+
+## Audience
+
+AI agents, automated research clients, and developer tools that consume Chinaready Landscape public data.
+
+## Authentication
+
+**No authentication is required** for public landscape resources:
+
+- Interactive explorer: \`/\`
+- Guide: \`/guide\`
+- Alternatives index and detail pages: \`/alternatives/\`
+- Datasets: \`/data/full.json\`, \`/data/base.json\`, \`/data/guide.json\`
+- Machine-readable overview: \`/llms.txt\`
+- OpenAPI: \`/openapi.json\`
+- API catalog: \`/.well-known/api-catalog\`
+
+This site does **not** publish OAuth/OIDC protected APIs, agent registration endpoints, or paid API gateways.
+
+## Registration / credentials
+
+There is no agent registration flow for the public landscape.
+
+- For human or commercial China-launch help, use [Contact Chinaready](${GET_HELP_URL}) or [Start assessment](${INTAKE_ASSESSMENT_URL}).
+- Source repository: ${REPO_URL}
+
+## Credential use
+
+Do not send bearer tokens or API keys to landscape.chinaready.co public routes. Unauthenticated \`GET\` is sufficient.
+`;
+}
+
+function writeAgentSkillsDiscovery({ root, buildDir }) {
+  const skillSource = path.join(root, "assets", "agent-discovery", "chinaready-landscape.SKILL.md");
+  const skillBody = fs.readFileSync(skillSource, "utf8");
+  const digest = `sha256:${createHash("sha256").update(skillBody).digest("hex")}`;
+  const skillDir = path.join(buildDir, ".well-known", "agent-skills", "chinaready-landscape");
+  fs.mkdirSync(skillDir, { recursive: true });
+  fs.writeFileSync(path.join(skillDir, "SKILL.md"), skillBody.endsWith("\n") ? skillBody : `${skillBody}\n`);
+
+  const index = {
+    $schema: "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+    skills: [
+      {
+        name: "chinaready-landscape",
+        type: "skill-md",
+        description:
+          "Map global developer services to China-ready alternatives and Availability in China labels using Chinaready Landscape.",
+        url: `${SITE_URL}/.well-known/agent-skills/chinaready-landscape/SKILL.md`,
+        digest,
+      },
+    ],
+  };
+  fs.writeFileSync(
+    path.join(buildDir, ".well-known", "agent-skills", "index.json"),
+    `${JSON.stringify(index, null, 2)}\n`,
+  );
 }
 
 function renderNotFoundPage() {
@@ -2403,6 +2694,13 @@ function enhanceIndexHtml(indexHtml, groups) {
     `"@type": "WebPage",\n                "name": ${JSON.stringify(title)},\n                "description": ${JSON.stringify(description)}`,
   );
 
+  if (!html.includes("chinaready-webmcp.js")) {
+    html = html.replace(
+      "</body>",
+      `  <script defer src="assets/chinaready-webmcp.js"></script>\n</body>`,
+    );
+  }
+
   return html;
 }
 
@@ -2456,9 +2754,15 @@ export function applySeoGeoEnhancements({ root, buildDir, indexHtml }) {
 
   fs.writeFileSync(path.join(buildDir, "404.html"), renderNotFoundPage());
   fs.writeFileSync(path.join(buildDir, "_redirects"), renderCloudflareRedirects());
+  fs.writeFileSync(path.join(buildDir, "_headers"), renderCloudflareHeaders());
   fs.writeFileSync(path.join(buildDir, "robots.txt"), renderRobotsTxt());
   fs.writeFileSync(path.join(buildDir, "sitemap.xml"), renderSitemap(groups));
   fs.writeFileSync(path.join(buildDir, "llms.txt"), renderLlmsTxt(groups));
+  fs.writeFileSync(path.join(buildDir, "openapi.json"), renderOpenApi(groups));
+  fs.writeFileSync(path.join(buildDir, "auth.md"), renderAuthMd());
+  fs.mkdirSync(path.join(buildDir, ".well-known"), { recursive: true });
+  fs.writeFileSync(path.join(buildDir, ".well-known", "api-catalog"), renderApiCatalog());
+  writeAgentSkillsDiscovery({ root, buildDir });
   noindexEmbedPages(buildDir);
 
   const cssSource = path.join(root, "assets", "chinaready-alternatives.css");
@@ -2469,6 +2773,10 @@ export function applySeoGeoEnhancements({ root, buildDir, indexHtml }) {
   const searchScriptSource = path.join(root, "assets", "chinaready-alternatives-search.js");
   const searchScriptTarget = path.join(buildDir, "assets", "chinaready-alternatives-search.js");
   fs.copyFileSync(searchScriptSource, searchScriptTarget);
+
+  const webmcpSource = path.join(root, "assets", "chinaready-webmcp.js");
+  const webmcpTarget = path.join(buildDir, "assets", "chinaready-webmcp.js");
+  fs.copyFileSync(webmcpSource, webmcpTarget);
 
   const enhancedIndex = enhanceIndexHtml(indexHtml, groups);
 

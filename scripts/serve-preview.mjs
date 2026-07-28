@@ -27,6 +27,7 @@ const CONTENT_TYPES = {
   ".js": "text/javascript; charset=utf-8",
   ".json": "application/json; charset=utf-8",
   ".map": "application/json; charset=utf-8",
+  ".md": "text/markdown; charset=utf-8",
   ".png": "image/png",
   ".svg": "image/svg+xml",
   ".txt": "text/plain; charset=utf-8",
@@ -35,6 +36,14 @@ const CONTENT_TYPES = {
   ".woff2": "font/woff2",
   ".xml": "application/xml; charset=utf-8",
 };
+
+function contentTypeFor(filePath) {
+  const base = path.basename(filePath);
+  if (base === "api-catalog") return "application/linkset+json";
+  if (base === "openapi.json") return "application/vnd.oai.openapi+json;version=3.1";
+  const ext = path.extname(filePath).toLowerCase();
+  return CONTENT_TYPES[ext] || "application/octet-stream";
+}
 
 function parseArgs(argv) {
   let landscapeDir = DEFAULT_DIR;
@@ -92,8 +101,7 @@ function send(res, status, body, headers = {}) {
 }
 
 function serveFile(res, filePath) {
-  const ext = path.extname(filePath).toLowerCase();
-  const type = CONTENT_TYPES[ext] || "application/octet-stream";
+  const type = contentTypeFor(filePath);
   const body = fs.readFileSync(filePath);
   send(res, 200, body, {
     "Content-Type": type,
@@ -131,9 +139,8 @@ function startServer({ landscapeDir, port }) {
         return;
       }
       if (req.method === "HEAD") {
-        const ext = path.extname(filePath).toLowerCase();
         send(res, 200, "", {
-          "Content-Type": CONTENT_TYPES[ext] || "application/octet-stream",
+          "Content-Type": contentTypeFor(filePath),
           "Cache-Control": "no-store",
         });
         return;

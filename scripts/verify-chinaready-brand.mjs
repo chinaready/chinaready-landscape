@@ -331,6 +331,10 @@ if (exists("build/robots.txt")) {
   assert(robots.includes("Sitemap: https://landscape.chinaready.co/sitemap.xml"), "robots.txt must declare the sitemap");
   assert(robots.includes("GPTBot"), "robots.txt must explicitly allow major AI crawlers");
   assert(robots.includes("Disallow: /embed"), "robots.txt must disallow thin embed pages");
+  assert(
+    robots.includes("Content-Signal: ai-train=no, search=yes, ai-input=yes"),
+    "robots.txt must declare Content-Signal preferences",
+  );
 }
 
 if (exists("build/sitemap.xml")) {
@@ -385,6 +389,39 @@ if (exists("build/_redirects")) {
   assert(redirects.includes("No SPA catch-all") || redirects.includes("pretty URLs"), "_redirects must document no SPA catch-all policy");
   assert(!redirects.includes("/* /index.html"), "_redirects must not SPA-fallback all routes to index.html");
   assert(!/^\s*\/guide\s+\/guide\.html\s+200\s*$/m.test(redirects), "_redirects must not rewrite /guide to /guide.html (pretty-URL loop risk)");
+}
+
+{
+  const headers = exists("build/_headers") ? read("build/_headers") : "";
+  assert(headers.includes('rel="api-catalog"'), "_headers must advertise api-catalog Link relation on homepage");
+  assert(headers.includes("/.well-known/api-catalog"), "_headers must Link to api-catalog");
+  assert(headers.includes("/openapi.json"), "_headers must Link to OpenAPI service-desc");
+}
+
+{
+  assert(exists("build/.well-known/api-catalog"), "must publish /.well-known/api-catalog");
+  const catalog = JSON.parse(read("build/.well-known/api-catalog"));
+  assert(Array.isArray(catalog.linkset) && catalog.linkset.length > 0, "api-catalog must include a linkset array");
+  assert(
+    catalog.linkset.some((entry) => Array.isArray(entry["service-desc"])),
+    "api-catalog entries must include service-desc links",
+  );
+  assert(exists("build/openapi.json"), "must publish /openapi.json");
+  const openapi = JSON.parse(read("build/openapi.json"));
+  assert(openapi.openapi && openapi.paths?.["/data/full.json"], "openapi.json must describe public landscape data paths");
+  assert(exists("build/auth.md"), "must publish /auth.md");
+  const authMd = read("build/auth.md");
+  assert(/^#\s*auth\.md\b/m.test(authMd), "auth.md must use an Auth.md H1 heading");
+  assert(authMd.includes("No authentication is required"), "auth.md must state public data needs no auth");
+  assert(exists("build/.well-known/agent-skills/index.json"), "must publish agent-skills discovery index");
+  const skillsIndex = JSON.parse(read("build/.well-known/agent-skills/index.json"));
+  assert(skillsIndex.$schema, "agent-skills index must declare $schema");
+  assert(Array.isArray(skillsIndex.skills) && skillsIndex.skills[0]?.digest?.startsWith("sha256:"), "agent-skills entries must include sha256 digests");
+  assert(exists("build/.well-known/agent-skills/chinaready-landscape/SKILL.md"), "must publish chinaready-landscape SKILL.md");
+  assert(exists("build/assets/chinaready-webmcp.js"), "must publish WebMCP tools script");
+  assert(read("assets/chinaready-webmcp.js").includes("registerTool"), "WebMCP script must call registerTool");
+  const indexHtml = exists("build/index.html") ? read("build/index.html") : "";
+  assert(indexHtml.includes("chinaready-webmcp.js"), "homepage must load WebMCP tools script");
 }
 
 {
