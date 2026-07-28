@@ -812,6 +812,136 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  "joy-rewards-loyalty-program": {
+    description: (availability) =>
+      clipMeta(
+        `Joy Rewards / Joy.so is Limited for China. Mainland shoppers rarely use Shopify; China loyalty is ecosystem-embedded (WeChat, brand apps, Alibaba/JD/Pinduoduo). Ask Chinaready about China ecommerce. Availability: ${availability}.`,
+      ),
+    lede: (availability) =>
+      `<strong>Quick answer:</strong> Mainland Chinese consumers almost never shop on Shopify ecommerce. Joy.so (Joy Rewards) may still reach mainland networks under significant latency, but that rarely matters for China sales. Chinaready labels Joy Rewards as <strong>${escapeHtml(availability)}</strong>. If your company plans to sell in China, talk to Chinaready about how to run ecommerce operations — not how to swap a Shopify loyalty plugin.`,
+    guidanceTitle: "China loyalty is ecosystem-embedded, not a Shopify SaaS swap",
+    sectionTitle: "Why Chinaready does not list product substitutes here",
+    uncertainCardTitle: "No landscape product mappings by design",
+    uncertainCardMeta: "China loyalty is market design, not a Shopify plugin swap",
+    guidanceHtml: `
+        <p>Mainland Chinese consumers almost never use Shopify for day-to-day ecommerce shopping. Joy.so's service can still be reachable from mainland China with comparatively high network latency, but that does little for a China go-to-market. If your company is considering selling products in China, ask Chinaready how to design ecommerce operations for the mainland market.</p>
+        <p>China loyalty programs rarely exist as standalone products. They are usually embedded in a <strong>super app (WeChat)</strong>, a <strong>brand app</strong>, or a <strong>large internet-platform ecosystem (Alibaba, JD, Pinduoduo)</strong>. Programs that actually work tend to share three traits: <strong>Digital-first</strong>, <strong>Ecosystem</strong>, and <strong>Gamification</strong>.</p>
+        <h3>1. Platform membership</h3>
+        <p>Covers multiple businesses, not a single brand. Examples: Alibaba 88VIP, JD Plus, Pinduoduo Card.</p>
+        <ul>
+          <li>Shared benefits across several businesses</li>
+          <li>Paid annual membership is increasingly common</li>
+          <li>Goal is ecosystem retention, not a one-time purchase</li>
+        </ul>
+        <h3>2. WeChat-first membership</h3>
+        <p>Examples: Coach, Joy City, Chow Tai Fook (partial capability).</p>
+        <ul>
+          <li>WeChat membership card</li>
+          <li>WeChat mini program</li>
+          <li>WeChat customer service</li>
+          <li>WeChat Pay</li>
+          <li>Social sharing / referral loops</li>
+        </ul>
+        <p>Users usually do not need to download a new app.</p>
+        <h3>3. Native-app membership</h3>
+        <p>Examples: Luckin Coffee, Starbucks, McDonald's, Xiaomi.</p>
+        <ul>
+          <li>The app is the primary entry point</li>
+          <li>Push notifications</li>
+          <li>Points mall</li>
+          <li>Personalized recommendations</li>
+          <li>Check-ins, tasks, and other gamified loops</li>
+        </ul>
+        <h3>4. Coalition loyalty</h3>
+        <p>Example: Joy City.</p>
+        <ul>
+          <li>Multi-brand shared points</li>
+          <li>One membership covers an entire commercial complex</li>
+          <li>Redemption can span parking, healthcare, dining, and other categories</li>
+        </ul>
+        <p>This model is common among large malls, airports, and real-estate groups in China.</p>
+        <h3>Shared product-design traits</h3>
+        <p>Most successful China loyalty cases follow the same design principles:</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Capability</th>
+                <th>Prevalence</th>
+                <th>Typical examples</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Membership tiers</td>
+                <td>★★★★★</td>
+                <td>Chow Tai Fook, 88VIP, JD Plus</td>
+              </tr>
+              <tr>
+                <td>WeChat ecosystem</td>
+                <td>★★★★★</td>
+                <td>Coach, Joy City, Starbucks</td>
+              </tr>
+              <tr>
+                <td>Native app</td>
+                <td>★★★★☆</td>
+                <td>Luckin, McDonald's, Xiaomi</td>
+              </tr>
+              <tr>
+                <td>Social referral / viral loops</td>
+                <td>★★★★☆</td>
+                <td>Pinduoduo, Luckin</td>
+              </tr>
+              <tr>
+                <td>Gamification (check-ins, tasks)</td>
+                <td>★★★★★</td>
+                <td>Pinduoduo, Luckin</td>
+              </tr>
+              <tr>
+                <td>Ecosystem / cross-brand membership</td>
+                <td>★★★★☆</td>
+                <td>Alibaba, JD, Joy City</td>
+              </tr>
+              <tr>
+                <td>AI personalization</td>
+                <td>★★★★☆</td>
+                <td>Pinduoduo, Starbucks</td>
+              </tr>
+              <tr>
+                <td>Paid annual membership (subscription)</td>
+                <td>★★★★☆</td>
+                <td>88VIP, JD Plus</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>These examples are orientation only. Chinaready does <strong>not</strong> add them as landscape product mappings for Joy Rewards — China loyalty is a market-design problem, not a drop-in Shopify loyalty-plugin replacement.</p>`,
+    faq: (availability) => [
+      {
+        question: "Does Joy Rewards / Joy.so work in China?",
+        answer: `Technically it may still be reachable from mainland China with high latency, but that is rarely useful. Mainland consumers almost never shop on Shopify, so a Shopify-centric loyalty program has little China-market meaning. Chinaready labels Joy Rewards Loyalty Program as ${availability}.`,
+      },
+      {
+        question: "What are the best China alternatives to Joy Rewards Loyalty Program?",
+        answer:
+          "There is usually no meaningful drop-in SaaS substitute. China loyalty programs are rarely standalone products; they are designed into WeChat, brand apps, or platform ecosystems such as Alibaba, JD, and Pinduoduo. Chinaready does not list those as landscape replacements for Joy Rewards. Contact Chinaready for China ecommerce and loyalty design guidance.",
+      },
+      {
+        question: "Is there a direct drop-in replacement for Joy Rewards in mainland China?",
+        answer:
+          "No. Looking for a one-to-one Shopify loyalty plugin replacement usually misses the real decision: how membership sits inside WeChat, a brand app, or a platform ecosystem, and how digital-first, ecosystem, and gamification mechanics drive retention.",
+      },
+      {
+        question: "How do successful China loyalty programs usually work?",
+        answer:
+          "Successful programs are typically platform memberships (such as 88VIP or JD Plus), WeChat-first membership cards and mini programs, native-app programs with push and gamified tasks, or coalition loyalty across a mall or property group. Shared design traits include tiers, WeChat ecosystem hooks, social referral, gamification, cross-brand benefits, personalization, and paid annual membership.",
+      },
+      {
+        question: "Where should teams go after reading Joy Rewards China guidance?",
+        answer: `If you plan to sell in China, talk to Chinaready about mainland ecommerce operations and loyalty design rather than swapping a Shopify loyalty plugin. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints.`,
+      },
+    ],
+  },
 };
 
 /**
@@ -1595,9 +1725,12 @@ function renderAnalogPage(group) {
       })
       .join("\n");
   } else {
+    const uncertainTitle = editorial?.uncertainCardTitle || "China alternative not yet confirmed";
+    const uncertainMeta =
+      editorial?.uncertainCardMeta || "Availability status uncertain for a precise product substitute";
     cards = `<article class="cr-alt-card cr-alt-card-uncertain">
-        <h3>China alternative not yet confirmed</h3>
-        <p class="cr-alt-meta">Availability status uncertain for a precise product substitute</p>
+        <h3>${escapeHtml(uncertainTitle)}</h3>
+        <p class="cr-alt-meta">${escapeHtml(uncertainMeta)}</p>
         <p>${escapeHtml(group.research_note || "Availability of a precise China-market alternative is currently uncertain. Contact Chinaready for more precise help.")}</p>
         <p><a href="${CONTACT_CHINAREADY_URL}">Contact Chinaready for stack-specific guidance</a></p>
       </article>`;

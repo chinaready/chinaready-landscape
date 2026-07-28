@@ -713,6 +713,30 @@ if (exists("build/alternatives/firebase-analytics.html")) {
   assert(firebaseAnalyticsPage.includes("Alibaba Cloud EMAS"), "Firebase Analytics page must map to Alibaba Cloud EMAS");
 }
 
+if (exists("build/alternatives/joy-rewards-loyalty-program.html")) {
+  const joyRewardsPage = read("build/alternatives/joy-rewards-loyalty-program.html");
+  assert(
+    joyRewardsPage.includes("Joy Rewards Loyalty Program alternatives in China"),
+    "Joy Rewards page must use an intent-matching H1",
+  );
+  assert(
+    joyRewardsPage.includes("cr-alt-availability-limited\">Limited</span>"),
+    "Joy Rewards page must label mainland China availability as Limited",
+  );
+  assert(
+    joyRewardsPage.includes("almost never shop on Shopify") || joyRewardsPage.includes("almost never use Shopify"),
+    "Joy Rewards page must explain Shopify is not how mainland consumers shop",
+  );
+  assert(
+    joyRewardsPage.includes("ecosystem-embedded") || joyRewardsPage.includes("WeChat"),
+    "Joy Rewards page must explain China loyalty is ecosystem-embedded",
+  );
+  assert(joyRewardsPage.includes("88VIP"), "Joy Rewards page must mention platform membership examples");
+  assert(joyRewardsPage.includes("No landscape product mappings"), "Joy Rewards page must state it does not list landscape substitutes");
+  assert(!joyRewardsPage.includes("homepage_url"), "Joy Rewards page must not invent landscape product candidate URLs");
+  assert(joyRewardsPage.includes("Does Joy Rewards"), "Joy Rewards page must include loyalty FAQ");
+}
+
 assert(exists("build/assets/chinaready-alternatives.css"), "published alternatives stylesheet must exist");
 assert(exists("assets/chinaready-mark.svg"), "Chinaready mark favicon source asset is missing");
 assert(exists("assets/favicons/favicon.ico"), "pre-rendered favicon.ico asset is missing");

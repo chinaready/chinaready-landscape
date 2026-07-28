@@ -1576,7 +1576,7 @@
       "availability": "Limited",
       "global_availability_in_china": "limited",
       "china_candidates": [],
-      "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
+      "research_note": "Mainland shoppers rarely use Shopify, so Joy Rewards / Joy.so is not a meaningful China loyalty path even when reachable with latency. China loyalty is usually embedded in WeChat, brand apps, or platform ecosystems — not listed here as landscape product substitutes. Contact Chinaready for China ecommerce and loyalty design guidance.",
       "confidence": "uncertain"
     },
     {
