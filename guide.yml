@@ -90,26 +90,26 @@ categories:
         content: |
           Use this category for cloud platforms or China-region cloud offerings that can host application workloads. Mainland DNS and domain resolution are usually selected with the cloud platform (for example Alibaba Cloud DNS or Tencent Cloud DNS) rather than as a standalone landscape subcategory.
 
-          Typical global services: [AWS](/alternatives/aws.html), [Microsoft Azure](/alternatives/microsoft-azure.html), [Google Cloud](/alternatives/google-cloud.html).
+          Typical global services: [AWS](/alternatives/aws), [Microsoft Azure](/alternatives/microsoft-azure), [Google Cloud](/alternatives/google-cloud).
       - subcategory: "Network & Edge Security"
         content: |
           Use this category for WAF, DDoS protection, email security gateways, and related network/web security controls. Keep this separate from CDN acceleration and from application-layer CAPTCHA products under Bot Protection & CAPTCHA.
 
-          Barracuda can still be used in China with caveats, but new projects in government, finance, and critical infrastructure should carefully evaluate domestic options. Prefer Coremail (CACTER邮件安全网关) for email security / email gateway replacement and Topsec (天融信) for network, WAF, and adjacent edge-security controls. See the [Barracuda alternatives map](/alternatives/barracuda.html).
+          Barracuda can still be used in China with caveats, but new projects in government, finance, and critical infrastructure should carefully evaluate domestic options. Prefer Coremail (CACTER邮件安全网关) for email security / email gateway replacement and Topsec (天融信) for network, WAF, and adjacent edge-security controls. See the [Barracuda alternatives map](/alternatives/barracuda).
 
-          Typical global services: [Barracuda](/alternatives/barracuda.html), [Imperva](/alternatives/imperva.html), [Sucuri](/alternatives/sucuri.html).
+          Typical global services: [Barracuda](/alternatives/barracuda), [Imperva](/alternatives/imperva), [Sucuri](/alternatives/sucuri).
       - subcategory: "Content Delivery Network (CDN)"
         content: |
           Use this category for CDN and edge acceleration products. Profile notes should distinguish product availability from ICP filing requirements.
 
-          Typical global services: [Amazon CloudFront](/alternatives/amazon-cloudfront.html), [Cloudflare CDN](/alternatives/cloudflare-cdn.html), [Akamai](/alternatives/akamai.html).
+          Typical global services: [Amazon CloudFront](/alternatives/amazon-cloudfront), [Cloudflare CDN](/alternatives/cloudflare-cdn), [Akamai](/alternatives/akamai).
       - subcategory: "Service Mesh & Gateway"
         content: |
           Use this category for API gateways, service mesh dataplanes, and cloud-native traffic-management products.
 
-          For Kong Gateway, treat mainland self-hosted Kong OSS/Enterprise as generally workable, and treat Kong Konnect / cross-border control-plane sync as the Limited path. Prefer in-country self-hosting when staying on Kong; otherwise evaluate Apache APISIX, Flomesh, or Higress. See the [Kong Gateway alternatives map](/alternatives/kong-gateway.html).
+          For Kong Gateway, treat mainland self-hosted Kong OSS/Enterprise as generally workable, and treat Kong Konnect / cross-border control-plane sync as the Limited path. Prefer in-country self-hosting when staying on Kong; otherwise evaluate Apache APISIX, Flomesh, or Higress. See the [Kong Gateway alternatives map](/alternatives/kong-gateway).
 
-          Typical global services: [Kong Gateway](/alternatives/kong-gateway.html).
+          Typical global services: [Kong Gateway](/alternatives/kong-gateway).
 
   - category: "Application Platform"
     content: |
@@ -122,12 +122,12 @@ categories:
         content: |
           Use this category for managed backend services for mobile and web apps. Some mapped options are partial deployment routes rather than full MBaaS replacements.
 
-          Typical global services: [Firebase](/alternatives/firebase.html), [AWS Amplify](/alternatives/aws-amplify.html), [Supabase](/alternatives/supabase.html), [Heroku](/alternatives/heroku.html).
+          Typical global services: [Firebase](/alternatives/firebase), [AWS Amplify](/alternatives/aws-amplify), [Supabase](/alternatives/supabase), [Heroku](/alternatives/heroku).
       - subcategory: "Feature Flags & Remote Config"
         content: |
           Use this category for remote configuration and feature flag services. Cross-listed mobile suites should clarify which module provides this capability.
 
-          Typical global services: [LaunchDarkly](/alternatives/launchdarkly.html), [Firebase Remote Config](/alternatives/firebase-remote-config.html), [ConfigCat](/alternatives/configcat.html).
+          Typical global services: [LaunchDarkly](/alternatives/launchdarkly), [Firebase Remote Config](/alternatives/firebase-remote-config), [ConfigCat](/alternatives/configcat).
 
   - category: "Release, Quality & Operations"
     content: |
@@ -137,22 +137,22 @@ categories:
         content: |
           Use this category for China-market DevOps platforms covering code hosting, CI/CD pipelines, artifact repositories, and application delivery. Prefer Alibaba Cloud Yunxiao when the stack already runs on Alibaba Cloud, and Tencent Cloud DevOps (CODING) for Tencent-centric or large-scale finance/ecommerce delivery workflows.
 
-          Typical global services: [GitHub Actions](/alternatives/github-actions.html), [GitLab CI](/alternatives/gitlab-ci.html), [Bitrise](/alternatives/bitrise.html), [Firebase App Distribution](/alternatives/firebase-app-distribution.html), [Visual Studio App Center](/alternatives/visual-studio-app-center.html).
+          Typical global services: [GitHub Actions](/alternatives/github-actions), [GitLab CI](/alternatives/gitlab-ci), [Bitrise](/alternatives/bitrise), [Firebase App Distribution](/alternatives/firebase-app-distribution), [Visual Studio App Center](/alternatives/visual-studio-app-center).
       - subcategory: "Automated Testing & Device Farms"
         content: |
           Use this category for real-device testing, cloud phones, and automated QA platforms.
 
-          Typical global services: [AWS Device Farm](/alternatives/aws-device-farm.html), [Firebase Test Lab](/alternatives/firebase-test-lab.html), [BrowserStack App Automate](/alternatives/browserstack-app-automate.html).
+          Typical global services: [AWS Device Farm](/alternatives/aws-device-farm), [Firebase Test Lab](/alternatives/firebase-test-lab), [BrowserStack App Automate](/alternatives/browserstack-app-automate).
       - subcategory: "Crash Reporting & Performance Monitoring"
         content: |
           Use this category for crash, stability, and mobile performance tools. Self-hosted global tools can be referenced in notes but should not be treated as China products by default.
 
-          Typical global services: [Sentry](/alternatives/sentry.html), [Firebase Crashlytics](/alternatives/firebase-crashlytics.html), [Bugsnag](/alternatives/bugsnag.html).
+          Typical global services: [Sentry](/alternatives/sentry), [Firebase Crashlytics](/alternatives/firebase-crashlytics), [Bugsnag](/alternatives/bugsnag).
       - subcategory: "Monitoring & Observability (APM / RUM)"
         content: |
           Use this category for infrastructure and application monitoring. Prefer China-cloud observability suites with clear mainland data residency notes.
 
-          Typical global services: [Datadog](/alternatives/datadog.html), [New Relic](/alternatives/new-relic.html), [Grafana Cloud](/alternatives/grafana-cloud.html).
+          Typical global services: [Datadog](/alternatives/datadog), [New Relic](/alternatives/new-relic), [Grafana Cloud](/alternatives/grafana-cloud).
 
   - category: "Users, Trust & Monetization"
     content: |
@@ -162,28 +162,28 @@ categories:
         content: |
           Use this category for identity providers, login systems, and authentication platforms.
 
-          Apple Login (Sign in with Apple) remains functionally usable in mainland China, but Chinaready labels it Limited because backend user data from Apple Login is subject to China personal-information rules (PIPL). Teams usually also add WeChat Login and phone-number OTP (for example via Alibaba Cloud SMS) for local habit fit. See the [Apple Login alternatives map](/alternatives/sign-in-with-apple.html).
+          Apple Login (Sign in with Apple) remains functionally usable in mainland China, but Chinaready labels it Limited because backend user data from Apple Login is subject to China personal-information rules (PIPL). Teams usually also add WeChat Login and phone-number OTP (for example via Alibaba Cloud SMS) for local habit fit. See the [Apple Login alternatives map](/alternatives/sign-in-with-apple).
 
-          Typical global services: [Apple Login](/alternatives/sign-in-with-apple.html), [Auth0](/alternatives/auth0.html), [Okta](/alternatives/okta.html), [Firebase Authentication](/alternatives/firebase-authentication.html), [Amazon Cognito](/alternatives/amazon-cognito.html).
+          Typical global services: [Apple Login](/alternatives/sign-in-with-apple), [Auth0](/alternatives/auth0), [Okta](/alternatives/okta), [Firebase Authentication](/alternatives/firebase-authentication), [Amazon Cognito](/alternatives/amazon-cognito).
       - subcategory: "Payments & In-App Purchases"
         content: |
           Use this category for payment rails and app monetization services. Profile notes should distinguish payment gateways, super-app payment ecosystems, and managed integration services.
 
-          For Stripe-style checkout, decide by deployment location before picking a vendor. If the product stays outside mainland China, Stripe can still work as a global payment platform — including Alipay and WeChat Pay for Chinese users. If the product must run inside China, teams usually do not need Stripe; integrate directly with China-native providers such as WeChat Pay, Alipay, or Youzan Cloud so users can pay a China entity or a trusted partner like Chinaready. See the [Stripe alternatives map](/alternatives/stripe.html).
+          For Stripe-style checkout, decide by deployment location before picking a vendor. If the product stays outside mainland China, Stripe can still work as a global payment platform — including Alipay and WeChat Pay for Chinese users. If the product must run inside China, teams usually do not need Stripe; integrate directly with China-native providers such as WeChat Pay, Alipay, or Youzan Cloud so users can pay a China entity or a trusted partner like Chinaready. See the [Stripe alternatives map](/alternatives/stripe).
 
-          Typical global services: [Stripe](/alternatives/stripe.html), [PayPal](/alternatives/paypal.html), [Apple Pay](/alternatives/apple-pay.html).
+          Typical global services: [Stripe](/alternatives/stripe), [PayPal](/alternatives/paypal), [Apple Pay](/alternatives/apple-pay).
       - subcategory: "Ad Monetization & Mediation"
         content: |
           Use this category for mainland China ad networks and mediation platforms used for in-app advertising revenue. Keep this separate from Payments & In-App Purchases: payments collect money from users, while ad networks monetize attention through domestic inventory.
 
-          Google AdMob is strongly discouraged for mainland China users because of GFW latency, near-zero local fill, and PIPL cross-border data risks. Prefer pure domestic networks such as Pangle, Tencent Ads, Baidu Union, and Kuaishou Union. See the [Google AdMob alternatives map](/alternatives/google-admob.html).
+          Google AdMob is strongly discouraged for mainland China users because of GFW latency, near-zero local fill, and PIPL cross-border data risks. Prefer pure domestic networks such as Pangle, Tencent Ads, Baidu Union, and Kuaishou Union. See the [Google AdMob alternatives map](/alternatives/google-admob).
 
-          Typical global services: [Google AdMob](/alternatives/google-admob.html).
+          Typical global services: [Google AdMob](/alternatives/google-admob).
       - subcategory: "Bot Protection & CAPTCHA"
         content: |
           Use this category for human verification, CAPTCHA, bot defense, and abuse-prevention products.
 
-          Typical global services: [Google reCAPTCHA](/alternatives/google-recaptcha.html), [hCaptcha](/alternatives/hcaptcha.html), [Cloudflare Turnstile](/alternatives/cloudflare-turnstile.html).
+          Typical global services: [Google reCAPTCHA](/alternatives/google-recaptcha), [hCaptcha](/alternatives/hcaptcha), [Cloudflare Turnstile](/alternatives/cloudflare-turnstile).
 
   - category: "Engagement & Communication"
     content: |
@@ -193,17 +193,17 @@ categories:
         content: |
           Use this category for push notification, SMS, email, and messaging-delivery products.
 
-          Typical global services: [Firebase Cloud Messaging](/alternatives/firebase-cloud-messaging.html), [OneSignal](/alternatives/onesignal.html), [Twilio SMS](/alternatives/twilio-sms.html) (Unavailable in China), [Amazon SES](/alternatives/amazon-ses.html), [SendGrid](/alternatives/sendgrid.html).
+          Typical global services: [Firebase Cloud Messaging](/alternatives/firebase-cloud-messaging), [OneSignal](/alternatives/onesignal), [Twilio SMS](/alternatives/twilio-sms) (Unavailable in China), [Amazon SES](/alternatives/amazon-ses), [SendGrid](/alternatives/sendgrid).
       - subcategory: "Real-Time Communication (Voice / Video / Chat)"
         content: |
           Use this category for RTC, voice, video, and chat infrastructure.
 
-          Typical global services: [Twilio Video](/alternatives/twilio-video.html) (Unavailable in China), [Twilio Voice](/alternatives/twilio-voice.html) (Unavailable in China), [Agora](/alternatives/agora.html), [Daily](/alternatives/daily.html).
+          Typical global services: [Twilio Video](/alternatives/twilio-video) (Unavailable in China), [Twilio Voice](/alternatives/twilio-voice) (Unavailable in China), [Agora](/alternatives/agora), [Daily](/alternatives/daily).
       - subcategory: "Customer Support & In-App Messaging"
         content: |
           Use this category for support chat, helpdesk, and in-app customer messaging.
 
-          Typical global services: [Intercom](/alternatives/intercom.html), [Zendesk](/alternatives/zendesk.html), [Freshdesk](/alternatives/freshdesk.html).
+          Typical global services: [Intercom](/alternatives/intercom), [Zendesk](/alternatives/zendesk), [Freshdesk](/alternatives/freshdesk).
 
   - category: "Growth, Content & Experience"
     content: |
@@ -213,24 +213,24 @@ categories:
         content: |
           Use this category for analytics platforms and user behavior insight products.
 
-          Typical global services: [Google Analytics](/alternatives/google-analytics.html), [Mixpanel](/alternatives/mixpanel.html), [Amplitude](/alternatives/amplitude.html), [PostHog](/alternatives/posthog.html), [Firebase Analytics](/alternatives/firebase-analytics.html).
+          Typical global services: [Google Analytics](/alternatives/google-analytics), [Mixpanel](/alternatives/mixpanel), [Amplitude](/alternatives/amplitude), [PostHog](/alternatives/posthog), [Firebase Analytics](/alternatives/firebase-analytics).
 
-          For Google Analytics replacements, choose by surface: [Baidu Tongji](https://tongji.baidu.com/) for website/H5 SEO and channel analytics, and [Umeng+](https://www.umeng.com/) for App retention and distribution-channel measurement. See the [Google Analytics alternatives map](/alternatives/google-analytics.html).
+          For Google Analytics replacements, choose by surface: [Baidu Tongji](https://tongji.baidu.com/) for website/H5 SEO and channel analytics, and [Umeng+](https://www.umeng.com/) for App retention and distribution-channel measurement. See the [Google Analytics alternatives map](/alternatives/google-analytics).
       - subcategory: "Location & Map Services"
         content: |
           Use this category for map, location, geocoding, routing, and navigation APIs.
 
-          Typical global services: [Google Maps Platform](/alternatives/google-maps-platform.html), [OpenStreetMap](/alternatives/openstreetmap.html), [Mapbox](/alternatives/mapbox.html), [Apple MapKit](/alternatives/apple-mapkit.html).
+          Typical global services: [Google Maps Platform](/alternatives/google-maps-platform), [OpenStreetMap](/alternatives/openstreetmap), [Mapbox](/alternatives/mapbox), [Apple MapKit](/alternatives/apple-mapkit).
       - subcategory: "App-Store Intelligence & Attribution (ASO)"
         content: |
           Use this category for app-store intelligence, attribution, and ASO tooling. China app-store fragmentation should be covered in profile notes.
 
-          Typical global services: [AppsFlyer](/alternatives/appsflyer.html), [Adjust](/alternatives/adjust.html), [Branch](/alternatives/branch.html).
+          Typical global services: [AppsFlyer](/alternatives/appsflyer), [Adjust](/alternatives/adjust), [Branch](/alternatives/branch).
       - subcategory: "Web Fonts & Iconography"
         content: |
           Use this category for font and icon delivery services. Self-hosting is an implementation route and belongs in guide notes unless represented by a concrete service.
 
-          Typical global services: [Google Fonts](/alternatives/google-fonts.html).
+          Typical global services: [Google Fonts](/alternatives/google-fonts).
 
   - category: "AI Models & Platforms"
     content: |
@@ -240,19 +240,19 @@ categories:
         content: |
           Use this subcategory for mainland-reachable foundation model APIs and Model-as-a-Service consoles that can substitute chat/completions-style workloads.
 
-          Typical global services: [OpenAI](/alternatives/openai.html), [Anthropic Claude](/alternatives/anthropic.html), [Google Gemini](/alternatives/google-gemini.html), [Azure OpenAI](/alternatives/azure-openai.html).
+          Typical global services: [OpenAI](/alternatives/openai), [Anthropic Claude](/alternatives/anthropic), [Google Gemini](/alternatives/google-gemini), [Azure OpenAI](/alternatives/azure-openai).
       - subcategory: "Embeddings & Reranking"
         content: |
           Use this subcategory for embedding and reranking models or APIs used in semantic search and RAG pipelines.
 
-          Typical global services: [OpenAI Embeddings](/alternatives/openai-embeddings.html), [Cohere](/alternatives/cohere.html), [Voyage](/alternatives/voyage.html), [Sentence-BERT](/alternatives/sentence-bert.html).
+          Typical global services: [OpenAI Embeddings](/alternatives/openai-embeddings), [Cohere](/alternatives/cohere), [Voyage](/alternatives/voyage), [Sentence-BERT](/alternatives/sentence-bert).
       - subcategory: "Vector Databases & Retrieval"
         content: |
           Use this subcategory for vector databases and managed vector retrieval services used to store and query embeddings.
 
-          Typical global services: [Pinecone](/alternatives/pinecone.html), [Weaviate](/alternatives/weaviate.html), [Qdrant](/alternatives/qdrant.html).
+          Typical global services: [Pinecone](/alternatives/pinecone), [Weaviate](/alternatives/weaviate), [Qdrant](/alternatives/qdrant).
       - subcategory: "Agent / RAG Frameworks"
         content: |
           Use this subcategory for China-origin agent builders and RAG application platforms. Global orchestration libraries may appear as analogs in profiles but are not listed as landscape items here.
 
-          Typical global services: [OpenAI GPTs](/alternatives/openai-gpts.html), [LangChain](/alternatives/langchain.html), [LlamaIndex](/alternatives/llamaindex.html), [Botpress](/alternatives/botpress.html).
+          Typical global services: [OpenAI GPTs](/alternatives/openai-gpts), [LangChain](/alternatives/langchain), [LlamaIndex](/alternatives/llamaindex), [Botpress](/alternatives/botpress).

@@ -6,6 +6,21 @@ const SITE_URL = "https://landscape.chinaready.co";
 const MAIN_SITE_URL = "https://chinaready.co";
 const REPO_URL = "https://github.com/chinaready/chinaready-landscape";
 
+/**
+ * Public URL path for an alternatives page.
+ * Cloudflare Pages pretty-URLs serve `build/alternatives/<slug>.html` at
+ * `/alternatives/<slug>` (308 from `.html`). Canonical, sitemap, JSON-LD, and
+ * internal links must use the extensionless form so GSC does not classify the
+ * `.html` alias as the primary URL ("Page with redirect").
+ */
+function analogPublicPath(slug) {
+  return `/alternatives/${slug}`;
+}
+
+function analogPublicUrl(slug) {
+  return `${SITE_URL}${analogPublicPath(slug)}`;
+}
+
 const FIT_LABELS = {
   direct: "Direct alternative",
   "china-market-region": "China-region deployment route",
@@ -1364,7 +1379,7 @@ function renderAlternativesIndex(groups) {
         : `<span class="cr-alt-uncertain">Uncertain — contact Chinaready</span>`;
       const availability = availabilityLabel(group);
       return `<tr>
-        <td><a href="/alternatives/${escapeHtml(group.slug)}.html">${escapeHtml(group.name)}</a></td>
+        <td><a href="${escapeHtml(analogPublicPath(group.slug))}">${escapeHtml(group.name)}</a></td>
         <td><span class="cr-alt-availability cr-alt-availability-${escapeHtml(group.availability_in_china || "unknown")}">${escapeHtml(availability)}</span></td>
         <td>${candidateCount(group)}</td>
         <td>${namesHtml}</td>
@@ -1389,14 +1404,14 @@ function renderAlternativesIndex(groups) {
         <h2 id="popular-queries">Popular China alternative lookups</h2>
         <p class="cr-alt-lede" style="margin-top:0">High-intent starting points teams often search first:</p>
         <ul class="cr-alt-popular">
-          <li><a href="/alternatives/firebase.html">Firebase alternatives in China</a></li>
-          <li><a href="/alternatives/firebase-cloud-messaging.html">FCM / Firebase Cloud Messaging alternatives</a></li>
-          <li><a href="/alternatives/aws.html">AWS alternatives and China-region routes</a></li>
-          <li><a href="/alternatives/stripe.html">Stripe alternatives in China</a></li>
-          <li><a href="/alternatives/google-maps-platform.html">Google Maps alternatives in China</a></li>
-          <li><a href="/alternatives/sentry.html">Sentry alternatives in China</a></li>
-          <li><a href="/alternatives/datadog.html">Datadog alternatives in China</a></li>
-          <li><a href="/alternatives/google-analytics.html">Google Analytics alternatives in China</a></li>
+          <li><a href="${analogPublicPath("firebase")}">Firebase alternatives in China</a></li>
+          <li><a href="${analogPublicPath("firebase-cloud-messaging")}">FCM / Firebase Cloud Messaging alternatives</a></li>
+          <li><a href="${analogPublicPath("aws")}">AWS alternatives and China-region routes</a></li>
+          <li><a href="${analogPublicPath("stripe")}">Stripe alternatives in China</a></li>
+          <li><a href="${analogPublicPath("google-maps-platform")}">Google Maps alternatives in China</a></li>
+          <li><a href="${analogPublicPath("sentry")}">Sentry alternatives in China</a></li>
+          <li><a href="${analogPublicPath("datadog")}">Datadog alternatives in China</a></li>
+          <li><a href="${analogPublicPath("google-analytics")}">Google Analytics alternatives in China</a></li>
         </ul>
       </section>
       <section aria-labelledby="all-analogs">
@@ -1445,7 +1460,7 @@ ${rows}
           "@type": "ListItem",
           position: index + 1,
           name: group.name,
-          url: `${SITE_URL}/alternatives/${group.slug}.html`,
+          url: analogPublicUrl(group.slug),
         })),
       },
       {
@@ -1633,11 +1648,11 @@ ${cards}
   return pageShell({
     title,
     description,
-    canonicalPath: `/alternatives/${group.slug}.html`,
+    canonicalPath: analogPublicPath(group.slug),
     breadcrumbs: [
       { name: "Home", path: "/" },
       { name: "Alternatives", path: "/alternatives/" },
-      { name: group.name, path: `/alternatives/${group.slug}.html` },
+      { name: group.name, path: analogPublicPath(group.slug) },
     ],
     jsonLd: [
       {
@@ -1646,7 +1661,7 @@ ${cards}
         name: `${group.name} alternatives in China`,
         headline: `${group.name} alternatives in China`,
         description,
-        url: `${SITE_URL}/alternatives/${group.slug}.html`,
+        url: analogPublicUrl(group.slug),
         isPartOf: { "@type": "WebSite", name: "Chinaready Landscape", url: SITE_URL },
         about: group.name,
         inLanguage: "en",
@@ -1708,7 +1723,7 @@ function renderSitemap(groups) {
     { loc: `${SITE_URL}/guide`, priority: "0.9" },
     { loc: `${SITE_URL}/alternatives/`, priority: "0.95" },
     ...groups.map((group) => ({
-      loc: `${SITE_URL}/alternatives/${group.slug}.html`,
+      loc: analogPublicUrl(group.slug),
       priority: candidateCount(group) > 0 ? "0.85" : "0.7",
     })),
   ];
@@ -1780,7 +1795,7 @@ ${highIntent
     const names = candidateNames(group);
     const availability = availabilityLabel(group);
     const suffix = names.length ? names.join(", ") : "alternative uncertain — contact Chinaready";
-    return `- [${group.name} alternatives in China](${SITE_URL}/alternatives/${group.slug}.html): availability ${availability}; candidates: ${suffix}`;
+    return `- [${group.name} alternatives in China](${analogPublicUrl(group.slug)}): availability ${availability}; candidates: ${suffix}`;
   })
   .join("\n")}
 
@@ -1790,7 +1805,7 @@ ${top
   .map((group) => {
     const names = candidateNames(group);
     const suffix = names.length ? names.join(", ") : "alternative uncertain — contact Chinaready";
-    return `- [${group.name} alternatives in China](${SITE_URL}/alternatives/${group.slug}.html): ${suffix}`;
+    return `- [${group.name} alternatives in China](${analogPublicUrl(group.slug)}): ${suffix}`;
   })
   .join("\n")}
 
@@ -1898,7 +1913,7 @@ function enhanceIndexHtml(indexHtml, groups) {
         "@type": "ListItem",
         position: index + 1,
         name: `${group.name} alternatives in China`,
-        url: `${SITE_URL}/alternatives/${group.slug}.html`,
+        url: analogPublicUrl(group.slug),
       })),
   };
 

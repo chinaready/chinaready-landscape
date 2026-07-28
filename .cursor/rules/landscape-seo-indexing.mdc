@@ -18,8 +18,10 @@ alwaysApply: false
 - Prefer one canonical URL per alternative item; keep redirects only when they are deliberate aliases.
 - Do not remove working redirects solely to clear GSC “Page with redirect”.
 - Marketing site / workbench noindex issues are out of scope here (mvp-1).
+- Cloudflare Pages pretty-URLs: on-disk `build/alternatives/<slug>.html` is served at `/alternatives/<slug>` and `.html` 308s there. Sitemap, `rel=canonical`, JSON-LD, guide links, and internal hrefs must use the **extensionless** public URL. Do not list `.html` alternatives in `sitemap.xml`.
 
 ## Do not
 
 - Invent compliance or indexing claims
 - Edit mvp-1 `site/` from this repo unless the user explicitly asks
+- Point canonical or sitemap at `.html` aliases that Cloudflare redirects away from

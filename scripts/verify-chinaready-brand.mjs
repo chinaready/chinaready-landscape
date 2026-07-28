@@ -326,8 +326,10 @@ if (exists("build/robots.txt")) {
 if (exists("build/sitemap.xml")) {
   const sitemap = read("build/sitemap.xml");
   assert(sitemap.includes("https://landscape.chinaready.co/alternatives/"), "sitemap.xml must include the alternatives index");
-  assert(sitemap.includes("https://landscape.chinaready.co/alternatives/firebase.html"), "sitemap.xml must include the Firebase alternatives page");
-  assert(sitemap.includes("https://landscape.chinaready.co/alternatives/firebase-cloud-messaging.html"), "sitemap.xml must include the FCM alternatives page");
+  assert(sitemap.includes("https://landscape.chinaready.co/alternatives/firebase"), "sitemap.xml must include the Firebase alternatives page");
+  assert(sitemap.includes("https://landscape.chinaready.co/alternatives/firebase-cloud-messaging"), "sitemap.xml must include the FCM alternatives page");
+  assert(!sitemap.includes("https://landscape.chinaready.co/alternatives/firebase.html"), "sitemap.xml must use extensionless Firebase URL (Cloudflare Pages pretty URL)");
+  assert(!/\/alternatives\/[a-z0-9-]+\.html</.test(sitemap), "sitemap.xml must not list .html alternatives URLs that 308 to extensionless");
 }
 
 if (exists("build/llms.txt")) {
@@ -346,6 +348,8 @@ if (exists("build/alternatives/index.html")) {
   assert(alternativesIndex.includes("cr-alt-availability"), "alternatives index must style availability labels");
   assert(alternativesIndex.includes("Popular China alternative lookups"), "alternatives index must surface high-intent internal links");
   assert(alternativesIndex.includes("Firebase alternatives in China"), "alternatives index must link popular Firebase lookup");
+  assert(alternativesIndex.includes('href="/alternatives/firebase"'), "alternatives index must link Firebase with the extensionless public URL");
+  assert(!alternativesIndex.includes('href="/alternatives/firebase.html"'), "alternatives index must not link the .html redirect alias");
   assert(alternativesIndex.includes("chinaready.co"), "alternatives index must route to the main site");
   assert(alternativesIndex.includes('"@type":"FAQPage"') || alternativesIndex.includes('"@type": "FAQPage"'), "alternatives index must include FAQPage JSON-LD");
   assert(
@@ -423,6 +427,11 @@ if (exists("build/alternatives/firebase.html")) {
   assert(firebasePage.includes("Quick answer"), "Firebase alternatives page must lead with a direct answer for CTR/GEO");
   assert(firebasePage.includes('"@type":"FAQPage"') || firebasePage.includes('"@type": "FAQPage"'), "Firebase alternatives page must include FAQPage JSON-LD");
   assert(firebasePage.includes("https://chinaready.co"), "Firebase alternatives page must link to the main site");
+  assert(
+    firebasePage.includes('rel="canonical" href="https://landscape.chinaready.co/alternatives/firebase"'),
+    "Firebase canonical must be the Cloudflare Pages extensionless URL",
+  );
+  assert(!firebasePage.includes('rel="canonical" href="https://landscape.chinaready.co/alternatives/firebase.html"'), "Firebase canonical must not point at the .html redirect alias");
 }
 
 if (exists("build/alternatives/stripe.html")) {

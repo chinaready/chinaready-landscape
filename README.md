@@ -71,7 +71,7 @@ Required repository secrets:
 The build publishes crawlable alternative pages generated from each product's `global_analogs`:
 
 - `https://landscape.chinaready.co/alternatives/`
-- `https://landscape.chinaready.co/alternatives/<service>.html`
+- `https://landscape.chinaready.co/alternatives/<service>` (Cloudflare Pages pretty URL; on-disk file remains `<service>.html`)
 - `https://landscape.chinaready.co/llms.txt`
 - `https://landscape.chinaready.co/sitemap.xml`
 
