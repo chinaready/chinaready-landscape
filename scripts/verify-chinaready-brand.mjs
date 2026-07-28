@@ -429,6 +429,12 @@ if (exists("build/_redirects")) {
   );
   assert(asMeta.agent_auth?.skill && asMeta.agent_auth?.register_uri, "AS agent_auth must include skill and register_uri");
   assert(Array.isArray(asMeta.agent_auth.identity_types_supported), "AS agent_auth must list identity_types_supported");
+  if (asMeta.agent_auth.identity_assertion?.assertion_types_supported?.includes("verified_email")) {
+    assert(
+      asMeta.agent_auth.identity_types_supported.includes("identity_assertion"),
+      "verified_email requires identity_assertion in identity_types_supported",
+    );
+  }
   assert(asMeta.agent_auth.claim_uri || asMeta.agent_auth.claim_endpoint, "AS agent_auth must include claim URI");
   assert(asMeta.agent_auth.revocation_uri || asMeta.revocation_endpoint, "AS agent_auth/metadata must include revocation URI");
   assert(exists("build/.well-known/agent-skills/index.json"), "must publish agent-skills discovery index");

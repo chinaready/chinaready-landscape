@@ -2466,7 +2466,7 @@ function renderOauthAuthorizationServer() {
         claim_uri: INTAKE_ASSESSMENT_URL,
         claim_endpoint: INTAKE_ASSESSMENT_URL,
         revocation_uri: GET_HELP_URL,
-        identity_types_supported: ["anonymous", "service_auth"],
+        identity_types_supported: ["anonymous", "service_auth", "identity_assertion"],
         anonymous: {
           credential_types_supported: ["none"],
           claim_uri: INTAKE_ASSESSMENT_URL,
