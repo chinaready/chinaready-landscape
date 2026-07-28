@@ -423,6 +423,10 @@ if (exists("build/_redirects")) {
   assert(exists("build/.well-known/oauth-authorization-server"), "must publish OAuth Authorization Server metadata");
   const asMeta = JSON.parse(read("build/.well-known/oauth-authorization-server"));
   assert(asMeta.issuer, "AS metadata must include issuer");
+  assert(
+    prm.authorization_servers.includes(asMeta.issuer),
+    "AS issuer must be listed exactly in PRM authorization_servers",
+  );
   assert(asMeta.agent_auth?.skill && asMeta.agent_auth?.register_uri, "AS agent_auth must include skill and register_uri");
   assert(Array.isArray(asMeta.agent_auth.identity_types_supported), "AS agent_auth must list identity_types_supported");
   assert(asMeta.agent_auth.claim_uri || asMeta.agent_auth.claim_endpoint, "AS agent_auth must include claim URI");
