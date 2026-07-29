@@ -1743,31 +1743,6 @@ landscape:
                 organization_overview: "Zhipu AI develops the GLM family of bilingual foundation models and enterprise AI platforms."
                 developer_docs: "https://open.bigmodel.cn/dev/api"
           - item:
-            name: Baichuan
-            homepage_url: https://www.baichuan-ai.com/
-            logo: baichuan.svg
-            description: Baichuan provides foundation models, enterprise APIs, and private deployment options for generative AI applications.
-            extra:
-              annotations:
-                global_analogs: OpenAI
-                replacement_fit: direct
-                china_context: Baichuan supports mainland enterprise deployments with hosted APIs and private deployment options for teams replacing OpenAI in regulated or data-sensitive environments.
-                vendor_type: china-saas
-                evidence_level: medium
-                availability_status: generally-available
-                global_availability_in_china: unavailable
-                metadata_name: "Baichuan"
-                primary_category: "AI Models & Platforms"
-                official_website: "https://www.baichuan-ai.com/"
-                github: "to-be-supplied-by-contributor"
-                social_media: "to-be-supplied-by-contributor"
-                product_overview: "Baichuan provides foundation models, enterprise APIs, and private deployment options for generative AI applications."
-                alternative_to: "China-market alternative or deployment route for: OpenAI."
-                global_alternatives: "OpenAI"
-                organization: "Baichuan Intelligence"
-                organization_overview: "Baichuan Intelligence develops foundation models and enterprise AI solutions with hosted and private deployment choices."
-                developer_docs: "https://platform.baichuan-ai.com/"
-          - item:
             name: MiniMax
             homepage_url: https://www.minimaxi.com/
             logo: minimax.svg
@@ -1895,31 +1870,6 @@ landscape:
                 organization: "Alibaba"
                 organization_overview: "Alibaba develops the GTE family of text embedding models for multilingual and general-purpose retrieval."
                 developer_docs: "https://huggingface.co/Alibaba-NLP"
-          - item:
-            name: Baidu Qianfan Embeddings
-            homepage_url: https://cloud.baidu.com/product/wenxinworkshop
-            logo: baidu-qianfan-embeddings.svg
-            description: Baidu Qianfan provides managed embedding models and APIs for semantic search, knowledge retrieval, and enterprise RAG applications.
-            extra:
-              annotations:
-                global_analogs: OpenAI
-                replacement_fit: direct
-                china_context: Qianfan provides mainland-hosted embedding services within Baidu Cloud for production retrieval and RAG stacks that need a China-based alternative to OpenAI APIs.
-                vendor_type: china-cloud
-                evidence_level: medium
-                availability_status: generally-available
-                global_availability_in_china: unavailable
-                metadata_name: "Baidu Qianfan Embeddings"
-                primary_category: "AI Models & Platforms"
-                official_website: "https://cloud.baidu.com/product/wenxinworkshop"
-                github: "to-be-supplied-by-contributor"
-                social_media: "to-be-supplied-by-contributor"
-                product_overview: "Baidu Qianfan provides managed embedding models and APIs for semantic search, knowledge retrieval, and enterprise RAG applications."
-                alternative_to: "China-market alternative or deployment route for: OpenAI."
-                global_alternatives: "OpenAI"
-                organization: "Baidu Cloud"
-                organization_overview: "Baidu Cloud operates Qianfan, a managed platform for foundation models and enterprise generative AI development."
-                developer_docs: "https://cloud.baidu.com/product/wenxinworkshop"
       - subcategory:
         name: Vector Databases & Retrieval
         items:

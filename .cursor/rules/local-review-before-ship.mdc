@@ -1,0 +1,14 @@
+---
+description: Require local review before commit, push, or deploy for landscape page changes
+alwaysApply: true
+---
+
+# Local review before ship
+
+For Chinaready Landscape page or content changes (landscape.yml, guide.yml, alternatives/SEO pages, assets that affect the site):
+
+1. Make the change and run `npm run build` (and `npm run verify` when relevant).
+2. Start or point the user at local preview (`npm run serve` → typically http://127.0.0.1:8000) and ask them to review.
+3. **Do not** commit, push to main, or deploy until the user explicitly confirms the local review looks good and asks to ship.
+
+This overrides any “ship without asking” preference for this repo when the change affects pages users can review in the browser.
