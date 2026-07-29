@@ -255,7 +255,7 @@ categories:
         content: |
           Use this subcategory for embedding and reranking models or APIs used in semantic search and RAG pipelines.
 
-          Typical global services: [OpenAI Embeddings](/alternatives/openai-embeddings), [Cohere](/alternatives/cohere), [Voyage](/alternatives/voyage), [Sentence-BERT](/alternatives/sentence-bert).
+          Typical global services: [OpenAI](/alternatives/openai), [Cohere](/alternatives/cohere), [Voyage](/alternatives/voyage), [Sentence-BERT](/alternatives/sentence-bert).
       - subcategory: "Vector Databases & Retrieval"
         content: |
           Use this subcategory for vector databases and managed vector retrieval services used to store and query embeddings.
@@ -265,4 +265,4 @@ categories:
         content: |
           Use this subcategory for China-origin agent builders and RAG application platforms. Global orchestration libraries may appear as analogs in profiles but are not listed as landscape items here.
 
-          Typical global services: [OpenAI GPTs](/alternatives/openai-gpts), [LangChain](/alternatives/langchain), [LlamaIndex](/alternatives/llamaindex), [Botpress](/alternatives/botpress).
+          Typical global services: [OpenAI](/alternatives/openai), [LangChain](/alternatives/langchain), [LlamaIndex](/alternatives/llamaindex), [Botpress](/alternatives/botpress).

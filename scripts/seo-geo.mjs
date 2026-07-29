@@ -1207,6 +1207,10 @@ const ANALOG_ALIASES = {
   "twilio conversations": "Twilio Conversations",
   "sentence-bert": "Sentence-BERT",
   "sentence bert": "Sentence-BERT",
+  "openai embeddings": "OpenAI",
+  "openai gpts": "OpenAI",
+  "openai gpt-4": "OpenAI",
+  "openai gpt4": "OpenAI",
   "visual studio app center": "Visual Studio App Center",
   "app center": "Visual Studio App Center",
 };
@@ -2086,8 +2090,15 @@ function renderCloudflareRedirects() {
   // Do not rewrite /guide -> /guide.html (that fights the .html→extensionless
   // 308 and creates a redirect loop). Do not add a catch-all SPA rewrite that
   // would soft-404 missing /alternatives/* paths back to the explorer homepage.
+  // Deliberate aliases: retired OpenAI product-level Global pages fold into OpenAI.
   return `# Chinaready Landscape — Cloudflare Pages redirects
-# Intentionally empty of SPA catch-alls. Static HTML + Pages pretty URLs are enough.
+# No SPA catch-alls. Static HTML + Pages pretty URLs are enough.
+/alternatives/openai-embeddings /alternatives/openai 301
+/alternatives/openai-embeddings.html /alternatives/openai 301
+/alternatives/openai-gpt-4 /alternatives/openai 301
+/alternatives/openai-gpt-4.html /alternatives/openai 301
+/alternatives/openai-gpts /alternatives/openai 301
+/alternatives/openai-gpts.html /alternatives/openai 301
 `;
 }
 

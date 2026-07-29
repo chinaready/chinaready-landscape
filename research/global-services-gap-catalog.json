@@ -2,10 +2,10 @@
   "source": "Chinaready Landscape research shortlist for taxonomy-relevant global services",
   "generated_for": "alternatives index SEO expansion",
   "counts": {
-    "services": 117,
+    "services": 116,
     "uncertain_alternatives": 28,
     "researched_alternatives": 52,
-    "heuristic_alternatives": 37
+    "heuristic_alternatives": 36
   },
   "availability_lookup": {
     "activecampaign": {
@@ -397,11 +397,6 @@
       "name": "ON24",
       "availability": "Limited",
       "global_availability_in_china": "limited"
-    },
-    "openai gpt-4": {
-      "name": "OpenAI GPT-4",
-      "availability": "Unavailable",
-      "global_availability_in_china": "unavailable"
     },
     "paessler prtg": {
       "name": "Paessler PRTG",
@@ -2494,26 +2489,6 @@
       "china_candidates": [],
       "research_note": "China availability for a precise product alternative is currently uncertain. Contact Chinaready for stack-specific guidance before replacing this dependency in a mainland China launch.",
       "confidence": "uncertain"
-    },
-    {
-      "name": "OpenAI GPT-4",
-      "categories": [
-        "Developer Tools & APIs",
-        "Other"
-      ],
-      "availability": "Unavailable",
-      "global_availability_in_china": "unavailable",
-      "china_candidates": [
-        {
-          "name": "uni-app",
-          "homepage_url": "https://uniapp.dcloud.net.cn/",
-          "category": "Application Platform",
-          "subcategory": "Cross-Platform UI & Frameworks",
-          "source": "category-heuristic"
-        }
-      ],
-      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
-      "confidence": "heuristic"
     },
     {
       "name": "Paessler PRTG",

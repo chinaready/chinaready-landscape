@@ -1827,7 +1827,7 @@ landscape:
             description: Qwen Embeddings provides managed text embedding APIs through Alibaba Cloud Model Studio and DashScope for semantic retrieval and RAG.
             extra:
               annotations:
-                global_analogs: OpenAI Embeddings, Voyage
+                global_analogs: Voyage
                 replacement_fit: direct
                 china_context: DashScope provides mainland-hosted embedding endpoints for Alibaba Cloud applications that need production RAG and semantic retrieval without relying on global APIs.
                 vendor_type: china-cloud
@@ -1840,8 +1840,8 @@ landscape:
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
                 product_overview: "Qwen Embeddings provides managed text embedding APIs through Alibaba Cloud Model Studio and DashScope for semantic retrieval and RAG."
-                alternative_to: "China-market alternative or deployment route for: OpenAI Embeddings, Voyage."
-                global_alternatives: "OpenAI Embeddings, Voyage"
+                alternative_to: "China-market alternative or deployment route for: Voyage."
+                global_alternatives: "Voyage"
                 organization: "Alibaba Cloud"
                 organization_overview: "Alibaba Cloud operates Model Studio and DashScope, providing managed Qwen model APIs for enterprise AI applications."
                 developer_docs: "https://help.aliyun.com/zh/model-studio/developer-reference/text-embedding-quick-start-1"
@@ -1852,7 +1852,7 @@ landscape:
             description: Zhipu Embeddings provides API-accessible text vector representations for semantic search, clustering, and retrieval-augmented generation.
             extra:
               annotations:
-                global_analogs: OpenAI Embeddings, Cohere
+                global_analogs: Cohere
                 replacement_fit: direct
                 china_context: Zhipu offers mainland-reachable embedding APIs for China-hosted semantic search and RAG pipelines that cannot depend on OpenAI or Cohere endpoints.
                 vendor_type: china-saas
@@ -1865,8 +1865,8 @@ landscape:
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
                 product_overview: "Zhipu Embeddings provides API-accessible text vector representations for semantic search, clustering, and retrieval-augmented generation."
-                alternative_to: "China-market alternative or deployment route for: OpenAI Embeddings, Cohere."
-                global_alternatives: "OpenAI Embeddings, Cohere"
+                alternative_to: "China-market alternative or deployment route for: Cohere."
+                global_alternatives: "Cohere"
                 organization: "Zhipu AI"
                 organization_overview: "Zhipu AI develops the GLM model family and managed AI APIs for enterprise and developer applications."
                 developer_docs: "https://open.bigmodel.cn/dev/api#embedding"
@@ -1877,7 +1877,7 @@ landscape:
             description: GTE provides open text embedding models from Alibaba for multilingual semantic similarity, retrieval, and RAG workloads.
             extra:
               annotations:
-                global_analogs: OpenAI Embeddings, Voyage
+                global_analogs: Voyage
                 replacement_fit: partial
                 china_context: GTE models support self-hosted embedding inference for mainland China retrieval stacks, reducing reliance on overseas APIs while requiring local model operations.
                 vendor_type: china-saas
@@ -1890,8 +1890,8 @@ landscape:
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
                 product_overview: "GTE provides open text embedding models from Alibaba for multilingual semantic similarity, retrieval, and RAG workloads."
-                alternative_to: "China-market alternative or deployment route for: OpenAI Embeddings, Voyage."
-                global_alternatives: "OpenAI Embeddings, Voyage"
+                alternative_to: "China-market alternative or deployment route for: Voyage."
+                global_alternatives: "Voyage"
                 organization: "Alibaba"
                 organization_overview: "Alibaba develops the GTE family of text embedding models for multilingual and general-purpose retrieval."
                 developer_docs: "https://huggingface.co/Alibaba-NLP"
@@ -1902,7 +1902,7 @@ landscape:
             description: Baidu Qianfan provides managed embedding models and APIs for semantic search, knowledge retrieval, and enterprise RAG applications.
             extra:
               annotations:
-                global_analogs: OpenAI Embeddings
+                global_analogs: OpenAI
                 replacement_fit: direct
                 china_context: Qianfan provides mainland-hosted embedding services within Baidu Cloud for production retrieval and RAG stacks that need a China-based alternative to OpenAI APIs.
                 vendor_type: china-cloud
@@ -1915,8 +1915,8 @@ landscape:
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
                 product_overview: "Baidu Qianfan provides managed embedding models and APIs for semantic search, knowledge retrieval, and enterprise RAG applications."
-                alternative_to: "China-market alternative or deployment route for: OpenAI Embeddings."
-                global_alternatives: "OpenAI Embeddings"
+                alternative_to: "China-market alternative or deployment route for: OpenAI."
+                global_alternatives: "OpenAI"
                 organization: "Baidu Cloud"
                 organization_overview: "Baidu Cloud operates Qianfan, a managed platform for foundation models and enterprise generative AI development."
                 developer_docs: "https://cloud.baidu.com/product/wenxinworkshop"
@@ -2058,7 +2058,7 @@ landscape:
             description: Dify is an open-source platform for building, orchestrating, evaluating, and operating LLM applications and retrieval-augmented generation workflows.
             extra:
               annotations:
-                global_analogs: LangChain, LlamaIndex, OpenAI GPTs
+                global_analogs: LangChain, LlamaIndex
                 replacement_fit: direct
                 china_context: Dify provides a China-origin application platform that global teams can self-host or connect to mainland-reachable models for production agent and RAG workloads.
                 vendor_type: china-saas
@@ -2071,8 +2071,8 @@ landscape:
                 github: "https://github.com/langgenius/dify"
                 social_media: "to-be-supplied-by-contributor"
                 product_overview: "Dify is an open-source platform for building, orchestrating, evaluating, and operating LLM applications and retrieval-augmented generation workflows."
-                alternative_to: "China-market alternative or deployment route for: LangChain, LlamaIndex, OpenAI GPTs."
-                global_alternatives: "LangChain, LlamaIndex, OpenAI GPTs"
+                alternative_to: "China-market alternative or deployment route for: LangChain, LlamaIndex."
+                global_alternatives: "LangChain, LlamaIndex"
                 organization: "LangGenius / Dify"
                 organization_overview: "LangGenius develops Dify as an open-source platform for creating and operating production LLM applications."
                 developer_docs: "https://docs.dify.ai/"
@@ -2108,9 +2108,9 @@ landscape:
             description: FastGPT is an open-source knowledge-base and visual workflow platform for building question-answering, RAG, and agent applications.
             extra:
               annotations:
-                global_analogs: OpenAI GPTs, LangChain
+                global_analogs: LangChain
                 replacement_fit: partial
-                china_context: FastGPT can be self-hosted with mainland-reachable models and data services, supporting China-facing knowledge assistants without dependence on OpenAI GPTs.
+                china_context: FastGPT can be self-hosted with mainland-reachable models and data services, supporting China-facing knowledge assistants without dependence on OpenAI.
                 vendor_type: china-saas
                 evidence_level: medium
                 availability_status: generally-available
@@ -2121,8 +2121,8 @@ landscape:
                 github: "https://github.com/labring/FastGPT"
                 social_media: "to-be-supplied-by-contributor"
                 product_overview: "FastGPT is an open-source knowledge-base and visual workflow platform for building question-answering, RAG, and agent applications."
-                alternative_to: "China-market alternative or deployment route for: OpenAI GPTs, LangChain."
-                global_alternatives: "OpenAI GPTs, LangChain"
+                alternative_to: "China-market alternative or deployment route for: LangChain."
+                global_alternatives: "LangChain"
                 organization: "Labring"
                 organization_overview: "Labring develops cloud-native and open-source tools for deploying AI applications and infrastructure."
                 developer_docs: "https://doc.fastgpt.in/docs/introduction/"
@@ -2133,7 +2133,7 @@ landscape:
             description: Coze is ByteDance's visual platform for creating AI agents, workflows, knowledge bases, plugins, and multi-channel conversational applications.
             extra:
               annotations:
-                global_analogs: OpenAI GPTs, Botpress
+                global_analogs: Botpress
                 replacement_fit: partial
                 china_context: Coze's mainland China service provides a locally reachable agent builder and publishing ecosystem for teams adapting conversational applications to the China market.
                 vendor_type: china-saas
@@ -2146,8 +2146,8 @@ landscape:
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
                 product_overview: "Coze is ByteDance's visual platform for creating AI agents, workflows, knowledge bases, plugins, and multi-channel conversational applications."
-                alternative_to: "China-market alternative or deployment route for: OpenAI GPTs, Botpress."
-                global_alternatives: "OpenAI GPTs, Botpress"
+                alternative_to: "China-market alternative or deployment route for: Botpress."
+                global_alternatives: "Botpress"
                 organization: "ByteDance"
                 organization_overview: "ByteDance operates consumer and enterprise technology platforms and develops Coze as its AI agent creation environment."
                 developer_docs: "https://www.coze.cn/open/docs"
@@ -2158,7 +2158,7 @@ landscape:
             description: MaxKB is an open-source enterprise knowledge-base platform for building retrieval-augmented question-answering systems and AI assistants.
             extra:
               annotations:
-                global_analogs: LangChain, OpenAI GPTs
+                global_analogs: LangChain
                 replacement_fit: partial
                 china_context: MaxKB supports self-hosted enterprise knowledge assistants with mainland-reachable models, helping teams retain data and deployment control in China.
                 vendor_type: china-saas
@@ -2171,8 +2171,8 @@ landscape:
                 github: "https://github.com/1Panel-dev/MaxKB"
                 social_media: "to-be-supplied-by-contributor"
                 product_overview: "MaxKB is an open-source enterprise knowledge-base platform for building retrieval-augmented question-answering systems and AI assistants."
-                alternative_to: "China-market alternative or deployment route for: LangChain, OpenAI GPTs."
-                global_alternatives: "LangChain, OpenAI GPTs"
+                alternative_to: "China-market alternative or deployment route for: LangChain."
+                global_alternatives: "LangChain"
                 organization: "1Panel / FIT2CLOUD"
                 organization_overview: "FIT2CLOUD and the 1Panel community develop open-source infrastructure and enterprise software including MaxKB."
                 developer_docs: "https://maxkb.cn/docs/"
