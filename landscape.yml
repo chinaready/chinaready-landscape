@@ -1699,9 +1699,9 @@ landscape:
             description: Alibaba Cloud Model Studio provides managed access to Qwen models and DashScope APIs for building generative AI applications.
             extra:
               annotations:
-                global_analogs: OpenAI, Google Gemini, Azure OpenAI
+                global_analogs: OpenAI, Anthropic, Google Gemini, Azure OpenAI
                 replacement_fit: direct
-                china_context: Model Studio and DashScope provide mainland-hosted Qwen APIs and enterprise cloud integration for China deployments that cannot rely on global model endpoints.
+                china_context: Model Studio and DashScope provide mainland-hosted Qwen APIs and enterprise cloud integration for China deployments that cannot rely on OpenAI, Anthropic, or other global model endpoints.
                 vendor_type: china-cloud
                 evidence_level: medium
                 availability_status: generally-available
@@ -1712,8 +1712,8 @@ landscape:
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
                 product_overview: "Alibaba Cloud Model Studio provides managed access to Qwen models and DashScope APIs for building generative AI applications."
-                alternative_to: "China-market alternative or deployment route for: OpenAI, Google Gemini, Azure OpenAI."
-                global_alternatives: "OpenAI, Google Gemini, Azure OpenAI"
+                alternative_to: "China-market alternative or deployment route for: OpenAI, Anthropic, Google Gemini, Azure OpenAI."
+                global_alternatives: "OpenAI, Anthropic, Google Gemini, Azure OpenAI"
                 organization: "Alibaba Cloud"
                 organization_overview: "Alibaba Cloud develops the Qwen model family and operates Model Studio and DashScope for managed generative AI workloads."
                 developer_docs: "https://www.alibabacloud.com/help/en/model-studio/"
@@ -1749,9 +1749,9 @@ landscape:
             description: MiniMax provides multimodal foundation models and developer APIs for text, speech, image, video, and agent applications.
             extra:
               annotations:
-                global_analogs: OpenAI
+                global_analogs: OpenAI, Anthropic
                 replacement_fit: direct
-                china_context: MiniMax offers mainland-reachable multimodal APIs for China applications that need local text, speech, image, or video generation instead of OpenAI services.
+                china_context: MiniMax offers mainland-reachable multimodal APIs for China applications that need local text, speech, image, or video generation instead of OpenAI or Anthropic services.
                 vendor_type: china-saas
                 evidence_level: medium
                 availability_status: generally-available
@@ -1762,8 +1762,8 @@ landscape:
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
                 product_overview: "MiniMax provides multimodal foundation models and developer APIs for text, speech, image, video, and agent applications."
-                alternative_to: "China-market alternative or deployment route for: OpenAI."
-                global_alternatives: "OpenAI"
+                alternative_to: "China-market alternative or deployment route for: OpenAI, Anthropic."
+                global_alternatives: "OpenAI, Anthropic"
                 organization: "MiniMax"
                 organization_overview: "MiniMax develops multimodal foundation models and API products for consumer and enterprise AI applications."
                 developer_docs: "https://platform.minimaxi.com/document/guides/introduction"
@@ -1774,9 +1774,9 @@ landscape:
             description: Volcengine Ark provides managed access to ByteDance Doubao models and model services for enterprise generative AI development.
             extra:
               annotations:
-                global_analogs: OpenAI, Azure OpenAI
+                global_analogs: OpenAI, Anthropic, Azure OpenAI
                 replacement_fit: partial
-                china_context: Ark provides mainland-hosted Doubao model endpoints and Volcengine integration for China workloads, though model behavior and platform interfaces are not fully drop-in compatible with global APIs.
+                china_context: Ark provides mainland-hosted Doubao model endpoints and Volcengine integration for China workloads that cannot rely on OpenAI or Anthropic, though model behavior and platform interfaces are not fully drop-in compatible with global APIs.
                 vendor_type: china-cloud
                 evidence_level: medium
                 availability_status: generally-available
@@ -1787,8 +1787,8 @@ landscape:
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
                 product_overview: "Volcengine Ark provides managed access to ByteDance Doubao models and model services for enterprise generative AI development."
-                alternative_to: "China-market alternative or deployment route for: OpenAI, Azure OpenAI."
-                global_alternatives: "OpenAI, Azure OpenAI"
+                alternative_to: "China-market alternative or deployment route for: OpenAI, Anthropic, Azure OpenAI."
+                global_alternatives: "OpenAI, Anthropic, Azure OpenAI"
                 organization: "ByteDance / Volcengine"
                 organization_overview: "ByteDance and Volcengine develop Doubao models and operate the Ark model service for enterprise AI workloads."
                 developer_docs: "https://www.volcengine.com/docs/82379"

@@ -1088,6 +1088,43 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  anthropic: {
+    description: (availability, names) =>
+      clipMeta(
+        `Apps deployed in mainland China cannot call overseas Anthropic APIs. Use China LLMs that are usually OpenAI- and Anthropic-compatible — often with little or no app changes. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Applications deployed in mainland China <strong>cannot call overseas Anthropic (Claude) model APIs directly</strong>. Use mainland China LLM services instead. Most of those providers are compatible with both the <strong>OpenAI</strong> and <strong>Anthropic</strong> API shapes — so your application may keep working with little or no code change. Chinaready currently maps Anthropic to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Anthropic APIs and apps deployed in mainland China",
+    guidanceHtml: `
+        <p>If the application itself runs in mainland China, it generally cannot reach overseas Anthropic Claude model endpoints as a production dependency. Plan on mainland-reachable LLM APIs instead of assuming a global Anthropic key will work from China infrastructure.</p>
+        <p>The practical upside: China foundation-model providers listed below almost all expose APIs that are compatible with OpenAI and Anthropic client conventions. Many teams can point existing SDKs or HTTP clients at a China endpoint (base URL, key, and model name) without rewriting the application.</p>
+        <p>Use the mapped candidates below as a research shortlist, then confirm API compatibility, model behavior, and compliance for your stack.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Anthropic work in China?",
+        answer: `Applications deployed in mainland China generally cannot call overseas Anthropic Claude model services directly. Chinaready labels Anthropic as ${availability} for mainland China production stacks. Use a mainland-reachable LLM API instead.`,
+      },
+      {
+        question: "Do China LLM APIs work with Anthropic-compatible clients?",
+        answer:
+          "Usually yes. Most mainland China foundation-model providers expose APIs compatible with OpenAI and Anthropic client shapes. Many applications can keep working by changing the base URL, API key, and model name rather than rewriting application logic.",
+      },
+      {
+        question: "What are the best China alternatives to Anthropic?",
+        answer: `Chinaready Landscape currently lists these China-market options for Anthropic: ${namesText}. Replacement fit varies by product, so treat this as a research shortlist rather than a one-to-one endorsement. Prefer providers whose OpenAI- or Anthropic-compatible endpoints match your existing client stack.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Anthropic in mainland China?",
+        answer:
+          "Often closer than for other SaaS categories: many China LLM APIs are OpenAI- and Anthropic-compatible, so the migration is frequently configuration rather than a full rewrite. Still validate model quality, rate limits, compliance, and feature gaps before production cutover.",
+      },
+      {
+        question: "Where should teams go after shortlisting Anthropic alternatives?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent AI model and platform services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
 };
 
 /**
@@ -1248,6 +1285,9 @@ const ANALOG_ALIASES = {
   "openai gpts": "OpenAI",
   "openai gpt-4": "OpenAI",
   "openai gpt4": "OpenAI",
+  claude: "Anthropic",
+  "anthropic claude": "Anthropic",
+  "claude api": "Anthropic",
   "visual studio app center": "Visual Studio App Center",
   "app center": "Visual Studio App Center",
 };
@@ -2136,6 +2176,12 @@ function renderCloudflareRedirects() {
 /alternatives/openai-gpt-4.html /alternatives/openai 301
 /alternatives/openai-gpts /alternatives/openai 301
 /alternatives/openai-gpts.html /alternatives/openai 301
+/alternatives/claude /alternatives/anthropic 301
+/alternatives/claude.html /alternatives/anthropic 301
+/alternatives/anthropic-claude /alternatives/anthropic 301
+/alternatives/anthropic-claude.html /alternatives/anthropic 301
+/alternatives/claude-api /alternatives/anthropic 301
+/alternatives/claude-api.html /alternatives/anthropic 301
 `;
 }
 
