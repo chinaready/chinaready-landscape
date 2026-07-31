@@ -82,7 +82,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   onesignal: "limited",
   "amazon-ses": "unavailable",
   "amazon-cloudfront": "available",
-  env0: "supported-terraform",
+  env0: "available",
   "twilio-sms": "unavailable",
   "twilio-video": "unavailable",
   "twilio-voice": "unavailable",
@@ -90,11 +90,31 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "apple-pay": "available",
   "azure-devops": "limited",
   "castle-io": "unavailable",
+  airbase: "unavailable",
+  aweber: "unavailable",
+  mailerlite: "unavailable",
+  bombbomb: "unavailable",
+  convertkit: "unavailable",
+  libsyn: "limited",
+  captivate: "unavailable",
+  buzzsprout: "unavailable",
+  "hello-audio": "unavailable",
+  loyaltylion: "unavailable",
+  "streamlit-community-cloud": "unavailable",
+  sendspark: "unavailable",
+  on24: "unavailable",
+  bigmarker: "unavailable",
+  "jw-player": "limited",
+  kaltura: "unavailable",
+  "middleware-io": "unavailable",
+  "mia-platform": "unavailable",
+  "zoho-crm": "available",
 };
 
 /** Keep stable public URLs when display names change. */
 const SLUG_OVERRIDES = {
   "apple-login": "sign-in-with-apple",
+  "transistor-fm": "transistor",
 };
 
 const TWILIO_PRC_MESSAGING_RESTRICTIONS_URL =
@@ -921,56 +941,1955 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
-  "joy-rewards-loyalty-program": {
-    description: (availability) =>
+  airbase: {
+    description: (_availability, names) =>
       clipMeta(
-        `Joy Rewards / Joy.so is Limited for China. Mainland shoppers rarely use Shopify; China loyalty is ecosystem-embedded (WeChat, brand apps, Alibaba/JD/Pinduoduo). Ask Chinaready about China ecommerce. Availability: ${availability}.`,
+        `Airbase is Unavailable in mainland China — no localization and no compliance foundation. Compare ${names.slice(0, 3).join(", ") || "SAP Concur, Expensify, Jingbei Guanjia"}. Airwallex stays orientation-only.`,
       ),
-    lede: (availability) =>
-      `<strong>Quick answer:</strong> Mainland Chinese consumers almost never shop on Shopify ecommerce. Joy.so (Joy Rewards) may still reach mainland networks under significant latency, but that rarely matters for China sales. Chinaready labels Joy Rewards as <strong>${escapeHtml(availability)}</strong>. If your company plans to sell in China, talk to Chinaready about how to run ecommerce operations — not how to swap a Shopify loyalty plugin.`,
-    guidanceTitle: "China loyalty is ecosystem-embedded, not a Shopify SaaS swap",
-    sectionTitle: "Why Chinaready does not list product substitutes here",
-    uncertainCardTitle: "No landscape product mappings by design",
-    uncertainCardMeta: "China loyalty is market design, not a Shopify plugin swap",
+    lede: (_availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Airbase is unavailable in mainland China</strong>. It has neither localization nor a compliance foundation for mainland China use. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 3).join(", ") || "SAP Concur, Expensify, Jingbei Guanjia")}</strong> as China-ready candidates. Airwallex remains orientation-only and is not an Explore entry. Availability in China: <strong>Unavailable</strong>.`,
+    guidanceTitle: "Expense and spend platforms to evaluate instead of Airbase",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 3,
+    indexCandidates: "SAP Concur, Expensify, Jingbei Guanjia",
     guidanceHtml: `
-        <p>Mainland Chinese consumers almost never use Shopify for day-to-day ecommerce shopping. Joy.so's service can still be reachable from mainland China with comparatively high network latency, but that does little for a China go-to-market. If your company is considering selling products in China, ask Chinaready how to design ecommerce operations for the mainland market.</p>
-        <p>China loyalty programs rarely exist as standalone products. They are usually embedded in a <strong>super app (WeChat)</strong>, a <strong>brand app</strong>, or a <strong>large internet-platform ecosystem (Alibaba, JD, Pinduoduo)</strong>. Programs that actually work tend to share three traits: <strong>Digital-first</strong>, <strong>Ecosystem</strong>, and <strong>Gamification</strong>.</p>
-        <h3>1. Platform membership</h3>
-        <p>Covers multiple businesses, not a single brand. Examples: Alibaba 88VIP, JD Plus, Pinduoduo Card.</p>
+        <p><strong>Airbase is unavailable in mainland China.</strong> The product is not localized for the mainland market and lacks the compliance foundation teams need for mainland China spend, AP, and card workflows. Do not plan Airbase as a production dependency for mainland China operations.</p>
+        <p>The mapped China-ready candidates below cover international platforms with mainland-usable paths and a domestic SaaS option. They appear on this alternatives page only — Chinaready does not add them as Explore / Landscape product tiles.</p>
+        <h3>How the mapped candidates differ</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>SAP Concur</td>
+                <td>Leading global expense platform covering travel, expense, and invoicing; offers localized mainland China service</td>
+                <td>Large multinational enterprises</td>
+              </tr>
+              <tr>
+                <td>Expensify</td>
+                <td>Lightweight expense management with SmartScan receipt capture; from about $5 per user per month</td>
+                <td>Small teams and startups</td>
+              </tr>
+              <tr>
+                <td>Jingbei Guanjia (经贝管家)</td>
+                <td>AI expense control plus operating visibility; light SaaS deployment for low-cost, fast rollout</td>
+                <td>Micro and small mainland China businesses</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
         <ul>
-          <li>Shared benefits across several businesses</li>
-          <li>Paid annual membership is increasingly common</li>
-          <li>Goal is ecosystem retention, not a one-time purchase</li>
+          <li><strong>Cross-border / large enterprise:</strong> prefer <strong>SAP Concur</strong>; for outbound payment and treasury-style cross-border needs, Airwallex remains an orientation-only option.</li>
+          <li><strong>Lightweight SMB needs:</strong> <strong>Expensify</strong> or <strong>Jingbei Guanjia (经贝管家)</strong> are both reasonable entry options.</li>
+          <li><strong>Mainland-first finance ops:</strong> start with <strong>Jingbei Guanjia</strong> for fapiao-oriented domestic workflows.</li>
         </ul>
-        <h3>2. WeChat-first membership</h3>
-        <p>Examples: Coach, Joy City, Chow Tai Fook (partial capability).</p>
+        <p>Confirm vendor fit, localization, fapiao support, and compliance for your own entity and workflows before adoption.</p>`,
+    faq: (_availability, namesText) => [
+      {
+        question: "Does Airbase work in China?",
+        answer:
+          "No. Chinaready labels Airbase as Unavailable for mainland China. It has neither localization nor a compliance foundation for mainland China spend and AP workflows, so it should not be planned as a production dependency there.",
+      },
+      {
+        question: "What are the best China alternatives to Airbase?",
+        answer: namesText
+          ? `Chinaready currently lists these China-ready candidates for Airbase: ${namesText}. Prefer SAP Concur for large multinational / cross-border expense stacks, Expensify for lightweight international teams, and Jingbei Guanjia for mainland China SMBs. Airwallex remains orientation-only. Confirm fit before production adoption.`
+          : "Prefer SAP Concur for large multinational / cross-border expense stacks, Expensify for lightweight international teams, and Jingbei Guanjia (经贝管家) for mainland China SMBs.",
+      },
+      {
+        question: "Is there a direct drop-in replacement for Airbase in mainland China?",
+        answer:
+          "Usually no. Expense and spend stacks in China depend on entity type, invoice/fapiao workflows, travel policy, and whether the company is domestic or cross-border. Expect a process and vendor redesign rather than a one-to-one Airbase swap.",
+      },
+      {
+        question: "Are these Airbase alternatives on Chinaready Explore?",
+        answer:
+          "No. SAP Concur, Expensify, and Jingbei Guanjia are listed as Mapped China-ready candidates on this alternatives page only. Chinaready does not add them as Explore / Landscape product tiles for Airbase. Airwallex remains orientation-only guidance.",
+      },
+      {
+        question: "Where should teams go after shortlisting Airbase alternatives?",
+        answer:
+          "Validate localization, fapiao/invoice support, and compliance with your China entity and finance process. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  airtable: {
+    description: (availability, names) =>
+      clipMeta(
+        `Airtable is Limited in mainland China — reachable but slow, unstable, and a compliance risk for production. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Airtable is Limited in mainland China</strong>. It is technically reachable, but slow and unstable, and not suitable for latency-sensitive production use. Clear compliance risks remain. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong> as China-ready candidates on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Spreadsheet-database platforms to evaluate instead of Airtable",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: `
+        <p><strong>Airtable is Limited in mainland China.</strong> Teams can often reach the product from the mainland, but access is slow and unstable. It is a poor fit for production workflows that need reliable response times, and there are clear compliance risks for mainland China data and operations. Do not plan Airtable as a dependable production dependency for China launches.</p>
+        <h3>Domestic platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Feishu Base (飞书多维表格)</td>
+                <td>Embedded in the Feishu ecosystem; messaging, collaboration, and structured data in one stack; free to use</td>
+                <td>Teams already using Feishu</td>
+              </tr>
+              <tr>
+                <td>Mingdao Cloud (明道云)</td>
+                <td>Mature APaaS platform with private deployment options and a strong business-process engine</td>
+                <td>Mid-to-large enterprise project management and CRM</td>
+              </tr>
+              <tr>
+                <td>Teable</td>
+                <td>Open-source Airtable-style spreadsheet database with self-hosted deployment</td>
+                <td>Individuals, small teams, or private-hosting / compliance-driven deployments</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
         <ul>
-          <li>WeChat membership card</li>
-          <li>WeChat mini program</li>
-          <li>WeChat customer service</li>
-          <li>WeChat Pay</li>
-          <li>Social sharing / referral loops</li>
+          <li><strong>Individuals / small teams with limited budget:</strong> Teable (open-source, self-hosted) or Feishu Base (free SaaS).</li>
+          <li><strong>Enterprise teams with Xinchuang or data-compliance requirements:</strong> Teable or Mingdao Cloud with private deployment.</li>
         </ul>
-        <p>Users usually do not need to download a new app.</p>
-        <h3>3. Native-app membership</h3>
-        <p>Examples: Luckin Coffee, Starbucks, McDonald's, Xiaomi.</p>
+        <p>These candidates appear on the Airtable alternatives page only — Chinaready does <strong>not</strong> add Feishu Base, Mingdao Cloud, or Teable as Landscape map product entries. Confirm vendor fit, hosting model, and compliance for your own entity and workflows before adoption. Contact Chinaready if the path remains unclear.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Airtable work in China?",
+        answer: `Only with Limited practical usefulness. Chinaready labels Airtable as ${availability} for mainland China. It is often technically reachable, but access is slow and unstable, unsuitable for latency-sensitive production use, and carries clear compliance risks.`,
+      },
+      {
+        question: "What are the best China alternatives to Airtable?",
+        answer: `Chinaready currently lists these China-market options for Airtable: ${namesText}. Prefer Feishu Base (飞书多维表格) for teams already on Feishu, Mingdao Cloud (明道云) for mid-to-large enterprise APaaS / CRM-style workflows, and Teable for open-source or self-hosted needs. Confirm fit before production adoption.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Airtable in mainland China?",
+        answer:
+          "Usually no. Spreadsheet-database and no-code data stacks in China depend on collaboration suite choice, hosting model (SaaS vs private), process automation needs, and compliance constraints. Expect a workflow and vendor redesign rather than a one-to-one Airtable swap.",
+      },
+      {
+        question: "How should teams choose among Feishu Base, Mingdao Cloud, and Teable?",
+        answer:
+          "Choose Feishu Base if the team already lives in Feishu and wants free SaaS collaboration plus structured data. Choose Mingdao Cloud when mid-to-large enterprises need APaaS process engines and private deployment. Choose Teable for open-source self-hosting, tight budgets, or Xinchuang / data-compliance constraints.",
+      },
+      {
+        question: "Where should teams go after shortlisting Airtable alternatives?",
+        answer:
+          "Validate hosting model, collaboration-suite fit, and compliance with your China entity and data requirements. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, Contact Chinaready for stack-specific help.",
+      },
+    ],
+  },
+  aweber: {
+    description: (availability, names) =>
+      clipMeta(
+        `AWeber is Unavailable in mainland China — poor cross-border experience; not recommended for domestic China teams. Compare ${names.slice(0, 2).join(", ") || "Fengyou EDM, Zoho Campaigns"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>AWeber is unavailable in mainland China</strong> for practical production use. Cross-border experience is poor, and Chinaready does not recommend domestic China companies run AWeber directly. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Fengyou EDM, Zoho Campaigns")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Email marketing platforms to evaluate instead of AWeber",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 2,
+    indexCandidates: "Fengyou EDM, Zoho Campaigns",
+    guidanceHtml: `
+        <p><strong>AWeber is unavailable for reliable mainland China use.</strong> Cross-border delivery and day-to-day operating experience are poor enough that Chinaready does not recommend domestic China companies adopt AWeber directly. Plan a China-ready email marketing stack instead.</p>
+        <h3>Domestic and localized platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Fengyou EDM (蜂邮)</td>
+                <td>Domestic professional email marketing platform focused on high deliverability and smart distribution; intelligent delivery engine, template library, and behavior-triggered automation</td>
+                <td>Mainland China companies that need local EDM deliverability and Chinese-market workflows</td>
+              </tr>
+              <tr>
+                <td>Zoho Campaigns</td>
+                <td>International brand with a dedicated mainland localization team and Chinese-language support; domain authentication (SPF/DKIM), dedicated IPs/delivery paths, and full campaign tooling (templates, lists, A/B tests, automation, reporting); compliance posture includes MLPS Level 3, GDPR, and ISO 27001</td>
+                <td>Teams that want global product depth plus workable China localization and compliance coverage</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>What each option emphasizes</h3>
         <ul>
-          <li>The app is the primary entry point</li>
-          <li>Push notifications</li>
-          <li>Points mall</li>
-          <li>Personalized recommendations</li>
-          <li>Check-ins, tasks, and other gamified loops</li>
+          <li><strong>Fengyou EDM (蜂邮):</strong> smart delivery to improve inbox placement and open rates; rich templates for fast campaign creation; automation triggered by user behavior.</li>
+          <li><strong>Zoho Campaigns:</strong> multi-region footprint (about 18 data centers) for cross-border operations; SPF/DKIM, dedicated IP, and dedicated delivery paths; templates, list segmentation, A/B testing, automation, and reporting in one suite.</li>
         </ul>
-        <h3>4. Coalition loyalty</h3>
-        <p>Example: Joy City.</p>
+        <h3>Selection guidance</h3>
         <ul>
-          <li>Multi-brand shared points</li>
-          <li>One membership covers an entire commercial complex</li>
-          <li>Redemption can span parking, healthcare, dining, and other categories</li>
+          <li><strong>Domestic China teams prioritizing local deliverability:</strong> start with Fengyou EDM.</li>
+          <li><strong>Cross-border or multi-region teams that still need China-friendly support:</strong> evaluate Zoho Campaigns for localization, compliance certifications, and full campaign feature coverage.</li>
         </ul>
-        <p>This model is common among large malls, airports, and real-estate groups in China.</p>
+        <p>These candidates appear on the AWeber alternatives page only — Chinaready does <strong>not</strong> add Fengyou EDM or Zoho Campaigns as Landscape map product entries. Confirm deliverability, domain authentication, compliance, and vendor fit for your own entity and lists before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does AWeber work in China?",
+        answer:
+          "No for practical mainland China production use. Chinaready labels AWeber as Unavailable. Cross-border experience is poor, and domestic China companies should not plan AWeber as a direct dependency.",
+      },
+      {
+        question: "What are the best China alternatives to AWeber?",
+        answer: `Chinaready currently lists these China-market options for AWeber: ${namesText}. Prefer Fengyou EDM (蜂邮) for domestic professional email marketing with local deliverability focus, and Zoho Campaigns for an international suite with mainland localization, Chinese-language support, and compliance certifications. Confirm fit before production adoption.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for AWeber in mainland China?",
+        answer:
+          "Usually no. Email marketing in China depends on deliverability into domestic ISPs, domain authentication (SPF/DKIM), list hygiene, automation design, and compliance constraints. Expect a vendor and workflow redesign rather than a one-to-one AWeber swap.",
+      },
+      {
+        question: "How should teams choose between Fengyou EDM and Zoho Campaigns?",
+        answer:
+          "Choose Fengyou EDM when domestic China teams need local deliverability and Chinese-market EDM workflows. Choose Zoho Campaigns when cross-border or multi-region teams need global product depth plus China localization and compliance coverage.",
+      },
+      {
+        question: "Where should teams go after shortlisting AWeber alternatives?",
+        answer:
+          "Validate deliverability into your target China inboxes, domain authentication, automation needs, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  drip: {
+    description: (availability, names) =>
+      clipMeta(
+        `Drip is Limited in mainland China — reachable but built for overseas ecommerce; English-only and USD billing. Compare ${names.slice(0, 4).join(", ") || "Dida EDM, U-Mail, Shierke, Reasonable Spread"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Drip is Limited in mainland China</strong>. The US-hosted product is usually reachable and not clearly blocked, but speed and stability are unreliable, and the deeper problem is fit: Drip is built around Shopify, WooCommerce, and BigCommerce workflows that barely exist in mainland ecommerce, with English-only UI, no Chinese support, and USD billing. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 4).join(", ") || "Dida EDM, U-Mail, Shierke, Reasonable Spread")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Email marketing platforms to evaluate instead of Drip",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 4,
+    indexCandidates: "Dida EDM, U-Mail, Shierke, Reasonable Spread",
+    guidanceHtml: `
+        <p><strong>Drip is Limited for mainland China use.</strong> Technically it can often be opened from mainland China — Drip is a US SaaS (California HQ) and is not clearly blocked by the GFW — but day-to-day experience is constrained:</p>
+        <ul>
+          <li><strong>Network:</strong> access speed and stability are not guaranteed; some teams still need a reliable overseas network path.</li>
+          <li><strong>Ecosystem:</strong> Drip is deeply integrated with Shopify, WooCommerce, BigCommerce, and similar overseas ecommerce stacks that mainland China commerce almost never uses.</li>
+          <li><strong>Service:</strong> English-only UI, no Chinese customer support, and USD billing make it a poor fit for domestic teams.</li>
+        </ul>
+        <p>In short: reachable, but low practical value for China-facing work because it serves the overseas ecommerce stack. Map to the domestic platforms below, then validate deliverability, automation fit, compliance, and vendor fit before adoption.</p>
+        <h3>Domestic platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Dida EDM (滴答EDM)</td>
+                <td>Cross-border ecommerce email lifecycle system</td>
+                <td>Closest China substitute for Drip — abandoned-cart recovery, customer segmentation, and automation; Chinese support and localization; typically billed by send volume (not contact count)</td>
+              </tr>
+              <tr>
+                <td>U-Mail</td>
+                <td>Bulk email + automation</td>
+                <td>Deliverability-focused platform with behavior tracking and automation — practical for foreign-trade and cross-border sellers</td>
+              </tr>
+              <tr>
+                <td>Shierke (十二客)</td>
+                <td>Bulk email platform</td>
+                <td>Long-standing domestic provider with million-scale daily delivery — suited to high-volume promotional email</td>
+              </tr>
+              <tr>
+                <td>Reasonable Spread (思齐)</td>
+                <td>Email marketing SaaS</td>
+                <td>China–Hong Kong joint venture with Chinese admin, multilingual templates, and phone support — good when localized service matters</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Overseas customers / independent-site (DTC) lifecycle email:</strong> start with Dida EDM (滴答EDM) as the closest Drip-shaped substitute.</li>
+          <li><strong>Domestic-market email marketing:</strong> prefer U-Mail or Shierke (十二客).</li>
+          <li><strong>Chinese admin + local support:</strong> evaluate Reasonable Spread (思齐).</li>
+        </ul>
+        <p>These candidates appear on the Drip alternatives page only — Chinaready does <strong>not</strong> add Dida EDM, U-Mail, Shierke, or Reasonable Spread as Landscape map product entries. Confirm deliverability into your target inboxes, domain authentication, compliance, and vendor fit before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Drip work in China?",
+        answer: `Only with Limited practical usefulness for mainland China teams. Chinaready labels Drip as ${availability}. The product is usually reachable and not clearly blocked, but access can be slow or unstable, the Shopify / WooCommerce / BigCommerce ecosystem barely applies to mainland ecommerce, and English-only UI with USD billing is a poor fit for domestic operators.`,
+      },
+      {
+        question: "What are the best China alternatives to Drip?",
+        answer: `Chinaready currently lists these China-market options for Drip: ${namesText}. Prefer Dida EDM (滴答EDM) for overseas DTC / independent-site lifecycle email closest to Drip, U-Mail or Shierke (十二客) for domestic email marketing, and Reasonable Spread (思齐) when Chinese admin and local support matter most. Confirm fit before production adoption.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Drip in mainland China?",
+        answer:
+          "Usually no. Drip's value sits in ecommerce lifecycle automation around overseas storefront stacks. In China, expect a vendor and workflow redesign around domestic deliverability, local ecommerce integrations, and compliance — not a one-to-one Drip swap.",
+      },
+      {
+        question: "How should teams choose among Dida EDM, U-Mail, Shierke, and Reasonable Spread?",
+        answer:
+          "Choose Dida EDM (滴答EDM) when customers are overseas and you need abandoned-cart, segmentation, and automation closest to Drip. Choose U-Mail or Shierke (十二客) for domestic-market email marketing and high-volume sends. Choose Reasonable Spread (思齐) when Chinese UI, multilingual templates, and phone support are the deciding factors.",
+      },
+      {
+        question: "Where should teams go after shortlisting Drip alternatives?",
+        answer:
+          "Validate deliverability into your target inboxes, domain authentication, automation needs, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  mailerlite: {
+    description: (availability, names) =>
+      clipMeta(
+        `MailerLite is Unavailable in mainland China — overseas hosting, weak delivery into QQ/163, no China localization. Compare ${names.slice(0, 3).join(", ") || "Alibaba Cloud Sendify, U-Mail, TurboEx"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>MailerLite is Unavailable in mainland China</strong> for practical production use. Overseas servers make the admin slow and unreliable, cross-border sends into domestic inboxes (QQ, 163, and similar) are frequently filtered or spam-foldered, and there is no Chinese support, domestic payment path, or China compliance fit. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Alibaba Cloud Sendify, U-Mail, TurboEx")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Email marketing platforms to evaluate instead of MailerLite",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 3,
+    indexCandidates: "Alibaba Cloud Sendify, U-Mail, TurboEx",
+    guidanceHtml: `
+        <p><strong>MailerLite is Unavailable for reliable mainland China use.</strong> The product is hosted overseas, so mainland access is often slow, the admin can fail to load reliably, and some features may be constrained. Sends from overseas IPs into domestic mailboxes (QQ, 163, and similar) are easily intercepted or dropped into spam. There is no Chinese customer support, no domestic payment channel, and poor fit for mainland compliance expectations. Do not plan MailerLite as a production dependency for mainland China email marketing.</p>
+        <h3>Domestic platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Alibaba Cloud Sendify</td>
+                <td>Alibaba Cloud email marketing with a drag-and-drop editor and analytics dashboard; entry pricing often cited around ¥60/month</td>
+                <td>Foreign-trade, B2B, and SMB email marketing — lightweight entry path</td>
+              </tr>
+              <tr>
+                <td>U-Mail</td>
+                <td>Domestic email marketing platform with reported deliverability above 90%, automation workflows, invalid-address cleaning, and domestic plus international delivery channels</td>
+                <td>Foreign-trade outreach, large-scale campaigns, and membership marketing that need professional deliverability</td>
+              </tr>
+              <tr>
+                <td>TurboEx (拓波)</td>
+                <td>Xinchuang-ready enterprise mail system with collaboration, approval workflows, encryption, and related security controls</td>
+                <td>Government and enterprise teams with strict security and compliance requirements</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Value / lightweight entry:</strong> start with Alibaba Cloud Sendify for Alibaba-stack SMB and trade email marketing.</li>
+          <li><strong>Professional deliverability and automation:</strong> evaluate U-Mail for domestic plus international EDM at scale.</li>
+          <li><strong>Government / enterprise security and Xinchuang fit:</strong> evaluate TurboEx (拓波).</li>
+        </ul>
+        <p>These candidates appear on the MailerLite alternatives page only — Chinaready does <strong>not</strong> add Alibaba Cloud Sendify, U-Mail, or TurboEx as Landscape map product entries. Confirm deliverability into your target inboxes, domain authentication, compliance, and vendor fit before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does MailerLite work in China?",
+        answer:
+          "No for practical mainland China production use. Chinaready labels MailerLite as Unavailable. Overseas hosting slows or breaks day-to-day admin use, cross-border delivery into QQ/163 and similar inboxes is weak, and there is no Chinese support, domestic payment path, or China compliance fit.",
+      },
+      {
+        question: "What are the best China alternatives to MailerLite?",
+        answer: `Chinaready currently lists these China-market options for MailerLite: ${namesText}. Prefer Alibaba Cloud Sendify for lightweight Alibaba-stack email marketing, U-Mail for professional deliverability and automation, and TurboEx (拓波) when government/enterprise security and Xinchuang requirements dominate. Confirm fit before production adoption.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for MailerLite in mainland China?",
+        answer:
+          "Usually no. Email marketing in China depends on deliverability into domestic ISPs, domain authentication (SPF/DKIM), list hygiene, automation design, and compliance constraints. Expect a vendor and workflow redesign rather than a one-to-one MailerLite swap.",
+      },
+      {
+        question: "How should teams choose among Alibaba Cloud Sendify, U-Mail, and TurboEx?",
+        answer:
+          "Choose Alibaba Cloud Sendify for a lightweight Alibaba-stack entry path. Choose U-Mail when professional deliverability, automation, and large-scale or membership campaigns matter most. Choose TurboEx (拓波) for government/enterprise security, collaboration, encryption, and Xinchuang fit.",
+      },
+      {
+        question: "Where should teams go after shortlisting MailerLite alternatives?",
+        answer:
+          "Validate deliverability into your target China inboxes, domain authentication, automation needs, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  "constant-contact": {
+    description: (availability, names) =>
+      clipMeta(
+        `Constant Contact is Limited in mainland China — usable but slow, weak delivery, no localization. Compare ${names.slice(0, 4).join(", ") || "Zoho Campaigns, U-Mail, SendCloud, NetEase Email Marketing"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Constant Contact is Limited in mainland China</strong>. As a US SaaS product it is not clearly IP-blocked and can usually be registered and used, but the practical experience is poor: overseas hosting makes the admin slow and unstable, domestic deliverability lacks local infrastructure, and there is no Chinese support, mainland data center, or local compliance path. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 4).join(", ") || "Zoho Campaigns, U-Mail, SendCloud, NetEase Email Marketing")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Email marketing platforms to evaluate instead of Constant Contact",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 4,
+    indexCandidates: "Zoho Campaigns, U-Mail, SendCloud, NetEase Email Marketing",
+    guidanceHtml: `
+        <p><strong>Constant Contact is Limited for mainland China use.</strong> Technically it can usually be opened and operated from mainland China — Constant Contact does not clearly block China IPs — but day-to-day barriers are high enough that Chinaready does not recommend it as a production dependency for China-facing email marketing:</p>
+        <ul>
+          <li><strong>Slow / unstable access:</strong> servers sit overseas, so editing campaigns and managing contacts from mainland China is often painful.</li>
+          <li><strong>Weak deliverability into China:</strong> sends from overseas into domestic inboxes lack local delivery infrastructure, so inbox placement is unreliable; sending from China to overseas inboxes may be more workable but still lacks a China-localized path.</li>
+          <li><strong>No localization:</strong> no Chinese customer support, no mainland data center, and no local compliance support.</li>
+        </ul>
+        <p>Market signal: BuiltWith-style adoption data shows only on the order of tens of China websites using Constant Contact — effectively negligible. Root causes are simple: overseas hosting, no China localization, and a mainland go-to-market stack that leans more on WeChat / WeCom than classic email marketing.</p>
+        <h3>Domestic / China-usable platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning</th>
+                <th>Highlights</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Zoho Campaigns</td>
+                <td>B2B / foreign-trade email marketing</td>
+                <td>China local team and data centers; domain authentication, automation, dedicated IP options; strong Chinese-language support; free tier often cited around 2,000 contacts</td>
+              </tr>
+              <tr>
+                <td>U-Mail</td>
+                <td>Enterprise email marketing</td>
+                <td>Domestic platform with private-deployment options so data can stay in mainland China — suited to data-sensitive industries (finance, government/enterprise)</td>
+              </tr>
+              <tr>
+                <td>SendCloud</td>
+                <td>Email push / marketing</td>
+                <td>Long-standing domestic provider with strong API coverage — practical for technical teams and ecommerce sending workflows</td>
+              </tr>
+              <tr>
+                <td>NetEase Email Marketing (网易邮件营销)</td>
+                <td>SMB bulk email</td>
+                <td>Built on the NetEase mailbox ecosystem with comparatively reliable domestic deliverability for event notices and small-scale campaigns</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Foreign-trade / cross-border teams (sending overseas):</strong> start with Zoho Campaigns for global delivery plus Chinese-language service.</li>
+          <li><strong>Domestic marketing with higher compliance needs:</strong> prefer U-Mail or SendCloud.</li>
+          <li><strong>Event notices and small-scale SMB use:</strong> NetEase Email Marketing is often enough.</li>
+        </ul>
+        <p>If your primary audience is mainland China customers, also evaluate WeChat ecosystem channels (Official Accounts, WeCom, mini programs) alongside or instead of classic email marketing — that usually matches domestic user habits better.</p>
+        <p>These candidates appear on the Constant Contact alternatives page only — Chinaready does <strong>not</strong> add Zoho Campaigns, U-Mail, SendCloud, or NetEase Email Marketing as Landscape map product entries for Constant Contact. Confirm deliverability into your target inboxes, domain authentication, compliance, and vendor fit before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Constant Contact work in China?",
+        answer: `Only with Limited practical usefulness for mainland China teams. Chinaready labels Constant Contact as ${availability}. Registration and use are usually possible because China IPs are not clearly blocked, but overseas hosting makes the admin slow and unstable, domestic deliverability is weak without local infrastructure, and there is no Chinese support, mainland data center, or local compliance path.`,
+      },
+      {
+        question: "What are the best China alternatives to Constant Contact?",
+        answer: `Chinaready currently lists these China-market options for Constant Contact: ${namesText}. Prefer Zoho Campaigns for foreign-trade / B2B email to overseas inboxes with China-local service, U-Mail or SendCloud for domestic marketing with stronger compliance or API needs, and NetEase Email Marketing for small-scale SMB bulk sends. Confirm fit before production adoption.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Constant Contact in mainland China?",
+        answer:
+          "Usually no. Constant Contact's SMB email-marketing model does not map one-to-one onto China stacks. Expect a vendor and workflow redesign around domestic deliverability, domain authentication, compliance, and whether WeChat ecosystem channels should carry part of the engagement load.",
+      },
+      {
+        question: "How should teams choose among Zoho Campaigns, U-Mail, SendCloud, and NetEase Email Marketing?",
+        answer:
+          "Choose Zoho Campaigns for foreign-trade / cross-border sends to overseas inboxes with Chinese-language service. Choose U-Mail when private deployment and mainland data residency matter most. Choose SendCloud when engineers need API-driven push and marketing delivery. Choose NetEase Email Marketing for event notices and small-scale SMB bulk email on the NetEase mailbox ecosystem.",
+      },
+      {
+        question: "Where should teams go after shortlisting Constant Contact alternatives?",
+        answer:
+          "Validate deliverability into your target inboxes, domain authentication, automation needs, and compliance with your China entity. For domestic-audience engagement, also compare WeChat Official Accounts, WeCom, and mini programs. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  convertkit: {
+    description: (availability, names) =>
+      clipMeta(
+        `ConvertKit is Unavailable in mainland China — unstable access, Stripe-based Commerce, overseas data, weak China fit. Compare ${names.slice(0, 4).join(", ") || "U-Mail, Zoho Campaigns, SendCloud, MailerLite"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>ConvertKit is Unavailable in mainland China</strong> for practical production use. Overseas hosting makes day-to-day access slow and often unstable, Commerce depends on Stripe (unsupported in mainland China), local cloud ecosystems are not supported, and overseas subscriber storage creates mainland compliance risk. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 4).join(", ") || "U-Mail, Zoho Campaigns, SendCloud, MailerLite")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Email marketing platforms to evaluate instead of ConvertKit",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 4,
+    indexCandidates: "U-Mail, Zoho Campaigns, SendCloud, MailerLite",
+    guidanceHtml: `
+        <p><strong>ConvertKit (Kit) is Unavailable for reliable mainland China use.</strong> Creators and marketers can sometimes open the product, but practical operating barriers are high enough that Chinaready does not recommend it as a mainland production dependency:</p>
+        <ul>
+          <li><strong>Unstable access:</strong> servers sit overseas, so mainland direct connections are often slow and intermittently blocked.</li>
+          <li><strong>Payment gap:</strong> Commerce features depend on Stripe, which does not support mainland China.</li>
+          <li><strong>Ecosystem mismatch:</strong> ConvertKit does not integrate with China-region local services such as China Azure.</li>
+          <li><strong>Compliance risk:</strong> subscriber and campaign data stored overseas is a poor fit for mainland data-compliance expectations.</li>
+        </ul>
+        <h3>Domestic / China-usable platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning</th>
+                <th>Highlights</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>U-Mail</td>
+                <td>Domestic professional email marketing platform</td>
+                <td>Reported mainland deliverability above 90%; foreign-trade outreach and membership marketing; local advisor support</td>
+              </tr>
+              <tr>
+                <td>Zoho Campaigns</td>
+                <td>International platform, usable in China</td>
+                <td>Chinese UI, Zoho CRM linkage, domestic service nodes — strong for B2B, foreign-trade, and enterprise teams</td>
+              </tr>
+              <tr>
+                <td>SendCloud</td>
+                <td>Domestic email delivery infrastructure</td>
+                <td>API-first sending (SMTP, templates, webhooks, SDKs) — best for technical teams building their own stack</td>
+              </tr>
+              <tr>
+                <td>MailerLite</td>
+                <td>International platform, often reachable from China</td>
+                <td>Generous free plan (about 1,000 subscribers), simple UI — orientation option for creators and small teams</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Foreign-trade / cross-border business:</strong> prefer U-Mail or Zoho Campaigns for deliverability plus local service.</li>
+          <li><strong>Individual creators / indie media:</strong> evaluate MailerLite when a generous free tier and simple UI matter most.</li>
+          <li><strong>Technical teams building their own system:</strong> prefer SendCloud for API-driven delivery infrastructure.</li>
+        </ul>
+        <p>If your primary audience is mainland China email marketing, start with <strong>U-Mail</strong> or <strong>Zoho Campaigns</strong>.</p>
+        <p>These candidates appear on the ConvertKit alternatives page only — Chinaready does <strong>not</strong> add U-Mail, Zoho Campaigns, SendCloud, or MailerLite as Landscape map product entries for ConvertKit. Confirm deliverability into your target inboxes, domain authentication, compliance, and vendor fit before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does ConvertKit work in China?",
+        answer:
+          "No for practical mainland China production use. Chinaready labels ConvertKit as Unavailable. Overseas hosting makes access slow or unstable, Commerce depends on Stripe (unsupported in mainland China), local cloud ecosystems are not supported, and overseas subscriber data creates mainland compliance risk.",
+      },
+      {
+        question: "What are the best China alternatives to ConvertKit?",
+        answer: `Chinaready currently lists these China-market options for ConvertKit: ${namesText}. Prefer U-Mail or Zoho Campaigns for foreign-trade / B2B email marketing with local service, MailerLite as a lightweight creator-oriented orientation option, and SendCloud when technical teams need API-driven delivery infrastructure. Confirm fit before production adoption.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for ConvertKit in mainland China?",
+        answer:
+          "Usually no. ConvertKit's creator-commerce and automation model does not map one-to-one onto China email stacks. Expect a vendor and workflow redesign around domestic deliverability, local payments/compliance, and whether you need a full EDM suite versus API sending infrastructure.",
+      },
+      {
+        question: "How should teams choose among U-Mail, Zoho Campaigns, SendCloud, and MailerLite?",
+        answer:
+          "Choose U-Mail or Zoho Campaigns for foreign-trade / B2B / mainland-audience email marketing with local service. Choose MailerLite when creators or small teams want a simple international tool with a generous free plan. Choose SendCloud when engineers need API/SMTP delivery infrastructure rather than a full creator marketing suite.",
+      },
+      {
+        question: "Where should teams go after shortlisting ConvertKit alternatives?",
+        answer:
+          "Validate deliverability into your target inboxes, domain authentication, automation needs, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  "streamlit-community-cloud": {
+    description: (availability, names) =>
+      clipMeta(
+        `Streamlit Community Cloud is Unavailable in mainland China — overseas infra and no China CDN nodes. Local Streamlit can still work. Compare ${names.slice(0, 5).join(", ") || "Pyecharts, NiceGUI, Dash (Plotly), Gradio, Taipy"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Streamlit Community Cloud is Unavailable in mainland China</strong>. Underlying infrastructure sits outside China and the CDN has no mainland nodes, so the hosted cloud path is not workable for mainland production use. Local Streamlit can still be good enough for demos and internal scripts. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 5).join(", ") || "Pyecharts, NiceGUI, Dash (Plotly), Gradio, Taipy")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China-usable Python app and visualization options instead of Streamlit Cloud",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 5,
+    indexCandidates: "Pyecharts, NiceGUI, Dash (Plotly), Gradio, Taipy",
+    guidanceHtml: `
+        <p><strong>Streamlit Community Cloud is Unavailable for mainland China cloud use.</strong> The hosted service depends on infrastructure outside China, and its CDN has no mainland nodes. That combination makes the cloud path unreliable for mainland teams. Running Streamlit locally can still be workable for demos, notebooks, and internal tooling.</p>
+        <p>There is not yet a strict one-to-one "China Streamlit" product. The shortlist below covers the core Streamlit jobs — Python-first data apps, dashboards, and ML demos — with options that teams can use or self-host in mainland China without the Community Cloud dependency.</p>
+        <h3>Domestic / China-usable options commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Option</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Pyecharts</td>
+                <td>Python wrapper for Baidu ECharts; pure-Python HTML visualization; mature China ecosystem with 30+ chart types and standalone HTML output</td>
+                <td>Data visualization dashboards and report-style displays</td>
+              </tr>
+              <tr>
+                <td>NiceGUI</td>
+                <td>Browser-based Python GUI with little or no frontend code; native ECharts support and reactive data binding; resources can stay local</td>
+                <td>Realtime monitoring panels and data dashboards with a Streamlit-like Python workflow</td>
+              </tr>
+              <tr>
+                <td>Dash (Plotly)</td>
+                <td>Open-source Python framework with callbacks and realtime updates; can be self-hosted on mainland servers</td>
+                <td>Enterprise-style data dashboards</td>
+              </tr>
+              <tr>
+                <td>Gradio</td>
+                <td>Hugging Face stack with a minimal API for quick ML model demo UIs</td>
+                <td>AI / ML model demos</td>
+              </tr>
+              <tr>
+                <td>Taipy</td>
+                <td>Frontend/backend-separated architecture with background-task support for production-style apps</td>
+                <td>More complex data applications</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Most China-native visualization path:</strong> start with Pyecharts — maintained with a strong domestic ECharts ecosystem, standalone HTML output, and no Community Cloud wall.</li>
+          <li><strong>Closest Streamlit-like "Python script to web app" feel:</strong> prefer NiceGUI — API style is closest to Streamlit, and China self-hosting is straightforward when assets stay local.</li>
+        </ul>
+        <p>These candidates appear on the Streamlit Community Cloud alternatives page only — Chinaready does <strong>not</strong> add Pyecharts, NiceGUI, Dash (Plotly), Gradio, or Taipy as Landscape map product entries. Confirm hosting model, dependency mirrors, and compliance for your own workload before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Streamlit Community Cloud work in China?",
+        answer:
+          "No for mainland cloud use. Chinaready labels Streamlit Community Cloud as Unavailable. Underlying infrastructure is outside China and the CDN has no mainland nodes, so the hosted path is not a workable production dependency. Local Streamlit can still be good enough for demos and internal use.",
+      },
+      {
+        question: "What are the best China alternatives to Streamlit?",
+        answer: `Chinaready currently lists these China-market options for Streamlit Community Cloud: ${namesText}. Prefer Pyecharts for China-native Python/ECharts visualization, NiceGUI for the closest Streamlit-like Python-to-web workflow, Dash (Plotly) for self-hosted enterprise dashboards, Gradio for ML demos, and Taipy for more complex data apps. Confirm fit before production adoption.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Streamlit in mainland China?",
+        answer:
+          "Usually no. There is not yet a strict one-to-one China Streamlit product. Choose by job: Pyecharts for visualization HTML, NiceGUI for Streamlit-like app authoring, Dash for callback-heavy dashboards, Gradio for ML demos, or Taipy for larger production-style data apps.",
+      },
+      {
+        question: "How should teams choose among Pyecharts, NiceGUI, Dash, Gradio, and Taipy?",
+        answer:
+          "Choose Pyecharts for China-native visualization HTML. Choose NiceGUI for the closest Streamlit-like Python-to-web workflow. Choose Dash (Plotly) for callback-heavy enterprise dashboards. Choose Gradio for ML demos. Choose Taipy for larger production-style data apps.",
+      },
+      {
+        question: "Where should teams go after shortlisting Streamlit alternatives?",
+        answer:
+          "Validate whether you need hosted cloud, local demos, or self-hosted production dashboards, then confirm dependency mirrors and mainland deployment constraints. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  substack: {
+    description: (availability, names) =>
+      clipMeta(
+        `Substack is Limited in mainland China — restricted network access and weak email deliverability. Map to ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Substack is Limited in mainland China</strong>. Network access is often restricted, and email deliverability to mainland readers is weak. There is no exact Substack equivalent — map paid-content workflows to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "How to choose among Substack alternatives in China",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 4,
+    indexCandidates: "Xiaobot, Quaily, Afdian, Knowledge Planet",
+    guidanceHtml: `
+        <p><strong>Substack is Limited for mainland China creators and readers.</strong> Access from mainland China is often restricted as an overseas service, and Substack email delivery into mainland inboxes is commonly weak. If your primary audience and payments are in China, plan a domestic paid-content stack instead.</p>
+        <h3>How the mapped options differ</h3>
+        <p>China does not have a fully like-for-like Substack product. The candidates below are the closest paid-content and newsletter-adjacent routes Chinaready maps for evaluation.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Xiaobot (小报童)</td>
+                <td>Currently the closest mainland Substack-like platform, operated by the flomo team; supports subscription and one-time buyout pricing; runs inside the WeChat ecosystem with a relatively complete paid-content loop; onboarding usually requires an existing audience (for example WeChat Official Account fans 3,000+, or larger followings elsewhere); platform take is about 15%</td>
+                <td>Creators who already have an audience and want the smoothest WeChat-native paid content experience</td>
+              </tr>
+              <tr>
+                <td>Quaily</td>
+                <td>Active, fast-iterating indie project with multi-channel distribution, AI-assisted features, and self-hosting options; mainland payments often rely on crypto, which is unfriendly for typical creators and readers</td>
+                <td>Technical creators who can accept crypto payments or self-hosting complexity</td>
+              </tr>
+              <tr>
+                <td>Afdian (爱发电)</td>
+                <td>Closer to a creator patronage model than a pure newsletter stack; supports memberships, product sales, and crowdfunding</td>
+                <td>Creators who need direct fan funding more than a Substack-style newsletter workflow</td>
+              </tr>
+              <tr>
+                <td>Knowledge Planet (知识星球)</td>
+                <td>Not a newsletter product, but in practice often fills Substack's paid-knowledge niche in China; users pay to join a community and creators publish deeper content; large traffic and user base; content relationships stay locked inside the platform, so creators cannot export a Substack-style subscriber list</td>
+                <td>Creators who want maximum mainland exposure and accept platform lock-in</td>
+              </tr>
+              <tr>
+                <td>Zhubai (竹白)</td>
+                <td>Was a one-stop newsletter creation and distribution tool with WeChat plus email delivery and analytics; shut down in 2025</td>
+                <td>Not recommended — service closed; not mapped as an active candidate</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Need</th>
+                <th>Start here</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Already have an audience and want smooth WeChat-native paid content</td>
+                <td>Xiaobot</td>
+              </tr>
+              <tr>
+                <td>Maximum mainland exposure</td>
+                <td>Knowledge Planet — plan for platform lock-in</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Confirm onboarding thresholds, payment rails, exportability, and compliance for your own creator workflow before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Substack work in China?",
+        answer: `Only with Limited practical usefulness for mainland-focused creators and readers. Chinaready labels Substack as ${availability}. Network access from mainland China is often restricted as an overseas service, and email deliverability into mainland inboxes is commonly weak.`,
+      },
+      {
+        question: "What are the best China alternatives to Substack?",
+        answer: `Chinaready currently maps Substack to ${namesText}. Prefer Xiaobot (小报童) for the closest WeChat-native paid-content loop when you already have an audience, Quaily for multi-channel or self-hosted experiments, Afdian (爱发电) for patronage-style creator funding, and Knowledge Planet (知识星球) for paid knowledge communities with larger mainland reach. Zhubai (竹白) closed in 2025 and is not an active mapped option. Replacement fit varies, so confirm before production adoption.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Substack in mainland China?",
+        answer:
+          "Usually no. Mainland paid-content growth depends on WeChat distribution, domestic payments, creator onboarding thresholds, and whether your model is newsletter, community, or patronage. Expect a platform and monetization redesign rather than a Substack drop-in.",
+      },
+      {
+        question: "Where should teams go after shortlisting Substack alternatives?",
+        answer:
+          "Validate audience location, WeChat distribution needs, payment rails, onboarding thresholds, and whether you can export subscribers or must accept platform lock-in. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  megaphone: {
+    description: (availability, names) =>
+      clipMeta(
+        `Megaphone is Unavailable in mainland China — overseas Google Cloud hosting, slow access, and audio compliance risk. Compare ${names.slice(0, 5).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Megaphone is Unavailable for practical mainland China use</strong>. Experience is typically poor because the platform runs on overseas cloud infrastructure such as Google Cloud, and overseas audio hosting/distribution also carries mainland compliance risk. For mainland-focused creators, map to <strong>${escapeHtml(names.slice(0, 5).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China podcast platforms instead of Megaphone",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 5,
+    indexCandidates: "Xiaoyuzhou, Ximalaya, NetEase Cloud Music, QQ Music, Lizhi",
+    guidanceHtml: `
+        <p><strong>Megaphone is Unavailable for practical mainland China creators and operators.</strong> In practice the experience is poor and compliance risk is real. Megaphone depends on overseas cloud infrastructure such as Google Cloud, so mainland access often hits severe loading-speed and compatibility issues driven by the gap between domestic and overseas network ecosystems. China also applies strict rules to audio content hosting and distribution; overseas platforms that lack local compliance qualifications or operating guidance can cross legal red lines quickly.</p>
+        <p>If you need podcast hosting and distribution for mainland China, map to the domestic platforms below, then validate creator onboarding, distribution rights, monetization terms, and compliance for your own show.</p>
+        <h3>How to choose</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning</th>
+                <th>Core strengths</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Xiaoyuzhou (小宇宙)</td>
+                <td>Podcast-native platform</td>
+                <td>Best-in-class mainland podcast listening experience and the widest podcast-native audience; one-click hosting and distribution; strong creator community</td>
+              </tr>
+              <tr>
+                <td>Ximalaya (喜马拉雅)</td>
+                <td>Comprehensive audio platform</td>
+                <td>China's largest audio platform with massive traffic; strong fit for creators who want broad mainland exposure</td>
+              </tr>
+              <tr>
+                <td>NetEase Cloud Music (网易云音乐)</td>
+                <td>Music + podcast</td>
+                <td>Large young listener base inside a mainstream music streaming ecosystem; strong fit for culture and music-adjacent shows</td>
+              </tr>
+              <tr>
+                <td>QQ Music (QQ音乐)</td>
+                <td>Music + podcast</td>
+                <td>Major Tencent music streaming ecosystem with podcast distribution; useful when creators already reach listeners there</td>
+              </tr>
+              <tr>
+                <td>Lizhi (荔枝)</td>
+                <td>UGC / voice social</td>
+                <td>Audio community oriented toward user-generated content and voice social; practical for individual creators and interaction-heavy podcasts</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Practical guidance</h3>
+        <p>Prefer <strong>Xiaoyuzhou</strong> when you want the strongest pure-podcast experience and community, and <strong>Ximalaya</strong> when broad mainland reach matters most. Use <strong>NetEase Cloud Music</strong> or <strong>QQ Music</strong> when your show fits a music-streaming audience, and <strong>Lizhi</strong> for UGC or highly interactive voice formats.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Megaphone work in China?",
+        answer: `No for practical mainland use. Chinaready labels Megaphone as ${availability}. The experience is typically poor because Megaphone depends on overseas cloud infrastructure such as Google Cloud, and overseas audio hosting/distribution also faces mainland compliance barriers.`,
+      },
+      {
+        question: "What are the best China alternatives to Megaphone?",
+        answer: `Chinaready Landscape currently maps Megaphone to ${namesText}. Prefer Xiaoyuzhou (小宇宙) for the best podcast-native experience and community, Ximalaya (喜马拉雅) for the largest mainland audio reach, NetEase Cloud Music (网易云音乐) or QQ Music (QQ音乐) when music-stream audiences matter, and Lizhi (荔枝) for UGC and voice-social formats. Replacement fit varies by show, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Why is Megaphone a poor fit for mainland China podcast hosting?",
+        answer:
+          "Two main gaps: network performance and compliance. Megaphone runs on overseas infrastructure such as Google Cloud, so mainland loading and compatibility are often poor. China also regulates audio hosting and distribution tightly, and overseas platforms without local compliance qualifications create legal risk.",
+      },
+      {
+        question: "Is there a direct drop-in replacement for Megaphone in mainland China?",
+        answer:
+          "Usually no. Mainland podcast growth depends on domestic platforms, creator accounts, distribution rights, and monetization rules, not a one-to-one Megaphone host or ad-stack swap. Expect a platform and workflow redesign rather than a drop-in.",
+      },
+      {
+        question: "Where should teams go after shortlisting Megaphone alternatives?",
+        answer:
+          "Validate audience location, Apple Podcasts or domestic distribution needs, monetization model, and creator onboarding requirements. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  "spotify-for-podcasters": {
+    description: (availability, names) =>
+      clipMeta(
+        `Spotify for Podcasters is Unavailable in mainland China — Spotify is GFW-blocked and China is outside Spotify's regions. Compare ${names.slice(0, 4).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Spotify for Podcasters is Unavailable in mainland China</strong>. The creator dashboard and distribution features are not usable there — Spotify as a whole is blocked by China's Great Firewall (GFW), and mainland China is not on Spotify's service-region list. For mainland-focused creators, map to <strong>${escapeHtml(names.slice(0, 4).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China podcast platforms instead of Spotify for Podcasters",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: `
+        <p><strong>Spotify for Podcasters is Unavailable for mainland China creators and operators.</strong> Neither the creator dashboard nor Spotify's distribution path works normally in mainland China. Spotify as a whole is blocked by China's Great Firewall (GFW), and mainland China is outside Spotify's published service regions.</p>
+        <p>China's podcast and audio ecosystem is mature. Map to the domestic platforms below, then validate creator onboarding, distribution rights, monetization terms, and compliance for your own show.</p>
+        <h3>How to choose</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning</th>
+                <th>Core strengths</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ximalaya (喜马拉雅)</td>
+                <td>Comprehensive audio platform</td>
+                <td>Apple Podcasts' only certified hosting partner in mainland China; one-click RSS Feed generation with sync to Apple Podcasts; hundred-million-scale user base</td>
+              </tr>
+              <tr>
+                <td>Xiaoyuzhou (小宇宙)</td>
+                <td>Podcast-native platform</td>
+                <td>Best-in-class podcast listening experience and active community; supports RSS import/export; does not restrict WeChat-group audience growth; widely favored in the Chinese podcast scene</td>
+              </tr>
+              <tr>
+                <td>NetEase Cloud Music (网易云音乐)</td>
+                <td>Music + podcast</td>
+                <td>Offers a podcast open-API system; strong fit for creators who already have a NetEase Cloud Music fan base</td>
+              </tr>
+              <tr>
+                <td>Lizhi (荔枝)</td>
+                <td>Audio community</td>
+                <td>Supports podcast hosting, though recent upload stability has declined</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Practical workflow</h3>
+        <p>If you want one upload and multi-platform distribution, a common workflow is:</p>
+        <p><strong>Ximalaya</strong> (primary host → generate RSS Feed) → sync automatically to <strong>Xiaoyuzhou</strong>, <strong>Apple Podcasts</strong>, <strong>NetEase Cloud Music</strong>, and similar platforms.</p>
+        <p>You maintain one source of truth; other platforms update from the feed — close to the distribution experience Spotify for Podcasters is meant to provide.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Spotify for Podcasters work in China?",
+        answer: `No. Chinaready labels Spotify for Podcasters as ${availability}. The creator dashboard and distribution features are not usable there because Spotify as a whole is blocked by the GFW and mainland China is outside Spotify's service regions.`,
+      },
+      {
+        question: "What are the best China alternatives to Spotify for Podcasters?",
+        answer: `Chinaready Landscape currently maps Spotify for Podcasters to ${namesText}. Prefer Ximalaya (喜马拉雅) for Apple Podcasts certified hosting and broad mainland reach, Xiaoyuzhou (小宇宙) for podcast-native community listening, NetEase Cloud Music (网易云音乐) when you already have fans there, and Lizhi (荔枝) as another audio-community host (with recent upload-stability caveats). Replacement fit varies by show, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "How do creators distribute a show across China podcast platforms?",
+        answer:
+          "A common pattern is to host on Ximalaya, generate an RSS Feed, then sync that feed to Xiaoyuzhou, Apple Podcasts, NetEase Cloud Music, and other platforms. Maintain one source; let the remaining platforms update automatically.",
+      },
+      {
+        question: "Is there a direct drop-in replacement for Spotify for Podcasters in mainland China?",
+        answer:
+          "Usually no. Mainland podcast growth depends on domestic platforms, creator accounts, distribution rights, and monetization rules, not a one-to-one Spotify dashboard swap. Expect a platform and workflow redesign rather than a drop-in.",
+      },
+      {
+        question: "Where should teams go after shortlisting Spotify for Podcasters alternatives?",
+        answer:
+          "Validate audience location, Apple Podcasts or domestic distribution needs, monetization model, and creator onboarding requirements. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  transistor: {
+    description: (availability, names) =>
+      clipMeta(
+        `Transistor.fm is Limited in mainland China — overseas hosting with unstable access and RSS aimed at global directories. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Transistor.fm is Limited in mainland China</strong>. The site and creator dashboard can be unstable or restricted as an overseas service, and its RSS distribution mainly targets overseas podcast directories. For mainland-focused creators, map to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China podcast hosting platforms instead of Transistor.fm",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: `
+        <p><strong>Transistor.fm is Limited for mainland China creators and operators.</strong> Access to the Transistor.fm website and dashboard from mainland China can be unstable or restricted because it is an overseas service. Its generated RSS feeds are also aimed mainly at overseas podcast directories. If your primary audience is mainland Chinese listeners, Transistor.fm is usually not the best hosting choice.</p>
+        <p>China's podcast ecosystem is mature. Map to the domestic platforms below, then validate creator onboarding, distribution rights, monetization terms, and compliance for your own show.</p>
+        <h3>How to choose</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Need</th>
+                <th>Start here</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>One-click distribution to Apple Podcasts and other international directories</td>
+                <td>Ximalaya (喜马拉雅) — Apple Podcasts certified hosting in mainland China</td>
+              </tr>
+              <tr>
+                <td>Mainland listeners with strong community interaction</td>
+                <td>Xiaoyuzhou (小宇宙)</td>
+              </tr>
+              <tr>
+                <td>Maximum user coverage</td>
+                <td>Ximalaya or Qingting FM (蜻蜓FM)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Transistor.fm work in China?",
+        answer: `Only with Limited practical usefulness for mainland-focused shows. Chinaready labels Transistor.fm as ${availability}. The Transistor.fm site and dashboard can be unstable or restricted from mainland China as an overseas service, and its RSS distribution mainly targets overseas podcast directories rather than the domestic listening stack.`,
+      },
+      {
+        question: "What are the best China alternatives to Transistor.fm?",
+        answer: `Chinaready Landscape currently maps Transistor.fm to ${namesText}. Prefer Ximalaya (喜马拉雅) for Apple Podcasts certified hosting plus broad mainland reach and monetization, Xiaoyuzhou (小宇宙) for community-led podcast listening, and Qingting FM (蜻蜓FM) for large audio coverage. Replacement fit varies by show, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Transistor.fm in mainland China?",
+        answer:
+          "Usually no. Mainland podcast growth depends on domestic platforms, creator accounts, distribution rights, and monetization rules, not a one-to-one RSS host swap. Expect a platform and workflow redesign rather than a Transistor.fm drop-in.",
+      },
+      {
+        question: "Where should teams go after shortlisting Transistor.fm alternatives?",
+        answer:
+          "Validate audience location, Apple Podcasts or domestic distribution needs, monetization model, and creator onboarding requirements. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  captivate: {
+    description: (availability, names) =>
+      clipMeta(
+        `Captivate is Unavailable in mainland China — no direct domestic podcast distribution, slow CDN, negligible adoption. Compare ${names.slice(0, 5).join(", ") || "Ximalaya, Xiaoyuzhou, Qingting FM, Lizhi, Typlog"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Captivate is Unavailable in mainland China</strong> for practical production use. Mainland China has strict media content-review rules, so overseas podcast hosts cannot directly distribute into domestic podcast platforms. The Captivate site may be technically reachable, but core auto-distribution to Apple Podcasts, Spotify, and similar directories is not a workable mainland growth path, and CDN performance from inside China is often slow. BuiltWith-style signals show only about one China site using Captivate. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 5).join(", ") || "Ximalaya, Xiaoyuzhou, Qingting FM, Lizhi, Typlog")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China podcast platforms instead of Captivate",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 5,
+    indexCandidates: "Ximalaya, Xiaoyuzhou, Qingting FM, Lizhi, Typlog",
+    guidanceHtml: `
+        <p><strong>Captivate is Unavailable for practical mainland China use.</strong> The core reason is simple: mainland China has strict media content-review rules, so overseas podcast hosting platforms — including Captivate — cannot directly distribute content into domestic podcast platforms.</p>
+        <p>The Captivate website itself may be technically reachable, but its core job — auto-distribution to Apple Podcasts, Spotify, and similar directories — does not work as a mainland China growth path, and its CDN is often slow from inside China. Adoption signals are also extremely thin: only about one China website appears to use Captivate in practice.</p>
+        <p>Do not plan Captivate as a production dependency for mainland-focused podcast hosting. Map to the domestic platforms below, then validate creator onboarding, distribution rights, monetization terms, and compliance for your own show.</p>
+        <h3>How to choose</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning</th>
+                <th>Core strengths</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ximalaya (喜马拉雅)</td>
+                <td>Largest audio platform</td>
+                <td>Apple Podcasts' only certified hosting partner in mainland China; hosts 26,000+ podcast albums; 160M+ users</td>
+              </tr>
+              <tr>
+                <td>Xiaoyuzhou (小宇宙)</td>
+                <td>General-purpose podcast client</td>
+                <td>Highest-quality community interaction among mainland podcast apps; RSS subscription; polished UI; strong creator ecosystem</td>
+              </tr>
+              <tr>
+                <td>Qingting FM (蜻蜓FM)</td>
+                <td>Long-standing podcast platform</td>
+                <td>Among the earliest China platforms focused on podcasts; supports RSS import and redistribution</td>
+              </tr>
+              <tr>
+                <td>Lizhi (荔枝)</td>
+                <td>Independent-podcast friendly</td>
+                <td>Oriented to younger independent creators; supports pre-recorded podcast publishing</td>
+              </tr>
+              <tr>
+                <td>Typlog</td>
+                <td>Independent hosting</td>
+                <td>Custom-domain support; practical for creators who want independence from large audio platforms</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Recommended combination</h3>
+        <p>Host on <strong>Ximalaya</strong> (can sync to Apple Podcasts) and also distribute to <strong>Xiaoyuzhou</strong> for high-quality community traffic. This is currently the mainstream pattern for mainland Chinese podcast creators.</p>
+        <p>These candidates appear on the Captivate alternatives page only — Chinaready does <strong>not</strong> add Ximalaya, Xiaoyuzhou, Qingting FM, Lizhi, or Typlog as Landscape map product entries for this mapping. Confirm creator onboarding, distribution rights, and compliance before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Captivate work in China?",
+        answer: `No for practical mainland China production use. Chinaready labels Captivate as ${availability}. Overseas podcast hosts cannot directly distribute into domestic platforms under mainland content-review rules; Captivate's auto-distribution to Apple Podcasts / Spotify is not a workable mainland growth path; CDN performance from inside China is often slow; and adoption signals show only about one China site using Captivate.`,
+      },
+      {
+        question: "What are the best China alternatives to Captivate?",
+        answer: `Chinaready currently lists these China-market options for Captivate: ${namesText}. Prefer Ximalaya (喜马拉雅) for Apple Podcasts certified hosting and broad mainland reach, Xiaoyuzhou (小宇宙) for high-quality community listening, Qingting FM (蜻蜓FM) for RSS import/redistribution, Lizhi (荔枝) for independent/young creators, and Typlog for custom-domain independent hosting. Treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "How should creators distribute a show for Chinese listeners?",
+        answer:
+          "A common pattern is to host on Ximalaya so you can sync to Apple Podcasts, and also distribute to Xiaoyuzhou for high-quality community traffic. That dual path is currently the mainstream approach for mainland Chinese podcast creators.",
+      },
+      {
+        question: "Is there a direct drop-in replacement for Captivate in mainland China?",
+        answer:
+          "Usually no. Mainland podcast growth depends on domestic platforms, content-review workflows, creator accounts, distribution rights, and monetization rules — not a one-to-one Captivate host swap. Expect a platform and workflow redesign rather than a drop-in.",
+      },
+      {
+        question: "Where should teams go after shortlisting Captivate alternatives?",
+        answer:
+          "Validate audience location, Apple Podcasts or domestic distribution needs, monetization model, and creator onboarding requirements. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  buzzsprout: {
+    description: (availability, names) =>
+      clipMeta(
+        `Buzzsprout is Unavailable in mainland China — unstable overseas access, no mainland podcast distribution. Compare ${names.slice(0, 4).join(", ") || "Ximalaya, Xiaoyuzhou, Lizhi, Qingting FM"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Buzzsprout is Unavailable in mainland China</strong> for practical production use. Two reasons: network access to overseas Buzzsprout servers is often unstable from inside China, and even when the product works, it cannot distribute shows into mainland listening channels such as Ximalaya or Xiaoyuzhou under China's media content-review and filing rules. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 4).join(", ") || "Ximalaya, Xiaoyuzhou, Lizhi, Qingting FM")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China podcast platforms instead of Buzzsprout",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 4,
+    indexCandidates: "Ximalaya, Xiaoyuzhou, Lizhi, Qingting FM",
+    guidanceHtml: `
+        <p><strong>Buzzsprout is Unavailable for practical mainland China use.</strong> The reasons are simple:</p>
+        <ul>
+          <li><strong>Network:</strong> Buzzsprout servers sit overseas, so access from inside China is often unstable and may require a VPN.</li>
+          <li><strong>Distribution:</strong> even when the dashboard is reachable, Buzzsprout cannot push shows into mainland listening channels such as Ximalaya (喜马拉雅) or Xiaoyuzhou (小宇宙). China requires media content review and filing workflows that overseas hosting platforms do not support.</li>
+        </ul>
+        <p>Do not plan Buzzsprout as a production dependency for mainland-focused podcast hosting. Map to the domestic platforms below, then validate creator onboarding, distribution rights, monetization terms, and compliance for your own show.</p>
+        <h3>How to choose</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Strengths</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ximalaya (喜马拉雅)</td>
+                <td>China's largest audio platform with 450M+ users; Apple Podcasts' only certified hosting partner in mainland China; supports RSS distribution, analytics, and monetization</td>
+              </tr>
+              <tr>
+                <td>Xiaoyuzhou (小宇宙)</td>
+                <td>Pure podcast app from the Jike (即刻) team; strong community atmosphere and the best reputation in the Chinese podcast scene for independent creators</td>
+              </tr>
+              <tr>
+                <td>Lizhi (荔枝FM)</td>
+                <td>Oriented to younger independent podcasters; supports one-click move to Apple Podcasts; free unlimited capacity</td>
+              </tr>
+              <tr>
+                <td>Qingting FM (蜻蜓FM)</td>
+                <td>Skewed to professional / institutional content with close radio-station partnerships; practical for PGC shows</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Practical guidance</h3>
+        <p>If you need one mainland path closest to the Buzzsprout hosting experience, prefer <strong>Ximalaya</strong> (broadest feature set and ecosystem). If podcast community and listening experience matter more, prefer <strong>Xiaoyuzhou</strong>.</p>
+        <p>These candidates appear on the Buzzsprout alternatives page only — Chinaready does <strong>not</strong> add Ximalaya, Xiaoyuzhou, Lizhi, or Qingting FM as Landscape map product entries for this mapping. Confirm creator onboarding, distribution rights, and compliance before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Buzzsprout work in China?",
+        answer: `No for practical mainland China production use. Chinaready labels Buzzsprout as ${availability}. Overseas servers make access from inside China often unstable, and Buzzsprout cannot distribute into mainland listening channels such as Ximalaya or Xiaoyuzhou because China requires media content-review and filing workflows that overseas hosts do not support.`,
+      },
+      {
+        question: "What are the best China alternatives to Buzzsprout?",
+        answer: `Chinaready currently lists these China-market options for Buzzsprout: ${namesText}. Prefer Ximalaya (喜马拉雅) as the closest full-stack path — largest ecosystem, Apple Podcasts certified hosting, RSS, analytics, and monetization. Prefer Xiaoyuzhou (小宇宙) when podcast community and listening experience matter most. Evaluate Lizhi (荔枝FM) for younger independent creators and Qingting FM (蜻蜓FM) for professional / PGC shows. Treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "How should creators distribute a show for Chinese listeners?",
+        answer:
+          "Prefer Ximalaya when you want the broadest mainland hosting and distribution stack (including Apple Podcasts certified hosting). Prefer Xiaoyuzhou when community listening quality is the priority. Many creators evaluate both rather than treating either as a drop-in Buzzsprout replacement.",
+      },
+      {
+        question: "Is there a direct drop-in replacement for Buzzsprout in mainland China?",
+        answer:
+          "Usually no. Mainland podcast growth depends on domestic platforms, content-review workflows, creator accounts, distribution rights, and monetization rules — not a one-to-one Buzzsprout host swap. Expect a platform and workflow redesign rather than a drop-in.",
+      },
+      {
+        question: "Where should teams go after shortlisting Buzzsprout alternatives?",
+        answer:
+          "Validate audience location, Apple Podcasts or domestic distribution needs, monetization model, and creator onboarding requirements. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  libsyn: {
+    description: (availability, names) =>
+      clipMeta(
+        `Libsyn is Limited in mainland China — reachable but slow, overseas distribution and monetization misfit. Compare ${names.slice(0, 4).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Libsyn is Limited in mainland China</strong>. The site and creator dashboard are usually reachable and not explicitly blocked, but overseas hosting makes upload and admin access slow or unstable, auto-distribution mainly targets overseas directories, and AdvertiseCast plus paid-subscription monetization fit Western markets far better than mainland creators. For mainland-focused shows, map to <strong>${escapeHtml(names.slice(0, 4).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China podcast platforms instead of Libsyn",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 4,
+    indexCandidates: "Ximalaya, Xiaoyuzhou, Shengbo, Lizhi",
+    guidanceHtml: `
+        <p><strong>Libsyn is Limited for mainland China creators and operators.</strong> Libsyn itself is not clearly blocked — the website and admin can be reached from mainland China — but the day-to-day fit is poor. Servers sit overseas, so upload and dashboard access are often slow or unstable. Auto-distribution mainly targets overseas directories such as Apple Podcasts, Spotify, and Amazon Music; Spotify is unavailable in mainland China, and Apple Podcasts is usable but far less active than domestic audio platforms. AdvertiseCast advertising and paid-subscription monetization are oriented to Western advertisers and listeners, so mainland creators rarely capture value there. Support and docs are English-only.</p>
+        <p>In short: usable, but a poor fit for China-focused creators — slow, expensive relative to local reach, hard to monetize locally, and pointed at the wrong distribution stack. Map to the domestic platforms below, then validate creator onboarding, distribution rights, monetization terms, and compliance for your own show.</p>
+        <h3>How to choose</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning</th>
+                <th>Core strengths</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ximalaya (喜马拉雅)</td>
+                <td>Comprehensive audio platform + hosting</td>
+                <td>Apple Podcasts' only certified hosting partner in mainland China; hosts 26,000+ podcast albums; 160M+ users; can distribute to Apple Podcasts alongside domestic reach</td>
+              </tr>
+              <tr>
+                <td>Xiaoyuzhou (小宇宙)</td>
+                <td>Pure podcast community</td>
+                <td>Mainland China's strongest pure podcast listening and distribution community; strong interaction UX; deep partnership with QQ Music</td>
+              </tr>
+              <tr>
+                <td>Shengbo (声播)</td>
+                <td>TME Podcast Creation Center</td>
+                <td>One-click distribution across Tencent Music products including QQ Music, Kuwo Music, and Kugou Music</td>
+              </tr>
+              <tr>
+                <td>Lizhi (荔枝)</td>
+                <td>Audio creation + livestream</td>
+                <td>Lizhi FM / Lizhi Weike stack suited to knowledge-paid and voice-livestream creators</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Practical guidance</h3>
+        <p>If you still need overseas listeners, keep <strong>Libsyn</strong> or compare other global hosts such as Buzzsprout or Podbean for that audience.</p>
+        <p>If your primary audience is Chinese listeners, prefer dual distribution on <strong>Ximalaya</strong> (broad coverage + Apple Podcasts certified hosting) plus <strong>Xiaoyuzhou</strong> (podcast-native reputation and community).</p>
+        <p>If you want maximum mainland exposure inside music streaming apps, add <strong>Shengbo</strong> to cover the Tencent Music ecosystem.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Libsyn work in China?",
+        answer: `Only with Limited practical usefulness for mainland-focused shows. Chinaready labels Libsyn as ${availability}. The site and admin are usually reachable and not explicitly blocked, but overseas hosting often makes upload and dashboard access slow or unstable, auto-distribution mainly targets overseas directories, and AdvertiseCast plus paid-subscription monetization are a poor fit for mainland creators.`,
+      },
+      {
+        question: "What are the best China alternatives to Libsyn?",
+        answer: `Chinaready Landscape currently maps Libsyn to ${namesText}. Prefer Ximalaya (喜马拉雅) for Apple Podcasts certified hosting and broad mainland reach, Xiaoyuzhou (小宇宙) for podcast-native community listening, Shengbo (声播 / TME Podcast Creation Center) for QQ Music / Kuwo / Kugou distribution, and Lizhi (荔枝) for knowledge-paid or voice-livestream formats. Replacement fit varies by show, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "How should creators distribute a show for Chinese listeners?",
+        answer:
+          "A common pattern is dual distribution on Ximalaya for traffic and Apple Podcasts certified hosting plus Xiaoyuzhou for podcast-native listening and community. Add Shengbo when you want one-click coverage across Tencent Music products such as QQ Music, Kuwo Music, and Kugou Music.",
+      },
+      {
+        question: "Is there a direct drop-in replacement for Libsyn in mainland China?",
+        answer:
+          "Usually no. Mainland podcast growth depends on domestic platforms, creator accounts, distribution rights, and monetization rules, not a one-to-one Libsyn host or AdvertiseCast swap. Expect a platform and workflow redesign rather than a drop-in.",
+      },
+      {
+        question: "Where should teams go after shortlisting Libsyn alternatives?",
+        answer:
+          "Validate audience location, Apple Podcasts or domestic distribution needs, monetization model, and creator onboarding requirements. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  "hello-audio": {
+    description: (availability, names) =>
+      clipMeta(
+        `Hello Audio is Unavailable in mainland China — overseas podcast apps, Stripe-only payments, no localization. Compare ${names.slice(0, 4).join(", ") || "Xiaoe, Ximalaya, Dedao, Xiaoyuzhou"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Hello Audio is Unavailable in mainland China</strong> for practical production use. Its private-feed experience depends on overseas podcast apps, Stripe Connect does not support WeChat Pay / Alipay, and overseas hosting with no China localization makes access slow and unstable. For private audio distribution, courses, memberships, or enterprise training, Chinaready currently lists <strong>${escapeHtml(names.slice(0, 4).join(", ") || "Xiaoe, Ximalaya, Dedao, Xiaoyuzhou")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China platforms to evaluate instead of Hello Audio",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 4,
+    indexCandidates: "Xiaoe, Ximalaya, Dedao, Xiaoyuzhou",
+    guidanceHtml: `
+        <p><strong>Hello Audio is Unavailable for practical mainland China use.</strong> The reasons are straightforward:</p>
+        <ul>
+          <li><strong>Distribution channels are constrained.</strong> Hello Audio's core experience is private feeds consumed in overseas podcast apps such as Apple Podcasts, Spotify, and Overcast. Those apps are unavailable or heavily limited in mainland China.</li>
+          <li><strong>Payments do not clear.</strong> The platform collects through Stripe Connect and does not support mainstream mainland payment methods (WeChat Pay / Alipay).</li>
+          <li><strong>Servers and network.</strong> Infrastructure sits overseas, so access is often slow or unstable, and there is no China localization.</li>
+        </ul>
+        <p>Do not plan Hello Audio as a production dependency for mainland private audio distribution, paid courses, memberships, or enterprise training. Map to the domestic platforms below, then validate creator onboarding, payment, distribution rights, and compliance for your own use case.</p>
+        <h3>Domestic platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Xiaoe (小鹅通)</td>
+                <td>Private-domain knowledge-commerce SaaS (closest functional substitute)</td>
+                <td>Course audio delivery, member-only content, bootcamps, and paid podcast-style products with a WeChat-native closed loop</td>
+              </tr>
+              <tr>
+                <td>Ximalaya (喜马拉雅) paid albums</td>
+                <td>Comprehensive audio platform</td>
+                <td>Paid podcast / membership content; Apple Podcasts certified hosting in mainland China with domestic and overseas distribution paths</td>
+              </tr>
+              <tr>
+                <td>Dedao (得到)</td>
+                <td>Knowledge-commerce platform</td>
+                <td>Dedicated audio hosting and distribution for instructors and institutions — strong for structured course curricula</td>
+              </tr>
+              <tr>
+                <td>Xiaoyuzhou (小宇宙)</td>
+                <td>Chinese-language podcast platform</td>
+                <td>Public podcast distribution and discovery; does not support private feeds — better for traffic acquisition than private delivery</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <p><strong>Primary recommendation: Xiaoe (小鹅通).</strong> It is the closest match to Hello Audio's core value — packaging audio/video as private, paid, controllable delivery — and runs fully inside the WeChat ecosystem with mini programs, H5, and WeCom connectivity covering acquisition through delivery.</p>
+        <ul>
+          <li><strong>Private paid delivery / WeChat-first:</strong> start with Xiaoe.</li>
+          <li><strong>Paid podcast albums plus Apple Podcasts certified hosting:</strong> evaluate Ximalaya paid albums.</li>
+          <li><strong>Structured course / institutional audio:</strong> evaluate Dedao.</li>
+          <li><strong>Public Chinese podcast discovery (not private feeds):</strong> use Xiaoyuzhou as a traffic path.</li>
+        </ul>
+        <p>These candidates appear on the Hello Audio alternatives page only — Chinaready does <strong>not</strong> add Xiaoe, Ximalaya, Dedao, or Xiaoyuzhou as Landscape map product entries for this mapping. Confirm payment, creator onboarding, distribution rights, and compliance before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Hello Audio work in China?",
+        answer:
+          "No for practical mainland China production use. Chinaready labels Hello Audio as Unavailable. Private feeds depend on overseas podcast apps that are unavailable or heavily limited in mainland China, Stripe Connect does not support WeChat Pay / Alipay, and overseas hosting plus no China localization make access slow and unstable.",
+      },
+      {
+        question: "What are the best China alternatives to Hello Audio?",
+        answer: `Chinaready currently lists these China-market options for Hello Audio: ${namesText}. Prefer Xiaoe (小鹅通) for private paid audio/course delivery in WeChat, Ximalaya (喜马拉雅) paid albums for paid podcast / membership content with Apple Podcasts certified hosting, Dedao (得到) for structured course audio, and Xiaoyuzhou (小宇宙) for public Chinese podcast discovery (not private feeds). Treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Is Xiaoe a drop-in replacement for Hello Audio?",
+        answer:
+          "Functionally it is the closest mainland substitute for private, paid, controllable audio/video delivery, but it is not a drop-in. Expect a WeChat-ecosystem redesign (mini programs, H5, WeCom, domestic payments) rather than keeping Hello Audio's overseas private-feed and Stripe workflow.",
+      },
+      {
+        question: "Can Xiaoyuzhou replace Hello Audio private feeds?",
+        answer:
+          "No. Xiaoyuzhou is strong for public Chinese podcast listening and community, but it does not support private feeds. Use it for discovery and traffic, not for private paid delivery.",
+      },
+      {
+        question: "Where should teams go after shortlisting Hello Audio alternatives?",
+        answer:
+          "Validate whether you need private paid delivery, public podcast reach, Apple Podcasts certified hosting, or structured course audio. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  podbean: {
+    description: (availability, names) =>
+      clipMeta(
+        `Podbean is Limited in mainland China — overseas AWS hosting, slow and unstable, no local compliance. Compare ${names.slice(0, 5).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Podbean is Limited in mainland China</strong>. It is not blocked by the GFW, but the service runs on overseas AWS nodes, so loading and playback are often slow or unstable — and Podbean has not localized for mainland content-review or data-residency rules. For mainland-focused creators, map to <strong>${escapeHtml(names.slice(0, 5).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China podcast platforms instead of Podbean",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 5,
+    indexCandidates: "Ximalaya, Xiaoyuzhou, Lizhi, NetEase Cloud Music, Qingting FM",
+    guidanceHtml: `
+        <p><strong>Podbean is Limited for mainland China creators and operators.</strong> The product is reachable in many cases — it is not broadly blocked — but the experience is poor in practice. Podbean hosts on overseas AWS nodes, so geographic distance plus weaker mainland browser/network compatibility often means slow loads and choppy playback. China also expects overseas digital services to meet local rules (content review, data localization, and related requirements). Podbean has not localized for those constraints, so intermittent access limits remain possible.</p>
+        <p>In short: not blocked, but slow and unstable, and without a mainland compliance path. Map to the domestic platforms below, then validate creator onboarding, distribution rights, monetization terms, and compliance for your own show.</p>
+        <h3>How to choose</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning</th>
+                <th>Core strengths</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ximalaya (喜马拉雅)</td>
+                <td>Comprehensive audio platform</td>
+                <td>Apple Podcasts' only certified hosting partner in mainland China; hosts 26,000+ podcasts; 160M+ Chinese podcast users with built-in discovery traffic</td>
+              </tr>
+              <tr>
+                <td>Xiaoyuzhou (小宇宙)</td>
+                <td>Independent podcast community</td>
+                <td>Clean UI; one-click sync to Apple Podcasts / QQ Music; strongest reputation for pure podcast listening in the Chinese podcast scene</td>
+              </tr>
+              <tr>
+                <td>Lizhi (荔枝)</td>
+                <td>Podcast hosting + radio</td>
+                <td>Free unlimited capacity; RSS generation with Apple Podcasts sync; practical for individual creators</td>
+              </tr>
+              <tr>
+                <td>NetEase Cloud Music (网易云音乐)</td>
+                <td>Music + podcast</td>
+                <td>Podcast open-API system; distribution through a large music-player user base</td>
+              </tr>
+              <tr>
+                <td>Qingting FM (蜻蜓FM)</td>
+                <td>Comprehensive audio platform</td>
+                <td>450M+ total users; covers culture, finance, tech, and other categories</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Practical guidance</h3>
+        <p>If your primary audience is Chinese listeners, prefer <strong>Xiaoyuzhou</strong> (best pure podcast experience) plus <strong>Ximalaya</strong> (largest traffic) for dual-platform distribution.</p>
+        <p>If you also need Apple Podcasts distribution, <strong>Ximalaya</strong> is the official certified hosting partner in mainland China. <strong>Xiaoyuzhou</strong> can generate an RSS feed for manual Apple Podcasts submission.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Podbean work in China?",
+        answer: `Only with Limited practical usefulness for mainland-focused shows. Chinaready labels Podbean as ${availability}. Podbean is not broadly blocked, but overseas AWS hosting often means slow loads and unstable playback from mainland China, and the product has not localized for mainland content-review or data-residency rules.`,
+      },
+      {
+        question: "What are the best China alternatives to Podbean?",
+        answer: `Chinaready Landscape currently maps Podbean to ${namesText}. Prefer Xiaoyuzhou (小宇宙) for the best pure podcast listening experience, Ximalaya (喜马拉雅) for Apple Podcasts certified hosting and the largest mainland reach, Lizhi (荔枝) for free hosting with RSS sync, NetEase Cloud Music (网易云音乐) when you already have fans there, and Qingting FM (蜻蜓FM) for broad audio coverage. Replacement fit varies by show, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "How should creators distribute a show for Chinese listeners?",
+        answer:
+          "A common pattern is dual distribution on Xiaoyuzhou for podcast-native listening plus Ximalaya for traffic and Apple Podcasts certified hosting. Xiaoyuzhou can also generate an RSS feed for manual Apple Podcasts submission when needed.",
+      },
+      {
+        question: "Is there a direct drop-in replacement for Podbean in mainland China?",
+        answer:
+          "Usually no. Mainland podcast growth depends on domestic platforms, creator accounts, distribution rights, and monetization rules, not a one-to-one Podbean host swap. Expect a platform and workflow redesign rather than a drop-in.",
+      },
+      {
+        question: "Where should teams go after shortlisting Podbean alternatives?",
+        answer:
+          "Validate audience location, Apple Podcasts or domestic distribution needs, monetization model, and creator onboarding requirements. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  bombbomb: {
+    description: (availability, names) =>
+      clipMeta(
+        `BombBomb is Unavailable in mainland China — overseas video hosting, high latency, no localization or China CRM fit. Compare ${names.slice(0, 4).join(", ") || "U-Mail, TurboEx, Tencent Cloud SES, Aico Mail"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>BombBomb is Unavailable in mainland China</strong> for practical production use. BombBomb's terms warn that access from outside the United States is at the user's own risk. Recording, hosting, and playback sit on overseas servers with no China nodes, so latency and timeouts are common; the product is English-only with weak domestic payment and WeCom/DingTalk/CRM fit; and overseas video storage raises mainland data-export compliance risk. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 4).join(", ") || "U-Mail, TurboEx, Tencent Cloud SES, Aico Mail")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Video email options to evaluate instead of BombBomb",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 4,
+    indexCandidates: "U-Mail, TurboEx, Tencent Cloud SES, Aico Mail",
+    guidanceHtml: `
+        <p><strong>BombBomb is Unavailable for reliable mainland China use.</strong> BombBomb's terms state that access from outside the United States is at the user's own risk. There are no China nodes — video recording, hosting, and playback all depend on overseas servers, so mainland use is high-latency and prone to timeouts. Streaming video is especially fragile on cross-border links. The product is English-only, lacks a practical domestic payment path, and does not integrate with mainstream China tools such as WeCom or DingTalk. Storing customer video content overseas may also conflict with mainland data-export rules. Do not plan BombBomb as a production dependency for mainland China personalized video email.</p>
+        <p>BombBomb's core job is personalized video recording plus email embed plus open/play tracking. Mainland China has no single drop-in product that covers that entire loop. Teams usually combine a recording tool with a China-ready email path, or use a lighter messaging channel when customers are already on WeCom or DingTalk.</p>
+        <h3>China-market email and video-mail platforms</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>U-Mail</td>
+                <td>Domestic email marketing with video-email sends, open/click tracking, automation, and high-volume delivery</td>
+                <td>Foreign-trade and domestic teams that need professional video email plus analytics — often paired with Loom or another recorder</td>
+              </tr>
+              <tr>
+                <td>TurboEx (拓波)</td>
+                <td>Xinchuang-ready enterprise mail system with explicit video-email support, collaboration, and security controls</td>
+                <td>Government and enterprise teams that need video mail inside a domestic soft/hardware stack</td>
+              </tr>
+              <tr>
+                <td>Tencent Cloud SES</td>
+                <td>SMTP/API email push with dynamic templates, personalized fields, and high reported deliverability</td>
+                <td>Technical teams building a custom video-email workflow on Tencent Cloud</td>
+              </tr>
+              <tr>
+                <td>Aico Mail</td>
+                <td>Lightweight domestic mobile email client that supports voice and video mail</td>
+                <td>Simple one-to-one video or voice email — not a full BombBomb sales analytics stack</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Recording and lightweight paths (guidance only)</h3>
+        <ul>
+          <li><strong>Loom:</strong> international screen + camera recorder that is often reachable from China; generate a link to embed in email, with basic analytics. Free plan commonly cited around 25 videos/month.</li>
+          <li><strong>Tencent Meeting recording / Feishu Miaobi:</strong> record, then share a link for internal or customer follow-up — stronger for meeting capture than BombBomb-style outbound personalization.</li>
+          <li><strong>WeCom / DingTalk video messages:</strong> when customers are already on those apps, send short videos in-channel and track follow-up in CRM — often the lowest-cost mainland substitute.</li>
+          <li><strong>BillionMail:</strong> open-source self-hosted email marketing with tracking/analytics for teams that want to run their own stack.</li>
+        </ul>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Mainland customers (recommended starting path):</strong> U-Mail plus a recording tool such as Loom.</li>
+          <li><strong>Government / enterprise Xinchuang email:</strong> evaluate TurboEx (拓波).</li>
+          <li><strong>API-built personalized video email:</strong> evaluate Tencent Cloud SES with your own recorder and templates.</li>
+          <li><strong>Lightweight one-to-one video mail:</strong> evaluate Aico Mail, or WeCom/DingTalk when the customer relationship already lives there.</li>
+          <li><strong>Overseas customers:</strong> BombBomb, Loom, or Vidyard may still be appropriate outside mainland China.</li>
+        </ul>
+        <p>These candidates appear on the BombBomb alternatives page only — Chinaready does <strong>not</strong> add U-Mail, TurboEx, Tencent Cloud SES, or Aico Mail as Landscape map product entries for BombBomb. Confirm video hosting, deliverability, compliance, and vendor fit before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does BombBomb work in China?",
+        answer:
+          "No for practical mainland China production use. Chinaready labels BombBomb as Unavailable. BombBomb's terms warn that access from outside the United States is at the user's own risk; recording and playback depend on overseas servers with no China nodes; the product is English-only with weak domestic payment and CRM fit; and overseas video storage raises mainland data-export compliance risk.",
+      },
+      {
+        question: "What are the best China alternatives to BombBomb?",
+        answer: `Chinaready currently lists these China-market options for BombBomb: ${namesText}. There is no single drop-in substitute for personalized video plus email plus open/play tracking. Prefer U-Mail paired with a recording tool (for example Loom) for mainland customers; TurboEx (拓波) for Xinchuang video email; Tencent Cloud SES for API-built video-email workflows; and Aico Mail for lightweight voice/video mail. Confirm fit before production adoption.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for BombBomb in mainland China?",
+        answer:
+          "Usually no. BombBomb combines personalized video recording, email embeds, and open/play tracking. Mainland substitutes typically cover only part of that stack — EDM with video support, enterprise video mail, API email push, or lightweight messaging — so expect a workflow redesign rather than a one-to-one BombBomb swap.",
+      },
+      {
+        question: "How should teams choose among U-Mail, TurboEx, Tencent Cloud SES, and Aico Mail?",
+        answer:
+          "Choose U-Mail when you need professional video email, tracking, and automation for foreign-trade or domestic campaigns — usually paired with Loom or another recorder. Choose TurboEx (拓波) for government/enterprise Xinchuang video email. Choose Tencent Cloud SES when a technical team will build personalized video-email flows via API. Choose Aico Mail only for lightweight one-to-one voice/video mail.",
+      },
+      {
+        question: "Where should teams go after shortlisting BombBomb alternatives?",
+        answer:
+          "Validate video hosting location, deliverability into your target inboxes, open/play analytics needs, WeCom/DingTalk vs email channel fit, and mainland compliance. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  sendspark: {
+    description: (availability, names) =>
+      clipMeta(
+        `Sendspark is Unavailable in mainland China — US-hosted, Cloudflare CDN with no China nodes, video email pages slow or blocked. Compare ${names.slice(0, 3).join(", ") || "Dongli Wuxian, U-Mail, Alibaba Cloud Sendify"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Sendspark is Unavailable in mainland China</strong> for practical production use. It is a US company (San Antonio HQ) with overseas infrastructure and Cloudflare CDN and no mainland China nodes. Core video landing pages embedded in email often load slowly or fail under mainland network conditions, and the product is English-only with no Chinese UI or domestic payment path. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Dongli Wuxian, U-Mail, Alibaba Cloud Sendify")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China marketing options to evaluate instead of Sendspark",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 3,
+    indexCandidates: "Dongli Wuxian, U-Mail, Alibaba Cloud Sendify",
+    guidanceHtml: `
+        <p><strong>Sendspark is Unavailable for reliable mainland China use.</strong> Sendspark is a US company headquartered in San Antonio. Its servers sit overseas and traffic rides Cloudflare CDN with no mainland China nodes. The product’s core loop depends on video landing pages embedded in email, which often load slowly or fail under mainland network conditions — and may be blocked. The UI is English-only, with no Chinese-language support and no domestic payment channel. Do not plan Sendspark as a production dependency for mainland China sales outreach.</p>
+        <p>There is currently no mainland China product that fully matches Sendspark’s combination of AI-personalized video email plus sales outreach. Split the job by primary need, then validate fit for your own entity and channels.</p>
+        <h3>Video marketing + personalized reach</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Dongli Wuxian (动力无限)</td>
+                <td>Video-matrix distribution, intelligent video production, and personalized variable insertion for email/SMS — covering video, email, and SMS multi-channel marketing</td>
+                <td>Teams whose center of gravity is video content plus personalized multi-channel outreach</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Email marketing + personalization</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>U-Mail</td>
+                <td>Long-standing domestic email marketing platform with dynamic per-recipient variables, automation workflows, and reported deliverability above 90%</td>
+                <td>Foreign-trade and B2B teams that need China-ready EDM personalization and automation</td>
+              </tr>
+              <tr>
+                <td>Alibaba Cloud Sendify</td>
+                <td>Alibaba one-stop smart email marketing with an AI assistant for multilingual copy, personalized sends, and A/B testing</td>
+                <td>Teams that want Alibaba-stack email marketing with AI-assisted content and personalization</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Video-led personalized outreach:</strong> start with Dongli Wuxian (动力无限).</li>
+          <li><strong>Classic EDM personalization and automation (trade / B2B):</strong> evaluate U-Mail.</li>
+          <li><strong>Alibaba-ecosystem email marketing with AI copy help:</strong> evaluate Alibaba Cloud Sendify.</li>
+        </ul>
+        <p>These candidates appear on the Sendspark alternatives page only — Chinaready does <strong>not</strong> add Dongli Wuxian, U-Mail, or Alibaba Cloud Sendify as Landscape map product entries. Confirm deliverability, video/email workflows, compliance, and vendor fit before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Sendspark work in China?",
+        answer:
+          "No for practical mainland China production use. Chinaready labels Sendspark as Unavailable. The product is US-hosted with Cloudflare CDN and no mainland nodes; embedded video email pages often load slowly or fail under mainland conditions; and there is no Chinese UI or domestic payment path.",
+      },
+      {
+        question: "What are the best China alternatives to Sendspark?",
+        answer: `There is no full one-to-one Sendspark match for AI-personalized video email plus sales outreach. Chinaready currently lists these China-market options: ${namesText}. Prefer Dongli Wuxian (动力无限) when video marketing and multi-channel personalized reach matter most; U-Mail for domestic email marketing with personalization and automation; Alibaba Cloud Sendify for Alibaba-stack smart email marketing with AI-assisted copy. Confirm fit before production adoption.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Sendspark in mainland China?",
+        answer:
+          "Usually no. Sendspark combines personalized video email with sales outreach. Mainland substitutes typically cover only part of that stack — video matrix marketing, classic EDM, or smart email — so expect a workflow redesign rather than a one-to-one Sendspark swap.",
+      },
+      {
+        question: "How should teams choose among Dongli Wuxian, U-Mail, and Alibaba Cloud Sendify?",
+        answer:
+          "Choose Dongli Wuxian (动力无限) for video-led personalized multi-channel outreach. Choose U-Mail for classic EDM personalization and automation in trade / B2B. Choose Alibaba Cloud Sendify when Alibaba-stack email marketing with AI copy help is the priority.",
+      },
+      {
+        question: "Where should teams go after shortlisting Sendspark alternatives?",
+        answer:
+          "Validate whether video personalization, EDM automation, or Alibaba-stack email is the real job to do, then confirm deliverability, compliance, and vendor fit with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  marketo: {
+    description: (availability, names) =>
+      clipMeta(
+        `Marketo is Limited in mainland China — reachable, but poor experience and constrained core features. Compare ${names.slice(0, 4).join(", ") || "Fxiaoke, Tencent Qidian, Weimob Marketing Cloud, Zoho CRM"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Marketo is Limited in mainland China</strong>. It is often technically reachable, but day-to-day experience is poor and core capabilities are constrained — especially email delivery into China, overseas hosting / data-residency risk, AI features that exclude mainland China, and missing China-cloud integrations. For mainland-focused marketing automation, Chinaready currently lists <strong>${escapeHtml(names.slice(0, 4).join(", ") || "Fxiaoke, Tencent Qidian, Weimob Marketing Cloud, Zoho CRM")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China marketing automation platforms instead of Marketo",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 4,
+    indexCandidates: "Fxiaoke, Tencent Qidian, Weimob Marketing Cloud, Zoho CRM",
+    guidanceHtml: `
+        <p><strong>Marketo is Limited for mainland China operations.</strong> Teams can often open the product from the mainland, but practical usefulness is weak: cross-border email is heavily filtered (delay, broken links, or non-delivery), servers sit overseas (slow/unstable access plus data-export risk), Adobe Marketo AI's initial release was aimed at global users excluding mainland China, and connectors such as Microsoft integrations may be unavailable in the 21Vianet-operated China cloud.</p>
+        <p>If your buyers and campaigns are primarily in mainland China, prefer a domestic or well-localized marketing / CRM stack that runs stably on local networks and fits WeChat, WeCom, Douyin, and related channels.</p>
+        <h3>Domestic platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Highlights</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Fxiaoke (纷享销客)</td>
+                <td>Leading mainland CRM share; multichannel lead capture, scoring, behavior-triggered automation, WeCom integration, and PaaS customization</td>
+                <td>Mid-to-large enterprises, B2B full-funnel marketing</td>
+              </tr>
+              <tr>
+                <td>Tencent Qidian / Tencent Smart Marketing (腾讯企点 / 腾讯智慧营销)</td>
+                <td>Deep fit with WeChat, QQ, and related Tencent social channels; paid reach plus real-time feedback loops</td>
+                <td>Teams whose acquisition and engagement center on the WeChat ecosystem</td>
+              </tr>
+              <tr>
+                <td>Weimob Marketing Cloud (微盟营销云)</td>
+                <td>Omnichannel customer data, profiles, and automated marketing journeys with mature ecommerce playbooks</td>
+                <td>Ecommerce and retail brands</td>
+              </tr>
+              <tr>
+                <td>Zoho CRM</td>
+                <td>Cost-effective, well-localized CRM with multi-year Gartner Magic Quadrant recognition</td>
+                <td>SMBs and trade-oriented / cross-border teams</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Mainland-first B2B:</strong> start with Fxiaoke for end-to-end CRM + marketing automation, or Tencent Qidian when WeChat/QQ social reach is the growth engine.</li>
+          <li><strong>Ecommerce / retail:</strong> evaluate Weimob Marketing Cloud for domestic commerce journeys and private-domain retention.</li>
+          <li><strong>SMB or trade-heavy stacks:</strong> Zoho CRM is a practical localized CRM path when budget and localization matter more than a full Marketo-style automation suite.</li>
+        </ul>
+        <p>These candidates appear on the Marketo alternatives page only — Chinaready does <strong>not</strong> add Fxiaoke, Tencent Qidian, Weimob Marketing Cloud, or Zoho CRM as Explore / Landscape product tiles for Marketo. Confirm channel fit, email/SMS deliverability, and compliance for your own entity before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Marketo work in China?",
+        answer: `Only with Limited practical usefulness. Chinaready labels Marketo as ${availability} for mainland China. The product is often technically reachable, but experience is poor and core features are constrained — especially cross-border email delivery, overseas hosting without a China data center, AI features that exclude mainland China, and missing China-cloud integrations.`,
+      },
+      {
+        question: "What are the best China alternatives to Marketo?",
+        answer: namesText
+          ? `Chinaready currently lists these China-ready candidates for Marketo: ${namesText}. Prefer Fxiaoke for B2B full-funnel CRM/marketing, Tencent Qidian when WeChat/QQ social reach is central, Weimob Marketing Cloud for ecommerce/retail journeys, and Zoho CRM for SMB or trade-oriented stacks. Confirm fit before production adoption.`
+          : "Prefer Fxiaoke (纷享销客) for B2B full-funnel CRM/marketing, Tencent Qidian (腾讯企点) when WeChat/QQ social reach is central, Weimob Marketing Cloud (微盟营销云) for ecommerce/retail, and Zoho CRM for SMB or trade-oriented stacks.",
+      },
+      {
+        question: "Why is Marketo a poor fit for mainland China marketing?",
+        answer:
+          "Four practical gaps show up repeatedly: China filters overseas email aggressively (delay, broken links, non-delivery); Marketo has no China-region data center (latency plus data-export risk); Adobe Marketo AI initially excludes mainland China; and some Microsoft connectors are unavailable in the 21Vianet-operated China cloud.",
+      },
+      {
+        question: "Is there a direct drop-in replacement for Marketo in mainland China?",
+        answer:
+          "Usually no. Mainland marketing automation is designed around WeChat/WeCom, domestic CRM data models, local deliverability, and ecommerce or B2B channel stacks — not a one-to-one Marketo Engage swap. Expect a channel and workflow redesign rather than a drop-in migration.",
+      },
+      {
+        question: "Are Fxiaoke, Tencent Qidian, Weimob Marketing Cloud, and Zoho CRM on Chinaready Explore?",
+        answer:
+          "No. They are listed as Mapped China-ready candidates on this alternatives page only. Chinaready does not add them as Explore / Landscape product tiles for Marketo.",
+      },
+      {
+        question: "Where should teams go after shortlisting Marketo alternatives?",
+        answer:
+          "Validate whether your priority is B2B CRM automation, WeChat-centric growth, ecommerce journeys, or SMB localization — then confirm deliverability, data residency, and vendor fit with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  loyaltylion: {
+    description: (availability, names) =>
+      clipMeta(
+        `LoyaltyLion is Unavailable in mainland China — Shopify-only loyalty app with no China localization or domestic ecommerce integrations. Compare ${names.slice(0, 3).join(", ") || "Duiba, Weimob, Youzan"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>LoyaltyLion is Unavailable in mainland China</strong> for practical production use. The product is a Shopify-centric loyalty app, Shopify has negligible mainland ecommerce share, there is no Simplified Chinese UI or Chinese support, and it does not connect to Taobao, JD, Pinduoduo, or WeChat mini programs. Overseas hosting adds latency and compliance risk. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Duiba, Weimob, Youzan")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China loyalty and membership tools to evaluate instead of LoyaltyLion",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 6,
+    indexCandidates: "Duiba, Weimob, Youzan, ShopEx ECShopX, Qianmi, Tongduiba",
+    guidanceHtml: `
+        <p><strong>LoyaltyLion is Unavailable for practical mainland China use.</strong> The marketing site may still open from mainland networks, but the product is a Shopify-ecosystem loyalty app. Shopify has negligible China ecommerce market share, so a Shopify plugin rarely helps a China go-to-market. There is no Simplified Chinese interface or Chinese customer support, no native integration with Taobao, JD, Pinduoduo, or WeChat mini programs, and overseas hosting (UK-registered company, overseas servers) adds latency and compliance risk. Do not plan LoyaltyLion as a production dependency for mainland China loyalty.</p>
+        <h3>Domestic platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Tool</th>
+                <th>Positioning</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Duiba (兑吧)</td>
+                <td>Points mall + gamified user-ops SaaS</td>
+                <td>App / mini-program user ops in banking, retail, dining, and similar high-frequency industries</td>
+              </tr>
+              <tr>
+                <td>Weimob (微盟)</td>
+                <td>Omnichannel membership management + AI-assisted marketing</td>
+                <td>Mid-to-large brands and retail chains that need online/offline membership</td>
+              </tr>
+              <tr>
+                <td>Youzan (有赞)</td>
+                <td>Lighter membership points + stored-value marketing</td>
+                <td>SMBs and early-stage brands that need a fast mainland loyalty rollout</td>
+              </tr>
+              <tr>
+                <td>ShopEx ECShopX (商派 ECShopX)</td>
+                <td>Open-source points-mall / commerce system</td>
+                <td>Teams with engineering capacity that need deep customization</td>
+              </tr>
+              <tr>
+                <td>Qianmi (千米网)</td>
+                <td>Vertical-industry membership solutions</td>
+                <td>Single-format offline stores (dining, retail, and similar)</td>
+              </tr>
+              <tr>
+                <td>Tongduiba (通兑吧)</td>
+                <td>Points-operations SaaS</td>
+                <td>Activity, retention, and conversion programs built around points</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Independent / cross-border Shopify stores:</strong> LoyaltyLion can still be a strong overseas choice when your customers and stack stay outside mainland China.</li>
+          <li><strong>Mainland customers and domestic channels:</strong> Weimob (微盟) is usually the closest mid-to-large omnichannel path; Youzan (有赞) is the lighter SMB path closest to LoyaltyLion-style membership and points.</li>
+          <li><strong>App / mini-program gamification:</strong> start with Duiba (兑吧) or Tongduiba (通兑吧).</li>
+          <li><strong>Custom build with an in-house team:</strong> evaluate ShopEx ECShopX (商派 ECShopX).</li>
+          <li><strong>Single-format offline verticals:</strong> evaluate Qianmi (千米网).</li>
+        </ul>
+        <p>These candidates appear on the LoyaltyLion alternatives page only — Chinaready does <strong>not</strong> add them as Explore / Landscape product tiles for LoyaltyLion. Confirm channel fit, membership model, and compliance for your own entity before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does LoyaltyLion work in China?",
+        answer: `No for practical mainland China production use. Chinaready labels LoyaltyLion as ${availability}. The site may be reachable, but it is a Shopify-centric loyalty app with no Simplified Chinese localization, no Chinese support, and no native fit for Taobao, JD, Pinduoduo, or WeChat mini programs — a poor dependency for mainland loyalty operations.`,
+      },
+      {
+        question: "What are the best China alternatives to LoyaltyLion?",
+        answer: namesText
+          ? `Chinaready currently lists these China-ready candidates for LoyaltyLion: ${namesText}. Prefer Weimob for mid-to-large omnichannel membership, Youzan for lighter SMB loyalty, Duiba or Tongduiba for points/gamification SaaS, ShopEx ECShopX for open-source customization, and Qianmi for single-format offline verticals. Confirm fit before production adoption.`
+          : "Prefer Weimob (微盟) for mid-to-large omnichannel membership, Youzan (有赞) for lighter SMB loyalty, Duiba (兑吧) or Tongduiba (通兑吧) for points/gamification SaaS, ShopEx ECShopX for open-source customization, and Qianmi (千米网) for single-format offline verticals.",
+      },
+      {
+        question: "Is there a direct drop-in replacement for LoyaltyLion in mainland China?",
+        answer:
+          "Usually no. LoyaltyLion is oriented around Shopify loyalty plugins, while mainland programs are typically designed into domestic commerce SaaS, WeChat private-domain stacks, points-mall platforms, or vertical retail systems. Expect a channel and membership-model redesign rather than a one-to-one LoyaltyLion swap.",
+      },
+      {
+        question: "Are Duiba, Weimob, Youzan, ShopEx ECShopX, Qianmi, and Tongduiba on Chinaready Explore?",
+        answer:
+          "No. They are listed as Mapped China-ready candidates on this alternatives page only. Chinaready does not add them as Explore / Landscape product tiles for LoyaltyLion.",
+      },
+      {
+        question: "Where should teams go after shortlisting LoyaltyLion alternatives?",
+        answer:
+          "Validate whether you sell on Shopify overseas or on mainland channels, how membership should sit in WeChat versus platform stores or a brand app, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  "commerce-layer": {
+    description: (availability, names) =>
+      clipMeta(
+        `Commerce Layer is Limited in mainland China — reachable, but overseas AWS, missing local payments/logistics, and compliance risk. Compare ${names.slice(0, 3).join(", ") || "Wanmi Shangyun, Shushangyun, Youzan"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Commerce Layer is Limited in mainland China</strong>. It is usually technically reachable, but hard to land in production: overseas AWS hosting with no China-region nodes means high API latency and unstable connections; WeChat Pay, Alipay, and domestic logistics integrations are missing; and cross-border transaction data creates Data Security Law / Personal Information Protection Law compliance risk. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 5).join(", ") || "Wanmi Shangyun, Shushangyun, Youzan, Weimob, Raycloud")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China ecommerce platforms to evaluate instead of Commerce Layer",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 5,
+    indexCandidates: "Wanmi Shangyun, Shushangyun, Youzan, Weimob, Raycloud",
+    guidanceHtml: `
+        <p><strong>Commerce Layer is Limited for mainland China operations.</strong> Teams can often open the product from mainland networks, but day-to-day production use is difficult. Commerce Layer runs on overseas AWS with no China-region nodes, so API latency is high and connections are unstable. It also lacks WeChat Pay, Alipay, and domestic logistics connectors, and storing or moving transaction data outside mainland China creates Data Security Law and Personal Information Protection Law compliance risk.</p>
+        <h3>Domestic platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning</th>
+                <th>Highlights</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Wanmi Shangyun (万米商云 / SBC AI)</td>
+                <td>AI headless ecommerce system</td>
+                <td>Private deployment and source delivery; six intelligent Agents; covers B2C / B2B / S2B2C / O2O; commonly cited for 1000+ mid-to-large enterprise rollouts</td>
+              </tr>
+              <tr>
+                <td>Shushangyun (数商云)</td>
+                <td>B2B ecommerce platform</td>
+                <td>Headless frontend/backend separation; microservice product / order / payment centers; source-code secondary development</td>
+              </tr>
+              <tr>
+                <td>Youzan (有赞)</td>
+                <td>Omnichannel SaaS ecommerce</td>
+                <td>Strong open APIs across mini programs, H5, and App; mature ecosystem; fast launch path for SMBs and brands</td>
+              </tr>
+              <tr>
+                <td>Weimob (微盟)</td>
+                <td>Smart retail SaaS</td>
+                <td>Deep WeChat ecosystem integration; smart retail, dining, and related vertical commerce scenarios</td>
+              </tr>
+              <tr>
+                <td>Raycloud (光云科技 / Kuaimai / Superboss)</td>
+                <td>Ecommerce SaaS tools</td>
+                <td>Deep Taobao / JD / Pinduoduo ecosystem integration; multi-platform seller operations</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>API-first headless commerce (closest to Commerce Layer):</strong> evaluate Wanmi Shangyun (SBC AI) for private deployment, API-first architecture, and source delivery.</li>
+          <li><strong>Headless B2B platforms:</strong> evaluate Shushangyun when product / order / payment microservice centers and secondary development matter most.</li>
+          <li><strong>Lightweight or WeChat-centric commerce:</strong> Youzan or Weimob open APIs cover most omnichannel SaaS needs without a pure headless engine.</li>
+          <li><strong>Multi-platform seller ops on Taobao / JD / Pinduoduo:</strong> evaluate Raycloud tools such as Kuaimai and Superboss.</li>
+        </ul>
+        <p>These candidates appear on the Commerce Layer alternatives page only — Chinaready does <strong>not</strong> add Wanmi Shangyun, Shushangyun, Youzan, Weimob, or Raycloud as Explore / Landscape product tiles for Commerce Layer. Confirm architecture fit, payments, logistics, and compliance for your own entity before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Commerce Layer work in China?",
+        answer: `Only with Limited practical usefulness. Chinaready labels Commerce Layer as ${availability} for mainland China. The product is usually reachable, but overseas AWS hosting, missing WeChat Pay / Alipay / domestic logistics, and cross-border data compliance risk make production landing difficult.`,
+      },
+      {
+        question: "What are the best China alternatives to Commerce Layer?",
+        answer: namesText
+          ? `Chinaready currently lists these China-ready candidates for Commerce Layer: ${namesText}. Prefer Wanmi Shangyun (SBC AI) for API-first headless commerce closest to Commerce Layer, Shushangyun for headless B2B platforms, Youzan or Weimob for WeChat-centric omnichannel SaaS, and Raycloud (Kuaimai / Superboss) for Taobao / JD / Pinduoduo multi-platform seller tools. Confirm fit before production adoption.`
+          : "Prefer Wanmi Shangyun (万米商云 / SBC AI) for API-first headless commerce, Shushangyun (数商云) for headless B2B, Youzan or Weimob for WeChat-centric omnichannel SaaS, and Raycloud (光云科技) for multi-platform seller tools.",
+      },
+      {
+        question: "Is there a direct drop-in replacement for Commerce Layer in mainland China?",
+        answer:
+          "Usually no. Commerce Layer is a pure API commerce backend with a custom frontend. Mainland options range from headless private-deployment engines such as Wanmi Shangyun to omnichannel SaaS such as Youzan and Weimob. Expect architecture, payments, and logistics redesign rather than a one-to-one swap.",
+      },
+      {
+        question: "How should teams choose among Wanmi Shangyun, Shushangyun, Youzan, Weimob, and Raycloud?",
+        answer:
+          "Choose Wanmi Shangyun when you need Commerce Layer-style API-first headless commerce with private deployment and source delivery. Choose Shushangyun for headless B2B platforms with microservice commerce centers. Choose Youzan or Weimob when open APIs inside WeChat-centric omnichannel SaaS are enough. Choose Raycloud when the job is multi-platform seller operations on Taobao, JD, and Pinduoduo.",
+      },
+      {
+        question: "Are Wanmi Shangyun, Shushangyun, Youzan, Weimob, and Raycloud on Chinaready Explore?",
+        answer:
+          "No. They are listed as Mapped China-ready candidates on this alternatives page only. Chinaready does not add them as Explore / Landscape product tiles for Commerce Layer.",
+      },
+      {
+        question: "Where should teams go after shortlisting Commerce Layer alternatives?",
+        answer:
+          "Validate headless versus SaaS architecture needs, WeChat Pay / Alipay and logistics connectors, data residency, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  "smile-io": {
+    description: (availability, names) =>
+      clipMeta(
+        `Smile.io is Limited in mainland China — reachable, but overseas servers mean slow loads and laggy admin. For domestic ecommerce loyalty, compare ${names.slice(0, 3).join(", ") || "Youzan, Weimob"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Smile.io is Limited in mainland China</strong>. The site is usually reachable, but servers sit overseas, so mainland teams often see slow page loads, laggy admin work, and unstable features that hurt day-to-day efficiency. For mainland ecommerce loyalty, Chinaready currently lists <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Youzan, Weimob")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China loyalty marketing tools to evaluate instead of Smile.io",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 2,
+    indexCandidates: "Youzan, Weimob",
+    guidanceHtml: `
+        <p><strong>Smile.io is Limited for mainland China operations.</strong> The marketing site can usually be opened from mainland China, but the product runs on overseas infrastructure. Typical symptoms include slow loading, sluggish back-office work, and intermittent feature instability — enough to hurt daily loyalty-program operations even when the product is not fully blocked.</p>
+        <p>If your customers and commerce stack are in mainland China, a domestic or well-localized loyalty marketing platform is usually the more stable and efficient choice. The mapped candidates below focus on brands selling through Taobao/Tmall, JD, Douyin, and related domestic channels.</p>
+        <h3>For domestic ecommerce platforms (Taobao / Tmall / JD / Douyin)</h3>
+        <p>When China-market ecommerce is the center of gravity, these SaaS vendors are the mainstream shortlist for membership and loyalty:</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Youzan (有赞)</td>
+                <td>Leading China retail-tech SaaS with a full storefront stack and a strong membership marketing system; Youzan Loyalty covers points, tiers, stored value, and paid membership</td>
+                <td>Brands that need deep fit with domestic ecommerce habits and a rich, stable loyalty toolkit</td>
+              </tr>
+              <tr>
+                <td>Weimob (微盟)</td>
+                <td>Major commerce-cloud vendor with smart-retail solutions; membership is a core module for fine-grained member ops and loyalty</td>
+                <td>Brands that lean on WeChat private-domain operations and WeChat-centric membership</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>How the mapped candidates differ</h3>
+        <ul>
+          <li><strong>Youzan (有赞):</strong> strongest when you want a broad domestic retail + loyalty suite (points, tiers, stored value, paid membership) aligned with mainland shopper habits.</li>
+          <li><strong>Weimob (微盟):</strong> strongest when WeChat mini programs, membership cards, and private-domain retention are the primary operating model.</li>
+        </ul>
+        <p>These candidates appear on the Smile.io alternatives page only — Chinaready does <strong>not</strong> add Youzan or Weimob as Explore / Landscape product tiles for Smile.io. Confirm channel fit, membership model, and compliance for your own entity before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Smile.io work in China?",
+        answer: `Only with Limited practical usefulness. Chinaready labels Smile.io as ${availability} for mainland China. The site is usually reachable, but overseas hosting often means slow loads, laggy admin, and unstable day-to-day use — a poor fit for reliable mainland loyalty operations.`,
+      },
+      {
+        question: "What are the best China alternatives to Smile.io?",
+        answer: namesText
+          ? `Chinaready currently lists these China-ready candidates for Smile.io: ${namesText}. Prefer Youzan for a full domestic retail and loyalty suite, and Weimob when WeChat private-domain membership is central. Confirm fit before production adoption.`
+          : "Prefer Youzan (有赞) for a full domestic retail and loyalty suite, and Weimob (微盟) when WeChat private-domain membership is central.",
+      },
+      {
+        question: "Is there a direct drop-in replacement for Smile.io in mainland China?",
+        answer:
+          "Usually no. Smile.io is oriented around Shopify-style loyalty plugins, while mainland programs are typically designed into domestic commerce SaaS, WeChat private-domain stacks, or platform ecosystems. Expect a channel and membership-model redesign rather than a one-to-one Smile.io swap.",
+      },
+      {
+        question: "Are Youzan and Weimob on Chinaready Explore?",
+        answer:
+          "No. Youzan and Weimob are listed as Mapped China-ready candidates on this alternatives page only. Chinaready does not add them as Explore / Landscape product tiles for Smile.io.",
+      },
+      {
+        question: "Where should teams go after shortlisting Smile.io alternatives?",
+        answer:
+          "Validate which China commerce channels you sell on, how membership should sit in WeChat versus platform stores, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  "joy-rewards-loyalty-program": {
+    description: (availability, names) =>
+      clipMeta(
+        `Joy Rewards / Joy.so is Limited for China. Mainland shoppers rarely use Shopify; map loyalty to ${names.slice(0, 3).join(", ") || "platform membership, WeChat-first membership, native-app membership"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Joy Rewards is Limited in mainland China</strong>. Mainland consumers almost never shop on Shopify ecommerce. Joy.so may still reach mainland networks under significant latency, but that rarely matters for China sales. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 4).join(", ") || "Platform membership (Alibaba / JD / Pinduoduo), WeChat-first membership, Native-app membership, Coalition loyalty")}</strong> as China-market loyalty paths on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China loyalty is ecosystem-embedded, not a Shopify SaaS swap",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 4,
+    indexCandidates:
+      "Platform membership (Alibaba / JD / Pinduoduo), WeChat-first membership, Native-app membership, Coalition loyalty",
+    guidanceHtml: `
+        <p><strong>Joy Rewards is Limited for mainland China operations.</strong> Mainland Chinese consumers almost never use Shopify for day-to-day ecommerce shopping. Joy.so can still be reachable with comparatively high network latency, but that does little for a China go-to-market. If your company plans to sell in China, design ecommerce and loyalty for mainland channels — do not plan around a Shopify loyalty plugin swap.</p>
+        <p>China loyalty programs rarely exist as standalone SaaS products. They are usually embedded in a <strong>super app (WeChat)</strong>, a <strong>brand app</strong>, or a <strong>large internet-platform ecosystem (Alibaba, JD, Pinduoduo)</strong>. Programs that actually work tend to share three traits: <strong>Digital-first</strong>, <strong>Ecosystem</strong>, and <strong>Gamification</strong>.</p>
+        <h3>China loyalty paths commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Path</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Platform membership (Alibaba / JD / Pinduoduo)</td>
+                <td>Cross-business membership such as Alibaba 88VIP, JD Plus, and Pinduoduo Card; shared benefits and paid annual membership for ecosystem retention</td>
+                <td>Brands selling inside major China ecommerce platforms that need ecosystem-level membership rather than a single-store plugin</td>
+              </tr>
+              <tr>
+                <td>WeChat-first membership</td>
+                <td>WeChat membership card, mini program, customer service, WeChat Pay, and social referral loops — users usually skip a new app download</td>
+                <td>Retail and lifestyle brands whose private-domain ops center on WeChat (for example Coach, Joy City, Chow Tai Fook)</td>
+              </tr>
+              <tr>
+                <td>Native-app membership</td>
+                <td>Brand app as the primary entry — push, points mall, personalization, check-ins, and gamified tasks</td>
+                <td>High-frequency consumer brands with strong app habits (for example Luckin Coffee, Starbucks, McDonald's, Xiaomi)</td>
+              </tr>
+              <tr>
+                <td>Coalition loyalty</td>
+                <td>Multi-brand shared points across a commercial complex; redemption can span parking, dining, retail, and related categories</td>
+                <td>Large malls, airports, and real-estate groups (for example Joy City)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <h3>Shared product-design traits</h3>
-        <p>Most successful China loyalty cases follow the same design principles:</p>
+        <p>Most successful China loyalty cases also combine these capabilities:</p>
         <div class="cr-alt-table-scroll">
           <table>
             <thead>
@@ -1024,16 +2943,24 @@ const EDITORIAL_OVERRIDES = {
             </tbody>
           </table>
         </div>
-        <p>These examples are orientation only. Chinaready does <strong>not</strong> add them as landscape product mappings for Joy Rewards — China loyalty is a market-design problem, not a drop-in Shopify loyalty-plugin replacement.</p>`,
-    faq: (availability) => [
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Selling on Taobao / Tmall / JD / Pinduoduo:</strong> start with platform membership design inside that ecosystem.</li>
+          <li><strong>Private-domain retail without forcing an app download:</strong> prefer WeChat-first membership.</li>
+          <li><strong>High-frequency brand with an existing app habit:</strong> evaluate native-app membership with gamified retention loops.</li>
+          <li><strong>Mall, airport, or multi-tenant property:</strong> evaluate coalition loyalty.</li>
+        </ul>
+        <p>These candidates appear on the Joy Rewards alternatives page only — Chinaready does <strong>not</strong> add them as Explore / Landscape product tiles for Joy Rewards. China loyalty is a market-design problem, not a drop-in Shopify loyalty-plugin replacement. Confirm channel fit and compliance for your own entity before adoption.</p>`,
+    faq: (availability, namesText) => [
       {
         question: "Does Joy Rewards / Joy.so work in China?",
-        answer: `Technically it may still be reachable from mainland China with high latency, but that is rarely useful. Mainland consumers almost never shop on Shopify, so a Shopify-centric loyalty program has little China-market meaning. Chinaready labels Joy Rewards Loyalty Program as ${availability}.`,
+        answer: `Only with Limited practical usefulness. Chinaready labels Joy Rewards Loyalty Program as ${availability}. Technically it may still be reachable from mainland China with high latency, but mainland consumers almost never shop on Shopify, so a Shopify-centric loyalty program has little China-market meaning.`,
       },
       {
         question: "What are the best China alternatives to Joy Rewards Loyalty Program?",
-        answer:
-          "There is usually no meaningful drop-in SaaS substitute. China loyalty programs are rarely standalone products; they are designed into WeChat, brand apps, or platform ecosystems such as Alibaba, JD, and Pinduoduo. Chinaready does not list those as landscape replacements for Joy Rewards. Contact Chinaready for China ecommerce and loyalty design guidance.",
+        answer: namesText
+          ? `Chinaready currently lists these China-ready candidates for Joy Rewards: ${namesText}. Prefer platform membership when you sell inside Alibaba, JD, or Pinduoduo; WeChat-first membership for private-domain retail; native-app membership for high-frequency brand apps; and coalition loyalty for malls or multi-tenant properties. Confirm fit before production adoption.`
+          : "Prefer platform membership (Alibaba / JD / Pinduoduo), WeChat-first membership, native-app membership, or coalition loyalty — depending on where your China customers already shop and engage.",
       },
       {
         question: "Is there a direct drop-in replacement for Joy Rewards in mainland China?",
@@ -1041,32 +2968,633 @@ const EDITORIAL_OVERRIDES = {
           "No. Looking for a one-to-one Shopify loyalty plugin replacement usually misses the real decision: how membership sits inside WeChat, a brand app, or a platform ecosystem, and how digital-first, ecosystem, and gamification mechanics drive retention.",
       },
       {
-        question: "How do successful China loyalty programs usually work?",
+        question: "Are these China loyalty paths on Chinaready Explore?",
         answer:
-          "Successful programs are typically platform memberships (such as 88VIP or JD Plus), WeChat-first membership cards and mini programs, native-app programs with push and gamified tasks, or coalition loyalty across a mall or property group. Shared design traits include tiers, WeChat ecosystem hooks, social referral, gamification, cross-brand benefits, personalization, and paid annual membership.",
+          "No. Platform membership, WeChat-first membership, native-app membership, and coalition loyalty are listed as Mapped China-ready candidates on this alternatives page only. Chinaready does not add them as Explore / Landscape product tiles for Joy Rewards.",
       },
       {
-        question: "Where should teams go after reading Joy Rewards China guidance?",
-        answer: `If you plan to sell in China, talk to Chinaready about mainland ecommerce operations and loyalty design rather than swapping a Shopify loyalty plugin. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints.`,
+        question: "Where should teams go after shortlisting Joy Rewards alternatives?",
+        answer:
+          "If you plan to sell in China, talk to Chinaready about mainland ecommerce operations and loyalty design rather than swapping a Shopify loyalty plugin. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints.",
+      },
+    ],
+  },
+  "jw-player": {
+    description: (availability, names) =>
+      clipMeta(
+        `JW Player is Limited in mainland China — overseas CDN (cdn.jwplayer.com), slow/timeout loads, no China localization. Compare ${names.slice(0, 6).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>JW Player is Limited in mainland China</strong>. It can sometimes load, but the experience is usually poor: the CDN path (<code>cdn.jwplayer.com</code>) sits overseas with no mainland nodes, so pages often load very slowly or time out and playback suffers. There is also no China-market localization for ICP filing, content review, and related compliance expectations. For mainland video playback, map to <strong>${escapeHtml(names.slice(0, 6).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China video players and platforms instead of JW Player",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 6,
+    indexCandidates:
+      "Tencent Cloud Player (TCPlayer), Alibaba Cloud Player (Aliplayer), Polyv, ckplayer, DPlayer, Qiniu Player (QPlayer)",
+    guidanceHtml: `
+        <p><strong>JW Player is Limited for practical mainland China use.</strong> It is not a hard nationwide block in every network path, but overseas CDN delivery and missing China localization make it a weak production dependency for mainland audiences.</p>
+        <h3>Why JW Player struggles in mainland China</h3>
+        <ul>
+          <li><strong>Overseas CDN, no mainland nodes:</strong> JW Player's CDN path (<code>cdn.jwplayer.com</code>) sits outside China. Mainland loads are often extremely slow or time out, which directly breaks video start and playback quality.</li>
+          <li><strong>No China-market localization or compliance fit:</strong> There is no mainland deployment path aligned with ICP filing, content review, and related operating expectations for China video products.</li>
+        </ul>
+        <h3>Domestic options commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Option</th>
+                <th>Type</th>
+                <th>Characteristics</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Tencent Cloud Player (TCPlayer)</td>
+                <td>Cloud-vendor SDK</td>
+                <td>Deep integration with Tencent Cloud VOD and live; HLS/DASH/FLV protocol coverage with built-in CDN acceleration</td>
+              </tr>
+              <tr>
+                <td>Alibaba Cloud Player (Aliplayer)</td>
+                <td>Cloud-vendor SDK</td>
+                <td>Integrates with Alibaba Cloud video services; encryption, DRM, and adaptive bitrate support</td>
+              </tr>
+              <tr>
+                <td>Polyv (保利威)</td>
+                <td>SaaS platform</td>
+                <td>Enterprise video focus — live + VOD + interaction, ads, and anti-leech; closest research fit to JW Player's full-feature positioning</td>
+              </tr>
+              <tr>
+                <td>ckplayer</td>
+                <td>Open-source / free</td>
+                <td>Lightweight web player for mp4/flv-style embeds; best for simple player-only scenarios</td>
+              </tr>
+              <tr>
+                <td>DPlayer</td>
+                <td>Open-source / free</td>
+                <td>Danmaku, subtitles, and live support; popular GitHub project for community / UGC embeds</td>
+              </tr>
+              <tr>
+                <td>Qiniu Player (QPlayer)</td>
+                <td>Cloud-vendor SDK</td>
+                <td>Historically paired with Qiniu storage/CDN for HLS slicing and seek optimization; confirm current SDK availability — Qiniu has marked the dedicated player product as discontinued</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Enterprise full-stack replacement</strong> (hosted video + ads + analytics): start with <strong>Polyv</strong>, or with <strong>Tencent Cloud Player (TCPlayer)</strong> / <strong>Alibaba Cloud Player (Aliplayer)</strong> when you already buy media services from those clouds.</li>
+          <li><strong>Lightweight web embed</strong> (player only): prefer <strong>DPlayer</strong> or <strong>ckplayer</strong>.</li>
+          <li><strong>Existing cloud infrastructure:</strong> prefer the matching cloud-vendor player SDK so CDN and playback quality stay on the same mainland path.</li>
+        </ul>
+        <p>These candidates appear on the JW Player alternatives page only — Chinaready does <strong>not</strong> add them as Landscape map product entries. Confirm protocol support, CDN path, monetization/analytics needs, and compliance before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does JW Player work in China?",
+        answer: `Partially, but usually poorly for mainland production. Chinaready labels JW Player as ${availability}. The CDN path (cdn.jwplayer.com) sits overseas with no mainland nodes, so loads are often very slow or time out and playback quality suffers. There is also no China-market localization for ICP filing, content review, and related compliance expectations.`,
+      },
+      {
+        question: "What are the best China alternatives to JW Player?",
+        answer: `Chinaready currently maps JW Player to ${namesText}. Prefer Polyv (保利威) for enterprise hosted video closest to JW Player's full-stack positioning; prefer Tencent Cloud Player (TCPlayer) or Alibaba Cloud Player (Aliplayer) when already on those clouds; prefer DPlayer or ckplayer for lightweight open-source embeds. Confirm Qiniu Player (QPlayer) SDK status before relying on it. Replacement fit varies by hosting vs player-only needs, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for JW Player in mainland China?",
+        answer:
+          "Usually no. JW Player bundles player UI, hosting/CDN delivery, ads, and analytics. Mainland replacements often split across enterprise video SaaS, cloud-vendor player SDKs, and open-source embeds — expect a media-path and workflow redesign rather than a JW Player drop-in.",
+      },
+      {
+        question:
+          "How should teams choose among TCPlayer, Aliplayer, Polyv, ckplayer, DPlayer, and Qiniu Player?",
+        answer:
+          "Choose Polyv when you need enterprise live + VOD + interaction closest to JW Player's full-feature stack. Choose TCPlayer or Aliplayer when the company already runs on Tencent Cloud or Alibaba Cloud. Choose DPlayer or ckplayer for lightweight player-only embeds. Treat Qiniu Player as a historical shortlist option and verify current SDK availability before adoption.",
+      },
+      {
+        question: "Where should teams go after shortlisting JW Player alternatives?",
+        answer:
+          "Validate protocol support, mainland CDN path, ads/analytics needs, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  bigmarker: {
+    description: (availability, names) =>
+      clipMeta(
+        `BigMarker is Unavailable in mainland China — overseas hosting, no domestic CDN, compliance gaps. Compare ${names.slice(0, 6).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>BigMarker is Unavailable in mainland China</strong> for practical production use. Servers sit overseas with no China localization or domestic CDN nodes, so access is slow or unstable, and the product has not adapted for mainland data-compliance expectations. BuiltWith-style signals show only about three China sites using BigMarker. For mainland audiences, map to <strong>${escapeHtml(names.slice(0, 6).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China webinar, livestream, and meeting platforms instead of BigMarker",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 7,
+    indexCandidates:
+      "VHall, Polyv, INMUU Live, Nuoyun Live, JD Cloud Enterprise Live, Tencent Meeting, Haoshitong",
+    guidanceHtml: `
+        <p><strong>BigMarker is Unavailable for practical mainland China use.</strong> Treat it as a hard China-launch gap for webinars and virtual events rather than a slow-but-usable global tool.</p>
+        <h3>Why BigMarker fails in mainland China</h3>
+        <ul>
+          <li><strong>Overseas-only infrastructure:</strong> Servers sit outside China with no mainland localization deployment and no domestic CDN nodes.</li>
+          <li><strong>Unstable access:</strong> Mainland users typically see slow or unreliable connections that break webinar and virtual-event quality.</li>
+          <li><strong>Compliance gap:</strong> The product has not adapted for mainland data-residency and related China compliance expectations.</li>
+          <li><strong>Negligible China adoption:</strong> BuiltWith-style signals show only about three China sites using BigMarker.</li>
+        </ul>
+        <h3>Enterprise livestream / webinar / virtual events (closest to BigMarker)</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning and strengths</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>VHall (微吼)</td>
+                <td>One of China's earliest enterprise livestream platforms — mature for training and event livestream, with private-deployment options. Closest research fit for BigMarker-style webinars, virtual events, and CRM-linked marketing programs.</td>
+              </tr>
+              <tr>
+                <td>Polyv (保利威)</td>
+                <td>Video-cloud focused enterprise SaaS with mature education and enterprise webinar playbooks — commonly evaluated alongside VHall as the closest BigMarker-style replacement.</td>
+              </tr>
+              <tr>
+                <td>INMUU Live (映目直播)</td>
+                <td>Broad feature set for online/offline hybrid events and private-domain ecommerce closed loops — strong when marketing webinars need conversion and event operations beyond a pure meeting stack.</td>
+              </tr>
+              <tr>
+                <td>Nuoyun Live (诺云直播)</td>
+                <td>Decade-long enterprise livestream focus with strong customization — commonly cited for mid-to-large enterprise training and marketing live programs.</td>
+              </tr>
+              <tr>
+                <td>JD Cloud Enterprise Live (京东云企业直播)</td>
+                <td>Targets very large concurrent events — evaluate when peak scale is the primary constraint.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Video meetings / lighter webinars</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning and strengths</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Tencent Meeting (腾讯会议)</td>
+                <td>Lightweight and WeChat-ecosystem friendly — best for SMB day-to-day meetings and training when you do not need a full BigMarker-style webinar stack.</td>
+              </tr>
+              <tr>
+                <td>DingTalk Meeting (钉钉会议)</td>
+                <td>Alibaba DingTalk suite meeting path — natural when the organization already runs on DingTalk.</td>
+              </tr>
+              <tr>
+                <td>Feishu Meeting (飞书会议)</td>
+                <td>ByteDance collaboration-first meeting stack — strong day-to-day meeting and training experience when the team already uses Feishu.</td>
+              </tr>
+              <tr>
+                <td>Huawei Cloud Meeting / WeLink (华为云会议)</td>
+                <td>Commonly evaluated for government and enterprise buyers with higher security and compliance requirements.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Xinchuang / localization-mandated scenarios</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning and strengths</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Haoshitong (好视通)</td>
+                <td>Long-standing government/enterprise video-meeting vendor — often evaluated for Xinchuang and compliance-heavy replacements.</td>
+              </tr>
+              <tr>
+                <td>XYLink (小鱼易连)</td>
+                <td>Supports domestic OS / chip localization paths — common for Xinchuang video-conferencing shortlists.</td>
+              </tr>
+              <tr>
+                <td>OrayMeeting (傲瑞会议)</td>
+                <td>Broad Xinchuang adaptation across domestic OS and chip stacks — evaluate for localization-mandated deployments.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>How to choose</h3>
+        <p>If you only need day-to-day meetings, start with <strong>Tencent Meeting</strong>. If you need BigMarker-style webinars + virtual events + CRM-linked marketing capability, start with <strong>VHall</strong> or <strong>Polyv</strong>. Use <strong>Haoshitong</strong>, <strong>XYLink</strong>, or <strong>OrayMeeting</strong> when Xinchuang / localization mandates drive the shortlist.</p>
+        <p>These candidates appear on the BigMarker alternatives page only — Chinaready does <strong>not</strong> add them as Landscape map product entries. Confirm event model, concurrent scale, CRM handoff, and compliance before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does BigMarker work in China?",
+        answer: `No for practical mainland China production use. Chinaready labels BigMarker as ${availability}. Servers sit overseas with no China localization or domestic CDN nodes, so access is slow or unstable, and the product has not adapted for mainland data-compliance expectations. BuiltWith-style signals show only about three China sites using BigMarker.`,
+      },
+      {
+        question: "What are the best China alternatives to BigMarker?",
+        answer: `Chinaready currently maps BigMarker to ${namesText}. Prefer VHall (微吼) or Polyv (保利威) for webinar and virtual-event workloads closest to BigMarker; prefer Tencent Meeting (腾讯会议) for day-to-day meetings; prefer Haoshitong (好视通), XYLink (小鱼易连), or OrayMeeting (傲瑞会议) for Xinchuang / localization-mandated scenarios. Replacement fit varies by event model, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for BigMarker in mainland China?",
+        answer:
+          "Usually no. BigMarker combines webinars, virtual events, and marketing/CRM-linked workflows. Mainland replacements often split across enterprise livestream SaaS, collaboration meeting suites, and Xinchuang video vendors — expect a platform and workflow redesign rather than a BigMarker drop-in.",
+      },
+      {
+        question:
+          "How should teams choose among VHall, Polyv, Tencent Meeting, and Xinchuang vendors?",
+        answer:
+          "Choose VHall or Polyv when webinars, virtual events, and CRM-linked marketing are the primary job. Choose Tencent Meeting (or DingTalk / Feishu / WeLink) for day-to-day meetings inside an existing collaboration suite. Choose Haoshitong, XYLink, or OrayMeeting when Xinchuang or localization mandates drive vendor selection.",
+      },
+      {
+        question: "Where should teams go after shortlisting BigMarker alternatives?",
+        answer:
+          "Validate event model, concurrent scale, registration and CRM handoff, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  on24: {
+    description: (availability, names) =>
+      clipMeta(
+        `ON24 is Unavailable in mainland China — overseas hosting, poor livestream quality, and compliance gaps. Compare ${names.slice(0, 5).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>ON24 is Unavailable in mainland China</strong> for practical production use. Mainland users generally cannot reach or run ON24 reliably — overseas servers and CDN nodes, cross-border latency that breaks livestream interaction, and overseas data residency without a clear Chinese UI or domestic payment path. For mainland audiences, map to <strong>${escapeHtml(names.slice(0, 5).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China webinar and virtual-event platforms instead of ON24",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 5,
+    indexCandidates: "Polyv, VHall, Feishu Webinar, NetEase Meeting, Lark",
+    guidanceHtml: `
+        <p><strong>ON24 is Unavailable for practical mainland China use.</strong> Mainland users generally cannot access or operate ON24 as a dependable webinar stack. Treat it as a hard China-launch gap rather than a slow-but-usable global tool.</p>
+        <h3>Why ON24 fails in mainland China</h3>
+        <ul>
+          <li><strong>Network access barriers:</strong> ON24 servers and CDN nodes sit overseas. Mainland users often cannot reach the product without special network tooling.</li>
+          <li><strong>Severe experience degradation:</strong> Even when a session connects, cross-border latency often means high delay, blurry video, frequent stalls, and broken livestream interaction.</li>
+          <li><strong>Data and operating gaps:</strong> Data defaults to overseas storage, which conflicts with mainland localization expectations, and the product lacks a mature Chinese UI and domestic payment path.</li>
+        </ul>
+        <h3>Domestic platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning and strengths</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Polyv (保利威)</td>
+                <td>Mainland enterprise video SaaS for livestream and webinars — brand customization, interactive chat, multi-venue events, overseas push, and China network adaptation. Commonly evaluated by foreign companies running webinars for mainland audiences.</td>
+              </tr>
+              <tr>
+                <td>VHall (微吼)</td>
+                <td>Domestic virtual-event and webinar pioneer for large online seminars, virtual exhibition halls, and analytics. Widely used for enterprise training and marketing webinars.</td>
+              </tr>
+              <tr>
+                <td>Feishu Webinar (飞书网络研讨会)</td>
+                <td>ByteDance's Feishu webinar stack for large attendance, fine-grained permissions, simultaneous interpretation, rehearsal mode, and automated post-event reports — strong for large meetings and training when the team already uses Feishu.</td>
+              </tr>
+              <tr>
+                <td>NetEase Meeting (网易会议)</td>
+                <td>Large meetings and livestream scale with Xinchuang / national-crypto security options and full-stack domestic adaptation — often evaluated for government and enterprise scenarios.</td>
+              </tr>
+              <tr>
+                <td>Lark (飞书国际版)</td>
+                <td>Collaboration plus webinars for multinational teams that need overseas and China-facing workflows, including automation and AI meeting summaries.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>How to choose</h3>
+        <p>If your audience is mainly in mainland China, start with <strong>Polyv</strong> or <strong>VHall</strong> — they are closest to ON24 for webinars and virtual events. If the company already runs on Feishu or a similar collaboration suite, prefer the built-in webinar path (<strong>Feishu Webinar</strong>, <strong>NetEase Meeting</strong>, or <strong>Lark</strong>) to reduce switching cost.</p>
+        <p>These candidates appear on the ON24 alternatives page only — Chinaready does <strong>not</strong> add them as Landscape map product entries. Confirm concurrent scale, audience location, and compliance before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does ON24 work in China?",
+        answer: `No for practical mainland China production use. Chinaready labels ON24 as ${availability}. Overseas hosting and CDN nodes are hard to reach from the mainland, cross-border latency often breaks livestream quality and interaction, and overseas data residency plus weak Chinese UI / domestic payment fit create compliance and operating gaps.`,
+      },
+      {
+        question: "What are the best China alternatives to ON24?",
+        answer: `Chinaready currently maps ON24 to ${namesText}. Prefer Polyv (保利威) or VHall (微吼) for webinar and virtual-event workloads closest to ON24; use Feishu Webinar (飞书网络研讨会), NetEase Meeting (网易会议), or Lark (飞书国际版) when the team already lives in those collaboration stacks. Replacement fit varies by event model, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for ON24 in mainland China?",
+        answer:
+          "Usually no. Mainland webinars and virtual events depend on domestic CDN/media paths, concurrent scale, registration flows, and compliance constraints. Expect a platform and workflow redesign rather than an ON24 drop-in.",
+      },
+      {
+        question: "How should teams choose among Polyv, VHall, Feishu Webinar, NetEase Meeting, and Lark?",
+        answer:
+          "Choose Polyv or VHall when webinars and virtual events are the primary job and the audience is mainly mainland China. Choose Feishu Webinar, NetEase Meeting, or Lark when the organization already runs on that collaboration suite and wants to keep webinars inside the existing stack.",
+      },
+      {
+        question: "Where should teams go after shortlisting ON24 alternatives?",
+        answer:
+          "Validate audience location, concurrent scale, registration and CRM handoff, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  kaltura: {
+    description: (availability, names) =>
+      clipMeta(
+        `Kaltura is Unavailable in mainland China — no China region, high latency, and compliance gaps. Compare ${names.slice(0, 5).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Kaltura is Unavailable in mainland China</strong> for practical production use. Deployment regions cover the US, Ireland, Germany, Australia, and Canada — not mainland China — so cross-border latency and stability are poor, and overseas hosting cannot meet mainland data-localization or Multi-Level Protection Scheme (MLPS / 等保) expectations. For mainland video stacks, map to <strong>${escapeHtml(names.slice(0, 5).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China enterprise video and real-time platforms instead of Kaltura",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 5,
+    indexCandidates: "Polyv, Haoshitong, Agora, Tencent Cloud TRTC, ZEGO",
+    guidanceHtml: `
+        <p><strong>Kaltura is Unavailable for practical mainland China use.</strong> Global footprint signals the gap: thousands of active sites worldwide versus only a handful in China. Treat it as a hard China-launch gap rather than a slow-but-usable global video platform.</p>
+        <h3>Why Kaltura fails in mainland China</h3>
+        <ul>
+          <li><strong>No mainland data centers:</strong> Kaltura deployment regions cover the United States, Ireland, Germany, Australia, and Canada — not mainland China.</li>
+          <li><strong>Network and compliance gaps:</strong> Overseas cloud paths mean high latency and unstable mainland access, and they cannot meet mainland data-localization or Multi-Level Protection Scheme (MLPS / 等保) expectations.</li>
+        </ul>
+        <h3>Domestic platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning</th>
+                <th>Core strengths</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Polyv (保利威)</td>
+                <td>Enterprise livestream + VOD</td>
+                <td>Mainland enterprise video SaaS with private deployment, PlaySafe encryption, AI captions, and coverage across education, finance, and government — closest research fit when the job is enterprise video management plus live and on-demand delivery.</td>
+              </tr>
+              <tr>
+                <td>Haoshitong (好视通)</td>
+                <td>Cloud video meeting + collaboration</td>
+                <td>Public, private, and hybrid deployment with national-crypto encryption and Xinchuang adaptation — often evaluated for government, SOE, and finance compliance scenarios.</td>
+              </tr>
+              <tr>
+                <td>Agora (声网)</td>
+                <td>Real-time audio/video PaaS</td>
+                <td>Mature SDKs and broad global nodes for teams building custom video apps — common in consumer entertainment and education.</td>
+              </tr>
+              <tr>
+                <td>Tencent Cloud TRTC (腾讯云实时音视频)</td>
+                <td>Real-time audio/video PaaS</td>
+                <td>Deep WeChat and mini-program ecosystem hooks — strong for social and ecommerce livestream stacks.</td>
+              </tr>
+              <tr>
+                <td>ZEGO (即构)</td>
+                <td>Audio/video PaaS</td>
+                <td>Private-deployment options and ultra-low-latency paths across education, finance, healthcare, and government scenarios.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>How to choose</h3>
+        <p>If the need is <strong>enterprise video management + livestream + VOD</strong> (closest to Kaltura), start with <strong>Polyv</strong>. If the need is <strong>video meeting / collaboration</strong>, prefer <strong>Haoshitong</strong> or <strong>Tencent Cloud TRTC</strong>. If you are <strong>building a custom real-time video app</strong> on SDK/PaaS, prefer <strong>Agora</strong> or <strong>ZEGO</strong>.</p>
+        <p>These candidates appear on the Kaltura alternatives page only — Chinaready does <strong>not</strong> add them as Landscape map product entries. Confirm workload type, deployment model, and compliance before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Kaltura work in China?",
+        answer: `No for practical mainland China production use. Chinaready labels Kaltura as ${availability}. Deployment regions exclude mainland China, cross-border latency and stability are poor, and overseas hosting cannot meet mainland data-localization or Multi-Level Protection Scheme (MLPS / 等保) expectations.`,
+      },
+      {
+        question: "What are the best China alternatives to Kaltura?",
+        answer: `Chinaready currently maps Kaltura to ${namesText}. Prefer Polyv (保利威) when the job is enterprise video management plus livestream and VOD closest to Kaltura; prefer Haoshitong (好视通) or Tencent Cloud TRTC for video meeting / collaboration; prefer Agora (声网) or ZEGO (即构) when building a custom real-time video app on SDK/PaaS. Replacement fit varies by workload, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Kaltura in mainland China?",
+        answer:
+          "Usually no. Kaltura spans enterprise media management, livestream, and VOD. Mainland replacements often split across enterprise video SaaS, meeting/collaboration stacks, and real-time SDK/PaaS — expect a platform and workflow redesign rather than a Kaltura drop-in.",
+      },
+      {
+        question: "How should teams choose among Polyv, Haoshitong, Agora, Tencent Cloud TRTC, and ZEGO?",
+        answer:
+          "Choose Polyv when enterprise video management plus live and VOD is the primary job. Choose Haoshitong or Tencent Cloud TRTC for video meeting and collaboration. Choose Agora or ZEGO when the team needs a real-time audio/video SDK/PaaS to build a custom app.",
+      },
+      {
+        question: "Where should teams go after shortlisting Kaltura alternatives?",
+        answer:
+          "Validate workload type (VOD/live vs meeting vs custom RTC), deployment model, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  "middleware-io": {
+    description: (availability, names) =>
+      clipMeta(
+        `Middleware.io is Unavailable in mainland China — overseas hosting, unstable access, and compliance risk for APM/logs. Compare ${names.slice(0, 4).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Middleware.io is Unavailable in mainland China</strong> for practical production use. It runs on overseas infrastructure with no mainland data centers, so access is often slow, unstable, or blocked — and shipping performance data and logs abroad creates compliance risk. For mainland observability, map to <strong>${escapeHtml(names.slice(0, 4).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China observability platforms instead of Middleware.io",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 4,
+    indexCandidates:
+      "Alibaba Cloud Observability, Tencent Cloud Observability Platform, Guance, Cloudwise",
+    guidanceHtml: `
+        <p><strong>Middleware.io is Unavailable for practical mainland China use.</strong> Treat it as a hard China-launch gap for APM, logs, and traces rather than a slow-but-usable global tool.</p>
+        <h3>Why Middleware.io fails in mainland China</h3>
+        <ul>
+          <li><strong>No mainland data centers:</strong> Middleware.io is an overseas company with nodes mainly outside China. Traffic crosses the international gateway, so connections are often unstable, high-latency, or unreachable.</li>
+          <li><strong>Network filtering risk:</strong> As an overseas service, domains or IP ranges can be intermittently or permanently restricted by the GFW, causing production monitoring outages.</li>
+          <li><strong>Compliance risk:</strong> Sending application performance data, logs, and related telemetry to overseas servers may conflict with mainland data-security and personal-information rules (including the Data Security Law and PIPL).</li>
+        </ul>
+        <h3>Domestic commercial SaaS platforms commonly evaluated instead</h3>
+        <p>These platforms are closer to Middleware.io's out-of-the-box observability positioning — with mainland network performance and a clearer compliance path.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning and strengths</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Alibaba Cloud Observability (阿里云可观测)</td>
+                <td>Alibaba Cloud stack covering Log Service (SLS), Application Real-Time Monitoring Service (ARMS), and Managed Grafana — high ecosystem integration when the mainland workload already runs on Alibaba Cloud.</td>
+              </tr>
+              <tr>
+                <td>Tencent Cloud Observability Platform (腾讯云可观测平台)</td>
+                <td>One-stop observability for metrics, distributed tracing, logs, and frontend performance monitoring — natural fit on Tencent Cloud.</td>
+              </tr>
+              <tr>
+                <td>Guance (观测云)</td>
+                <td>Leading independent China observability SaaS covering infrastructure, APM, user experience, and logs, with strong OpenTelemetry support.</td>
+              </tr>
+              <tr>
+                <td>Cloudwise (云智慧 / OneAPM)</td>
+                <td>Long-standing domestic APM vendor with end-to-end full-stack monitoring — commonly evaluated for enterprise APM replacement paths.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>How to choose</h3>
+        <p>If you already run on <strong>Alibaba Cloud</strong> or <strong>Tencent Cloud</strong>, start with that cloud's observability suite for billing, IAM, and telemetry integration. Prefer <strong>Guance</strong> or <strong>Cloudwise</strong> when you want an independent domestic SaaS path closer to a Middleware.io-style vendor relationship.</p>
+        <p>These candidates appear on the Middleware.io alternatives page only — Chinaready does <strong>not</strong> add them as Landscape map product entries. Confirm OpenTelemetry / agent fit, data residency, and compliance before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Middleware.io work in China?",
+        answer: `No for practical mainland China production use. Chinaready labels Middleware.io as ${availability}. Overseas-only infrastructure means high latency and unstable access, domains or IPs may be restricted by the GFW, and shipping APM, logs, and traces abroad creates data-security and PIPL compliance risk.`,
+      },
+      {
+        question: "What are the best China alternatives to Middleware.io?",
+        answer: `Chinaready currently maps Middleware.io to ${namesText}. Prefer Alibaba Cloud Observability (阿里云可观测) or Tencent Cloud Observability Platform (腾讯云可观测平台) when already on those clouds; prefer Guance (观测云) or Cloudwise (云智慧 / OneAPM) for independent domestic observability SaaS. Replacement fit varies by stack, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Middleware.io in mainland China?",
+        answer:
+          "Usually no. Mainland observability depends on domestic collection agents, OpenTelemetry pipelines, data residency, and cloud-account integration. Expect a platform and instrumentation redesign rather than a Middleware.io drop-in.",
+      },
+      {
+        question:
+          "How should teams choose among Alibaba Cloud Observability, Tencent Cloud Observability Platform, Guance, and Cloudwise?",
+        answer:
+          "Choose Alibaba Cloud Observability or Tencent Cloud Observability Platform when the workload already runs on that cloud and you want unified billing and stack integration. Choose Guance when you want an independent OpenTelemetry-friendly SaaS. Choose Cloudwise (OneAPM) for a long-standing domestic full-stack APM path.",
+      },
+      {
+        question: "Where should teams go after shortlisting Middleware.io alternatives?",
+        answer:
+          "Validate telemetry sources, OpenTelemetry compatibility, data residency, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  "mia-platform": {
+    description: (availability, names) =>
+      clipMeta(
+        `Mia Platform is Unavailable in mainland China — no China region, compliance barriers, weak domestic-cloud fit. Compare ${names.slice(0, 5).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Mia Platform is Unavailable in mainland China</strong> for practical production use. The Italian vendor has no China-region deployment or localized service, overseas hosting conflicts with mainland data-localization expectations, and cross-border latency plus weak domestic-cloud / Xinchuang fit make it a hard China-launch gap. For mainland stacks, map by capability to <strong>${escapeHtml(names.slice(0, 5).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China platform options instead of Mia Platform",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 7,
+    indexCandidates:
+      "API7, RestCloud, CEC Cloud CSP, Snowy-Cloud, Kingdee Cloud Cosmic gPaaS, iSoftStone Cloud iPaaS, Huawei Cloud DevCloud",
+    guidanceHtml: `
+        <p><strong>Mia Platform is Unavailable for practical mainland China use.</strong> Treat it as a hard China-launch gap for API management, DevOps automation, and microservice governance rather than a slow-but-usable European PaaS.</p>
+        <h3>Why Mia Platform fails in mainland China</h3>
+        <ul>
+          <li><strong>No China-region deployment:</strong> Mia Platform is an Italian company focused on European markets, with no mainland data centers or localized China service.</li>
+          <li><strong>Data-compliance barriers:</strong> Mainland rules such as the Data Security Law and PIPL expect local storage and processing for many workloads — overseas SaaS control planes are hard to reconcile with that path.</li>
+          <li><strong>Network and ecosystem gaps:</strong> Overseas hosting means high latency and unstable mainland access, with weak support for domestic clouds (Alibaba Cloud, Huawei Cloud, and peers) and Xinchuang stacks.</li>
+        </ul>
+        <p>Mia Platform's core jobs span API management, DevOps automation, and microservice governance. Map by the job you actually need, then validate fit for your own entity and hosting model.</p>
+        <h3>API management</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning and strengths</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>API7 (支流科技)</td>
+                <td>Enterprise API management built on Apache APISIX — full lifecycle control, multi-protocol conversion, national-crypto (国密) support, and Xinchuang adaptation. Commonly evaluated by large financial and automotive teams.</td>
+              </tr>
+              <tr>
+                <td>RestCloud (谷云科技)</td>
+                <td>Domestically developed API and hybrid-integration platform supporting REST/SOAP/RPC, high single-cluster throughput, and South China Xinchuang adaptation certification.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Microservice lifecycle platforms</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning and strengths</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>CEC Cloud CSP (中国电子云 CSP)</td>
+                <td>One-stop microservice platform supporting Spring Cloud, Dubbo, and Service Mesh — development, deployment, governance, and observability for government, finance, and healthcare-style mainland stacks.</td>
+              </tr>
+              <tr>
+                <td>Snowy-Cloud</td>
+                <td>Open-source Spring Cloud Alibaba rapid-development platform with Nacos, Sentinel, and national-crypto support — practical for smaller teams that need a fast mainland microservice bootstrap.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>DevOps + cloud-native PaaS</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning and strengths</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Kingdee Cloud Cosmic gPaaS (金蝶云苍穹)</td>
+                <td>Containerized deployment, CI/CD pipelines, middleware management, and full-link monitoring across public, private, and hybrid cloud — closer to Mia Platform's broader platform positioning for large groups.</td>
+              </tr>
+              <tr>
+                <td>iSoftStone Cloud iPaaS (软通云)</td>
+                <td>Cloud-native development framework, low-code designer, DevOps integration, and API management, with connectors for Alibaba Cloud, Huawei Cloud, and Tencent Cloud.</td>
+              </tr>
+              <tr>
+                <td>Huawei Cloud DevCloud (华为云 DevCloud)</td>
+                <td>Software delivery lifecycle coverage from code hosting and builds through test, deploy, and release operations — a common mainland DevOps PaaS path on Huawei Cloud.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>How to choose</h3>
+        <p>If the primary need is <strong>API gateway + microservice governance</strong>, start with <strong>API7</strong> or <strong>CEC Cloud CSP</strong>. If you need a <strong>fuller cloud-native DevOps / PaaS platform</strong> closer to Mia Platform's overall positioning, prefer <strong>Kingdee Cloud Cosmic gPaaS</strong> or <strong>Huawei Cloud DevCloud</strong>.</p>
+        <p>These candidates appear on the Mia Platform alternatives page only — Chinaready does <strong>not</strong> add them as Landscape map product entries. Confirm capability coverage, hosting model, and compliance before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Mia Platform work in China?",
+        answer: `No for practical mainland China production use. Chinaready labels Mia Platform as ${availability}. There is no China-region deployment or localized service, overseas hosting creates data-localization and PIPL/DSL compliance obstacles, and mainland access is high-latency with weak domestic-cloud and Xinchuang fit.`,
+      },
+      {
+        question: "What are the best China alternatives to Mia Platform?",
+        answer: `Chinaready currently maps Mia Platform to ${namesText}. Prefer API7 (支流科技) or RestCloud (谷云科技) for API management; CEC Cloud CSP (中国电子云 CSP) or Snowy-Cloud for microservice lifecycle; Kingdee Cloud Cosmic gPaaS (金蝶云苍穹), iSoftStone Cloud iPaaS (软通云), or Huawei Cloud DevCloud (华为云 DevCloud) for broader cloud-native DevOps / PaaS. Replacement fit varies by job, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Mia Platform in mainland China?",
+        answer:
+          "Usually no. Mia Platform combines API management, DevOps automation, and microservice governance. Mainland replacements are typically chosen by primary job — API gateway, microservice platform, or cloud-native DevOps PaaS — rather than a single one-to-one swap.",
+      },
+      {
+        question:
+          "How should teams choose among API7, CEC Cloud CSP, Kingdee Cloud Cosmic gPaaS, and Huawei Cloud DevCloud?",
+        answer:
+          "Choose API7 or CEC Cloud CSP when API gateway and microservice governance are the primary jobs. Choose Kingdee Cloud Cosmic gPaaS or Huawei Cloud DevCloud when you need a fuller cloud-native DevOps / PaaS platform closer to Mia Platform's overall positioning. Use RestCloud, Snowy-Cloud, or iSoftStone Cloud iPaaS when their integration or rapid-development strengths match the stack.",
+      },
+      {
+        question: "Where should teams go after shortlisting Mia Platform alternatives?",
+        answer:
+          "Validate which Mia Platform jobs you actually need — API management, microservice governance, or DevOps PaaS — then confirm hosting model, domestic-cloud fit, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
   openai: {
     description: (availability, names) =>
       clipMeta(
-        `Apps deployed in mainland China cannot call overseas OpenAI APIs. Use China LLMs that are usually OpenAI- and Anthropic-compatible — often with little or no app changes. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+        `OpenAI blocks all model access from mainland China IPs. Use China LLMs that are usually OpenAI- and Anthropic-compatible — often with little or no app changes. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
-      `<strong>Quick answer:</strong> Applications deployed in mainland China <strong>cannot call overseas OpenAI model APIs directly</strong>. Use mainland China LLM services instead. Most of those providers are compatible with both the <strong>OpenAI</strong> and <strong>Anthropic</strong> API shapes — so your application may keep working with little or no code change. Chinaready currently maps OpenAI to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+      `<strong>Quick answer:</strong> <strong>OpenAI blocks all model access from mainland China IPs</strong> — applications and users in mainland China cannot call overseas OpenAI model APIs. Use mainland China LLM services instead. Most of those providers are compatible with both the <strong>OpenAI</strong> and <strong>Anthropic</strong> API shapes — so your application may keep working with little or no code change. Chinaready currently maps OpenAI to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
     guidanceTitle: "OpenAI APIs and apps deployed in mainland China",
     guidanceHtml: `
-        <p>If the application itself runs in mainland China, it generally cannot reach overseas OpenAI model endpoints as a production dependency. Plan on mainland-reachable LLM APIs instead of assuming a global OpenAI key will work from China infrastructure.</p>
+        <p><strong>OpenAI blocks all model access from mainland China IP addresses.</strong> If the application or the calling client runs in mainland China, overseas OpenAI model endpoints are not a usable production dependency. Plan on mainland-reachable LLM APIs instead of assuming a global OpenAI key will work from China infrastructure.</p>
         <p>The practical upside: China foundation-model providers listed below almost all expose APIs that are compatible with OpenAI and Anthropic client conventions. Many teams can point existing SDKs or HTTP clients at a China endpoint (base URL, key, and model name) without rewriting the application.</p>
         <p>Use the mapped candidates below as a research shortlist, then confirm API compatibility, model behavior, and compliance for your stack.</p>`,
     faq: (availability, namesText) => [
       {
         question: "Does OpenAI work in China?",
-        answer: `Applications deployed in mainland China generally cannot call overseas OpenAI model services directly. Chinaready labels OpenAI as ${availability} for mainland China production stacks. Use a mainland-reachable LLM API instead.`,
+        answer: `No. OpenAI blocks all model access from mainland China IPs, so applications and users in mainland China cannot call overseas OpenAI model services. Chinaready labels OpenAI as ${availability} for mainland China production stacks. Use a mainland-reachable LLM API instead.`,
       },
       {
         question: "Do China LLM APIs work with OpenAI-compatible clients?",
@@ -1091,19 +3619,19 @@ const EDITORIAL_OVERRIDES = {
   anthropic: {
     description: (availability, names) =>
       clipMeta(
-        `Apps deployed in mainland China cannot call overseas Anthropic APIs. Use China LLMs that are usually OpenAI- and Anthropic-compatible — often with little or no app changes. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+        `Anthropic blocks all model access from mainland China IPs. Use China LLMs that are usually OpenAI- and Anthropic-compatible — often with little or no app changes. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
-      `<strong>Quick answer:</strong> Applications deployed in mainland China <strong>cannot call overseas Anthropic (Claude) model APIs directly</strong>. Use mainland China LLM services instead. Most of those providers are compatible with both the <strong>OpenAI</strong> and <strong>Anthropic</strong> API shapes — so your application may keep working with little or no code change. Chinaready currently maps Anthropic to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+      `<strong>Quick answer:</strong> <strong>Anthropic blocks all model access from mainland China IPs</strong> — applications and users in mainland China cannot call overseas Anthropic Claude model APIs. Use mainland China LLM services instead. Most of those providers are compatible with both the <strong>OpenAI</strong> and <strong>Anthropic</strong> API shapes — so your application may keep working with little or no code change. Chinaready currently maps Anthropic to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
     guidanceTitle: "Anthropic APIs and apps deployed in mainland China",
     guidanceHtml: `
-        <p>If the application itself runs in mainland China, it generally cannot reach overseas Anthropic Claude model endpoints as a production dependency. Plan on mainland-reachable LLM APIs instead of assuming a global Anthropic key will work from China infrastructure.</p>
+        <p><strong>Anthropic blocks all model access from mainland China IP addresses.</strong> If the application or the calling client runs in mainland China, overseas Anthropic Claude model endpoints are not a usable production dependency. Plan on mainland-reachable LLM APIs instead of assuming a global Anthropic key will work from China infrastructure.</p>
         <p>The practical upside: China foundation-model providers listed below almost all expose APIs that are compatible with OpenAI and Anthropic client conventions. Many teams can point existing SDKs or HTTP clients at a China endpoint (base URL, key, and model name) without rewriting the application.</p>
         <p>Use the mapped candidates below as a research shortlist, then confirm API compatibility, model behavior, and compliance for your stack.</p>`,
     faq: (availability, namesText) => [
       {
         question: "Does Anthropic work in China?",
-        answer: `Applications deployed in mainland China generally cannot call overseas Anthropic Claude model services directly. Chinaready labels Anthropic as ${availability} for mainland China production stacks. Use a mainland-reachable LLM API instead.`,
+        answer: `No. Anthropic blocks all model access from mainland China IPs, so applications and users in mainland China cannot call overseas Anthropic Claude model services. Chinaready labels Anthropic as ${availability} for mainland China production stacks. Use a mainland-reachable LLM API instead.`,
       },
       {
         question: "Do China LLM APIs work with Anthropic-compatible clients?",
@@ -1122,6 +3650,90 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Where should teams go after shortlisting Anthropic alternatives?",
         answer: `Use the interactive Chinaready Landscape to compare adjacent AI model and platform services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
+  "zoho-crm": {
+    description: (availability, names) =>
+      clipMeta(
+        `Zoho CRM is Available in mainland China with deep localization — local entity, China data centers, and Chinese support. Also compare ${names.slice(0, 2).join(" and ") || "Fxiaoke and Neocrm"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Zoho CRM is Available in mainland China</strong> as a deeply localized, compliance-oriented service — not a thin international login. The China site (<a href="https://www.zoho.com.cn/crm/">zoho.com.cn</a>) shows a mainland operating entity, China data centers, and Chinese-language support. Domestic CRM options commonly evaluated alongside it include <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Fxiaoke, Neocrm")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Zoho CRM in mainland China",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 2,
+    indexCandidates: "Fxiaoke, Neocrm",
+    guidanceHtml: `
+        <p><strong>Zoho CRM is Available for mainland China operations.</strong> Zoho runs a deeply localized China service rather than a simple overseas product with remote access. The China site (<a href="https://www.zoho.com.cn/">zoho.com.cn</a>) presents a local operating entity, mainland data centers, and local support — aligned with China legal and compliance expectations.</p>
+        <h3>Why Chinaready labels Zoho CRM Available</h3>
+        <ul>
+          <li><strong>Local data centers:</strong> Zoho partners with Tencent Cloud for mainland China data centers so customer data can be stored and processed in China, supporting Data Security Law and Personal Information Protection Law expectations.</li>
+          <li><strong>Local operating entity:</strong> The China site footer lists a Beijing operating address and ICP filing number (京ICP备15015257号-1), evidencing lawful mainland operations.</li>
+          <li><strong>Local service support:</strong> Chinese UI, a 400 Chinese customer-service hotline, and Chinese-language technical support for day-to-day operations.</li>
+        </ul>
+        <h3>Domestic CRM options commonly evaluated alongside Zoho CRM</h3>
+        <p>Even though Zoho CRM itself is Available, many mainland teams still shortlist domestic CRM platforms for market-share depth, WeCom / Tencent-ecosystem fit, or enterprise PaaS needs.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Positioning</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Fxiaoke (纷享销客)</td>
+                <td>Multi-year China CRM market-share leader; strong PaaS low-code and AI capabilities</td>
+                <td>Mid-to-large and group enterprises</td>
+              </tr>
+              <tr>
+                <td>Neocrm (销售易)</td>
+                <td>Tencent-backed; deep WeCom integration; multi-year Gartner Magic Quadrant CRM recognition</td>
+                <td>Social selling and Tencent-ecosystem teams</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Keep Zoho CRM</strong> when you want a fully localized international CRM with mainland data residency, ICP-backed operations, and Chinese support.</li>
+          <li><strong>Evaluate Fxiaoke</strong> for mid-to-large / group CRM programs that need strong domestic PaaS low-code and AI depth.</li>
+          <li><strong>Evaluate Neocrm</strong> when WeCom-centric social selling and Tencent-ecosystem workflows are the growth engine.</li>
+        </ul>
+        <p>These domestic candidates appear on the Zoho CRM alternatives page only — Chinaready does <strong>not</strong> add Fxiaoke or Neocrm as Explore / Landscape product tiles for Zoho CRM. Confirm entity fit, channel integrations, and compliance before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Zoho CRM work in China?",
+        answer: `Yes. Chinaready labels Zoho CRM as ${availability} for mainland China. Zoho provides a deeply localized China service with mainland data centers, a local operating entity and ICP filing, and Chinese-language support — not just an overseas login that happens to open from China.`,
+      },
+      {
+        question: "Is Zoho CRM fully localized and compliant in mainland China?",
+        answer:
+          "Zoho's China site (zoho.com.cn) presents mainland data centers (Tencent Cloud partnership), a Beijing operating address with ICP filing (京ICP备15015257号-1), and Chinese UI plus 400 / Chinese technical support. Treat that as a strong localization and compliance signal, then still validate contracts, data residency, and your own entity requirements before production adoption.",
+      },
+      {
+        question: "Why does Chinaready still list Fxiaoke and Neocrm if Zoho CRM is Available?",
+        answer:
+          "Availability and vendor fit are different questions. Zoho CRM can work as a localized China CRM. Many teams still compare domestic leaders — Fxiaoke for mid-to-large / group CRM with PaaS low-code and AI, and Neocrm for WeCom-centric social selling and Tencent-ecosystem depth.",
+      },
+      {
+        question: "What are the best China alternatives to Zoho CRM?",
+        answer: namesText
+          ? `Chinaready currently lists these China-market options alongside Zoho CRM: ${namesText}. Prefer Fxiaoke (纷享销客) for mid-to-large and group enterprises, and Neocrm (销售易) for social selling and Tencent-ecosystem teams. Confirm fit before production adoption.`
+          : "Prefer Fxiaoke (纷享销客) for mid-to-large and group enterprises, and Neocrm (销售易) for social selling and Tencent-ecosystem teams.",
+      },
+      {
+        question: "Are Fxiaoke and Neocrm on Chinaready Explore?",
+        answer:
+          "No. They are listed as Mapped China-ready candidates on this alternatives page only. Chinaready does not add them as Explore / Landscape product tiles for Zoho CRM.",
+      },
+      {
+        question: "Where should teams go after shortlisting Zoho CRM options?",
+        answer:
+          "Validate whether you need Zoho's localized international CRM, Fxiaoke's domestic enterprise CRM depth, or Neocrm's WeCom / Tencent-ecosystem fit — then confirm data residency, integrations, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -1279,8 +3891,6 @@ const ANALOG_ALIASES = {
   openstreetmap: "OpenStreetMap",
   osm: "OpenStreetMap",
   "twilio conversations": "Twilio Conversations",
-  "sentence-bert": "Sentence-BERT",
-  "sentence bert": "Sentence-BERT",
   "openai embeddings": "OpenAI",
   "openai gpts": "OpenAI",
   "openai gpt-4": "OpenAI",
@@ -1764,15 +4374,21 @@ function renderAlternativesIndex(groups) {
   );
   const rows = groups
     .map((group) => {
+      const editorial = EDITORIAL_OVERRIDES[group.slug];
       const names = candidateNames(group);
-      const namesHtml = names.length
-        ? names.map((name) => escapeHtml(name)).join(", ")
-        : `<span class="cr-alt-uncertain">Uncertain — contact Chinaready</span>`;
+      const namesHtml =
+        typeof editorial?.indexCandidates === "string"
+          ? escapeHtml(editorial.indexCandidates)
+          : names.length
+            ? names.map((name) => escapeHtml(name)).join(", ")
+            : `<span class="cr-alt-uncertain">Uncertain — contact Chinaready</span>`;
+      const optionsCount =
+        typeof editorial?.indexOptions === "number" ? editorial.indexOptions : candidateCount(group);
       const availability = availabilityLabel(group);
       return `<tr>
         <td><a href="${escapeHtml(analogPublicPath(group.slug))}">${escapeHtml(group.name)}</a></td>
         <td><span class="cr-alt-availability cr-alt-availability-${escapeHtml(group.availability_in_china || "unknown")}">${escapeHtml(availability)}</span></td>
-        <td>${candidateCount(group)}</td>
+        <td>${optionsCount}</td>
         <td>${namesHtml}</td>
       </tr>`;
     })
@@ -1948,12 +4564,16 @@ function renderAnalogPage(group, groups = []) {
       })
       .join("\n");
   } else if (hasResearch) {
+    const researchKind =
+      editorial?.sectionTitle === "Mapped China-ready candidates"
+        ? "China-ready candidate"
+        : "Research shortlist";
     cards = group.research_candidates
       .map((item) => {
         const href = item.homepage_url
           ? `<a href="${escapeHtml(item.homepage_url)}">${escapeHtml(item.name)}</a>`
           : escapeHtml(item.name);
-        const meta = [item.category, item.subcategory, "Research shortlist"].filter(Boolean).join(" · ");
+        const meta = [item.category, item.subcategory, researchKind].filter(Boolean).join(" · ");
         return `<article class="cr-alt-card">
         <h3>${href}</h3>
         <p class="cr-alt-meta">${escapeHtml(meta)}</p>
@@ -2082,6 +4702,40 @@ ${cards}
         url: item.homepage_url || undefined,
       }));
 
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: `${group.name} alternatives in China`,
+      headline: `${group.name} alternatives in China`,
+      description,
+      url: analogPublicUrl(group.slug),
+      isPartOf: { "@type": "WebSite", name: "Chinaready Landscape", url: SITE_URL },
+      about: group.name,
+      inLanguage: "en",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faq.map((entry) => ({
+        "@type": "Question",
+        name: entry.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: entry.answer,
+        },
+      })),
+    },
+  ];
+  if (listItems.length > 0) {
+    jsonLd.push({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: `${group.name} China alternatives`,
+      itemListElement: listItems,
+    });
+  }
+
   return pageShell({
     title,
     description,
@@ -2091,37 +4745,7 @@ ${cards}
       { name: "Alternatives", path: "/alternatives/" },
       { name: group.name, path: analogPublicPath(group.slug) },
     ],
-    jsonLd: [
-      {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        name: `${group.name} alternatives in China`,
-        headline: `${group.name} alternatives in China`,
-        description,
-        url: analogPublicUrl(group.slug),
-        isPartOf: { "@type": "WebSite", name: "Chinaready Landscape", url: SITE_URL },
-        about: group.name,
-        inLanguage: "en",
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: faq.map((entry) => ({
-          "@type": "Question",
-          name: entry.question,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: entry.answer,
-          },
-        })),
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        name: `${group.name} China alternatives`,
-        itemListElement: listItems,
-      },
-    ],
+    jsonLd,
     body,
     stickyCta: renderStickyAssessmentCta(),
   });
@@ -2798,7 +5422,7 @@ ${top
 }
 
 function enhanceIndexHtml(indexHtml, groups) {
-  const title = "Chinaready Landscape | China Alternatives to Firebase, AWS, Stripe & More";
+  const title = "Chinaready Landscape | China Alternatives to Firebase, AWS, Stripe";
   const description = clipMeta(
     `Find mainland China alternatives to Firebase, FCM, AWS, Stripe, Google Maps, and ${groups.length}+ global stack dependencies. Open-source Chinaready map with availability notes and China-ready candidates.`,
   );

@@ -1,0 +1,46 @@
+---
+description: Alternatives page work must not change Explore or Guide by default
+alwaysApply: true
+---
+
+# Alternatives stay out of Explore and Guide
+
+When changing **alternatives** pages (catalog, `scripts/seo-geo.mjs` editorial overrides, `/alternatives/` HTML, research notes, index table copy):
+
+1. **Do not** edit Explore content (`landscape.yml`, hosted logos for new Landscape items, Explore taxonomy) unless the user explicitly asks.
+2. **Do not** edit Guide content (`guide.yml` or Guide-generated pages) unless the user explicitly asks.
+3. **Product options named on alternatives pages default to orientation-only.** Do not add them as Landscape / Explore items or Guide entries just because they appear in alternatives copy, candidate tables, or `indexCandidates`.
+
+## When Landscape has no mapped product
+
+If Explore / `landscape.yml` has no corresponding China product for the global service:
+
+1. **Do not** leave the alternatives page as an empty “uncertain / contact Chinaready only” state when domestic options are already named in the research or editorial brief.
+2. **Surface those domestic products on the current alternatives page** as the research shortlist:
+   - `china_candidates` with `source: "research"` in `research/global-services-gap-catalog.json` (via `scripts/generate-gap-catalog.py` overrides when needed)
+   - Matching `EDITORIAL_OVERRIDES` table, FAQ, `indexCandidates`, and `indexOptions` in `scripts/seo-geo.mjs`
+3. Use a candidates section that presents the products (for example `Mapped China-ready candidates` / research cards), **not** a heading like “Why Chinaready does not list these as Landscape products” with an empty uncertain card.
+4. Keep the disclaimer that they are alternatives-page orientation options only — still **do not** add them to Explore or Guide unless the user explicitly asks.
+
+```text
+✅ Landscape has no MailerLite mapping → put Alibaba Cloud Sendify / U-Mail / TurboEx on /alternatives/mailerlite as research candidates + editorial table
+❌ Landscape has no mapping → only show “No landscape product mappings by design” and hide the named domestic options from the candidates section
+❌ Also add those products to landscape.yml or guide.yml “while we’re here”
+```
+
+Exception: pages that intentionally have **no product substitutes** (ecosystem / market-design guidance, not a vendor shortlist) may keep a non-product framing — still prefer naming the ecosystems or paths on the page rather than a blank uncertain state.
+
+## Allowed by default
+
+- `research/global-services-gap-catalog.json`
+- `scripts/seo-geo.mjs` (`EDITORIAL_OVERRIDES`, index table helpers, availability overrides)
+- `scripts/generate-gap-catalog.py` (research candidate overrides / notes)
+- Generated `/alternatives/` pages and related SEO/GEO output
+
+## Not allowed by default
+
+- Adding orientation shortlist products into `landscape.yml` (Explore)
+- Adding those products into `guide.yml` (Guide)
+- Treating alternatives editorial names as certified Landscape mappings
+
+If Explore or Guide should gain a product, wait for an explicit user request for that scope.

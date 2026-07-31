@@ -1,0 +1,28 @@
+---
+description: English-first audience copy and Chinese product name order
+alwaysApply: true
+---
+
+# English audience and product naming
+
+Chinaready Landscape targets **English-speaking readers**. Write page copy, meta, FAQ, guide text, and editorial overrides in English.
+
+## Chinese product / brand names
+
+Lead with the English (or Latin) name. Put the Chinese name in parentheses when it helps recognition.
+
+```text
+✅ Jingbei Guanjia (经贝管家)
+✅ Pangle (穿山甲)
+✅ Umeng+ (友盟+)
+
+❌ 经贝管家 (Jingbei Guanjia)
+❌ Leading with Chinese characters in running English copy
+```
+
+## Practical rules
+
+- First mention: `English Name (中文名)` when a Chinese label is useful.
+- Later mentions: prefer the English name alone unless the Chinese form is needed for clarity.
+- Do not use bare Chinese product names as the primary label in English pages, titles, tables, or FAQs.
+- Keep Chinese inside parentheses, quotes for official notices, or proper nouns that have no stable English form — still introduce them with an English lead-in when possible.

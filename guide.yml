@@ -255,7 +255,7 @@ categories:
         content: |
           Use this subcategory for embedding and reranking models or APIs used in semantic search and RAG pipelines.
 
-          Typical global services: [OpenAI](/alternatives/openai), [Cohere](/alternatives/cohere), [Voyage](/alternatives/voyage), [Sentence-BERT](/alternatives/sentence-bert).
+          Typical global services: [OpenAI](/alternatives/openai), [Cohere](/alternatives/cohere), [Voyage](/alternatives/voyage).
       - subcategory: "Vector Databases & Retrieval"
         content: |
           Use this subcategory for vector databases and managed vector retrieval services used to store and query embeddings.

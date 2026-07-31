@@ -520,11 +520,186 @@ if (exists("build/alternatives/index.html")) {
   const gapCatalog = JSON.parse(read("research/global-services-gap-catalog.json"));
   assert(gapCatalog.services?.length >= 100, "gap catalog must include the taxonomy-relevant unmapped global services");
   assert(alternativesIndex.includes("Dynatrace") || alternativesIndex.includes("BunnyCDN"), "alternatives index must include gap-catalog research services");
-  assert(exists("build/alternatives/airtable.html"), "uncertain gap services such as Airtable must get a dedicated alternatives page");
+  assert(exists("build/alternatives/airtable.html"), "researched gap services such as Airtable must get a dedicated alternatives page");
   assert(exists("build/alternatives/dynatrace.html") || exists("build/alternatives/bunnycdn.html"), "researched gap services must get dedicated alternatives pages");
   const airtablePage = read("build/alternatives/airtable.html");
-  assert(airtablePage.includes("Contact Chinaready"), "uncertain alternatives pages must invite readers to contact Chinaready");
+  assert(airtablePage.includes("Feishu Base"), "Airtable alternatives must list Feishu Base");
+  assert(airtablePage.includes("Mingdao Cloud"), "Airtable alternatives must list Mingdao Cloud");
+  assert(airtablePage.includes("Teable"), "Airtable alternatives must list Teable");
+  assert(airtablePage.includes("Mapped China-ready candidates"), "Airtable alternatives must show Mapped China-ready candidates");
+  assert(airtablePage.includes("Contact Chinaready"), "Airtable alternatives page must invite readers to contact Chinaready");
   assert(airtablePage.includes("Availability in China"), "gap alternatives pages must show Availability in China");
+  assert(exists("build/alternatives/smile-io.html"), "Smile.io must get a dedicated alternatives page");
+  const smilePage = read("build/alternatives/smile-io.html");
+  assert(smilePage.includes("Youzan"), "Smile.io alternatives must list Youzan");
+  assert(smilePage.includes("Weimob"), "Smile.io alternatives must list Weimob");
+  assert(smilePage.includes("Mapped China-ready candidates"), "Smile.io alternatives must show Mapped China-ready candidates");
+  assert(smilePage.includes("Limited"), "Smile.io alternatives must label Limited availability");
+  assert(alternativesIndex.includes("Youzan, Weimob"), "alternatives index must show Youzan, Weimob for Smile.io");
+  assert(exists("build/alternatives/commerce-layer.html"), "Commerce Layer must get a dedicated alternatives page");
+  const commerceLayerPage = read("build/alternatives/commerce-layer.html");
+  assert(commerceLayerPage.includes("Wanmi Shangyun"), "Commerce Layer alternatives must list Wanmi Shangyun");
+  assert(commerceLayerPage.includes("Shushangyun"), "Commerce Layer alternatives must list Shushangyun");
+  assert(commerceLayerPage.includes("Youzan"), "Commerce Layer alternatives must list Youzan");
+  assert(commerceLayerPage.includes("Weimob"), "Commerce Layer alternatives must list Weimob");
+  assert(commerceLayerPage.includes("Raycloud"), "Commerce Layer alternatives must list Raycloud");
+  assert(commerceLayerPage.includes("Mapped China-ready candidates"), "Commerce Layer alternatives must show Mapped China-ready candidates");
+  assert(commerceLayerPage.includes("Limited"), "Commerce Layer alternatives must label Limited availability");
+  assert(
+    alternativesIndex.includes("Wanmi Shangyun, Shushangyun, Youzan, Weimob, Raycloud"),
+    "alternatives index must show Commerce Layer mapped candidates",
+  );
+  assert(exists("build/alternatives/marketo.html"), "Marketo must get a dedicated alternatives page");
+  const marketoPage = read("build/alternatives/marketo.html");
+  assert(marketoPage.includes("Fxiaoke"), "Marketo alternatives must list Fxiaoke");
+  assert(marketoPage.includes("Tencent Qidian"), "Marketo alternatives must list Tencent Qidian");
+  assert(marketoPage.includes("Weimob Marketing Cloud"), "Marketo alternatives must list Weimob Marketing Cloud");
+  assert(marketoPage.includes("Zoho CRM"), "Marketo alternatives must list Zoho CRM");
+  assert(marketoPage.includes("Mapped China-ready candidates"), "Marketo alternatives must show Mapped China-ready candidates");
+  assert(marketoPage.includes("Limited"), "Marketo alternatives must label Limited availability");
+  assert(
+    alternativesIndex.includes("Fxiaoke, Tencent Qidian, Weimob Marketing Cloud, Zoho CRM"),
+    "alternatives index must show Marketo mapped candidates",
+  );
+  assert(exists("build/alternatives/zoho-crm.html"), "Zoho CRM must get a dedicated alternatives page");
+  const zohoCrmPage = read("build/alternatives/zoho-crm.html");
+  assert(zohoCrmPage.includes("Zoho CRM alternatives in China"), "Zoho CRM page must use an intent-matching H1");
+  assert(
+    zohoCrmPage.includes('cr-alt-availability-available">Available</span>'),
+    "Zoho CRM page must label mainland China availability as Available",
+  );
+  assert(zohoCrmPage.includes("Fxiaoke"), "Zoho CRM alternatives must list Fxiaoke");
+  assert(zohoCrmPage.includes("Neocrm"), "Zoho CRM alternatives must list Neocrm");
+  assert(zohoCrmPage.includes("Mapped China-ready candidates"), "Zoho CRM alternatives must show Mapped China-ready candidates");
+  assert(zohoCrmPage.includes("Tencent Cloud"), "Zoho CRM page must mention Tencent Cloud data centers");
+  assert(zohoCrmPage.includes("京ICP备15015257号-1"), "Zoho CRM page must mention ICP filing");
+  assert(!zohoCrmPage.includes("Why Chinaready does not list these as Landscape products"), "Zoho CRM must not use empty uncertain framing");
+  assert(alternativesIndex.includes("Fxiaoke, Neocrm"), "alternatives index must show Zoho CRM mapped candidates");
+  assert(exists("build/alternatives/bigmarker.html"), "BigMarker must get a dedicated alternatives page");
+  const bigmarkerPage = read("build/alternatives/bigmarker.html");
+  assert(bigmarkerPage.includes("VHall"), "BigMarker alternatives must list VHall");
+  assert(bigmarkerPage.includes("Polyv"), "BigMarker alternatives must list Polyv");
+  assert(bigmarkerPage.includes("INMUU Live"), "BigMarker alternatives must list INMUU Live");
+  assert(bigmarkerPage.includes("Nuoyun Live"), "BigMarker alternatives must list Nuoyun Live");
+  assert(bigmarkerPage.includes("JD Cloud Enterprise Live"), "BigMarker alternatives must list JD Cloud Enterprise Live");
+  assert(bigmarkerPage.includes("Tencent Meeting"), "BigMarker alternatives must list Tencent Meeting");
+  assert(bigmarkerPage.includes("DingTalk Meeting"), "BigMarker alternatives must list DingTalk Meeting");
+  assert(bigmarkerPage.includes("Feishu Meeting"), "BigMarker alternatives must list Feishu Meeting");
+  assert(bigmarkerPage.includes("Huawei Cloud Meeting"), "BigMarker alternatives must list Huawei Cloud Meeting");
+  assert(bigmarkerPage.includes("Haoshitong"), "BigMarker alternatives must list Haoshitong");
+  assert(bigmarkerPage.includes("XYLink"), "BigMarker alternatives must list XYLink");
+  assert(bigmarkerPage.includes("OrayMeeting"), "BigMarker alternatives must list OrayMeeting");
+  assert(bigmarkerPage.includes("Mapped China-ready candidates"), "BigMarker alternatives must show Mapped China-ready candidates");
+  assert(bigmarkerPage.includes("Unavailable"), "BigMarker alternatives must label Unavailable availability");
+  assert(
+    alternativesIndex.includes(
+      "VHall, Polyv, INMUU Live, Nuoyun Live, JD Cloud Enterprise Live, Tencent Meeting, Haoshitong",
+    ),
+    "alternatives index must show BigMarker mapped candidates",
+  );
+  assert(exists("build/alternatives/on24.html"), "ON24 must get a dedicated alternatives page");
+  const on24Page = read("build/alternatives/on24.html");
+  assert(on24Page.includes("Polyv"), "ON24 alternatives must list Polyv");
+  assert(on24Page.includes("VHall"), "ON24 alternatives must list VHall");
+  assert(on24Page.includes("Feishu Webinar"), "ON24 alternatives must list Feishu Webinar");
+  assert(on24Page.includes("NetEase Meeting"), "ON24 alternatives must list NetEase Meeting");
+  assert(on24Page.includes("Lark"), "ON24 alternatives must list Lark");
+  assert(on24Page.includes("Mapped China-ready candidates"), "ON24 alternatives must show Mapped China-ready candidates");
+  assert(on24Page.includes("Unavailable"), "ON24 alternatives must label Unavailable availability");
+  assert(
+    alternativesIndex.includes("Polyv, VHall, Feishu Webinar, NetEase Meeting, Lark"),
+    "alternatives index must show ON24 mapped candidates",
+  );
+  assert(exists("build/alternatives/kaltura.html"), "Kaltura must get a dedicated alternatives page");
+  const kalturaPage = read("build/alternatives/kaltura.html");
+  assert(kalturaPage.includes("Polyv"), "Kaltura alternatives must list Polyv");
+  assert(kalturaPage.includes("Haoshitong"), "Kaltura alternatives must list Haoshitong");
+  assert(kalturaPage.includes("Agora"), "Kaltura alternatives must list Agora");
+  assert(kalturaPage.includes("Tencent Cloud TRTC"), "Kaltura alternatives must list Tencent Cloud TRTC");
+  assert(kalturaPage.includes("ZEGO"), "Kaltura alternatives must list ZEGO");
+  assert(kalturaPage.includes("Mapped China-ready candidates"), "Kaltura alternatives must show Mapped China-ready candidates");
+  assert(kalturaPage.includes("Unavailable"), "Kaltura alternatives must label Unavailable availability");
+  assert(
+    alternativesIndex.includes("Polyv, Haoshitong, Agora, Tencent Cloud TRTC, ZEGO"),
+    "alternatives index must show Kaltura mapped candidates",
+  );
+  assert(exists("build/alternatives/middleware-io.html"), "Middleware.io must get a dedicated alternatives page");
+  const middlewarePage = read("build/alternatives/middleware-io.html");
+  assert(middlewarePage.includes("Alibaba Cloud Observability"), "Middleware.io alternatives must list Alibaba Cloud Observability");
+  assert(middlewarePage.includes("Tencent Cloud Observability Platform"), "Middleware.io alternatives must list Tencent Cloud Observability Platform");
+  assert(middlewarePage.includes("Guance"), "Middleware.io alternatives must list Guance");
+  assert(middlewarePage.includes("Cloudwise"), "Middleware.io alternatives must list Cloudwise");
+  assert(!middlewarePage.includes("uni-app"), "Middleware.io alternatives must not list uni-app");
+  assert(middlewarePage.includes("Mapped China-ready candidates"), "Middleware.io alternatives must show Mapped China-ready candidates");
+  assert(middlewarePage.includes("Unavailable"), "Middleware.io alternatives must label Unavailable availability");
+  assert(
+    alternativesIndex.includes(
+      "Alibaba Cloud Observability, Tencent Cloud Observability Platform, Guance, Cloudwise",
+    ),
+    "alternatives index must show Middleware.io mapped candidates",
+  );
+  assert(exists("build/alternatives/mia-platform.html"), "Mia Platform must get a dedicated alternatives page");
+  const miaPlatformPage = read("build/alternatives/mia-platform.html");
+  assert(miaPlatformPage.includes("API7"), "Mia Platform alternatives must list API7");
+  assert(miaPlatformPage.includes("RestCloud"), "Mia Platform alternatives must list RestCloud");
+  assert(miaPlatformPage.includes("CEC Cloud CSP"), "Mia Platform alternatives must list CEC Cloud CSP");
+  assert(miaPlatformPage.includes("Snowy-Cloud"), "Mia Platform alternatives must list Snowy-Cloud");
+  assert(miaPlatformPage.includes("Kingdee Cloud Cosmic gPaaS"), "Mia Platform alternatives must list Kingdee Cloud Cosmic gPaaS");
+  assert(miaPlatformPage.includes("iSoftStone Cloud iPaaS"), "Mia Platform alternatives must list iSoftStone Cloud iPaaS");
+  assert(miaPlatformPage.includes("Huawei Cloud DevCloud"), "Mia Platform alternatives must list Huawei Cloud DevCloud");
+  assert(miaPlatformPage.includes("Mapped China-ready candidates"), "Mia Platform alternatives must show Mapped China-ready candidates");
+  assert(miaPlatformPage.includes("Unavailable"), "Mia Platform alternatives must label Unavailable availability");
+  assert(
+    alternativesIndex.includes(
+      "API7, RestCloud, CEC Cloud CSP, Snowy-Cloud, Kingdee Cloud Cosmic gPaaS, iSoftStone Cloud iPaaS, Huawei Cloud DevCloud",
+    ),
+    "alternatives index must show Mia Platform mapped candidates",
+  );
+  assert(exists("build/alternatives/aweber.html"), "AWeber must get a dedicated alternatives page");
+  const aweberPage = read("build/alternatives/aweber.html");
+  assert(aweberPage.includes("Fengyou EDM"), "AWeber alternatives must list Fengyou EDM");
+  assert(aweberPage.includes("Zoho Campaigns"), "AWeber alternatives must list Zoho Campaigns");
+  assert(aweberPage.includes("Mapped China-ready candidates"), "AWeber alternatives must show Mapped China-ready candidates");
+  assert(aweberPage.includes("Unavailable"), "AWeber alternatives must label Unavailable availability");
+  assert(!aweberPage.includes("Why Chinaready does not list these as Landscape products"), "AWeber must not use empty uncertain framing");
+  assert(alternativesIndex.includes("Fengyou EDM, Zoho Campaigns"), "alternatives index must show AWeber mapped candidates");
+  assert(exists("build/alternatives/sendspark.html"), "Sendspark must get a dedicated alternatives page");
+  const sendsparkPage = read("build/alternatives/sendspark.html");
+  assert(sendsparkPage.includes("Dongli Wuxian"), "Sendspark alternatives must list Dongli Wuxian");
+  assert(sendsparkPage.includes("U-Mail"), "Sendspark alternatives must list U-Mail");
+  assert(sendsparkPage.includes("Alibaba Cloud Sendify"), "Sendspark alternatives must list Alibaba Cloud Sendify");
+  assert(sendsparkPage.includes("Mapped China-ready candidates"), "Sendspark alternatives must show Mapped China-ready candidates");
+  assert(sendsparkPage.includes("Unavailable"), "Sendspark alternatives must label Unavailable availability");
+  assert(!sendsparkPage.includes("Why Chinaready does not list these as Landscape products"), "Sendspark must not use empty uncertain framing");
+  assert(
+    alternativesIndex.includes("Dongli Wuxian, U-Mail, Alibaba Cloud Sendify"),
+    "alternatives index must show Sendspark mapped candidates",
+  );
+  assert(exists("build/alternatives/streamlit-community-cloud.html"), "Streamlit Community Cloud must get a dedicated alternatives page");
+  const streamlitPage = read("build/alternatives/streamlit-community-cloud.html");
+  assert(streamlitPage.includes("Pyecharts"), "Streamlit alternatives must list Pyecharts");
+  assert(streamlitPage.includes("NiceGUI"), "Streamlit alternatives must list NiceGUI");
+  assert(streamlitPage.includes("Dash (Plotly)"), "Streamlit alternatives must list Dash (Plotly)");
+  assert(streamlitPage.includes("Gradio"), "Streamlit alternatives must list Gradio");
+  assert(streamlitPage.includes("Taipy"), "Streamlit alternatives must list Taipy");
+  assert(streamlitPage.includes("Mapped China-ready candidates"), "Streamlit alternatives must show Mapped China-ready candidates");
+  assert(streamlitPage.includes("Unavailable"), "Streamlit alternatives must label Unavailable availability");
+  assert(!streamlitPage.includes("Why Chinaready does not list these as Landscape products"), "Streamlit must not use empty uncertain framing");
+  assert(
+    alternativesIndex.includes("Pyecharts, NiceGUI, Dash (Plotly), Gradio, Taipy"),
+    "alternatives index must show Streamlit mapped candidates",
+  );
+  for (const file of fs.readdirSync(path.join(root, "build/alternatives")).filter((name) => name.endsWith(".html"))) {
+    const page = read(`build/alternatives/${file}`);
+    assert(
+      !page.includes("Why Chinaready does not list these as Landscape products"),
+      `${file} must not use empty uncertain framing when candidates are named`,
+    );
+    assert(
+      !page.includes("No landscape product mappings by design"),
+      `${file} must not use empty uncertain card title when candidates are named`,
+    );
+  }
   assert(!exists("build/alternatives/grpc.html"), "gRPC must be removed from Global alternatives");
   assert(!exists("build/alternatives/flutter.html"), "Flutter must be removed from Global alternatives");
   assert(!exists("build/alternatives/react-native.html"), "React Native must be removed from Global alternatives");
@@ -535,6 +710,8 @@ if (exists("build/alternatives/index.html")) {
   assert(!exists("build/alternatives/callkit.html"), "CallKit must be removed from Global alternatives");
   assert(!exists("build/alternatives/n8n.html"), "n8n must be removed from Global alternatives");
   assert(!exists("build/alternatives/vmware-vsphere.html"), "VMware vSphere must be removed from Global alternatives");
+  assert(!exists("build/alternatives/sentence-bert.html"), "Sentence-BERT must be removed from Global alternatives");
+  assert(!exists("build/alternatives/pangle-ads.html"), "Pangle Ads must be removed from Global alternatives");
   assert(!alternativesIndex.includes("gRPC"), "alternatives index must not list gRPC");
   assert(!alternativesIndex.includes("Flutter"), "alternatives index must not list Flutter");
   assert(!alternativesIndex.includes("React Native"), "alternatives index must not list React Native");
@@ -545,6 +722,8 @@ if (exists("build/alternatives/index.html")) {
   assert(!alternativesIndex.includes("CallKit"), "alternatives index must not list CallKit");
   assert(!alternativesIndex.includes(">n8n<"), "alternatives index must not list n8n");
   assert(!alternativesIndex.includes("VMware vSphere"), "alternatives index must not list VMware vSphere");
+  assert(!alternativesIndex.includes("Sentence-BERT"), "alternatives index must not list Sentence-BERT");
+  assert(!alternativesIndex.includes("Pangle Ads"), "alternatives index must not list Pangle Ads");
   assert(exists("build/alternatives/kong-gateway.html"), "Kong Gateway must have a dedicated alternatives page");
   const kongPage = read("build/alternatives/kong-gateway.html");
   assert(kongPage.includes("Apache APISIX"), "Kong page must list Apache APISIX");
@@ -935,7 +1114,16 @@ if (exists("build/alternatives/joy-rewards-loyalty-program.html")) {
     "Joy Rewards page must explain China loyalty is ecosystem-embedded",
   );
   assert(joyRewardsPage.includes("88VIP"), "Joy Rewards page must mention platform membership examples");
-  assert(joyRewardsPage.includes("No landscape product mappings"), "Joy Rewards page must state it does not list landscape substitutes");
+  assert(joyRewardsPage.includes("Mapped China-ready candidates"), "Joy Rewards page must list mapped candidates");
+  assert(joyRewardsPage.includes("Platform membership"), "Joy Rewards page must map platform membership");
+  assert(joyRewardsPage.includes("WeChat-first membership"), "Joy Rewards page must map WeChat-first membership");
+  assert(joyRewardsPage.includes("Native-app membership"), "Joy Rewards page must map native-app membership");
+  assert(joyRewardsPage.includes("Coalition loyalty"), "Joy Rewards page must map coalition loyalty");
+  assert(
+    joyRewardsPage.includes("does <strong>not</strong> add them as Explore") ||
+      joyRewardsPage.includes("does not add them as Explore"),
+    "Joy Rewards page must keep Explore disclaimer",
+  );
   assert(!joyRewardsPage.includes("homepage_url"), "Joy Rewards page must not invent landscape product candidate URLs");
   assert(joyRewardsPage.includes("Does Joy Rewards"), "Joy Rewards page must include loyalty FAQ");
 }
