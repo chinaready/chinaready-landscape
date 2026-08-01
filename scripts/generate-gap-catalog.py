@@ -582,7 +582,6 @@ OVERRIDES = {
     "singular": ["Qimai Data", "Umeng+"],
     "cordova": ["uni-app"],
     "xamarin": ["uni-app"],
-    "apollo kotlin": ["uni-app"],
     "google admob": [
         "Pangle",
         "Tencent Ads",
@@ -675,7 +674,66 @@ OVERRIDES = {
     "auvik": ["Alibaba Cloud ARMS"],
     "env0": ["AWS China Regions", "Alibaba Cloud"],
     "docker hub": ["Alibaba Cloud"],
-    "bitly": ["Alibaba Cloud"],
+    "bitly": [
+        {
+            "name": "Aifabu",
+            "homepage_url": "https://www.aifabu.com/",
+            "category": "Marketing & Automation",
+            "subcategory": "Link Shortening & Attribution",
+            "source": "research",
+            "note": (
+                "Aifabu (爱短链) offers a free starting tier with branded short codes, analytics, "
+                "WeChat/Douyin anti-block features, and fast mainland redirects — strong for ecommerce "
+                "promo, private-domain acquisition, and cross-platform distribution."
+            ),
+        },
+        {
+            "name": "Xiaoma Short Link",
+            "homepage_url": "https://sourl.cn/",
+            "category": "Marketing & Automation",
+            "subcategory": "Link Shortening & Attribution",
+            "source": "research",
+            "note": (
+                "Xiaoma Short Link (小码短链接) is free with multi-dimensional reports (visits, IP, "
+                "region, device), plus API and custom-domain support — practical for community ops, "
+                "creators, and knowledge commerce."
+            ),
+        },
+        {
+            "name": "3WT",
+            "homepage_url": "https://3wt.cn/",
+            "category": "Marketing & Automation",
+            "subcategory": "Link Shortening & Attribution",
+            "source": "research",
+            "note": (
+                "3WT (三维推) keeps most features free and emphasizes WeChat card-style short links "
+                "with strong anti-block / anti-red capability — best when promotion is mainly inside "
+                "the WeChat ecosystem."
+            ),
+        },
+        {
+            "name": "Suowo",
+            "homepage_url": "https://suowo.cn/",
+            "category": "Marketing & Automation",
+            "subcategory": "Link Shortening & Attribution",
+            "source": "research",
+            "note": (
+                "Suowo (缩我) is a long-standing domestic short-link provider known for fast redirects "
+                "and high stability — commonly evaluated for enterprise short-link workloads."
+            ),
+        },
+        {
+            "name": "C1N Short URL",
+            "homepage_url": "https://c1n.cn/",
+            "category": "Marketing & Automation",
+            "subcategory": "Link Shortening & Attribution",
+            "source": "research",
+            "note": (
+                "C1N Short URL (C1N短网址) is a simple domestic shortener with click analytics — "
+                "suited to individuals and official-account promotion."
+            ),
+        },
+    ],
     "cloudflare analytics": ["Alibaba Cloud ARMS", "Umeng+"],
     "kong gateway": ["Apache APISIX", "Flomesh", "Higress"],
     "kong": ["Apache APISIX", "Flomesh", "Higress"],
@@ -1512,6 +1570,47 @@ OVERRIDES = {
             ),
         },
     ],
+    "altis": [
+        {
+            "name": "Longfu BMS DXP",
+            "homepage_url": "https://www.dragonsoftbravo.com/",
+            "category": "Traditional/Enterprise CMS",
+            "subcategory": "Digital Experience Platforms",
+            "source": "research",
+            "note": (
+                "Longfu BMS DXP (龙孚 BMS DXP) is an enterprise omnichannel digital experience platform "
+                "covering CMS, DAM, marketing automation, AI recommendations, and multi-site / "
+                "multi-language management. It supports private deployment and domestic databases such as "
+                "Dameng (达梦) and KingbaseES (人大金仓) — the closest functional China substitute for "
+                "Altis-class enterprise WordPress / DXP stacks, especially for mid-to-large enterprises "
+                "and outbound brands."
+            ),
+        },
+        {
+            "name": "PageAdmin",
+            "homepage_url": "https://www.pageadmin.net/",
+            "category": "Traditional/Enterprise CMS",
+            "subcategory": "Content Management Systems",
+            "source": "research",
+            "note": (
+                "PageAdmin is a fifth-generation domestic CMS plus low-code platform with site-cluster "
+                "management and Xinchuang compliance fit — strongest for government, education, and "
+                "group portal / multi-site deployments."
+            ),
+        },
+        {
+            "name": "Baklib",
+            "homepage_url": "https://www.baklib.com/",
+            "category": "Traditional/Enterprise CMS",
+            "subcategory": "Digital Experience Platforms",
+            "source": "research",
+            "note": (
+                "Baklib is a lightweight domestic DXP SaaS for knowledge bases, help centers, and content "
+                "portals — practical for SMBs that need a China-hosted content experience cloud rather "
+                "than a full Altis-class enterprise stack."
+            ),
+        },
+    ],
     "sendspark": [
         {
             "name": "Dongli Wuxian",
@@ -1638,6 +1737,8 @@ OVERRIDES = {
 # Force mainland China availability labels when research revises the catalog entry.
 AVAILABILITY_OVERRIDES = {
     "zoho crm": "Available",
+    "bitly": "Unavailable",
+    "altis": "Unavailable",
 }
 
 CONTACT_NOTE = (
@@ -1649,6 +1750,30 @@ RESEARCH_NOTE = (
     "Confirm replacement fit, compliance, and operating constraints before production adoption."
 )
 RESEARCH_NOTES = {
+    "altis": (
+        "Altis is Unavailable for practical mainland China use: BuiltWith-style adoption in China is "
+        "negligible (on the order of about two sites), the stack depends on overseas AWS "
+        "infrastructure with high latency and weak stability, WordPress.org plus plugin/theme "
+        "repositories are long blocked or unreliable from mainland China so updates and sync break, "
+        "and enterprise data stored outside China conflicts with domestic compliance expectations "
+        "(for example MLPS and data localization). Prefer Longfu BMS DXP (龙孚 BMS DXP) as the "
+        "closest CMS + DAM + marketing automation + AI recommendation + multi-site substitute with "
+        "private deployment and Dameng / KingbaseES support; prefer PageAdmin for government, "
+        "education, and Xinchuang site clusters; prefer Baklib for lightweight SMB knowledge-base / "
+        "help-center / content-portal SaaS. These appear on the alternatives page only — not as "
+        "Explore / Landscape product tiles. Confirm private-deployment fit, compliance, and vendor "
+        "fit before production adoption."
+    ),
+    "bitly": (
+        "Bitly is Unavailable for practical mainland China use: the bit.ly domain is blocked by the "
+        "GFW, so access and redirects routinely fail; even when a page occasionally loads, overseas "
+        "hosting causes high latency and unstable jumps that cannot support real promotion workloads. "
+        "Prefer Aifabu (爱短链) or Xiaoma Short Link (小码短链接) for individuals and small teams; "
+        "prefer Suowo (缩我) or 3WT (三维推) for enterprise / batch needs; prefer 3WT when WeChat "
+        "card-style short links matter most. These appear on the alternatives page only — not as "
+        "Explore / Landscape product tiles. Confirm redirect stability, anti-block fit, analytics, "
+        "and compliance before production adoption."
+    ),
     "drip": (
         "Drip is Limited in mainland China: the US-hosted SaaS is usually reachable and not clearly "
         "blocked, but access speed and stability are unreliable. Deeper misfit comes from ecosystem and "

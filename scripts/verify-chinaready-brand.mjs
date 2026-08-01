@@ -159,6 +159,14 @@ assert(seoGeoScript.includes("CHINA_AVAILABILITY_LABELS"), "SEO/GEO generator mu
 assert(seoGeoScript.includes("mergeAnalogGroups"), "SEO/GEO generator must merge gap-catalog global services into alternatives");
 assert(seoGeoScript.includes("availability_status"), "SEO/GEO generator must read availability_status from landscape.yml");
 assert(seoGeoScript.includes("global_availability_in_china"), "SEO/GEO generator must read global_availability_in_china from landscape.yml");
+assert(seoGeoScript.includes("function brandedTitle"), "SEO/GEO generator must define brandedTitle for SERP-safe titles");
+assert(seoGeoScript.includes("function ensureBrandedPageTitle"), "SEO/GEO generator must enforce Chinaready branding on pageShell titles");
+assert(seoGeoScript.includes("MAX_SERP_TITLE_LENGTH = 60"), "SEO/GEO generator must cap titles so | Chinaready survives Google truncation");
+assert(seoGeoScript.includes('TITLE_BRAND_SUFFIX = " | Chinaready"'), "SEO/GEO generator must use the | Chinaready title suffix");
+assert(
+  !seoGeoScript.includes("Alternatives in China (${availability})"),
+  "SEO/GEO alternatives titles must not embed availability status (causes SERP truncation before | Chinaready)",
+);
 assert(!seoGeoScript.match(legacySourceBrandPattern), "SEO/GEO generator must not reference legacy competitor brand text");
 assert(seoGeoScript.includes("https://chinaready.co/contact/"), "seo-geo header Get help must link to /contact/");
 assert(seoGeoScript.includes("Get help"), "seo-geo must include Get help label");
@@ -699,6 +707,21 @@ if (exists("build/alternatives/index.html")) {
       !page.includes("No landscape product mappings by design"),
       `${file} must not use empty uncertain card title when candidates are named`,
     );
+    const titleMatch = page.match(/<title>(.*?)<\/title>/s);
+    assert(titleMatch, `${file} must declare a <title>`);
+    const title = titleMatch[1].replace(/\s+/g, " ").trim().replace(/&amp;/g, "&");
+    assert(
+      title.endsWith("| Chinaready"),
+      `${file} title must end with "| Chinaready" (got: ${title})`,
+    );
+    assert(
+      title.length <= 60,
+      `${file} title must stay ≤60 chars so Google SERPs keep | Chinaready (got ${title.length}: ${title})`,
+    );
+    assert(
+      !/\((?:Available|Limited|Unavailable|Unknown)\)\s*\|\s*Chinaready$/i.test(title),
+      `${file} title must not put availability status before | Chinaready`,
+    );
   }
   assert(!exists("build/alternatives/grpc.html"), "gRPC must be removed from Global alternatives");
   assert(!exists("build/alternatives/flutter.html"), "Flutter must be removed from Global alternatives");
@@ -712,6 +735,7 @@ if (exists("build/alternatives/index.html")) {
   assert(!exists("build/alternatives/vmware-vsphere.html"), "VMware vSphere must be removed from Global alternatives");
   assert(!exists("build/alternatives/sentence-bert.html"), "Sentence-BERT must be removed from Global alternatives");
   assert(!exists("build/alternatives/pangle-ads.html"), "Pangle Ads must be removed from Global alternatives");
+  assert(!exists("build/alternatives/apollo-kotlin.html"), "Apollo Kotlin must be removed from Global alternatives");
   assert(!alternativesIndex.includes("gRPC"), "alternatives index must not list gRPC");
   assert(!alternativesIndex.includes("Flutter"), "alternatives index must not list Flutter");
   assert(!alternativesIndex.includes("React Native"), "alternatives index must not list React Native");
@@ -724,6 +748,7 @@ if (exists("build/alternatives/index.html")) {
   assert(!alternativesIndex.includes("VMware vSphere"), "alternatives index must not list VMware vSphere");
   assert(!alternativesIndex.includes("Sentence-BERT"), "alternatives index must not list Sentence-BERT");
   assert(!alternativesIndex.includes("Pangle Ads"), "alternatives index must not list Pangle Ads");
+  assert(!alternativesIndex.includes("Apollo Kotlin"), "alternatives index must not list Apollo Kotlin");
   assert(exists("build/alternatives/kong-gateway.html"), "Kong Gateway must have a dedicated alternatives page");
   const kongPage = read("build/alternatives/kong-gateway.html");
   assert(kongPage.includes("Apache APISIX"), "Kong page must list Apache APISIX");

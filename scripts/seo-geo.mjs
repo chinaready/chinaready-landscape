@@ -91,6 +91,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "azure-devops": "limited",
   "castle-io": "unavailable",
   airbase: "unavailable",
+  altis: "unavailable",
   aweber: "unavailable",
   mailerlite: "unavailable",
   bombbomb: "unavailable",
@@ -104,6 +105,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   sendspark: "unavailable",
   on24: "unavailable",
   bigmarker: "unavailable",
+  bitly: "unavailable",
   "jw-player": "limited",
   kaltura: "unavailable",
   "middleware-io": "unavailable",
@@ -1089,6 +1091,88 @@ const EDITORIAL_OVERRIDES = {
         question: "Where should teams go after shortlisting Airtable alternatives?",
         answer:
           "Validate hosting model, collaboration-suite fit, and compliance with your China entity and data requirements. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, Contact Chinaready for stack-specific help.",
+      },
+    ],
+  },
+  altis: {
+    description: (availability, names) =>
+      clipMeta(
+        `Altis is Unavailable in mainland China — overseas AWS stack, WordPress ecosystem blocked, compliance risk. Compare ${names.slice(0, 3).join(", ") || "Longfu BMS DXP, PageAdmin, Baklib"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Altis is Unavailable in mainland China</strong> for practical production use — Chinaready strongly advises against it. BuiltWith-style data shows only about two China sites using Altis, which is negligible. The product depends on overseas AWS infrastructure (high latency, weak stability), WordPress.org and related plugin/theme repositories are long blocked or unreliable from mainland China, and storing enterprise data outside China conflicts with domestic compliance expectations such as MLPS and data localization. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Longfu BMS DXP, PageAdmin, Baklib")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Enterprise CMS / DXP platforms to evaluate instead of Altis",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 3,
+    indexCandidates: "Longfu BMS DXP, PageAdmin, Baklib",
+    guidanceHtml: `
+        <p><strong>Altis is Unavailable for reliable mainland China use — strongly not recommended.</strong> BuiltWith-style adoption in China is negligible (on the order of about two sites). Do not plan Altis as a production dependency for mainland China digital experience workloads.</p>
+        <h3>Why Altis fails in mainland China</h3>
+        <ul>
+          <li><strong>Overseas infrastructure:</strong> Altis depends on AWS cloud outside mainland China, so access latency is high and day-to-day stability is poor.</li>
+          <li><strong>WordPress ecosystem constraints:</strong> WordPress.org and related plugin/theme repositories are long blocked or highly unstable from mainland China, so updates, plugin sync, and core Altis workflows break.</li>
+          <li><strong>Compliance and data risk:</strong> enterprise data stored outside China conflicts with domestic expectations such as MLPS and data localization.</li>
+        </ul>
+        <h3>Domestic platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Longfu BMS DXP (龙孚 BMS DXP)</td>
+                <td>Enterprise omnichannel digital experience platform covering CMS, DAM, marketing automation, AI recommendations, and multi-site / multi-language management; supports private deployment and domestic databases such as Dameng (达梦) and KingbaseES (人大金仓)</td>
+                <td>Mid-to-large enterprises, outbound brands, and multi-site / multi-language programs — closest China substitute for AEM / Sitecore / Altis-class stacks</td>
+              </tr>
+              <tr>
+                <td>PageAdmin</td>
+                <td>Fifth-generation domestic CMS plus low-code platform with site-cluster management and Xinchuang compliance fit</td>
+                <td>Government, education, and group portal / multi-site deployments that need Xinchuang readiness</td>
+              </tr>
+              <tr>
+                <td>Baklib</td>
+                <td>Lightweight domestic DXP SaaS for knowledge bases, help centers, and content portals</td>
+                <td>SMBs that need a China-hosted content experience cloud rather than a full enterprise Altis-class stack</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Closest Altis-class substitute:</strong> start with Longfu BMS DXP (龙孚 BMS DXP) for CMS + DAM + marketing automation + AI recommendations + multi-site management, especially when private deployment and domestic databases matter.</li>
+          <li><strong>Government / education / Xinchuang site clusters:</strong> evaluate PageAdmin.</li>
+          <li><strong>SMB knowledge base, help center, or content portal:</strong> evaluate Baklib as a lighter DXP SaaS path.</li>
+        </ul>
+        <p>These candidates appear on the Altis alternatives page only — Chinaready does <strong>not</strong> add Longfu BMS DXP, PageAdmin, or Baklib as Landscape map product entries. Confirm private-deployment fit, compliance, and vendor fit before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Altis work in China?",
+        answer:
+          "No for practical mainland China production use. Chinaready labels Altis as Unavailable and strongly advises against it. BuiltWith-style adoption in China is negligible, the AWS-backed stack sits outside mainland China, WordPress.org and plugin/theme sync are unreliable, and overseas data storage conflicts with domestic compliance expectations.",
+      },
+      {
+        question: "What are the best China alternatives to Altis?",
+        answer: `Chinaready currently lists these China-market options for Altis: ${namesText}. Prefer Longfu BMS DXP (龙孚 BMS DXP) as the closest CMS + DAM + marketing automation + multi-site substitute, PageAdmin for government/education/Xinchuang site clusters, and Baklib for lightweight SMB knowledge-base / help-center / content-portal SaaS. Confirm fit before production adoption.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Altis in mainland China?",
+        answer:
+          "Usually no. Altis sits on an enterprise WordPress / AWS operating model that does not transfer cleanly into mainland China. Expect a platform redesign around domestic CMS or DXP vendors, private deployment, and compliance constraints rather than a one-to-one Altis swap.",
+      },
+      {
+        question: "How should teams choose among Longfu BMS DXP, PageAdmin, and Baklib?",
+        answer:
+          "Choose Longfu BMS DXP when you need the closest Altis-class coverage (CMS, DAM, marketing automation, AI recommendations, multi-site) with private deployment and domestic database support. Choose PageAdmin for government, education, and Xinchuang site-cluster programs. Choose Baklib when SMBs need a lighter knowledge-base, help-center, or content-portal SaaS.",
+      },
+      {
+        question: "Where should teams go after shortlisting Altis alternatives?",
+        answer:
+          "Validate private-deployment requirements, multi-site / multi-language needs, DAM and marketing-automation scope, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -3214,6 +3298,92 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  bitly: {
+    description: (availability, names) =>
+      clipMeta(
+        `Bitly is Unavailable in mainland China — bit.ly is GFW-blocked and redirects are unstable. Compare ${names.slice(0, 5).join(", ") || "Aifabu, Xiaoma Short Link, 3WT, Suowo, C1N Short URL"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Bitly is Unavailable in mainland China</strong> for practical production use. The <code>bit.ly</code> domain is blocked by the GFW, so access and redirects routinely fail; even when a page occasionally loads, overseas hosting causes high latency and unstable jumps that cannot support real promotion workloads. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 5).join(", ") || "Aifabu, Xiaoma Short Link, 3WT, Suowo, C1N Short URL")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China short-link platforms to evaluate instead of Bitly",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 5,
+    indexCandidates: "Aifabu, Xiaoma Short Link, 3WT, Suowo, C1N Short URL",
+    guidanceHtml: `
+        <p><strong>Bitly is Unavailable for practical mainland China use.</strong> The reason is simple: the <code>bit.ly</code> domain is blocked by the GFW, so mainland users often cannot open or follow Bitly links. Even when access occasionally works, overseas servers mean high latency and unstable redirects — not acceptable for ecommerce, private-domain, or WeChat promotion.</p>
+        <h3>Domestic short-link platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Aifabu (爱短链)</td>
+                <td>Free starting tier; branded short codes; analytics; WeChat/Douyin anti-block features; fast mainland redirects</td>
+                <td>Ecommerce promo, private-domain acquisition, cross-platform distribution</td>
+              </tr>
+              <tr>
+                <td>Xiaoma Short Link (小码短链接)</td>
+                <td>Free; multi-dimensional reports (visits, IP, region, device); API and custom-domain support</td>
+                <td>Community ops, creators, knowledge commerce</td>
+              </tr>
+              <tr>
+                <td>3WT (三维推)</td>
+                <td>Most features free; WeChat card-style short links; strong anti-block / anti-red capability</td>
+                <td>WeChat-ecosystem promotion</td>
+              </tr>
+              <tr>
+                <td>Suowo (缩我)</td>
+                <td>Long-standing domestic provider; fast redirects; high stability</td>
+                <td>Enterprise short-link needs</td>
+              </tr>
+              <tr>
+                <td>C1N Short URL (C1N短网址)</td>
+                <td>Simple UX; click analytics</td>
+                <td>Individuals, official-account promotion</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Individuals / small teams:</strong> start with Aifabu (爱短链) or Xiaoma Short Link (小码短链接) — free tiers are usually enough.</li>
+          <li><strong>Enterprise / batch workloads:</strong> evaluate Suowo (缩我) or 3WT (三维推).</li>
+          <li><strong>WeChat-first promotion:</strong> prefer 3WT (三维推) for WeChat card-style short links and anti-block fit.</li>
+        </ul>
+        <p>These candidates appear on the Bitly alternatives page only — Chinaready does <strong>not</strong> add Aifabu, Xiaoma Short Link, 3WT, Suowo, or C1N Short URL as Landscape map product entries. Confirm redirect stability inside your target apps (especially WeChat), analytics needs, custom domains, and compliance before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Bitly work in China?",
+        answer:
+          "No for practical mainland China production use. Chinaready labels Bitly as Unavailable. The bit.ly domain is blocked by the GFW, so access and redirects routinely fail; even occasional opens suffer from overseas latency and unstable jumps that cannot support real promotion workloads.",
+      },
+      {
+        question: "What are the best China alternatives to Bitly?",
+        answer: `Chinaready currently lists these China-market options for Bitly: ${namesText}. Prefer Aifabu (爱短链) or Xiaoma Short Link (小码短链接) for individuals and small teams; prefer Suowo (缩我) or 3WT (三维推) for enterprise / batch needs; prefer 3WT when WeChat card-style short links matter most. Confirm fit before production adoption.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Bitly in mainland China?",
+        answer:
+          "Usually no. Short links in China depend on mainland redirect stability, WeChat/Douyin anti-block behavior, branded domains, analytics depth, and API fit. Expect a vendor and workflow redesign rather than a one-to-one Bitly swap.",
+      },
+      {
+        question: "How should teams choose among Aifabu, Xiaoma Short Link, 3WT, Suowo, and C1N?",
+        answer:
+          "Choose Aifabu or Xiaoma Short Link for free-tier individual and small-team use. Choose Suowo or 3WT for enterprise or batch short-link needs. Choose 3WT when WeChat-ecosystem card links and anti-block capability dominate. Choose C1N Short URL for simple individual or official-account click tracking.",
+      },
+      {
+        question: "Where should teams go after shortlisting Bitly alternatives?",
+        answer:
+          "Validate redirect reliability inside WeChat and other target apps, analytics and API needs, branded domains, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
   on24: {
     description: (availability, names) =>
       clipMeta(
@@ -4269,9 +4439,55 @@ function clipMeta(text, max = 155) {
   return `${sliced.replace(/\s+\S*$/, "").replace(/[.,;:]\s*$/, "")}…`;
 }
 
+/** Keep titles short enough that Google SERPs still show the brand suffix. */
+const TITLE_BRAND_SUFFIX = " | Chinaready";
+const MAX_SERP_TITLE_LENGTH = 60;
+
+/**
+ * Build a page title that always ends with `| Chinaready`.
+ * Truncates the descriptive base (not the brand) when needed so SERP snippets
+ * do not cut the suffix off for long product names.
+ */
+function brandedTitle(base, maxLength = MAX_SERP_TITLE_LENGTH) {
+  const clean = String(base || "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\s*\|\s*Chinaready(?:\s+Landscape)?\s*$/i, "");
+  const maxBase = Math.max(12, maxLength - TITLE_BRAND_SUFFIX.length);
+  let core = clean;
+  if (core.length > maxBase) {
+    core = core
+      .slice(0, maxBase)
+      .replace(/\s+\S*$/, "")
+      .replace(/[.,;:–—-]\s*$/, "")
+      // Drop dangling function words left by word-boundary truncation.
+      .replace(/\s+\b(?:in|to|for|and|or|of|the|a|an|with|on|at)\s*$/i, "");
+  }
+  if (!core) core = "Chinaready Landscape";
+  return `${core}${TITLE_BRAND_SUFFIX}`;
+}
+
+/**
+ * Ensure every pageShell title either already names Chinaready or gets the
+ * standard `| Chinaready` suffix (SERP-length capped).
+ */
+function ensureBrandedPageTitle(title) {
+  const clean = String(title || "").replace(/\s+/g, " ").trim();
+  if (/\|\s*Chinaready\s*$/i.test(clean)) {
+    return brandedTitle(clean);
+  }
+  if (/\bChinaready\b/i.test(clean)) {
+    return clean;
+  }
+  return brandedTitle(clean);
+}
+
 function analogPageTitle(group, availability, names) {
+  void availability;
   void names;
-  return `${group.name} Alternatives in China (${availability}) | Chinaready`;
+  // Availability stays on-page / in meta description; omit from <title> so
+  // `| Chinaready` survives Google's ~60-character SERP truncation.
+  return brandedTitle(`${group.name} Alternatives in China`);
 }
 
 function analogPageDescription(group, availability, names, uncertain) {
@@ -4314,6 +4530,7 @@ function pageShell({
           })),
         }
       : null;
+  const pageTitle = ensureBrandedPageTitle(title);
   const allLd = [...jsonLd, ...(breadcrumbLd ? [breadcrumbLd] : [])];
   const searchScript = includeSearchScript
     ? `<script defer src="/assets/chinaready-alternatives-search.js"></script>
@@ -4325,7 +4542,7 @@ function pageShell({
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>${escapeHtml(title)}</title>
+  <title>${escapeHtml(pageTitle)}</title>
   <meta name="description" content="${escapeHtml(description)}" />
   <link rel="canonical" href="${escapeHtml(canonical)}" />
   <meta name="robots" content="${escapeHtml(robots)}" />
@@ -4334,11 +4551,11 @@ function pageShell({
   <meta property="og:locale" content="en_US" />
   <meta property="og:url" content="${escapeHtml(canonical)}" />
   <meta property="og:site_name" content="Chinaready Landscape" />
-  <meta property="og:title" content="${escapeHtml(title)}" />
+  <meta property="og:title" content="${escapeHtml(pageTitle)}" />
   <meta property="og:description" content="${escapeHtml(description)}" />
   <meta property="og:image" content="${escapeHtml(OG_IMAGE_URL)}" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="${escapeHtml(title)}" />
+  <meta name="twitter:title" content="${escapeHtml(pageTitle)}" />
   <meta name="twitter:description" content="${escapeHtml(description)}" />
   <meta name="twitter:image" content="${escapeHtml(OG_IMAGE_URL)}" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -4442,7 +4659,7 @@ ${rows}
       </section>`;
 
   return pageShell({
-    title: "China Alternatives to Firebase, AWS, Stripe & More | Chinaready",
+    title: brandedTitle("China Alternatives to Firebase, AWS & Stripe"),
     description,
     canonicalPath: "/alternatives/",
     breadcrumbs: [
@@ -4706,8 +4923,9 @@ ${cards}
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      name: `${group.name} alternatives in China`,
-      headline: `${group.name} alternatives in China`,
+      // Match <title> so Google does not rewrite SERPs from an unbranded name.
+      name: title,
+      headline: title,
       description,
       url: analogPublicUrl(group.slug),
       isPartOf: { "@type": "WebSite", name: "Chinaready Landscape", url: SITE_URL },
