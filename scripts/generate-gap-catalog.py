@@ -26,8 +26,66 @@ OVERRIDES = {
     "dynatrace": ["Alibaba Cloud ARMS"],
     "splunk": ["Alibaba Cloud ARMS"],
     "pagerduty": ["Alibaba Cloud ARMS"],
-    "amazon cloudwatch": ["Alibaba Cloud ARMS"],
-    "azure monitor": ["Alibaba Cloud ARMS"],
+    "amazon cloudwatch": [
+        {
+            "name": "Alibaba Cloud CloudMonitor",
+            "homepage_url": "https://www.aliyun.com/product/cms",
+            "category": "Release, Quality & Operations",
+            "subcategory": "Monitoring & Observability (APM / RUM)",
+            "source": "research",
+            "note": (
+                "Alibaba Cloud CloudMonitor is an out-of-the-box enterprise monitoring service for "
+                "Alibaba Cloud resources and internet applications. It covers infrastructure metrics, "
+                "site/network probing, events, custom metrics, logs, dashboards, application groups, "
+                "alerting, and container monitoring — a practical China-stack cloud monitoring path "
+                "when AWS China CloudWatch feature limits are not enough."
+            ),
+        },
+        {
+            "name": "Tencent Cloud Observability Platform (TCOP)",
+            "homepage_url": "https://cloud.tencent.com/product/tcop",
+            "category": "Release, Quality & Operations",
+            "subcategory": "Monitoring & Observability (APM / RUM)",
+            "source": "research",
+            "note": (
+                "Tencent Cloud Observability Platform (TCOP) is a full-stack observability platform "
+                "that unifies metrics, traces, and logs with visualization and alerting. Sub-products "
+                "cover APM, frontend/terminal performance, dial testing, load testing, managed "
+                "Prometheus/Grafana, cloud-product monitoring, and alert management — strongest when "
+                "the China stack already runs on Tencent Cloud."
+            ),
+        },
+    ],
+    "azure monitor": [
+        {
+            "name": "Alibaba Cloud CloudMonitor",
+            "homepage_url": "https://www.aliyun.com/product/cms",
+            "category": "Release, Quality & Operations",
+            "subcategory": "Monitoring & Observability (APM / RUM)",
+            "source": "research",
+            "note": (
+                "Alibaba Cloud CloudMonitor is an out-of-the-box enterprise monitoring service for "
+                "Alibaba Cloud resources and internet applications. It covers infrastructure metrics, "
+                "site/network probing, events, custom metrics, logs, dashboards, application groups, "
+                "alerting, and container monitoring — a practical China-stack cloud monitoring path "
+                "when Azure China Monitor feature limits are not enough."
+            ),
+        },
+        {
+            "name": "Tencent Cloud Observability Platform (TCOP)",
+            "homepage_url": "https://cloud.tencent.com/product/tcop",
+            "category": "Release, Quality & Operations",
+            "subcategory": "Monitoring & Observability (APM / RUM)",
+            "source": "research",
+            "note": (
+                "Tencent Cloud Observability Platform (TCOP) is a full-stack observability platform "
+                "that unifies metrics, traces, and logs with visualization and alerting. Sub-products "
+                "cover APM, frontend/terminal performance, dial testing, load testing, managed "
+                "Prometheus/Grafana, cloud-product monitoring, and alert management — strongest when "
+                "the China stack already runs on Tencent Cloud."
+            ),
+        },
+    ],
     "bugsnag": ["Alibaba Cloud EMAS"],
     "rollbar": ["Alibaba Cloud EMAS"],
     "embrace": ["Alibaba Cloud EMAS"],
@@ -1737,6 +1795,9 @@ OVERRIDES = {
 # Force mainland China availability labels when research revises the catalog entry.
 AVAILABILITY_OVERRIDES = {
     "zoho crm": "Available",
+    "amazon cloudwatch": "Available",
+    "azure monitor": "Available",
+    "visual studio app center": "Unavailable",
     "bitly": "Unavailable",
     "altis": "Unavailable",
 }
@@ -1750,6 +1811,29 @@ RESEARCH_NOTE = (
     "Confirm replacement fit, compliance, and operating constraints before production adoption."
 )
 RESEARCH_NOTES = {
+    "visual studio app center": (
+        "Visual Studio App Center is Unavailable for mainland China: Microsoft retired App Center "
+        "on March 31, 2025, and Analytics / Diagnostics ended June 30, 2026. Even before retirement, "
+        "mainland use was poor because data and processing stayed in the United States, Microsoft "
+        "warned that China Analytics/Diagnostics SDK data could be delayed or fail to publish, and "
+        "build/distribution access was often unstable. Prefer Alibaba Cloud Yunxiao and Tencent "
+        "Cloud DevOps (CODING) for China CI/CD and mobile-release workflows; replace crash analytics, "
+        "beta distribution, and hot update by module as needed. Confirm fit before production adoption."
+    ),
+    "amazon cloudwatch": (
+        "Amazon CloudWatch is Available in AWS China, but the China-region product set is more "
+        "limited than global CloudWatch. When teams need a fuller mainland China monitoring stack, "
+        "evaluate Alibaba Cloud CloudMonitor and Tencent Cloud Observability Platform (TCOP). These "
+        "appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm "
+        "feature fit, alerting, and operating constraints before production adoption."
+    ),
+    "azure monitor": (
+        "Azure Monitor is Available in Azure China, but the China-region product set is more "
+        "limited than global Azure Monitor. When teams need a fuller mainland China monitoring stack, "
+        "evaluate Alibaba Cloud CloudMonitor and Tencent Cloud Observability Platform (TCOP). These "
+        "appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm "
+        "feature fit, alerting, and operating constraints before production adoption."
+    ),
     "altis": (
         "Altis is Unavailable for practical mainland China use: BuiltWith-style adoption in China is "
         "negligible (on the order of about two sites), the stack depends on overseas AWS "

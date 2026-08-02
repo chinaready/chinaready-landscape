@@ -82,6 +82,8 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   onesignal: "limited",
   "amazon-ses": "unavailable",
   "amazon-cloudfront": "available",
+  "amazon-cloudwatch": "available",
+  "azure-monitor": "available",
   env0: "available",
   "twilio-sms": "unavailable",
   "twilio-video": "unavailable",
@@ -89,6 +91,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "sign-in-with-apple": "limited",
   "apple-pay": "available",
   "azure-devops": "limited",
+  "visual-studio-app-center": "unavailable",
   "castle-io": "unavailable",
   airbase: "unavailable",
   altis: "unavailable",
@@ -673,6 +676,93 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  "visual-studio-app-center": {
+    description: (availability, names) =>
+      clipMeta(
+        `Visual Studio App Center retired March 31, 2025; Analytics and Diagnostics ended June 30, 2026. For China CI/CD and mobile release, compare ${names.slice(0, 2).join(" and ") || "Alibaba Cloud Yunxiao and Tencent Cloud DevOps (CODING)"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Visual Studio App Center is Unavailable</strong> for mainland China. Microsoft retired App Center on <strong>March 31, 2025</strong>; the remaining Analytics and Diagnostics services ended on <strong>June 30, 2026</strong>. Even before retirement, mainland use was already poor — US-only data hosting, official China latency/data-delivery warnings, and unstable build/distribution access. Chinaready currently maps CI/CD and mobile-release options to <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Alibaba Cloud Yunxiao, Tencent Cloud DevOps (CODING)")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Replace Visual Studio App Center for China mobile DevOps",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 2,
+    indexCandidates: "Alibaba Cloud Yunxiao, Tencent Cloud DevOps (CODING)",
+    guidanceHtml: `
+        <p><strong>Important update:</strong> Visual Studio App Center was retired on <strong>March 31, 2025</strong>. Analytics and Diagnostics continued only until <strong>June 30, 2026</strong>. Do not plan App Center as a production dependency for mainland China mobile builds, distribution, crash analytics, or hot update.</p>
+        <p>Even before retirement, App Center was a weak mainland fit:</p>
+        <ul>
+          <li><strong>US-only hosting:</strong> App Center processed and stored customer data in the United States, with no option to host that data in other countries or regions.</li>
+          <li><strong>Official China warning:</strong> Microsoft documented that App Center may not work in every country because of local policy and law, and that for some users in China, Analytics and Diagnostics SDK data could face major delays or fail to publish to US-hosted servers.</li>
+          <li><strong>Unstable mainland access:</strong> Cross-border network conditions often broke day-to-day build and distribution workflows from inside mainland China.</li>
+        </ul>
+        <p>App Center covered several jobs — CI/CD builds, testing, distribution, crash analytics, and hot update — so China teams usually replace it by module rather than with one exact clone. The mapped shortlist below focuses on China-market CI/CD and release platforms already listed in Chinaready research: <strong>Alibaba Cloud Yunxiao</strong> and <strong>Tencent Cloud DevOps (CODING)</strong>.</p>
+        <h3>How App Center jobs usually map in China</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>App Center job</th>
+                <th>Common China-market options</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Crash analytics and performance monitoring</td>
+                <td>Umeng+ (友盟+), JD Cloud Mobile R&amp;D Platform, Tencent Bugly</td>
+              </tr>
+              <tr>
+                <td>CI/CD build and delivery</td>
+                <td>Alibaba Cloud Yunxiao (Flow), Tencent Cloud DevOps (CODING), self-hosted Jenkins, Gitee Go</td>
+              </tr>
+              <tr>
+                <td>Internal app distribution / beta testing</td>
+                <td>Pgyer (蒲公英), Fir.im, Alibaba Cloud Yunxiao app distribution</td>
+              </tr>
+              <tr>
+                <td>Hot update / CodePush-style fixes</td>
+                <td>Microsoft open-source standalone CodePush, JD Cloud hotfix, Tencent Bugly hot update</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The orientation names above help scope the migration. Chinaready's current mapped shortlist for this page remains <strong>Alibaba Cloud Yunxiao</strong> and <strong>Tencent Cloud DevOps (CODING)</strong> — they appear as alternatives-page candidates only, not as new Explore / Landscape product tiles beyond what is already listed.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Visual Studio App Center work in China?",
+        answer: `No for mainland China production stacks. Chinaready labels Visual Studio App Center as ${availability}. Microsoft retired App Center on March 31, 2025, and the remaining Analytics and Diagnostics services ended on June 30, 2026. Even before retirement, mainland use was unreliable because of US-only data hosting, official China delivery warnings, and unstable cross-border access for build and distribution.`,
+      },
+      {
+        question: "When was Visual Studio App Center retired?",
+        answer:
+          "Microsoft retired Visual Studio App Center on March 31, 2025. Analytics and Diagnostics continued on a temporary path until June 30, 2026. After that date, App Center should not be treated as an active product for new or continuing mobile DevOps workflows.",
+      },
+      {
+        question: "Why was App Center already a poor fit for mainland China before retirement?",
+        answer:
+          "Three practical reasons. First, App Center hosted and processed customer data in the United States with no other-region data hosting option. Second, Microsoft documented that country-specific policies and laws meant App Center might not work everywhere, and that for some China users Analytics and Diagnostics SDK data could be heavily delayed or fail to reach US servers. Third, mainland network conditions often made build and distribution workflows unstable day to day.",
+      },
+      {
+        question: "What are the best China alternatives to Visual Studio App Center?",
+        answer: namesText
+          ? `Chinaready Landscape currently maps Visual Studio App Center to ${namesText} for China-market CI/CD and mobile release workflows. Prefer Alibaba Cloud Yunxiao when the stack is already on Alibaba Cloud or you need mobile build pipelines plus distribution on one China DevOps platform; prefer Tencent Cloud DevOps (CODING) for code hosting, CI/CD pipelines, and artifact management on a Tencent-centric stack. Crash analytics, beta distribution, and hot update are often separate module choices — for example Umeng+, Tencent Bugly, Pgyer, or standalone CodePush.`
+          : `Chinaready currently maps Alibaba Cloud Yunxiao and Tencent Cloud DevOps (CODING) for China-market CI/CD and mobile release workflows after App Center. Crash analytics, beta distribution, and hot update are often separate module choices.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for App Center in mainland China?",
+        answer:
+          "Usually no. App Center bundled CI/CD, testing, distribution, crash analytics, and hot update. China teams typically replace those jobs with a small stack: a DevOps platform such as Yunxiao or CODING for builds and release, plus a crash/analytics SDK and an internal distribution or hotfix tool as needed.",
+      },
+      {
+        question: "How should teams replace App Center crash analytics and hot update?",
+        answer:
+          "For crash analytics and performance monitoring, China teams commonly evaluate Umeng+ (友盟+), JD Cloud Mobile R&D Platform, or Tencent Bugly. For CodePush-style hot update after App Center retirement, options include Microsoft's open-source standalone CodePush, JD Cloud hotfix, and Tencent Bugly hot update. Validate SDK fit, free-tier limits, and App Store / compliance constraints before production adoption.",
+      },
+      {
+        question: "Where should teams go after shortlisting App Center alternatives?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent CI/CD, app distribution, and mobile observability services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the migration path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
   "amazon-cloudfront": {
     description: (availability, names) =>
       clipMeta(
@@ -728,6 +818,108 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Where should teams go after shortlisting CloudFront options?",
         answer: `Use the interactive Chinaready Landscape to compare adjacent Infrastructure & Edge services, then read Chinaready's main site for launch operating guidance covering ICP, compliance, and go-to-market constraints beyond vendor selection. If the CDN path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
+  "amazon-cloudwatch": {
+    description: (availability, names) =>
+      clipMeta(
+        `Amazon CloudWatch is Available in AWS China, with fewer features than global. For a fuller mainland stack, compare ${names.slice(0, 2).join(" and ") || "Alibaba Cloud CloudMonitor and Tencent Cloud Observability Platform (TCOP)"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Amazon CloudWatch</strong> is <strong>Available</strong> in AWS China, but the China-region version is more limited than global CloudWatch. If you need a more complete mainland China monitoring stack, evaluate <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Alibaba Cloud CloudMonitor, Tencent Cloud Observability Platform (TCOP)")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Amazon CloudWatch in AWS China",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 2,
+    indexCandidates: "Alibaba Cloud CloudMonitor, Tencent Cloud Observability Platform (TCOP)",
+    guidanceHtml: `
+        <p><strong>Amazon CloudWatch is Available in AWS China.</strong> Teams already running workloads in AWS China can keep using CloudWatch for core metrics, logs, and alarms. Chinaready still flags an important caveat: the China-region CloudWatch product set is more limited than the global CloudWatch experience, so do not assume feature parity with commercial / global regions.</p>
+        <p>When you need a more complete mainland China monitoring and observability stack — broader cloud-product coverage, dial testing, APM/traces, or a non-AWS China cloud — compare the domestic platforms below. They appear on this alternatives page only — Chinaready does not add them as Explore / Landscape product tiles.</p>
+        <h3>Alibaba Cloud CloudMonitor</h3>
+        <p>Alibaba Cloud CloudMonitor is a monitoring service for Alibaba Cloud resources and internet applications. It provides an out-of-the-box enterprise monitoring path covering IT infrastructure metrics, external network quality probing, and business monitoring based on events, custom metrics, and logs. Cross-service and cross-region application groups plus alert templates help teams manage dozens of cloud services and large instance fleets. Typical capabilities include dashboards, host monitoring, event and custom monitoring, log monitoring, site monitoring, cloud-product monitoring, alerting, and container monitoring.</p>
+        <h3>Tencent Cloud Observability Platform (TCOP)</h3>
+        <p>Tencent Cloud Observability Platform (TCOP) is a full-stack observability platform that unifies metrics, traces, and logs with visualization and alerting. Official product positioning covers end-to-end monitoring for ops troubleshooting and business stability. Sub-products commonly include application performance monitoring, terminal and frontend performance monitoring, cloud dial testing, cloud load testing, managed Prometheus and Grafana, cloud-product monitoring, alert management, dashboards, and event connectivity.</p>
+        <h3>How to choose</h3>
+        <ul>
+          <li><strong>Keep AWS China CloudWatch</strong> when the workload already runs in AWS China and the China-region feature set is enough.</li>
+          <li><strong>Prefer Alibaba Cloud CloudMonitor</strong> when the China stack is on Alibaba Cloud or you need Alibaba-native resource, site, and alert monitoring.</li>
+          <li><strong>Prefer TCOP</strong> when the China stack is on Tencent Cloud or you want a metrics + traces + logs observability suite on that platform.</li>
+        </ul>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Amazon CloudWatch work in China?",
+        answer: `Yes in AWS China. Chinaready labels Amazon CloudWatch as ${availability}. The practical caveat is feature depth: China-region CloudWatch is more limited than global CloudWatch, so validate the exact metrics, logs, alarms, and integrations you need before assuming parity.`,
+      },
+      {
+        question: "Why does Chinaready still list China monitoring alternatives if CloudWatch is Available?",
+        answer:
+          "Because Available does not mean feature-complete versus the global product. CloudWatch can be used in AWS China, but teams that need a fuller mainland monitoring stack often evaluate domestic platforms such as Alibaba Cloud CloudMonitor and Tencent Cloud Observability Platform (TCOP).",
+      },
+      {
+        question: "What are the best China alternatives to Amazon CloudWatch?",
+        answer: namesText
+          ? `Chinaready currently maps mainland monitoring options for Amazon CloudWatch to ${namesText}. Prefer Alibaba Cloud CloudMonitor for Alibaba-stack cloud and site monitoring, and Tencent Cloud Observability Platform (TCOP) for a Tencent-native metrics, traces, and logs suite. Treat this as a research shortlist rather than a one-to-one endorsement.`
+          : `Chinaready currently maps Alibaba Cloud CloudMonitor and Tencent Cloud Observability Platform (TCOP) as mainland monitoring options for Amazon CloudWatch. Treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Should teams replace CloudWatch just because they launch in China?",
+        answer:
+          "Not automatically. Keep AWS China CloudWatch when the workload already runs in AWS China and the China-region feature set covers your needs. Replace or supplement it when you need broader mainland observability capabilities or when the China stack runs on Alibaba Cloud or Tencent Cloud.",
+      },
+      {
+        question: "Where should teams go after shortlisting CloudWatch options?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent monitoring and observability services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the monitoring path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
+  "azure-monitor": {
+    description: (availability, names) =>
+      clipMeta(
+        `Azure Monitor is Available in Azure China, with fewer features than global. For a fuller mainland stack, compare ${names.slice(0, 2).join(" and ") || "Alibaba Cloud CloudMonitor and Tencent Cloud Observability Platform (TCOP)"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Azure Monitor</strong> is <strong>Available</strong> in Azure China, but the China-region version is more limited than global Azure Monitor. If you need a more complete mainland China monitoring stack, evaluate <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Alibaba Cloud CloudMonitor, Tencent Cloud Observability Platform (TCOP)")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Azure Monitor in Azure China",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 2,
+    indexCandidates: "Alibaba Cloud CloudMonitor, Tencent Cloud Observability Platform (TCOP)",
+    guidanceHtml: `
+        <p><strong>Azure Monitor is Available in Azure China.</strong> Teams already running workloads in Azure China can keep using Azure Monitor for core metrics, logs, and alerts. Chinaready still flags an important caveat: the China-region Azure Monitor product set is more limited than the global Azure Monitor experience, so do not assume feature parity with commercial / global regions.</p>
+        <p>When you need a more complete mainland China monitoring and observability stack — broader cloud-product coverage, dial testing, APM/traces, or a non-Azure China cloud — compare the domestic platforms below. They appear on this alternatives page only — Chinaready does not add them as Explore / Landscape product tiles.</p>
+        <h3>Alibaba Cloud CloudMonitor</h3>
+        <p>Alibaba Cloud CloudMonitor is a monitoring service for Alibaba Cloud resources and internet applications. It provides an out-of-the-box enterprise monitoring path covering IT infrastructure metrics, external network quality probing, and business monitoring based on events, custom metrics, and logs. Cross-service and cross-region application groups plus alert templates help teams manage dozens of cloud services and large instance fleets. Typical capabilities include dashboards, host monitoring, event and custom monitoring, log monitoring, site monitoring, cloud-product monitoring, alerting, and container monitoring.</p>
+        <h3>Tencent Cloud Observability Platform (TCOP)</h3>
+        <p>Tencent Cloud Observability Platform (TCOP) is a full-stack observability platform that unifies metrics, traces, and logs with visualization and alerting. Official product positioning covers end-to-end monitoring for ops troubleshooting and business stability. Sub-products commonly include application performance monitoring, terminal and frontend performance monitoring, cloud dial testing, cloud load testing, managed Prometheus and Grafana, cloud-product monitoring, alert management, dashboards, and event connectivity.</p>
+        <h3>How to choose</h3>
+        <ul>
+          <li><strong>Keep Azure China Monitor</strong> when the workload already runs in Azure China and the China-region feature set is enough.</li>
+          <li><strong>Prefer Alibaba Cloud CloudMonitor</strong> when the China stack is on Alibaba Cloud or you need Alibaba-native resource, site, and alert monitoring.</li>
+          <li><strong>Prefer TCOP</strong> when the China stack is on Tencent Cloud or you want a metrics + traces + logs observability suite on that platform.</li>
+        </ul>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Azure Monitor work in China?",
+        answer: `Yes in Azure China. Chinaready labels Azure Monitor as ${availability}. The practical caveat is feature depth: China-region Azure Monitor is more limited than global Azure Monitor, so validate the exact metrics, logs, alerts, and integrations you need before assuming parity.`,
+      },
+      {
+        question: "Why does Chinaready still list China monitoring alternatives if Azure Monitor is Available?",
+        answer:
+          "Because Available does not mean feature-complete versus the global product. Azure Monitor can be used in Azure China, but teams that need a fuller mainland monitoring stack often evaluate domestic platforms such as Alibaba Cloud CloudMonitor and Tencent Cloud Observability Platform (TCOP).",
+      },
+      {
+        question: "What are the best China alternatives to Azure Monitor?",
+        answer: namesText
+          ? `Chinaready currently maps mainland monitoring options for Azure Monitor to ${namesText}. Prefer Alibaba Cloud CloudMonitor for Alibaba-stack cloud and site monitoring, and Tencent Cloud Observability Platform (TCOP) for a Tencent-native metrics, traces, and logs suite. Treat this as a research shortlist rather than a one-to-one endorsement.`
+          : `Chinaready currently maps Alibaba Cloud CloudMonitor and Tencent Cloud Observability Platform (TCOP) as mainland monitoring options for Azure Monitor. Treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Should teams replace Azure Monitor just because they launch in China?",
+        answer:
+          "Not automatically. Keep Azure China Monitor when the workload already runs in Azure China and the China-region feature set covers your needs. Replace or supplement it when you need broader mainland observability capabilities or when the China stack runs on Alibaba Cloud or Tencent Cloud.",
+      },
+      {
+        question: "Where should teams go after shortlisting Azure Monitor options?",
+        answer: `Use the interactive Chinaready Landscape to compare adjacent monitoring and observability services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the monitoring path remains unclear, book a call with Chinaready.`,
       },
     ],
   },

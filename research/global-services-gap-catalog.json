@@ -40,8 +40,8 @@
     },
     "amazon cloudwatch": {
       "name": "Amazon CloudWatch",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
+      "availability": "Available",
+      "global_availability_in_china": "available"
     },
     "apple search ads": {
       "name": "Apple Search Ads",
@@ -75,8 +75,8 @@
     },
     "azure monitor": {
       "name": "Azure Monitor",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
+      "availability": "Available",
+      "global_availability_in_china": "available"
     },
     "barracuda": {
       "name": "Barracuda",
@@ -540,8 +540,8 @@
     },
     "visual studio app center": {
       "name": "Visual Studio App Center",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
     },
     "vwo": {
       "name": "VWO",
@@ -766,18 +766,27 @@
         "Performance Monitoring & Alerting",
         "Hosting & Infrastructure"
       ],
-      "availability": "Limited",
-      "global_availability_in_china": "limited",
+      "availability": "Available",
+      "global_availability_in_china": "available",
       "china_candidates": [
         {
-          "name": "Alibaba Cloud ARMS",
-          "homepage_url": "https://www.aliyun.com/product/arms",
+          "name": "Alibaba Cloud CloudMonitor",
+          "homepage_url": "https://www.aliyun.com/product/cms",
           "category": "Release, Quality & Operations",
           "subcategory": "Monitoring & Observability (APM / RUM)",
-          "source": "landscape"
+          "source": "research",
+          "note": "Alibaba Cloud CloudMonitor is an out-of-the-box enterprise monitoring service for Alibaba Cloud resources and internet applications. It covers infrastructure metrics, site/network probing, events, custom metrics, logs, dashboards, application groups, alerting, and container monitoring — a practical China-stack cloud monitoring path when AWS China CloudWatch feature limits are not enough."
+        },
+        {
+          "name": "Tencent Cloud Observability Platform (TCOP)",
+          "homepage_url": "https://cloud.tencent.com/product/tcop",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "research",
+          "note": "Tencent Cloud Observability Platform (TCOP) is a full-stack observability platform that unifies metrics, traces, and logs with visualization and alerting. Sub-products cover APM, frontend/terminal performance, dial testing, load testing, managed Prometheus/Grafana, cloud-product monitoring, and alert management — strongest when the China stack already runs on Tencent Cloud."
         }
       ],
-      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "research_note": "Amazon CloudWatch is Available in AWS China, but the China-region product set is more limited than global CloudWatch. When teams need a fuller mainland China monitoring stack, evaluate Alibaba Cloud CloudMonitor and Tencent Cloud Observability Platform (TCOP). These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm feature fit, alerting, and operating constraints before production adoption.",
       "confidence": "researched"
     },
     {
@@ -996,18 +1005,27 @@
         "Performance Monitoring & Alerting",
         "Hosting & Infrastructure"
       ],
-      "availability": "Limited",
-      "global_availability_in_china": "limited",
+      "availability": "Available",
+      "global_availability_in_china": "available",
       "china_candidates": [
         {
-          "name": "Alibaba Cloud ARMS",
-          "homepage_url": "https://www.aliyun.com/product/arms",
+          "name": "Alibaba Cloud CloudMonitor",
+          "homepage_url": "https://www.aliyun.com/product/cms",
           "category": "Release, Quality & Operations",
           "subcategory": "Monitoring & Observability (APM / RUM)",
-          "source": "landscape"
+          "source": "research",
+          "note": "Alibaba Cloud CloudMonitor is an out-of-the-box enterprise monitoring service for Alibaba Cloud resources and internet applications. It covers infrastructure metrics, site/network probing, events, custom metrics, logs, dashboards, application groups, alerting, and container monitoring — a practical China-stack cloud monitoring path when Azure China Monitor feature limits are not enough."
+        },
+        {
+          "name": "Tencent Cloud Observability Platform (TCOP)",
+          "homepage_url": "https://cloud.tencent.com/product/tcop",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "research",
+          "note": "Tencent Cloud Observability Platform (TCOP) is a full-stack observability platform that unifies metrics, traces, and logs with visualization and alerting. Sub-products cover APM, frontend/terminal performance, dial testing, load testing, managed Prometheus/Grafana, cloud-product monitoring, and alert management — strongest when the China stack already runs on Tencent Cloud."
         }
       ],
-      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "research_note": "Azure Monitor is Available in Azure China, but the China-region product set is more limited than global Azure Monitor. When teams need a fuller mainland China monitoring stack, evaluate Alibaba Cloud CloudMonitor and Tencent Cloud Observability Platform (TCOP). These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm feature fit, alerting, and operating constraints before production adoption.",
       "confidence": "researched"
     },
     {
@@ -4318,8 +4336,8 @@
       "categories": [
         "CI/CD & Mobile App Distribution"
       ],
-      "availability": "Limited",
-      "global_availability_in_china": "limited",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
       "china_candidates": [
         {
           "name": "Alibaba Cloud Yunxiao",
@@ -4336,7 +4354,7 @@
           "source": "landscape"
         }
       ],
-      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "research_note": "Visual Studio App Center is Unavailable for mainland China: Microsoft retired App Center on March 31, 2025, and Analytics / Diagnostics ended June 30, 2026. Even before retirement, mainland use was poor because data and processing stayed in the United States, Microsoft warned that China Analytics/Diagnostics SDK data could be delayed or fail to publish, and build/distribution access was often unstable. Prefer Alibaba Cloud Yunxiao and Tencent Cloud DevOps (CODING) for China CI/CD and mobile-release workflows; replace crash analytics, beta distribution, and hot update by module as needed. Confirm fit before production adoption.",
       "confidence": "researched"
     },
     {
