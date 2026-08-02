@@ -89,6 +89,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "twilio-video": "unavailable",
   "twilio-voice": "unavailable",
   "sign-in-with-apple": "limited",
+  "facebook-login": "unavailable",
   "apple-pay": "available",
   "azure-devops": "limited",
   "visual-studio-app-center": "unavailable",
@@ -1039,6 +1040,105 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Where should teams go after planning China login options?",
         answer: `Use the interactive Chinaready Landscape to compare adjacent identity and messaging services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the login path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
+  "facebook-login": {
+    description: (availability, names) =>
+      clipMeta(
+        `Facebook Login is Unavailable in mainland China. Compare China's Top 5 login paths: ${names.slice(0, 5).join(", ") || "WeChat Login, QQ Login, Weibo Login, Alipay Login, SMS Login"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Facebook Login is Unavailable in mainland China</strong> for production stacks. Like Facebook Login overseas, China has OAuth 2.0-based social login — but the mainstream paths are different. Chinaready's Top 5 shortlist is <strong>${escapeHtml(names.slice(0, 5).join(", ") || "WeChat Login, QQ Login, Weibo Login, Alipay Login, SMS Login")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China's most popular third-party login methods (Top 5)",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 5,
+    indexCandidates: "WeChat Login, QQ Login, Weibo Login, Alipay Login, SMS Login",
+    guidanceHtml: `
+        <p>Like Facebook Login, China has an OAuth 2.0-based social account login ecosystem. The difference is which platforms users actually expect. Below are the five most popular mainland China login paths teams evaluate when replacing Facebook Login.</p>
+        <h3>1. WeChat Login</h3>
+        <p>The clear No. 1 in mainland China — almost every major app and website supports WeChat Login. Apply through the WeChat Open Platform (<a href="https://open.weixin.qq.com/" rel="noopener noreferrer">open.weixin.qq.com</a>) for websites, mobile apps, and mini programs. Users scan a QR code or authorize in one tap. With more than 1.3 billion monthly active users, coverage is extremely broad.</p>
+        <h3>2. QQ Login</h3>
+        <p>Integrate through QQ Connect (<a href="https://connect.qq.com/" rel="noopener noreferrer">connect.qq.com</a>). One of China's earliest widely adopted third-party login methods. Users sign in with a QQ account and can authorize avatar and nickname access. Still popular with younger users and on many PC websites.</p>
+        <h3>3. Weibo Login</h3>
+        <p>Integrate through the Weibo Open Platform (<a href="https://open.weibo.com/" rel="noopener noreferrer">open.weibo.com</a>) after registering a developer account. Common on media, news, and content-community sites — often the preferred supplement after WeChat and QQ.</p>
+        <h3>4. Alipay Login</h3>
+        <p>Built on Alipay's large user base and especially common in ecommerce, finance, and lifestyle apps. Alipay Login users are typically real-name verified, which helps in flows that need stronger identity assurance. Developer entry: <a href="https://open.alipay.com/" rel="noopener noreferrer">open.alipay.com</a>.</p>
+        <h3>5. SMS Login (phone OTP)</h3>
+        <p>Unlike many overseas products that lead with email, mainland China platforms almost always treat the mobile phone number as the primary login identity. Phone numbers are tightly bound to real-world identity and naturally support mainland real-name requirements. Users receive an SMS verification code to register or sign in without remembering a password — the core identity path for China's mobile internet. Implement via major China cloud SMS APIs (for example Alibaba Cloud SMS or Tencent Cloud SMS).</p>
+        <h3>Developer entry comparison</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Developer entry</th>
+                <th>Protocol</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>WeChat</td>
+                <td>open.weixin.qq.com</td>
+                <td>OAuth 2.0</td>
+                <td>All scenarios (mobile / PC / mini program)</td>
+              </tr>
+              <tr>
+                <td>QQ</td>
+                <td>connect.qq.com</td>
+                <td>OAuth 2.0</td>
+                <td>All scenarios; stronger with younger users</td>
+              </tr>
+              <tr>
+                <td>Weibo</td>
+                <td>open.weibo.com</td>
+                <td>OAuth 2.0</td>
+                <td>Content and media websites</td>
+              </tr>
+              <tr>
+                <td>Alipay</td>
+                <td>open.alipay.com</td>
+                <td>OAuth 2.0</td>
+                <td>Ecommerce, finance, lifestyle services</td>
+              </tr>
+              <tr>
+                <td>SMS / phone</td>
+                <td>Major cloud SMS APIs</td>
+                <td>SMS OTP</td>
+                <td>All scenarios — baseline mainland App login</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Also used in specific niches</h3>
+        <p>DingTalk Login (enterprise office), Huawei / Xiaomi account login (OEM ecosystems), and Apple Login (often required on iOS) also see meaningful use in their niches, but overall adoption is below the Top 5 above.</p>
+        <p>QQ Login, Weibo Login, Alipay Login, and SMS Login appear on this Facebook Login alternatives page as orientation options only — Chinaready does <strong>not</strong> add them as Explore / Landscape product tiles from this rewrite. WeChat Login remains the Landscape-mapped identity option. Confirm developer qualification, scopes, and compliance before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Facebook Login work in China?",
+        answer: `No for mainland China production stacks. Chinaready labels Facebook Login as ${availability}. Facebook / Meta consumer login is not a workable mainland identity path — plan China-native login methods instead.`,
+      },
+      {
+        question: "What are the best China alternatives to Facebook Login?",
+        answer:
+          "Chinaready's Top 5 mainland third-party login shortlist is WeChat Login, QQ Login, Weibo Login, Alipay Login, and SMS Login (phone OTP). Prefer WeChat Login as the default consumer path, add SMS Login for real-name / passwordless baselines, and use QQ, Weibo, or Alipay Login where those ecosystems matter. Treat this as a research shortlist rather than a one-to-one endorsement.",
+      },
+      {
+        question: "Is WeChat Login enough to replace Facebook Login?",
+        answer:
+          "Often as the primary social login, yes — WeChat Login is the mainland default. Many teams still add SMS Login because phone OTP is the core mainland identity method, and may add QQ, Weibo, or Alipay Login for specific audiences or verticals.",
+      },
+      {
+        question: "Why is SMS Login so important in China?",
+        answer:
+          "Mainland platforms almost always treat the mobile phone number as the primary identity, not email. Phone numbers support real-name expectations, and SMS OTP lets users register or sign in without passwords. For most China apps, phone login is baseline rather than optional.",
+      },
+      {
+        question: "Where should teams go after shortlisting Facebook Login alternatives?",
+        answer:
+          "Start with WeChat Login plus SMS Login for most consumer apps, then add QQ, Weibo, or Alipay Login only when your audience or vertical needs them. Use the interactive Chinaready Landscape for adjacent identity services, then read Chinaready's main site for launch operating guidance. If the login path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -4425,12 +4525,22 @@ function majorityAvailability(items) {
   return best || "unknown";
 }
 
+function prefersResearchCandidates(group) {
+  return Boolean(resolveEditorial(group)?.preferResearchCandidates);
+}
+
 function candidateCount(group) {
+  if (prefersResearchCandidates(group) && group.research_candidates?.length) {
+    return group.research_candidates.length;
+  }
   if (group.items?.length) return group.items.length;
   return group.research_candidates?.length || 0;
 }
 
 function candidateNames(group) {
+  if (prefersResearchCandidates(group) && group.research_candidates?.length) {
+    return group.research_candidates.map((item) => item.name);
+  }
   if (group.items?.length) return group.items.map((item) => item.name);
   return (group.research_candidates || []).map((item) => item.name);
 }
@@ -4468,6 +4578,11 @@ function mergeAnalogGroups(landscapeGroups, catalog) {
       const existing = bySlug.get(slug);
       existing.availability_in_china =
         service.global_availability_in_china || existing.availability_in_china || "unknown";
+      if ((service.china_candidates || []).length) {
+        existing.research_candidates = service.china_candidates;
+        existing.research_note = service.research_note || existing.research_note || "";
+        if (service.confidence) existing.confidence = service.confidence;
+      }
       continue;
     }
     bySlug.set(slug, {
@@ -4933,13 +5048,15 @@ function relatedGroups(group, groups, limit = 5) {
 }
 
 function renderAnalogPage(group, groups = []) {
+  const editorial = resolveEditorial(group);
   const names = candidateNames(group);
   const namesText = names.join(", ");
   const availability = availabilityLabel(group);
-  const hasMapped = group.items.length > 0;
-  const hasResearch = !hasMapped && (group.research_candidates || []).length > 0;
+  const preferResearch =
+    Boolean(editorial?.preferResearchCandidates) && (group.research_candidates || []).length > 0;
+  const hasMapped = !preferResearch && group.items.length > 0;
+  const hasResearch = preferResearch || (!hasMapped && (group.research_candidates || []).length > 0);
   const uncertain = !hasMapped && !hasResearch;
-  const editorial = resolveEditorial(group);
   const title = analogPageTitle(group, availability, names);
   const description = editorial?.description
     ? editorial.description(availability, names)

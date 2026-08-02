@@ -2,9 +2,9 @@
   "source": "Chinaready Landscape research shortlist for taxonomy-relevant global services",
   "generated_for": "alternatives index SEO expansion",
   "counts": {
-    "services": 113,
+    "services": 114,
     "uncertain_alternatives": 0,
-    "researched_alternatives": 83,
+    "researched_alternatives": 84,
     "heuristic_alternatives": 30
   },
   "availability_lookup": {
@@ -567,6 +567,11 @@
       "name": "Zoom SDK",
       "availability": "Limited",
       "global_availability_in_china": "limited"
+    },
+    "facebook login": {
+      "name": "Facebook Login",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
     }
   },
   "services": [
@@ -2070,6 +2075,58 @@
         }
       ],
       "research_note": "For env0-managed Terraform in mainland China, prefer AWS China Regions as the primary cloud target. Alibaba Cloud is also workable because Terraform supports the Alibaba Cloud provider. Confirm compliance and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Facebook Login",
+      "categories": [
+        "Authentication & Identity"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "WeChat Login",
+          "homepage_url": "https://developers.weixin.qq.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Authentication & Identity",
+          "source": "research",
+          "note": "WeChat Login is mainland China's No. 1 third-party login. Apply via the WeChat Open Platform for websites, mobile apps, and mini programs; users scan a QR code or authorize in one tap. Coverage is extremely broad across consumer apps."
+        },
+        {
+          "name": "QQ Login",
+          "homepage_url": "https://connect.qq.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Authentication & Identity",
+          "source": "research",
+          "note": "QQ Login via QQ Connect is one of China's earliest widely adopted social login methods. Users sign in with a QQ account and can authorize avatar and nickname access — still popular with younger users and on many PC websites."
+        },
+        {
+          "name": "Weibo Login",
+          "homepage_url": "https://open.weibo.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Authentication & Identity",
+          "source": "research",
+          "note": "Weibo Login via the Weibo Open Platform is common on media, news, and content-community sites — often the preferred supplement after WeChat and QQ."
+        },
+        {
+          "name": "Alipay Login",
+          "homepage_url": "https://open.alipay.com/",
+          "category": "Users, Trust & Monetization",
+          "subcategory": "Authentication & Identity",
+          "source": "research",
+          "note": "Alipay Login is especially common in ecommerce, finance, and lifestyle apps. Users are typically real-name verified, which helps flows that need stronger identity assurance."
+        },
+        {
+          "name": "SMS Login",
+          "homepage_url": "https://www.aliyun.com/product/dysms",
+          "category": "Engagement & Communication",
+          "subcategory": "Push Notifications & Multichannel Messaging",
+          "source": "research",
+          "note": "SMS Login (phone OTP) is the core mainland identity path: phone numbers are the primary login identity, support real-name expectations, and let users register or sign in without passwords via major China cloud SMS APIs."
+        }
+      ],
+      "research_note": "Facebook Login is Unavailable for mainland China production stacks. China's mainstream third-party login paths are WeChat Login, QQ Login, Weibo Login, Alipay Login, and SMS Login (phone OTP). Prefer WeChat Login as the default consumer social login and SMS Login as the baseline real-name / passwordless path; add QQ, Weibo, or Alipay Login for specific audiences or verticals. QQ Login, Weibo Login, Alipay Login, and SMS Login appear on the alternatives page as orientation options — not as Explore / Landscape product tiles from this research. Confirm developer qualification, scopes, and compliance before production adoption.",
       "confidence": "researched"
     },
     {

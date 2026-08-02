@@ -132,6 +132,67 @@ OVERRIDES = {
     "ping identity": ["Authing"],
     "keycloak": ["Authing"],
     "clerk": ["Authing"],
+    "facebook login": [
+        {
+            "name": "WeChat Login",
+            "homepage_url": "https://open.weixin.qq.com/",
+            "category": "Users, Trust & Monetization",
+            "subcategory": "Authentication & Identity",
+            "source": "research",
+            "note": (
+                "WeChat Login is mainland China's No. 1 third-party login. Apply via the WeChat Open "
+                "Platform for websites, mobile apps, and mini programs; users scan a QR code or "
+                "authorize in one tap. Coverage is extremely broad across consumer apps."
+            ),
+        },
+        {
+            "name": "QQ Login",
+            "homepage_url": "https://connect.qq.com/",
+            "category": "Users, Trust & Monetization",
+            "subcategory": "Authentication & Identity",
+            "source": "research",
+            "note": (
+                "QQ Login via QQ Connect is one of China's earliest widely adopted social login "
+                "methods. Users sign in with a QQ account and can authorize avatar and nickname "
+                "access — still popular with younger users and on many PC websites."
+            ),
+        },
+        {
+            "name": "Weibo Login",
+            "homepage_url": "https://open.weibo.com/",
+            "category": "Users, Trust & Monetization",
+            "subcategory": "Authentication & Identity",
+            "source": "research",
+            "note": (
+                "Weibo Login via the Weibo Open Platform is common on media, news, and "
+                "content-community sites — often the preferred supplement after WeChat and QQ."
+            ),
+        },
+        {
+            "name": "Alipay Login",
+            "homepage_url": "https://open.alipay.com/",
+            "category": "Users, Trust & Monetization",
+            "subcategory": "Authentication & Identity",
+            "source": "research",
+            "note": (
+                "Alipay Login is especially common in ecommerce, finance, and lifestyle apps. "
+                "Users are typically real-name verified, which helps flows that need stronger "
+                "identity assurance."
+            ),
+        },
+        {
+            "name": "SMS Login",
+            "homepage_url": "https://www.aliyun.com/product/dysms",
+            "category": "Engagement & Communication",
+            "subcategory": "Push Notifications & Multichannel Messaging",
+            "source": "research",
+            "note": (
+                "SMS Login (phone OTP) is the core mainland identity path: phone numbers are the "
+                "primary login identity, support real-name expectations, and let users register or "
+                "sign in without passwords via major China cloud SMS APIs."
+            ),
+        },
+    ],
     "castle": [
         "NetEase Yidun",
         "GeeTest",
@@ -1800,6 +1861,7 @@ AVAILABILITY_OVERRIDES = {
     "visual studio app center": "Unavailable",
     "bitly": "Unavailable",
     "altis": "Unavailable",
+    "facebook login": "Unavailable",
 }
 
 CONTACT_NOTE = (
@@ -1878,6 +1940,15 @@ RESEARCH_NOTES = {
         "government/enterprise security and Xinchuang fit. These appear on the alternatives page only — "
         "not as Explore / Landscape product tiles. Confirm deliverability and compliance before "
         "production adoption."
+    ),
+    "facebook login": (
+        "Facebook Login is Unavailable for mainland China production stacks. China's mainstream "
+        "third-party login paths are WeChat Login, QQ Login, Weibo Login, Alipay Login, and SMS Login "
+        "(phone OTP). Prefer WeChat Login as the default consumer social login and SMS Login as the "
+        "baseline real-name / passwordless path; add QQ, Weibo, or Alipay Login for specific audiences "
+        "or verticals. QQ Login, Weibo Login, Alipay Login, and SMS Login appear on the alternatives "
+        "page as orientation options — not as Explore / Landscape product tiles from this research. "
+        "Confirm developer qualification, scopes, and compliance before production adoption."
     ),
     "aweber": (
         "AWeber is Unavailable for practical mainland China use: cross-border experience is poor, and "
@@ -2367,6 +2438,54 @@ def main() -> None:
             "availability": cleaned["availability"],
             "global_availability_in_china": cleaned["global_availability_in_china"],
         }
+
+    # Inject researched override services that are missing from the seed catalog.
+    # Keep this allowlist tight — OVERRIDES also covers names that should not become
+    # standalone catalog pages just because a research note exists.
+    INJECT_IF_MISSING = {
+        "facebook login": "Facebook Login",
+    }
+    for override_key, display_name in INJECT_IF_MISSING.items():
+        if override_key in lookup or override_key not in OVERRIDES:
+            continue
+        names = OVERRIDES[override_key]
+        if not names:
+            continue
+        candidates = resolve_names(names)
+        availability = AVAILABILITY_OVERRIDES.get(override_key) or "Unknown"
+        global_availability = {
+            "Available": "available",
+            "Limited": "limited",
+            "Unavailable": "unavailable",
+            "Unknown": "unknown",
+        }.get(availability, "unknown")
+        cleaned = {
+            "name": display_name,
+            "categories": ["Authentication & Identity"],
+            "availability": availability,
+            "global_availability_in_china": global_availability,
+            "china_candidates": [
+                {
+                    "name": candidate["name"],
+                    "homepage_url": candidate.get("homepage_url") or "",
+                    "category": candidate.get("category") or "",
+                    "subcategory": candidate.get("subcategory") or "",
+                    "source": candidate.get("source") or "research",
+                    **({"note": candidate["note"]} if candidate.get("note") else {}),
+                }
+                for candidate in candidates
+            ],
+            "research_note": RESEARCH_NOTES.get(override_key, RESEARCH_NOTE),
+            "confidence": "researched",
+        }
+        services.append(cleaned)
+        lookup[override_key] = {
+            "name": cleaned["name"],
+            "availability": cleaned["availability"],
+            "global_availability_in_china": cleaned["global_availability_in_china"],
+        }
+
+    services.sort(key=lambda row: row["name"].lower())
 
     payload = {
         "source": "Chinaready Landscape research shortlist for taxonomy-relevant global services",
