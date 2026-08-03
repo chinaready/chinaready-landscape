@@ -2,10 +2,10 @@
   "source": "Chinaready Landscape research shortlist for taxonomy-relevant global services",
   "generated_for": "alternatives index SEO expansion",
   "counts": {
-    "services": 114,
+    "services": 115,
     "uncertain_alternatives": 0,
-    "researched_alternatives": 84,
-    "heuristic_alternatives": 30
+    "researched_alternatives": 86,
+    "heuristic_alternatives": 29
   },
   "availability_lookup": {
     "activecampaign": {
@@ -223,6 +223,16 @@
       "availability": "Available",
       "global_availability_in_china": "available"
     },
+    "facebook login": {
+      "name": "Facebook Login",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
+    "firebase app distribution": {
+      "name": "Firebase App Distribution",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
     "github pages": {
       "name": "GitHub Pages",
       "availability": "Limited",
@@ -305,8 +315,8 @@
     },
     "klaviyo": {
       "name": "Klaviyo",
-      "availability": "Unavailable",
-      "global_availability_in_china": "unavailable"
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
     },
     "kong gateway": {
       "name": "Kong Gateway",
@@ -554,9 +564,9 @@
       "global_availability_in_china": "limited"
     },
     "zenlayer sd wan": {
-      "name": "Zenlayer SD WAN",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
+      "name": "Zenlayer SD-WAN",
+      "availability": "Available",
+      "global_availability_in_china": "available"
     },
     "zoho crm": {
       "name": "Zoho CRM",
@@ -567,11 +577,6 @@
       "name": "Zoom SDK",
       "availability": "Limited",
       "global_availability_in_china": "limited"
-    },
-    "facebook login": {
-      "name": "Facebook Login",
-      "availability": "Unavailable",
-      "global_availability_in_china": "unavailable"
     }
   },
   "services": [
@@ -2130,6 +2135,58 @@
       "confidence": "researched"
     },
     {
+      "name": "Firebase App Distribution",
+      "categories": [
+        "Release, Quality & Operations"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Pgyer",
+          "homepage_url": "https://www.pgyer.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "CI/CD & App Distribution",
+          "source": "research",
+          "note": "Pgyer (蒲公英) is one of China's earliest and best-known beta distribution platforms. It supports web and API uploads, QR code and short-link sharing, Android / iOS / HarmonyOS packages, and a free tier that often covers early projects — commonly the first domestic shortlist when Firebase App Distribution is slow or unstable from mainland China."
+        },
+        {
+          "name": "Tencent Bugly",
+          "homepage_url": "https://bugly.qq.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "CI/CD & App Distribution",
+          "source": "research",
+          "note": "Tencent Bugly beta distribution hosts packages, shares builds, and collects tester feedback. Distinctive China-market traits include sharing into WeChat / QQ without a browser detour, QQ-account or password access control, and in-app upgrade prompts — strong when testers already live in Tencent messaging apps."
+        },
+        {
+          "name": "Fir.im",
+          "homepage_url": "https://fir.im/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "CI/CD & App Distribution",
+          "source": "research",
+          "note": "Fir.im is a developer-oriented beta distribution platform that emphasizes linkage with bug trackers such as Jira and Tapd, associating crash logs with builds and offering basic gray-release tester limits — a fit for teams that care about issue closure alongside package sharing."
+        },
+        {
+          "name": "Xia Fenfa",
+          "homepage_url": "https://www.xiafenfa.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "CI/CD & App Distribution",
+          "source": "research",
+          "note": "Xia Fenfa (虾分发) supports one-click iOS and Android uploads with auto-generated download links and QR codes, global CDN acceleration, and access controls such as passwords, download caps, and captchas — useful when teams want lightweight security around beta package sharing."
+        },
+        {
+          "name": "Gulu Fenfa",
+          "homepage_url": "https://www.gulufenfa.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "CI/CD & App Distribution",
+          "source": "research",
+          "note": "Gulu Fenfa (咕噜分发) is a broader beta distribution platform with a distributed architecture for concurrent downloads. Beyond hosting, it positions lifecycle coverage such as crash analysis, performance monitoring, and smart grouping of testers by device type or region."
+        }
+      ],
+      "research_note": "Firebase App Distribution is Limited in mainland China: the console and download path often suffer unstable access and high latency, so day-to-day beta sharing is unreliable for mainland teams. Prefer Pgyer (蒲公英) and Tencent Bugly as the most mature domestic beta distribution platforms; evaluate Fir.im when bug-tracker linkage matters, Xia Fenfa (虾分发) for CDN-backed dual-platform sharing with access controls, and Gulu Fenfa (咕噜分发) for broader lifecycle distribution. Pair iOS coverage with TestFlight when needed. These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm platform coverage, tester access model, and compliance before production adoption.",
+      "confidence": "researched"
+    },
+    {
       "name": "GitHub Pages",
       "categories": [
         "Hosting & Infrastructure",
@@ -2704,25 +2761,51 @@
         "Marketing & Automation",
         "E-commerce Tools"
       ],
-      "availability": "Unavailable",
-      "global_availability_in_china": "unavailable",
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
       "china_candidates": [
         {
-          "name": "SendCloud",
-          "homepage_url": "https://www.sendcloud.net/",
-          "category": "Engagement & Communication",
-          "subcategory": "Push Notifications & Multichannel Messaging",
-          "source": "landscape"
+          "name": "Dida EDM",
+          "homepage_url": "https://www.didalinkin.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Email Marketing & EDM",
+          "source": "research",
+          "note": "Dida EDM (滴答EDM) is a China-oriented email marketing system for cross-border independent sites. Chinese UI and local team support, Shopify / Shoplazza integrations, and send-volume billing without contact-count caps — commonly the closest domestic Klaviyo-shaped path for China Shopify sellers."
         },
         {
-          "name": "Alibaba Cloud DirectMail",
-          "homepage_url": "https://www.aliyun.com/product/directmail",
-          "category": "Engagement & Communication",
-          "subcategory": "Push Notifications & Multichannel Messaging",
-          "source": "landscape"
+          "name": "Zoho Campaigns",
+          "homepage_url": "https://www.zoho.com.cn/campaigns/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Email Marketing & EDM",
+          "source": "research",
+          "note": "Zoho Campaigns is a foreign-trade / B2B email marketing suite with a China operations team, strong deliverability focus, and rich automation — a practical fit for cold outreach and B2B lifecycle email when the audience is domestic or trade-oriented."
+        },
+        {
+          "name": "Omnisend",
+          "homepage_url": "https://www.omnisend.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Email Marketing & EDM",
+          "source": "research",
+          "note": "Omnisend is an ecommerce multichannel marketing platform often compared with Klaviyo for store email / SMS automation. Typically easier to adopt and more price-friendly for small and mid-size sellers, though it remains an overseas SaaS with the same China-access caveats as other global tools."
+        },
+        {
+          "name": "Brevo",
+          "homepage_url": "https://www.brevo.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Email Marketing & EDM",
+          "source": "research",
+          "note": "Brevo (formerly Sendinblue) combines email and SMS. Free-tier contact capacity is often cited around 100,000 contacts with send-volume billing — a budget-friendly orientation option for teams that need multichannel outreach without Klaviyo pricing."
+        },
+        {
+          "name": "MailerLite",
+          "homepage_url": "https://www.mailerlite.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Email Marketing & EDM",
+          "source": "research",
+          "note": "MailerLite is a lightweight email marketing platform. Free-tier capacity is often cited around 500 subscribers and 12,000 emails/month — useful for early-stage lists, with the same overseas-SaaS limits Chinaready documents on the MailerLite page."
         }
       ],
-      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "research_note": "Klaviyo is Limited in mainland China: the overseas SaaS is reachable and usable, but there is no China-region hosting or localization, mainland access can be slow or unstable, the Shopify app is not translated into Simplified Chinese, deliverability into QQ / 163 and similar domestic inboxes is weak, and payment typically needs a foreign-currency card. Prefer Dida EDM (滴答EDM) for China Shopify / independent-site sellers closest to Klaviyo; prefer Zoho Campaigns for domestic-audience or foreign-trade / B2B email; evaluate Omnisend or Brevo on budget-constrained free tiers, and MailerLite for lightweight early-stage lists. These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm deliverability and compliance before production adoption.",
       "confidence": "researched"
     },
     {
@@ -4468,37 +4551,40 @@
       "confidence": "heuristic"
     },
     {
-      "name": "Zenlayer SD WAN",
+      "name": "Zenlayer SD-WAN",
       "categories": [
         "Hosting & Infrastructure"
       ],
-      "availability": "Limited",
-      "global_availability_in_china": "limited",
+      "availability": "Available",
+      "global_availability_in_china": "available",
       "china_candidates": [
         {
-          "name": "AWS China Regions",
-          "homepage_url": "https://www.amazonaws.cn/",
+          "name": "Nova Technology",
+          "homepage_url": "https://www.nova.net.cn/",
           "category": "Infrastructure & Edge",
-          "subcategory": "Cloud Platform & Hosting",
-          "source": "category-heuristic"
+          "subcategory": "Networking & Connectivity",
+          "source": "research",
+          "note": "Nova Technology (南凌科技) is a China cross-border SD-WAN managed service provider — commonly the closest domestic counterpart for multi-branch and hybrid-cloud interconnection when teams want a China-operated SD-WAN path instead of Zenlayer."
         },
         {
-          "name": "Azure China",
-          "homepage_url": "https://www.azure.cn/",
+          "name": "Alibaba Cloud CEN + SAG",
+          "homepage_url": "https://www.aliyun.com/product/cen",
           "category": "Infrastructure & Edge",
-          "subcategory": "Cloud Platform & Hosting",
-          "source": "category-heuristic"
+          "subcategory": "Networking & Connectivity",
+          "source": "research",
+          "note": "Alibaba Cloud Cloud Enterprise Network (CEN) plus Smart Access Gateway (SAG) is the cloud-native cross-border interconnection path when the China-side stack already runs on Alibaba Cloud — often the simplest one-hop on-ramp and cross-region / cross-border link design inside that ecosystem."
         },
         {
-          "name": "Alibaba Cloud",
-          "homepage_url": "https://www.alibabacloud.com/",
+          "name": "Huawei SD-WAN",
+          "homepage_url": "https://e.huawei.com/en/solutions/enterprise-network/campus-network/sd-wan",
           "category": "Infrastructure & Edge",
-          "subcategory": "Cloud Platform & Hosting",
-          "source": "category-heuristic"
+          "subcategory": "Networking & Connectivity",
+          "source": "research",
+          "note": "Huawei SD-WAN is a fuller enterprise SD-WAN stack for large-scale cross-border private line and branch interconnection needs — strongest when the organization already standardizes on Huawei networking and wants a complete high-end ecosystem."
         }
       ],
-      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
-      "confidence": "heuristic"
+      "research_note": "Zenlayer SD-WAN is Available in mainland China: Zenlayer operates through a compliant China entity (Zenlayer Technology Services (Shanghai) Co., Ltd. / 臻乐尔科技服务（上海）有限公司) with relevant network access qualifications, so mainland deployment is technically supported. It is especially strong for overseas-cloud ↔ China-cloud interconnection via global backbone and cross-border private-line resources. Prefer Nova Technology (南凌科技) for a domestic managed cross-border SD-WAN path, Alibaba Cloud CEN + SAG when the China stack is already on Alibaba Cloud, and Huawei SD-WAN for large-scale enterprise private-line needs. These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm topology, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
     },
     {
       "name": "Zoho CRM",

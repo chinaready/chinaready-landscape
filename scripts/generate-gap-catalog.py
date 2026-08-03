@@ -101,7 +101,74 @@ OVERRIDES = {
     "codemagic": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
     "app center": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
     "visual studio app center": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
-    "firebase app distribution": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
+    "firebase app distribution": [
+        {
+            "name": "Pgyer",
+            "homepage_url": "https://www.pgyer.com/",
+            "category": "Release, Quality & Operations",
+            "subcategory": "CI/CD & App Distribution",
+            "source": "research",
+            "note": (
+                "Pgyer (蒲公英) is one of China's earliest and best-known beta distribution platforms. "
+                "It supports web and API uploads, QR code and short-link sharing, Android / iOS / "
+                "HarmonyOS packages, and a free tier that often covers early projects — commonly the "
+                "first domestic shortlist when Firebase App Distribution is slow or unstable from "
+                "mainland China."
+            ),
+        },
+        {
+            "name": "Tencent Bugly",
+            "homepage_url": "https://bugly.qq.com/",
+            "category": "Release, Quality & Operations",
+            "subcategory": "CI/CD & App Distribution",
+            "source": "research",
+            "note": (
+                "Tencent Bugly beta distribution hosts packages, shares builds, and collects tester "
+                "feedback. Distinctive China-market traits include sharing into WeChat / QQ without a "
+                "browser detour, QQ-account or password access control, and in-app upgrade prompts — "
+                "strong when testers already live in Tencent messaging apps."
+            ),
+        },
+        {
+            "name": "Fir.im",
+            "homepage_url": "https://fir.im/",
+            "category": "Release, Quality & Operations",
+            "subcategory": "CI/CD & App Distribution",
+            "source": "research",
+            "note": (
+                "Fir.im is a developer-oriented beta distribution platform that emphasizes linkage with "
+                "bug trackers such as Jira and Tapd, associating crash logs with builds and offering "
+                "basic gray-release tester limits — a fit for teams that care about issue closure "
+                "alongside package sharing."
+            ),
+        },
+        {
+            "name": "Xia Fenfa",
+            "homepage_url": "https://www.xiafenfa.com/",
+            "category": "Release, Quality & Operations",
+            "subcategory": "CI/CD & App Distribution",
+            "source": "research",
+            "note": (
+                "Xia Fenfa (虾分发) supports one-click iOS and Android uploads with auto-generated "
+                "download links and QR codes, global CDN acceleration, and access controls such as "
+                "passwords, download caps, and captchas — useful when teams want lightweight security "
+                "around beta package sharing."
+            ),
+        },
+        {
+            "name": "Gulu Fenfa",
+            "homepage_url": "https://www.gulufenfa.com/",
+            "category": "Release, Quality & Operations",
+            "subcategory": "CI/CD & App Distribution",
+            "source": "research",
+            "note": (
+                "Gulu Fenfa (咕噜分发) is a broader beta distribution platform with a distributed "
+                "architecture for concurrent downloads. Beyond hosting, it positions lifecycle coverage "
+                "such as crash analysis, performance monitoring, and smart grouping of testers by "
+                "device type or region."
+            ),
+        },
+    ],
     "testflight": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
     "fastlane": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
     "github actions": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
@@ -648,7 +715,70 @@ OVERRIDES = {
             ),
         },
     ],
-    "klaviyo": ["SendCloud", "Alibaba Cloud DirectMail"],
+    "klaviyo": [
+        {
+            "name": "Dida EDM",
+            "homepage_url": "https://www.didalinkin.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Email Marketing & EDM",
+            "source": "research",
+            "note": (
+                "Dida EDM (滴答EDM) is a China-oriented email marketing system for cross-border "
+                "independent sites. Chinese UI and local team support, Shopify / Shoplazza "
+                "integrations, and send-volume billing without contact-count caps — commonly the "
+                "closest domestic Klaviyo-shaped path for China Shopify sellers."
+            ),
+        },
+        {
+            "name": "Zoho Campaigns",
+            "homepage_url": "https://www.zoho.com.cn/campaigns/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Email Marketing & EDM",
+            "source": "research",
+            "note": (
+                "Zoho Campaigns is a foreign-trade / B2B email marketing suite with a China operations "
+                "team, strong deliverability focus, and rich automation — a practical fit for cold "
+                "outreach and B2B lifecycle email when the audience is domestic or trade-oriented."
+            ),
+        },
+        {
+            "name": "Omnisend",
+            "homepage_url": "https://www.omnisend.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Email Marketing & EDM",
+            "source": "research",
+            "note": (
+                "Omnisend is an ecommerce multichannel marketing platform often compared with Klaviyo "
+                "for store email / SMS automation. Typically easier to adopt and more price-friendly "
+                "for small and mid-size sellers, though it remains an overseas SaaS with the same "
+                "China-access caveats as other global tools."
+            ),
+        },
+        {
+            "name": "Brevo",
+            "homepage_url": "https://www.brevo.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Email Marketing & EDM",
+            "source": "research",
+            "note": (
+                "Brevo (formerly Sendinblue) combines email and SMS. Free-tier contact capacity is "
+                "often cited around 100,000 contacts with send-volume billing — a budget-friendly "
+                "orientation option for teams that need multichannel outreach without Klaviyo pricing."
+            ),
+        },
+        {
+            "name": "MailerLite",
+            "homepage_url": "https://www.mailerlite.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Email Marketing & EDM",
+            "source": "research",
+            "note": (
+                "MailerLite is a lightweight email marketing platform. Free-tier capacity is often "
+                "cited around 500 subscribers and 12,000 emails/month — useful for early-stage lists, "
+                "with the same overseas-SaaS limits Chinaready documents on the MailerLite page."
+            ),
+        },
+    ],
     "brevo": ["SendCloud", "Alibaba Cloud DirectMail"],
     "activecampaign": ["SendCloud", "JPush"],
     "customer.io": ["SendCloud", "JPush"],
@@ -1851,6 +1981,45 @@ OVERRIDES = {
             ),
         },
     ],
+    "zenlayer sd wan": [
+        {
+            "name": "Nova Technology",
+            "homepage_url": "https://www.nova.net.cn/",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Networking & Connectivity",
+            "source": "research",
+            "note": (
+                "Nova Technology (南凌科技) is a China cross-border SD-WAN managed service provider — "
+                "commonly the closest domestic counterpart for multi-branch and hybrid-cloud "
+                "interconnection when teams want a China-operated SD-WAN path instead of Zenlayer."
+            ),
+        },
+        {
+            "name": "Alibaba Cloud CEN + SAG",
+            "homepage_url": "https://www.aliyun.com/product/cen",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Networking & Connectivity",
+            "source": "research",
+            "note": (
+                "Alibaba Cloud Cloud Enterprise Network (CEN) plus Smart Access Gateway (SAG) is the "
+                "cloud-native cross-border interconnection path when the China-side stack already runs "
+                "on Alibaba Cloud — often the simplest one-hop on-ramp and cross-region / cross-border "
+                "link design inside that ecosystem."
+            ),
+        },
+        {
+            "name": "Huawei SD-WAN",
+            "homepage_url": "https://e.huawei.com/en/solutions/enterprise-network/campus-network/sd-wan",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Networking & Connectivity",
+            "source": "research",
+            "note": (
+                "Huawei SD-WAN is a fuller enterprise SD-WAN stack for large-scale cross-border private "
+                "line and branch interconnection needs — strongest when the organization already "
+                "standardizes on Huawei networking and wants a complete high-end ecosystem."
+            ),
+        },
+    ],
 }
 
 # Force mainland China availability labels when research revises the catalog entry.
@@ -1858,10 +2027,18 @@ AVAILABILITY_OVERRIDES = {
     "zoho crm": "Available",
     "amazon cloudwatch": "Available",
     "azure monitor": "Available",
+    "zenlayer sd wan": "Available",
     "visual studio app center": "Unavailable",
+    "firebase app distribution": "Limited",
+    "klaviyo": "Limited",
     "bitly": "Unavailable",
     "altis": "Unavailable",
     "facebook login": "Unavailable",
+}
+
+# Optional display-name polish when the seed catalog spelling differs from brand form.
+NAME_OVERRIDES = {
+    "zenlayer sd wan": "Zenlayer SD-WAN",
 }
 
 CONTACT_NOTE = (
@@ -1881,6 +2058,16 @@ RESEARCH_NOTES = {
         "build/distribution access was often unstable. Prefer Alibaba Cloud Yunxiao and Tencent "
         "Cloud DevOps (CODING) for China CI/CD and mobile-release workflows; replace crash analytics, "
         "beta distribution, and hot update by module as needed. Confirm fit before production adoption."
+    ),
+    "firebase app distribution": (
+        "Firebase App Distribution is Limited in mainland China: the console and download path often "
+        "suffer unstable access and high latency, so day-to-day beta sharing is unreliable for "
+        "mainland teams. Prefer Pgyer (蒲公英) and Tencent Bugly as the most mature domestic beta "
+        "distribution platforms; evaluate Fir.im when bug-tracker linkage matters, Xia Fenfa (虾分发) "
+        "for CDN-backed dual-platform sharing with access controls, and Gulu Fenfa (咕噜分发) for "
+        "broader lifecycle distribution. Pair iOS coverage with TestFlight when needed. These appear "
+        "on the alternatives page only — not as Explore / Landscape product tiles. Confirm platform "
+        "coverage, tester access model, and compliance before production adoption."
     ),
     "amazon cloudwatch": (
         "Amazon CloudWatch is Available in AWS China, but the China-region product set is more "
@@ -1930,6 +2117,17 @@ RESEARCH_NOTES = {
         "Spread (思齐) when Chinese admin and local support matter most. These appear on the "
         "alternatives page only — not as Explore / Landscape product tiles. Confirm deliverability and "
         "compliance before production adoption."
+    ),
+    "klaviyo": (
+        "Klaviyo is Limited in mainland China: the overseas SaaS is reachable and usable, but there is "
+        "no China-region hosting or localization, mainland access can be slow or unstable, the Shopify "
+        "app is not translated into Simplified Chinese, deliverability into QQ / 163 and similar "
+        "domestic inboxes is weak, and payment typically needs a foreign-currency card. Prefer Dida EDM "
+        "(滴答EDM) for China Shopify / independent-site sellers closest to Klaviyo; prefer Zoho "
+        "Campaigns for domestic-audience or foreign-trade / B2B email; evaluate Omnisend or Brevo on "
+        "budget-constrained free tiers, and MailerLite for lightweight early-stage lists. These appear "
+        "on the alternatives page only — not as Explore / Landscape product tiles. Confirm "
+        "deliverability and compliance before production adoption."
     ),
     "mailerlite": (
         "MailerLite is Unavailable for practical mainland China use: overseas hosting makes the admin "
@@ -2167,6 +2365,17 @@ RESEARCH_NOTES = {
         "alternatives page only — not as Explore / Landscape product tiles. Confirm workload type, "
         "deployment model, and compliance before production adoption."
     ),
+    "zenlayer sd wan": (
+        "Zenlayer SD-WAN is Available in mainland China: Zenlayer operates through a compliant China "
+        "entity (Zenlayer Technology Services (Shanghai) Co., Ltd. / 臻乐尔科技服务（上海）有限公司) with "
+        "relevant network access qualifications, so mainland deployment is technically supported. It is "
+        "especially strong for overseas-cloud ↔ China-cloud interconnection via global backbone and "
+        "cross-border private-line resources. Prefer Nova Technology (南凌科技) for a domestic managed "
+        "cross-border SD-WAN path, Alibaba Cloud CEN + SAG when the China stack is already on Alibaba "
+        "Cloud, and Huawei SD-WAN for large-scale enterprise private-line needs. These appear on the "
+        "alternatives page only — not as Explore / Landscape product tiles. Confirm topology, compliance, "
+        "and operating constraints before production adoption."
+    ),
     "middleware": (
         "Middleware.io is Unavailable for practical mainland China use: overseas-only infrastructure means "
         "high latency and unstable access across the international gateway, domains or IPs may be "
@@ -2388,7 +2597,7 @@ def main() -> None:
                 confidence = "researched"
                 note = RESEARCH_NOTES.get(matched_override, RESEARCH_NOTE)
 
-        availability = AVAILABILITY_OVERRIDES.get(key) or service.get("availability") or "Unknown"
+        availability = AVAILABILITY_OVERRIDES.get(matched_override or key) or service.get("availability") or "Unknown"
         global_availability = {
             "Available": "available",
             "Limited": "limited",
@@ -2410,7 +2619,7 @@ def main() -> None:
         candidates = live_candidates
 
         cleaned = {
-            "name": service["name"],
+            "name": NAME_OVERRIDES.get(matched_override or key) or service["name"],
             "categories": service.get("categories") or [],
             "availability": availability,
             "global_availability_in_china": global_availability,
@@ -2443,14 +2652,27 @@ def main() -> None:
     # Keep this allowlist tight — OVERRIDES also covers names that should not become
     # standalone catalog pages just because a research note exists.
     INJECT_IF_MISSING = {
-        "facebook login": "Facebook Login",
+        "facebook login": {
+            "name": "Facebook Login",
+            "categories": ["Authentication & Identity"],
+        },
+        "firebase app distribution": {
+            "name": "Firebase App Distribution",
+            "categories": ["Release, Quality & Operations"],
+        },
     }
-    for override_key, display_name in INJECT_IF_MISSING.items():
+    for override_key, meta in INJECT_IF_MISSING.items():
         if override_key in lookup or override_key not in OVERRIDES:
             continue
         names = OVERRIDES[override_key]
         if not names:
             continue
+        display_name = meta["name"] if isinstance(meta, dict) else meta
+        categories = (
+            list(meta.get("categories") or [])
+            if isinstance(meta, dict)
+            else ["Authentication & Identity"]
+        )
         candidates = resolve_names(names)
         availability = AVAILABILITY_OVERRIDES.get(override_key) or "Unknown"
         global_availability = {
@@ -2461,7 +2683,7 @@ def main() -> None:
         }.get(availability, "unknown")
         cleaned = {
             "name": display_name,
-            "categories": ["Authentication & Identity"],
+            "categories": categories,
             "availability": availability,
             "global_availability_in_china": global_availability,
             "china_candidates": [

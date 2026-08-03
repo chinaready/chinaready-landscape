@@ -93,11 +93,13 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "apple-pay": "available",
   "azure-devops": "limited",
   "visual-studio-app-center": "unavailable",
+  "firebase-app-distribution": "limited",
   "castle-io": "unavailable",
   airbase: "unavailable",
   altis: "unavailable",
   aweber: "unavailable",
   mailerlite: "unavailable",
+  klaviyo: "limited",
   bombbomb: "unavailable",
   convertkit: "unavailable",
   libsyn: "limited",
@@ -115,6 +117,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "middleware-io": "unavailable",
   "mia-platform": "unavailable",
   "zoho-crm": "available",
+  "zenlayer-sd-wan": "available",
 };
 
 /** Keep stable public URLs when display names change. */
@@ -633,6 +636,100 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Where should teams go after shortlisting Firebase Analytics alternatives?",
         answer: `Use the interactive Chinaready Landscape to compare adjacent growth and analytics services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the analytics path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
+  "firebase-app-distribution": {
+    description: (availability, names) =>
+      clipMeta(
+        `Firebase App Distribution is Limited in mainland China — unstable access and high latency. Compare ${names.slice(0, 3).join(", ") || "Pgyer, Tencent Bugly, Fir.im"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Firebase App Distribution is Limited in mainland China</strong>. The console and download path often suffer unstable access and high latency, so day-to-day beta sharing is unreliable for mainland teams. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 5).join(", ") || "Pgyer, Tencent Bugly, Fir.im, Xia Fenfa, Gulu Fenfa")}</strong> as China-market beta distribution options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Beta distribution platforms to evaluate instead of Firebase App Distribution",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 5,
+    indexCandidates: "Pgyer, Tencent Bugly, Fir.im, Xia Fenfa, Gulu Fenfa",
+    guidanceHtml: `
+        <p><strong>Firebase App Distribution is Limited for mainland China beta workflows.</strong> Teams can sometimes open the product, but unstable access and high latency routinely break package uploads, tester invites, and install links. For China-facing QA and internal testing, prefer a domestic beta distribution platform — or an official ecosystem track when the audience is already on that store or OS.</p>
+        <h3>Mainstream domestic beta distribution platforms</h3>
+        <ul>
+          <li><strong>Pgyer (蒲公英)</strong> — One of China's earliest and best-known beta hosts. Web and API uploads, QR code and short-link sharing, Android / iOS / HarmonyOS support, and a free tier that often covers early projects. Vendor claims include large historical tester and app volume across the China market.</li>
+          <li><strong>Tencent Bugly</strong> — Package hosting, beta sharing, and feedback collection under Tencent. Distinctive traits include sharing into WeChat / QQ without a browser detour, QQ-account or custom-password access control, and in-app upgrade prompts.</li>
+          <li><strong>Fir.im</strong> — Developer-oriented distribution with bug-tracker linkage (for example Jira and Tapd), crash-log association with builds, and basic gray-release tester limits — strongest when issue closure matters as much as package sharing.</li>
+          <li><strong>Xia Fenfa (虾分发)</strong> — One-click iOS and Android uploads, auto-generated download links and QR codes, global CDN acceleration, plus password, download-cap, and captcha controls for teams that want lightweight security around beta sharing.</li>
+          <li><strong>Gulu Fenfa (咕噜分发)</strong> — Broader distribution platform with concurrent-download architecture and lifecycle extras such as crash analysis, performance monitoring, and smart tester grouping by device type or region.</li>
+        </ul>
+        <h3>Official / ecosystem tracks still worth considering</h3>
+        <ul>
+          <li><strong>TestFlight (Apple)</strong> — Default iOS beta path, up to 10,000 external testers via email or public link. Usable from mainland China, but iOS-only.</li>
+          <li><strong>Google Play internal / closed testing</strong> — Official Android tracks in Play Console with email-list invites. Requires devices that can reach Google Play services — often a poor fit for mainland China tester fleets.</li>
+          <li><strong>Huawei AppGallery Connect beta distribution</strong> — Deep coupling with Huawei devices; supports APK, RPK, App Bundle and similar formats, device targeting, and A/B testing. Strongest for Huawei / HarmonyOS-first apps.</li>
+          <li><strong>WeChat Developer Platform iOS beta</strong> — For iOS apps built with WeChat developer tooling: auto-generated download links and QR codes so testers install via WeChat scan — oriented to WeChat-ecosystem apps.</li>
+        </ul>
+        <h3>How to choose</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Need</th>
+                <th>Prefer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Small / mid-size teams that need to start quickly</td>
+                <td>Pgyer (蒲公英), Tencent Bugly</td>
+              </tr>
+              <tr>
+                <td>Bug-tracker / issue-closure linkage</td>
+                <td>Fir.im</td>
+              </tr>
+              <tr>
+                <td>iOS-only projects</td>
+                <td>TestFlight</td>
+              </tr>
+              <tr>
+                <td>Huawei / HarmonyOS-first apps</td>
+                <td>Huawei AppGallery Connect</td>
+              </tr>
+              <tr>
+                <td>Enterprise security and release audit needs</td>
+                <td>Shiply, Gulu Fenfa (咕噜分发)</td>
+              </tr>
+              <tr>
+                <td>WeChat-ecosystem iOS apps</td>
+                <td>WeChat Developer Platform iOS beta</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>For mainland-first teams, <strong>Pgyer</strong> and <strong>Tencent Bugly</strong> are usually the most mature, highest-adoption starting points; add <strong>TestFlight</strong> when you also need reliable iOS external testing. These candidates appear on the Firebase App Distribution alternatives page only — Chinaready does <strong>not</strong> add Pgyer, Tencent Bugly, Fir.im, Xia Fenfa, or Gulu Fenfa as Explore / Landscape product tiles from this rewrite. Confirm platform coverage, tester access model, and compliance before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Firebase App Distribution work in China?",
+        answer:
+          "Only poorly for most mainland China teams. Chinaready labels Firebase App Distribution as Limited. Access is often unstable and latency is high, so uploads, invites, and install links are unreliable for day-to-day beta workflows. Prefer a domestic beta distribution platform for China-facing QA.",
+      },
+      {
+        question: "What are the best China alternatives to Firebase App Distribution?",
+        answer: `Chinaready currently lists these China-market options for Firebase App Distribution: ${namesText}. Prefer Pgyer (蒲公英) and Tencent Bugly for mature mainland beta sharing; evaluate Fir.im for bug-tracker linkage, Xia Fenfa (虾分发) for CDN-backed dual-platform sharing with access controls, and Gulu Fenfa (咕噜分发) for broader lifecycle distribution. Pair iOS coverage with TestFlight when needed.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Firebase App Distribution in mainland China?",
+        answer:
+          "Usually no single clone. Firebase App Distribution is a cross-platform beta host with tester invites and install links. China teams typically pick a domestic host such as Pgyer or Bugly for Android / multi-platform sharing, then keep TestFlight for iOS external testing when Apple's track is required.",
+      },
+      {
+        question: "How should teams choose among Pgyer, Bugly, Fir.im, and the others?",
+        answer:
+          "Choose Pgyer or Tencent Bugly for fast mainland onboarding and broad adoption. Choose Fir.im when Jira / Tapd-style issue linkage matters. Choose Xia Fenfa when dual-platform CDN sharing plus password or download-cap controls matter. Choose Gulu Fenfa or Shiply when enterprise security, audit, or smarter tester grouping dominate. Use TestFlight for iOS-only external testing and Huawei AppGallery Connect for Huawei / HarmonyOS-first apps.",
+      },
+      {
+        question: "Where should teams go after shortlisting Firebase App Distribution alternatives?",
+        answer:
+          "Validate platform coverage (Android / iOS / HarmonyOS), tester invite model, CDN and install reliability inside mainland China, and any enterprise signing or compliance constraints. Use the interactive Chinaready Landscape for adjacent CI/CD and mobile ops choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -1626,6 +1723,97 @@ const EDITORIAL_OVERRIDES = {
         question: "Where should teams go after shortlisting Drip alternatives?",
         answer:
           "Validate deliverability into your target inboxes, domain authentication, automation needs, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  klaviyo: {
+    description: (availability, names) =>
+      clipMeta(
+        `Klaviyo is Limited in mainland China — reachable overseas SaaS with no China region, weak QQ/163 delivery, no Simplified Chinese UI. Compare ${names.slice(0, 3).join(", ") || "Dida EDM, Zoho Campaigns, Omnisend"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Klaviyo is Limited in mainland China</strong>. You can usually access and use it, but the experience is constrained: there is no China-region server or localized deployment, mainland access can be slow or unstable, the Shopify app is not translated into Simplified Chinese, deliverability into QQ / 163 and similar domestic inboxes is weak, and payment typically needs a foreign-currency card. China users often get support through certified partners such as Dynamic Cycle. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 5).join(", ") || "Dida EDM, Zoho Campaigns, Omnisend, Brevo, MailerLite")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Email marketing platforms to evaluate instead of Klaviyo",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 5,
+    indexCandidates: "Dida EDM, Zoho Campaigns, Omnisend, Brevo, MailerLite",
+    guidanceHtml: `
+        <p><strong>Klaviyo is Limited for mainland China use.</strong> It is a pure overseas SaaS platform with no China-region hosting or localized deployment. Teams can usually register and operate it, but day-to-day barriers are high enough that Chinaready treats it as a constrained — not production-default — path for China-facing email marketing:</p>
+        <ul>
+          <li><strong>Unstable / slow access:</strong> servers sit overseas, so the admin and related workflows are often slow and occasionally fail to connect from mainland China.</li>
+          <li><strong>No Simplified Chinese UI:</strong> the Shopify App Store explicitly marks Klaviyo as not translated into Simplified Chinese.</li>
+          <li><strong>Weak domestic inbox delivery:</strong> sends into QQ, 163, and similar mainland mailboxes often see lower placement than a China-oriented EDM path.</li>
+          <li><strong>Compliance and payment:</strong> no mainland filing / localization path; billing usually requires a foreign-currency credit card. Support for China teams commonly runs through official certified partners such as Dynamic Cycle rather than a local product region.</li>
+        </ul>
+        <h3>Domestic / China-usable platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning</th>
+                <th>Highlights</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Dida EDM (滴答EDM)</td>
+                <td>Cross-border independent-site email marketing</td>
+                <td>Chinese UI and local team; Shopify / Shoplazza support; billed by send volume (not contact count); lower onboarding friction for China sellers</td>
+              </tr>
+              <tr>
+                <td>Zoho Campaigns</td>
+                <td>Foreign-trade / B2B email marketing</td>
+                <td>China operations team, strong deliverability focus, rich feature set — suited to cold outreach and B2B lifecycle email</td>
+              </tr>
+              <tr>
+                <td>Omnisend</td>
+                <td>Ecommerce multichannel marketing</td>
+                <td>Feature set often compared with Klaviyo; typically easier to adopt and more price-friendly for small and mid-size sellers</td>
+              </tr>
+              <tr>
+                <td>Brevo (formerly Sendinblue)</td>
+                <td>Email + SMS multichannel</td>
+                <td>Free tier often cited around 100,000 contacts; send-volume billing; budget-friendly entry path</td>
+              </tr>
+              <tr>
+                <td>MailerLite</td>
+                <td>Lightweight email marketing</td>
+                <td>Free tier often cited around 500 subscribers and 12,000 emails/month — useful for early-stage lists</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Cross-border ecommerce (Shopify independent sites):</strong> start with Dida EDM (滴答EDM) as the closest China-oriented Klaviyo-shaped substitute.</li>
+          <li><strong>Domestic-audience email marketing:</strong> prefer Zoho Campaigns.</li>
+          <li><strong>Budget-constrained sellers:</strong> evaluate Omnisend or Brevo free tiers first; use MailerLite for lightweight early-stage lists.</li>
+        </ul>
+        <p>These candidates appear on the Klaviyo alternatives page only — Chinaready does <strong>not</strong> add Dida EDM, Zoho Campaigns, Omnisend, Brevo, or MailerLite as Landscape map product entries from this rewrite. Confirm deliverability into your target inboxes, domain authentication, compliance, and vendor fit before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Klaviyo work in China?",
+        answer: `Yes with limits. Chinaready labels Klaviyo as ${availability}. You can usually access and use it, but there is no China-region hosting or localization, mainland access can be slow or unstable, there is no Simplified Chinese UI, deliverability into QQ / 163 and similar domestic inboxes is weak, and payment typically needs a foreign-currency card. China support often runs through certified partners such as Dynamic Cycle.`,
+      },
+      {
+        question: "What are the best China alternatives to Klaviyo?",
+        answer: `Chinaready currently lists these China-market options for Klaviyo: ${namesText}. Prefer Dida EDM (滴答EDM) for China Shopify / independent-site sellers closest to Klaviyo, Zoho Campaigns for domestic-audience or foreign-trade / B2B email, Omnisend or Brevo when budget matters most, and MailerLite for lightweight early-stage lists. Confirm fit before production adoption.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Klaviyo in mainland China?",
+        answer:
+          "Usually no. Klaviyo's strength is ecommerce lifecycle automation around overseas storefront stacks. In China, expect a vendor and workflow redesign around Chinese operations support, domestic or trade-oriented deliverability, and compliance — not a one-to-one Klaviyo swap.",
+      },
+      {
+        question: "How should teams choose among Dida EDM, Zoho Campaigns, Omnisend, Brevo, and MailerLite?",
+        answer:
+          "Choose Dida EDM (滴答EDM) for cross-border Shopify / independent-site lifecycle email closest to Klaviyo. Choose Zoho Campaigns for domestic-audience or foreign-trade / B2B email. Choose Omnisend or Brevo when you want a more affordable ecommerce or multichannel path. Choose MailerLite for lightweight early-stage subscriber lists.",
+      },
+      {
+        question: "Where should teams go after shortlisting Klaviyo alternatives?",
+        answer:
+          "Validate deliverability into your target inboxes, domain authentication, automation needs, storefront integrations, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -4199,6 +4387,87 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  "zenlayer-sd-wan": {
+    description: (availability, names) =>
+      clipMeta(
+        `Zenlayer SD-WAN is Available in mainland China via a compliant Shanghai entity. Strong for overseas-cloud ↔ China-cloud links. Also compare ${names.slice(0, 3).join(", ") || "Nova Technology, Alibaba Cloud CEN + SAG, Huawei SD-WAN"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Zenlayer SD-WAN is Available in mainland China</strong> and is a strong fit for overseas-cloud ↔ China-cloud interconnection. Zenlayer operates through a compliant China entity — Zenlayer Technology Services (Shanghai) Co., Ltd. (臻乐尔科技服务（上海）有限公司) — with relevant network access qualifications, so mainland deployment is technically supported. Domestic options commonly evaluated alongside it include <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Nova Technology, Alibaba Cloud CEN + SAG, Huawei SD-WAN")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Zenlayer SD-WAN for overseas ↔ China cloud interconnection",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 3,
+    indexCandidates: "Nova Technology, Alibaba Cloud CEN + SAG, Huawei SD-WAN",
+    guidanceHtml: `
+        <p><strong>Zenlayer SD-WAN is Available for mainland China use</strong> and is especially aligned with hybrid architectures that span an overseas cloud and a China cloud. Zenlayer's China operating entity — Zenlayer Technology Services (Shanghai) Co., Ltd. (臻乐尔科技服务（上海）有限公司) — holds the relevant network access qualifications needed for lawful mainland deployment.</p>
+        <h3>Why it fits overseas-cloud ↔ China-cloud stacks</h3>
+        <p>That topology is a core Zenlayer strength. Using global backbone and cross-border private-line resources, Zenlayer SD-WAN can reduce latency and packet loss between overseas hyperscalers and domestic clouds, while helping teams operate a more stable, lower-latency cross-border interconnection path under China network constraints.</p>
+        <h3>Domestic options commonly evaluated instead</h3>
+        <p>Keep Zenlayer when the global backbone and cross-border private-line model already matches the architecture. Prefer a domestic managed or cloud-native path when China-operated delivery, Alibaba-stack simplicity, or a large Huawei enterprise standard matters more.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Vendor</th>
+                <th>Positioning</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Nova Technology (南凌科技)</td>
+                <td>Cross-border SD-WAN managed service</td>
+                <td>Closest domestic counterpart for multi-branch and hybrid-cloud interconnection</td>
+              </tr>
+              <tr>
+                <td>Alibaba Cloud CEN + SAG</td>
+                <td>Cloud-native cross-border interconnection</td>
+                <td>Simplest path when the China-side stack already runs on Alibaba Cloud</td>
+              </tr>
+              <tr>
+                <td>Huawei SD-WAN</td>
+                <td>High-end enterprise SD-WAN</td>
+                <td>Large-scale cross-border private-line needs with a full Huawei networking ecosystem</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Keep Zenlayer SD-WAN</strong> for overseas-cloud ↔ China-cloud interconnection when global backbone and cross-border private-line coverage are the priority.</li>
+          <li><strong>Prefer Nova Technology (南凌科技)</strong> for a domestic managed cross-border SD-WAN service across branches and hybrid cloud.</li>
+          <li><strong>Prefer Alibaba Cloud CEN + SAG</strong> for the simplest cloud-native on-ramp when China workloads already sit on Alibaba Cloud.</li>
+          <li><strong>Prefer Huawei SD-WAN</strong> for large enterprises standardizing on Huawei networking for high-end private-line scale.</li>
+        </ul>
+        <p>These candidates appear on the Zenlayer SD-WAN alternatives page only — Chinaready does <strong>not</strong> add Nova Technology, Alibaba Cloud CEN + SAG, or Huawei SD-WAN as Explore / Landscape product tiles from this rewrite. Confirm topology, compliance, and operating constraints before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Zenlayer SD-WAN work in China?",
+        answer: `Yes. Chinaready labels Zenlayer SD-WAN as ${availability}. Zenlayer operates through Zenlayer Technology Services (Shanghai) Co., Ltd. (臻乐尔科技服务（上海）有限公司) with relevant network access qualifications, so mainland deployment is technically supported. It is especially strong for overseas-cloud ↔ China-cloud interconnection.`,
+      },
+      {
+        question: "Why is Zenlayer SD-WAN a good fit for overseas cloud to China cloud architectures?",
+        answer:
+          "That hybrid topology is a core Zenlayer strength. Global backbone and cross-border private-line resources help reduce latency and packet loss between overseas hyperscalers and domestic clouds, giving teams a more stable cross-border interconnection path under China network constraints.",
+      },
+      {
+        question: "What are the best China alternatives to Zenlayer SD-WAN?",
+        answer: namesText
+          ? `Chinaready currently lists these China-market options alongside Zenlayer SD-WAN: ${namesText}. Prefer Nova Technology (南凌科技) for domestic managed cross-border SD-WAN, Alibaba Cloud CEN + SAG when the China stack is already on Alibaba Cloud, and Huawei SD-WAN for large-scale enterprise private-line needs. Confirm fit before production adoption.`
+          : "Prefer Nova Technology (南凌科技) for domestic managed cross-border SD-WAN, Alibaba Cloud CEN + SAG when the China stack is already on Alibaba Cloud, and Huawei SD-WAN for large-scale enterprise private-line needs.",
+      },
+      {
+        question: "Should teams keep Zenlayer or switch to a domestic SD-WAN?",
+        answer:
+          "Keep Zenlayer when overseas-cloud ↔ China-cloud interconnection and global backbone coverage are the priority. Switch toward Nova Technology for a China-operated managed SD-WAN path, Alibaba Cloud CEN + SAG for the simplest Alibaba-native design, or Huawei SD-WAN when a large enterprise already standardizes on Huawei networking.",
+      },
+      {
+        question: "Where should teams go after shortlisting Zenlayer SD-WAN options?",
+        answer:
+          "Validate topology (branch, hybrid cloud, overseas ↔ China cloud), compliance qualifications, latency and packet-loss targets, and operating model (managed service vs cloud-native). Use the interactive Chinaready Landscape for adjacent infrastructure choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
 };
 
 /**
@@ -4342,6 +4611,8 @@ const ANALOG_ALIASES = {
   clarity: "Microsoft Clarity",
   "firebase app distribution": "Firebase App Distribution",
   "visual studio app center": "Visual Studio App Center",
+  "zenlayer sd wan": "Zenlayer SD-WAN",
+  "zenlayer sd-wan": "Zenlayer SD-WAN",
   bitrise: "Bitrise",
   "cloudflare dns": "Cloudflare DNS",
   "amazon route 53": "Amazon Route 53",
