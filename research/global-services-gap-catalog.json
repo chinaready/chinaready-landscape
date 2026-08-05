@@ -563,7 +563,7 @@
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
-    "zenlayer sd wan": {
+    "zenlayer sd-wan": {
       "name": "Zenlayer SD-WAN",
       "availability": "Available",
       "global_availability_in_china": "available"
@@ -1280,28 +1280,23 @@
       "global_availability_in_china": "limited",
       "china_candidates": [
         {
-          "name": "Alibaba Cloud CDN",
-          "homepage_url": "https://www.alibabacloud.com/product/cdn",
+          "name": "Staticfile CDN",
+          "homepage_url": "https://www.staticfile.net/",
           "category": "Infrastructure & Edge",
-          "subcategory": "Content Delivery Network (CDN)",
-          "source": "landscape"
+          "subcategory": "Open-source library CDN / static hosting",
+          "source": "research",
+          "note": "Staticfile CDN (staticfile.net) is a free domestic open-source library CDN commonly used to mirror Bootstrap and related front-end assets for mainland China access. Best for testing and validation before production hardening."
         },
         {
-          "name": "Tencent Cloud CDN",
-          "homepage_url": "https://www.tencentcloud.com/products/cdn",
+          "name": "BootCDN",
+          "homepage_url": "https://www.bootcdn.cn/",
           "category": "Infrastructure & Edge",
-          "subcategory": "Content Delivery Network (CDN)",
-          "source": "landscape"
-        },
-        {
-          "name": "Chinaready Google Fonts Hosting",
-          "homepage_url": "https://gfonts.launchready.cn/",
-          "category": "Growth, Content & Experience",
-          "subcategory": "Web Fonts & Iconography",
-          "source": "landscape"
+          "subcategory": "Open-source library CDN / static hosting",
+          "source": "research",
+          "note": "BootCDN (bootcdn.cn) is a free domestic open-source project CDN closely associated with Bootstrap China community usage. Best for testing and validation of Bootstrap and common front-end library loads from mainland China."
         }
       ],
-      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "research_note": "BootstrapCDN is Limited for mainland China production stacks: overseas library CDN endpoints are often slow or unreliable for China-facing sites. For production, Chinaready provisions customer-specific secure domestic Bootstrap hosting on demand, or teams self-host Bootstrap assets on a China CDN. For testing and validation, prefer Staticfile CDN (staticfile.net) and BootCDN (bootcdn.cn). These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm latency, HTTPS, version pinning, and compliance before production adoption.",
       "confidence": "researched"
     },
     {

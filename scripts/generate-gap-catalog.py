@@ -796,7 +796,32 @@ OVERRIDES = {
     "bunnycdn": ["Alibaba Cloud CDN", "Tencent Cloud CDN"],
     "fastly": ["Alibaba Cloud CDN", "Tencent Cloud CDN", "Cloudflare China Network"],
     "imperva": ["Alibaba Cloud CDN", "Tencent Cloud CDN", "GeeTest"],
-    "bootstrapcdn": ["Alibaba Cloud CDN", "Tencent Cloud CDN", "Chinaready Google Fonts Hosting"],
+    "bootstrapcdn": [
+        {
+            "name": "Staticfile CDN",
+            "homepage_url": "https://www.staticfile.net/",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Open-source library CDN / static hosting",
+            "source": "research",
+            "note": (
+                "Staticfile CDN (staticfile.net) is a free domestic open-source library CDN commonly "
+                "used to mirror Bootstrap and related front-end assets for mainland China access. "
+                "Best for testing and validation before production hardening."
+            ),
+        },
+        {
+            "name": "BootCDN",
+            "homepage_url": "https://www.bootcdn.cn/",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Open-source library CDN / static hosting",
+            "source": "research",
+            "note": (
+                "BootCDN (bootcdn.cn) is a free domestic open-source project CDN closely associated "
+                "with Bootstrap China community usage. Best for testing and validation of Bootstrap "
+                "and common front-end library loads from mainland China."
+            ),
+        },
+    ],
     "amazon cloudfront": ["Alibaba Cloud CDN", "Tencent Cloud CDN"],
     "akamai": ["Alibaba Cloud CDN", "Tencent Cloud CDN"],
     "cloudflare cdn": ["Alibaba Cloud CDN", "Tencent Cloud CDN", "Cloudflare China Network"],
@@ -2139,6 +2164,15 @@ RESEARCH_NOTES = {
         "not as Explore / Landscape product tiles. Confirm deliverability and compliance before "
         "production adoption."
     ),
+    "bootstrapcdn": (
+        "BootstrapCDN is Limited for mainland China production stacks: overseas library CDN endpoints "
+        "are often slow or unreliable for China-facing sites. For production, Chinaready provisions "
+        "customer-specific secure domestic Bootstrap hosting on demand, or teams self-host Bootstrap "
+        "assets on a China CDN. For testing and validation, prefer Staticfile CDN (staticfile.net) and "
+        "BootCDN (bootcdn.cn). These appear on the alternatives page only — not as Explore / Landscape "
+        "product tiles. Confirm latency, HTTPS, version pinning, and compliance before production "
+        "adoption."
+    ),
     "facebook login": (
         "Facebook Login is Unavailable for mainland China production stacks. China's mainstream "
         "third-party login paths are WeChat Login, QQ Login, Weibo Login, Alipay Login, and SMS Login "
@@ -2366,15 +2400,16 @@ RESEARCH_NOTES = {
         "deployment model, and compliance before production adoption."
     ),
     "zenlayer sd wan": (
-        "Zenlayer SD-WAN is Available in mainland China: Zenlayer operates through a compliant China "
-        "entity (Zenlayer Technology Services (Shanghai) Co., Ltd. / 臻乐尔科技服务（上海）有限公司) with "
-        "relevant network access qualifications, so mainland deployment is technically supported. It is "
-        "especially strong for overseas-cloud ↔ China-cloud interconnection via global backbone and "
-        "cross-border private-line resources. Prefer Nova Technology (南凌科技) for a domestic managed "
-        "cross-border SD-WAN path, Alibaba Cloud CEN + SAG when the China stack is already on Alibaba "
-        "Cloud, and Huawei SD-WAN for large-scale enterprise private-line needs. These appear on the "
-        "alternatives page only — not as Explore / Landscape product tiles. Confirm topology, compliance, "
-        "and operating constraints before production adoption."
+        "Zenlayer SD-WAN is Available in mainland China and a strong fit for overseas-cloud ↔ China-cloud "
+        "architectures: Zenlayer operates through a compliant China entity (Zenlayer Technology Services "
+        "(Shanghai) Co., Ltd. / 臻乐尔科技服务（上海）有限公司) with relevant network access qualifications, "
+        "so mainland deployment is technically supported. Global backbone and cross-border private-line "
+        "resources help address latency, packet loss, and cross-border network/compliance constraints. "
+        "Prefer Nova Technology (南凌科技) for a domestic managed cross-border SD-WAN path, Alibaba Cloud "
+        "CEN + SAG when the China stack is already on Alibaba Cloud, and Huawei SD-WAN for large-scale "
+        "enterprise private-line needs. These appear on the alternatives page only — not as Explore / "
+        "Landscape product tiles. Confirm topology, compliance, and operating constraints before "
+        "production adoption."
     ),
     "middleware": (
         "Middleware.io is Unavailable for practical mainland China use: overseas-only infrastructure means "

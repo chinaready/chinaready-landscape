@@ -2964,6 +2964,81 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  bootstrapcdn: {
+    description: (availability, names) =>
+      clipMeta(
+        `BootstrapCDN is Limited in mainland China. Chinaready can provision secure customer-specific domestic Bootstrap hosting, or teams self-host on a China CDN. For testing, compare ${names.slice(0, 2).join(" and ") || "Staticfile CDN and BootCDN"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>BootstrapCDN is Limited in mainland China</strong> for production front-end stacks. Chinaready can provision a <strong>customer-specific, secure domestic Bootstrap hosting</strong> service based on your requirements, or your team can self-host Bootstrap assets on a China CDN. For testing and validation, Chinaready currently recommends <strong>${escapeHtml(names.slice(0, 2).join(" and ") || "Staticfile CDN and BootCDN")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China Bootstrap hosting paths instead of BootstrapCDN",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 2,
+    indexCandidates: "Staticfile CDN, BootCDN",
+    guidanceHtml: `
+        <p><strong>BootstrapCDN is Limited for reliable mainland China use.</strong> Overseas open-source library CDN endpoints are often slow or unstable for China-facing sites, so do not treat BootstrapCDN as a production dependency for mainland traffic.</p>
+        <h3>Production path</h3>
+        <ul>
+          <li><strong>Chinaready-managed hosting:</strong> Chinaready can provision a customer-specific, secure domestic Bootstrap hosting service tailored to your stack, domains, HTTPS, version pinning, and operating constraints.</li>
+          <li><strong>Self-host on a China CDN:</strong> publish Bootstrap (and related) assets to your own origin and accelerate them with a domestic CDN — for example Alibaba Cloud CDN or Tencent Cloud CDN — under your ICP and certificate controls.</li>
+        </ul>
+        <h3>Testing and validation shortlist</h3>
+        <p>For early testing and validation only, Chinaready currently recommends these domestic open-source library hosting services:</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="https://www.staticfile.net/" target="_blank" rel="noopener noreferrer">Staticfile CDN</a></td>
+                <td>Free domestic open-source library CDN (staticfile.net) commonly used to mirror Bootstrap and related front-end assets for mainland access</td>
+                <td>Smoke tests, demos, and early validation of China library loads</td>
+              </tr>
+              <tr>
+                <td><a href="https://www.bootcdn.cn/" target="_blank" rel="noopener noreferrer">BootCDN</a></td>
+                <td>Free domestic open-source project CDN (bootcdn.cn) widely used for Bootstrap and common front-end libraries in China</td>
+                <td>Smoke tests, demos, and early validation of Bootstrap / front-end CDN paths</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Production / security-sensitive:</strong> ask Chinaready for customer-specific secure Bootstrap hosting, or self-host on a China CDN you control.</li>
+          <li><strong>Testing / validation:</strong> start with Staticfile CDN or BootCDN, then move to managed or self-hosted CDN before launch.</li>
+        </ul>
+        <p>Staticfile CDN and BootCDN appear on this alternatives page only — Chinaready does <strong>not</strong> add them as Explore / Landscape product tiles. Confirm latency, HTTPS, version pinning, availability SLAs, and compliance before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does BootstrapCDN work in China?",
+        answer: `Chinaready currently labels BootstrapCDN as ${availability} for mainland China use. Overseas library CDN endpoints are often slow or unreliable for China-facing sites, so treat BootstrapCDN as a weak production dependency and validate latency and availability on your own network paths.`,
+      },
+      {
+        question: "What are the best China alternatives to BootstrapCDN?",
+        answer: `For production, Chinaready can provision customer-specific secure domestic Bootstrap hosting, or teams can self-host Bootstrap assets on a China CDN. For testing and validation, Chinaready currently recommends ${namesText || "Staticfile CDN and BootCDN"}. Treat the public free CDNs as a research shortlist, not a one-to-one production endorsement.`,
+      },
+      {
+        question: "Should teams use Staticfile CDN or BootCDN in production?",
+        answer:
+          "Prefer them for testing and validation first. For production — especially security-sensitive or SLA-bound stacks — use Chinaready-managed customer-specific Bootstrap hosting or self-host on a China CDN you control (for example Alibaba Cloud CDN or Tencent Cloud CDN), with your own HTTPS, version pinning, and compliance controls.",
+      },
+      {
+        question: "Can Chinaready host Bootstrap assets for our China site?",
+        answer:
+          "Yes. Chinaready can provision a customer-specific, secure domestic Bootstrap hosting service based on your requirements — domains, HTTPS, version pinning, and operating constraints. Book a call with Chinaready to scope the path.",
+      },
+      {
+        question: "Where should teams go after shortlisting BootstrapCDN alternatives?",
+        answer:
+          "Decide whether you need Chinaready-managed hosting or a self-hosted China CDN path, then validate latency, HTTPS, version pinning, and compliance. Use the interactive Chinaready Landscape for adjacent Infrastructure & Edge choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
   sendspark: {
     description: (availability, names) =>
       clipMeta(
@@ -4390,20 +4465,19 @@ const EDITORIAL_OVERRIDES = {
   "zenlayer-sd-wan": {
     description: (availability, names) =>
       clipMeta(
-        `Zenlayer SD-WAN is Available in mainland China via a compliant Shanghai entity. Strong for overseas-cloud ↔ China-cloud links. Also compare ${names.slice(0, 3).join(", ") || "Nova Technology, Alibaba Cloud CEN + SAG, Huawei SD-WAN"}. Availability: ${availability}.`,
+        `Zenlayer SD-WAN is Available in mainland China and a strong fit for overseas-cloud ↔ China-cloud links. Also compare ${names.slice(0, 3).join(", ") || "Nova Technology, Alibaba Cloud CEN + SAG, Huawei SD-WAN"}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
-      `<strong>Quick answer:</strong> <strong>Zenlayer SD-WAN is Available in mainland China</strong> and is a strong fit for overseas-cloud ↔ China-cloud interconnection. Zenlayer operates through a compliant China entity — Zenlayer Technology Services (Shanghai) Co., Ltd. (臻乐尔科技服务（上海）有限公司) — with relevant network access qualifications, so mainland deployment is technically supported. Domestic options commonly evaluated alongside it include <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Nova Technology, Alibaba Cloud CEN + SAG, Huawei SD-WAN")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
-    guidanceTitle: "Zenlayer SD-WAN for overseas ↔ China cloud interconnection",
+      `<strong>Quick answer:</strong> <strong>Zenlayer SD-WAN is Available in mainland China</strong> — and it is a strong fit when your architecture spans an overseas cloud and a China cloud. Zenlayer operates through a compliant China entity — Zenlayer Technology Services (Shanghai) Co., Ltd. (臻乐尔科技服务（上海）有限公司) — with relevant network access qualifications, so mainland deployment is technically supported. Domestic options commonly evaluated alongside it include <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Nova Technology, Alibaba Cloud CEN + SAG, Huawei SD-WAN")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Zenlayer SD-WAN availability in mainland China",
     sectionTitle: "Mapped China-ready candidates",
     indexOptions: 3,
     indexCandidates: "Nova Technology, Alibaba Cloud CEN + SAG, Huawei SD-WAN",
     guidanceHtml: `
-        <p><strong>Zenlayer SD-WAN is Available for mainland China use</strong> and is especially aligned with hybrid architectures that span an overseas cloud and a China cloud. Zenlayer's China operating entity — Zenlayer Technology Services (Shanghai) Co., Ltd. (臻乐尔科技服务（上海）有限公司) — holds the relevant network access qualifications needed for lawful mainland deployment.</p>
-        <h3>Why it fits overseas-cloud ↔ China-cloud stacks</h3>
-        <p>That topology is a core Zenlayer strength. Using global backbone and cross-border private-line resources, Zenlayer SD-WAN can reduce latency and packet loss between overseas hyperscalers and domestic clouds, while helping teams operate a more stable, lower-latency cross-border interconnection path under China network constraints.</p>
-        <h3>Domestic options commonly evaluated instead</h3>
-        <p>Keep Zenlayer when the global backbone and cross-border private-line model already matches the architecture. Prefer a domestic managed or cloud-native path when China-operated delivery, Alibaba-stack simplicity, or a large Huawei enterprise standard matters more.</p>
+        <p><strong>Usable — and well matched to the overseas-cloud ↔ China-cloud scenario.</strong> Zenlayer operates in China through Zenlayer Technology Services (Shanghai) Co., Ltd. (臻乐尔科技服务（上海）有限公司), a compliant local entity with relevant network access qualifications. Mainland deployment is technically supported.</p>
+        <h3>Why it fits (short version)</h3>
+        <p>Architectures that split workloads between an overseas cloud and a domestic cloud are a core Zenlayer strength. Global backbone and cross-border private-line resources help reduce latency and packet loss between overseas hyperscalers and China clouds, and support a more stable cross-border interconnection path under China network and compliance constraints.</p>
+        <h3>Domestic alternatives (by priority)</h3>
         <div class="cr-alt-table-scroll">
           <table>
             <thead>
@@ -4422,7 +4496,7 @@ const EDITORIAL_OVERRIDES = {
               <tr>
                 <td>Alibaba Cloud CEN + SAG</td>
                 <td>Cloud-native cross-border interconnection</td>
-                <td>Simplest path when the China-side stack already runs on Alibaba Cloud</td>
+                <td>Simplest one-hop on-ramp when the China-side stack already runs on Alibaba Cloud</td>
               </tr>
               <tr>
                 <td>Huawei SD-WAN</td>
@@ -4432,13 +4506,8 @@ const EDITORIAL_OVERRIDES = {
             </tbody>
           </table>
         </div>
-        <h3>Selection guidance</h3>
-        <ul>
-          <li><strong>Keep Zenlayer SD-WAN</strong> for overseas-cloud ↔ China-cloud interconnection when global backbone and cross-border private-line coverage are the priority.</li>
-          <li><strong>Prefer Nova Technology (南凌科技)</strong> for a domestic managed cross-border SD-WAN service across branches and hybrid cloud.</li>
-          <li><strong>Prefer Alibaba Cloud CEN + SAG</strong> for the simplest cloud-native on-ramp when China workloads already sit on Alibaba Cloud.</li>
-          <li><strong>Prefer Huawei SD-WAN</strong> for large enterprises standardizing on Huawei networking for high-end private-line scale.</li>
-        </ul>
+        <h3>Recommendation</h3>
+        <p>For overseas-cloud ↔ China-cloud interconnection, <strong>Zenlayer SD-WAN is Available and on-target</strong>. If you prefer a domestic path, start with <strong>Nova Technology (南凌科技)</strong> for managed cross-border SD-WAN, or <strong>Alibaba Cloud CEN + SAG</strong> for the simplest cloud-native design on an Alibaba stack. Evaluate <strong>Huawei SD-WAN</strong> when the organization already standardizes on Huawei for large private-line scale.</p>
         <p>These candidates appear on the Zenlayer SD-WAN alternatives page only — Chinaready does <strong>not</strong> add Nova Technology, Alibaba Cloud CEN + SAG, or Huawei SD-WAN as Explore / Landscape product tiles from this rewrite. Confirm topology, compliance, and operating constraints before production adoption.</p>`,
     faq: (availability, namesText) => [
       {
@@ -4448,7 +4517,7 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Why is Zenlayer SD-WAN a good fit for overseas cloud to China cloud architectures?",
         answer:
-          "That hybrid topology is a core Zenlayer strength. Global backbone and cross-border private-line resources help reduce latency and packet loss between overseas hyperscalers and domestic clouds, giving teams a more stable cross-border interconnection path under China network constraints.",
+          "That hybrid topology is a core Zenlayer strength. Global backbone and cross-border private-line resources help reduce latency and packet loss between overseas hyperscalers and domestic clouds, and support a more stable cross-border interconnection path under China network and compliance constraints.",
       },
       {
         question: "What are the best China alternatives to Zenlayer SD-WAN?",
@@ -4459,7 +4528,7 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Should teams keep Zenlayer or switch to a domestic SD-WAN?",
         answer:
-          "Keep Zenlayer when overseas-cloud ↔ China-cloud interconnection and global backbone coverage are the priority. Switch toward Nova Technology for a China-operated managed SD-WAN path, Alibaba Cloud CEN + SAG for the simplest Alibaba-native design, or Huawei SD-WAN when a large enterprise already standardizes on Huawei networking.",
+          "Keep Zenlayer when overseas-cloud ↔ China-cloud interconnection and global backbone coverage are the priority — it is Available and on-target for that scenario. Switch toward Nova Technology for a China-operated managed SD-WAN path, Alibaba Cloud CEN + SAG for the simplest Alibaba-native design, or Huawei SD-WAN when a large enterprise already standardizes on Huawei networking.",
       },
       {
         question: "Where should teams go after shortlisting Zenlayer SD-WAN options?",
