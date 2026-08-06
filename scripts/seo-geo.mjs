@@ -145,12 +145,14 @@ const STACKBREAK_FIREBASE_BACKEND_URL =
  */
 const EDITORIAL_OVERRIDES = {
   stripe: {
+    title: "Stripe Alternatives in China",
+    relatedSlugs: ["paypal", "apple-pay", "authorize-net", "checkout-com"],
     description: (availability, names) =>
       clipMeta(
-        `Planning a China launch with Stripe? Decide by deployment location first. Mainland China deployments: prefer ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+        `Stripe China alternative? For mainland deployments prefer ${names.slice(0, 3).join(", ")}. If the product stays overseas, Stripe can still connect Alipay/WeChat Pay. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
-      `<strong>Quick answer:</strong> Before choosing Stripe for China, decide where the product will run. If it must be deployed in mainland China, Chinaready recommends not using Stripe for compliance reasons — map to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong> instead. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+      `<strong>Quick answer:</strong> Looking for a <strong>Stripe China alternative</strong>? Decide where the product will run first. If it must be deployed in mainland China, Chinaready recommends not using Stripe for compliance reasons — map to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong> instead. If the product stays outside China, Stripe can still work as your global payment platform, including Alipay and WeChat Pay connections. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
     guidanceTitle: "Decide by deployment location first",
     guidanceHtml: `
         <p>Planning to launch your product in China? The Stripe question that matters first is whether the product itself will run inside mainland China.</p>
@@ -176,6 +178,45 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Where should teams go after shortlisting Stripe alternatives?",
         answer: `Use the interactive Chinaready Landscape to compare adjacent payment services, then read Chinaready's main site for launch operating guidance covering compliance, China entity collection, distribution, and go-to-market constraints beyond vendor selection. If the path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
+  paypal: {
+    title: "PayPal Alternatives in China",
+    relatedSlugs: ["stripe", "apple-pay", "authorize-net", "checkout-com"],
+    description: (availability, names) =>
+      clipMeta(
+        `PayPal alternatives in China: mainland checkout maps to ${names.slice(0, 2).join(" and ") || "WeChat Pay and Alipay"}. PayPal is Unavailable for mainland production stacks. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Looking for <strong>PayPal alternatives in China</strong>? PayPal is <strong>Unavailable</strong> for mainland China production checkout. Map China-facing payments to <strong>${escapeHtml(names.slice(0, 2).join(" and ") || "WeChat Pay and Alipay")}</strong> so buyers can pay a China entity (or a trusted partner like Chinaready). Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China payment rails instead of PayPal",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: `
+        <p><strong>PayPal is Unavailable for practical mainland China checkout.</strong> Mainland buyers expect WeChat Pay and Alipay; overseas PayPal wallets and settlement paths do not cover day-to-day China ecommerce or SaaS collection for a China entity.</p>
+        <ul>
+          <li><strong>WeChat Pay</strong> — default wallet inside WeChat for consumer and many B2C/B2B flows.</li>
+          <li><strong>Alipay</strong> — default wallet across Alibaba ecosystems and widely accepted offline/online checkout.</li>
+        </ul>
+        <p>If the product itself must run in mainland China, integrate these rails directly (or via a China commerce stack) rather than treating PayPal as a drop-in. If the product stays overseas and only needs to accept Chinese travelers occasionally, validate whether your existing global processor already exposes Alipay/WeChat Pay — still do not assume PayPal covers mainland-native checkout.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does PayPal work in China?",
+        answer: `No for mainland China production checkout. Chinaready labels PayPal as ${availability}. Mainland buyers primarily pay with WeChat Pay and Alipay; PayPal is not a workable default for China-entity collection or domestic ecommerce.`,
+      },
+      {
+        question: "What are the best PayPal alternatives in China?",
+        answer: `Chinaready Landscape currently maps PayPal to ${namesText}. Prefer WeChat Pay and Alipay for mainland consumer checkout, then confirm merchant entity, settlement, and compliance before production adoption.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for PayPal in mainland China?",
+        answer:
+          "Usually no. China checkout is wallet- and ecosystem-specific. Expect WeChat Pay / Alipay integration (or a domestic commerce platform) rather than a PayPal API swap.",
+      },
+      {
+        question: "Where should teams go after shortlisting PayPal alternatives?",
+        answer:
+          "Use the interactive Chinaready Landscape to compare adjacent payment services, then read Chinaready's main site for launch operating guidance covering China entity collection, compliance, and go-to-market constraints. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -317,9 +358,10 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   "twilio-voice": {
+    relatedSlugs: ["twilio-sms", "twilio-video", "onesignal"],
     description: (availability, names) =>
       clipMeta(
-        `Twilio Voice is Unavailable for mainland China. Outbound calling is unsupported; use ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+        `Does Twilio Voice work in China? Unavailable — outbound calling unsupported; use ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> Twilio Voice is <strong>Unavailable</strong> for mainland China. Twilio does not support outbound calls to Mainland China, and short-duration use cases such as OTP or voice alerts are incompatible with China calling regulations — map to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
@@ -505,9 +547,10 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   "google-admob": {
+    relatedSlugs: ["applovin", "ironsource", "chartboost", "unity-levelplay"],
     description: (availability, names) =>
       clipMeta(
-        `Google AdMob is Unavailable for mainland China. GFW latency, near-zero fill, and PIPL risk make it strongly discouraged. Prefer ${names.slice(0, 3).join(", ")}.`,
+        `Does Google AdMob work in China? Unavailable — GFW latency, near-zero fill, and PIPL risk. Prefer ${names.slice(0, 3).join(", ")}.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> Google AdMob is <strong>Unavailable</strong> for mainland China users and is strongly discouraged. GFW filtering adds latency and lag, local inventory yields near-zero fill/revenue, and unauthorized cross-border data transfer risks PIPL enforcement and app-store removal. Map mainland monetization to <strong>${escapeHtml(names.slice(0, 4).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
@@ -551,6 +594,86 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Where should teams go after shortlisting Google AdMob alternatives?",
         answer: `Use the interactive Chinaready Landscape to compare adjacent growth and monetization services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the monetization path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
+  applovin: {
+    relatedSlugs: ["google-admob", "ironsource", "chartboost", "liftoff"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does AppLovin work in China? Unavailable for mainland UA/monetization. Prefer ${names.slice(0, 3).join(", ") || "Tencent Advertising, Ocean Engine, Kuaishou Ads"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>AppLovin is Unavailable</strong> for meaningful mainland China user acquisition and ad monetization. Map paid growth and developer-side inventory to domestic platforms such as <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Tencent Advertising, Ocean Engine, Kuaishou Ads")}</strong> instead of running AppLovin as the China stack. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China ad platforms instead of AppLovin",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: `
+        <p><strong>AppLovin is Unavailable for mainland China production growth.</strong> Overseas UA and mediation stacks do not deliver reliable fill, auction access, or compliant data paths for China-facing apps. Prefer domestic advertiser and developer platforms that sit inside ByteDance, Tencent, and Kuaishou ecosystems.</p>
+        <ul>
+          <li><strong>Tencent Advertising</strong> — WeChat/QQ ecosystem installs and performance campaigns.</li>
+          <li><strong>Ocean Engine</strong> — Douyin/Toutiao growth and conversion optimization.</li>
+          <li><strong>Kuaishou Ads</strong> — short-video acquisition through Kuaishou Magnet Engine.</li>
+        </ul>
+        <p>Also compare nearby pages for AdMob, ironSource, and Chartboost when your global stack mixes mediation and UA.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does AppLovin work in China?",
+        answer: `No for meaningful mainland China UA or monetization. Chinaready labels AppLovin as ${availability}. Plan domestic advertiser and developer-side platforms instead of depending on AppLovin for China app growth.`,
+      },
+      {
+        question: "What are the best China alternatives to AppLovin?",
+        answer: `Chinaready Landscape currently maps AppLovin to ${namesText}. Prefer Tencent Advertising for WeChat/QQ ecosystem growth, Ocean Engine for Douyin/Toutiao campaigns, and Kuaishou Ads for short-video acquisition. Confirm SDK access, settlement entity, and PIPL compliance before production adoption.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for AppLovin in mainland China?",
+        answer:
+          "Usually no. China growth mixes advertiser platforms, mediation networks, and mini-program distribution. Expect a stack redesign rather than an AppLovin SDK swap.",
+      },
+      {
+        question: "Where should teams go after shortlisting AppLovin alternatives?",
+        answer:
+          "Use the interactive Chinaready Landscape to compare adjacent growth and monetization services, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  ironsource: {
+    title: "ironSource Alternatives in China",
+    relatedSlugs: ["google-admob", "applovin", "chartboost", "unity-levelplay"],
+    description: (availability, names) =>
+      clipMeta(
+        `ironSource alternative in China? Unavailable for mainland mediation/UA. Prefer ${names.slice(0, 3).join(", ") || "Pangle, Tencent Ads, Baidu Union"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Looking for an <strong>ironSource alternative in China</strong>? ironSource is <strong>Unavailable</strong> for mainland mediation and user acquisition. Map rewarded video, interstitial, and UA to <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Pangle, Tencent Ads, Baidu Union")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China mediation and UA instead of ironSource",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    guidanceHtml: `
+        <p><strong>ironSource is Unavailable for mainland China production monetization.</strong> Overseas mediation and LevelPlay-style stacks do not provide reliable China inventory, settlement, or compliant telemetry. Prefer domestic networks with mainland fill and developer tooling.</p>
+        <ul>
+          <li><strong>Pangle (穿山甲)</strong> — ByteDance developer advertising with strong eCPM and fill.</li>
+          <li><strong>Tencent Ads (优量汇)</strong> — WeChat/QQ social inventory and stable fill.</li>
+          <li><strong>Baidu Union (百度联盟)</strong> — search-intent and contextual placements.</li>
+        </ul>
+        <p>These candidates appear on the ironSource alternatives page for orientation — confirm SDK access, mediation waterfall design, and PIPL before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does ironSource work in China?",
+        answer: `No for mainland China production monetization or UA. Chinaready labels ironSource as ${availability}. Use domestic mediation and advertiser platforms instead.`,
+      },
+      {
+        question: "What are the best ironSource alternatives in China?",
+        answer: `Chinaready currently lists these China-market options for ironSource: ${namesText}. Prefer Pangle for eCPM and fill, Tencent Ads for WeChat/QQ inventory, and Baidu Union for search-intent placements.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for ironSource in mainland China?",
+        answer:
+          "Usually no. China mediation mixes domestic networks, settlement entities, and privacy controls. Expect a waterfall and SDK redesign rather than a LevelPlay drop-in.",
+      },
+      {
+        question: "Where should teams go after shortlisting ironSource alternatives?",
+        answer:
+          "Use the interactive Chinaready Landscape to compare adjacent monetization pages (AdMob, AppLovin, Chartboost), then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -721,9 +844,10 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   "firebase-crashlytics": {
+    relatedSlugs: ["firebase", "firebase-analytics", "firebase-app-distribution", "firebase-remote-config"],
     description: (availability, names) =>
       clipMeta(
-        `Firebase Crashlytics is Unavailable in mainland China — no local servers, blocked core path, missing GMS. Prefer ${names.slice(0, 3).join(", ") || "Tencent Bugly, Umeng+, Alibaba Cloud EMAS"}.`,
+        `Does Firebase Crashlytics work in China? Unavailable — no local servers, blocked core path, missing GMS. Prefer ${names.slice(0, 3).join(", ") || "Tencent Bugly, Umeng+, Alibaba Cloud EMAS"}.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> <strong>Firebase Crashlytics is Unavailable</strong> when target users are in mainland China. Firebase servers are not in mainland China, core Firebase services are blocked on domestic networks, and most mainland devices lack Google Mobile Services (GMS), so crash collection cannot run reliably. For dual-platform iOS and Android apps, Chinaready currently lists <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Tencent Bugly, Umeng+, Alibaba Cloud EMAS")}</strong> as China-market crash-monitoring options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
@@ -811,6 +935,53 @@ const EDITORIAL_OVERRIDES = {
         question: "Where should teams go after shortlisting Firebase Crashlytics alternatives?",
         answer:
           "Validate dual-platform SDK coverage, delayed-init / consent behavior, alert latency, and crash clustering workflows. Integrate first on core modules, then expand. Use the interactive Chinaready Landscape for adjacent mobile quality and analytics choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  firebase: {
+    relatedSlugs: [
+      "firebase-crashlytics",
+      "firebase-analytics",
+      "firebase-authentication",
+      "firebase-app-distribution",
+      "firebase-remote-config",
+    ],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Firebase work in China? Limited — core Google paths are blocked for mainland apps. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Firebase is Limited</strong> for mainland China production stacks. Core services (Auth, Firestore, Storage, Functions, FCM, Analytics, Crashlytics) sit on Google infrastructure that is blocked or unreliable from mainland networks, and most China Android devices lack Google Mobile Services. Chinaready currently maps the Firebase suite toward <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong> and product-specific China pages linked below. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Treat Firebase as a suite, not one swap",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: `
+        <p><strong>Firebase is not a single China decision.</strong> Auth, messaging, crash reporting, analytics, remote config, and hosting each need a mainland-reachable path. Start from the product you depend on most, then open the dedicated alternatives page:</p>
+        <ul>
+          <li><a href="/alternatives/firebase-crashlytics">Firebase Crashlytics</a> — Tencent Bugly, Umeng+, Alibaba Cloud EMAS</li>
+          <li><a href="/alternatives/firebase-analytics">Firebase Analytics</a> — Umeng+, Alibaba Cloud EMAS</li>
+          <li><a href="/alternatives/firebase-authentication">Firebase Authentication</a> — phone / WeChat / domestic IdP paths</li>
+          <li><a href="/alternatives/firebase-app-distribution">Firebase App Distribution</a> — Pgyer, Bugly, Fir.im</li>
+          <li><a href="/alternatives/firebase-remote-config">Firebase Remote Config</a> — domestic config and feature-flag stacks</li>
+        </ul>
+        <p>Use the mapped candidates on this page as the umbrella shortlist, then validate each subsystem before cutting over a China build.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Firebase work in China?",
+        answer: `Only with Limited practical usefulness. Chinaready labels Firebase as ${availability}. Core Google-hosted Firebase services are blocked or unreliable from mainland China, and most mainland Android devices lack Google Mobile Services, so China-facing apps should plan domestic substitutes per subsystem.`,
+      },
+      {
+        question: "What are the best China alternatives to Firebase?",
+        answer: `Chinaready Landscape currently maps Firebase toward ${namesText}, then to product-specific pages for Crashlytics, Analytics, Authentication, App Distribution, and Remote Config. Treat the suite as multiple replacements, not one SDK swap.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Firebase in mainland China?",
+        answer:
+          "No single product replaces the full Firebase suite. Teams usually assemble China-cloud mobile backends, domestic analytics/crash tools, and local identity/messaging providers.",
+      },
+      {
+        question: "Where should teams go after shortlisting Firebase alternatives?",
+        answer:
+          "Open the subsystem alternatives pages linked above, validate PIPL and SDK consent, then use the interactive Chinaready Landscape and chinaready.co for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -1508,9 +1679,10 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   activecampaign: {
+    relatedSlugs: ["mailerlite", "convertkit", "constant-contact", "klaviyo", "drip"],
     description: (availability, names) =>
       clipMeta(
-        `ActiveCampaign is Limited in mainland China — reachable, but high spam/rejection risk into QQ/NetEase. Compare ${names.slice(0, 2).join(", ") || "Zoho Campaigns, SendCloud"}. Availability: ${availability}.`,
+        `Does ActiveCampaign work in China? Limited — high spam/rejection risk into QQ/NetEase. Compare ${names.slice(0, 2).join(", ") || "Zoho Campaigns, SendCloud"}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> <strong>ActiveCampaign is Limited in mainland China</strong>. You can usually reach the product, but China-facing marketing email faces extremely high interception risk — messages often land in spam or are rejected. Overseas sending IPs have weak reputation with domestic free mailboxes (QQ, NetEase, and similar), and overseas platforms rarely match mainland domain authentication (SPF/DKIM/DMARC) and anti-spam expectations. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Zoho Campaigns, SendCloud")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
@@ -2509,9 +2681,10 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   megaphone: {
+    relatedSlugs: ["castos", "buzzsprout", "transistor-fm", "libsyn", "podbean"],
     description: (availability, names) =>
       clipMeta(
-        `Megaphone is Unavailable in mainland China — overseas Google Cloud hosting, slow access, and audio compliance risk. Compare ${names.slice(0, 5).join(", ")}. Availability: ${availability}.`,
+        `Does Megaphone work in China? Unavailable — overseas Google Cloud hosting, slow access, and audio compliance risk. Compare ${names.slice(0, 5).join(", ")}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> <strong>Megaphone is Unavailable for practical mainland China use</strong>. Experience is typically poor because the platform runs on overseas cloud infrastructure such as Google Cloud, and overseas audio hosting/distribution also carries mainland compliance risk. For mainland-focused creators, map to <strong>${escapeHtml(names.slice(0, 5).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
@@ -3223,9 +3396,10 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   bootstrapcdn: {
+    relatedSlugs: ["cloudflare-cdn", "amazon-cloudfront"],
     description: (availability, names) =>
       clipMeta(
-        `BootstrapCDN is Limited in mainland China. Chinaready can provision secure customer-specific domestic Bootstrap hosting, or teams self-host on a China CDN. For testing, compare ${names.slice(0, 2).join(" and ") || "Staticfile CDN and BootCDN"}. Availability: ${availability}.`,
+        `Does BootstrapCDN work in China? Limited — use Chinaready domestic Bootstrap hosting, self-host on a China CDN, or test with ${names.slice(0, 2).join(" and ") || "Staticfile CDN and BootCDN"}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> <strong>BootstrapCDN is Limited in mainland China</strong> for production front-end stacks. Chinaready can provision a <strong>customer-specific, secure domestic Bootstrap hosting</strong> service based on your requirements, or your team can self-host Bootstrap assets on a China CDN. For testing and validation, Chinaready currently recommends <strong>${escapeHtml(names.slice(0, 2).join(" and ") || "Staticfile CDN and BootCDN")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
@@ -3650,9 +3824,10 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   "commerce-layer": {
+    relatedSlugs: ["shopify", "smile-io", "loyaltylion", "joy-rewards-loyalty-program"],
     description: (availability, names) =>
       clipMeta(
-        `Commerce Layer is Limited in mainland China — reachable, but overseas AWS, missing local payments/logistics, and compliance risk. Compare ${names.slice(0, 3).join(", ") || "Wanmi Shangyun, Shushangyun, Youzan"}. Availability: ${availability}.`,
+        `Does Commerce Layer work in China? Limited — overseas AWS, missing local payments/logistics, compliance risk. Compare ${names.slice(0, 3).join(", ") || "Wanmi Shangyun, Shushangyun, Youzan"}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> <strong>Commerce Layer is Limited in mainland China</strong>. It is usually technically reachable, but hard to land in production: overseas AWS hosting with no China-region nodes means high API latency and unstable connections; WeChat Pay, Alipay, and domestic logistics integrations are missing; and cross-border transaction data creates Data Security Law / Personal Information Protection Law compliance risk. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 5).join(", ") || "Wanmi Shangyun, Shushangyun, Youzan, Weimob, Raycloud")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
@@ -3816,9 +3991,10 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   "joy-rewards-loyalty-program": {
+    relatedSlugs: ["smile-io", "loyaltylion", "shopify", "commerce-layer"],
     description: (availability, names) =>
       clipMeta(
-        `Joy Rewards / Joy.so is Limited for China. Mainland shoppers rarely use Shopify; map loyalty to ${names.slice(0, 3).join(", ") || "platform membership, WeChat-first membership, native-app membership"}. Availability: ${availability}.`,
+        `Does Joy Rewards work in China? Limited — mainland shoppers rarely use Shopify; map loyalty to ${names.slice(0, 3).join(", ") || "platform membership, WeChat-first membership, native-app membership"}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> <strong>Joy Rewards is Limited in mainland China</strong>. Mainland consumers almost never shop on Shopify ecommerce. Joy.so may still reach mainland networks under significant latency, but that rarely matters for China sales. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 4).join(", ") || "Platform membership (Alibaba / JD / Pinduoduo), WeChat-first membership, Native-app membership, Coalition loyalty")}</strong> as China-market loyalty paths on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
@@ -4193,7 +4369,7 @@ const EDITORIAL_OVERRIDES = {
   bitly: {
     description: (availability, names) =>
       clipMeta(
-        `Bitly is Unavailable in mainland China — bit.ly is GFW-blocked and redirects are unstable. Compare ${names.slice(0, 5).join(", ") || "Aifabu, Xiaoma Short Link, 3WT, Suowo, C1N Short URL"}. Availability: ${availability}.`,
+        `Does Bitly work in China? Unavailable — bit.ly is GFW-blocked and redirects are unstable. Compare ${names.slice(0, 5).join(", ") || "Aifabu, Xiaoma Short Link, 3WT, Suowo, C1N Short URL"}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> <strong>Bitly is Unavailable in mainland China</strong> for practical production use. The <code>bit.ly</code> domain is blocked by the GFW, so access and redirects routinely fail; even when a page occasionally loads, overseas hosting causes high latency and unstable jumps that cannot support real promotion workloads. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 5).join(", ") || "Aifabu, Xiaoma Short Link, 3WT, Suowo, C1N Short URL")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
@@ -4642,21 +4818,22 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   openai: {
+    relatedSlugs: ["anthropic"],
     description: (availability, names) =>
       clipMeta(
-        `OpenAI blocks all model access from mainland China IPs. Use China LLMs that are usually OpenAI- and Anthropic-compatible — often with little or no app changes. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+        `Does OpenAI / GPT-4 work in China? Blocked from mainland IPs. Use China LLMs that are usually OpenAI- and Anthropic-compatible. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
-      `<strong>Quick answer:</strong> <strong>OpenAI blocks all model access from mainland China IPs</strong> — applications and users in mainland China cannot call overseas OpenAI model APIs. Use mainland China LLM services instead. Most of those providers are compatible with both the <strong>OpenAI</strong> and <strong>Anthropic</strong> API shapes — so your application may keep working with little or no code change. Chinaready currently maps OpenAI to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+      `<strong>Quick answer:</strong> <strong>OpenAI (including GPT-4 class models) blocks all model access from mainland China IPs</strong> — applications and users in mainland China cannot call overseas OpenAI model APIs. Use mainland China LLM services instead. Most of those providers are compatible with both the <strong>OpenAI</strong> and <strong>Anthropic</strong> API shapes — so your application may keep working with little or no code change. Chinaready currently maps OpenAI to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
     guidanceTitle: "OpenAI APIs and apps deployed in mainland China",
     guidanceHtml: `
-        <p><strong>OpenAI blocks all model access from mainland China IP addresses.</strong> If the application or the calling client runs in mainland China, overseas OpenAI model endpoints are not a usable production dependency. Plan on mainland-reachable LLM APIs instead of assuming a global OpenAI key will work from China infrastructure.</p>
+        <p><strong>OpenAI blocks all model access from mainland China IP addresses</strong> — including GPT-4-class model traffic that teams often search for as “OpenAI GPT-4 China”. If the application or the calling client runs in mainland China, overseas OpenAI model endpoints are not a usable production dependency. Plan on mainland-reachable LLM APIs instead of assuming a global OpenAI key will work from China infrastructure.</p>
         <p>The practical upside: China foundation-model providers listed below almost all expose APIs that are compatible with OpenAI and Anthropic client conventions. Many teams can point existing SDKs or HTTP clients at a China endpoint (base URL, key, and model name) without rewriting the application.</p>
-        <p>Use the mapped candidates below as a research shortlist, then confirm API compatibility, model behavior, and compliance for your stack.</p>`,
+        <p>Use the mapped candidates below as a research shortlist, then confirm API compatibility, model behavior, and compliance for your stack. Searches for <code>/alternatives/openai-gpt-4</code> redirect here.</p>`,
     faq: (availability, namesText) => [
       {
-        question: "Does OpenAI work in China?",
-        answer: `No. OpenAI blocks all model access from mainland China IPs, so applications and users in mainland China cannot call overseas OpenAI model services. Chinaready labels OpenAI as ${availability} for mainland China production stacks. Use a mainland-reachable LLM API instead.`,
+        question: "Does OpenAI / GPT-4 work in China?",
+        answer: `No. OpenAI blocks all model access from mainland China IPs, so applications and users in mainland China cannot call overseas OpenAI (including GPT-4 class) model services. Chinaready labels OpenAI as ${availability} for mainland China production stacks. Use a mainland-reachable LLM API instead.`,
       },
       {
         question: "Do China LLM APIs work with OpenAI-compatible clients?",
@@ -4871,6 +5048,116 @@ const EDITORIAL_OVERRIDES = {
         question: "Where should teams go after shortlisting Zenlayer SD-WAN options?",
         answer:
           "Validate topology (branch, hybrid cloud, overseas ↔ China cloud), compliance qualifications, latency and packet-loss targets, and operating model (managed service vs cloud-native). Use the interactive Chinaready Landscape for adjacent infrastructure choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  zenlayer: {
+    relatedSlugs: ["zenlayer-sd-wan", "aws", "microsoft-azure", "amazon-cloudfront"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Zenlayer work in China? Limited as a generic cloud swap — compare ${names.slice(0, 3).join(", ") || "AWS China Regions, Azure China, Alibaba Cloud"}. For cross-border SD-WAN, see Zenlayer SD-WAN (Available). Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Zenlayer is Limited</strong> when teams treat it as a generic mainland cloud alternative. For compute/network shortlists, Chinaready currently points evaluators to <strong>${escapeHtml(names.slice(0, 3).join(", ") || "AWS China Regions, Azure China, Alibaba Cloud")}</strong>. If your need is overseas-cloud ↔ China-cloud interconnection, open the dedicated <a href="/alternatives/zenlayer-sd-wan">Zenlayer SD-WAN</a> page — that product is labeled <strong>Available</strong>. Availability in China (Zenlayer platform page): <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Zenlayer vs China cloud vs Zenlayer SD-WAN",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: `
+        <p><strong>Do not confuse the Zenlayer platform page with Zenlayer SD-WAN.</strong></p>
+        <ul>
+          <li><strong>This page (Zenlayer):</strong> Limited as a broad “China cloud alternative” framing. Most teams comparing Zenlayer for mainland workloads should also evaluate AWS China Regions, Azure China, and Alibaba Cloud for compute, network, and compliance fit.</li>
+          <li><strong><a href="/alternatives/zenlayer-sd-wan">Zenlayer SD-WAN</a>:</strong> Available in mainland China through Zenlayer’s China operating entity, and a strong fit specifically for overseas-cloud ↔ China-cloud links.</li>
+        </ul>
+        <p>Start from the topology you need (mainland cloud region vs cross-border SD-WAN), then validate ICP, partner operating models, and latency targets before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Zenlayer work in China?",
+        answer: `Chinaready labels the Zenlayer platform page as ${availability} for generic China-cloud substitution. For cross-border SD-WAN specifically, Zenlayer SD-WAN is Available — see /alternatives/zenlayer-sd-wan.`,
+      },
+      {
+        question: "What are the best China alternatives to Zenlayer?",
+        answer: `For mainland cloud workloads, Chinaready currently lists ${namesText}. For overseas ↔ China interconnection, evaluate Zenlayer SD-WAN first, then Nova Technology, Alibaba Cloud CEN + SAG, or Huawei SD-WAN on the SD-WAN page.`,
+      },
+      {
+        question: "Is Zenlayer the same as Zenlayer SD-WAN?",
+        answer:
+          "No. This page covers Zenlayer as a general platform comparison. Zenlayer SD-WAN is a separate alternatives page with Available status and cross-border networking guidance.",
+      },
+      {
+        question: "Where should teams go after shortlisting Zenlayer options?",
+        answer:
+          "Decide whether you need a mainland cloud region or a cross-border SD-WAN path, open the matching alternatives page, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  okta: {
+    relatedSlugs: ["auth0", "amazon-cognito", "firebase-authentication", "microsoft-authenticator"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Okta work in China? Limited for mainland IdP production — latency, WeChat/phone login gaps, and compliance. Compare ${names.slice(0, 2).join(" and ") || "Authing"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Okta is Limited</strong> for mainland China identity production. Overseas IdP control planes often mean high latency, weak WeChat/phone-login fit, and harder PIPL/data-residency stories. Chinaready currently maps Okta to <strong>${escapeHtml(names.slice(0, 2).join(" and ") || "Authing")}</strong> for China-facing workforce and customer identity evaluations. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China identity paths instead of Okta",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: `
+        <p><strong>Okta is Limited for mainland China IdP workloads.</strong> Teams can sometimes administer Okta from China, but China-facing login usually needs domestic IdP features: WeChat / phone-number login, mainland latency, and clearer data-residency options.</p>
+        <p>Chinaready currently maps Okta toward <strong>Authing</strong> as the primary China-market evaluation path. Also compare Auth0, Amazon Cognito, and Firebase Authentication pages when your global stack already mixes those IdPs — each has a different China failure mode.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Okta work in China?",
+        answer: `Only with Limited practical usefulness for mainland production identity. Chinaready labels Okta as ${availability}. Expect latency, weaker WeChat/phone login fit, and compliance friction versus a China-oriented IdP.`,
+      },
+      {
+        question: "What are the best China alternatives to Okta?",
+        answer: `Chinaready Landscape currently maps Okta to ${namesText}. Prefer Authing when you need mainland-oriented workforce or customer identity with local login methods; still validate SSO protocols, directory sync, and PIPL before cutover.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Okta in mainland China?",
+        answer:
+          "Sometimes closer than for other SaaS categories if you already use OIDC/SAML, but China login methods and data residency usually force more than a tenant swap. Treat Authing as a research shortlist, not a guaranteed Okta clone.",
+      },
+      {
+        question: "Where should teams go after shortlisting Okta alternatives?",
+        answer:
+          "Use the interactive Chinaready Landscape to compare adjacent identity pages, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  "cloudflare-turnstile": {
+    relatedSlugs: ["google-recaptcha", "hcaptcha", "cloudflare", "cloudflare-cdn"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Cloudflare Turnstile work in China? Limited — prefer ${names.slice(0, 2).join(" and ") || "GeeTest and Alibaba Cloud CAPTCHA"} for mainland bot checks. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Cloudflare Turnstile is Limited</strong> for mainland China bot protection. Overseas challenge endpoints can be slow or flaky for China users, so production stacks usually evaluate <strong>${escapeHtml(names.slice(0, 2).join(" and ") || "GeeTest and Alibaba Cloud CAPTCHA")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China CAPTCHA paths instead of Cloudflare Turnstile",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: `
+        <p><strong>Cloudflare Turnstile is Limited for mainland China production forms and login abuse controls.</strong> The product may load intermittently, but China-facing traffic usually needs a domestic CAPTCHA / risk-control vendor with mainland nodes and WeChat-era UX patterns.</p>
+        <ul>
+          <li><strong>GeeTest</strong> — widely used mainland bot and device-risk checks.</li>
+          <li><strong>Alibaba Cloud CAPTCHA</strong> — fits teams already on Alibaba Cloud edge and security stacks.</li>
+        </ul>
+        <p>Also compare Google reCAPTCHA and hCaptcha alternatives pages if your global stack still references those libraries — they share similar China failure modes.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Cloudflare Turnstile work in China?",
+        answer: `Only with Limited practical usefulness. Chinaready labels Cloudflare Turnstile as ${availability}. Overseas challenge paths are often too slow or unstable for mainland users, so prefer a domestic CAPTCHA / risk-control option for China-facing forms.`,
+      },
+      {
+        question: "What are the best China alternatives to Cloudflare Turnstile?",
+        answer: `Chinaready Landscape currently maps Cloudflare Turnstile to ${namesText}. Prefer GeeTest for broad mainland bot/risk coverage, and Alibaba Cloud CAPTCHA when the stack is already on Alibaba Cloud.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Turnstile in mainland China?",
+        answer:
+          "Usually no. Challenge UX, risk signals, and data residency differ. Expect client and server integration changes rather than a widget swap.",
+      },
+      {
+        question: "Where should teams go after shortlisting Turnstile alternatives?",
+        answer:
+          "Validate latency from mainland networks, accessibility/UX, and PIPL handling for device signals. Use the interactive Chinaready Landscape for adjacent security pages, then read Chinaready's main site for launch operating guidance.",
       },
     ],
   },
@@ -5471,7 +5758,13 @@ function analogPageTitle(group, availability, names) {
   void names;
   // Availability stays on-page / in meta description; omit from <title> so
   // `| Chinaready` survives Google's ~60-character SERP truncation.
-  return brandedTitle(`${group.name} Alternatives in China`);
+  // Default to question intent — GSC queries are mostly "{product} china".
+  // Use editorial.title when "alternatives" intent should lead (e.g. PayPal/Stripe).
+  const editorial = resolveEditorial(group);
+  if (editorial?.title) {
+    return brandedTitle(editorial.title);
+  }
+  return brandedTitle(`Does ${group.name} work in China?`);
 }
 
 function analogPageDescription(group, availability, names, uncertain) {
@@ -5699,10 +5992,20 @@ ${rows}
 }
 
 function relatedGroups(group, groups, limit = 5) {
+  const bySlug = new Map(groups.map((entry) => [entry.slug, entry]));
+  const editorial = resolveEditorial(group);
+  const preferred = [];
+  for (const slug of editorial?.relatedSlugs || []) {
+    const peer = bySlug.get(slug);
+    if (peer && peer.slug !== group.slug) preferred.push(peer);
+    if (preferred.length >= limit) return preferred.slice(0, limit);
+  }
+
   const candidateSet = new Set(candidateNames(group).map((name) => name.toLowerCase()));
   const scored = [];
+  const preferredSlugs = new Set(preferred.map((entry) => entry.slug));
   for (const other of groups) {
-    if (other.slug === group.slug) continue;
+    if (other.slug === group.slug || preferredSlugs.has(other.slug)) continue;
     let score = 0;
     for (const name of candidateNames(other)) {
       if (candidateSet.has(name.toLowerCase())) score += 2;
@@ -5717,11 +6020,15 @@ function relatedGroups(group, groups, limit = 5) {
     if (score > 0) scored.push({ other, score });
   }
   scored.sort((a, b) => b.score - a.score || a.other.name.localeCompare(b.other.name, "en"));
-  if (scored.length >= limit) return scored.slice(0, limit).map((entry) => entry.other);
+  const fromScore = scored.map((entry) => entry.other);
+  if (preferred.length + fromScore.length >= limit) {
+    return [...preferred, ...fromScore].slice(0, limit);
+  }
+  const seen = new Set([group.slug, ...preferred.map((entry) => entry.slug), ...fromScore.map((entry) => entry.slug)]);
   const extras = groups
-    .filter((other) => other.slug !== group.slug && !scored.some((entry) => entry.other.slug === other.slug))
+    .filter((other) => !seen.has(other.slug))
     .sort((a, b) => candidateCount(b) - candidateCount(a) || a.name.localeCompare(b.name, "en"));
-  return [...scored.map((entry) => entry.other), ...extras].slice(0, limit);
+  return [...preferred, ...fromScore, ...extras].slice(0, limit);
 }
 
 function renderAnalogPage(group, groups = []) {
@@ -5847,20 +6154,20 @@ function renderAnalogPage(group, groups = []) {
       : "";
 
   const related = relatedGroups(group, groups);
-  const relatedSection =
-    related.length > 0
-      ? `<section aria-labelledby="related-lookups">
+  const relatedLinks = [
+    ...related.map(
+      (peer) =>
+        `<li><a href="${escapeHtml(analogPublicPath(peer.slug))}">Does ${escapeHtml(peer.name)} work in China?</a></li>`,
+    ),
+    `<li><a href="/guide">China developer stack Guide</a></li>`,
+    `<li><a href="/alternatives/">All China alternatives</a></li>`,
+  ];
+  const relatedSection = `<section aria-labelledby="related-lookups">
         <h2 id="related-lookups">Related lookups</h2>
         <ul class="cr-alt-popular">
-          ${related
-            .map(
-              (peer) =>
-                `<li><a href="${escapeHtml(analogPublicPath(peer.slug))}">${escapeHtml(peer.name)} alternatives in China</a></li>`,
-            )
-            .join("\n          ")}
+          ${relatedLinks.join("\n          ")}
         </ul>
-      </section>`
-      : "";
+      </section>`;
 
   const body = `
       <nav class="cr-alt-breadcrumbs" aria-label="Breadcrumb">
@@ -6466,7 +6773,7 @@ function renderNotFoundPage() {
 
 function renderGuidePage(guide) {
   const description = clipMeta(
-    "Chinaready Landscape Guide: China-ready developer taxonomy by category, with notes on familiar global services and links to China alternative maps.",
+    "China developer stack guide by category — what belongs where for mainland launches, with notes on familiar global services and links to China alternative maps.",
   );
   const categories = guide?.categories || [];
   const sections = categories
@@ -6489,17 +6796,18 @@ function renderGuidePage(guide) {
     })
     .join("\n");
 
+  const guideTitle = brandedTitle("China Developer Stack Guide by Category");
   const body = `
       <nav class="cr-alt-breadcrumbs" aria-label="Breadcrumb">
         <a href="/">Home</a> / <span>Guide</span>
       </nav>
       <p class="cr-alt-kicker">Guide</p>
       <h1>Chinaready Landscape Guide</h1>
-      <p class="cr-alt-lede">Use this Guide for the China-side taxonomy and what typically belongs in each category. When you already know a global product keyword, open the <a href="/alternatives/">Global alternatives index</a> for China-ready candidates and availability notes.</p>
+      <p class="cr-alt-lede">China developer stack guide by category — what typically belongs in payments, identity, messaging, cloud, growth, and more. When you already know a global product keyword, open the <a href="/alternatives/">Global alternatives index</a> for China-ready candidates and availability notes.</p>
       ${sections}`;
 
   return pageShell({
-    title: "Chinaready Landscape Guide | China-ready Developer Taxonomy",
+    title: guideTitle,
     description,
     canonicalPath: "/guide",
     activeNav: "guide",
@@ -6511,7 +6819,7 @@ function renderGuidePage(guide) {
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        name: "Chinaready Landscape Guide",
+        name: guideTitle,
         description,
         url: `${SITE_URL}/guide`,
         isPartOf: { "@type": "WebSite", name: "Chinaready Landscape", url: HOME_CANONICAL },
@@ -6626,9 +6934,10 @@ ${top
 }
 
 function enhanceIndexHtml(indexHtml, groups) {
-  const title = "Chinaready Landscape | China Alternatives to Firebase, AWS, Stripe";
+  // Keep the Firebase/AWS/Stripe phrase for verify + long-tail SERP match; brand suffix via brandedTitle.
+  const title = brandedTitle("China Alternatives to Firebase, AWS, Stripe");
   const description = clipMeta(
-    `Find mainland China alternatives to Firebase, FCM, AWS, Stripe, Google Maps, and ${groups.length}+ global stack dependencies. Open-source Chinaready map with availability notes and China-ready candidates.`,
+    `Does Firebase, AWS, or Stripe work in China? Explore ${groups.length}+ mainland alternatives, availability labels, and China-ready candidates on the open-source Chinaready Landscape map.`,
   );
 
   let html = indexHtml;
