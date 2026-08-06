@@ -94,6 +94,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "azure-devops": "limited",
   "visual-studio-app-center": "unavailable",
   "firebase-app-distribution": "limited",
+  "firebase-crashlytics": "unavailable",
   "google-maps-platform": "unavailable",
   "castle-io": "unavailable",
   airbase: "unavailable",
@@ -716,6 +717,100 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Where should teams go after shortlisting Firebase Analytics alternatives?",
         answer: `Use the interactive Chinaready Landscape to compare adjacent growth and analytics services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the analytics path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
+  "firebase-crashlytics": {
+    description: (availability, names) =>
+      clipMeta(
+        `Firebase Crashlytics is Unavailable in mainland China — no local servers, blocked core path, missing GMS. Prefer ${names.slice(0, 3).join(", ") || "Tencent Bugly, Umeng+, Alibaba Cloud EMAS"}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Firebase Crashlytics is Unavailable</strong> when target users are in mainland China. Firebase servers are not in mainland China, core Firebase services are blocked on domestic networks, and most mainland devices lack Google Mobile Services (GMS), so crash collection cannot run reliably. For dual-platform iOS and Android apps, Chinaready currently lists <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Tencent Bugly, Umeng+, Alibaba Cloud EMAS")}</strong> as China-market crash-monitoring options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Crash monitoring platforms to evaluate instead of Firebase Crashlytics",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "Tencent Bugly, Umeng+, Alibaba Cloud EMAS",
+    guidanceHtml: `
+        <p><strong>Firebase Crashlytics is Unavailable for mainland China users.</strong> Firebase servers sit outside mainland China, core Firebase services are blocked on domestic networks, and most mainland devices lack Google Mobile Services (GMS) — so crash telemetry cannot be collected stably. When you need both iOS and Android coverage for a China-facing product, prioritize a tool with a unified cross-platform view and mainland privacy-compliance controls.</p>
+        <h3>Primary recommendation: Tencent Bugly</h3>
+        <p>Tencent Bugly is a leading China cross-platform quality-monitoring product and a strong fit for dual-platform businesses.</p>
+        <ul>
+          <li><strong>Core strengths:</strong> a unified view across iOS and Android that clusters cross-platform issues efficiently; AI-assisted root-cause attribution that can cut triage cost at scale.</li>
+          <li><strong>Compliance and ecosystem:</strong> meets strict mainland privacy requirements, supports delayed initialization, and includes HarmonyOS-native adaptation so data collection stays controllable.</li>
+          <li><strong>Rollout tip:</strong> integrate first on core business modules, validate collection completeness and alert latency, then expand to the full app surface. After launch, run regular crash clustering reviews and version quality retrospectives.</li>
+        </ul>
+        <h3>Backup 1: Umeng+ (友盟+)</h3>
+        <p>Choose Umeng+ when the team needs the fastest path to ship crash monitoring.</p>
+        <ul>
+          <li><strong>Core strengths:</strong> strong mainland compliance adaptation and fast SDK onboarding, with delayed initialization and compliance configuration that help reduce privacy risk.</li>
+          <li><strong>Rollout tip:</strong> best for teams that must go live quickly and pass compliance audits; use its compliance checks to verify privacy-policy wording against actual SDK behavior.</li>
+        </ul>
+        <h3>Backup 2: Alibaba Cloud EMAS</h3>
+        <p>Choose Alibaba Cloud EMAS when the stack already runs heavily on Alibaba Cloud.</p>
+        <ul>
+          <li><strong>Core strengths:</strong> deep Alibaba Cloud integration that lowers integration complexity and keeps crash monitoring connected to existing cloud resources.</li>
+          <li><strong>Rollout tip:</strong> strongest for teams that already operate on Alibaba Cloud and want crash monitoring wired into the same observability stack rather than as an isolated tool.</li>
+        </ul>
+        <h3>How to choose</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Need</th>
+                <th>Prefer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Dual-platform iOS + Android with a unified crash view</td>
+                <td>Tencent Bugly</td>
+              </tr>
+              <tr>
+                <td>Fastest compliant onboarding / audit-ready rollout</td>
+                <td>Umeng+ (友盟+)</td>
+              </tr>
+              <tr>
+                <td>Already on Alibaba Cloud infrastructure</td>
+                <td>Alibaba Cloud EMAS</td>
+              </tr>
+              <tr>
+                <td>AI-assisted root-cause triage at scale</td>
+                <td>Tencent Bugly</td>
+              </tr>
+              <tr>
+                <td>HarmonyOS-native adaptation</td>
+                <td>Tencent Bugly</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>For mainland-first dual-platform apps, start with <strong>Tencent Bugly</strong>; use <strong>Umeng+</strong> when speed and compliance tooling dominate, and <strong>Alibaba Cloud EMAS</strong> when the cloud stack is already Alibaba. These candidates appear on the Firebase Crashlytics alternatives page only — Chinaready does <strong>not</strong> add Tencent Bugly or Umeng+ as Explore / Landscape product tiles from this rewrite. Confirm SDK fit, consent flows, and alerting before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Firebase Crashlytics work in China?",
+        answer:
+          "No for mainland China users. Chinaready labels Firebase Crashlytics as Unavailable. Firebase servers are not in mainland China, core Firebase services are blocked on domestic networks, and most mainland devices lack Google Mobile Services (GMS), so crash collection is unstable or fails. Prefer a domestic crash-monitoring stack for China-facing apps.",
+      },
+      {
+        question: "What are the best China alternatives to Firebase Crashlytics?",
+        answer: `Chinaready currently lists these China-market options for Firebase Crashlytics: ${namesText}. Prefer Tencent Bugly for dual-platform iOS and Android coverage with a unified view and AI-assisted attribution; evaluate Umeng+ (友盟+) for the fastest compliant onboarding, and Alibaba Cloud EMAS when the stack is already on Alibaba Cloud.`,
+      },
+      {
+        question: "Why is Firebase Crashlytics unavailable in mainland China?",
+        answer:
+          "Three structural reasons: Firebase servers are outside mainland China, core Firebase service paths are blocked on domestic networks, and most mainland Android devices do not ship Google Mobile Services (GMS). Without stable transport and GMS support, Crashlytics cannot reliably collect crash data from China users.",
+      },
+      {
+        question: "How should teams choose among Tencent Bugly, Umeng+, and Alibaba Cloud EMAS?",
+        answer:
+          "Choose Tencent Bugly as the default for dual-platform iOS and Android apps that need a unified crash view, AI-assisted triage, delayed initialization, and HarmonyOS-native support. Choose Umeng+ when the priority is fastest compliant onboarding and privacy-audit tooling. Choose Alibaba Cloud EMAS when the team already runs on Alibaba Cloud and wants crash monitoring connected to that observability stack.",
+      },
+      {
+        question: "Where should teams go after shortlisting Firebase Crashlytics alternatives?",
+        answer:
+          "Validate dual-platform SDK coverage, delayed-init / consent behavior, alert latency, and crash clustering workflows. Integrate first on core modules, then expand. Use the interactive Chinaready Landscape for adjacent mobile quality and analytics choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },

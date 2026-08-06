@@ -2,9 +2,9 @@
   "source": "Chinaready Landscape research shortlist for taxonomy-relevant global services",
   "generated_for": "alternatives index SEO expansion",
   "counts": {
-    "services": 116,
+    "services": 117,
     "uncertain_alternatives": 0,
-    "researched_alternatives": 88,
+    "researched_alternatives": 89,
     "heuristic_alternatives": 28
   },
   "availability_lookup": {
@@ -582,6 +582,11 @@
       "name": "Zoom SDK",
       "availability": "Limited",
       "global_availability_in_china": "limited"
+    },
+    "firebase crashlytics": {
+      "name": "Firebase Crashlytics",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
     }
   },
   "services": [
@@ -2186,6 +2191,43 @@
         }
       ],
       "research_note": "Firebase App Distribution is Limited in mainland China: the console and download path often suffer unstable access and high latency, so day-to-day beta sharing is unreliable for mainland teams. Prefer Pgyer (蒲公英) and Tencent Bugly as the most mature domestic beta distribution platforms; evaluate Fir.im when bug-tracker linkage matters, Xia Fenfa (虾分发) for CDN-backed dual-platform sharing with access controls, and Gulu Fenfa (咕噜分发) for broader lifecycle distribution. Pair iOS coverage with TestFlight when needed. These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm platform coverage, tester access model, and compliance before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Firebase Crashlytics",
+      "categories": [
+        "Release, Quality & Operations",
+        "Crash Reporting & Error Tracking"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Tencent Bugly",
+          "homepage_url": "https://bugly.qq.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Crash Reporting & Performance Monitoring",
+          "source": "research",
+          "note": "Tencent Bugly is a leading China cross-platform quality-monitoring product for iOS and Android. It offers a unified dual-platform view, AI-assisted root-cause attribution, delayed initialization, HarmonyOS-native support, and mainland privacy-compliance controls — the preferred Crashlytics replacement when covering both mobile ends in mainland China."
+        },
+        {
+          "name": "Umeng+",
+          "homepage_url": "https://www.umeng.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "research",
+          "note": "Umeng+ (友盟+) is a fast China-market path for crash and stability monitoring with strong domestic compliance adaptation, delayed initialization, and compliance configuration — best when teams need to ship monitoring quickly and pass privacy audits."
+        },
+        {
+          "name": "Alibaba Cloud EMAS",
+          "homepage_url": "https://www.aliyun.com/product/emas",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Crash Reporting & Performance Monitoring",
+          "source": "research",
+          "note": "Alibaba Cloud EMAS is the natural crash and performance path when the stack already runs on Alibaba Cloud — deep cloud integration lowers integration cost and helps connect crash monitoring to the rest of the Alibaba observability stack."
+        }
+      ],
+      "research_note": "Firebase Crashlytics is Unavailable for mainland China users: Firebase servers are not in mainland China, core Firebase services are blocked on domestic networks, and most mainland devices lack Google Mobile Services (GMS), so crash collection is unstable or fails. For dual-platform iOS and Android apps targeting mainland China, prefer Tencent Bugly for a unified cross-platform view with AI-assisted attribution and privacy-compliance controls; evaluate Umeng+ (友盟+) for the fastest compliant onboarding, and Alibaba Cloud EMAS when the stack is already on Alibaba Cloud. These appear on the alternatives page only — Bugly and Umeng+ are not added as Explore / Landscape product tiles from this rewrite. Confirm SDK fit, consent, and alerting before production adoption.",
       "confidence": "researched"
     },
     {

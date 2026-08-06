@@ -89,6 +89,46 @@ OVERRIDES = {
     "bugsnag": ["Alibaba Cloud EMAS"],
     "rollbar": ["Alibaba Cloud EMAS"],
     "embrace": ["Alibaba Cloud EMAS"],
+    "firebase crashlytics": [
+        {
+            "name": "Tencent Bugly",
+            "homepage_url": "https://bugly.qq.com/",
+            "category": "Release, Quality & Operations",
+            "subcategory": "Crash Reporting & Performance Monitoring",
+            "source": "research",
+            "note": (
+                "Tencent Bugly is a leading China cross-platform quality-monitoring product for iOS and "
+                "Android. It offers a unified dual-platform view, AI-assisted root-cause attribution, "
+                "delayed initialization, HarmonyOS-native support, and mainland privacy-compliance "
+                "controls — the preferred Crashlytics replacement when covering both mobile ends in "
+                "mainland China."
+            ),
+        },
+        {
+            "name": "Umeng+",
+            "homepage_url": "https://www.umeng.com/",
+            "category": "Release, Quality & Operations",
+            "subcategory": "Crash Reporting & Performance Monitoring",
+            "source": "research",
+            "note": (
+                "Umeng+ (友盟+) is a fast China-market path for crash and stability monitoring with strong "
+                "domestic compliance adaptation, delayed initialization, and compliance configuration — "
+                "best when teams need to ship monitoring quickly and pass privacy audits."
+            ),
+        },
+        {
+            "name": "Alibaba Cloud EMAS",
+            "homepage_url": "https://www.aliyun.com/product/emas",
+            "category": "Release, Quality & Operations",
+            "subcategory": "Crash Reporting & Performance Monitoring",
+            "source": "research",
+            "note": (
+                "Alibaba Cloud EMAS is the natural crash and performance path when the stack already runs "
+                "on Alibaba Cloud — deep cloud integration lowers integration cost and helps connect "
+                "crash monitoring to the rest of the Alibaba observability stack."
+            ),
+        },
+    ],
     "launchdarkly": ["Alibaba Cloud EMAS Remote Config"],
     "split": ["Alibaba Cloud EMAS Remote Config"],
     "optimizely": ["Alibaba Cloud EMAS Remote Config", "GrowingIO"],
@@ -2171,6 +2211,7 @@ AVAILABILITY_OVERRIDES = {
     "zenlayer sd wan": "Available",
     "visual studio app center": "Unavailable",
     "firebase app distribution": "Limited",
+    "firebase crashlytics": "Unavailable",
     "klaviyo": "Limited",
     "bitly": "Unavailable",
     "altis": "Unavailable",
@@ -2211,6 +2252,17 @@ RESEARCH_NOTES = {
         "broader lifecycle distribution. Pair iOS coverage with TestFlight when needed. These appear "
         "on the alternatives page only — not as Explore / Landscape product tiles. Confirm platform "
         "coverage, tester access model, and compliance before production adoption."
+    ),
+    "firebase crashlytics": (
+        "Firebase Crashlytics is Unavailable for mainland China users: Firebase servers are not in "
+        "mainland China, core Firebase services are blocked on domestic networks, and most mainland "
+        "devices lack Google Mobile Services (GMS), so crash collection is unstable or fails. For "
+        "dual-platform iOS and Android apps targeting mainland China, prefer Tencent Bugly for a "
+        "unified cross-platform view with AI-assisted attribution and privacy-compliance controls; "
+        "evaluate Umeng+ (友盟+) for the fastest compliant onboarding, and Alibaba Cloud EMAS when "
+        "the stack is already on Alibaba Cloud. These appear on the alternatives page only — Bugly "
+        "and Umeng+ are not added as Explore / Landscape product tiles from this rewrite. Confirm "
+        "SDK fit, consent, and alerting before production adoption."
     ),
     "amazon cloudwatch": (
         "Amazon CloudWatch is Available in AWS China, but the China-region product set is more "
@@ -2843,6 +2895,10 @@ def main() -> None:
         "firebase app distribution": {
             "name": "Firebase App Distribution",
             "categories": ["Release, Quality & Operations"],
+        },
+        "firebase crashlytics": {
+            "name": "Firebase Crashlytics",
+            "categories": ["Release, Quality & Operations", "Crash Reporting & Error Tracking"],
         },
         "google maps platform": {
             "name": "Google Maps Platform",
