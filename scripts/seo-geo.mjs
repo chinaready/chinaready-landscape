@@ -94,6 +94,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "azure-devops": "limited",
   "visual-studio-app-center": "unavailable",
   "firebase-app-distribution": "limited",
+  "google-maps-platform": "unavailable",
   "castle-io": "unavailable",
   airbase: "unavailable",
   altis: "unavailable",
@@ -107,6 +108,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   buzzsprout: "unavailable",
   "hello-audio": "unavailable",
   loyaltylion: "unavailable",
+  logrocket: "limited",
   "streamlit-community-cloud": "unavailable",
   sendspark: "unavailable",
   on24: "unavailable",
@@ -592,6 +594,84 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Where should teams go after shortlisting Google Analytics alternatives?",
         answer: `Use the interactive Chinaready Landscape to compare adjacent growth and analytics services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the analytics path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
+  "google-maps-platform": {
+    description: (availability, names) =>
+      clipMeta(
+        `Google Maps is Unavailable in mainland China. Compare Amap, Baidu Maps, Tencent Maps, and Apple Maps. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Google Maps is <strong>Unavailable</strong> in mainland China. For everyday navigation and local discovery, Chinaready currently lists <strong>${escapeHtml(names.slice(0, 4).join(", ") || "Amap, Baidu Maps, Tencent Maps, Apple Maps")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China map apps to use instead of Google Maps",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 4,
+    indexCandidates: "Amap, Baidu Maps, Tencent Maps, Apple Maps",
+    guidanceHtml: () => `
+        <h3>Google's presence in mainland China</h3>
+        ${googleChinaGuidanceHtml()}
+        <p><strong>Google Maps is Unavailable for mainland China use.</strong> Consumer Google Maps does not work as a day-to-day navigation or local-discovery app inside mainland China. Use a China-market map app instead — and if you are building product maps, plan a domestic maps API rather than Google Maps Platform.</p>
+        <h3>Amap (高德地图)</h3>
+        <p>Amap is one of the most mainstream map apps in mainland China, with very timely data updates.</p>
+        <ul>
+          <li><strong>Core strengths:</strong> route planning — especially driving and transit — is highly accurate, and real-time traffic data is reliable.</li>
+          <li><strong>Standout features:</strong> Amap Earth supports 3D real-scene modeling across 300+ cities, so you can roam cities in 360° like a game; AR live-view navigation also helps at complex intersections.</li>
+          <li><strong>Best for:</strong> daily commuting, driving, and finding local lifestyle services.</li>
+        </ul>
+        <h3>Baidu Maps (百度地图)</h3>
+        <p>Baidu Maps stands out in AI features and indoor navigation.</p>
+        <ul>
+          <li><strong>Core strengths:</strong> strong AI — including landmark recognition from photos — plus crowd-flow prediction for attractions and malls over the next few hours, useful for off-peak planning.</li>
+          <li><strong>Standout features:</strong> pioneering indoor 3D maps covering thousands of large malls nationwide, which helps with the classic “lost in the mall” problem; rich nearby POI (points of interest) data.</li>
+          <li><strong>Best for:</strong> exploring nearby food and attractions, frequent mall visits, and indoor navigation needs.</li>
+        </ul>
+        <h3>Tencent Maps (腾讯地图)</h3>
+        <p>Tencent Maps emphasizes social sharing and playful travel features.</p>
+        <ul>
+          <li><strong>Core strengths:</strong> tight WeChat ecosystem integration, so location sharing is especially convenient.</li>
+          <li><strong>Standout features:</strong> City Memory Time Machine for historical city imagery; travel-track videos you can share; QQ Music linkage that recommends songs by place.</li>
+          <li><strong>Best for:</strong> heavy WeChat users and people who like recording travel tracks and sharing daily life.</li>
+        </ul>
+        <h3>Apple Maps</h3>
+        <p>If you use an iPhone, Apple Maps is also a strong option in mainland China.</p>
+        <ul>
+          <li><strong>Core strengths:</strong> clean, ad-free interface with smooth system-level integration.</li>
+          <li><strong>China data note:</strong> in mainland China, Apple Maps base data is exclusively licensed from Amap. That means accurate roads, POIs, real-time transit and metro lookup, and traffic-aware routing. It also supports an English UI, which is friendly for English-first users.</li>
+          <li><strong>Best for:</strong> iPhone users who prefer a simple interface and need an English UI.</li>
+        </ul>
+        <h3>How to choose</h3>
+        <ul>
+          <li><strong>Android baseline apps:</strong> choose among Amap, Baidu Maps, and Tencent Maps by feature needs and data preferences.</li>
+          <li><strong>Daily navigation and driving:</strong> prefer Amap or Baidu Maps — both are strong on routing and real-time traffic; pick by UI preference.</li>
+          <li><strong>Malls and indoor navigation:</strong> prefer Baidu Maps.</li>
+          <li><strong>iPhone users who want English:</strong> Apple Maps is the best everyday substitute.</li>
+        </ul>
+        <p>These China map apps are free for end users and are deeply optimized for domestic road changes, traffic rules, and local lifestyle information — often matching or beating a Google Maps experience inside China. For App developers embedding maps, expect usage-based map API fees from the same providers (for example Amap and Tencent Location Services developer platforms).</p>
+        <p>Baidu Maps, Tencent Maps, and Apple Maps appear on this alternatives page as orientation options — Chinaready does <strong>not</strong> add them as Explore / Landscape product tiles from this rewrite. Confirm product fit before relying on any option in a China-facing stack.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Google Maps work in China?",
+        answer: `No for mainland China day-to-day use. Chinaready labels Google Maps Platform / Google Maps as ${availability}. Consumer Google Maps is blocked with other core Google consumer products, so plan a China-market map app for navigation and a domestic maps API for product integration.`,
+      },
+      {
+        question: "What are the best China alternatives to Google Maps?",
+        answer: `Chinaready currently lists these China-market options for Google Maps: ${namesText}. Prefer Amap or Baidu Maps for daily driving and navigation, Baidu Maps for mall / indoor navigation, Tencent Maps when WeChat sharing and travel storytelling matter, and Apple Maps for iPhone users who want a clean English UI (mainland Apple Maps data is licensed from Amap).`,
+      },
+      {
+        question: "Should iPhone users use Apple Maps in mainland China?",
+        answer:
+          "Yes for many English-first iPhone users. Apple Maps in mainland China uses Amap-licensed base data, so roads, POIs, transit, and traffic routing are strong, while the interface stays clean, ad-free, and available in English.",
+      },
+      {
+        question: "Which Google products are blocked in mainland China?",
+        answer: `Blocked consumer products commonly include ${GOOGLE_BLOCKED_PRODUCTS.join(", ")}. Google's mainland offices focus on enterprise (B2B) services, developer support for global expansion, and hardware manufacturing — including active lines such as ${GOOGLE_ACTIVE_BUSINESS_PRODUCTS.join(", ")}. Google Maps is not a workable mainland consumer navigation path.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Google Maps alternatives?",
+        answer:
+          "For end-user navigation, install Amap, Baidu Maps, Tencent Maps, or Apple Maps based on the guidance above. For product maps and location APIs, evaluate China map SDKs/APIs and usage-based pricing before shipping. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -1329,6 +1409,89 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Where should teams go after shortlisting Liftoff alternatives?",
         answer: `Use the interactive Chinaready Landscape to compare adjacent mobile growth and monetization services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
+  activecampaign: {
+    description: (availability, names) =>
+      clipMeta(
+        `ActiveCampaign is Limited in mainland China — reachable, but high spam/rejection risk into QQ/NetEase. Compare ${names.slice(0, 2).join(", ") || "Zoho Campaigns, SendCloud"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>ActiveCampaign is Limited in mainland China</strong>. You can usually reach the product, but China-facing marketing email faces extremely high interception risk — messages often land in spam or are rejected. Overseas sending IPs have weak reputation with domestic free mailboxes (QQ, NetEase, and similar), and overseas platforms rarely match mainland domain authentication (SPF/DKIM/DMARC) and anti-spam expectations. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Zoho Campaigns, SendCloud")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Email marketing platforms to evaluate instead of ActiveCampaign",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 2,
+    indexCandidates: "Zoho Campaigns, SendCloud",
+    guidanceHtml: `
+        <p><strong>ActiveCampaign is Limited for mainland China email marketing.</strong> The SaaS is usually reachable from China, but that does not make it a reliable production dependency for China-audience campaigns. The core failure mode is deliverability, not login access.</p>
+        <ul>
+          <li><strong>Extremely high interception risk:</strong> marketing mail into mainland inboxes is easily spam-foldered or rejected when sent through overseas ESP infrastructure.</li>
+          <li><strong>Weak cross-border IP reputation:</strong> domestic free mail providers such as QQ and NetEase (163 and related) scrutinize marketing mail from overseas IPs aggressively, so overseas sending reputation is a structural disadvantage.</li>
+          <li><strong>Authentication and compliance gaps:</strong> mainland inboxes expect strict domain authentication (SPF/DKIM/DMARC) and China-specific anti-spam compliance. Overseas platforms often cannot fully match those local rules even when DNS records are configured correctly.</li>
+        </ul>
+        <h3>Recommended path when the audience is primarily Chinese</h3>
+        <p>If your target audience is mainly China users, strongly prefer a domestic or China-localized email marketing platform with dedicated mainland sending channels and higher deliverability guarantees — for example <strong>Zoho Campaigns</strong> or <strong>SendCloud</strong>.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Zoho Campaigns</td>
+                <td>International suite with mainland localization and Chinese-language support; domain authentication, campaign automation, and China-friendly delivery paths</td>
+                <td>Teams that want CRM-linked email marketing plus workable China localization and compliance coverage</td>
+              </tr>
+              <tr>
+                <td>SendCloud</td>
+                <td>Domestic email push and marketing provider with dedicated China sending channels, strong API/SMTP coverage, and better inbox placement into QQ / NetEase-class mailboxes</td>
+                <td>Technical teams and ecommerce or product stacks that need reliable China delivery infrastructure</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>China-audience marketing automation with localization:</strong> start with Zoho Campaigns.</li>
+          <li><strong>API-driven or ecommerce sending into domestic inboxes:</strong> evaluate SendCloud for dedicated mainland channels and developer workflows.</li>
+          <li><strong>Keep ActiveCampaign only if:</strong> the list is mostly outside China and China recipients are incidental — still expect weak placement into QQ / NetEase.</li>
+        </ul>
+        <p>These candidates appear on the ActiveCampaign alternatives page only — Chinaready does <strong>not</strong> add Zoho Campaigns or SendCloud as Landscape map product entries for ActiveCampaign. Confirm deliverability into your target China inboxes, domain authentication, compliance, and vendor fit before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does ActiveCampaign work in China?",
+        answer:
+          "Partially. Chinaready labels ActiveCampaign as Limited. The product is usually reachable, but China-facing marketing email faces extremely high interception risk into domestic inboxes such as QQ and NetEase — messages often land in spam or are rejected. Do not treat ActiveCampaign as a reliable mainland deliverability path.",
+      },
+      {
+        question: "Why is ActiveCampaign risky for China email marketing?",
+        answer:
+          "Three structural issues stack together: overseas sending IPs have weak reputation with domestic free mail providers; mainland inboxes apply strict anti-spam scrutiny to cross-border marketing mail; and overseas ESPs rarely match China-specific SPF/DKIM/DMARC and compliance expectations even when global authentication is configured.",
+      },
+      {
+        question: "What are the best China alternatives to ActiveCampaign?",
+        answer: `Chinaready currently lists these China-market options for ActiveCampaign: ${namesText}. Prefer Zoho Campaigns for China-localized campaign automation, and SendCloud for domestic sending channels with stronger delivery into QQ / NetEase-class inboxes. Confirm fit before production adoption.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for ActiveCampaign in mainland China?",
+        answer:
+          "Usually no. ActiveCampaign combines marketing automation, CRM, and email delivery. In China, expect a vendor and workflow redesign around local deliverability, domain authentication, list hygiene, and compliance rather than a one-to-one ActiveCampaign swap.",
+      },
+      {
+        question: "How should teams choose between Zoho Campaigns and SendCloud?",
+        answer:
+          "Choose Zoho Campaigns when you want a localized campaign suite with Chinese-language support and CRM-linked automation. Choose SendCloud when technical or ecommerce teams need dedicated China delivery infrastructure via API/SMTP and stronger inbox placement into domestic free mailboxes.",
+      },
+      {
+        question: "Where should teams go after shortlisting ActiveCampaign alternatives?",
+        answer:
+          "Validate deliverability into your target China inboxes, domain authentication (SPF/DKIM/DMARC), automation needs, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -3215,6 +3378,85 @@ const EDITORIAL_OVERRIDES = {
         question: "Where should teams go after shortlisting Marketo alternatives?",
         answer:
           "Validate whether your priority is B2B CRM automation, WeChat-centric growth, ecommerce journeys, or SMB localization — then confirm deliverability, data residency, and vendor fit with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  logrocket: {
+    description: (availability, names) =>
+      clipMeta(
+        `LogRocket is Limited in mainland China — poor availability; overseas storage/CDN and compliance drag session replay. Compare ${names.slice(0, 3).join(", ") || "Sensors Data, GrowingIO, Umeng+"}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>LogRocket is Limited in mainland China</strong> — availability is poor and the day-to-day experience is significantly affected. Overseas cloud storage and global CDN paths are easily disrupted, which can mean slow access, data loss, or incomplete recordings; handling user-interaction data for China also raises ICP filing and related compliance requirements. Chinaready currently maps LogRocket to <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Sensors Data, GrowingIO, Umeng+")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Product analytics platforms to evaluate instead of LogRocket",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 3,
+    indexCandidates: "Sensors Data, GrowingIO, Umeng+",
+    guidanceHtml: `
+        <p><strong>LogRocket is Limited for mainland China use.</strong> Teams can sometimes open the product, but practical usefulness is low enough that Chinaready does not recommend it as a production dependency for China-facing session replay or product analytics:</p>
+        <ul>
+          <li><strong>Network and delivery friction:</strong> LogRocket depends on overseas cloud storage and a global CDN. From mainland China those paths are easily disrupted, which can cause slow access, data loss, or incomplete session recordings.</li>
+          <li><strong>Compliance burden:</strong> processing user-interaction data for mainland users typically faces ICP filing and related China compliance requirements that overseas session-replay SaaS rarely satisfy cleanly.</li>
+        </ul>
+        <h3>Domestic platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Sensors Data (神策数据)</td>
+                <td>Leading China user-behavior analytics platform; private-deployment options; fine-grained collection</td>
+                <td>Finance, ecommerce, and other industries with high data-security requirements</td>
+              </tr>
+              <tr>
+                <td>GrowingIO</td>
+                <td>No-code / autocapture (无埋点) tracking; unified collection across mini programs, Apps, and Web; lower deployment friction</td>
+                <td>Fast-iterating internet products that need multi-end behavior analytics quickly</td>
+              </tr>
+              <tr>
+                <td>Umeng+ (友盟+) U-App</td>
+                <td>One-stop mobile analytics with a large device-data base; extremely simple SDK onboarding; strong App funnel and stability monitoring</td>
+                <td>China Apps that need deep funnel analysis and mobile stability signals</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Private deployment / data-sensitive industries:</strong> start with Sensors Data (神策数据).</li>
+          <li><strong>Fast multi-end rollout with autocapture:</strong> evaluate GrowingIO.</li>
+          <li><strong>Mobile App funnels and stability:</strong> prefer Umeng+ (友盟+) U-App.</li>
+        </ul>
+        <p>These are China-market product-analytics options commonly shortlisted instead of LogRocket session replay. Confirm consent, PIPL, event taxonomy, and whether you need session replay versus event analytics before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does LogRocket work in China?",
+        answer: `Only with Limited practical usefulness. Chinaready labels LogRocket as ${availability}. Availability is poor enough that experience is significantly affected: overseas cloud storage and global CDN paths are easily disrupted from mainland networks, which can cause slow access, data loss, or incomplete recordings, and handling user-interaction data for China also raises ICP filing and related compliance requirements.`,
+      },
+      {
+        question: "What are the best China alternatives to LogRocket?",
+        answer: `Chinaready Landscape currently maps LogRocket to ${namesText}. Prefer Sensors Data (神策数据) for private-deployment product analytics in data-sensitive industries, GrowingIO for no-code / autocapture multi-end collection, and Umeng+ (友盟+) U-App for mobile funnel depth and stability monitoring. Treat this as a research shortlist and confirm consent, PIPL, and event taxonomy before production adoption.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for LogRocket session replay in mainland China?",
+        answer:
+          "Usually no one-to-one session-replay swap. China teams more often redesign around domestic product-analytics stacks — Sensors Data, GrowingIO, or Umeng+ — plus whatever session-replay or qualitative tooling those vendors or adjacent modules provide. Expect an analytics and compliance redesign rather than a pure LogRocket clone.",
+      },
+      {
+        question: "How should teams choose among Sensors Data, GrowingIO, and Umeng+?",
+        answer:
+          "Choose Sensors Data (神策数据) when private deployment and fine-grained collection matter for finance, ecommerce, or similar data-sensitive industries. Choose GrowingIO when no-code / autocapture (无埋点) and unified mini-program / App / Web collection matter most. Choose Umeng+ (友盟+) U-App for China App funnel depth, simple SDK onboarding, and mobile stability monitoring.",
+      },
+      {
+        question: "Where should teams go after shortlisting LogRocket alternatives?",
+        answer:
+          "Validate whether you need session replay, event analytics, or both; then confirm consent, PIPL, ICP/compliance, and event taxonomy with your China entity. Use the interactive Chinaready Landscape to compare adjacent growth and analytics services, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },

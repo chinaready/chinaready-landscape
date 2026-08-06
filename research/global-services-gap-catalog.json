@@ -2,10 +2,10 @@
   "source": "Chinaready Landscape research shortlist for taxonomy-relevant global services",
   "generated_for": "alternatives index SEO expansion",
   "counts": {
-    "services": 115,
+    "services": 116,
     "uncertain_alternatives": 0,
-    "researched_alternatives": 86,
-    "heuristic_alternatives": 29
+    "researched_alternatives": 88,
+    "heuristic_alternatives": 28
   },
   "availability_lookup": {
     "activecampaign": {
@@ -265,6 +265,11 @@
     },
     "google authenticator": {
       "name": "Google Authenticator",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
+    "google maps platform": {
+      "name": "Google Maps Platform",
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
     },
@@ -590,21 +595,23 @@
       "global_availability_in_china": "limited",
       "china_candidates": [
         {
+          "name": "Zoho Campaigns",
+          "homepage_url": "https://www.zoho.com.cn/campaigns/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Email Marketing & EDM",
+          "source": "research",
+          "note": "Zoho Campaigns is an international email marketing suite with mainland localization, Chinese-language support, domain authentication, and China-friendly delivery paths — a strong option when the audience is primarily Chinese and you need campaign automation plus workable local deliverability."
+        },
+        {
           "name": "SendCloud",
           "homepage_url": "https://www.sendcloud.net/",
           "category": "Engagement & Communication",
           "subcategory": "Push Notifications & Multichannel Messaging",
-          "source": "landscape"
-        },
-        {
-          "name": "JPush",
-          "homepage_url": "https://www.jiguang.cn/jpush/",
-          "category": "Engagement & Communication",
-          "subcategory": "Push Notifications & Multichannel Messaging",
-          "source": "landscape"
+          "source": "research",
+          "note": "SendCloud is a long-standing domestic email push and marketing provider with dedicated China sending channels, strong API/SMTP coverage, and higher inbox placement into QQ, NetEase, and similar domestic mailboxes than typical overseas ESP paths."
         }
       ],
-      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "research_note": "ActiveCampaign is Limited in mainland China: the product is usually reachable, but marketing sends face extremely high interception risk into domestic inboxes (spam folder or outright rejection). Overseas sending IPs have weak reputation with QQ, NetEase, and similar free mail providers, and overseas ESPs rarely match mainland SPF/DKIM/DMARC and anti-spam expectations. Prefer Zoho Campaigns or SendCloud for China-audience email marketing with dedicated domestic delivery channels. These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm deliverability and compliance before production adoption.",
       "confidence": "researched"
     },
     {
@@ -2380,6 +2387,50 @@
       "confidence": "heuristic"
     },
     {
+      "name": "Google Maps Platform",
+      "categories": [
+        "Location & Map Services"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Amap",
+          "homepage_url": "https://lbs.amap.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Location & Map Services",
+          "source": "research",
+          "note": "Amap (高德地图) is one of mainland China's most mainstream map apps, with timely updates, strong driving/transit routing, accurate real-time traffic, Amap Earth 3D city roaming, and AR live-view navigation — a primary Google Maps substitute for daily commuting and local lifestyle discovery."
+        },
+        {
+          "name": "Baidu Maps",
+          "homepage_url": "https://map.baidu.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Location & Map Services",
+          "source": "research",
+          "note": "Baidu Maps (百度地图) is strong on AI landmark recognition, crowd-flow prediction for attractions and malls, indoor 3D maps across thousands of large malls, and rich nearby POI data — especially useful for exploration and indoor navigation."
+        },
+        {
+          "name": "Tencent Maps",
+          "homepage_url": "https://map.qq.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Location & Map Services",
+          "source": "research",
+          "note": "Tencent Maps (腾讯地图) is tightly integrated with WeChat for easy location sharing, plus City Memory Time Machine historical imagery, travel-track videos, and QQ Music place-based song recommendations — a fit for social and travel-sharing users."
+        },
+        {
+          "name": "Apple Maps",
+          "homepage_url": "https://www.apple.com/maps/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Location & Map Services",
+          "source": "research",
+          "note": "Apple Maps is a strong iPhone option in mainland China: clean ad-free UI, system integration, English interface support, and Amap-licensed base data covering roads, POIs, transit/metro lookup, and traffic-aware routing."
+        }
+      ],
+      "research_note": "Google Maps is Unavailable in mainland China. Prefer Amap (高德地图) or Baidu Maps for daily driving and navigation, Baidu Maps for mall / indoor navigation, Tencent Maps when WeChat sharing and travel storytelling matter, and Apple Maps for iPhone users who want a clean English UI (mainland Apple Maps data is licensed from Amap). Consumer apps are free for end users; App developers embedding maps typically pay usage-based API fees. Baidu Maps, Tencent Maps, and Apple Maps appear on the alternatives page as orientation options — not as Explore / Landscape product tiles from this research. Confirm product and API fit before production adoption.",
+      "confidence": "researched"
+    },
+    {
       "name": "Hello Audio",
       "categories": [
         "Media Platforms",
@@ -2956,25 +3007,28 @@
           "homepage_url": "https://www.sensorsdata.cn/",
           "category": "Growth, Content & Experience",
           "subcategory": "Product Analytics & User Insights",
-          "source": "category-heuristic"
-        },
-        {
-          "name": "Umeng+",
-          "homepage_url": "https://www.umeng.com/",
-          "category": "Growth, Content & Experience",
-          "subcategory": "Product Analytics & User Insights",
-          "source": "category-heuristic"
+          "source": "research",
+          "note": "Sensors Data (神策数据) is a leading China user-behavior analytics platform with private-deployment options and fine-grained collection — commonly evaluated when finance, ecommerce, and other data-sensitive industries need mainland-ready product analytics instead of overseas session-replay SaaS."
         },
         {
           "name": "GrowingIO",
           "homepage_url": "https://www.growingio.com/",
           "category": "Growth, Content & Experience",
           "subcategory": "Product Analytics & User Insights",
-          "source": "category-heuristic"
+          "source": "research",
+          "note": "GrowingIO is known for no-code / autocapture (无埋点) tracking with unified collection across mini programs, Apps, and Web — a lower-friction path for fast-iterating internet products that need China-market behavior analytics."
+        },
+        {
+          "name": "Umeng+",
+          "homepage_url": "https://www.umeng.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Product Analytics & User Insights",
+          "source": "research",
+          "note": "Umeng+ (友盟+) U-App is a one-stop China mobile analytics platform with a large device-data base and very simple SDK onboarding — strong for App funnel depth and stability monitoring on domestic distribution channels."
         }
       ],
-      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
-      "confidence": "heuristic"
+      "research_note": "LogRocket is Limited in mainland China: availability is poor enough that day-to-day experience is significantly affected. Overseas cloud storage and global CDN paths are easily disrupted from mainland networks, which can cause slow access, data loss, or incomplete session recordings; processing user-interaction data for China also raises ICP filing and related compliance requirements. Prefer Sensors Data (神策数据) for private-deployment product analytics in data-sensitive industries, GrowingIO for no-code / autocapture multi-end collection, and Umeng+ (友盟+) U-App for mobile funnel and stability monitoring. Confirm consent, PIPL, and event taxonomy before production adoption.",
+      "confidence": "researched"
     },
     {
       "name": "LoyaltyLion",
