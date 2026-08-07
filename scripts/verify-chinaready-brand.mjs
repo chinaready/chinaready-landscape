@@ -731,7 +731,6 @@ if (exists("build/alternatives/index.html")) {
   assert(!exists("build/alternatives/castos.html"), "Castos must be removed from Global alternatives");
   assert(!exists("build/alternatives/liftoff-monetize.html"), "Liftoff Monetize must be removed from Global alternatives");
   assert(!exists("build/alternatives/callkit.html"), "CallKit must be removed from Global alternatives");
-  assert(!exists("build/alternatives/n8n.html"), "n8n must be removed from Global alternatives");
   assert(!exists("build/alternatives/vmware-vsphere.html"), "VMware vSphere must be removed from Global alternatives");
   assert(!exists("build/alternatives/sentence-bert.html"), "Sentence-BERT must be removed from Global alternatives");
   assert(!exists("build/alternatives/pangle-ads.html"), "Pangle Ads must be removed from Global alternatives");
@@ -744,7 +743,6 @@ if (exists("build/alternatives/index.html")) {
   assert(!alternativesIndex.includes("Castos"), "alternatives index must not list Castos");
   assert(!alternativesIndex.includes("Liftoff Monetize"), "alternatives index must not list Liftoff Monetize");
   assert(!alternativesIndex.includes("CallKit"), "alternatives index must not list CallKit");
-  assert(!alternativesIndex.includes(">n8n<"), "alternatives index must not list n8n");
   assert(!alternativesIndex.includes("VMware vSphere"), "alternatives index must not list VMware vSphere");
   assert(!alternativesIndex.includes("Sentence-BERT"), "alternatives index must not list Sentence-BERT");
   assert(!alternativesIndex.includes("Pangle Ads"), "alternatives index must not list Pangle Ads");
@@ -1341,6 +1339,40 @@ for (const item of items) {
     allowedGlobalAvailabilityInChina.has(item.annotations.global_availability_in_china),
     `${item.name} global_availability_in_china must be one of: ${[...allowedGlobalAvailabilityInChina].join(", ")}`,
   );
+}
+
+// AppInChina Technologies Hub P0/P1 cover set (high-traffic / high-demand pages).
+{
+  const hubPages = {
+    "microsoft-teams": ["DingTalk", "Feishu", "WeCom", "Tencent Meeting"],
+    docusign: ["eSignBao", "Fadada", "BestSign", "Tencent eSign"],
+    webex: ["Tencent Meeting", "DingTalk", "Feishu", "WeCom"],
+    qualtrics: ["WJX", "Jinshuju", "Tencent Questionnaire", "Credamo"],
+    surveymonkey: ["WJX", "Jinshuju", "Tencent Questionnaire"],
+    typeform: ["Jinshuju", "WJX", "Tencent Questionnaire"],
+    wordpress: ["PageAdmin", "Baklib"],
+    "dropbox-sign": ["eSignBao", "Fadada", "BestSign"],
+    gumroad: ["Youzan Cloud", "Afdian"],
+    "adobe-acrobat-sign": ["eSignBao", "Fadada", "BestSign"],
+    n8n: ["Jijyun", "Jiandaoyun", "DingTalk Yida", "Qingflow"],
+    "zoom-sdk": ["Tencent Meeting", "Agora", "NetEase Yunxin", "DingTalk"],
+  };
+  for (const [slug, markers] of Object.entries(hubPages)) {
+    const file = `build/alternatives/${slug}.html`;
+    assert(exists(file), `${slug} must have a dedicated alternatives page`);
+    const page = read(file);
+    assert(page.includes("Mapped China-ready candidates"), `${slug} must show Mapped China-ready candidates`);
+    assert(page.includes("Does ") && page.includes("work in China"), `${slug} must answer Does X work in China`);
+    for (const marker of markers) {
+      assert(page.includes(marker), `${slug} must list ${marker}`);
+    }
+  }
+  const zoomPage = read("build/alternatives/zoom-sdk.html");
+  assert(zoomPage.includes("<title>Does Zoom work in China? | Chinaready</title>"), "Zoom page title must target Does Zoom work in China");
+  const redirects = read("build/_redirects");
+  assert(redirects.includes("/alternatives/zoom /alternatives/zoom-sdk 301"), "zoom must redirect to zoom-sdk");
+  assert(redirects.includes("/alternatives/hellosign /alternatives/dropbox-sign 301"), "hellosign must redirect to dropbox-sign");
+  assert(redirects.includes("/alternatives/adobe-sign /alternatives/adobe-acrobat-sign 301"), "adobe-sign must redirect to adobe-acrobat-sign");
 }
 
 console.log("Chinaready brand verification passed");
