@@ -1,0 +1,163 @@
+{
+  "bulk_traffic_summary": {
+    "landscape.chinaready.co": {
+      "organic_etv": 0,
+      "organic_keyword_count": 0,
+      "note": "DataForSEO Labs returns no organic metrics / ranked keywords yet"
+    },
+    "appinchina.co": {
+      "organic_etv": 693.491,
+      "organic_keyword_count": 250
+    },
+    "chinaready.co": {
+      "organic_etv": 1.05,
+      "organic_keyword_count": 1
+    }
+  },
+  "aic_page_etv": {
+    "https://appinchina.co/does-zoom-work-in-china/": 27.614,
+    "https://appinchina.co/does-microsoft-teams-work-in-china/": 2.383,
+    "https://appinchina.co/does-spotify-for-podcasters-work-in-china/": 2.268,
+    "https://appinchina.co/does-google-maps-work-in-china/": 1.932,
+    "https://appinchina.co/does-zoho-crm-work-in-china/": 0.788,
+    "https://appinchina.co/does-dropbox-sign-work-in-china/": 0.628,
+    "https://appinchina.co/does-github-pages-work-in-china/": 0.578,
+    "https://appinchina.co/does-gumroad-work-in-china/": 0.512,
+    "https://appinchina.co/does-adobe-acrobat-sign-work-in-china/": 0.385,
+    "https://appinchina.co/does-openai-gpt-4-work-in-china/": 0.315,
+    "https://appinchina.co/does-n8n-work-in-china/": 0.118
+  },
+  "serp_positions": {
+    "does zoom work in china": {
+      "aic": {
+        "organic_rank_group": 6,
+        "rank_absolute": 8,
+        "in_ai_overview": false
+      },
+      "cr": {
+        "organic_rank_group": null,
+        "rank_absolute": null,
+        "in_ai_overview": false
+      }
+    },
+    "does google maps work in china": {
+      "aic": {
+        "organic_rank_group": null,
+        "rank_absolute": null,
+        "in_ai_overview": true
+      },
+      "cr": {
+        "organic_rank_group": null,
+        "rank_absolute": null,
+        "in_ai_overview": false
+      }
+    },
+    "does microsoft teams work in china": {
+      "aic": {
+        "organic_rank_group": 9,
+        "rank_absolute": 11,
+        "in_ai_overview": false
+      },
+      "cr": {
+        "organic_rank_group": null,
+        "rank_absolute": null,
+        "in_ai_overview": false
+      }
+    },
+    "does docusign work in china": {
+      "aic": {
+        "organic_rank_group": 5,
+        "rank_absolute": 7,
+        "in_ai_overview": false
+      },
+      "cr": {
+        "organic_rank_group": null,
+        "rank_absolute": null,
+        "in_ai_overview": false
+      }
+    },
+    "does google analytics work in china": {
+      "aic": {
+        "organic_rank_group": 7,
+        "rank_absolute": 10,
+        "in_ai_overview": false
+      },
+      "cr": {
+        "organic_rank_group": null,
+        "rank_absolute": null,
+        "in_ai_overview": false
+      }
+    },
+    "does hubspot work in china": {
+      "aic": {
+        "organic_rank_group": 5,
+        "rank_absolute": 7,
+        "in_ai_overview": false
+      },
+      "cr": {
+        "organic_rank_group": null,
+        "rank_absolute": null,
+        "in_ai_overview": false
+      }
+    },
+    "does mailchimp work in china": {
+      "aic": {
+        "organic_rank_group": 1,
+        "rank_absolute": 3,
+        "in_ai_overview": false
+      },
+      "cr": {
+        "organic_rank_group": null,
+        "rank_absolute": null,
+        "in_ai_overview": false
+      }
+    },
+    "does wordpress work in china": {
+      "aic": {
+        "organic_rank_group": null,
+        "rank_absolute": null,
+        "in_ai_overview": false
+      },
+      "cr": {
+        "organic_rank_group": null,
+        "rank_absolute": null,
+        "in_ai_overview": false
+      }
+    },
+    "does webex work in china": {
+      "aic": {
+        "organic_rank_group": 3,
+        "rank_absolute": 6,
+        "in_ai_overview": true
+      },
+      "cr": {
+        "organic_rank_group": null,
+        "rank_absolute": null,
+        "in_ai_overview": false
+      }
+    }
+  },
+  "relevant_pages_landscape": [],
+  "relevant_pages_appinchina_top5": [
+    {
+      "url": "https://appinchina.co/what-is-an-mlps-filing-and-who-needs-one/",
+      "etv": 259.41
+    },
+    {
+      "url": "https://appinchina.co/blog/official-chinese-app-stores-the-complete-directory-download-guide/",
+      "etv": 71.681
+    },
+    {
+      "url": "https://appinchina.co/market/games/",
+      "etv": 70.627
+    },
+    {
+      "url": "https://appinchina.co/blog/what-are-wechat-official-accounts-the-complete-guide-to-creating-and-using-wechat-official-accounts/",
+      "etv": 30.73
+    },
+    {
+      "url": "https://appinchina.co/does-zoom-work-in-china/",
+      "etv": 27.614
+    }
+  ]
+}

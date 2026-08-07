@@ -1,0 +1,216 @@
+{
+  "meta": {
+    "snapshot_id": "2026-08-07",
+    "collected_at": "2026-08-07T03:34:34.272519+00:00",
+    "compare_after": "2026-08-14",
+    "location": "United States",
+    "language": "en",
+    "device": "desktop",
+    "purpose": "Baseline SEO score for Chinaready Landscape alternatives vs AppInChina Technologies Hub pages after P0+P1 cover ship",
+    "domains": {
+      "chinaready": "landscape.chinaready.co",
+      "competitor": "appinchina.co"
+    },
+    "pair_count": 22
+  },
+  "pairs": [
+    {
+      "tier": "P0",
+      "product": "Zoom",
+      "keyword": "does zoom work in china",
+      "cr_slug": "zoom-sdk",
+      "aic_url": "https://appinchina.co/does-zoom-work-in-china/",
+      "kw_sv": 320,
+      "cr_url": "https://landscape.chinaready.co/alternatives/zoom-sdk"
+    },
+    {
+      "tier": "P0",
+      "product": "Google Maps",
+      "keyword": "does google maps work in china",
+      "cr_slug": "google-maps-platform",
+      "aic_url": "https://appinchina.co/does-google-maps-work-in-china/",
+      "kw_sv": 260,
+      "cr_url": "https://landscape.chinaready.co/alternatives/google-maps-platform"
+    },
+    {
+      "tier": "P0",
+      "product": "Microsoft Teams",
+      "keyword": "does microsoft teams work in china",
+      "cr_slug": "microsoft-teams",
+      "aic_url": "https://appinchina.co/does-microsoft-teams-work-in-china/",
+      "kw_sv": 90,
+      "cr_url": "https://landscape.chinaready.co/alternatives/microsoft-teams"
+    },
+    {
+      "tier": "P0",
+      "product": "Spotify for Podcasters",
+      "keyword": "does spotify for podcasters work in china",
+      "cr_slug": "spotify-for-podcasters",
+      "aic_url": "https://appinchina.co/does-spotify-for-podcasters-work-in-china/",
+      "kw_sv": 0,
+      "cr_url": "https://landscape.chinaready.co/alternatives/spotify-for-podcasters"
+    },
+    {
+      "tier": "P1",
+      "product": "DocuSign",
+      "keyword": "does docusign work in china",
+      "cr_slug": "docusign",
+      "aic_url": "https://appinchina.co/does-docusign-work-in-china/",
+      "kw_sv": 20,
+      "cr_url": "https://landscape.chinaready.co/alternatives/docusign"
+    },
+    {
+      "tier": "P1",
+      "product": "Google Analytics",
+      "keyword": "does google analytics work in china",
+      "cr_slug": "google-analytics",
+      "aic_url": "https://appinchina.co/does-google-analytics-work-in-china/",
+      "kw_sv": 10,
+      "cr_url": "https://landscape.chinaready.co/alternatives/google-analytics"
+    },
+    {
+      "tier": "P1",
+      "product": "Google Authenticator",
+      "keyword": "does google authenticator work in china",
+      "cr_slug": "google-authenticator",
+      "aic_url": "https://appinchina.co/does-google-authenticator-work-in-china/",
+      "kw_sv": 10,
+      "cr_url": "https://landscape.chinaready.co/alternatives/google-authenticator"
+    },
+    {
+      "tier": "P1",
+      "product": "HubSpot",
+      "keyword": "does hubspot work in china",
+      "cr_slug": "hubspot",
+      "aic_url": "https://appinchina.co/does-hubspot-work-in-china/",
+      "kw_sv": 10,
+      "cr_url": "https://landscape.chinaready.co/alternatives/hubspot"
+    },
+    {
+      "tier": "P1",
+      "product": "Mailchimp",
+      "keyword": "does mailchimp work in china",
+      "cr_slug": "mailchimp",
+      "aic_url": "https://appinchina.co/does-mailchimp-work-in-china/",
+      "kw_sv": 10,
+      "cr_url": "https://landscape.chinaready.co/alternatives/mailchimp"
+    },
+    {
+      "tier": "P1",
+      "product": "Microsoft Authenticator",
+      "keyword": "does microsoft authenticator work in china",
+      "cr_slug": "microsoft-authenticator",
+      "aic_url": "https://appinchina.co/does-microsoft-authenticator-work-in-china/",
+      "kw_sv": 10,
+      "cr_url": "https://landscape.chinaready.co/alternatives/microsoft-authenticator"
+    },
+    {
+      "tier": "P1",
+      "product": "Qualtrics",
+      "keyword": "does qualtrics work in china",
+      "cr_slug": "qualtrics",
+      "aic_url": "https://appinchina.co/does-qualtrics-work-in-china/",
+      "kw_sv": 10,
+      "cr_url": "https://landscape.chinaready.co/alternatives/qualtrics"
+    },
+    {
+      "tier": "P1",
+      "product": "SurveyMonkey",
+      "keyword": "does surveymonkey work in china",
+      "cr_slug": "surveymonkey",
+      "aic_url": "https://appinchina.co/does-surveymonkey-work-in-china/",
+      "kw_sv": 10,
+      "cr_url": "https://landscape.chinaready.co/alternatives/surveymonkey"
+    },
+    {
+      "tier": "P1",
+      "product": "Typeform",
+      "keyword": "does typeform work in china",
+      "cr_slug": "typeform",
+      "aic_url": "https://appinchina.co/does-typeform-work-in-china/",
+      "kw_sv": 10,
+      "cr_url": "https://landscape.chinaready.co/alternatives/typeform"
+    },
+    {
+      "tier": "P1",
+      "product": "Webex",
+      "keyword": "does webex work in china",
+      "cr_slug": "webex",
+      "aic_url": "https://appinchina.co/does-webex-work-in-china/",
+      "kw_sv": 10,
+      "cr_url": "https://landscape.chinaready.co/alternatives/webex"
+    },
+    {
+      "tier": "P1",
+      "product": "WordPress",
+      "keyword": "does wordpress work in china",
+      "cr_slug": "wordpress",
+      "aic_url": "https://appinchina.co/does-wordpress-work-in-china/",
+      "kw_sv": 10,
+      "cr_url": "https://landscape.chinaready.co/alternatives/wordpress"
+    },
+    {
+      "tier": "P1",
+      "product": "Zoho CRM",
+      "keyword": "does zoho crm work in china",
+      "cr_slug": "zoho-crm",
+      "aic_url": "https://appinchina.co/does-zoho-crm-work-in-china/",
+      "kw_sv": 0,
+      "cr_url": "https://landscape.chinaready.co/alternatives/zoho-crm"
+    },
+    {
+      "tier": "P1",
+      "product": "Dropbox Sign",
+      "keyword": "does dropbox sign work in china",
+      "cr_slug": "dropbox-sign",
+      "aic_url": "https://appinchina.co/does-dropbox-sign-work-in-china/",
+      "kw_sv": 0,
+      "cr_url": "https://landscape.chinaready.co/alternatives/dropbox-sign"
+    },
+    {
+      "tier": "P1",
+      "product": "GitHub Pages",
+      "keyword": "does github pages work in china",
+      "cr_slug": "github-pages",
+      "aic_url": "https://appinchina.co/does-github-pages-work-in-china/",
+      "kw_sv": 0,
+      "cr_url": "https://landscape.chinaready.co/alternatives/github-pages"
+    },
+    {
+      "tier": "P1",
+      "product": "Gumroad",
+      "keyword": "does gumroad work in china",
+      "cr_slug": "gumroad",
+      "aic_url": "https://appinchina.co/does-gumroad-work-in-china/",
+      "kw_sv": 0,
+      "cr_url": "https://landscape.chinaready.co/alternatives/gumroad"
+    },
+    {
+      "tier": "P1",
+      "product": "Adobe Acrobat Sign",
+      "keyword": "does adobe acrobat sign work in china",
+      "cr_slug": "adobe-acrobat-sign",
+      "aic_url": "https://appinchina.co/does-adobe-acrobat-sign-work-in-china/",
+      "kw_sv": 0,
+      "cr_url": "https://landscape.chinaready.co/alternatives/adobe-acrobat-sign"
+    },
+    {
+      "tier": "P1",
+      "product": "OpenAI",
+      "keyword": "does openai gpt 4 work in china",
+      "cr_slug": "openai",
+      "aic_url": "https://appinchina.co/does-openai-gpt-4-work-in-china/",
+      "kw_sv": 0,
+      "cr_url": "https://landscape.chinaready.co/alternatives/openai"
+    },
+    {
+      "tier": "P1",
+      "product": "n8n",
+      "keyword": "does n8n work in china",
+      "cr_slug": "n8n",
+      "aic_url": "https://appinchina.co/does-n8n-work-in-china/",
+      "kw_sv": 0,
+      "cr_url": "https://landscape.chinaready.co/alternatives/n8n"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+tier,product,keyword,kw_sv,cr_slug,cr_url,aic_url,cr_page_etv,aic_page_etv,cr_serp_organic_rank_group,aic_serp_organic_rank_group,cr_seo_score,aic_seo_score,score_gap_aic_minus_cr,serp_sampled
+P0,Zoom,does zoom work in china,320,zoom-sdk,https://landscape.chinaready.co/alternatives/zoom-sdk,https://appinchina.co/does-zoom-work-in-china/,0,27.614,,6,0,296.14,296.14,True
+P1,Mailchimp,does mailchimp work in china,10,mailchimp,https://landscape.chinaready.co/alternatives/mailchimp,https://appinchina.co/does-mailchimp-work-in-china/,0,0,,1,0,100,100,True
+P1,Webex,does webex work in china,10,webex,https://landscape.chinaready.co/alternatives/webex,https://appinchina.co/does-webex-work-in-china/,0,0,,3,0,55,55,True
+P0,Microsoft Teams,does microsoft teams work in china,90,microsoft-teams,https://landscape.chinaready.co/alternatives/microsoft-teams,https://appinchina.co/does-microsoft-teams-work-in-china/,0,2.383,,9,0,31.83,31.83,True
+P1,DocuSign,does docusign work in china,20,docusign,https://landscape.chinaready.co/alternatives/docusign,https://appinchina.co/does-docusign-work-in-china/,0,0,,5,0,30,30,True
+P1,HubSpot,does hubspot work in china,10,hubspot,https://landscape.chinaready.co/alternatives/hubspot,https://appinchina.co/does-hubspot-work-in-china/,0,0,,5,0,30,30,True
+P0,Google Maps,does google maps work in china,260,google-maps-platform,https://landscape.chinaready.co/alternatives/google-maps-platform,https://appinchina.co/does-google-maps-work-in-china/,0,1.932,,,0,24.32,24.32,True
+P0,Spotify for Podcasters,does spotify for podcasters work in china,0,spotify-for-podcasters,https://landscape.chinaready.co/alternatives/spotify-for-podcasters,https://appinchina.co/does-spotify-for-podcasters-work-in-china/,0,2.268,,,0,22.68,22.68,False
+P1,Google Analytics,does google analytics work in china,10,google-analytics,https://landscape.chinaready.co/alternatives/google-analytics,https://appinchina.co/does-google-analytics-work-in-china/,0,0,,7,0,15,15,True
+P1,Zoho CRM,does zoho crm work in china,0,zoho-crm,https://landscape.chinaready.co/alternatives/zoho-crm,https://appinchina.co/does-zoho-crm-work-in-china/,0,0.788,,,0,7.88,7.88,False
+P1,Dropbox Sign,does dropbox sign work in china,0,dropbox-sign,https://landscape.chinaready.co/alternatives/dropbox-sign,https://appinchina.co/does-dropbox-sign-work-in-china/,0,0.628,,,0,6.28,6.28,False
+P1,GitHub Pages,does github pages work in china,0,github-pages,https://landscape.chinaready.co/alternatives/github-pages,https://appinchina.co/does-github-pages-work-in-china/,0,0.578,,,0,5.78,5.78,False
+P1,Gumroad,does gumroad work in china,0,gumroad,https://landscape.chinaready.co/alternatives/gumroad,https://appinchina.co/does-gumroad-work-in-china/,0,0.512,,,0,5.12,5.12,False
+P1,Adobe Acrobat Sign,does adobe acrobat sign work in china,0,adobe-acrobat-sign,https://landscape.chinaready.co/alternatives/adobe-acrobat-sign,https://appinchina.co/does-adobe-acrobat-sign-work-in-china/,0,0.385,,,0,3.85,3.85,False
+P1,OpenAI,does openai gpt 4 work in china,0,openai,https://landscape.chinaready.co/alternatives/openai,https://appinchina.co/does-openai-gpt-4-work-in-china/,0,0.315,,,0,3.15,3.15,False
+P1,n8n,does n8n work in china,0,n8n,https://landscape.chinaready.co/alternatives/n8n,https://appinchina.co/does-n8n-work-in-china/,0,0.118,,,0,1.18,1.18,False
+P1,Google Authenticator,does google authenticator work in china,10,google-authenticator,https://landscape.chinaready.co/alternatives/google-authenticator,https://appinchina.co/does-google-authenticator-work-in-china/,0,0,,,0,0,0,False
+P1,Microsoft Authenticator,does microsoft authenticator work in china,10,microsoft-authenticator,https://landscape.chinaready.co/alternatives/microsoft-authenticator,https://appinchina.co/does-microsoft-authenticator-work-in-china/,0,0,,,0,0,0,False
+P1,Qualtrics,does qualtrics work in china,10,qualtrics,https://landscape.chinaready.co/alternatives/qualtrics,https://appinchina.co/does-qualtrics-work-in-china/,0,0,,,0,0,0,False
+P1,SurveyMonkey,does surveymonkey work in china,10,surveymonkey,https://landscape.chinaready.co/alternatives/surveymonkey,https://appinchina.co/does-surveymonkey-work-in-china/,0,0,,,0,0,0,False
+P1,Typeform,does typeform work in china,10,typeform,https://landscape.chinaready.co/alternatives/typeform,https://appinchina.co/does-typeform-work-in-china/,0,0,,,0,0,0,False
+P1,WordPress,does wordpress work in china,10,wordpress,https://landscape.chinaready.co/alternatives/wordpress,https://appinchina.co/does-wordpress-work-in-china/,0,0,,,0,0,0,True
