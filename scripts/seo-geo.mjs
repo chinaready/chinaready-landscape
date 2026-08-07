@@ -121,6 +121,25 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "mia-platform": "unavailable",
   "zoho-crm": "available",
   "zenlayer-sd-wan": "available",
+// === BEGIN HUB P0P1 EDITORIAL ===
+  "microsoft-teams": "limited",
+  webex: "limited",
+  "zoom-sdk": "limited",
+  docusign: "unavailable",
+  "dropbox-sign": "unavailable",
+  "adobe-acrobat-sign": "unavailable",
+  qualtrics: "limited",
+  surveymonkey: "limited",
+  typeform: "limited",
+  wordpress: "limited",
+  gumroad: "unavailable",
+  n8n: "limited",
+  hubspot: "limited",
+  mailchimp: "limited",
+  "github-pages": "limited",
+  "google-authenticator": "limited",
+  "microsoft-authenticator": "limited",
+// === END HUB P0P1 EDITORIAL ===
 };
 
 /** Keep stable public URLs when display names change. */
@@ -5161,6 +5180,589 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+
+  // === BEGIN HUB P0P1 EDITORIAL ===
+  "microsoft-teams": {
+    relatedSlugs: ["webex", "zoom-sdk"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Microsoft Teams work in China? Limited — prefer DingTalk, Feishu, WeCom, Tencent Meeting. Compare ${names.slice(0, 4).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Microsoft Teams is Limited in mainland China</strong>. International companies often keep Teams for global HQ, but mainland call quality and workplace-ecosystem fit usually push day-to-day collaboration to <strong>${escapeHtml(names.slice(0, 4).join(", ") || "DingTalk, Feishu, WeCom, Tencent Meeting")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China collaboration suites instead of Microsoft Teams",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 4,
+    indexCandidates: "DingTalk, Feishu, WeCom, Tencent Meeting",
+    guidanceHtml: `
+        <p><strong>Microsoft Teams is Limited for mainland-first collaboration.</strong> The product is often reachable, but latency, meeting stability, and missing China workplace ecosystem hooks (approvals, WeChat-external contact, domestic app distribution) make DingTalk, Feishu/Lark, WeCom, and Tencent Meeting the practical shortlist.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead><tr><th>Platform</th><th>Best fit</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>DingTalk (钉钉)</td><td>Alibaba-stack / SMB–mid-market workplace suite</td><td>Messaging, meetings, approvals, org directories</td></tr>
+              <tr><td>Feishu / Lark (飞书)</td><td>Product &amp; tech teams</td><td>Strong docs + meetings; international brand Lark</td></tr>
+              <tr><td>WeCom (企业微信)</td><td>WeChat-centric customer + employee chat</td><td>Best when external WeChat contact matters</td></tr>
+              <tr><td>Tencent Meeting (腾讯会议)</td><td>Meetings / webinars layer</td><td>Use when Teams calls are the main pain point</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>These candidates appear on this alternatives page only — not as Explore / Landscape product tiles. Confirm network tests from your China offices before cutover.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Microsoft Teams work in China?",
+        answer: `Partially. Chinaready labels Microsoft Teams as ${availability}. Many international firms still run Teams, but mainland latency and ecosystem fit are weak enough that China-facing teams usually adopt DingTalk, Feishu, WeCom, or Tencent Meeting for daily work.`,
+      },
+      {
+        question: "What are the best China alternatives to Microsoft Teams?",
+        answer: `Chinaready currently lists: ${namesText}. Prefer DingTalk or Feishu for full workplace suites, WeCom when WeChat customer contact matters, and Tencent Meeting when video calls are the main gap.`,
+      },
+      {
+        question: "Can we keep Teams for HQ and use something else in China?",
+        answer:
+          "Yes — a common pattern is Teams for global HQ plus DingTalk/Feishu/WeCom for mainland entities. Plan calendar, identity, and meeting bridges explicitly; do not assume feature parity.",
+      },
+      {
+        question: "Where should teams go after shortlisting Microsoft Teams alternatives?",
+        answer:
+          "Run meeting quality tests from mainland offices, validate identity/SSO, and confirm compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then book a call with Chinaready if the path remains unclear.",
+      },
+    ],
+  },
+  webex: {
+    relatedSlugs: ["microsoft-teams", "zoom-sdk"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Webex work in China? Limited — prefer Tencent Meeting, DingTalk, Feishu, WeCom. Compare ${names.slice(0, 4).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Webex is Limited in mainland China</strong>. For mainland-facing meetings and collaboration, map to <strong>${escapeHtml(names.slice(0, 4).join(", ") || "Tencent Meeting, DingTalk, Feishu, WeCom")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China meeting & collaboration options instead of Webex",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 4,
+    indexCandidates: "Tencent Meeting, DingTalk, Feishu, WeCom",
+    guidanceHtml: `
+        <p><strong>Webex is Limited for mainland China production collaboration.</strong> Prefer Tencent Meeting when video calls/webinars dominate; prefer DingTalk, Feishu, or WeCom when Webex sat inside a broader workplace suite.</p>
+        <p>These candidates appear on this alternatives page only — not as Explore / Landscape product tiles.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Webex work in China?",
+        answer: `Partially. Chinaready labels Webex as ${availability}. Connectivity can work for some users, but mainland teams usually get better reliability from Tencent Meeting, DingTalk, Feishu, or WeCom.`,
+      },
+      {
+        question: "What are the best China alternatives to Webex?",
+        answer: `Chinaready currently lists: ${namesText}. Choose Tencent Meeting for meetings-first needs; DingTalk/Feishu/WeCom when you also need messaging and workplace workflows.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Webex alternatives?",
+        answer:
+          "Validate call quality from mainland networks, webinar scale, and identity integration. Use Chinaready Landscape for adjacent choices, or book a call with Chinaready.",
+      },
+    ],
+  },
+  "zoom-sdk": {
+    title: "Does Zoom work in China?",
+    relatedSlugs: ["microsoft-teams", "webex"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Zoom work in China? Limited — prefer Tencent Meeting; for Zoom SDK/RTC use Agora or NetEase Yunxin. Compare ${names.slice(0, 4).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Zoom is Limited in mainland China</strong> — the question people search as “does Zoom work in China” covers both the Zoom client and Zoom SDK embeddings. For standalone meetings prefer <strong>Tencent Meeting</strong>; for embedded RTC prefer <strong>Agora</strong> or <strong>NetEase Yunxin</strong>. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 4).join(", ") || "Tencent Meeting, Agora, NetEase Yunxin, DingTalk")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China options instead of Zoom / Zoom SDK",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 4,
+    indexCandidates: "Tencent Meeting, Agora, NetEase Yunxin, DingTalk",
+    guidanceHtml: `
+        <p><strong>Zoom (client + SDK) is Limited for mainland China.</strong> Do not treat Zoom as a default China meeting or embedded-video dependency. Split the decision:</p>
+        <ul>
+          <li><strong>Standalone meetings / webinars:</strong> Tencent Meeting (腾讯会议) or DingTalk meetings.</li>
+          <li><strong>In-product Zoom SDK / RTC:</strong> Agora (声网) or NetEase Yunxin (网易云信).</li>
+        </ul>
+        <p>These candidates appear on this alternatives page only — not as Explore / Landscape product tiles. Run mainland RTC/meeting tests before cutover.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Zoom work in China?",
+        answer: `Partially / unreliably for many mainland users. Chinaready labels Zoom SDK / Zoom paths as ${availability}. Prefer Tencent Meeting for meetings and Agora or NetEase Yunxin when you embedded Zoom SDK.`,
+      },
+      {
+        question: "What are the best China alternatives to Zoom?",
+        answer: `Chinaready currently lists: ${namesText}. Prefer Tencent Meeting for Zoom-the-app, Agora/NetEase Yunxin for Zoom SDK-style RTC, and DingTalk when Zoom was mainly internal collaboration.`,
+      },
+      {
+        question: "Is Zoom SDK usable for a China-facing app?",
+        answer:
+          "Usually not as the primary dependency. Plan a China-reachable RTC SDK (Agora or NetEase Yunxin are commonly evaluated) and validate packet loss, TURN, and compliance for mainland users.",
+      },
+      {
+        question: "Where should teams go after shortlisting Zoom alternatives?",
+        answer:
+          "Benchmark meeting/RTC quality from mainland networks, then confirm compliance and vendor fit. Use Chinaready Landscape for adjacent choices, or book a call with Chinaready.",
+      },
+    ],
+  },
+  docusign: {
+    relatedSlugs: ["dropbox-sign", "adobe-acrobat-sign"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does DocuSign work in China? Unavailable for mainland legal e-sign — prefer eSignBao, Fadada, BestSign, Tencent eSign. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>DocuSign is Unavailable for practical mainland China legal e-signature workflows</strong>. Map to <strong>${escapeHtml(names.slice(0, 4).join(", ") || "eSignBao, Fadada, BestSign, Tencent eSign")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China e-signature platforms instead of DocuSign",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 4,
+    indexCandidates: "eSignBao, Fadada, BestSign, Tencent eSign",
+    guidanceHtml: `
+        <p><strong>DocuSign is not a workable default for mainland China legal signing.</strong> China Electronic Signature Law, CA practices, evidence preservation, and mainland signer UX push teams to onshore platforms.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead><tr><th>Platform</th><th>Best fit</th></tr></thead>
+            <tbody>
+              <tr><td>eSignBao (e签宝)</td><td>Broad enterprise e-sign &amp; contract automation</td></tr>
+              <tr><td>Fadada (法大大)</td><td>Legal/compliance-heavy contracts and evidence workflows</td></tr>
+              <tr><td>BestSign (上上签)</td><td>High-volume SaaS contract signing</td></tr>
+              <tr><td>Tencent eSign (腾讯电子签)</td><td>WeChat / Tencent identity touchpoints</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Hybrid pattern: keep DocuSign for overseas entities; use a China vendor for mainland signers. These candidates appear on this alternatives page only — not as Explore tiles.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does DocuSign work in China?",
+        answer: `Not for practical mainland legal e-sign stacks. Chinaready labels DocuSign as ${availability}. Use an onshore platform such as eSignBao, Fadada, BestSign, or Tencent eSign for mainland signers.`,
+      },
+      {
+        question: "What are the best China alternatives to DocuSign?",
+        answer: `Chinaready currently lists: ${namesText}. Prefer eSignBao for broad enterprise coverage, Fadada for legal-evidence depth, BestSign for high-volume SaaS flows, and Tencent eSign for WeChat-centric journeys.`,
+      },
+      {
+        question: "Can we run DocuSign globally and a China vendor locally?",
+        answer:
+          "Yes — many multinationals use DocuSign outside China and eSignBao/Fadada/BestSign for mainland signers, syncing final PDFs and audit packages back to HQ systems.",
+      },
+      {
+        question: "Where should teams go after shortlisting DocuSign alternatives?",
+        answer:
+          "Have China counsel review CA/evidence requirements, then pilot signer UX on WeChat and SMS identity. Book a call with Chinaready if the integration path is unclear.",
+      },
+    ],
+  },
+  "dropbox-sign": {
+    relatedSlugs: ["docusign", "adobe-acrobat-sign"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Dropbox Sign work in China? Unavailable for mainland legal e-sign — prefer eSignBao, Fadada, BestSign, Tencent eSign. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Dropbox Sign (HelloSign) is Unavailable for practical mainland China legal e-signature workflows</strong>. Map to <strong>${escapeHtml(names.slice(0, 4).join(", ") || "eSignBao, Fadada, BestSign, Tencent eSign")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China e-signature platforms instead of Dropbox Sign",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 4,
+    indexCandidates: "eSignBao, Fadada, BestSign, Tencent eSign",
+    guidanceHtml: `
+        <p><strong>Dropbox Sign is not a workable mainland legal e-sign default.</strong> Prefer eSignBao (e签宝), Fadada (法大大), BestSign (上上签), or Tencent eSign (腾讯电子签). Candidates on this page are orientation-only — not Explore tiles.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Dropbox Sign work in China?",
+        answer: `Not for practical mainland legal e-sign. Chinaready labels Dropbox Sign as ${availability}. Use eSignBao, Fadada, BestSign, or Tencent eSign for mainland signers.`,
+      },
+      {
+        question: "What are the best China alternatives to Dropbox Sign?",
+        answer: `Chinaready currently lists: ${namesText}.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Dropbox Sign alternatives?",
+        answer:
+          "Confirm China legal evidence requirements with counsel, then validate API and WeChat signer UX. Book a call with Chinaready if needed.",
+      },
+    ],
+  },
+  "adobe-acrobat-sign": {
+    relatedSlugs: ["docusign", "dropbox-sign"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Adobe Acrobat Sign work in China? Unavailable for mainland legal e-sign — prefer eSignBao, Fadada, BestSign, Tencent eSign. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Adobe Acrobat Sign is Unavailable for practical mainland China legal e-signature workflows</strong>. Map to <strong>${escapeHtml(names.slice(0, 4).join(", ") || "eSignBao, Fadada, BestSign, Tencent eSign")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China e-signature platforms instead of Adobe Acrobat Sign",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 4,
+    indexCandidates: "eSignBao, Fadada, BestSign, Tencent eSign",
+    guidanceHtml: `
+        <p><strong>Adobe Acrobat Sign is not a workable mainland legal e-sign default.</strong> Prefer eSignBao (e签宝), Fadada (法大大), BestSign (上上签), or Tencent eSign (腾讯电子签). Candidates on this page are orientation-only — not Explore tiles.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Adobe Acrobat Sign work in China?",
+        answer: `Not for practical mainland legal e-sign. Chinaready labels Adobe Acrobat Sign as ${availability}. Use an onshore platform for mainland signers.`,
+      },
+      {
+        question: "What are the best China alternatives to Adobe Acrobat Sign?",
+        answer: `Chinaready currently lists: ${namesText}.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Adobe Acrobat Sign alternatives?",
+        answer:
+          "Review CA/evidence needs with China counsel, pilot signer UX, then confirm CRM/ERP integrations. Book a call with Chinaready if needed.",
+      },
+    ],
+  },
+  qualtrics: {
+    relatedSlugs: ["surveymonkey", "typeform"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Qualtrics work in China? Limited — prefer WJX, Jinshuju, Tencent Questionnaire, Credamo. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Qualtrics is Limited in mainland China</strong> for most research stacks. Map to <strong>${escapeHtml(names.slice(0, 4).join(", ") || "WJX, Jinshuju, Tencent Questionnaire, Credamo")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China survey platforms instead of Qualtrics",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 4,
+    indexCandidates: "WJX, Jinshuju, Tencent Questionnaire, Credamo",
+    guidanceHtml: `
+        <p><strong>Qualtrics is Limited for mainland research operations.</strong> Prefer WJX (问卷星) for mainstream surveys, Jinshuju (金数据) for product/ops forms, Tencent Questionnaire for lightweight polls, and Credamo (见数) when methodology rigor matters.</p>
+        <p>Candidates on this page are orientation-only — not Explore tiles. Confirm PIPL consent language before fielding.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Qualtrics work in China?",
+        answer: `Sometimes for global enterprises, but Chinaready labels Qualtrics as ${availability} for typical mainland research stacks. Most teams move surveys to WJX, Jinshuju, Tencent Questionnaire, or Credamo.`,
+      },
+      {
+        question: "What are the best China alternatives to Qualtrics?",
+        answer: `Chinaready currently lists: ${namesText}.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Qualtrics alternatives?",
+        answer:
+          "Validate panel quality, PIPL consent, and export/BI hooks. Book a call with Chinaready if the XM program spans China plus global brands.",
+      },
+    ],
+  },
+  surveymonkey: {
+    relatedSlugs: ["qualtrics", "typeform"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does SurveyMonkey work in China? Limited — prefer WJX, Jinshuju, Tencent Questionnaire. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>SurveyMonkey is Limited in mainland China</strong>. Map to <strong>${escapeHtml(names.slice(0, 3).join(", ") || "WJX, Jinshuju, Tencent Questionnaire")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China survey platforms instead of SurveyMonkey",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "WJX, Jinshuju, Tencent Questionnaire",
+    guidanceHtml: `
+        <p><strong>SurveyMonkey is Limited for mainland production research.</strong> Prefer WJX (问卷星) for scale, Jinshuju (金数据) for product forms, and Tencent Questionnaire for lightweight free surveys. Orientation-only candidates — not Explore tiles.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does SurveyMonkey work in China?",
+        answer: `Chinaready labels SurveyMonkey as ${availability}. Prefer WJX, Jinshuju, or Tencent Questionnaire for mainland respondents.`,
+      },
+      {
+        question: "What are the best China alternatives to SurveyMonkey?",
+        answer: `Chinaready currently lists: ${namesText}.`,
+      },
+      {
+        question: "Where should teams go after shortlisting SurveyMonkey alternatives?",
+        answer:
+          "Confirm respondent reach, PIPL consent, and integrations. Book a call with Chinaready if needed.",
+      },
+    ],
+  },
+  typeform: {
+    relatedSlugs: ["qualtrics", "surveymonkey"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Typeform work in China? Limited — prefer Jinshuju, WJX, Tencent Questionnaire. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Typeform is Limited in mainland China</strong>. Map to <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Jinshuju, WJX, Tencent Questionnaire")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China form platforms instead of Typeform",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "Jinshuju, WJX, Tencent Questionnaire",
+    guidanceHtml: `
+        <p><strong>Typeform is Limited for mainland intake and research forms.</strong> Prefer Jinshuju (金数据) for polished flows, WJX (问卷星) for high-volume surveys, and Tencent Questionnaire for lightweight free forms. Orientation-only — not Explore tiles.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Typeform work in China?",
+        answer: `Chinaready labels Typeform as ${availability}. Mainland teams usually replace it with Jinshuju, WJX, or Tencent Questionnaire.`,
+      },
+      {
+        question: "What are the best China alternatives to Typeform?",
+        answer: `Chinaready currently lists: ${namesText}.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Typeform alternatives?",
+        answer:
+          "Validate mobile WeChat UX, PIPL consent, and webhook/CRM hooks. Book a call with Chinaready if needed.",
+      },
+    ],
+  },
+  wordpress: {
+    description: (availability, names) =>
+      clipMeta(
+        `Does WordPress work in China? Limited on WordPress.com/overseas CDNs — self-host on China cloud with ICP, or use PageAdmin/Baklib. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>WordPress is Limited for mainland China</strong> when you depend on WordPress.com or overseas plugin/theme CDNs. Self-hosted WordPress on China cloud with ICP filing can work; otherwise evaluate <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Self-hosted WordPress on China cloud, PageAdmin, Baklib")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Making WordPress (or a CMS) work for mainland China",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "Self-hosted WordPress on China cloud, PageAdmin, Baklib",
+    guidanceHtml: `
+        <p><strong>WordPress software is not categorically banned</strong>, but overseas WordPress.com hosting and plugin/theme update CDNs are often slow or unreliable from mainland China. Practical paths:</p>
+        <ul>
+          <li><strong>Keep WordPress:</strong> host on Alibaba Cloud / Tencent Cloud (or similar), complete ICP filing, and serve assets on a China CDN.</li>
+          <li><strong>Domestic CMS:</strong> PageAdmin for government/education/Xinchuang sites; Baklib for knowledge-base / help-center portals.</li>
+        </ul>
+        <p>Candidates on this page are orientation-only — not Explore tiles.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does WordPress work in China?",
+        answer: `It depends on hosting. Chinaready labels WordPress as ${availability} for typical overseas WordPress.com / CDN setups. Self-hosted WordPress on mainland cloud with ICP can work; WordPress.com and overseas plugin CDNs usually do not.`,
+      },
+      {
+        question: "What are the best China alternatives to WordPress?",
+        answer: `Chinaready currently lists: ${namesText}. Many teams keep WordPress but move hosting onshore; others switch to PageAdmin or Baklib.`,
+      },
+      {
+        question: "Do I need an ICP license for a WordPress site in China?",
+        answer:
+          "Public websites on mainland China hosting generally require ICP filing (and sometimes additional licenses by content type). Confirm with your hosting provider and counsel before launch.",
+      },
+      {
+        question: "Where should teams go after shortlisting WordPress alternatives?",
+        answer:
+          "Decide keep-vs-replace, then validate ICP, CDN, and plugin update strategy. Book a call with Chinaready if the hosting path is unclear.",
+      },
+    ],
+  },
+  gumroad: {
+    description: (availability, names) =>
+      clipMeta(
+        `Does Gumroad work in China? Unavailable — prefer Youzan, Afdian, or WeChat Mini Program stores. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Gumroad is Unavailable for practical mainland China creator commerce</strong>. Map to <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Youzan Cloud, Afdian, WeChat Mini Program Store")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China creator commerce instead of Gumroad",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "Youzan Cloud, Afdian, WeChat Mini Program Store",
+    guidanceHtml: `
+        <p><strong>Gumroad does not map cleanly onto mainland creator selling.</strong> Payments, WeChat distribution, and content rules differ. Prefer Youzan Cloud (有赞) for Mini Program storefronts, Afdian (爱发电) for patronage/digital goods, or native WeChat Mini Program commerce. Orientation-only — not Explore tiles.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Gumroad work in China?",
+        answer: `No for practical mainland creator commerce. Chinaready labels Gumroad as ${availability}.`,
+      },
+      {
+        question: "What are the best China alternatives to Gumroad?",
+        answer: `Chinaready currently lists: ${namesText}.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Gumroad alternatives?",
+        answer:
+          "Validate WeChat Pay / Alipay onboarding, content compliance, and Mini Program review. Book a call with Chinaready if needed.",
+      },
+    ],
+  },
+  n8n: {
+    description: (availability, names) =>
+      clipMeta(
+        `Does n8n work in China? Limited — self-host possible; prefer Jijyun, Jiandaoyun, DingTalk Yida, Qingflow. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>n8n is Limited in mainland China</strong>. Self-hosting on China infrastructure can work, but n8n Cloud and many global connectors are a weak fit. Map to <strong>${escapeHtml(names.slice(0, 4).join(", ") || "Jijyun, Jiandaoyun, DingTalk Yida, Qingflow")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China automation platforms instead of n8n",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 4,
+    indexCandidates: "Jijyun, Jiandaoyun, DingTalk Yida, Qingflow",
+    guidanceHtml: `
+        <p><strong>n8n is Limited as a China automation default.</strong> Prefer Jijyun (集简云) for iPaaS connectors, Jiandaoyun (简道云) or Qingflow (轻流) for low-code ops automation, and DingTalk Yida (宜搭) when the company already runs on DingTalk. Orientation-only — not Explore tiles.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does n8n work in China?",
+        answer: `Self-hosted n8n can work on China servers; n8n Cloud is a weaker fit. Chinaready labels n8n as ${availability} for typical mainland automation stacks.`,
+      },
+      {
+        question: "What are the best China alternatives to n8n?",
+        answer: `Chinaready currently lists: ${namesText}.`,
+      },
+      {
+        question: "Where should teams go after shortlisting n8n alternatives?",
+        answer:
+          "List the SaaS connectors you need, confirm China API availability, and decide self-host vs low-code. Book a call with Chinaready if needed.",
+      },
+    ],
+  },
+  hubspot: {
+    relatedSlugs: ["zoho-crm", "mailchimp"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does HubSpot work in China? Limited — prefer Fxiaoke, Neocrm, Zhichi for mainland GTM. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>HubSpot is Limited in mainland China</strong>. International teams may keep HubSpot for global CRM, but mainland GTM usually maps to <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Fxiaoke, Neocrm, Zhichi")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China CRM / GTM options instead of HubSpot",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "Fxiaoke, Neocrm, Zhichi",
+    guidanceHtml: `
+        <p><strong>HubSpot is Limited for mainland-first go-to-market.</strong> Prefer Fxiaoke (纷享销客) or Neocrm (销售易) for CRM, and evaluate Zhichi for service/engagement clouds. Orientation-only candidates — not Explore tiles. Confirm WeCom integrations and PIPL.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does HubSpot work in China?",
+        answer: `Chinaready labels HubSpot as ${availability}. It may be usable for global teams, but mainland GTM usually needs a domestic CRM/engagement stack.`,
+      },
+      {
+        question: "What are the best China alternatives to HubSpot?",
+        answer: `Chinaready currently lists: ${namesText}.`,
+      },
+      {
+        question: "Where should teams go after shortlisting HubSpot alternatives?",
+        answer:
+          "Validate WeCom, payment, and marketing-automation needs, then confirm PIPL. Book a call with Chinaready if the hybrid HubSpot-plus-China CRM design is unclear.",
+      },
+    ],
+  },
+  mailchimp: {
+    relatedSlugs: ["mailerlite", "hubspot"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Mailchimp work in China? Limited — weak QQ/163 delivery. Prefer SendCloud, U-Mail, DirectMail, Zoho Campaigns. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Mailchimp is Limited in mainland China</strong> — especially for deliverability into QQ/163 inboxes. Map to <strong>${escapeHtml(names.slice(0, 4).join(", ") || "SendCloud, U-Mail, Alibaba Cloud DirectMail, Zoho Campaigns")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China email platforms instead of Mailchimp",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 4,
+    indexCandidates: "SendCloud, U-Mail, Alibaba Cloud DirectMail, Zoho Campaigns",
+    guidanceHtml: `
+        <p><strong>Mailchimp is Limited for mainland email marketing.</strong> Prefer SendCloud or U-Mail for campaigns, Alibaba Cloud DirectMail for transactional mail, and Zoho Campaigns when you want a fuller localized suite. Orientation-only — not Explore tiles.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Mailchimp work in China?",
+        answer: `Chinaready labels Mailchimp as ${availability}. Admin access may work, but domestic inbox delivery is often poor.`,
+      },
+      {
+        question: "What are the best China alternatives to Mailchimp?",
+        answer: `Chinaready currently lists: ${namesText}.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Mailchimp alternatives?",
+        answer:
+          "Test deliverability into QQ/163, set up SPF/DKIM, and confirm compliance. Book a call with Chinaready if needed.",
+      },
+    ],
+  },
+  "github-pages": {
+    description: (availability, names) =>
+      clipMeta(
+        `Does GitHub Pages work in China? Limited — prefer Alibaba/Tencent static hosting + China CDN, or Gitee Pages. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>GitHub Pages is Limited for mainland China audiences</strong>. Map to <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Alibaba Cloud Static Website Hosting, Tencent Cloud Static Website Hosting, Gitee Pages")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China static hosting instead of GitHub Pages",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "Alibaba Cloud Static Website Hosting, Tencent Cloud Static Website Hosting, Gitee Pages",
+    guidanceHtml: `
+        <p><strong>GitHub Pages is Limited for mainland visitors</strong> because GitHub and common overseas asset CDNs are slow or intermittently unreachable. Prefer OSS/COS static hosting with a China CDN, and complete ICP filing for public sites. Orientation-only — not Explore tiles.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does GitHub Pages work in China?",
+        answer: `Chinaready labels GitHub Pages as ${availability}. Developers outside China may still use it; mainland audiences often cannot load it reliably.`,
+      },
+      {
+        question: "What are the best China alternatives to GitHub Pages?",
+        answer: `Chinaready currently lists: ${namesText}.`,
+      },
+      {
+        question: "Where should teams go after shortlisting GitHub Pages alternatives?",
+        answer:
+          "Pick a China cloud static host, attach a China CDN, and confirm ICP requirements. Book a call with Chinaready if needed.",
+      },
+    ],
+  },
+  "google-authenticator": {
+    relatedSlugs: ["microsoft-authenticator", "auth0"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Google Authenticator work in China? Limited as a default MFA — prefer Authing MFA, WeChat Login + SMS, or alternate TOTP apps. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Google Authenticator is Limited as a default MFA path for mainland China users</strong>. Map to <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Microsoft Authenticator, Authing MFA, WeChat Login")}</strong> and prefer WeChat Login + SMS OTP for consumers. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "MFA options when Google Authenticator is a weak default",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "Microsoft Authenticator, Authing MFA, WeChat Login",
+    guidanceHtml: `
+        <p><strong>Do not mandate Google Authenticator for mainland consumer populations</strong> without checking app-store distribution. Prefer WeChat Login + SMS OTP for consumers, Authing (or similar) for product MFA, and alternate TOTP apps for workforce users. Orientation-only — not Explore tiles.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Google Authenticator work in China?",
+        answer: `Chinaready labels Google Authenticator as ${availability} as a universal MFA default. Some users can run TOTP apps, but Play Store / Google-account assumptions fail for many mainland users.`,
+      },
+      {
+        question: "What are the best China alternatives to Google Authenticator?",
+        answer: `Chinaready currently lists: ${namesText}. For consumers, WeChat Login + SMS OTP usually replaces authenticator-app MFA.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Google Authenticator alternatives?",
+        answer:
+          "Decide consumer vs workforce MFA, then validate app distribution and IdP policy. Book a call with Chinaready if needed.",
+      },
+    ],
+  },
+  "microsoft-authenticator": {
+    relatedSlugs: ["google-authenticator", "auth0"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Microsoft Authenticator work in China? Limited as a universal MFA default — prefer Authing MFA or WeChat Login + SMS. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Microsoft Authenticator is Limited as a universal MFA default in mainland China</strong>. Map to <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Authing MFA, WeChat Login, Alibaba Cloud MFA")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "MFA options instead of Microsoft Authenticator defaults",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "Authing MFA, WeChat Login, Alibaba Cloud MFA",
+    guidanceHtml: `
+        <p><strong>Microsoft Authenticator should not be assumed for all mainland users.</strong> Prefer Authing MFA for product IdP, WeChat Login + SMS for consumers, and cloud-RAM MFA for Alibaba Cloud workforce accounts. Orientation-only — not Explore tiles.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Microsoft Authenticator work in China?",
+        answer: `Chinaready labels Microsoft Authenticator as ${availability} as a universal default. Some workforce users can use it; consumer mainland apps usually should not depend on it.`,
+      },
+      {
+        question: "What are the best China alternatives to Microsoft Authenticator?",
+        answer: `Chinaready currently lists: ${namesText}.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Microsoft Authenticator alternatives?",
+        answer:
+          "Separate workforce vs consumer MFA policies, then validate device distribution. Book a call with Chinaready if needed.",
+      },
+    ],
+  },
+  // === END HUB P0P1 EDITORIAL ===
 };
 
 /**
@@ -5326,6 +5928,7 @@ const ANALOG_ALIASES = {
   "claude api": "Anthropic",
   "visual studio app center": "Visual Studio App Center",
   "app center": "Visual Studio App Center",
+
 };
 
 function escapeHtml(value) {
@@ -6317,6 +6920,12 @@ function renderCloudflareRedirects() {
 /alternatives/anthropic-claude.html /alternatives/anthropic 301
 /alternatives/claude-api /alternatives/anthropic 301
 /alternatives/claude-api.html /alternatives/anthropic 301
+/alternatives/zoom /alternatives/zoom-sdk 301
+/alternatives/zoom.html /alternatives/zoom-sdk 301
+/alternatives/adobe-sign /alternatives/adobe-acrobat-sign 301
+/alternatives/adobe-sign.html /alternatives/adobe-acrobat-sign 301
+/alternatives/hellosign /alternatives/dropbox-sign 301
+/alternatives/hellosign.html /alternatives/dropbox-sign 301
 `;
 }
 

@@ -2201,6 +2201,708 @@ OVERRIDES = {
             ),
         },
     ],
+    # === BEGIN HUB P0P1 OVERRIDES ===
+    "microsoft teams": [
+        {
+            "name": "DingTalk",
+            "homepage_url": "https://www.dingtalk.com/",
+            "category": "Collaboration & Productivity",
+            "subcategory": "Team Messaging & Meetings",
+            "source": "research",
+            "note": (
+                "DingTalk (钉钉) is Alibaba's mainstream workplace suite for messaging, meetings, "
+                "approvals, and org directories — the default China enterprise collaboration path for "
+                "many Alibaba-stack and SMB/mid-market teams."
+            ),
+        },
+        {
+            "name": "Feishu",
+            "homepage_url": "https://www.feishu.cn/",
+            "category": "Collaboration & Productivity",
+            "subcategory": "Team Messaging & Meetings",
+            "source": "research",
+            "note": (
+                "Feishu / Lark (飞书) is ByteDance's workplace suite with strong docs, meetings, and "
+                "project collaboration — often preferred by product/tech teams and companies that "
+                "already standardize on the Feishu ecosystem (international brand: Lark)."
+            ),
+        },
+        {
+            "name": "WeCom",
+            "homepage_url": "https://work.weixin.qq.com/",
+            "category": "Collaboration & Productivity",
+            "subcategory": "Team Messaging & Meetings",
+            "source": "research",
+            "note": (
+                "WeCom (企业微信 / WeChat Work) is Tencent's workplace messenger tightly linked to "
+                "consumer WeChat — strongest when customer contact, external CRM-style chat, and "
+                "WeChat ecosystem reach matter more than a Teams-like meeting grid alone."
+            ),
+        },
+        {
+            "name": "Tencent Meeting",
+            "homepage_url": "https://meeting.tencent.com/",
+            "category": "Collaboration & Productivity",
+            "subcategory": "Team Messaging & Meetings",
+            "source": "research",
+            "note": (
+                "Tencent Meeting (腾讯会议) is a mainland-first video meeting product for large-scale "
+                "calls and webinars — a practical meetings-layer substitute when Teams calls are the "
+                "main pain point rather than the full Microsoft 365 suite."
+            ),
+        },
+    ],
+    "webex": [
+        {
+            "name": "Tencent Meeting",
+            "homepage_url": "https://meeting.tencent.com/",
+            "category": "Collaboration & Productivity",
+            "subcategory": "Team Messaging & Meetings",
+            "source": "research",
+            "note": (
+                "Tencent Meeting (腾讯会议) is the closest mainland-first video meeting substitute for "
+                "Webex-style calls and webinars, with strong China network performance and consumer/enterprise reach."
+            ),
+        },
+        {
+            "name": "DingTalk",
+            "homepage_url": "https://www.dingtalk.com/",
+            "category": "Collaboration & Productivity",
+            "subcategory": "Team Messaging & Meetings",
+            "source": "research",
+            "note": (
+                "DingTalk (钉钉) covers meetings plus workplace messaging and approvals — useful when "
+                "Webex was part of a broader collaboration stack, not meetings alone."
+            ),
+        },
+        {
+            "name": "Feishu",
+            "homepage_url": "https://www.feishu.cn/",
+            "category": "Collaboration & Productivity",
+            "subcategory": "Team Messaging & Meetings",
+            "source": "research",
+            "note": (
+                "Feishu / Lark (飞书) combines meetings with docs and async collaboration — a strong "
+                "fit for product and cross-functional teams replacing Webex + adjacent tooling."
+            ),
+        },
+        {
+            "name": "WeCom",
+            "homepage_url": "https://work.weixin.qq.com/",
+            "category": "Collaboration & Productivity",
+            "subcategory": "Team Messaging & Meetings",
+            "source": "research",
+            "note": (
+                "WeCom (企业微信) is the Tencent workplace path when external WeChat customer "
+                "conversations matter alongside internal meetings."
+            ),
+        },
+    ],
+    "zoom sdk": [
+        {
+            "name": "Tencent Meeting",
+            "homepage_url": "https://meeting.tencent.com/",
+            "category": "Collaboration & Productivity",
+            "subcategory": "Team Messaging & Meetings",
+            "source": "research",
+            "note": (
+                "Tencent Meeting (腾讯会议) is the primary mainland China video-meeting substitute for "
+                "Zoom client use — strong China network performance for large calls and webinars."
+            ),
+        },
+        {
+            "name": "Agora",
+            "homepage_url": "https://www.agora.io/",
+            "category": "Collaboration & Productivity",
+            "subcategory": "Real-time Communication",
+            "source": "research",
+            "note": (
+                "Agora (声网) is a real-time audio/video SDK platform commonly used when the product "
+                "embeds Zoom SDK-style RTC rather than sending users to a standalone meeting app."
+            ),
+        },
+        {
+            "name": "NetEase Yunxin",
+            "homepage_url": "https://yunxin.163.com/",
+            "category": "Collaboration & Productivity",
+            "subcategory": "Real-time Communication",
+            "source": "research",
+            "note": (
+                "NetEase Yunxin (网易云信) provides China-reachable RTC / IM SDKs for embedded calls, "
+                "live interaction, and messaging — a common Zoom SDK replacement path for product teams."
+            ),
+        },
+        {
+            "name": "DingTalk",
+            "homepage_url": "https://www.dingtalk.com/",
+            "category": "Collaboration & Productivity",
+            "subcategory": "Team Messaging & Meetings",
+            "source": "research",
+            "note": (
+                "DingTalk (钉钉) is a practical meetings + workplace suite substitute when Zoom was "
+                "used for internal collaboration rather than embedded RTC."
+            ),
+        },
+    ],
+    "docusign": [
+        {
+            "name": "eSignBao",
+            "homepage_url": "https://www.esign.cn/",
+            "category": "Trust, Identity & Compliance",
+            "subcategory": "Electronic Signature",
+            "source": "research",
+            "note": (
+                "eSignBao (e签宝) is a leading mainland electronic-signature and contract platform with "
+                "broad enterprise adoption, China CA / evidence-preservation paths, and deep domestic integrations."
+            ),
+        },
+        {
+            "name": "Fadada",
+            "homepage_url": "https://www.fadada.com/",
+            "category": "Trust, Identity & Compliance",
+            "subcategory": "Electronic Signature",
+            "source": "research",
+            "note": (
+                "Fadada (法大大) is a major China e-contract platform with strong legal/compliance "
+                "positioning and judicial evidence workflows — often shortlisted for legally sensitive contracts."
+            ),
+        },
+        {
+            "name": "BestSign",
+            "homepage_url": "https://www.bestsign.cn/",
+            "category": "Trust, Identity & Compliance",
+            "subcategory": "Electronic Signature",
+            "source": "research",
+            "note": (
+                "BestSign (上上签) is a mainstream China electronic-signature SaaS for standardized "
+                "corporate contract flows, APIs, and high-volume signing."
+            ),
+        },
+        {
+            "name": "Tencent eSign",
+            "homepage_url": "https://qian.tencent.com/",
+            "category": "Trust, Identity & Compliance",
+            "subcategory": "Electronic Signature",
+            "source": "research",
+            "note": (
+                "Tencent eSign (腾讯电子签) is strongest when WeChat / Tencent Cloud identity and "
+                "consumer-facing signing touchpoints matter."
+            ),
+        },
+    ],
+    "dropbox sign": [
+        {
+            "name": "eSignBao",
+            "homepage_url": "https://www.esign.cn/",
+            "category": "Trust, Identity & Compliance",
+            "subcategory": "Electronic Signature",
+            "source": "research",
+            "note": (
+                "eSignBao (e签宝) is the primary mainland electronic-signature substitute for Dropbox "
+                "Sign (HelloSign)-style workflows with China-legal signing and evidence preservation."
+            ),
+        },
+        {
+            "name": "Fadada",
+            "homepage_url": "https://www.fadada.com/",
+            "category": "Trust, Identity & Compliance",
+            "subcategory": "Electronic Signature",
+            "source": "research",
+            "note": (
+                "Fadada (法大大) is a strong legal/compliance-oriented e-contract platform for mainland "
+                "signers who need China court-friendly evidence packages."
+            ),
+        },
+        {
+            "name": "BestSign",
+            "homepage_url": "https://www.bestsign.cn/",
+            "category": "Trust, Identity & Compliance",
+            "subcategory": "Electronic Signature",
+            "source": "research",
+            "note": (
+                "BestSign (上上签) fits SMB-to-enterprise SaaS signing when teams want a simpler "
+                "Dropbox Sign-like contract workflow onshore."
+            ),
+        },
+        {
+            "name": "Tencent eSign",
+            "homepage_url": "https://qian.tencent.com/",
+            "category": "Trust, Identity & Compliance",
+            "subcategory": "Electronic Signature",
+            "source": "research",
+            "note": (
+                "Tencent eSign (腾讯电子签) is useful when signing must happen inside WeChat-centric "
+                "consumer or employee journeys."
+            ),
+        },
+    ],
+    "adobe acrobat sign": [
+        {
+            "name": "eSignBao",
+            "homepage_url": "https://www.esign.cn/",
+            "category": "Trust, Identity & Compliance",
+            "subcategory": "Electronic Signature",
+            "source": "research",
+            "note": (
+                "eSignBao (e签宝) is the leading China electronic-signature platform commonly evaluated "
+                "instead of Adobe Acrobat Sign for mainland legal contracts."
+            ),
+        },
+        {
+            "name": "Fadada",
+            "homepage_url": "https://www.fadada.com/",
+            "category": "Trust, Identity & Compliance",
+            "subcategory": "Electronic Signature",
+            "source": "research",
+            "note": (
+                "Fadada (法大大) emphasizes legal evidence and compliance workflows for enterprise "
+                "and government-adjacent contract signing in mainland China."
+            ),
+        },
+        {
+            "name": "BestSign",
+            "homepage_url": "https://www.bestsign.cn/",
+            "category": "Trust, Identity & Compliance",
+            "subcategory": "Electronic Signature",
+            "source": "research",
+            "note": (
+                "BestSign (上上签) is a practical Adobe Acrobat Sign substitute for high-volume "
+                "SaaS contract signing with domestic APIs and CA options."
+            ),
+        },
+        {
+            "name": "Tencent eSign",
+            "homepage_url": "https://qian.tencent.com/",
+            "category": "Trust, Identity & Compliance",
+            "subcategory": "Electronic Signature",
+            "source": "research",
+            "note": (
+                "Tencent eSign (腾讯电子签) fits Adobe Sign replacements that need WeChat identity "
+                "and Tencent ecosystem distribution."
+            ),
+        },
+    ],
+    "qualtrics": [
+        {
+            "name": "WJX",
+            "homepage_url": "https://www.wjx.cn/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Surveys & Forms",
+            "source": "research",
+            "note": (
+                "WJX (问卷星) is China's most widely used survey/questionnaire platform for market "
+                "research, NPS-style feedback, and operational forms — the default Qualtrics substitute for most teams."
+            ),
+        },
+        {
+            "name": "Jinshuju",
+            "homepage_url": "https://jinshuju.net/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Surveys & Forms",
+            "source": "research",
+            "note": (
+                "Jinshuju (金数据) is a form/survey builder popular with product and operations teams "
+                "that need cleaner UX and workflow integrations than basic questionnaire tools."
+            ),
+        },
+        {
+            "name": "Tencent Questionnaire",
+            "homepage_url": "https://wj.qq.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Surveys & Forms",
+            "source": "research",
+            "note": (
+                "Tencent Questionnaire (腾讯问卷) is a practical free/low-friction survey path inside "
+                "the Tencent ecosystem for lightweight research and internal polls."
+            ),
+        },
+        {
+            "name": "Credamo",
+            "homepage_url": "https://www.credamo.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Surveys & Forms",
+            "source": "research",
+            "note": (
+                "Credamo (见数) is oriented to research-grade surveys and academic/enterprise research "
+                "panels — closer to Qualtrics when methodology rigor matters more than simple forms."
+            ),
+        },
+    ],
+    "surveymonkey": [
+        {
+            "name": "WJX",
+            "homepage_url": "https://www.wjx.cn/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Surveys & Forms",
+            "source": "research",
+            "note": (
+                "WJX (问卷星) is the mainstream SurveyMonkey substitute in mainland China for "
+                "questionnaires, exams, and customer feedback at scale."
+            ),
+        },
+        {
+            "name": "Jinshuju",
+            "homepage_url": "https://jinshuju.net/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Surveys & Forms",
+            "source": "research",
+            "note": (
+                "Jinshuju (金数据) fits teams that want SurveyMonkey-like forms with stronger "
+                "China-product UX and automation hooks."
+            ),
+        },
+        {
+            "name": "Tencent Questionnaire",
+            "homepage_url": "https://wj.qq.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Surveys & Forms",
+            "source": "research",
+            "note": (
+                "Tencent Questionnaire (腾讯问卷) is a lightweight free survey option for internal "
+                "and consumer research inside WeChat/QQ ecosystems."
+            ),
+        },
+    ],
+    "typeform": [
+        {
+            "name": "Jinshuju",
+            "homepage_url": "https://jinshuju.net/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Surveys & Forms",
+            "source": "research",
+            "note": (
+                "Jinshuju (金数据) is the closest UX-oriented Typeform-style forms platform commonly "
+                "used in mainland China for polished intake flows and operational forms."
+            ),
+        },
+        {
+            "name": "WJX",
+            "homepage_url": "https://www.wjx.cn/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Surveys & Forms",
+            "source": "research",
+            "note": (
+                "WJX (问卷星) covers high-volume surveys and quizzes when Typeform was mainly used "
+                "for research collection rather than branded conversational UX."
+            ),
+        },
+        {
+            "name": "Tencent Questionnaire",
+            "homepage_url": "https://wj.qq.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Surveys & Forms",
+            "source": "research",
+            "note": (
+                "Tencent Questionnaire (腾讯问卷) is a simple free path for lightweight Typeform-like "
+                "intake when budget and WeChat distribution dominate."
+            ),
+        },
+    ],
+    "wordpress": [
+        {
+            "name": "Self-hosted WordPress on China cloud",
+            "homepage_url": "https://www.aliyun.com/product/swas",
+            "category": "Growth, Content & Experience",
+            "subcategory": "CMS & Website Building",
+            "source": "research",
+            "note": (
+                "Self-hosted WordPress on Alibaba Cloud, Tencent Cloud, or similar mainland hosting "
+                "with ICP filing is often the most direct path — WordPress software itself is not "
+                "blocked, but overseas WordPress.com / plugin CDN paths are unreliable."
+            ),
+        },
+        {
+            "name": "PageAdmin",
+            "homepage_url": "https://www.pageadmin.net/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "CMS & Website Building",
+            "source": "research",
+            "note": (
+                "PageAdmin is a domestic CMS commonly used for government, education, and Xinchuang "
+                "site clusters when WordPress plugin ecosystems and overseas updates are a liability."
+            ),
+        },
+        {
+            "name": "Baklib",
+            "homepage_url": "https://www.baklib.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "CMS & Website Building",
+            "source": "research",
+            "note": (
+                "Baklib is a China SaaS knowledge-base / help-center / content-portal path for teams "
+                "that used WordPress mainly for docs portals rather than marketing sites."
+            ),
+        },
+    ],
+    "gumroad": [
+        {
+            "name": "Youzan Cloud",
+            "homepage_url": "https://www.youzan.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Ecommerce & Creator Commerce",
+            "source": "research",
+            "note": (
+                "Youzan Cloud (有赞) is a mainland commerce stack for digital and physical products "
+                "with WeChat Mini Program storefronts — a common Gumroad substitute for creator/SMB selling in China."
+            ),
+        },
+        {
+            "name": "Afdian",
+            "homepage_url": "https://afdian.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Ecommerce & Creator Commerce",
+            "source": "research",
+            "note": (
+                "Afdian (爱发电) is a China creator patronage / digital-goods platform closer to "
+                "Gumroad for memberships, tips, and digital downloads aimed at Chinese audiences."
+            ),
+        },
+        {
+            "name": "WeChat Mini Program Store",
+            "homepage_url": "https://mp.weixin.qq.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Ecommerce & Creator Commerce",
+            "source": "research",
+            "note": (
+                "WeChat Mini Program commerce is often the real distribution surface for creator "
+                "products in mainland China — use native Mini Program store capabilities or a Youzan-built storefront."
+            ),
+        },
+    ],
+    "n8n": [
+        {
+            "name": "Jijyun",
+            "homepage_url": "https://www.jijyun.cn/",
+            "category": "Developer Tools & Platforms",
+            "subcategory": "Automation & Integration",
+            "source": "research",
+            "note": (
+                "Jijyun (集简云) is a China iPaaS / automation platform commonly evaluated as an "
+                "n8n or Zapier-style connector hub for domestic SaaS integrations."
+            ),
+        },
+        {
+            "name": "Jiandaoyun",
+            "homepage_url": "https://www.jiandaoyun.com/",
+            "category": "Developer Tools & Platforms",
+            "subcategory": "Automation & Integration",
+            "source": "research",
+            "note": (
+                "Jiandaoyun (简道云) is a low-code platform with automation and approvals — strong "
+                "when n8n was used to glue internal forms, CRM, and ops workflows."
+            ),
+        },
+        {
+            "name": "DingTalk Yida",
+            "homepage_url": "https://www.aliwork.com/",
+            "category": "Developer Tools & Platforms",
+            "subcategory": "Automation & Integration",
+            "source": "research",
+            "note": (
+                "DingTalk Yida (宜搭) is Alibaba's low-code automation layer inside DingTalk — best "
+                "when the organization already runs on DingTalk and needs workflow automation onshore."
+            ),
+        },
+        {
+            "name": "Qingflow",
+            "homepage_url": "https://www.qingflow.com/",
+            "category": "Developer Tools & Platforms",
+            "subcategory": "Automation & Integration",
+            "source": "research",
+            "note": (
+                "Qingflow (轻流) is a China no-code/low-code workflow builder for operational "
+                "automation when teams want less DIY than self-hosted n8n."
+            ),
+        },
+    ],
+    "hubspot": [
+        {
+            "name": "Fxiaoke",
+            "homepage_url": "https://www.fxiaoke.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "CRM & Marketing Automation",
+            "source": "research",
+            "note": (
+                "Fxiaoke (纷享销客) is a leading China CRM / sales-engagement suite commonly "
+                "evaluated instead of HubSpot for mainland go-to-market teams."
+            ),
+        },
+        {
+            "name": "Neocrm",
+            "homepage_url": "https://www.xiaoshouyi.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "CRM & Marketing Automation",
+            "source": "research",
+            "note": (
+                "Neocrm / Xiaoshouyi (销售易) is an enterprise CRM path with strong sales cloud "
+                "depth for mid-to-large China GTM organizations."
+            ),
+        },
+        {
+            "name": "Zhichi",
+            "homepage_url": "https://www.zhichi.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "CRM & Marketing Automation",
+            "source": "research",
+            "note": (
+                "Zhichi (智齿科技) covers customer engagement / service cloud use cases that often "
+                "sit beside HubSpot Service Hub for China-facing support."
+            ),
+        },
+    ],
+    "mailchimp": [
+        {
+            "name": "SendCloud",
+            "homepage_url": "https://www.sendcloud.net/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Email Marketing & EDM",
+            "source": "research",
+            "note": (
+                "SendCloud is a long-standing domestic email delivery and marketing provider with "
+                "strong API coverage — a practical Mailchimp substitute for technical teams."
+            ),
+        },
+        {
+            "name": "U-Mail",
+            "homepage_url": "https://www.magvision.com/mail/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Email Marketing & EDM",
+            "source": "research",
+            "note": (
+                "U-Mail is a domestic email marketing platform with automation and domestic plus "
+                "international delivery channels for campaigns that Mailchimp cannot reliably deliver in China."
+            ),
+        },
+        {
+            "name": "Alibaba Cloud DirectMail",
+            "homepage_url": "https://www.aliyun.com/product/directmail",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Email Marketing & EDM",
+            "source": "research",
+            "note": (
+                "Alibaba Cloud DirectMail is transactional/marketing email infrastructure on Alibaba "
+                "Cloud when Mailchimp was mainly an SMTP / trigger-mail dependency."
+            ),
+        },
+        {
+            "name": "Zoho Campaigns",
+            "homepage_url": "https://www.zoho.com.cn/campaigns/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Email Marketing & EDM",
+            "source": "research",
+            "note": (
+                "Zoho Campaigns offers a more full-featured email marketing suite with China local "
+                "presence — useful when teams want Mailchimp-like campaigns with onshore operations."
+            ),
+        },
+    ],
+    "github pages": [
+        {
+            "name": "Alibaba Cloud Static Website Hosting",
+            "homepage_url": "https://help.aliyun.com/document_detail/31872.html",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Static Hosting & CDN",
+            "source": "research",
+            "note": (
+                "Alibaba Cloud OSS static website hosting plus China CDN is a common GitHub Pages "
+                "replacement for docs and marketing sites that must load reliably in mainland China."
+            ),
+        },
+        {
+            "name": "Tencent Cloud Static Website Hosting",
+            "homepage_url": "https://cloud.tencent.com/product/cos",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Static Hosting & CDN",
+            "source": "research",
+            "note": (
+                "Tencent Cloud COS static website hosting with China CDN is the Tencent-stack "
+                "equivalent path for GitHub Pages-style static sites."
+            ),
+        },
+        {
+            "name": "Gitee Pages",
+            "homepage_url": "https://gitee.com/help/articles/4136",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Static Hosting & CDN",
+            "source": "research",
+            "note": (
+                "Gitee Pages is a domestic Git-hosted pages product closer to the GitHub Pages "
+                "developer workflow for China-based repos (confirm current product availability and ICP needs)."
+            ),
+        },
+    ],
+    "google authenticator": [
+        {
+            "name": "Microsoft Authenticator",
+            "homepage_url": "https://www.microsoft.com/en-us/security/mobile-authenticator-app",
+            "category": "Trust, Identity & Compliance",
+            "subcategory": "Multi-factor Authentication",
+            "source": "research",
+            "note": (
+                "Microsoft Authenticator is often reachable as a TOTP app alternative when Google "
+                "Authenticator distribution or Play Store access is the blocker — still validate mainland app-store availability for your users."
+            ),
+        },
+        {
+            "name": "Authing MFA",
+            "homepage_url": "https://www.authing.cn/",
+            "category": "Trust, Identity & Compliance",
+            "subcategory": "Multi-factor Authentication",
+            "source": "research",
+            "note": (
+                "Authing provides China-oriented identity and MFA for product login stacks that need "
+                "onshore IdP controls beyond a consumer authenticator app."
+            ),
+        },
+        {
+            "name": "WeChat Login",
+            "homepage_url": "https://open.weixin.qq.com/",
+            "category": "Trust, Identity & Compliance",
+            "subcategory": "Multi-factor Authentication",
+            "source": "research",
+            "note": (
+                "For China consumer apps, WeChat Login plus SMS OTP often replaces Google "
+                "Authenticator-centric MFA patterns entirely."
+            ),
+        },
+    ],
+    "microsoft authenticator": [
+        {
+            "name": "Authing MFA",
+            "homepage_url": "https://www.authing.cn/",
+            "category": "Trust, Identity & Compliance",
+            "subcategory": "Multi-factor Authentication",
+            "source": "research",
+            "note": (
+                "Authing MFA is a China identity platform path when Microsoft Authenticator cannot "
+                "be the default second factor for mainland user populations."
+            ),
+        },
+        {
+            "name": "WeChat Login",
+            "homepage_url": "https://open.weixin.qq.com/",
+            "category": "Trust, Identity & Compliance",
+            "subcategory": "Multi-factor Authentication",
+            "source": "research",
+            "note": (
+                "WeChat Login with SMS OTP is the mainstream consumer authentication pattern in "
+                "mainland China when authenticator-app MFA has poor coverage."
+            ),
+        },
+        {
+            "name": "Alibaba Cloud MFA",
+            "homepage_url": "https://www.aliyun.com/product/ram",
+            "category": "Trust, Identity & Compliance",
+            "subcategory": "Multi-factor Authentication",
+            "source": "research",
+            "note": (
+                "Alibaba Cloud RAM MFA covers cloud-console and workforce second-factor needs inside "
+                "Alibaba Cloud accounts as a Microsoft Authenticator operational substitute."
+            ),
+        },
+    ],
+    # === END HUB P0P1 OVERRIDES ===
+
 }
 
 # Force mainland China availability labels when research revises the catalog entry.
@@ -2218,6 +2920,27 @@ AVAILABILITY_OVERRIDES = {
     "facebook login": "Unavailable",
     "google maps platform": "Unavailable",
     "logrocket": "Limited",
+
+    # === BEGIN HUB P0P1 OVERRIDES ===
+    "microsoft teams": "Limited",
+    "webex": "Limited",
+    "zoom sdk": "Limited",
+    "docusign": "Unavailable",
+    "dropbox sign": "Unavailable",
+    "adobe acrobat sign": "Unavailable",
+    "qualtrics": "Limited",
+    "surveymonkey": "Limited",
+    "typeform": "Limited",
+    "wordpress": "Limited",
+    "gumroad": "Unavailable",
+    "n8n": "Limited",
+    "hubspot": "Limited",
+    "mailchimp": "Limited",
+    "github pages": "Limited",
+    "google authenticator": "Limited",
+    "microsoft authenticator": "Limited",
+    # === END HUB P0P1 OVERRIDES ===
+
 }
 
 # Optional display-name polish when the seed catalog spelling differs from brand form.
@@ -2234,6 +2957,121 @@ RESEARCH_NOTE = (
     "Confirm replacement fit, compliance, and operating constraints before production adoption."
 )
 RESEARCH_NOTES = {
+    # === BEGIN HUB P0P1 OVERRIDES ===
+    "microsoft teams": (
+        "Microsoft Teams is Limited in mainland China: the service is often reachable for "
+        "international firms, but latency, call quality, and China-workplace ecosystem fit are "
+        "weak versus DingTalk, Feishu/Lark, WeCom, and Tencent Meeting. Prefer those domestic "
+        "suites for mainland-first collaboration. These appear on the alternatives page only — "
+        "not as Explore / Landscape product tiles. Confirm network performance and compliance "
+        "before production adoption."
+    ),
+    "webex": (
+        "Webex is Limited in mainland China: meetings may connect, but day-to-day reliability and "
+        "China collaboration-ecosystem fit lag Tencent Meeting, DingTalk, Feishu, and WeCom. Prefer "
+        "those options for mainland-facing teams. These appear on the alternatives page only — not "
+        "as Explore / Landscape product tiles. Confirm call quality and compliance before adoption."
+    ),
+    "zoom sdk": (
+        "Zoom (including Zoom client and Zoom SDK paths teams mean by “does Zoom work in China”) is "
+        "Limited in mainland China: consumer/client use can be inconsistent, and product teams "
+        "embedding Zoom SDK should not assume Zoom is a stable China RTC dependency. Prefer Tencent "
+        "Meeting for standalone meetings, and Agora or NetEase Yunxin for embedded RTC. DingTalk is "
+        "useful when Zoom was mainly internal collaboration. These appear on the alternatives page "
+        "only — not as Explore / Landscape product tiles. Confirm RTC quality and compliance before "
+        "production adoption."
+    ),
+    "docusign": (
+        "DocuSign is Unavailable for practical mainland China legal e-signature workflows: overseas "
+        "SaaS signing rarely matches China Electronic Signature Law evidence expectations, CA "
+        "practices, and mainland signer UX. Prefer eSignBao (e签宝), Fadada (法大大), BestSign "
+        "(上上签), or Tencent eSign. These appear on the alternatives page only — not as Explore / "
+        "Landscape product tiles. Confirm legal counsel review before production adoption."
+    ),
+    "dropbox sign": (
+        "Dropbox Sign (HelloSign) is Unavailable for practical mainland China legal e-signature "
+        "workflows. Prefer eSignBao (e签宝), Fadada (法大大), BestSign (上上签), or Tencent eSign "
+        "for onshore signing and evidence preservation. These appear on the alternatives page only — "
+        "not as Explore / Landscape product tiles. Confirm legal fit before production adoption."
+    ),
+    "adobe acrobat sign": (
+        "Adobe Acrobat Sign is Unavailable for practical mainland China legal e-signature workflows. "
+        "Prefer eSignBao (e签宝), Fadada (法大大), BestSign (上上签), or Tencent eSign. These appear "
+        "on the alternatives page only — not as Explore / Landscape product tiles. Confirm legal "
+        "counsel review before production adoption."
+    ),
+    "qualtrics": (
+        "Qualtrics is Limited in mainland China: the overseas XM platform may be reachable for some "
+        "enterprises, but research operations usually move to WJX (问卷星), Jinshuju (金数据), "
+        "Tencent Questionnaire, or Credamo (见数). These appear on the alternatives page only — not "
+        "as Explore / Landscape product tiles. Confirm PIPL consent and panel quality before adoption."
+    ),
+    "surveymonkey": (
+        "SurveyMonkey is Limited in mainland China for production research stacks. Prefer WJX "
+        "(问卷星), Jinshuju (金数据), or Tencent Questionnaire. These appear on the alternatives "
+        "page only — not as Explore / Landscape product tiles. Confirm consent and deliverability "
+        "into China audiences before adoption."
+    ),
+    "typeform": (
+        "Typeform is Limited in mainland China: polished overseas forms are often slow or poorly "
+        "adopted versus Jinshuju (金数据), WJX (问卷星), and Tencent Questionnaire. These appear on "
+        "the alternatives page only — not as Explore / Landscape product tiles. Confirm UX and PIPL "
+        "fit before production adoption."
+    ),
+    "wordpress": (
+        "WordPress is Limited for mainland China production sites when teams rely on WordPress.com "
+        "or overseas plugin/theme CDNs: those paths are slow or unreliable. Self-hosted WordPress on "
+        "China cloud with ICP filing can work; otherwise evaluate PageAdmin or Baklib for domestic "
+        "CMS needs. These appear on the alternatives page only — not as Explore / Landscape product "
+        "tiles. Confirm ICP, hosting, and plugin update paths before adoption."
+    ),
+    "gumroad": (
+        "Gumroad is Unavailable for practical mainland China creator commerce: payments, audience "
+        "distribution, and WeChat-centric buying journeys do not map cleanly. Prefer Youzan Cloud "
+        "(有赞), Afdian (爱发电), or WeChat Mini Program storefronts. These appear on the "
+        "alternatives page only — not as Explore / Landscape product tiles. Confirm payments and "
+        "content compliance before adoption."
+    ),
+    "n8n": (
+        "n8n is Limited in mainland China: self-hosting can work on China infrastructure, but "
+        "n8n Cloud and many global SaaS connectors are a weak fit. Prefer Jijyun (集简云), "
+        "Jiandaoyun (简道云), DingTalk Yida (宜搭), or Qingflow (轻流) for onshore automation. "
+        "These appear on the alternatives page only — not as Explore / Landscape product tiles. "
+        "Confirm connector coverage and data residency before adoption."
+    ),
+    "hubspot": (
+        "HubSpot is Limited in mainland China: the overseas CRM/marketing hub is usually reachable "
+        "for international teams, but China GTM usually needs Fxiaoke (纷享销客), Neocrm (销售易), "
+        "or adjacent service clouds such as Zhichi. These appear on the alternatives page only — "
+        "not as Explore / Landscape product tiles. Confirm WeCom integrations and PIPL before adoption."
+    ),
+    "mailchimp": (
+        "Mailchimp is Limited in mainland China: admin access may work, but deliverability into QQ/"
+        "163 and similar domestic inboxes is poor. Prefer SendCloud, U-Mail, Alibaba Cloud "
+        "DirectMail, or Zoho Campaigns. These appear on the alternatives page only — not as Explore "
+        "/ Landscape product tiles. Confirm deliverability before production adoption."
+    ),
+    "github pages": (
+        "GitHub Pages is Limited for mainland China audiences: GitHub/jsDelivr and related overseas "
+        "static paths are often slow or intermittently unreachable. Prefer Alibaba Cloud or Tencent "
+        "Cloud static hosting with China CDN, or Gitee Pages for a git-pages workflow. These appear "
+        "on the alternatives page only — not as Explore / Landscape product tiles. Confirm ICP "
+        "filing needs before public launch."
+    ),
+    "google authenticator": (
+        "Google Authenticator is Limited as a default MFA path for mainland China user bases: Play "
+        "Store distribution and Google account assumptions break for many users. Prefer China IdP MFA "
+        "(for example Authing), WeChat Login + SMS OTP for consumers, or alternate TOTP apps where "
+        "needed. These appear on the alternatives page only — not as Explore / Landscape product "
+        "tiles. Confirm app-store coverage before mandating authenticator MFA."
+    ),
+    "microsoft authenticator": (
+        "Microsoft Authenticator is Limited as a universal MFA default in mainland China. Prefer "
+        "Authing MFA, WeChat Login + SMS OTP for consumers, or cloud-RAM MFA for Alibaba Cloud "
+        "workforce accounts. These appear on the alternatives page only — not as Explore / Landscape "
+        "product tiles. Confirm device distribution before mandating the app."
+    ),
+    # === END HUB P0P1 OVERRIDES ===
     "visual studio app center": (
         "Visual Studio App Center is Unavailable for mainland China: Microsoft retired App Center "
         "on March 31, 2025, and Analytics / Diagnostics ended June 30, 2026. Even before retirement, "
@@ -2888,6 +3726,52 @@ def main() -> None:
     # Keep this allowlist tight — OVERRIDES also covers names that should not become
     # standalone catalog pages just because a research note exists.
     INJECT_IF_MISSING = {
+        # === BEGIN HUB P0P1 OVERRIDES ===
+        "microsoft teams": {
+            "name": "Microsoft Teams",
+            "categories": ["Collaboration & Productivity"],
+        },
+        "webex": {
+            "name": "Webex",
+            "categories": ["Collaboration & Productivity"],
+        },
+        "docusign": {
+            "name": "DocuSign",
+            "categories": ["Trust, Identity & Compliance"],
+        },
+        "dropbox sign": {
+            "name": "Dropbox Sign",
+            "categories": ["Trust, Identity & Compliance"],
+        },
+        "adobe acrobat sign": {
+            "name": "Adobe Acrobat Sign",
+            "categories": ["Trust, Identity & Compliance"],
+        },
+        "qualtrics": {
+            "name": "Qualtrics",
+            "categories": ["Growth, Content & Experience"],
+        },
+        "surveymonkey": {
+            "name": "SurveyMonkey",
+            "categories": ["Growth, Content & Experience"],
+        },
+        "typeform": {
+            "name": "Typeform",
+            "categories": ["Growth, Content & Experience"],
+        },
+        "wordpress": {
+            "name": "WordPress",
+            "categories": ["Growth, Content & Experience"],
+        },
+        "gumroad": {
+            "name": "Gumroad",
+            "categories": ["Growth, Content & Experience"],
+        },
+        "n8n": {
+            "name": "n8n",
+            "categories": ["Developer Tools & Platforms"],
+        },
+        # === END HUB P0P1 OVERRIDES ===
         "facebook login": {
             "name": "Facebook Login",
             "categories": ["Authentication & Identity"],
