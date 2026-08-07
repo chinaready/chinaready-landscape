@@ -6393,10 +6393,18 @@ function pageShell({
   stickyCta = "",
   robots = DEFAULT_ROBOTS,
   includeSearchScript = true,
+  wrapClass = "cr-alt-wrap",
+  bodyExtraClass = "",
 }) {
   const canonical = canonicalPath === "/" ? HOME_CANONICAL : `${SITE_URL}${canonicalPath}`;
   const hasStickyCta = stickyCta.trim().length > 0;
-  const bodyClass = hasStickyCta ? "cr-alt-body cr-alt-body--sticky" : "cr-alt-body";
+  const bodyClass = [
+    "cr-alt-body",
+    hasStickyCta ? "cr-alt-body--sticky" : "",
+    bodyExtraClass,
+  ]
+    .filter(Boolean)
+    .join(" ");
   const breadcrumbLd =
     breadcrumbs.length > 0
       ? {
@@ -6451,7 +6459,7 @@ function pageShell({
   <a class="cr-skip" href="#main">Skip to content</a>
   ${renderSharedHeader({ activeNav })}
   <main id="main" class="cr-alt-main">
-    <div class="cr-alt-wrap">
+    <div class="${escapeHtml(wrapClass)}">
 ${body}
     </div>
   </main>
@@ -7380,6 +7388,87 @@ function renderNotFoundPage() {
   });
 }
 
+/**
+ * Mirror landscape2 `normalize_name` so Guide anchors match Explore deep links
+ * like `/guide#infrastructure-edge--cloud-platform-hosting`.
+ */
+function normalizeGuideName(text) {
+  const validChar = /[\p{L}\p{N}\- +]/u;
+  let normalized = String(text || "")
+    .trim()
+    .replace(/ /g, "-")
+    .split("")
+    .map((char) => (validChar.test(char) ? char.toLowerCase() : "-"))
+    .join("")
+    .replace(/-{2,}/g, "-");
+  if (normalized.endsWith("-")) normalized = normalized.slice(0, -1);
+  return normalized;
+}
+
+function buildGuideSectionId(categoryName, subcategoryName) {
+  const categoryId = normalizeGuideName(categoryName);
+  if (!subcategoryName) return categoryId;
+  return `${categoryId}--${normalizeGuideName(subcategoryName)}`;
+}
+
+function renderGuideIndexMenu(categories) {
+  const items = [];
+  for (const category of categories) {
+    const catId = buildGuideSectionId(category.category);
+    const isOverview = /^overview$/i.test(category.category);
+    items.push(`<button
+          type="button"
+          id="btn_${escapeHtml(catId)}"
+          class="cr-guide-menu-link cr-guide-menu-link--level-0${isOverview ? " is-active" : ""}"
+          data-guide-target="${escapeHtml(catId)}"
+          aria-label="Open ${escapeHtml(category.category)} section"
+        >${escapeHtml(category.category)}</button>`);
+
+    if (isOverview) {
+      // Peer Level-0 entry after Overview (same placement as enhanceGuideGlobalMenu on SPA Guide).
+      items.push(`<a
+          id="btn_global"
+          class="cr-guide-menu-link cr-guide-menu-link--level-0 cr-guide-global-link"
+          href="/alternatives/"
+          data-chinaready-global-menu="true"
+          aria-label="Open Global alternatives index"
+        >Global</a>
+        <div class="mb-3" data-chinaready-global-menu="spacer"></div>`);
+    }
+
+    const subs = category.subcategories || [];
+    if (subs.length === 0) {
+      if (!isOverview) items.push(`<div class="mb-3"></div>`);
+      continue;
+    }
+    const subLinks = subs
+      .map((sub) => {
+        const subId = buildGuideSectionId(category.category, sub.subcategory);
+        return `<button
+          type="button"
+          id="btn_${escapeHtml(subId)}"
+          class="cr-guide-menu-link cr-guide-menu-link--level-1"
+          data-guide-target="${escapeHtml(subId)}"
+          aria-label="Open ${escapeHtml(sub.subcategory)} section"
+        >${escapeHtml(sub.subcategory)}</button>`;
+      })
+      .join("\n          ");
+    items.push(`<div class="mb-3">
+          ${subLinks}
+        </div>`);
+  }
+
+  // Match landscape2 ToC.tsx: sticky 350px card with Index header + #menu list.
+  return `<aside class="cr-guide-toc" aria-label="Guide categories">
+      <div class="cr-guide-toc-card">
+        <div class="cr-guide-menu-heading">Index</div>
+        <nav id="menu" class="cr-guide-menu">
+          ${items.join("\n          ")}
+        </nav>
+      </div>
+    </aside>`;
+}
+
 function renderGuidePage(guide) {
   const description = clipMeta(
     "China developer stack guide by category — what belongs where for mainland launches, with notes on familiar global services and links to China alternative maps.",
@@ -7387,17 +7476,17 @@ function renderGuidePage(guide) {
   const categories = guide?.categories || [];
   const sections = categories
     .map((category) => {
-      const id = `guide-${slugify(category.category)}`;
+      const id = buildGuideSectionId(category.category);
       const subcats = (category.subcategories || [])
         .map((sub) => {
-          const subId = `${id}-${slugify(sub.subcategory)}`;
-          return `<section class="cr-alt-guide-sub" aria-labelledby="${escapeHtml(subId)}">
+          const subId = buildGuideSectionId(category.category, sub.subcategory);
+          return `<section class="cr-alt-guide-sub" id="section_${escapeHtml(subId)}" aria-labelledby="${escapeHtml(subId)}">
         <h3 id="${escapeHtml(subId)}">${escapeHtml(sub.subcategory)}</h3>
         <div class="cr-alt-prose">${sub.content || ""}</div>
       </section>`;
         })
         .join("\n");
-      return `<section aria-labelledby="${escapeHtml(id)}">
+      return `<section class="cr-guide-section" id="section_${escapeHtml(id)}" aria-labelledby="${escapeHtml(id)}">
         <h2 id="${escapeHtml(id)}">${escapeHtml(category.category)}</h2>
         <div class="cr-alt-prose">${category.content || ""}</div>
         ${subcats}
@@ -7406,20 +7495,71 @@ function renderGuidePage(guide) {
     .join("\n");
 
   const guideTitle = brandedTitle("China Developer Stack Guide by Category");
+  const firstId = categories[0] ? buildGuideSectionId(categories[0].category) : "overview";
   const body = `
-      <nav class="cr-alt-breadcrumbs" aria-label="Breadcrumb">
-        <a href="/">Home</a> / <span>Guide</span>
-      </nav>
-      <p class="cr-alt-kicker">Guide</p>
-      <h1>Chinaready Landscape Guide</h1>
-      <p class="cr-alt-lede">China developer stack guide by category — what typically belongs in payments, identity, messaging, cloud, growth, and more. When you already know a global product keyword, open the <a href="/alternatives/">Global alternatives index</a> for China-ready candidates and availability notes.</p>
-      ${sections}`;
+      <div class="cr-guide-layout">
+        ${renderGuideIndexMenu(categories)}
+        <div class="cr-guide-content">
+          <nav class="cr-alt-breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">Home</a> / <span>Guide</span>
+          </nav>
+          <p class="cr-alt-kicker">Guide</p>
+          <h1>Chinaready Landscape Guide</h1>
+          <p class="cr-alt-lede">China developer stack guide by category — what typically belongs in payments, identity, messaging, cloud, growth, and more. When you already know a global product keyword, open the <a href="/alternatives/">Global alternatives index</a> for China-ready candidates and availability notes.</p>
+          ${sections}
+        </div>
+      </div>
+      <script>
+        (() => {
+          const firstId = ${JSON.stringify(firstId)};
+          const links = Array.from(document.querySelectorAll("[data-guide-target]"));
+          const setActive = (id) => {
+            for (const link of links) {
+              link.classList.toggle("is-active", link.dataset.guideTarget === id);
+            }
+          };
+          const scrollToId = (id, replace) => {
+            const target =
+              document.getElementById(id) ||
+              document.getElementById("section_" + id);
+            if (!target) return;
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+            const url = "#"+id;
+            if (replace) history.replaceState(null, "", url);
+            else history.pushState(null, "", url);
+            setActive(id);
+            const btn = document.getElementById("btn_" + id);
+            if (btn && typeof btn.scrollIntoView === "function") {
+              btn.scrollIntoView({ block: "nearest" });
+            }
+          };
+          for (const link of links) {
+            link.addEventListener("click", (event) => {
+              const id = link.dataset.guideTarget;
+              if (!id) return;
+              event.preventDefault();
+              scrollToId(id, false);
+            });
+          }
+          const initial = (location.hash || "").replace(/^#/, "") || firstId;
+          setActive(initial);
+          if (location.hash) {
+            requestAnimationFrame(() => scrollToId(initial, true));
+          }
+          window.addEventListener("hashchange", () => {
+            const id = (location.hash || "").replace(/^#/, "");
+            if (id) scrollToId(id, true);
+          });
+        })();
+      </script>`;
 
   return pageShell({
     title: guideTitle,
     description,
     canonicalPath: "/guide",
     activeNav: "guide",
+    wrapClass: "cr-alt-wrap cr-alt-wrap--guide",
+    bodyExtraClass: "cr-guide-page",
     breadcrumbs: [
       { name: "Home", path: "/" },
       { name: "Guide", path: "/guide" },

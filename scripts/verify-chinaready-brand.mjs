@@ -383,6 +383,21 @@ if (exists("build/guide.html")) {
   );
   assert(guidePage.includes('property="og:image"'), "static guide page must declare og:image");
   assert(guidePage.includes("/alternatives/"), "static guide page must link to alternatives");
+  assert(guidePage.includes('id="menu"'), "static guide page must keep the left category Index menu");
+  assert(guidePage.includes('id="btn_overview"'), "static guide Index must include Overview");
+  assert(
+    guidePage.includes('data-guide-target="infrastructure-edge--cloud-platform-hosting"'),
+    "static guide Index must use Explore-compatible category--subcategory anchors",
+  );
+  assert(
+    guidePage.includes('id="infrastructure-edge--cloud-platform-hosting"'),
+    "static guide content must expose Explore deep-link targets",
+  );
+  assert(
+    guidePage.includes('data-chinaready-global-menu="true"'),
+    "static guide Index must include the Global peer menu link",
+  );
+  assert(guidePage.includes("cr-guide-toc-card"), "static guide Index must use the CNCF-style bordered Index card");
 }
 
 if (exists("build/404.html")) {

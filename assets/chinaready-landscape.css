@@ -248,17 +248,20 @@ header a.cr-site-get-help:hover,
   color: #ffffff !important;
 }
 
+/* Guide Index Global peer link — match landscape2 ToC level-0 muted btn-link look */
 a.cr-guide-global-link,
 a[data-chinaready-global-menu] {
   display: block !important;
-  color: #5a6a80 !important;
+  color: #6c757d !important;
   font-weight: 600 !important;
   text-decoration: none !important;
 }
 
 a.cr-guide-global-link:hover,
 a[data-chinaready-global-menu]:hover {
-  color: #005bac !important;
+  color: inherit !important;
+  background-color: #f8f9fa !important;
+  text-decoration: underline !important;
 }
 
 .cr-landscape-profile {

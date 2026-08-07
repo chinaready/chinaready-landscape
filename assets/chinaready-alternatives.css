@@ -277,6 +277,158 @@ a:hover {
   margin: 0 auto;
 }
 
+.cr-alt-wrap--guide {
+  width: min(1440px, calc(100% - 32px));
+}
+
+/*
+ * Guide Index — align with CNCF landscape2 ToC.module.css / ToC.tsx:
+ * sticky 350px card, Index header, btn-link rows, gray active + left caret.
+ */
+.cr-guide-layout {
+  display: grid;
+  grid-template-columns: 350px minmax(0, 1fr);
+  gap: 0 24px;
+  align-items: start;
+}
+
+.cr-guide-toc {
+  position: sticky;
+  top: 4.5rem;
+  width: 350px;
+  max-width: 350px;
+  min-width: 350px;
+  max-height: calc(100vh - 4.5rem);
+  padding: 1.5rem 0 1rem;
+  bottom: 1rem;
+}
+
+.cr-guide-toc-card {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 0.25rem);
+  max-height: calc(100vh - 4.5rem - 2.5rem);
+  overflow: hidden;
+  border: 1px solid var(--cr-border);
+  border-radius: 0;
+  background: #ffffff;
+}
+
+.cr-guide-menu-heading {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 1rem 1.5rem;
+  color: var(--cr-brand-blue);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--cr-border);
+}
+
+.cr-guide-menu {
+  flex: 1 1 auto;
+  overflow: auto;
+  padding: 1rem 0;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.cr-guide-menu .mb-3 {
+  margin-bottom: 1rem;
+}
+
+.cr-guide-menu-link {
+  display: block;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0.25rem 1rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #6c757d;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: left;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.cr-guide-menu-link--level-0 {
+  padding-left: 1.5rem !important;
+}
+
+.cr-guide-menu-link--level-1 {
+  padding-left: 2.5rem !important;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.cr-guide-menu-link:hover {
+  color: inherit;
+  background-color: #f8f9fa;
+  text-decoration: underline;
+}
+
+.cr-guide-menu-link.is-active {
+  color: var(--cr-brand-blue);
+  background-color: #f8f9fa;
+  text-decoration: none;
+}
+
+.cr-guide-menu-link.is-active::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: calc(50% - 6px);
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid var(--cr-brand-blue);
+}
+
+.cr-guide-menu-link.is-active:hover {
+  color: var(--cr-brand-blue);
+  text-decoration: none;
+}
+
+a.cr-guide-menu-link.cr-guide-global-link,
+a.cr-guide-global-link {
+  color: #6c757d;
+  font-weight: 600;
+}
+
+a.cr-guide-menu-link.cr-guide-global-link:hover,
+a.cr-guide-global-link:hover {
+  color: inherit;
+  background-color: #f8f9fa;
+  text-decoration: underline;
+}
+
+.cr-guide-content {
+  min-width: 0;
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.cr-guide-content .cr-guide-section,
+.cr-guide-content .cr-alt-guide-sub,
+.cr-guide-content h2,
+.cr-guide-content h3 {
+  scroll-margin-top: 6rem;
+}
+
+.cr-guide-content h1 {
+  max-width: 72ch;
+}
+
 .cr-alt-kicker {
   margin: 0 0 10px;
   color: var(--cr-brand-blue);
@@ -544,6 +696,42 @@ a:hover {
 
 .cr-alt-body--sticky.cr-alt-sticky-cta-away .cr-site-footer {
   padding-bottom: 0;
+}
+
+@media (max-width: 991.98px) {
+  .cr-guide-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .cr-guide-toc {
+    position: relative;
+    top: 0;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    max-height: none;
+    padding: 1rem 0 0;
+  }
+
+  .cr-guide-toc-card {
+    max-height: none;
+  }
+
+  .cr-guide-menu {
+    max-height: 240px;
+  }
+
+  .cr-guide-content {
+    padding-top: 1rem;
+  }
+
+  .cr-guide-content .cr-guide-section,
+  .cr-guide-content .cr-alt-guide-sub,
+  .cr-guide-content h2,
+  .cr-guide-content h3 {
+    scroll-margin-top: 4rem;
+  }
 }
 
 @media (max-width: 720px) {
