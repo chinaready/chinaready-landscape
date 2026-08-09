@@ -6934,6 +6934,15 @@ function renderCloudflareRedirects() {
 /alternatives/adobe-sign.html /alternatives/adobe-acrobat-sign 301
 /alternatives/hellosign /alternatives/dropbox-sign 301
 /alternatives/hellosign.html /alternatives/dropbox-sign 301
+# Removed Global alternatives still in GSC as 404 — fold into nearest live page.
+/alternatives/acast /alternatives/buzzsprout 301
+/alternatives/acast.html /alternatives/buzzsprout 301
+/alternatives/castos /alternatives/buzzsprout 301
+/alternatives/castos.html /alternatives/buzzsprout 301
+/alternatives/callkit /alternatives/agora 301
+/alternatives/callkit.html /alternatives/agora 301
+/alternatives/amazon-route-53 / 301
+/alternatives/amazon-route-53.html / 301
 `;
 }
 

@@ -746,6 +746,12 @@ if (exists("build/alternatives/index.html")) {
   assert(!exists("build/alternatives/castos.html"), "Castos must be removed from Global alternatives");
   assert(!exists("build/alternatives/liftoff-monetize.html"), "Liftoff Monetize must be removed from Global alternatives");
   assert(!exists("build/alternatives/callkit.html"), "CallKit must be removed from Global alternatives");
+  // GSC 404 drilldown (2026-08): removed pages must 301, not soft-404.
+  const redirects = read("build/_redirects");
+  assert(redirects.includes("/alternatives/acast.html /alternatives/buzzsprout 301"), "Acast 404 must redirect to Buzzsprout");
+  assert(redirects.includes("/alternatives/castos.html /alternatives/buzzsprout 301"), "Castos 404 must redirect to Buzzsprout");
+  assert(redirects.includes("/alternatives/callkit.html /alternatives/agora 301"), "CallKit 404 must redirect to Agora");
+  assert(redirects.includes("/alternatives/amazon-route-53.html / 301"), "Amazon Route 53 404 must redirect home");
   assert(!exists("build/alternatives/vmware-vsphere.html"), "VMware vSphere must be removed from Global alternatives");
   assert(!exists("build/alternatives/sentence-bert.html"), "Sentence-BERT must be removed from Global alternatives");
   assert(!exists("build/alternatives/pangle-ads.html"), "Pangle Ads must be removed from Global alternatives");
