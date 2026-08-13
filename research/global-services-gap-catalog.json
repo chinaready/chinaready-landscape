@@ -2,9 +2,9 @@
   "source": "Chinaready Landscape research shortlist for taxonomy-relevant global services",
   "generated_for": "alternatives index SEO expansion",
   "counts": {
-    "services": 128,
+    "services": 130,
     "uncertain_alternatives": 0,
-    "researched_alternatives": 104,
+    "researched_alternatives": 106,
     "heuristic_alternatives": 24
   },
   "availability_lookup": {
@@ -12,6 +12,11 @@
       "name": "ActiveCampaign",
       "availability": "Limited",
       "global_availability_in_china": "limited"
+    },
+    "adobe acrobat sign": {
+      "name": "Adobe Acrobat Sign",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
     },
     "adtrace": {
       "name": "Adtrace",
@@ -40,6 +45,11 @@
     },
     "amazon cloudwatch": {
       "name": "Amazon CloudWatch",
+      "availability": "Available",
+      "global_availability_in_china": "available"
+    },
+    "apple mapkit": {
+      "name": "Apple MapKit",
       "availability": "Available",
       "global_availability_in_china": "available"
     },
@@ -193,10 +203,20 @@
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
+    "docusign": {
+      "name": "DocuSign",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
     "drip": {
       "name": "Drip",
       "availability": "Limited",
       "global_availability_in_china": "limited"
+    },
+    "dropbox sign": {
+      "name": "Dropbox Sign",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
     },
     "dt exchange": {
       "name": "DT Exchange",
@@ -275,6 +295,11 @@
     },
     "google maps platform": {
       "name": "Google Maps Platform",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
+    "gumroad": {
+      "name": "Gumroad",
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
     },
@@ -393,6 +418,11 @@
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
+    "microsoft teams": {
+      "name": "Microsoft Teams",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
     "middleware": {
       "name": "Middleware.io",
       "availability": "Unavailable",
@@ -402,6 +432,11 @@
       "name": "Moloco",
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
+    },
+    "n8n": {
+      "name": "n8n",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
     },
     "okendo": {
       "name": "Okendo",
@@ -440,6 +475,11 @@
     },
     "pusher channels": {
       "name": "Pusher Channels",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "qualtrics": {
+      "name": "Qualtrics",
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
@@ -523,6 +563,11 @@
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
+    "surveymonkey": {
+      "name": "SurveyMonkey",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
     "teleport": {
       "name": "Teleport",
       "availability": "Limited",
@@ -542,6 +587,11 @@
       "name": "Trustpilot",
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
+    },
+    "typeform": {
+      "name": "Typeform",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
     },
     "unity levelplay": {
       "name": "Unity LevelPlay",
@@ -568,6 +618,16 @@
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
+    "webex": {
+      "name": "Webex",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "wordpress": {
+      "name": "WordPress",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
     "zenlayer": {
       "name": "Zenlayer",
       "availability": "Limited",
@@ -585,61 +645,11 @@
     },
     "zoom sdk": {
       "name": "Zoom SDK",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
-    },
-    "microsoft teams": {
-      "name": "Microsoft Teams",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
-    },
-    "webex": {
-      "name": "Webex",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
-    },
-    "docusign": {
-      "name": "DocuSign",
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
     },
-    "dropbox sign": {
-      "name": "Dropbox Sign",
-      "availability": "Unavailable",
-      "global_availability_in_china": "unavailable"
-    },
-    "adobe acrobat sign": {
-      "name": "Adobe Acrobat Sign",
-      "availability": "Unavailable",
-      "global_availability_in_china": "unavailable"
-    },
-    "qualtrics": {
-      "name": "Qualtrics",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
-    },
-    "surveymonkey": {
-      "name": "SurveyMonkey",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
-    },
-    "typeform": {
-      "name": "Typeform",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
-    },
-    "wordpress": {
-      "name": "WordPress",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
-    },
-    "gumroad": {
-      "name": "Gumroad",
-      "availability": "Unavailable",
-      "global_availability_in_china": "unavailable"
-    },
-    "n8n": {
-      "name": "n8n",
+    "aws": {
+      "name": "AWS",
       "availability": "Limited",
       "global_availability_in_china": "limited"
     }
@@ -911,6 +921,42 @@
       "confidence": "researched"
     },
     {
+      "name": "Apple MapKit",
+      "categories": [
+        "Location & Map Services"
+      ],
+      "availability": "Available",
+      "global_availability_in_china": "available",
+      "china_candidates": [
+        {
+          "name": "Amap",
+          "homepage_url": "https://lbs.amap.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Location & Map Services",
+          "source": "research",
+          "note": "Amap (高德地图) is strong on mainland road-network coverage (including rural roads), real-time traffic, and mobility integrations such as ride-hailing and EV charging — a primary MapKit alternative for driving, logistics, and travel Apps, plus Android / cross-platform builds."
+        },
+        {
+          "name": "Baidu Maps",
+          "homepage_url": "https://map.baidu.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Location & Map Services",
+          "source": "research",
+          "note": "Baidu Maps (百度地图) offers very rich POI coverage, indoor navigation for large malls and airports, panoramic views, and AI voice interaction — especially useful when MapKit localization depth is not enough for local-lifestyle or store-discovery Apps."
+        },
+        {
+          "name": "Tencent Maps",
+          "homepage_url": "https://map.qq.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Location & Map Services",
+          "source": "research",
+          "note": "Tencent Maps (腾讯地图) pairs baseline map coverage with tight WeChat ecosystem linkage for location sharing and Mini Program-native support — a fit when social sharing matters more than MapKit's Apple-only system integration."
+        }
+      ],
+      "research_note": "Apple MapKit is Available in mainland China: it is a system framework on Apple platforms, and mainland Apple Maps base data is licensed from Amap. Even so, teams often still evaluate Amap for mobility / logistics / driving, Baidu Maps for local lifestyle and indoor navigation, and Tencent Maps when WeChat sharing or Mini Program integration matters — especially for richer POI depth, advanced navigation features, or Android / cross-platform builds. Watch coordinate systems (WGS-84 vs GCJ-02 vs BD-09). Baidu Maps and Tencent Maps appear on the alternatives page as orientation options — not as Explore / Landscape product tiles from this research. Confirm product and SDK fit before production adoption.",
+      "confidence": "researched"
+    },
+    {
       "name": "Apple Search Ads",
       "categories": [
         "Mobile Advertising",
@@ -1118,6 +1164,35 @@
         }
       ],
       "research_note": "AWeber is Unavailable for practical mainland China use: cross-border experience is poor, and Chinaready does not recommend domestic China companies adopt it directly. Prefer Fengyou EDM (蜂邮) for domestic professional email marketing with local deliverability focus, and Zoho Campaigns for an international suite with mainland localization, Chinese-language support, and compliance certifications. These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm deliverability and compliance before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "AWS",
+      "categories": [
+        "Infrastructure & Edge",
+        "Cloud Platform & Hosting"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud",
+          "homepage_url": "https://www.alibabacloud.com/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "research",
+          "note": "Alibaba Cloud is a major mainland China cloud platform with broad compute, storage, networking, security, data, and application coverage — a common default when teams evaluate China cloud vendors instead of global AWS assumptions."
+        },
+        {
+          "name": "Tencent Cloud",
+          "homepage_url": "https://cloud.tencent.com/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "research",
+          "note": "Tencent Cloud is a strong mainland China cloud platform option, especially when the product already leans on Tencent ecosystems such as WeChat / WeCom and related Tencent Cloud services."
+        }
+      ],
+      "research_note": "AWS is Limited in mainland China: global AWS is not a China region toggle. AWS China is a separate partition (Beijing / Ningxia) with its own account rails, catalog gaps, and ICP adjacency — see chinaready.co/insights/aws-china-what-works/. When evaluating mainland China cloud vendors instead, prefer Alibaba Cloud and Tencent Cloud. Tencent Cloud appears on the alternatives page as an orientation option — not as an Explore / Landscape product tile from this research. Confirm region, ICP, and service catalog fit before production adoption.",
       "confidence": "researched"
     },
     {
@@ -5300,8 +5375,8 @@
         "Cloud Communications Platforms (CPaaS)",
         "Developer Tools & APIs"
       ],
-      "availability": "Limited",
-      "global_availability_in_china": "limited",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
       "china_candidates": [
         {
           "name": "Tencent Meeting",
@@ -5309,34 +5384,18 @@
           "category": "Collaboration & Productivity",
           "subcategory": "Team Messaging & Meetings",
           "source": "research",
-          "note": "Tencent Meeting (腾讯会议) is the primary mainland China video-meeting substitute for Zoom client use — strong China network performance for large calls and webinars."
+          "note": "Tencent Meeting SDK (腾讯会议 SDK) is a strong mainland embeddable substitute for Zoom SDK — product-grade UI SDK, 300+ APIs, WeCom / Tencent Docs depth, stable China networks, and MLPS Level 3–oriented compliance for general office, large meetings, and government/enterprise use."
         },
         {
-          "name": "Agora",
-          "homepage_url": "https://www.agora.io/",
-          "category": "Collaboration & Productivity",
-          "subcategory": "Real-time Communication",
-          "source": "research",
-          "note": "Agora (声网) is a real-time audio/video SDK platform commonly used when the product embeds Zoom SDK-style RTC rather than sending users to a standalone meeting app."
-        },
-        {
-          "name": "NetEase Yunxin",
-          "homepage_url": "https://yunxin.163.com/",
-          "category": "Collaboration & Productivity",
-          "subcategory": "Real-time Communication",
-          "source": "research",
-          "note": "NetEase Yunxin (网易云信) provides China-reachable RTC / IM SDKs for embedded calls, live interaction, and messaging — a common Zoom SDK replacement path for product teams."
-        },
-        {
-          "name": "DingTalk",
-          "homepage_url": "https://www.dingtalk.com/",
+          "name": "Feishu Meeting",
+          "homepage_url": "https://www.feishu.cn/product/vc",
           "category": "Collaboration & Productivity",
           "subcategory": "Team Messaging & Meetings",
           "source": "research",
-          "note": "DingTalk (钉钉) is a practical meetings + workplace suite substitute when Zoom was used for internal collaboration rather than embedded RTC."
+          "note": "Feishu Meeting SDK (飞书会议 SDK) is a strong mainland embeddable substitute when the product needs Feishu Docs/Base, calendar/tasks linkage, multi-language SDKs, and AI Agent / CLI automation for agile collaboration workflows."
         }
       ],
-      "research_note": "Zoom (including Zoom client and Zoom SDK paths teams mean by “does Zoom work in China”) is Limited in mainland China: consumer/client use can be inconsistent, and product teams embedding Zoom SDK should not assume Zoom is a stable China RTC dependency. Prefer Tencent Meeting for standalone meetings, and Agora or NetEase Yunxin for embedded RTC. DingTalk is useful when Zoom was mainly internal collaboration. These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm RTC quality and compliance before production adoption.",
+      "research_note": "Zoom SDK is Unavailable (or extremely unstable) in mainland China: Zoom has stopped offering direct mainland service, and cross-border network limits plus no China data-center path create severe connectivity blocks and compliance risk. Prefer Tencent Meeting SDK for general office, large meetings, government/enterprise compliance, or WeCom ecosystems; prefer Feishu Meeting SDK for agile collaboration, knowledge/task workflows, and AI Agent automation. These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm SDK quality and compliance before production adoption.",
       "confidence": "researched"
     }
   ]

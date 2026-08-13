@@ -1376,7 +1376,7 @@ for (const item of items) {
     gumroad: ["Youzan Cloud", "Afdian"],
     "adobe-acrobat-sign": ["eSignBao", "Fadada", "BestSign"],
     n8n: ["Jijyun", "Jiandaoyun", "DingTalk Yida", "Qingflow"],
-    "zoom-sdk": ["Tencent Meeting", "Agora", "NetEase Yunxin", "DingTalk"],
+    "zoom-sdk": ["Tencent Meeting", "Feishu Meeting"],
   };
   for (const [slug, markers] of Object.entries(hubPages)) {
     const file = `build/alternatives/${slug}.html`;

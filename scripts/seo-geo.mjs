@@ -6,6 +6,7 @@ import { spawnSync } from "node:child_process";
 const SITE_URL = "https://landscape.chinaready.co";
 const MAIN_SITE_URL = "https://chinaready.co";
 const REPO_URL = "https://github.com/chinaready/chinaready-landscape";
+const AWS_CHINA_INSIGHT_URL = `${MAIN_SITE_URL}/insights/aws-china-what-works/`;
 
 /**
  * Public URL path for an alternatives page.
@@ -79,6 +80,7 @@ function googleTagSnippet() {
 }
 
 const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
+  aws: "limited",
   onesignal: "limited",
   "amazon-ses": "unavailable",
   "amazon-cloudfront": "available",
@@ -96,6 +98,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "firebase-app-distribution": "limited",
   "firebase-crashlytics": "unavailable",
   "google-maps-platform": "unavailable",
+  "apple-mapkit": "available",
   "castle-io": "unavailable",
   airbase: "unavailable",
   altis: "unavailable",
@@ -124,7 +127,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
 // === BEGIN HUB P0P1 EDITORIAL ===
   "microsoft-teams": "limited",
   webex: "limited",
-  "zoom-sdk": "limited",
+  "zoom-sdk": "unavailable",
   docusign: "unavailable",
   "dropbox-sign": "unavailable",
   "adobe-acrobat-sign": "unavailable",
@@ -815,6 +818,80 @@ const EDITORIAL_OVERRIDES = {
         question: "Where should teams go after shortlisting Google Maps alternatives?",
         answer:
           "For end-user navigation, install Amap, Baidu Maps, Tencent Maps, or Apple Maps based on the guidance above. For product maps and location APIs, evaluate China map SDKs/APIs and usage-based pricing before shipping. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  "apple-mapkit": {
+    description: (availability, names) =>
+      clipMeta(
+        `Apple MapKit is Available in mainland China. For deeper localization or Android, compare ${names.slice(0, 3).join(", ") || "Amap, Baidu Maps, Tencent Maps"}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Apple MapKit</strong> is <strong>Available</strong> in mainland China — it is a system framework on Apple platforms, and mainland Apple Maps base data is licensed from Amap. Even so, teams building China-facing Apps often still evaluate <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Amap, Baidu Maps, Tencent Maps")}</strong> for richer POI coverage, advanced navigation features, or Android / cross-platform support. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Apple MapKit vs China map SDKs",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "Amap, Baidu Maps, Tencent Maps",
+    guidanceHtml: () => `
+        <p>If your App targets mainland China, choosing <strong>Apple MapKit</strong> versus a domestic third-party map SDK (<strong>Amap</strong>, <strong>Baidu Maps</strong>, or <strong>Tencent Maps</strong>) is a classic architecture decision. Mainland geographic-information policy, user habits, and SDK capabilities all matter — availability alone is not the whole answer.</p>
+        <h3>Coordinate systems (core difference)</h3>
+        <p>In mainland China, Apple Maps base map data is licensed from Amap. MapKit still defaults to the international <strong>WGS-84</strong> coordinate system. Passing raw WGS-84 coordinates without conversion can place markers hundreds of meters off on mainland maps.</p>
+        <ul>
+          <li><strong>Amap / Tencent Maps:</strong> use China's GCJ-02 encrypted coordinate system (often called the “Mars coordinate system”).</li>
+          <li><strong>Baidu Maps:</strong> applies a second encryption layer on top of GCJ-02 and uses its own <strong>BD-09</strong> system.</li>
+          <li><strong>Developer tip:</strong> convert WGS-84 → GCJ-02 with Amap or Tencent tooling; convert to BD-09 for Baidu. MapKit handles some mainland offsetting automatically, but cross-platform data exchange still needs explicit coordinate alignment.</li>
+        </ul>
+        <h3>Localized data and POI coverage</h3>
+        <ul>
+          <li><strong>Apple MapKit:</strong> basic navigation works, but localization depth is thinner — niche restaurants and remote-town POIs can be sparse, and some advanced features (for example certain 3D / AR capabilities) are limited on China-sold devices.</li>
+          <li><strong>Baidu Maps:</strong> very rich POI inventory, strong “find a shop” and indoor navigation (large malls, airports), street-level / panoramic views, and AI voice interaction — a fit for local-lifestyle Apps.</li>
+          <li><strong>Amap:</strong> strong road-network coverage (including rural roads) and real-time traffic updates, plus deep ride-hailing and EV charging integrations for mobility use cases.</li>
+          <li><strong>Tencent Maps:</strong> more baseline POI and road data, with the standout advantage of WeChat ecosystem linkage (location sharing, Mini Program-native support).</li>
+        </ul>
+        <h3>Development cost and ecosystem fit</h3>
+        <h4>Apple MapKit</h4>
+        <ul>
+          <li><strong>Strengths:</strong> system-native framework with no third-party SDK weight, strong SwiftUI fit, low memory use, system-level smoothness, and strong privacy posture.</li>
+          <li><strong>Trade-offs:</strong> more conservative API cadence and limited custom styling; Apple platforms only — not usable on Android.</li>
+        </ul>
+        <h4>Amap / Baidu Maps / Tencent Maps SDKs</h4>
+        <ul>
+          <li><strong>Strengths:</strong> rich customization (route styling, 3D vehicle markers, immersive lane-level navigation, and similar) plus Android / iOS / Web coverage.</li>
+          <li><strong>Trade-offs:</strong> larger SDK footprint, heavier integration work, and free-quota / commercial pricing policies to track per vendor.</li>
+        </ul>
+        <h3>Industry practice</h3>
+        <p>Most mainland App teams do not treat this as an either/or choice. A blended approach is common:</p>
+        <ul>
+          <li><strong>Cross-platform data model:</strong> keep WGS-84 as the exchange standard, then convert with each vendor's tools at call time.</li>
+          <li><strong>Dual-map strategy:</strong> on iOS, MapKit can cover basic map display, location, and simple routing for a battery-friendly system experience; for complex routing, rich nearby POI search, indoor navigation, or Android builds, switch to or also integrate Amap / Baidu Maps.</li>
+          <li><strong>By product type:</strong> mobility / logistics / driving Apps often prefer <strong>Amap</strong>; local lifestyle / store discovery / indoor navigation often prefer <strong>Baidu Maps</strong>; WeChat-sharing or Mini Program-heavy lightweight Apps often prefer <strong>Tencent Maps</strong>.</li>
+        </ul>
+        <p>In short: MapKit fits lightweight, privacy-forward, Apple-only baseline map display. For deep mainland localization, Amap, Baidu Maps, and Tencent Maps remain hard to replace on data freshness, feature depth, and cross-platform reach.</p>
+        <p>Baidu Maps and Tencent Maps appear on this alternatives page as orientation options — Chinaready does <strong>not</strong> add them as Explore / Landscape product tiles from this rewrite. Confirm product and SDK fit before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Apple MapKit work in China?",
+        answer: `Yes. Chinaready labels Apple MapKit as ${availability}. It is a system framework on Apple platforms, and mainland Apple Maps base data is licensed from Amap. Availability does not mean MapKit alone is enough for every China-facing map product — coordinate handling, POI depth, and Android coverage still drive many teams toward Amap, Baidu Maps, or Tencent Maps.`,
+      },
+      {
+        question: "What are the best China alternatives to Apple MapKit?",
+        answer: `Chinaready currently lists these China-market options for Apple MapKit: ${namesText}. Prefer Amap for mobility, logistics, and driving; Baidu Maps for local lifestyle, store discovery, and indoor navigation; Tencent Maps when WeChat sharing or Mini Program integration matters most.`,
+      },
+      {
+        question: "Why do MapKit coordinates look wrong in mainland China?",
+        answer:
+          "MapKit defaults to WGS-84, while mainland map products use encrypted systems — GCJ-02 for Amap and Tencent Maps, and BD-09 for Baidu Maps. Passing unconverted WGS-84 points can shift markers by hundreds of meters. Convert with each vendor's tools, and keep one exchange standard (often WGS-84) when multiple SDKs share data.",
+      },
+      {
+        question: "Should teams replace MapKit entirely for a China launch?",
+        answer:
+          "Not always. Keep MapKit for lightweight iOS map display, location, and simple routing when system performance and privacy matter. Add or switch to Amap, Baidu Maps, or Tencent Maps for richer POI search, advanced navigation, indoor maps, or Android / cross-platform builds.",
+      },
+      {
+        question: "Where should teams go after shortlisting Apple MapKit alternatives?",
+        answer:
+          "Evaluate China map SDKs/APIs, coordinate conversion, free quotas, and commercial pricing before shipping. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -5070,6 +5147,51 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  aws: {
+    relatedSlugs: ["zenlayer", "zenlayer-sd-wan", "microsoft-azure", "amazon-cloudfront"],
+    description: (availability, names) =>
+      clipMeta(
+        `AWS is Limited in mainland China. Prefer ${names.slice(0, 2).join(" and ") || "Alibaba Cloud and Tencent Cloud"}. Read Chinaready's AWS China insight for partition details. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>AWS is Limited</strong> for mainland China. Global AWS is not a China region you toggle on — and if you are choosing a mainland China cloud vendor instead, Chinaready currently lists <strong>${escapeHtml(names.slice(0, 2).join(" and ") || "Alibaba Cloud and Tencent Cloud")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "AWS in mainland China",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 2,
+    indexCandidates: "Alibaba Cloud, Tencent Cloud",
+    guidanceHtml: () => `
+        <h3>Core point from Chinaready's AWS China insight</h3>
+        <p><strong>AWS China is a separate cloud partition inside mainland China — not a region you add to a global AWS account.</strong> Beijing (<code>cn-north-1</code>, Sinnet) and Ningxia (<code>cn-northwest-1</code>, NWCD) run under China operators with their own accounts, endpoints, and support channels. Product teams must clear <strong>entity / account rails</strong>, <strong>catalog gap checks</strong>, and <strong>ICP adjacency</strong> before public workloads are real.</p>
+        <p>For the full decision path, catalog snapshot, and what must be true before console work, read <a href="${AWS_CHINA_INSIGHT_URL}" target="_blank" rel="noopener noreferrer">AWS China partition — what works vs global accounts</a> on chinaready.co.</p>
+        <h3>If you are evaluating China cloud vendors</h3>
+        <p>When the plan is to use a mainland China cloud provider rather than staying on global AWS assumptions, start with:</p>
+        <ul>
+          <li><strong>Alibaba Cloud</strong> — broad mainland compute, storage, networking, security, data, and application coverage; a common default for China-first stacks.</li>
+          <li><strong>Tencent Cloud</strong> — strong mainland cloud platform option, especially when the product already leans on Tencent ecosystems (WeChat / WeCom, Tencent Meeting, and related services).</li>
+        </ul>
+        <p>This alternatives page intentionally does <strong>not</strong> list AWS China Regions as a candidate shortlist item. AWS China remains a separate operating model covered in the insight above — not a drop-in “China alternative tile” next to domestic clouds.</p>
+        <p>Tencent Cloud appears on this alternatives page as an orientation option — Chinaready does <strong>not</strong> add it as an Explore / Landscape product tile from this rewrite. Confirm region, ICP, and service catalog fit before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does AWS work in China?",
+        answer: `Limited. Chinaready labels AWS as ${availability}. Global AWS credentials cannot access China resources — AWS China is a separate partition (Beijing / Ningxia) with its own account rails, catalog gaps, and ICP adjacency requirements. Read ${AWS_CHINA_INSIGHT_URL} for the detailed operating model.`,
+      },
+      {
+        question: "What are the best China alternatives to AWS?",
+        answer: `When evaluating mainland China cloud vendors, Chinaready currently lists: ${namesText}. Prefer Alibaba Cloud for broad China-first infrastructure coverage, and Tencent Cloud when the stack already aligns with Tencent ecosystems.`,
+      },
+      {
+        question: "Is AWS China the same as adding a China region to a global AWS account?",
+        answer:
+          "No. AWS China is a separate partition operated with China partners (Sinnet in Beijing, NWCD in Ningxia), with separate accounts, endpoints, and support. See Chinaready's AWS China insight for entity/account, catalog, and ICP details.",
+      },
+      {
+        question: "Where should teams go after shortlisting AWS alternatives?",
+        answer: `Read ${AWS_CHINA_INSIGHT_URL} if you need the AWS China partition path explained in depth. If you are choosing a domestic cloud vendor, evaluate Alibaba Cloud or Tencent Cloud against your service bill of materials, then use the interactive Chinaready Landscape for adjacent stack choices — or book a call with Chinaready.`,
+      },
+    ],
+  },
   zenlayer: {
     relatedSlugs: ["zenlayer-sd-wan", "aws", "microsoft-azure", "amazon-cloudfront"],
     description: (availability, names) =>
@@ -5267,40 +5389,110 @@ const EDITORIAL_OVERRIDES = {
     relatedSlugs: ["microsoft-teams", "webex"],
     description: (availability, names) =>
       clipMeta(
-        `Does Zoom work in China? Limited — prefer Tencent Meeting; for Zoom SDK/RTC use Agora or NetEase Yunxin. Compare ${names.slice(0, 4).join(", ")}. Availability: ${availability}.`,
+        `Zoom SDK is Unavailable in mainland China. Prefer Tencent Meeting SDK or Feishu Meeting SDK. Compare ${names.slice(0, 2).join(", ")}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
-      `<strong>Quick answer:</strong> <strong>Zoom is Limited in mainland China</strong> — the question people search as “does Zoom work in China” covers both the Zoom client and Zoom SDK embeddings. For standalone meetings prefer <strong>Tencent Meeting</strong>; for embedded RTC prefer <strong>Agora</strong> or <strong>NetEase Yunxin</strong>. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 4).join(", ") || "Tencent Meeting, Agora, NetEase Yunxin, DingTalk")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
-    guidanceTitle: "China options instead of Zoom / Zoom SDK",
+      `<strong>Quick answer:</strong> <strong>Zoom SDK is Unavailable</strong> (or extremely unstable) for mainland China. Zoom has stopped offering direct mainland service; cross-border network limits and no China data-center path create severe connectivity blocks and compliance risk. Prefer <strong>${escapeHtml(names.slice(0, 2).join(" or ") || "Tencent Meeting SDK or Feishu Meeting SDK")}</strong> — both are fully usable onshore, network-stable, compliance-aligned, and expose strong open APIs / SDKs for embedding into existing Apps. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Zoom SDK vs Tencent Meeting SDK and Feishu Meeting SDK",
     sectionTitle: "Mapped China-ready candidates",
     preferResearchCandidates: true,
-    indexOptions: 4,
-    indexCandidates: "Tencent Meeting, Agora, NetEase Yunxin, DingTalk",
+    indexOptions: 2,
+    indexCandidates: "Tencent Meeting, Feishu Meeting",
     guidanceHtml: `
-        <p><strong>Zoom (client + SDK) is Limited for mainland China.</strong> Do not treat Zoom as a default China meeting or embedded-video dependency. Split the decision:</p>
+        <p><strong>Do not keep Zoom SDK as a China business dependency.</strong> For mainland-facing App systems, treat Tencent Meeting SDK (腾讯会议 SDK) and Feishu Meeting SDK (飞书会议 SDK) as the practical embeddable substitutes — both run fully in China with stable networks and local compliance posture, plus open APIs/SDKs that can plug into existing products.</p>
+        <h3>Feature coverage comparison</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Capability</th>
+                <th>Zoom SDK</th>
+                <th>Tencent Meeting SDK</th>
+                <th>Feishu Meeting SDK</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Audio / video quality</td>
+                <td>1080p HD with strong weak-network packet-loss resilience and broad global PoPs</td>
+                <td>Supports 1080p / original quality; mainland PoPs are highly stable and tuned for China networks</td>
+                <td>1080p video; multi-camera sessions stay smooth, with strong smart noise reduction and dynamic volume balancing</td>
+              </tr>
+              <tr>
+                <td>Collaboration &amp; interaction</td>
+                <td>Breakout rooms, virtual backgrounds, command channel for real-time data, RTMP live push</td>
+                <td>Interactive whiteboard, mind maps, WeCom / Tencent Docs collaboration, webinars, and AI simultaneous interpretation</td>
+                <td>Deep Feishu Docs and Base linkage; “妙享” / co-create mode with multi-user cursors</td>
+              </tr>
+              <tr>
+                <td>AI capabilities</td>
+                <td>Built-in caption translation, third-party interpretation hooks, real-time transcription / translation APIs</td>
+                <td>AI + human simultaneous-interpretation tracks; AI-hosted meetings with smart minutes</td>
+                <td>Stronger on transcription and captions than immersive voice interpretation; AI Agents can auto-extract follow-ups / to-dos</td>
+              </tr>
+              <tr>
+                <td>Ecosystem &amp; integration</td>
+                <td>Strong international third-party / livestream ecosystem; weak mainland ecosystem fit</td>
+                <td>Deep WeCom and Tencent Docs integration; 300+ APIs; mainstream China hardware terminals</td>
+                <td>Deep Feishu Calendar, Tasks, and knowledge-base linkage; CLI tooling so meeting decisions can become execution actions</td>
+              </tr>
+              <tr>
+                <td>Security &amp; compliance</td>
+                <td>Enterprise encryption and HIPAA paths, but mainland data-center access is constrained</td>
+                <td>Media localization deployment, audio watermarking, Xinchuang / domestic-hardware adaptation, built-in MLPS Level 3 posture</td>
+                <td>HTTPS transport, fine-grained permission declarations, and admin controls aligned with mainland data-security expectations</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Mainland integration cost</h3>
+        <h4>Engineering cost</h4>
         <ul>
-          <li><strong>Standalone meetings / webinars:</strong> Tencent Meeting (腾讯会议) or DingTalk meetings.</li>
-          <li><strong>In-product Zoom SDK / RTC:</strong> Agora (声网) or NetEase Yunxin (网易云信).</li>
+          <li><strong>Tencent Meeting SDK:</strong> ships a product-grade SDK with UI — teams can often add multi-party A/V in about a day with a short integration path. 300+ APIs cover passwordless join, calendar binding, and similar seams without rebuilding media from scratch.</li>
+          <li><strong>Feishu Meeting SDK:</strong> multi-language SDKs (Java, Python, Go, Node.js, and more) plus a visual app-creation wizard. The open-source CLI further lowers the bar for AI Agents calling meetings, docs, and related automation.</li>
+          <li><strong>Zoom SDK:</strong> documentation is strong and multi-platform, but mainland teams still pay hidden cost in network debugging, cross-border compliance review, and no local vendor support path.</li>
         </ul>
-        <p>These candidates appear on this alternatives page only — not as Explore / Landscape product tiles. Run mainland RTC/meeting tests before cutover.</p>`,
+        <h4>Commercial / licensing cost</h4>
+        <ul>
+          <li><strong>Tencent Meeting / Feishu:</strong> China-typical SaaS subscription or tiering by company size / premium seats. Free tiers keep core collaboration; paid tiers unlock large meetings (for example 2,000 participants), cloud recording, AI assistants, and similar — billing that mainland finance teams already understand.</li>
+          <li><strong>Zoom:</strong> historically sold per account (international list prices often around USD 15 / user / month). Mainland buyers also face payment-channel friction plus experience degradation without China service nodes — poor overall value for China-only stacks.</li>
+        </ul>
+        <h4>Hardware &amp; operations cost</h4>
+        <ul>
+          <li><strong>Tencent Meeting:</strong> room connectors (MRA) can reuse existing traditional room hardware (for example Huawei or Poly) for cloud linkage without a full hardware rip-and-replace.</li>
+          <li><strong>Feishu:</strong> mainly a software-ecosystem closed loop.</li>
+          <li><strong>Zoom:</strong> Zoom Rooms certified hardware exists, but mainland procurement compliance and ongoing ops cost are usually higher.</li>
+        </ul>
+        <h3>How to choose</h3>
+        <ul>
+          <li><strong>Prefer Tencent Meeting SDK</strong> for general office meetings, large-scale events, government / enterprise compliance, or WeCom ecosystem linkage.</li>
+          <li><strong>Prefer Feishu Meeting SDK</strong> for agile collaboration, knowledge capture, task tracking, or AI Agent–driven office automation.</li>
+          <li><strong>Drop Zoom SDK</strong> for mainland China business — network blocks and compliance risk make continued integration a poor default.</li>
+        </ul>
+        <p>Tencent Meeting and Feishu Meeting appear on this alternatives page as orientation options — Chinaready does <strong>not</strong> add them as Explore / Landscape product tiles from this rewrite. Confirm SDK fit, quotas, and compliance before production adoption.</p>`,
     faq: (availability, namesText) => [
       {
         question: "Does Zoom work in China?",
-        answer: `Partially / unreliably for many mainland users. Chinaready labels Zoom SDK / Zoom paths as ${availability}. Prefer Tencent Meeting for meetings and Agora or NetEase Yunxin when you embedded Zoom SDK.`,
+        answer: `No as a reliable mainland default. Chinaready labels Zoom SDK / Zoom paths as ${availability} — Zoom has stopped offering direct mainland service, and cross-border networking plus missing China data-center support create severe connectivity and compliance risk. Prefer Tencent Meeting SDK or Feishu Meeting SDK instead.`,
       },
       {
-        question: "What are the best China alternatives to Zoom?",
-        answer: `Chinaready currently lists: ${namesText}. Prefer Tencent Meeting for Zoom-the-app, Agora/NetEase Yunxin for Zoom SDK-style RTC, and DingTalk when Zoom was mainly internal collaboration.`,
+        question: "What are the best China alternatives to Zoom SDK?",
+        answer: `Chinaready currently lists: ${namesText}. Prefer Tencent Meeting SDK for general office, large meetings, government/enterprise compliance, or WeCom ecosystems; prefer Feishu Meeting SDK for agile collaboration, knowledge/task workflows, and AI Agent automation.`,
       },
       {
         question: "Is Zoom SDK usable for a China-facing app?",
         answer:
-          "Usually not as the primary dependency. Plan a China-reachable RTC SDK (Agora or NetEase Yunxin are commonly evaluated) and validate packet loss, TURN, and compliance for mainland users.",
+          "Not recommended. Treat Zoom SDK as Unavailable / extremely unstable for mainland production. Plan an onshore meeting SDK (Tencent Meeting or Feishu Meeting) and validate mainland network quality, data residency, and compliance before cutover.",
       },
       {
-        question: "Where should teams go after shortlisting Zoom alternatives?",
+        question: "Tencent Meeting SDK or Feishu Meeting SDK — which should we pick?",
         answer:
-          "Benchmark meeting/RTC quality from mainland networks, then confirm compliance and vendor fit. Use Chinaready Landscape for adjacent choices, or book a call with Chinaready.",
+          "Choose Tencent Meeting SDK when WeCom / large-scale / compliance-heavy meeting embedding matters most. Choose Feishu Meeting SDK when docs, tasks, knowledge base, and AI Agent automation are the center of the workflow. Many teams standardize on the suite their organization already uses day to day.",
+      },
+      {
+        question: "Where should teams go after shortlisting Zoom SDK alternatives?",
+        answer:
+          "Pilot SDK join flows and media quality from mainland networks, then confirm commercial tiering and compliance. Use the interactive Chinaready Landscape for adjacent stack choices, or book a call with Chinaready if the integration path remains unclear.",
       },
     ],
   },

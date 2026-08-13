@@ -937,6 +937,45 @@ OVERRIDES = {
     "openstreetmap": ["Amap", "Tencent Location Services"],
     "ipinfo": ["Amap", "Tencent Location Services"],
     "maxmind": ["Amap", "Tencent Location Services"],
+    "apple mapkit": [
+        {
+            "name": "Amap",
+            "homepage_url": "https://lbs.amap.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Location & Map Services",
+            "source": "research",
+            "note": (
+                "Amap (高德地图) is strong on mainland road-network coverage (including rural roads), "
+                "real-time traffic, and mobility integrations such as ride-hailing and EV charging — "
+                "a primary MapKit alternative for driving, logistics, and travel Apps, plus Android / "
+                "cross-platform builds."
+            ),
+        },
+        {
+            "name": "Baidu Maps",
+            "homepage_url": "https://map.baidu.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Location & Map Services",
+            "source": "research",
+            "note": (
+                "Baidu Maps (百度地图) offers very rich POI coverage, indoor navigation for large malls "
+                "and airports, panoramic views, and AI voice interaction — especially useful when MapKit "
+                "localization depth is not enough for local-lifestyle or store-discovery Apps."
+            ),
+        },
+        {
+            "name": "Tencent Maps",
+            "homepage_url": "https://map.qq.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Location & Map Services",
+            "source": "research",
+            "note": (
+                "Tencent Maps (腾讯地图) pairs baseline map coverage with tight WeChat ecosystem linkage "
+                "for location sharing and Mini Program-native support — a fit when social sharing matters "
+                "more than MapKit's Apple-only system integration."
+            ),
+        },
+    ],
     "google maps platform": [
         {
             "name": "Amap",
@@ -1103,6 +1142,32 @@ OVERRIDES = {
     "alert logic": ["Alibaba Cloud ARMS", "GeeTest"],
     "auvik": ["Alibaba Cloud ARMS"],
     "env0": ["AWS China Regions", "Alibaba Cloud"],
+    "aws": [
+        {
+            "name": "Alibaba Cloud",
+            "homepage_url": "https://www.alibabacloud.com/",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Cloud Platform & Hosting",
+            "source": "research",
+            "note": (
+                "Alibaba Cloud is a major mainland China cloud platform with broad compute, storage, "
+                "networking, security, data, and application coverage — a common default when teams "
+                "evaluate China cloud vendors instead of global AWS assumptions."
+            ),
+        },
+        {
+            "name": "Tencent Cloud",
+            "homepage_url": "https://cloud.tencent.com/",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Cloud Platform & Hosting",
+            "source": "research",
+            "note": (
+                "Tencent Cloud is a strong mainland China cloud platform option, especially when the "
+                "product already leans on Tencent ecosystems such as WeChat / WeCom and related "
+                "Tencent Cloud services."
+            ),
+        },
+    ],
     "docker hub": ["Alibaba Cloud"],
     "bitly": [
         {
@@ -2306,41 +2371,22 @@ OVERRIDES = {
             "subcategory": "Team Messaging & Meetings",
             "source": "research",
             "note": (
-                "Tencent Meeting (腾讯会议) is the primary mainland China video-meeting substitute for "
-                "Zoom client use — strong China network performance for large calls and webinars."
+                "Tencent Meeting SDK (腾讯会议 SDK) is a strong mainland embeddable substitute for Zoom "
+                "SDK — product-grade UI SDK, 300+ APIs, WeCom / Tencent Docs depth, stable China "
+                "networks, and MLPS Level 3–oriented compliance for general office, large meetings, "
+                "and government/enterprise use."
             ),
         },
         {
-            "name": "Agora",
-            "homepage_url": "https://www.agora.io/",
-            "category": "Collaboration & Productivity",
-            "subcategory": "Real-time Communication",
-            "source": "research",
-            "note": (
-                "Agora (声网) is a real-time audio/video SDK platform commonly used when the product "
-                "embeds Zoom SDK-style RTC rather than sending users to a standalone meeting app."
-            ),
-        },
-        {
-            "name": "NetEase Yunxin",
-            "homepage_url": "https://yunxin.163.com/",
-            "category": "Collaboration & Productivity",
-            "subcategory": "Real-time Communication",
-            "source": "research",
-            "note": (
-                "NetEase Yunxin (网易云信) provides China-reachable RTC / IM SDKs for embedded calls, "
-                "live interaction, and messaging — a common Zoom SDK replacement path for product teams."
-            ),
-        },
-        {
-            "name": "DingTalk",
-            "homepage_url": "https://www.dingtalk.com/",
+            "name": "Feishu Meeting",
+            "homepage_url": "https://www.feishu.cn/product/vc",
             "category": "Collaboration & Productivity",
             "subcategory": "Team Messaging & Meetings",
             "source": "research",
             "note": (
-                "DingTalk (钉钉) is a practical meetings + workplace suite substitute when Zoom was "
-                "used for internal collaboration rather than embedded RTC."
+                "Feishu Meeting SDK (飞书会议 SDK) is a strong mainland embeddable substitute when the "
+                "product needs Feishu Docs/Base, calendar/tasks linkage, multi-language SDKs, and AI "
+                "Agent / CLI automation for agile collaboration workflows."
             ),
         },
     ],
@@ -2919,12 +2965,14 @@ AVAILABILITY_OVERRIDES = {
     "altis": "Unavailable",
     "facebook login": "Unavailable",
     "google maps platform": "Unavailable",
+    "apple mapkit": "Available",
+    "aws": "Limited",
     "logrocket": "Limited",
 
     # === BEGIN HUB P0P1 OVERRIDES ===
     "microsoft teams": "Limited",
     "webex": "Limited",
-    "zoom sdk": "Limited",
+    "zoom sdk": "Unavailable",
     "docusign": "Unavailable",
     "dropbox sign": "Unavailable",
     "adobe acrobat sign": "Unavailable",
@@ -2973,13 +3021,13 @@ RESEARCH_NOTES = {
         "as Explore / Landscape product tiles. Confirm call quality and compliance before adoption."
     ),
     "zoom sdk": (
-        "Zoom (including Zoom client and Zoom SDK paths teams mean by “does Zoom work in China”) is "
-        "Limited in mainland China: consumer/client use can be inconsistent, and product teams "
-        "embedding Zoom SDK should not assume Zoom is a stable China RTC dependency. Prefer Tencent "
-        "Meeting for standalone meetings, and Agora or NetEase Yunxin for embedded RTC. DingTalk is "
-        "useful when Zoom was mainly internal collaboration. These appear on the alternatives page "
-        "only — not as Explore / Landscape product tiles. Confirm RTC quality and compliance before "
-        "production adoption."
+        "Zoom SDK is Unavailable (or extremely unstable) in mainland China: Zoom has stopped offering "
+        "direct mainland service, and cross-border network limits plus no China data-center path create "
+        "severe connectivity blocks and compliance risk. Prefer Tencent Meeting SDK for general office, "
+        "large meetings, government/enterprise compliance, or WeCom ecosystems; prefer Feishu Meeting "
+        "SDK for agile collaboration, knowledge/task workflows, and AI Agent automation. These appear "
+        "on the alternatives page only — not as Explore / Landscape product tiles. Confirm SDK quality "
+        "and compliance before production adoption."
     ),
     "docusign": (
         "DocuSign is Unavailable for practical mainland China legal e-signature workflows: overseas "
@@ -3199,6 +3247,16 @@ RESEARCH_NOTES = {
         "Maps, and Apple Maps appear on the alternatives page as orientation options — not as Explore "
         "/ Landscape product tiles from this research. Confirm product and API fit before production "
         "adoption."
+    ),
+    "apple mapkit": (
+        "Apple MapKit is Available in mainland China: it is a system framework on Apple platforms, and "
+        "mainland Apple Maps base data is licensed from Amap. Even so, teams often still evaluate Amap "
+        "for mobility / logistics / driving, Baidu Maps for local lifestyle and indoor navigation, and "
+        "Tencent Maps when WeChat sharing or Mini Program integration matters — especially for richer "
+        "POI depth, advanced navigation features, or Android / cross-platform builds. Watch coordinate "
+        "systems (WGS-84 vs GCJ-02 vs BD-09). Baidu Maps and Tencent Maps appear on the alternatives "
+        "page as orientation options — not as Explore / Landscape product tiles from this research. "
+        "Confirm product and SDK fit before production adoption."
     ),
     "activecampaign": (
         "ActiveCampaign is Limited in mainland China: the product is usually reachable, but marketing "
@@ -3473,6 +3531,14 @@ RESEARCH_NOTES = {
         "For env0-managed Terraform in mainland China, prefer AWS China Regions as the primary cloud target. "
         "Alibaba Cloud is also workable because Terraform supports the Alibaba Cloud provider. "
         "Confirm compliance and operating constraints before production adoption."
+    ),
+    "aws": (
+        "AWS is Limited in mainland China: global AWS is not a China region toggle. AWS China is a "
+        "separate partition (Beijing / Ningxia) with its own account rails, catalog gaps, and ICP "
+        "adjacency — see chinaready.co/insights/aws-china-what-works/. When evaluating mainland China "
+        "cloud vendors instead, prefer Alibaba Cloud and Tencent Cloud. Tencent Cloud appears on the "
+        "alternatives page as an orientation option — not as an Explore / Landscape product tile from "
+        "this research. Confirm region, ICP, and service catalog fit before production adoption."
     ),
     "google admob": (
         "Pure domestic China ad networks for mainland monetization when replacing Google AdMob. "
@@ -3787,6 +3853,14 @@ def main() -> None:
         "google maps platform": {
             "name": "Google Maps Platform",
             "categories": ["Location & Map Services"],
+        },
+        "apple mapkit": {
+            "name": "Apple MapKit",
+            "categories": ["Location & Map Services"],
+        },
+        "aws": {
+            "name": "AWS",
+            "categories": ["Infrastructure & Edge", "Cloud Platform & Hosting"],
         },
     }
     for override_key, meta in INJECT_IF_MISSING.items():
