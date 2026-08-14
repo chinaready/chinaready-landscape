@@ -7,6 +7,7 @@ const SITE_URL = "https://landscape.chinaready.co";
 const MAIN_SITE_URL = "https://chinaready.co";
 const REPO_URL = "https://github.com/chinaready/chinaready-landscape";
 const AWS_CHINA_INSIGHT_URL = `${MAIN_SITE_URL}/insights/aws-china-what-works/`;
+const AZURE_CHINA_INSIGHT_URL = `${MAIN_SITE_URL}/insights/azure-china-what-works/`;
 
 /**
  * Public URL path for an alternatives page.
@@ -81,6 +82,7 @@ function googleTagSnippet() {
 
 const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   aws: "limited",
+  "microsoft-azure": "limited",
   onesignal: "limited",
   "amazon-ses": "unavailable",
   "amazon-cloudfront": "available",
@@ -143,6 +145,8 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "google-authenticator": "limited",
   "microsoft-authenticator": "limited",
 // === END HUB P0P1 EDITORIAL ===
+  pinecone: "limited",
+  shopify: "unavailable",
 };
 
 /** Keep stable public URLs when display names change. */
@@ -3919,6 +3923,85 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  shopify: {
+    relatedSlugs: ["commerce-layer", "smile-io", "loyaltylion"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Shopify work in China? Unavailable — no mainland CDN, ICP/app-store risk, missing WeChat Pay/Alipay. Compare ${names.slice(0, 3).join(", ") || "Shoplazza, Taoify, ShopsSea"}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Shopify is Unavailable for mainland China</strong>. There are no mainland servers or CDN nodes, so storefronts often load slowly, drop images and video, or fail entirely. Shopify also lacks native ICP filing, WeChat Pay, Alipay, and 1688/Taobao sourcing. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Shoplazza, Taoify, ShopsSea")}</strong> as China-built independent-site options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Why Shopify is Unavailable in mainland China",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "Shoplazza, Taoify, ShopsSea",
+    guidanceHtml: `
+        <p><strong>Shopify is Unavailable for practical mainland China production use.</strong> Three constraints dominate:</p>
+        <ul>
+          <li><strong>Network access:</strong> Shopify has no mainland China servers or CDN nodes. International bandwidth and cross-border traffic mean mainland visitors often see slow loads, missing images or video, or a storefront that will not open at all.</li>
+          <li><strong>Compliance:</strong> some Shopify features and related apps can conflict with mainland internet rules. Shopify's consumer shopping app Shop was removed from mainland app stores after reports that its AI module called an unregistered overseas model and that user data crossed the border against local storage rules. Lawful mainland websites also need ICP filing, which Shopify does not natively support.</li>
+          <li><strong>Localization:</strong> Shopify has no native WeChat Pay or Alipay checkout, and no native 1688 / Taobao sourcing. Those jobs usually need third-party plugins.</li>
+        </ul>
+        <h3>China-built independent-site platforms commonly evaluated instead</h3>
+        <p>These SaaS store builders are oriented to Chinese sellers' cross-border and localization needs — not Explore / Landscape product tiles:</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Shoplazza (店匠)</td>
+                <td>Closest China-built Shopify-like SaaS; stronger stability and faster loads for many China-based operators; Shopify veterans can usually migrate with little relearning</td>
+                <td>Sellers focused on US/EU and cross-border independent sites</td>
+              </tr>
+              <tr>
+                <td>Taoify</td>
+                <td>Zero commission, Chinese-language service, and mainland-oriented compliance; open APIs for ERP/CRM; native 1688/Taobao one-click listing and AI copy/image translation</td>
+                <td>SMEs and factories, including reverse-haitao sourcing</td>
+              </tr>
+              <tr>
+                <td>ShopsSea (顺店)</td>
+                <td>Free store building and zero transaction commission; multilingual translation, multi-currency, GDPR settings, three-tier distribution, AI content, plus bundled payment, logistics, and ERP connectors</td>
+                <td>Cost-sensitive sellers who want a full independent-site toolkit</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>These candidates appear on the Shopify alternatives page only — Chinaready does <strong>not</strong> add Shoplazza, Taoify, or ShopsSea as Explore / Landscape product tiles. Confirm payments, logistics, and compliance before production adoption. Youzan Cloud remains on Explore for WeChat / domestic commerce, which is a different job from Shopify-style independent sites.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Shopify work in China?",
+        answer: `No for practical mainland China production use. Chinaready labels Shopify as ${availability}. There are no mainland servers or CDN nodes, so storefronts often load slowly, drop media, or fail entirely; Shopify does not natively support ICP filing, WeChat Pay, Alipay, or 1688/Taobao sourcing; and related apps have faced mainland compliance actions, including the Shop app being removed from China app stores.`,
+      },
+      {
+        question: "Why is Shopify unavailable in mainland China?",
+        answer:
+          "Three reasons: no mainland servers or CDN nodes, so cross-border access is slow or blocked; compliance and policy risk, including ICP filing that Shopify does not natively support and the Shop app being removed from mainland app stores; and a missing China localization stack — no native WeChat Pay, Alipay, or 1688/Taobao sourcing.",
+      },
+      {
+        question: "What are the best China alternatives to Shopify?",
+        answer: namesText
+          ? `Chinaready currently lists these China-ready candidates for Shopify: ${namesText}. Prefer Shoplazza (店匠) as the closest Shopify-like SaaS for US/EU independent sites, Taoify for zero-commission Chinese-language operations with 1688/Taobao listing, and ShopsSea (顺店) when free store building and zero transaction commission matter most. Confirm fit before production adoption.`
+          : "Prefer Shoplazza (店匠) as the closest Shopify-like SaaS for US/EU independent sites, Taoify for zero-commission Chinese-language operations with 1688/Taobao listing, and ShopsSea (顺店) when free store building and zero transaction commission matter most.",
+      },
+      {
+        question: "Are Shoplazza, Taoify, and ShopsSea on Chinaready Explore?",
+        answer:
+          "No. They are listed as Mapped China-ready candidates on this alternatives page only. Chinaready does not add them as Explore / Landscape product tiles for Shopify.",
+      },
+      {
+        question: "Where should teams go after shortlisting Shopify alternatives?",
+        answer:
+          "Decide whether you need a Shopify-like independent site for cross-border selling or a WeChat/domestic commerce stack, then confirm payments, logistics, ICP, and data-residency fit. Use the interactive Chinaready Landscape for adjacent ecommerce options, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
   "commerce-layer": {
     relatedSlugs: ["shopify", "smile-io", "loyaltylion", "joy-rewards-loyalty-program"],
     description: (availability, names) =>
@@ -4988,6 +5071,47 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  pinecone: {
+    relatedSlugs: ["weaviate", "qdrant"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Pinecone work in China? Limited — restrictions and poor stability. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Pinecone is Limited in mainland China</strong> — it can work, but with restrictions and poor stability. For production vector search and RAG, compare <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Why Pinecone is Limited in mainland China",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 5,
+    indexCandidates: "Milvus, Zilliz Cloud, Tencent Cloud VectorDB, Alibaba Cloud DashVector, Baidu VectorDB",
+    guidanceHtml: `
+        <p><strong>Pinecone is reachable in some mainland cases, but Chinaready labels it Limited</strong> because of restrictions and poor day-to-day stability:</p>
+        <ul>
+          <li><strong>Overseas SaaS:</strong> no mainland China nodes. An Asia-Pacific Singapore region now exists, but cross-border latency is still high, and mainland DNS resolution is unstable.</li>
+          <li><strong>Network limits:</strong> mainland direct connections typically need a proxy. Pinecone's default gRPC path often drops in early JVM startup when DNS resolution fails.</li>
+          <li><strong>Compliance:</strong> as an overseas-only service, Pinecone faces strict China data-privacy and data-residency requirements.</li>
+        </ul>
+        <p>Use the mapped mainland vector databases below as the research shortlist for China production stacks.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Pinecone work in China?",
+        answer: `It can work, but with restrictions and poor stability. Chinaready labels Pinecone as ${availability}: there is no mainland node (Singapore APAC still means high cross-border latency, plus unstable mainland DNS), direct access typically needs a proxy and default gRPC often drops on JVM DNS failures, and overseas-only hosting faces China privacy and data-residency rules.`,
+      },
+      {
+        question: "What are the best China alternatives to Pinecone?",
+        answer: `Chinaready Landscape currently maps Pinecone to ${namesText}. Prefer Milvus or Zilliz Cloud for self-hosted or managed Milvus-compatible stacks, and Tencent Cloud VectorDB, Alibaba Cloud DashVector, or Baidu VectorDB when you want a mainland cloud-managed vector database. Treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Pinecone in mainland China?",
+        answer:
+          "Sometimes closer than for other SaaS categories if you already use a standard vector API, but hosting, latency, and data residency still usually force a cutover to a mainland-hosted vector database rather than keeping Pinecone as the China production dependency.",
+      },
+      {
+        question: "Where should teams go after shortlisting Pinecone alternatives?",
+        answer:
+          "Validate whether you need self-hosted Milvus, a managed Milvus route, or a China-cloud vector database, then confirm latency, DNS, gRPC, and data-residency fit. Use the interactive Chinaready Landscape for adjacent AI retrieval options, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
   "zoho-crm": {
     description: (availability, names) =>
       clipMeta(
@@ -5189,6 +5313,51 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Where should teams go after shortlisting AWS alternatives?",
         answer: `Read ${AWS_CHINA_INSIGHT_URL} if you need the AWS China partition path explained in depth. If you are choosing a domestic cloud vendor, evaluate Alibaba Cloud or Tencent Cloud against your service bill of materials, then use the interactive Chinaready Landscape for adjacent stack choices — or book a call with Chinaready.`,
+      },
+    ],
+  },
+  "microsoft-azure": {
+    relatedSlugs: ["aws", "zenlayer", "zenlayer-sd-wan", "amazon-cloudfront"],
+    description: (availability, names) =>
+      clipMeta(
+        `Microsoft Azure is Limited in mainland China. Prefer ${names.slice(0, 2).join(" and ") || "Alibaba Cloud and Tencent Cloud"}. Read Chinaready's Azure China insight for the 21Vianet partition. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Microsoft Azure is Limited</strong> for mainland China. Azure operated by 21Vianet is a physically isolated China instance — not a region you add to a global subscription. If you are choosing a mainland China cloud vendor instead, Chinaready currently lists <strong>${escapeHtml(names.slice(0, 2).join(" and ") || "Alibaba Cloud and Tencent Cloud")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Microsoft Azure in mainland China",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 2,
+    indexCandidates: "Alibaba Cloud, Tencent Cloud",
+    guidanceHtml: () => `
+        <h3>Core point from Chinaready's Azure China insight</h3>
+        <p><strong>Microsoft Azure operated by 21Vianet (Azure China) is a physically isolated Azure instance inside mainland China — not a region you add to a global subscription.</strong> Shanghai Blue Cloud Technology (21Vianet) sells and operates it under Chinese regulations. Product teams must clear <strong>OSPA contracting</strong>, <strong>China Entra / endpoints</strong>, <strong>catalog gap checks</strong>, and <strong>ICP adjacency</strong> before public workloads are real.</p>
+        <p>For the full decision path, catalog snapshot, and what must be true before portal work, read <a href="${AZURE_CHINA_INSIGHT_URL}" target="_blank" rel="noopener noreferrer">Azure China — 21Vianet partition vs global Azure</a> on chinaready.co.</p>
+        <h3>If you are evaluating China cloud vendors</h3>
+        <p>When the plan is to use a mainland China cloud provider rather than staying on global Azure assumptions, start with:</p>
+        <ul>
+          <li><strong>Alibaba Cloud</strong> — broad mainland compute, storage, networking, security, data, and application coverage; a common default for China-first stacks.</li>
+          <li><strong>Tencent Cloud</strong> — strong mainland cloud platform option, especially when the product already leans on Tencent ecosystems (WeChat / WeCom, Tencent Meeting, and related services).</li>
+        </ul>
+        <p>This alternatives page intentionally does <strong>not</strong> list Azure China or Microsoft Azure Regions as a candidate shortlist item. Azure China remains a separate 21Vianet operating model covered in the insight above — not a drop-in “China alternative tile” next to domestic clouds.</p>
+        <p>Tencent Cloud appears on this alternatives page as an orientation option — Chinaready does <strong>not</strong> add it as an Explore / Landscape product tile from this rewrite. Confirm region, ICP, and service catalog fit before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Microsoft Azure work in China?",
+        answer: `Limited. Chinaready labels Microsoft Azure as ${availability}. Global Azure subscriptions cannot access China resources — Azure operated by 21Vianet is a physically isolated instance with its own OSPA contracting, China Entra / endpoints, catalog gaps, and ICP adjacency requirements. Read ${AZURE_CHINA_INSIGHT_URL} for the detailed operating model.`,
+      },
+      {
+        question: "What are the best China alternatives to Microsoft Azure?",
+        answer: `When evaluating mainland China cloud vendors, Chinaready currently lists: ${namesText}. Prefer Alibaba Cloud for broad China-first infrastructure coverage, and Tencent Cloud when the stack already aligns with Tencent ecosystems.`,
+      },
+      {
+        question: "Is Azure China the same as adding a China region to a global Azure subscription?",
+        answer:
+          "No. Azure China is a physically isolated instance operated by 21Vianet (Shanghai Blue Cloud Technology), with separate OSPA contracts, China Entra and ARM endpoints, and a narrower product catalog. See Chinaready's Azure China insight for contracting, catalog, and ICP details.",
+      },
+      {
+        question: "Where should teams go after shortlisting Microsoft Azure alternatives?",
+        answer: `Read ${AZURE_CHINA_INSIGHT_URL} if you need the Azure China 21Vianet path explained in depth. If you are choosing a domestic cloud vendor, evaluate Alibaba Cloud or Tencent Cloud against your service bill of materials, then use the interactive Chinaready Landscape for adjacent stack choices — or book a call with Chinaready.`,
       },
     ],
   },

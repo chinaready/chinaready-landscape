@@ -2,9 +2,9 @@
   "source": "Chinaready Landscape research shortlist for taxonomy-relevant global services",
   "generated_for": "alternatives index SEO expansion",
   "counts": {
-    "services": 130,
+    "services": 132,
     "uncertain_alternatives": 0,
-    "researched_alternatives": 106,
+    "researched_alternatives": 108,
     "heuristic_alternatives": 24
   },
   "availability_lookup": {
@@ -82,6 +82,11 @@
       "name": "AWeber",
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
+    },
+    "aws": {
+      "name": "AWS",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
     },
     "azure monitor": {
       "name": "Azure Monitor",
@@ -518,6 +523,11 @@
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
+    "shopify": {
+      "name": "Shopify",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
     "simple analytics": {
       "name": "Simple Analytics",
       "availability": "Limited",
@@ -648,8 +658,8 @@
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
     },
-    "aws": {
-      "name": "AWS",
+    "microsoft azure": {
+      "name": "Microsoft Azure",
       "availability": "Limited",
       "global_availability_in_china": "limited"
     }
@@ -3834,6 +3844,35 @@
       "confidence": "researched"
     },
     {
+      "name": "Microsoft Azure",
+      "categories": [
+        "Infrastructure & Edge",
+        "Cloud Platform & Hosting"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud",
+          "homepage_url": "https://www.alibabacloud.com/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "research",
+          "note": "Alibaba Cloud is a major mainland China cloud platform with broad compute, storage, networking, security, data, and application coverage — a common default when teams evaluate China cloud vendors instead of global Azure assumptions."
+        },
+        {
+          "name": "Tencent Cloud",
+          "homepage_url": "https://cloud.tencent.com/",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "research",
+          "note": "Tencent Cloud is a strong mainland China cloud platform option, especially when the product already leans on Tencent ecosystems such as WeChat / WeCom and related Tencent Cloud services."
+        }
+      ],
+      "research_note": "Microsoft Azure is Limited in mainland China: Azure operated by 21Vianet is a physically isolated instance, not a region you add to a global subscription. Teams must clear OSPA contracting, China Entra / endpoints, catalog gap checks, and ICP adjacency — see chinaready.co/insights/azure-china-what-works/. When evaluating mainland China cloud vendors instead, prefer Alibaba Cloud and Tencent Cloud. Azure China / Microsoft Azure Regions are not listed as candidate tiles. Tencent Cloud appears on the alternatives page as an orientation option — not as an Explore / Landscape product tile from this research. Confirm region, ICP, and service catalog fit before production adoption.",
+      "confidence": "researched"
+    },
+    {
       "name": "Microsoft Teams",
       "categories": [
         "Collaboration & Productivity"
@@ -4539,6 +4578,42 @@
       ],
       "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
       "confidence": "heuristic"
+    },
+    {
+      "name": "Shopify",
+      "categories": [
+        "Growth, Content & Experience"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Shoplazza",
+          "homepage_url": "https://www.shoplazza.cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Ecommerce Platforms & APIs",
+          "source": "research",
+          "note": "Shoplazza (店匠) is widely seen as the closest China-built Shopify-like SaaS. Many China-based operators report stronger server stability and faster page loads, and Shopify veterans can usually migrate with little relearning — a common first choice for US/EU and cross-border independent sites."
+        },
+        {
+          "name": "Taoify",
+          "homepage_url": "https://taoify.shop/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Ecommerce Platforms & APIs",
+          "source": "research",
+          "note": "Taoify positions around zero commission, Chinese-language service, and mainland-oriented compliance. Open APIs integrate with existing ERP/CRM stacks. Native reverse-haitao flows include 1688/Taobao one-click listing and AI copy/image translation — a fit for SMEs and factories."
+        },
+        {
+          "name": "ShopsSea",
+          "homepage_url": "https://www.shopssea.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "Ecommerce Platforms & APIs",
+          "source": "research",
+          "note": "ShopsSea (顺店) emphasizes free store building and zero transaction commission. Built-in multilingual translation, multi-currency, GDPR settings, three-tier distribution, and AI content tools, plus bundled payment, logistics, and ERP connectors — aimed at lowering independent-site cost for China sellers."
+        }
+      ],
+      "research_note": "Shopify is Unavailable for mainland China: no mainland servers or CDN nodes, so storefronts often load slowly, drop media, or fail; compliance and policy risk including ICP filing that Shopify does not natively support; and no native WeChat Pay, Alipay, or 1688/Taobao sourcing. Prefer Shoplazza (店匠), Taoify, or ShopsSea (顺店) as China-built independent-site options. These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm payments, logistics, and compliance before adoption.",
+      "confidence": "researched"
     },
     {
       "name": "Simple Analytics",

@@ -1168,6 +1168,32 @@ OVERRIDES = {
             ),
         },
     ],
+    "microsoft azure": [
+        {
+            "name": "Alibaba Cloud",
+            "homepage_url": "https://www.alibabacloud.com/",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Cloud Platform & Hosting",
+            "source": "research",
+            "note": (
+                "Alibaba Cloud is a major mainland China cloud platform with broad compute, storage, "
+                "networking, security, data, and application coverage — a common default when teams "
+                "evaluate China cloud vendors instead of global Azure assumptions."
+            ),
+        },
+        {
+            "name": "Tencent Cloud",
+            "homepage_url": "https://cloud.tencent.com/",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Cloud Platform & Hosting",
+            "source": "research",
+            "note": (
+                "Tencent Cloud is a strong mainland China cloud platform option, especially when the "
+                "product already leans on Tencent ecosystems such as WeChat / WeCom and related "
+                "Tencent Cloud services."
+            ),
+        },
+    ],
     "docker hub": ["Alibaba Cloud"],
     "bitly": [
         {
@@ -2680,6 +2706,47 @@ OVERRIDES = {
             ),
         },
     ],
+    "shopify": [
+        {
+            "name": "Shoplazza",
+            "homepage_url": "https://www.shoplazza.cn/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Ecommerce Platforms & APIs",
+            "source": "research",
+            "note": (
+                "Shoplazza (店匠) is widely seen as the closest China-built Shopify-like SaaS. "
+                "Many China-based operators report stronger server stability and faster page loads, "
+                "and Shopify veterans can usually migrate with little relearning — a common first "
+                "choice for US/EU and cross-border independent sites."
+            ),
+        },
+        {
+            "name": "Taoify",
+            "homepage_url": "https://taoify.shop/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Ecommerce Platforms & APIs",
+            "source": "research",
+            "note": (
+                "Taoify positions around zero commission, Chinese-language service, and "
+                "mainland-oriented compliance. Open APIs integrate with existing ERP/CRM stacks. "
+                "Native reverse-haitao flows include 1688/Taobao one-click listing and AI "
+                "copy/image translation — a fit for SMEs and factories."
+            ),
+        },
+        {
+            "name": "ShopsSea",
+            "homepage_url": "https://www.shopssea.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Ecommerce Platforms & APIs",
+            "source": "research",
+            "note": (
+                "ShopsSea (顺店) emphasizes free store building and zero transaction commission. "
+                "Built-in multilingual translation, multi-currency, GDPR settings, three-tier "
+                "distribution, and AI content tools, plus bundled payment, logistics, and ERP "
+                "connectors — aimed at lowering independent-site cost for China sellers."
+            ),
+        },
+    ],
     "gumroad": [
         {
             "name": "Youzan Cloud",
@@ -2967,6 +3034,7 @@ AVAILABILITY_OVERRIDES = {
     "google maps platform": "Unavailable",
     "apple mapkit": "Available",
     "aws": "Limited",
+    "microsoft azure": "Limited",
     "logrocket": "Limited",
 
     # === BEGIN HUB P0P1 OVERRIDES ===
@@ -2981,6 +3049,7 @@ AVAILABILITY_OVERRIDES = {
     "typeform": "Limited",
     "wordpress": "Limited",
     "gumroad": "Unavailable",
+    "shopify": "Unavailable",
     "n8n": "Limited",
     "hubspot": "Limited",
     "mailchimp": "Limited",
@@ -3079,6 +3148,14 @@ RESEARCH_NOTES = {
         "(有赞), Afdian (爱发电), or WeChat Mini Program storefronts. These appear on the "
         "alternatives page only — not as Explore / Landscape product tiles. Confirm payments and "
         "content compliance before adoption."
+    ),
+    "shopify": (
+        "Shopify is Unavailable for mainland China: no mainland servers or CDN nodes, so "
+        "storefronts often load slowly, drop media, or fail; compliance and policy risk including "
+        "ICP filing that Shopify does not natively support; and no native WeChat Pay, Alipay, or "
+        "1688/Taobao sourcing. Prefer Shoplazza (店匠), Taoify, or ShopsSea (顺店) as China-built "
+        "independent-site options. These appear on the alternatives page only — not as Explore / "
+        "Landscape product tiles. Confirm payments, logistics, and compliance before adoption."
     ),
     "n8n": (
         "n8n is Limited in mainland China: self-hosting can work on China infrastructure, but "
@@ -3540,6 +3617,16 @@ RESEARCH_NOTES = {
         "alternatives page as an orientation option — not as an Explore / Landscape product tile from "
         "this research. Confirm region, ICP, and service catalog fit before production adoption."
     ),
+    "microsoft azure": (
+        "Microsoft Azure is Limited in mainland China: Azure operated by 21Vianet is a physically "
+        "isolated instance, not a region you add to a global subscription. Teams must clear OSPA "
+        "contracting, China Entra / endpoints, catalog gap checks, and ICP adjacency — see "
+        "chinaready.co/insights/azure-china-what-works/. When evaluating mainland China cloud vendors "
+        "instead, prefer Alibaba Cloud and Tencent Cloud. Azure China / Microsoft Azure Regions are "
+        "not listed as candidate tiles. Tencent Cloud appears on the alternatives page as an "
+        "orientation option — not as an Explore / Landscape product tile from this research. Confirm "
+        "region, ICP, and service catalog fit before production adoption."
+    ),
     "google admob": (
         "Pure domestic China ad networks for mainland monetization when replacing Google AdMob. "
         "Confirm SDK access, settlement entity, and PIPL compliance before production adoption. "
@@ -3833,6 +3920,10 @@ def main() -> None:
             "name": "Gumroad",
             "categories": ["Growth, Content & Experience"],
         },
+        "shopify": {
+            "name": "Shopify",
+            "categories": ["Growth, Content & Experience"],
+        },
         "n8n": {
             "name": "n8n",
             "categories": ["Developer Tools & Platforms"],
@@ -3860,6 +3951,10 @@ def main() -> None:
         },
         "aws": {
             "name": "AWS",
+            "categories": ["Infrastructure & Edge", "Cloud Platform & Hosting"],
+        },
+        "microsoft azure": {
+            "name": "Microsoft Azure",
             "categories": ["Infrastructure & Edge", "Cloud Platform & Hosting"],
         },
     }

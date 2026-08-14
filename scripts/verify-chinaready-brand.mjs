@@ -838,6 +838,44 @@ assert(exists("build/alternatives/openai.html"), "OpenAI alternatives page must 
 assert(exists("build/alternatives/anthropic.html"), "Anthropic alternatives page must exist after AI model entries are added");
 assert(exists("build/alternatives/google-gemini.html"), "Google Gemini alternatives page must exist after AI model entries are added");
 assert(exists("build/alternatives/pinecone.html"), "Pinecone alternatives page must exist after vector DB entries are added");
+if (exists("build/alternatives/pinecone.html")) {
+  const pineconePage = read("build/alternatives/pinecone.html");
+  assert(
+    pineconePage.includes("cr-alt-availability-limited\">Limited</span>"),
+    "Pinecone page must label mainland China availability as Limited",
+  );
+  assert(pineconePage.includes("no mainland China nodes"), "Pinecone page must note the lack of mainland nodes");
+  assert(pineconePage.includes("default gRPC"), "Pinecone page must note the default gRPC / DNS failure mode");
+}
+if (exists("build/alternatives/shopify.html")) {
+  const shopifyPage = read("build/alternatives/shopify.html");
+  assert(
+    shopifyPage.includes("cr-alt-availability-unavailable\">Unavailable</span>"),
+    "Shopify page must label mainland China availability as Unavailable",
+  );
+  assert(shopifyPage.includes("Shoplazza"), "Shopify page must list Shoplazza");
+  assert(shopifyPage.includes("Taoify"), "Shopify page must list Taoify");
+  assert(shopifyPage.includes("ShopsSea"), "Shopify page must list ShopsSea");
+  assert(shopifyPage.includes("no mainland China servers or CDN nodes"), "Shopify page must note the lack of mainland CDN");
+}
+if (exists("build/alternatives/microsoft-azure.html")) {
+  const azurePage = read("build/alternatives/microsoft-azure.html");
+  assert(
+    azurePage.includes("cr-alt-availability-limited\">Limited</span>"),
+    "Microsoft Azure page must label mainland China availability as Limited",
+  );
+  assert(azurePage.includes("Alibaba Cloud"), "Microsoft Azure page must list Alibaba Cloud");
+  assert(azurePage.includes("Tencent Cloud"), "Microsoft Azure page must list Tencent Cloud");
+  assert(azurePage.includes("azure-china-what-works"), "Microsoft Azure page must link the Azure China insight");
+  assert(
+    azurePage.includes("physically isolated Azure instance"),
+    "Microsoft Azure page must summarize the 21Vianet partition point",
+  );
+  assert(
+    !/<h3><a href="https:\/\/www\.azure\.cn\/">Azure China<\/a><\/h3>/.test(azurePage),
+    "Microsoft Azure page must not list Azure China as a candidate card",
+  );
+}
 
 for (const googleSlug of [
   "google-maps-platform",
@@ -1374,6 +1412,7 @@ for (const item of items) {
     wordpress: ["PageAdmin", "Baklib"],
     "dropbox-sign": ["eSignBao", "Fadada", "BestSign"],
     gumroad: ["Youzan Cloud", "Afdian"],
+    shopify: ["Shoplazza", "Taoify", "ShopsSea"],
     "adobe-acrobat-sign": ["eSignBao", "Fadada", "BestSign"],
     n8n: ["Jijyun", "Jiandaoyun", "DingTalk Yida", "Qingflow"],
     "zoom-sdk": ["Tencent Meeting", "Feishu Meeting"],
