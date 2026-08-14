@@ -850,13 +850,13 @@ if (exists("build/alternatives/pinecone.html")) {
 if (exists("build/alternatives/shopify.html")) {
   const shopifyPage = read("build/alternatives/shopify.html");
   assert(
-    shopifyPage.includes("cr-alt-availability-unavailable\">Unavailable</span>"),
-    "Shopify page must label mainland China availability as Unavailable",
+    shopifyPage.includes("cr-alt-availability-limited\">Limited</span>"),
+    "Shopify page must label mainland China availability as Limited",
   );
-  assert(shopifyPage.includes("Shoplazza"), "Shopify page must list Shoplazza");
-  assert(shopifyPage.includes("Taoify"), "Shopify page must list Taoify");
-  assert(shopifyPage.includes("ShopsSea"), "Shopify page must list ShopsSea");
-  assert(shopifyPage.includes("no mainland China servers or CDN nodes"), "Shopify page must note the lack of mainland CDN");
+  assert(shopifyPage.includes("JD Worldwide"), "Shopify page must list JD Worldwide");
+  assert(shopifyPage.includes("Alipay"), "Shopify page must mention Alipay");
+  assert(shopifyPage.includes("WeChat Pay"), "Shopify page must mention WeChat Pay");
+  assert(shopifyPage.includes("joining JD Worldwide first"), "Shopify page must recommend JD Worldwide first");
 }
 if (exists("build/alternatives/microsoft-azure.html")) {
   const azurePage = read("build/alternatives/microsoft-azure.html");
@@ -1412,7 +1412,7 @@ for (const item of items) {
     wordpress: ["PageAdmin", "Baklib"],
     "dropbox-sign": ["eSignBao", "Fadada", "BestSign"],
     gumroad: ["Youzan Cloud", "Afdian"],
-    shopify: ["Shoplazza", "Taoify", "ShopsSea"],
+    shopify: ["JD Worldwide"],
     "adobe-acrobat-sign": ["eSignBao", "Fadada", "BestSign"],
     n8n: ["Jijyun", "Jiandaoyun", "DingTalk Yida", "Qingflow"],
     "zoom-sdk": ["Tencent Meeting", "Feishu Meeting"],

@@ -146,7 +146,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "microsoft-authenticator": "limited",
 // === END HUB P0P1 EDITORIAL ===
   pinecone: "limited",
-  shopify: "unavailable",
+  shopify: "limited",
 };
 
 /** Keep stable public URLs when display names change. */
@@ -3924,81 +3924,94 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   shopify: {
-    relatedSlugs: ["commerce-layer", "smile-io", "loyaltylion"],
+    relatedSlugs: ["commerce-layer", "stripe", "paypal"],
     description: (availability, names) =>
       clipMeta(
-        `Does Shopify work in China? Unavailable — no mainland CDN, ICP/app-store risk, missing WeChat Pay/Alipay. Compare ${names.slice(0, 3).join(", ") || "Shoplazza, Taoify, ShopsSea"}.`,
+        `Does Shopify work in China? Limited for mainland shoppers — network, payments, compliance. Start with ${names[0] || "JD Worldwide"}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
-      `<strong>Quick answer:</strong> <strong>Shopify is Unavailable for mainland China</strong>. There are no mainland servers or CDN nodes, so storefronts often load slowly, drop images and video, or fail entirely. Shopify also lacks native ICP filing, WeChat Pay, Alipay, and 1688/Taobao sourcing. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Shoplazza, Taoify, ShopsSea")}</strong> as China-built independent-site options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
-    guidanceTitle: "Why Shopify is Unavailable in mainland China",
+      `<strong>Quick answer:</strong> <strong>Shopify is Limited for selling to mainland China shoppers</strong>. Independent sites hit slow loads, missing Google Fonts, PayPal-unfriendly checkout, and ICP/compliance work. The simpler first path is <strong>${escapeHtml(names[0] || "JD Worldwide")}</strong> (京东国际) via Shopify's JD Marketplace channel — a cross-border import lane with JD logistics. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Shopify merchants selling into mainland China",
     sectionTitle: "Mapped China-ready candidates",
     preferResearchCandidates: true,
-    indexOptions: 3,
-    indexCandidates: "Shoplazza, Taoify, ShopsSea",
+    indexOptions: 1,
+    indexCandidates: "JD Worldwide",
     guidanceHtml: `
-        <p><strong>Shopify is Unavailable for practical mainland China production use.</strong> Three constraints dominate:</p>
+        <h3>1. Challenges when Shopify merchants face the China market</h3>
+        <p>Shopify merchants selling to mainland consumers typically hit three blockers: slow or blocked storefront access, checkout that does not match local wallets, and compliance work that an overseas SaaS store does not cover. The jobs below are the usual mitigation stack — still heavier than opening a JD Worldwide (京东国际) storefront first.</p>
+        <h4>Network access and load speed</h4>
+        <p>Shopify has no mainland China servers. Combined with cross-border bandwidth and the Great Firewall, mainland shoppers often see slow loads or a storefront that will not open.</p>
         <ul>
-          <li><strong>Network access:</strong> Shopify has no mainland China servers or CDN nodes. International bandwidth and cross-border traffic mean mainland visitors often see slow loads, missing images or video, or a storefront that will not open at all.</li>
-          <li><strong>Compliance:</strong> some Shopify features and related apps can conflict with mainland internet rules. Shopify's consumer shopping app Shop was removed from mainland app stores after reports that its AI module called an unregistered overseas model and that user data crossed the border against local storage rules. Lawful mainland websites also need ICP filing, which Shopify does not natively support.</li>
-          <li><strong>Localization:</strong> Shopify has no native WeChat Pay or Alipay checkout, and no native 1688 / Taobao sourcing. Those jobs usually need third-party plugins.</li>
+          <li><strong>China acceleration:</strong> third-party China acceleration services such as Chinafy or 21YunBox place relay nodes in mainland China and optimize images, CSS, and JavaScript so latency and stability improve.</li>
+          <li><strong>Replace blocked fonts:</strong> the firewall often intercepts Google Fonts requests and stalls the page. Use web-safe fonts or Monotype fonts in the theme instead.</li>
         </ul>
-        <h3>China-built independent-site platforms commonly evaluated instead</h3>
-        <p>These SaaS store builders are oriented to Chinese sellers' cross-border and localization needs — not Explore / Landscape product tiles:</p>
-        <div class="cr-alt-table-scroll">
-          <table>
-            <thead>
-              <tr>
-                <th>Platform</th>
-                <th>Positioning</th>
-                <th>Best fit</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Shoplazza (店匠)</td>
-                <td>Closest China-built Shopify-like SaaS; stronger stability and faster loads for many China-based operators; Shopify veterans can usually migrate with little relearning</td>
-                <td>Sellers focused on US/EU and cross-border independent sites</td>
-              </tr>
-              <tr>
-                <td>Taoify</td>
-                <td>Zero commission, Chinese-language service, and mainland-oriented compliance; open APIs for ERP/CRM; native 1688/Taobao one-click listing and AI copy/image translation</td>
-                <td>SMEs and factories, including reverse-haitao sourcing</td>
-              </tr>
-              <tr>
-                <td>ShopsSea (顺店)</td>
-                <td>Free store building and zero transaction commission; multilingual translation, multi-currency, GDPR settings, three-tier distribution, AI content, plus bundled payment, logistics, and ERP connectors</td>
-                <td>Cost-sensitive sellers who want a full independent-site toolkit</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p>These candidates appear on the Shopify alternatives page only — Chinaready does <strong>not</strong> add Shoplazza, Taoify, or ShopsSea as Explore / Landscape product tiles. Confirm payments, logistics, and compliance before production adoption. Youzan Cloud remains on Explore for WeChat / domestic commerce, which is a different job from Shopify-style independent sites.</p>`,
+        <h4>Localized payments</h4>
+        <p>Mainland shoppers rarely use PayPal or other overseas gateways. Checkout has to match local wallets.</p>
+        <ul>
+          <li><strong>Alipay (支付宝) and WeChat Pay (微信支付):</strong> put these on the checkout page — they are the conversion-critical rails.</li>
+          <li><strong>Certified collection:</strong> if the merchant entity is in mainland China, collect through a certified third-party payment provider rather than an unlicensed overseas wallet.</li>
+        </ul>
+        <h4>Channels and logistics</h4>
+        <p>Besides the independent site, domestic marketplaces and logistics cut the cross-border barrier.</p>
+        <ul>
+          <li><strong>JD Worldwide (京东国际):</strong> Shopify has a strategic partnership with JD. Install the JD Marketplace app, onboard to JD Worldwide, and use the cross-border import lane. JD Shipping and JD Sourcing plugins cover assortment, customs, international freight, and local fulfillment.</li>
+        </ul>
+        <h4>Localization and legal compliance</h4>
+        <ul>
+          <li><strong>ICP filing:</strong> hosting the site inside mainland China to improve performance requires ICP filing so the site can operate lawfully.</li>
+          <li><strong>Deeper localization:</strong> Simplified Chinese copy is not enough — optimize for mobile browsing habits and market on WeChat (微信) and Weibo (微博).</li>
+        </ul>
+        <p>Acceleration, local wallets, a JD channel, and compliance together can move goods to mainland shoppers. For most Shopify merchants, <strong>joining JD Worldwide first is simpler and faster</strong> than making the independent site the China storefront.</p>
+        <h3>2. Why JD Worldwide first — and how to join</h3>
+        <p>For Shopify merchants, JD Worldwide is usually the efficient first move. The partnership opens a cross-border import lane and uses JD's supply-chain and logistics network for customs, warehousing, and local fulfillment.</p>
+        <h4>Step 1 — Prepare qualifications</h4>
+        <ul>
+          <li><strong>Company:</strong> overseas or Hong Kong / Macao / Taiwan registered entity (mainland China companies are not accepted). Provide the overseas business license, legal-representative and authorized-representative IDs, and an overseas or Hong Kong / Macao / Taiwan corporate bank account that can settle in USD.</li>
+          <li><strong>Mainland agent:</strong> appoint a mainland China joint-liability agent, plus a valid domestic after-sales return address down to the street number (Hong Kong / Macao / Taiwan addresses are not accepted).</li>
+          <li><strong>Brand:</strong> an overseas (including Hong Kong / Macao / Taiwan) trademark registration certificate. Selling another brand needs a full authorization chain of three levels or fewer, or valid purchase proof.</li>
+          <li><strong>Operating plan:</strong> a company and brand PPT covering the company, brand, product images, operating capability, and future plan.</li>
+        </ul>
+        <h4>Step 2 — Submit the application</h4>
+        <p>Apply on JD Worldwide's official merchant page. Enter company details, store type (flagship, specialty, and similar), and category scope, then upload scanned qualification files.</p>
+        <h4>Step 3 — Qualification review</h4>
+        <p>JD Worldwide runs an initial document check, then a merchant-recruitment review of brand strength and supply-chain capability. The cycle is typically 3–7 working days. Stay reachable so you can supply or correct files quickly.</p>
+        <h4>Step 4 — Contract and fees</h4>
+        <p>After approval, sign the online service agreement. Then pay a category deposit (most categories are cited around USD 5,000–15,000; watches, infant formula, and similar special categories can be higher) and a transaction service fee (often 0.6%–0.9% of sales, deducted in real time). JD Worldwide cancelled the fixed platform-use fee from 1 April 2023.</p>
+        <h4>Step 5 — Store setup and listings</h4>
+        <p>After fees, decorate the store and upload product data. Listings must be complete, match China customs and inspection rules, and use Chinese copy. Shopify merchants can use JD Worldwide logistics plugins for door-to-door pickup, customs, overseas-warehouse stock, and local fulfillment.</p>
+        <h4>Step 6 — Go live and operate</h4>
+        <p>After listing review, the store can sell. Ongoing work includes order handling and a Chinese-language customer-service team. JD Worldwide also supports new merchants on traffic and assortment planning; 618 and 11.11 campaigns are the usual volume events.</p>
+        <p>JD Worldwide appears on this alternatives page only — Chinaready does <strong>not</strong> add it as an Explore / Landscape product tile. Confirm eligibility (overseas entity, mainland agent, brand rights), deposits, and logistics before applying. Shopify merchants can start from the <a href="https://apps.shopify.com/jd-marketplace" target="_blank" rel="noopener noreferrer">JD Marketplace</a> app in the Shopify App Store.</p>`,
     faq: (availability, namesText) => [
       {
         question: "Does Shopify work in China?",
-        answer: `No for practical mainland China production use. Chinaready labels Shopify as ${availability}. There are no mainland servers or CDN nodes, so storefronts often load slowly, drop media, or fail entirely; Shopify does not natively support ICP filing, WeChat Pay, Alipay, or 1688/Taobao sourcing; and related apps have faced mainland compliance actions, including the Shop app being removed from China app stores.`,
+        answer: `Only with Limited practical usefulness as a mainland-facing storefront. Chinaready labels Shopify as ${availability}. Servers sit outside mainland China, so shoppers often see slow or failed loads; PayPal-style checkout does not match Alipay / WeChat Pay habits; and ICP plus localization work sits outside native Shopify. For most merchants, joining JD Worldwide first is simpler than forcing the independent site to be the China channel.`,
       },
       {
-        question: "Why is Shopify unavailable in mainland China?",
+        question: "What challenges do Shopify merchants face selling to China?",
         answer:
-          "Three reasons: no mainland servers or CDN nodes, so cross-border access is slow or blocked; compliance and policy risk, including ICP filing that Shopify does not natively support and the Shop app being removed from mainland app stores; and a missing China localization stack — no native WeChat Pay, Alipay, or 1688/Taobao sourcing.",
+          "Four jobs dominate: accelerate the storefront (Chinafy, 21YunBox, replace Google Fonts), add Alipay and WeChat Pay, use a domestic channel and logistics stack such as JD Worldwide, and cover ICP filing plus Simplified Chinese / mobile / WeChat-Weibo localization if you keep a China-facing site.",
       },
       {
-        question: "What are the best China alternatives to Shopify?",
+        question: "Should Shopify merchants join JD Worldwide first?",
         answer: namesText
-          ? `Chinaready currently lists these China-ready candidates for Shopify: ${namesText}. Prefer Shoplazza (店匠) as the closest Shopify-like SaaS for US/EU independent sites, Taoify for zero-commission Chinese-language operations with 1688/Taobao listing, and ShopsSea (顺店) when free store building and zero transaction commission matter most. Confirm fit before production adoption.`
-          : "Prefer Shoplazza (店匠) as the closest Shopify-like SaaS for US/EU independent sites, Taoify for zero-commission Chinese-language operations with 1688/Taobao listing, and ShopsSea (顺店) when free store building and zero transaction commission matter most.",
+          ? `Usually yes. Chinaready currently lists ${namesText} as the China-market path on this page. Shopify's JD Marketplace partnership opens a cross-border import lane and JD logistics for customs, warehousing, and local fulfillment — typically faster than making the Shopify independent site work for mainland shoppers.`
+          : "Usually yes. Shopify's JD Marketplace partnership opens a JD Worldwide cross-border import lane and JD logistics for customs, warehousing, and local fulfillment — typically faster than making the Shopify independent site work for mainland shoppers.",
       },
       {
-        question: "Are Shoplazza, Taoify, and ShopsSea on Chinaready Explore?",
+        question: "How do Shopify merchants join JD Worldwide?",
         answer:
-          "No. They are listed as Mapped China-ready candidates on this alternatives page only. Chinaready does not add them as Explore / Landscape product tiles for Shopify.",
+          "Prepare an overseas or Hong Kong / Macao / Taiwan company (mainland entities are not accepted), a mainland joint-liability agent and return address, brand trademark proof, and an operating PPT. Apply on JD Worldwide's merchant page, pass a 3–7 working-day review, sign the agreement and pay deposit plus transaction fees, then list in Chinese and fulfill via JD logistics. Shopify merchants can also start from the JD Marketplace app.",
       },
       {
-        question: "Where should teams go after shortlisting Shopify alternatives?",
+        question: "Is JD Worldwide on Chinaready Explore?",
         answer:
-          "Decide whether you need a Shopify-like independent site for cross-border selling or a WeChat/domestic commerce stack, then confirm payments, logistics, ICP, and data-residency fit. Use the interactive Chinaready Landscape for adjacent ecommerce options, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+          "No. JD Worldwide is listed as a Mapped China-ready candidate on this alternatives page only. Chinaready does not add it as an Explore / Landscape product tile for Shopify.",
+      },
+      {
+        question: "Where should teams go after deciding between Shopify and JD Worldwide?",
+        answer:
+          "If the independent site must stay live for mainland shoppers, plan acceleration, Alipay / WeChat Pay, and ICP. If the goal is selling into China with less storefront work, start JD Worldwide onboarding and confirm entity, agent, brand, and deposit fit. Use the interactive Chinaready Landscape for adjacent ecommerce and payment pages, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },

@@ -2708,42 +2708,17 @@ OVERRIDES = {
     ],
     "shopify": [
         {
-            "name": "Shoplazza",
-            "homepage_url": "https://www.shoplazza.cn/",
+            "name": "JD Worldwide",
+            "homepage_url": "https://www.jd.hk/",
             "category": "Growth, Content & Experience",
             "subcategory": "Ecommerce Platforms & APIs",
             "source": "research",
             "note": (
-                "Shoplazza (店匠) is widely seen as the closest China-built Shopify-like SaaS. "
-                "Many China-based operators report stronger server stability and faster page loads, "
-                "and Shopify veterans can usually migrate with little relearning — a common first "
-                "choice for US/EU and cross-border independent sites."
-            ),
-        },
-        {
-            "name": "Taoify",
-            "homepage_url": "https://taoify.shop/",
-            "category": "Growth, Content & Experience",
-            "subcategory": "Ecommerce Platforms & APIs",
-            "source": "research",
-            "note": (
-                "Taoify positions around zero commission, Chinese-language service, and "
-                "mainland-oriented compliance. Open APIs integrate with existing ERP/CRM stacks. "
-                "Native reverse-haitao flows include 1688/Taobao one-click listing and AI "
-                "copy/image translation — a fit for SMEs and factories."
-            ),
-        },
-        {
-            "name": "ShopsSea",
-            "homepage_url": "https://www.shopssea.com/",
-            "category": "Growth, Content & Experience",
-            "subcategory": "Ecommerce Platforms & APIs",
-            "source": "research",
-            "note": (
-                "ShopsSea (顺店) emphasizes free store building and zero transaction commission. "
-                "Built-in multilingual translation, multi-currency, GDPR settings, three-tier "
-                "distribution, and AI content tools, plus bundled payment, logistics, and ERP "
-                "connectors — aimed at lowering independent-site cost for China sellers."
+                "JD Worldwide (京东国际) is the usual first China channel for Shopify merchants. "
+                "Shopify's JD Marketplace partnership opens a cross-border import lane; JD Shipping "
+                "and JD Sourcing cover customs, warehousing, and local fulfillment. Mainland China "
+                "companies are not accepted — apply with an overseas or Hong Kong / Macao / Taiwan "
+                "entity, a mainland agent, and brand proof."
             ),
         },
     ],
@@ -3049,7 +3024,7 @@ AVAILABILITY_OVERRIDES = {
     "typeform": "Limited",
     "wordpress": "Limited",
     "gumroad": "Unavailable",
-    "shopify": "Unavailable",
+    "shopify": "Limited",
     "n8n": "Limited",
     "hubspot": "Limited",
     "mailchimp": "Limited",
@@ -3150,12 +3125,12 @@ RESEARCH_NOTES = {
         "content compliance before adoption."
     ),
     "shopify": (
-        "Shopify is Unavailable for mainland China: no mainland servers or CDN nodes, so "
-        "storefronts often load slowly, drop media, or fail; compliance and policy risk including "
-        "ICP filing that Shopify does not natively support; and no native WeChat Pay, Alipay, or "
-        "1688/Taobao sourcing. Prefer Shoplazza (店匠), Taoify, or ShopsSea (顺店) as China-built "
-        "independent-site options. These appear on the alternatives page only — not as Explore / "
-        "Landscape product tiles. Confirm payments, logistics, and compliance before adoption."
+        "Shopify is Limited for selling to mainland China shoppers: independent sites hit slow "
+        "loads, missing Google Fonts, PayPal-unfriendly checkout, and ICP/compliance work. The "
+        "simpler first path is JD Worldwide (京东国际) via Shopify's JD Marketplace channel — a "
+        "cross-border import lane with JD logistics. These appear on the alternatives page only — "
+        "not as Explore / Landscape product tiles. Confirm overseas-entity eligibility, mainland "
+        "agent, brand rights, and deposits before applying."
     ),
     "n8n": (
         "n8n is Limited in mainland China: self-hosting can work on China infrastructure, but "
