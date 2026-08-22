@@ -908,6 +908,10 @@ for (const googleSlug of [
 
 if (exists("build/alternatives/google-cloud.html")) {
   const googleCloudPage = read("build/alternatives/google-cloud.html");
+  assert(
+    googleCloudPage.includes("cr-alt-availability-unavailable\">Unavailable</span>"),
+    "Google Cloud page must label mainland China availability as Unavailable",
+  );
   assert(googleCloudPage.includes("AWS China Regions"), "Google Cloud page must list AWS China Regions");
   assert(googleCloudPage.includes("Azure China"), "Google Cloud page must list Azure China");
   assert(googleCloudPage.includes("Alibaba Cloud"), "Google Cloud page must list Alibaba Cloud");

@@ -147,6 +147,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
 // === END HUB P0P1 EDITORIAL ===
   pinecone: "limited",
   shopify: "limited",
+  "google-cloud": "unavailable",
 };
 
 /** Keep stable public URLs when display names change. */
@@ -6221,7 +6222,7 @@ function buildGoogleEditorial(group) {
       {
         question: `Does ${serviceName} work in China?`,
         answer: isGoogleCloud
-          ? `Limited. Google Cloud has no mainland China region comparable to AWS China or Azure China. Chinaready currently labels ${serviceName} as ${availability}. Treat this as an operating signal, then validate account type, region, network path, and compliance constraints before relying on it in production.`
+          ? `No. Google Cloud has no mainland China region comparable to AWS China or Azure China. Chinaready currently labels ${serviceName} as ${availability}. Treat this as an operating signal, then validate account type, region, network path, and compliance constraints before relying on it in production.`
           : `Google officially established its Chinese corporate entity in April 2006, but most core consumer services are blocked in mainland China due to local censorship regulations. Chinaready currently labels ${serviceName} as ${availability} for mainland China use. Treat this as an operating signal, then validate against your own account type, region, network path, and compliance constraints before relying on it in production.`,
       },
       {
