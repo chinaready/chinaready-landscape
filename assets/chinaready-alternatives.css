@@ -454,6 +454,18 @@ a.cr-guide-global-link:hover {
   font-size: 1.05rem;
 }
 
+.cr-alt-updated {
+  margin: -4px 0 16px;
+  color: var(--cr-text-secondary);
+  font-size: 0.9rem;
+}
+
+.cr-alt-section-kicker {
+  margin: 0 0 16px;
+  color: var(--cr-text-secondary);
+  font-size: 0.95rem;
+}
+
 .cr-alt-guidance {
   max-width: 72ch;
   margin: 8px 0 0;

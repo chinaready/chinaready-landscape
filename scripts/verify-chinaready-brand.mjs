@@ -318,6 +318,12 @@ if (exists("build/index.html")) {
   assert(index.includes('"@type": "WebSite"'), "build/index.html must include WebSite JSON-LD");
   assert(index.includes('"@type": "Organization"'), "build/index.html must include Organization JSON-LD");
   assert(index.includes("/llms.txt"), "build/index.html must advertise llms.txt");
+  assert(index.includes("/llms-full.txt"), "build/index.html must advertise llms-full.txt");
+  assert(
+    /<h1[\s\S]*China Alternatives to Firebase, AWS, Stripe/.test(index),
+    "build/index.html must include an accessible H1 matching the SERP title",
+  );
+  assert(index.includes('"dateModified"'), "build/index.html WebPage JSON-LD must declare dateModified");
   assert(index.includes("/alternatives/"), "build/index.html must advertise the alternatives index");
   assert(
     index.includes("googletagmanager.com/gtag/js?id=G-4BXLJXM1DY"),
@@ -338,6 +344,10 @@ if (exists("build/robots.txt")) {
   const robots = read("build/robots.txt");
   assert(robots.includes("Sitemap: https://landscape.chinaready.co/sitemap.xml"), "robots.txt must declare the sitemap");
   assert(robots.includes("GPTBot"), "robots.txt must explicitly allow major AI crawlers");
+  assert(robots.includes("OAI-SearchBot"), "robots.txt must allow OpenAI search-citation crawler");
+  assert(robots.includes("Claude-SearchBot"), "robots.txt must allow Anthropic search-citation crawler");
+  assert(robots.includes("Claude-User"), "robots.txt must allow Anthropic user-triggered fetcher");
+  assert(robots.includes("Perplexity-User"), "robots.txt must allow Perplexity user-triggered fetcher");
   assert(robots.includes("Disallow: /embed"), "robots.txt must disallow thin embed pages");
   assert(
     robots.includes("Content-Signal: ai-train=no, search=yes, ai-input=yes"),
@@ -374,9 +384,16 @@ if (exists("build/llms.txt")) {
   assert(llms.includes("/alternatives/sentry"), "llms.txt high-intent list must link the Sentry page when present");
 }
 
+if (exists("build/llms-full.txt")) {
+  const llmsFull = read("build/llms-full.txt");
+  assert(llmsFull.includes("# Chinaready Landscape"), "llms-full.txt must identify the project");
+  assert(llmsFull.includes("/alternatives/sentry"), "llms-full.txt must include the full alternatives inventory");
+  assert(llmsFull.includes("/llms.txt"), "llms-full.txt must point back to the short overview");
+}
+
 if (exists("build/guide.html")) {
   const guidePage = read("build/guide.html");
-  assert(guidePage.includes("Chinaready Landscape Guide"), "static guide page must use a Guide H1/title");
+  assert(guidePage.includes("China Developer Stack Guide by Category"), "static guide page must use a Guide H1/title");
   assert(
     guidePage.includes('rel="canonical" href="https://landscape.chinaready.co/guide"'),
     "static guide page canonical must be /guide, not the homepage",
@@ -501,7 +518,10 @@ if (exists("build/_redirects")) {
 
 if (exists("build/alternatives/index.html")) {
   const alternativesIndex = read("build/alternatives/index.html");
-  assert(alternativesIndex.includes("China alternatives to global developer services"), "alternatives index must use a clear H1 topic");
+  assert(
+    alternativesIndex.includes("China Alternatives to Firebase, AWS"),
+    "alternatives index must use a clear H1 topic aligned with the title",
+  );
   assert(alternativesIndex.includes("Firebase"), "alternatives index must include Firebase mappings");
   assert(alternativesIndex.includes("Availability in China"), "alternatives index must include Availability in China column");
   assert(alternativesIndex.includes("cr-alt-availability"), "alternatives index must style availability labels");
@@ -922,6 +942,8 @@ if (exists("build/alternatives/firebase.html")) {
   assert(firebasePage.includes("Firebase alternatives in China"), "Firebase alternatives page must use an intent-matching H1");
   assert(firebasePage.includes("Does Firebase work in China"), "Firebase alternatives page must answer the primary GEO question");
   assert(firebasePage.includes("Quick answer"), "Firebase alternatives page must lead with a direct answer for CTR/GEO");
+  assert(firebasePage.includes('"dateModified"'), "Firebase alternatives page must declare JSON-LD dateModified");
+  assert(firebasePage.includes("Updated "), "Firebase alternatives page must show a visible last-updated date");
   assert(firebasePage.includes('"@type":"FAQPage"') || firebasePage.includes('"@type": "FAQPage"'), "Firebase alternatives page must include FAQPage JSON-LD");
   assert(firebasePage.includes("https://chinaready.co"), "Firebase alternatives page must link to the main site");
   assert(
