@@ -2,9 +2,9 @@
   "source": "Chinaready Landscape research shortlist for taxonomy-relevant global services",
   "generated_for": "alternatives index SEO expansion",
   "counts": {
-    "services": 138,
+    "services": 139,
     "uncertain_alternatives": 0,
-    "researched_alternatives": 116,
+    "researched_alternatives": 117,
     "heuristic_alternatives": 22
   },
   "availability_lookup": {
@@ -697,6 +697,11 @@
       "name": "Zoom SDK",
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
+    },
+    "zendesk messaging": {
+      "name": "Zendesk Messaging",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
     }
   },
   "services": [
@@ -5757,6 +5762,43 @@
         }
       ],
       "research_note": "Zendesk is Limited in mainland China: the product is often reachable and is not fully blocked, but Zendesk does not operate mainland data centers or a China-region hosting commitment, so quality and stability are not guaranteed. Access is typically slow with high latency; mainland network filtering can constrain features such as mobile push; and a pure overseas SaaS model is a weak fit for data-residency expectations. Prefer Udesk for omnichannel WeCom/DingTalk support with flexible deployment, HOLLYCRM when AI agents, dialect coverage, and peak-load continuity matter, and Tencent Qidian Customer Service when the WeChat ecosystem is the primary customer channel. These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm channel fit, deployment model, and compliance before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Zendesk Messaging",
+      "categories": [
+        "Engagement & Communication",
+        "Customer Support & In-App Messaging"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Udesk",
+          "homepage_url": "https://udesk.cn/",
+          "category": "Engagement & Communication",
+          "subcategory": "Customer Support & In-App Messaging",
+          "source": "research",
+          "note": "Udesk (沃丰科技) is a mainland omnichannel customer-service platform with public-cloud, private-cloud, and hybrid deployment. It connects WeCom, DingTalk, and related China channels, and is commonly evaluated by mid-to-large local or multi-region support teams that need stable mainland operations."
+        },
+        {
+          "name": "HOLLYCRM",
+          "homepage_url": "https://www.hollycrm.com/",
+          "category": "Engagement & Communication",
+          "subcategory": "Customer Support & In-App Messaging",
+          "source": "research",
+          "note": "HOLLYCRM (合力亿捷) is a long-standing China contact-center and intelligent-agent vendor with strong dialect and intent recognition. It is commonly cited for peak-load resilience (including Singles' Day / Double 11 traffic) and for teams that prioritize data security and business continuity."
+        },
+        {
+          "name": "Tencent Qidian Customer Service",
+          "homepage_url": "https://qidian.qq.com/",
+          "category": "Engagement & Communication",
+          "subcategory": "Customer Support & In-App Messaging",
+          "source": "research",
+          "note": "Tencent Qidian Customer Service (腾讯企点客服) sits inside the WeChat stack (Official Accounts, mini programs, WeCom, and related channels). Best when public-to-private-domain handoff matters — especially retail and local-life brands whose customers already live in WeChat."
+        }
+      ],
+      "research_note": "Zendesk Messaging is Limited in mainland China: the product is often reachable and is not fully blocked, but Zendesk does not operate mainland data centers or a China-region hosting commitment, so quality and stability are not guaranteed. Access is typically slow with high latency; mainland network filtering can constrain features such as mobile push; and a pure overseas SaaS model is a weak fit for data-residency expectations. Prefer Udesk for omnichannel WeCom/DingTalk support with flexible deployment, HOLLYCRM when AI agents, dialect coverage, and peak-load continuity matter, and Tencent Qidian Customer Service when the WeChat ecosystem is the primary customer channel. These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm channel fit, deployment model, and compliance before production adoption.",
       "confidence": "researched"
     },
     {

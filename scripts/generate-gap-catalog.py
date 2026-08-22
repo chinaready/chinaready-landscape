@@ -17,6 +17,64 @@ try:
 except ImportError as exc:  # pragma: no cover
     raise SystemExit("PyYAML is required: python3 -m pip install pyyaml") from exc
 
+ZENDESK_FAMILY_CANDIDATES = [
+    {
+        "name": "Udesk",
+        "homepage_url": "https://udesk.cn/",
+        "category": "Engagement & Communication",
+        "subcategory": "Customer Support & In-App Messaging",
+        "source": "research",
+        "note": (
+            "Udesk (沃丰科技) is a mainland omnichannel customer-service platform with public-cloud, "
+            "private-cloud, and hybrid deployment. It connects WeCom, DingTalk, and related China "
+            "channels, and is commonly evaluated by mid-to-large local or multi-region support teams "
+            "that need stable mainland operations."
+        ),
+    },
+    {
+        "name": "HOLLYCRM",
+        "homepage_url": "https://www.hollycrm.com/",
+        "category": "Engagement & Communication",
+        "subcategory": "Customer Support & In-App Messaging",
+        "source": "research",
+        "note": (
+            "HOLLYCRM (合力亿捷) is a long-standing China contact-center and intelligent-agent vendor "
+            "with strong dialect and intent recognition. It is commonly cited for peak-load resilience "
+            "(including Singles' Day / Double 11 traffic) and for teams that prioritize data security "
+            "and business continuity."
+        ),
+    },
+    {
+        "name": "Tencent Qidian Customer Service",
+        "homepage_url": "https://qidian.qq.com/",
+        "category": "Engagement & Communication",
+        "subcategory": "Customer Support & In-App Messaging",
+        "source": "research",
+        "note": (
+            "Tencent Qidian Customer Service (腾讯企点客服) sits inside the WeChat stack (Official "
+            "Accounts, mini programs, WeCom, and related channels). Best when public-to-private-domain "
+            "handoff matters — especially retail and local-life brands whose customers already live "
+            "in WeChat."
+        ),
+    },
+]
+
+
+def zendesk_family_note(product: str) -> str:
+    return (
+        f"{product} is Limited in mainland China: the product is often reachable and is not fully blocked, "
+        "but Zendesk does not operate mainland data centers or a China-region hosting commitment, so "
+        "quality and stability are not guaranteed. Access is typically slow with high latency; mainland "
+        "network filtering can constrain features such as mobile push; and a pure overseas SaaS model "
+        "is a weak fit for data-residency expectations. Prefer Udesk for omnichannel WeCom/DingTalk "
+        "support with flexible deployment, HOLLYCRM when AI agents, dialect coverage, and peak-load "
+        "continuity matter, and Tencent Qidian Customer Service when the WeChat ecosystem is the "
+        "primary customer channel. These appear on the alternatives page only — not as Explore / "
+        "Landscape product tiles. Confirm channel fit, deployment model, and compliance before "
+        "production adoption."
+    )
+
+
 OVERRIDES = {
     "sentry": ["Alibaba Cloud EMAS", "Alibaba Cloud ARMS"],
     "datadog": [
@@ -415,47 +473,8 @@ OVERRIDES = {
     "gitlab ci": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
     "azure devops": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
     "jenkins": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
-    "zendesk": [
-        {
-            "name": "Udesk",
-            "homepage_url": "https://udesk.cn/",
-            "category": "Engagement & Communication",
-            "subcategory": "Customer Support & In-App Messaging",
-            "source": "research",
-            "note": (
-                "Udesk (沃丰科技) is a mainland omnichannel customer-service platform with public-cloud, "
-                "private-cloud, and hybrid deployment. It connects WeCom, DingTalk, and related China "
-                "channels, and is commonly evaluated by mid-to-large local or multi-region support teams "
-                "that need stable mainland operations."
-            ),
-        },
-        {
-            "name": "HOLLYCRM",
-            "homepage_url": "https://www.hollycrm.com/",
-            "category": "Engagement & Communication",
-            "subcategory": "Customer Support & In-App Messaging",
-            "source": "research",
-            "note": (
-                "HOLLYCRM (合力亿捷) is a long-standing China contact-center and intelligent-agent vendor "
-                "with strong dialect and intent recognition. It is commonly cited for peak-load resilience "
-                "(including Singles' Day / Double 11 traffic) and for teams that prioritize data security "
-                "and business continuity."
-            ),
-        },
-        {
-            "name": "Tencent Qidian Customer Service",
-            "homepage_url": "https://qidian.qq.com/",
-            "category": "Engagement & Communication",
-            "subcategory": "Customer Support & In-App Messaging",
-            "source": "research",
-            "note": (
-                "Tencent Qidian Customer Service (腾讯企点客服) sits inside the WeChat stack (Official "
-                "Accounts, mini programs, WeCom, and related channels). Best when public-to-private-domain "
-                "handoff matters — especially retail and local-life brands whose customers already live "
-                "in WeChat."
-            ),
-        },
-    ],
+    "zendesk": ZENDESK_FAMILY_CANDIDATES,
+    "zendesk messaging": ZENDESK_FAMILY_CANDIDATES,
     "freshdesk": ["Zhichi"],
     "intercom": ["Zhichi", "Easemob"],
     "hubspot": ["Zhichi"],
@@ -3820,6 +3839,7 @@ AVAILABILITY_OVERRIDES = {
     "docker hub": "Unavailable",
     "substack": "Unavailable",
     "zendesk": "Limited",
+    "zendesk messaging": "Limited",
 
 }
 
@@ -4356,18 +4376,8 @@ RESEARCH_NOTES = {
         "alternatives page only — not as Explore / Landscape product tiles. Contact Chinaready for China "
         "ecommerce and loyalty design guidance before production adoption."
     ),
-    "zendesk": (
-        "Zendesk is Limited in mainland China: the product is often reachable and is not fully blocked, "
-        "but Zendesk does not operate mainland data centers or a China-region hosting commitment, so "
-        "quality and stability are not guaranteed. Access is typically slow with high latency; mainland "
-        "network filtering can constrain features such as mobile push; and a pure overseas SaaS model "
-        "is a weak fit for data-residency expectations. Prefer Udesk for omnichannel WeCom/DingTalk "
-        "support with flexible deployment, HOLLYCRM when AI agents, dialect coverage, and peak-load "
-        "continuity matter, and Tencent Qidian Customer Service when the WeChat ecosystem is the "
-        "primary customer channel. These appear on the alternatives page only — not as Explore / "
-        "Landscape product tiles. Confirm channel fit, deployment model, and compliance before "
-        "production adoption."
-    ),
+    "zendesk": zendesk_family_note("Zendesk"),
+    "zendesk messaging": zendesk_family_note("Zendesk Messaging"),
     "marketo": (
         "Marketo is Limited in mainland China: the product is often technically reachable, but practical "
         "experience is poor and core capabilities are constrained — cross-border email delivery is heavily "
@@ -4916,6 +4926,10 @@ def main() -> None:
         },
         "zendesk": {
             "name": "Zendesk",
+            "categories": ["Engagement & Communication", "Customer Support & In-App Messaging"],
+        },
+        "zendesk messaging": {
+            "name": "Zendesk Messaging",
             "categories": ["Engagement & Communication", "Customer Support & In-App Messaging"],
         },
         "aws": {

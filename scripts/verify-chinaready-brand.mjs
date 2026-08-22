@@ -583,6 +583,14 @@ if (exists("build/alternatives/index.html")) {
     alternativesIndex.includes("Udesk, HOLLYCRM, Tencent Qidian Customer Service"),
     "alternatives index must show Zendesk mapped candidates",
   );
+  assert(exists("build/alternatives/zendesk-messaging.html"), "Zendesk Messaging must get a dedicated alternatives page");
+  const zendeskMessagingPage = read("build/alternatives/zendesk-messaging.html");
+  assert(zendeskMessagingPage.includes("Udesk"), "Zendesk Messaging alternatives must list Udesk");
+  assert(zendeskMessagingPage.includes("HOLLYCRM"), "Zendesk Messaging alternatives must list HOLLYCRM");
+  assert(zendeskMessagingPage.includes("Tencent Qidian Customer Service"), "Zendesk Messaging alternatives must list Tencent Qidian Customer Service");
+  assert(zendeskMessagingPage.includes("Mapped China-ready candidates"), "Zendesk Messaging alternatives must show Mapped China-ready candidates");
+  assert(zendeskMessagingPage.includes("Limited"), "Zendesk Messaging alternatives must label Limited availability");
+  assert(zendeskMessagingPage.includes("Does Zendesk Messaging work in China?"), "Zendesk Messaging page must use the work-in-China title");
   assert(exists("build/alternatives/marketo.html"), "Marketo must get a dedicated alternatives page");
   const marketoPage = read("build/alternatives/marketo.html");
   assert(marketoPage.includes("Fxiaoke"), "Marketo alternatives must list Fxiaoke");

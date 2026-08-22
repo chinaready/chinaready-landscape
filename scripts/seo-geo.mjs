@@ -165,6 +165,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   pantheon: "unavailable",
   splunk: "limited",
   zendesk: "limited",
+  "zendesk-messaging": "limited",
 };
 
 /** Keep stable public URLs when display names change. */
@@ -187,6 +188,102 @@ const STACKBREAK_FIREBASE_BACKEND_URL =
  * Keeps the shared alternatives page template, but lets a few pages answer
  * the China-launch decision more precisely than the generic mapping copy.
  */
+function zendeskFamilyEditorial(productName, relatedSlugs) {
+  const fallbackNames = "Udesk, HOLLYCRM, Tencent Qidian Customer Service";
+  return {
+    relatedSlugs,
+    description: (availability, names) =>
+      clipMeta(
+        `${productName} is Limited in mainland China — reachable, but slow and not guaranteed. Compare ${names.slice(0, 3).join(", ") || fallbackNames}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>${escapeHtml(productName)} is Limited in mainland China</strong>. It is often reachable and is not fully blocked, but Zendesk does not operate mainland data centers or a China-region hosting commitment, so quality and stability are not guaranteed. Day-to-day access is typically slow with high latency, some features can be constrained by mainland network filtering, and a pure overseas SaaS model is a weak fit for data-residency expectations. For mainland-deployed support with mainland users, Chinaready currently lists <strong>${escapeHtml(names.slice(0, 3).join(", ") || fallbackNames)}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: `China customer-support platforms instead of ${productName}`,
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: fallbackNames,
+    guidanceHtml: `
+        <p><strong>${escapeHtml(productName)} is Limited for mainland China operations.</strong> Teams can often open the product from the mainland — Zendesk is not fully blocked — but Zendesk does not host Subscriber Service Data in mainland China (published regions cover the United States, EEA, UK, Japan, and Australia). Quality and stability inside the mainland are therefore not guaranteed.</p>
+        <ul>
+          <li><strong>Missing mainland infrastructure:</strong> no China data center or cloud node, so domestic access is typically slow with high latency.</li>
+          <li><strong>Network and compliance limits:</strong> mainland network filtering can constrain features such as mobile push; a pure overseas SaaS model is a weak fit for data-residency expectations (keeping support data in mainland China).</li>
+        </ul>
+        <p>If the business and the people you support are in mainland China, prefer a localized helpdesk that can deploy onshore and connect WeCom, DingTalk, WeChat Official Accounts, and related private-domain channels.</p>
+        <h3>Domestic platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Highlights</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Udesk (沃丰科技)</td>
+                <td>Strong omnichannel coverage with public-cloud, private-cloud, and hybrid deployment; WeCom and DingTalk connections; commonly cited for carrier-class mainland stability</td>
+                <td>Mid-to-large local enterprises and multi-region support teams</td>
+              </tr>
+              <tr>
+                <td>HOLLYCRM (合力亿捷)</td>
+                <td>Long-standing China contact-center vendor with strong AI agents, dialect and complex-intent recognition, and peak-load resilience (including Singles' Day / Double 11)</td>
+                <td>Teams that prioritize data security and business continuity</td>
+              </tr>
+              <tr>
+                <td>Tencent Qidian Customer Service (腾讯企点客服)</td>
+                <td>Deep WeChat-ecosystem fit (Official Accounts, mini programs, WeCom) for public-to-private-domain handoff</td>
+                <td>Retail, local life, and other WeChat-first private-domain operations</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Omnichannel mainland helpdesk with flexible deployment:</strong> start with Udesk for WeCom/DingTalk coverage and public, private, or hybrid cloud.</li>
+          <li><strong>AI agents, dialects, and peak-load continuity:</strong> evaluate HOLLYCRM.</li>
+          <li><strong>WeChat-first customer journeys:</strong> prefer Tencent Qidian Customer Service when Official Accounts, mini programs, and WeCom are the core channels.</li>
+        </ul>
+        <p>These candidates appear on the ${escapeHtml(productName)} alternatives page only — Chinaready does <strong>not</strong> add Udesk, HOLLYCRM, or Tencent Qidian Customer Service as Explore / Landscape product tiles for ${escapeHtml(productName)}. Confirm channel fit, deployment model, and compliance for your own entity before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: `Does ${productName} work in China?`,
+        answer: `Yes, but with Limited practical usefulness. Chinaready labels ${productName} as ${availability} for mainland China. The product is often reachable and is not fully blocked, but Zendesk does not operate mainland data centers, so quality and stability are not guaranteed. Access is typically slow, some features can be constrained by mainland network filtering, and overseas SaaS hosting is a weak fit for data-residency expectations.`,
+      },
+      {
+        question: `What are the best China alternatives to ${productName}?`,
+        answer: namesText
+          ? `Chinaready currently lists these China-ready candidates for ${productName}: ${namesText}. Prefer Udesk for omnichannel WeCom/DingTalk support with flexible deployment, HOLLYCRM when AI agents, dialect coverage, and peak-load continuity matter, and Tencent Qidian Customer Service when the WeChat ecosystem is the primary customer channel. Confirm fit before production adoption.`
+          : "Prefer Udesk (沃丰科技) for omnichannel WeCom/DingTalk support with flexible deployment, HOLLYCRM (合力亿捷) when AI agents, dialect coverage, and peak-load continuity matter, and Tencent Qidian Customer Service (腾讯企点客服) when the WeChat ecosystem is the primary customer channel.",
+      },
+      {
+        question: `Why is ${productName} a poor fit for mainland China support?`,
+        answer:
+          "Two practical gaps show up repeatedly: Zendesk has no mainland China data center or cloud node, so access is slow with high latency; and mainland network filtering plus data-residency rules constrain a pure overseas SaaS model — including features such as mobile push and the expectation that support data stays in mainland China.",
+      },
+      {
+        question: `Is there a direct drop-in replacement for ${productName} in mainland China?`,
+        answer: `Usually no. Mainland helpdesks are designed around WeCom, DingTalk, WeChat Official Accounts, onshore deployment, and data-residency — not a one-to-one ${productName} ticket-and-messaging swap. Expect a channel and workflow redesign rather than a drop-in migration.`,
+      },
+      {
+        question: "How should teams choose among Udesk, HOLLYCRM, and Tencent Qidian Customer Service?",
+        answer:
+          "Choose Udesk (沃丰科技) for omnichannel mainland support with public, private, or hybrid deployment and WeCom/DingTalk connections. Choose HOLLYCRM (合力亿捷) when AI agents, Chinese dialects, and peak-load continuity matter most. Choose Tencent Qidian Customer Service (腾讯企点客服) when WeChat Official Accounts, mini programs, and WeCom are the core customer channels.",
+      },
+      {
+        question: `Are Udesk, HOLLYCRM, and Tencent Qidian Customer Service on Chinaready Explore?`,
+        answer: `No. They are listed as Mapped China-ready candidates on this alternatives page only. Chinaready does not add them as Explore / Landscape product tiles for ${productName}.`,
+      },
+      {
+        question: `Where should teams go after shortlisting ${productName} alternatives?`,
+        answer:
+          "Validate whether your priority is omnichannel helpdesk deployment, AI contact-center scale, or WeChat-first private-domain service — then confirm data residency, channel integrations, and vendor fit with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  };
+}
+
 const EDITORIAL_OVERRIDES = {
   stripe: {
     title: "Stripe Alternatives in China",
@@ -6218,100 +6315,8 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
-  zendesk: {
-    relatedSlugs: ["freshdesk", "intercom", "helpscout", "crisp", "livechat"],
-    description: (availability, names) =>
-      clipMeta(
-        `Zendesk is Limited in mainland China — reachable, but slow and not guaranteed. Compare ${names.slice(0, 3).join(", ") || "Udesk, HOLLYCRM, Tencent Qidian Customer Service"}. Availability: ${availability}.`,
-      ),
-    lede: (availability, names) =>
-      `<strong>Quick answer:</strong> <strong>Zendesk is Limited in mainland China</strong>. It is often reachable and is not fully blocked, but Zendesk does not operate mainland data centers or a China-region hosting commitment, so quality and stability are not guaranteed. Day-to-day access is typically slow with high latency, some features can be constrained by mainland network filtering, and a pure overseas SaaS model is a weak fit for data-residency expectations. For mainland-deployed support with mainland users, Chinaready currently lists <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Udesk, HOLLYCRM, Tencent Qidian Customer Service")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
-    guidanceTitle: "China customer-support platforms instead of Zendesk",
-    sectionTitle: "Mapped China-ready candidates",
-    preferResearchCandidates: true,
-    indexOptions: 3,
-    indexCandidates: "Udesk, HOLLYCRM, Tencent Qidian Customer Service",
-    guidanceHtml: `
-        <p><strong>Zendesk is Limited for mainland China operations.</strong> Teams can often open the product from the mainland — Zendesk is not fully blocked — but Zendesk does not host Subscriber Service Data in mainland China (published regions cover the United States, EEA, UK, Japan, and Australia). Quality and stability inside the mainland are therefore not guaranteed.</p>
-        <ul>
-          <li><strong>Missing mainland infrastructure:</strong> no China data center or cloud node, so domestic access is typically slow with high latency.</li>
-          <li><strong>Network and compliance limits:</strong> mainland network filtering can constrain features such as mobile push; a pure overseas SaaS model is a weak fit for data-residency expectations (keeping support data in mainland China).</li>
-        </ul>
-        <p>If the business and the people you support are in mainland China, prefer a localized helpdesk that can deploy onshore and connect WeCom, DingTalk, WeChat Official Accounts, and related private-domain channels.</p>
-        <h3>Domestic platforms commonly evaluated instead</h3>
-        <div class="cr-alt-table-scroll">
-          <table>
-            <thead>
-              <tr>
-                <th>Platform</th>
-                <th>Highlights</th>
-                <th>Best fit</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Udesk (沃丰科技)</td>
-                <td>Strong omnichannel coverage with public-cloud, private-cloud, and hybrid deployment; WeCom and DingTalk connections; commonly cited for carrier-class mainland stability</td>
-                <td>Mid-to-large local enterprises and multi-region support teams</td>
-              </tr>
-              <tr>
-                <td>HOLLYCRM (合力亿捷)</td>
-                <td>Long-standing China contact-center vendor with strong AI agents, dialect and complex-intent recognition, and peak-load resilience (including Singles' Day / Double 11)</td>
-                <td>Teams that prioritize data security and business continuity</td>
-              </tr>
-              <tr>
-                <td>Tencent Qidian Customer Service (腾讯企点客服)</td>
-                <td>Deep WeChat-ecosystem fit (Official Accounts, mini programs, WeCom) for public-to-private-domain handoff</td>
-                <td>Retail, local life, and other WeChat-first private-domain operations</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <h3>Selection guidance</h3>
-        <ul>
-          <li><strong>Omnichannel mainland helpdesk with flexible deployment:</strong> start with Udesk for WeCom/DingTalk coverage and public, private, or hybrid cloud.</li>
-          <li><strong>AI agents, dialects, and peak-load continuity:</strong> evaluate HOLLYCRM.</li>
-          <li><strong>WeChat-first customer journeys:</strong> prefer Tencent Qidian Customer Service when Official Accounts, mini programs, and WeCom are the core channels.</li>
-        </ul>
-        <p>These candidates appear on the Zendesk alternatives page only — Chinaready does <strong>not</strong> add Udesk, HOLLYCRM, or Tencent Qidian Customer Service as Explore / Landscape product tiles for Zendesk. Confirm channel fit, deployment model, and compliance for your own entity before adoption.</p>`,
-    faq: (availability, namesText) => [
-      {
-        question: "Does Zendesk work in China?",
-        answer: `Yes, but with Limited practical usefulness. Chinaready labels Zendesk as ${availability} for mainland China. The product is often reachable and is not fully blocked, but Zendesk does not operate mainland data centers, so quality and stability are not guaranteed. Access is typically slow, some features can be constrained by mainland network filtering, and overseas SaaS hosting is a weak fit for data-residency expectations.`,
-      },
-      {
-        question: "What are the best China alternatives to Zendesk?",
-        answer: namesText
-          ? `Chinaready currently lists these China-ready candidates for Zendesk: ${namesText}. Prefer Udesk for omnichannel WeCom/DingTalk support with flexible deployment, HOLLYCRM when AI agents, dialect coverage, and peak-load continuity matter, and Tencent Qidian Customer Service when the WeChat ecosystem is the primary customer channel. Confirm fit before production adoption.`
-          : "Prefer Udesk (沃丰科技) for omnichannel WeCom/DingTalk support with flexible deployment, HOLLYCRM (合力亿捷) when AI agents, dialect coverage, and peak-load continuity matter, and Tencent Qidian Customer Service (腾讯企点客服) when the WeChat ecosystem is the primary customer channel.",
-      },
-      {
-        question: "Why is Zendesk a poor fit for mainland China support?",
-        answer:
-          "Two practical gaps show up repeatedly: Zendesk has no mainland China data center or cloud node, so access is slow with high latency; and mainland network filtering plus data-residency rules constrain a pure overseas SaaS model — including features such as mobile push and the expectation that support data stays in mainland China.",
-      },
-      {
-        question: "Is there a direct drop-in replacement for Zendesk in mainland China?",
-        answer:
-          "Usually no. Mainland helpdesks are designed around WeCom, DingTalk, WeChat Official Accounts, onshore deployment, and data-residency — not a one-to-one Zendesk ticket-and-messaging swap. Expect a channel and workflow redesign rather than a drop-in migration.",
-      },
-      {
-        question: "How should teams choose among Udesk, HOLLYCRM, and Tencent Qidian Customer Service?",
-        answer:
-          "Choose Udesk (沃丰科技) for omnichannel mainland support with public, private, or hybrid deployment and WeCom/DingTalk connections. Choose HOLLYCRM (合力亿捷) when AI agents, Chinese dialects, and peak-load continuity matter most. Choose Tencent Qidian Customer Service (腾讯企点客服) when WeChat Official Accounts, mini programs, and WeCom are the core customer channels.",
-      },
-      {
-        question: "Are Udesk, HOLLYCRM, and Tencent Qidian Customer Service on Chinaready Explore?",
-        answer:
-          "No. They are listed as Mapped China-ready candidates on this alternatives page only. Chinaready does not add them as Explore / Landscape product tiles for Zendesk.",
-      },
-      {
-        question: "Where should teams go after shortlisting Zendesk alternatives?",
-        answer:
-          "Validate whether your priority is omnichannel helpdesk deployment, AI contact-center scale, or WeChat-first private-domain service — then confirm data residency, channel integrations, and vendor fit with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
-      },
-    ],
-  },
+  zendesk: zendeskFamilyEditorial("Zendesk", ["zendesk-messaging", "freshdesk", "intercom", "helpscout", "crisp"]),
+  "zendesk-messaging": zendeskFamilyEditorial("Zendesk Messaging", ["zendesk", "intercom", "freshdesk", "helpscout", "crisp"]),
   "zoho-crm": {
     description: (availability, names) =>
       clipMeta(
