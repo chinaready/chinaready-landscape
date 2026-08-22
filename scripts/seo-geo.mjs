@@ -148,6 +148,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   pinecone: "limited",
   shopify: "limited",
   "google-cloud": "unavailable",
+  crowdstrike: "unavailable",
 };
 
 /** Keep stable public URLs when display names change. */
@@ -516,6 +517,54 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Where should teams go after shortlisting Barracuda alternatives?",
         answer: `Use the interactive Chinaready Landscape to compare adjacent network and edge-security services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
+  crowdstrike: {
+    relatedSlugs: ["barracuda"],
+    description: (availability, names) =>
+      clipMeta(
+        `CrowdStrike is Unavailable in mainland China: official sales ban and Xinchuang/security-review pressure. Compare ${names.slice(0, 4).join(", ") || "Sangfor, ThreatBook, 360, Qi-Anxin"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>CrowdStrike is Unavailable</strong> for mainland China. CrowdStrike does not sell or support the China market, and Xinchuang / national-security reviews have pushed domestic enterprises off foreign cybersecurity software. Map China endpoint security to <strong>${escapeHtml(names.slice(0, 4).join(", ") || "Sangfor NGES, ThreatBook OneSEC, 360 Digital Security, Qi-Anxin Tianqing EDR")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Why CrowdStrike is Unavailable in mainland China",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 4,
+    indexCandidates: "Sangfor NGES, ThreatBook OneSEC, 360 Digital Security, Qi-Anxin Tianqing",
+    guidanceHtml: `
+        <ul>
+          <li><strong>Official sales ban:</strong> CrowdStrike does not sell into mainland China and provides no official China support.</li>
+          <li><strong>Policy:</strong> Xinchuang (信创) requirements and national-security reviews have directed domestic enterprises to stop using CrowdStrike and similar foreign cybersecurity software, and to switch to domestic EDR on a deadline.</li>
+        </ul>
+        <p>Mainland EDR is mature. Several leading vendors are already in the global first tier for government, SOE, and large private-enterprise endpoint security.</p>
+        <p>Also commonly evaluated: <strong>Anheng (安恒信息)</strong>, <strong>Venustech (启明星辰)</strong>, <strong>NSFOCUS (绿盟科技)</strong>, and <strong>Topsec (天融信)</strong>. Candidates on this page are orientation options — Chinaready does <strong>not</strong> add them as Explore / Landscape product tiles from this rewrite. Confirm Xinchuang OS/CPU fit, procurement rules, and operating constraints before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does CrowdStrike work in China?",
+        answer: `No. Chinaready labels CrowdStrike as ${availability}. CrowdStrike does not sell or support mainland China, and Xinchuang plus national-security reviews have pushed domestic enterprises to replace foreign cybersecurity software with domestic EDR.`,
+      },
+      {
+        question: "Why is CrowdStrike Unavailable in mainland China?",
+        answer:
+          "Two constraints. CrowdStrike maintains an official mainland sales ban with no official support. Separately, Xinchuang policy and national-security reviews have directed domestic enterprises to stop using CrowdStrike and similar foreign cybersecurity products and switch to domestic schemes.",
+      },
+      {
+        question: "What are the best China alternatives to CrowdStrike?",
+        answer: namesText
+          ? `Chinaready currently maps mainland EDR options for CrowdStrike to ${namesText}. Prefer Sangfor NGES when AV-Comparatives-class detection quality matters; ThreatBook OneSEC for native EDR investigation graphs; 360 Digital Security for large-scale government/enterprise fleets; Qi-Anxin Tianqing EDR for Xinchuang OS/CPU ecosystems. Anheng, Venustech, NSFOCUS, and Topsec are additional mainland EDR vendors. Treat this as a research shortlist rather than a one-to-one endorsement.`
+          : "Prefer Sangfor NGES, ThreatBook OneSEC, 360 Digital Security, or Qi-Anxin Tianqing EDR. Anheng, Venustech, NSFOCUS, and Topsec are additional mainland EDR vendors.",
+      },
+      {
+        question: "Is there a direct drop-in replacement for CrowdStrike in mainland China?",
+        answer:
+          "No one-to-one Falcon swap. Domestic EDR products cover detection, response, and endpoint control, but architecture, telemetry, and Xinchuang OS/CPU support differ. Evaluate against your endpoint mix and procurement rules before migrating.",
+      },
+      {
+        question: "Where should teams go after shortlisting CrowdStrike alternatives?",
+        answer:
+          "Match the EDR to endpoint OS (including Kylin / UnionTech UOS), CPU architecture, and government vs commercial procurement. Use the interactive Chinaready Landscape for adjacent security choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },

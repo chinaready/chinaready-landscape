@@ -1008,6 +1008,22 @@ if (exists("build/alternatives/barracuda.html")) {
   assert(barracudaPage.includes("Topsec"), "Barracuda page must map to Topsec");
 }
 
+if (exists("build/alternatives/crowdstrike.html")) {
+  const crowdstrikePage = read("build/alternatives/crowdstrike.html");
+  assert(
+    crowdstrikePage.includes("cr-alt-availability-unavailable\">Unavailable</span>"),
+    "CrowdStrike page must label mainland China availability as Unavailable",
+  );
+  assert(crowdstrikePage.includes("Official sales ban"), "CrowdStrike page must state the official sales ban");
+  assert(crowdstrikePage.includes("Xinchuang"), "CrowdStrike page must mention Xinchuang policy");
+  assert(crowdstrikePage.includes("Sangfor NGES"), "CrowdStrike page must list Sangfor NGES");
+  assert(crowdstrikePage.includes("ThreatBook OneSEC"), "CrowdStrike page must list ThreatBook OneSEC");
+  assert(crowdstrikePage.includes("360 Digital Security"), "CrowdStrike page must list 360 Digital Security");
+  assert(crowdstrikePage.includes("Qi-Anxin Tianqing"), "CrowdStrike page must list Qi-Anxin Tianqing");
+  assert(!/<h3><a[^>]*>GeeTest<\/a><\/h3>/.test(crowdstrikePage), "CrowdStrike page must not list GeeTest as a candidate card");
+  assert(!/<h3><a[^>]*>Authing<\/a><\/h3>/.test(crowdstrikePage), "CrowdStrike page must not list Authing as a candidate card");
+}
+
 assert(exists("build/alternatives/azure-devops.html"), "Azure DevOps alternatives page must exist");
 {
   const azureDevOpsPage = read("build/alternatives/azure-devops.html");

@@ -1137,7 +1137,53 @@ OVERRIDES = {
         "Kuaishou Ads",
         "Tencent Advertising",
     ],
-    "crowdstrike": ["GeeTest", "Authing"],
+    "crowdstrike": [
+        {
+            "name": "Sangfor NGES (深信服)",
+            "homepage_url": "https://www.sangfor.com.cn/sangfor-security/edr",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Network & Edge Security",
+            "source": "research",
+            "note": (
+                "Sangfor's next-generation endpoint security (NGES) recorded 0 false positives in AV-Comparatives "
+                "EDR testing — one of the few Chinese vendors through that bar."
+            ),
+        },
+        {
+            "name": "ThreatBook OneSEC (微步在线)",
+            "homepage_url": "https://www.threatbook.cn/",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Network & Edge Security",
+            "source": "research",
+            "note": (
+                "ThreatBook OneSEC is a native EDR. 2026 China EDR market assessments place it among leaders on "
+                "growth and innovation; it is strong at chaining attack behavior into a graph for investigation."
+            ),
+        },
+        {
+            "name": "360 Digital Security (360数字安全)",
+            "homepage_url": "https://360.net/product-center/Endpoint-Security/end-safe-system",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Network & Edge Security",
+            "source": "research",
+            "note": (
+                "360 Digital Security uses a cloud-ground architecture and EB-scale security data for large-scale "
+                "endpoint management and second-level automated response — a common path for large government "
+                "and enterprise fleets."
+            ),
+        },
+        {
+            "name": "Qi-Anxin Tianqing EDR (奇安信天擎)",
+            "homepage_url": "https://www.qianxin.com/product/detail/pid/330",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Network & Edge Security",
+            "source": "research",
+            "note": (
+                "Qi-Anxin Tianqing EDR uses a cloud-pipe-end distributed architecture and fits Kylin, UnionTech UOS, "
+                "and domestic CPU lines — strong in government and Xinchuang ecosystems."
+            ),
+        },
+    ],
     "barracuda": ["Coremail (CACTER邮件安全网关)", "Topsec"],
     "alert logic": ["Alibaba Cloud ARMS", "GeeTest"],
     "auvik": ["Alibaba Cloud ARMS"],
@@ -3031,6 +3077,7 @@ AVAILABILITY_OVERRIDES = {
     "github pages": "Limited",
     "google authenticator": "Limited",
     "microsoft authenticator": "Limited",
+    "crowdstrike": "Unavailable",
     # === END HUB P0P1 OVERRIDES ===
 
 }
@@ -3661,6 +3708,14 @@ RESEARCH_NOTES = {
         "compliance monitoring; new projects — especially government, finance, and critical infrastructure — "
         "should carefully evaluate domestic options. Prefer Coremail (CACTER邮件安全网关) for email security / "
         "email gateway replacement and Topsec (天融信) for network, WAF, and adjacent edge-security controls."
+    ),
+    "crowdstrike": (
+        "CrowdStrike is Unavailable in mainland China: official sales ban with no official support, plus "
+        "Xinchuang and national-security reviews directing domestic enterprises off foreign cybersecurity "
+        "software. Prefer Sangfor NGES, ThreatBook OneSEC, 360 Digital Security, or Qi-Anxin Tianqing EDR. "
+        "Anheng, Venustech, NSFOCUS, and Topsec are additional mainland EDR vendors. These appear on the "
+        "alternatives page only — not as Explore / Landscape product tiles. Confirm Xinchuang OS/CPU fit "
+        "and procurement rules before production adoption."
     ),
     "castle": (
         "Chinaready's nationwide mainland probes of api.castle.io across 148 city/carrier paths all returned "
