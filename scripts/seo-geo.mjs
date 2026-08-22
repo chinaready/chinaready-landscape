@@ -91,6 +91,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   env0: "available",
   "twilio-sms": "unavailable",
   "twilio-video": "unavailable",
+  agora: "available",
   "twilio-voice": "unavailable",
   "sign-in-with-apple": "limited",
   "facebook-login": "unavailable",
@@ -101,6 +102,8 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "firebase-crashlytics": "unavailable",
   "google-maps-platform": "unavailable",
   "apple-mapkit": "available",
+  "apple-search-ads": "available",
+  openstreetmap: "limited",
   "castle-io": "unavailable",
   airbase: "unavailable",
   altis: "unavailable",
@@ -114,6 +117,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   buzzsprout: "unavailable",
   "hello-audio": "unavailable",
   loyaltylion: "unavailable",
+  amplitude: "unavailable",
   logrocket: "limited",
   "streamlit-community-cloud": "unavailable",
   sendspark: "unavailable",
@@ -355,6 +359,104 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Where should teams go after shortlisting Twilio SMS alternatives?",
         answer: `Use the interactive Chinaready Landscape to compare adjacent messaging services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the alternative remains uncertain, book a call with Chinaready.`,
+      },
+    ],
+  },
+  agora: {
+    relatedSlugs: ["twilio-video", "daily", "zoom-sdk", "kaltura"],
+    description: (availability, names) =>
+      clipMeta(
+        `Agora is Available in mainland China — Shanghai origin, local entity, and domestic data centers. For domestic-first stacks compare ${names.slice(0, 4).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Agora (声网) is Available in mainland China</strong>. It originated in Shanghai, operates through an independent mainland China entity, and runs a complete domestic data-center network that fully supports mainland China business. Teams that still want a domestic-first substitute commonly evaluate <strong>${escapeHtml(names.slice(0, 4).join(", ") || "Tencent Cloud TRTC, ZEGO, Huawei Cloud RTC, Haoshitong")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Agora in mainland China",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 4,
+    indexCandidates: "Tencent Cloud TRTC, ZEGO, Huawei Cloud RTC, Haoshitong",
+    guidanceHtml: `
+        <p><strong>Agora is Available for mainland China business.</strong> Agora (声网) is not an overseas-only RTC stack trying to reach China from the outside. It originated in Shanghai, has an independent mainland operating entity, and runs a complete domestic data-center network — so China-facing real-time audio/video can stay on Agora when that product fit is already right.</p>
+        <h3>Why Chinaready labels Agora Available</h3>
+        <ul>
+          <li><strong>China origin:</strong> Agora (声网) started in Shanghai rather than as a purely overseas SaaS later extended into China.</li>
+          <li><strong>Independent mainland entity:</strong> a local operating company supports China sales, contracts, and day-to-day operations.</li>
+          <li><strong>Domestic data-center network:</strong> mainland nodes support China traffic without depending on a cross-border-only media path.</li>
+        </ul>
+        <h3>Domestic RTC options commonly evaluated for China-first stacks</h3>
+        <p>Availability does not mean every mainland team should standardize on Agora. Cost, HarmonyOS, Xinchuang (信创), or private-deployment requirements still push many domestic-first projects toward the shortlist below.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Positioning</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Tencent Cloud TRTC (腾讯云实时音视频)</td>
+                <td>Real-time audio/video PaaS with strong packet-loss resilience (70%) and a strong overall price/performance mix</td>
+                <td>Mainland real-time apps that want a balanced commercial RTC path</td>
+              </tr>
+              <tr>
+                <td>ZEGO (即构)</td>
+                <td>Real-time audio/video PaaS with 70% packet-loss resilience at a typically mid-to-low price</td>
+                <td>Cost-sensitive mainland projects</td>
+              </tr>
+              <tr>
+                <td>Huawei Cloud RTC (华为云 SparkRTC)</td>
+                <td>HarmonyOS-native adaptation plus mature Xinchuang (信创) coverage</td>
+                <td>Government, enterprise, and finance stacks that need HarmonyOS or Xinchuang fit</td>
+              </tr>
+              <tr>
+                <td>Haoshitong (好视通)</td>
+                <td>Full-stack domestic adaptation with mature private deployment</td>
+                <td>Government, healthcare, and other high security/compliance scenarios</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Keep Agora</strong> when you already use Agora SDKs and need a China-capable RTC PaaS with local entity and mainland data centers.</li>
+          <li><strong>Evaluate Tencent Cloud TRTC</strong> for packet-loss resilience and overall price/performance on mainland workloads.</li>
+          <li><strong>Evaluate ZEGO</strong> when budget is the primary constraint and you still need strong weak-network performance.</li>
+          <li><strong>Evaluate Huawei Cloud RTC</strong> for HarmonyOS-native and government/finance Xinchuang paths.</li>
+          <li><strong>Evaluate Haoshitong</strong> when private deployment and high security/compliance (government, healthcare) dominate.</li>
+        </ul>
+        <p>These domestic candidates appear on the Agora alternatives page only — Chinaready does <strong>not</strong> add them as Explore / Landscape product tiles from this rewrite. Confirm SDK fit, deployment model, and compliance before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Agora work in China?",
+        answer: `Yes. Chinaready labels Agora (声网) as ${availability} for mainland China. Agora originated in Shanghai, operates through an independent mainland China entity, and runs a complete domestic data-center network that fully supports mainland China business.`,
+      },
+      {
+        question: "Why is Agora Available when many global RTC products are not?",
+        answer:
+          "Agora is a Shanghai-origin company with a local operating entity and mainland data centers, so China traffic does not depend on a purely overseas media path. That is a different operating model from global RTC stacks that only reach China across the border.",
+      },
+      {
+        question: "Why does Chinaready still list Tencent Cloud TRTC, ZEGO, Huawei Cloud RTC, and Haoshitong if Agora is Available?",
+        answer:
+          "Availability and vendor fit are different questions. Agora can run China business. Many domestic-first teams still compare Tencent Cloud TRTC for packet-loss resilience and price/performance, ZEGO for cost-sensitive projects, Huawei Cloud RTC for HarmonyOS-native and Xinchuang (信创) government/finance fit, and Haoshitong for full-stack domestic adaptation and private deployment.",
+      },
+      {
+        question: "What are the best China alternatives to Agora?",
+        answer: namesText
+          ? `Chinaready currently lists these China-market options alongside Agora: ${namesText}. Prefer Tencent Cloud TRTC for a balanced mainland RTC path, ZEGO (即构) when cost is the constraint, Huawei Cloud RTC for HarmonyOS-native and Xinchuang (信创) government/finance fit, and Haoshitong (好视通) for private deployment and high-compliance government or healthcare scenarios. Confirm fit before production adoption.`
+          : "Prefer Tencent Cloud TRTC for a balanced mainland RTC path, ZEGO (即构) when cost is the constraint, Huawei Cloud RTC for HarmonyOS-native and Xinchuang (信创) government/finance fit, and Haoshitong (好视通) for private deployment and high-compliance government or healthcare scenarios.",
+      },
+      {
+        question: "How should teams choose among Tencent Cloud TRTC, ZEGO, Huawei Cloud RTC, and Haoshitong?",
+        answer:
+          "Choose Tencent Cloud TRTC when you want strong 70% packet-loss resilience and overall price/performance. Choose ZEGO when the project is cost-sensitive and still needs strong weak-network performance. Choose Huawei Cloud RTC for HarmonyOS-native adaptation and government/finance Xinchuang (信创) fit. Choose Haoshitong when full-stack domestic adaptation and private deployment matter most — especially government, healthcare, and high security/compliance scenarios.",
+      },
+      {
+        question: "Where should teams go after shortlisting Agora options?",
+        answer:
+          "Validate whether you can keep Agora's China-capable RTC PaaS, or whether cost, HarmonyOS, Xinchuang, or private-deployment constraints point to Tencent Cloud TRTC, ZEGO, Huawei Cloud RTC, or Haoshitong. Confirm SDK fit, deployment model, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -677,38 +779,97 @@ const EDITORIAL_OVERRIDES = {
     relatedSlugs: ["google-admob", "ironsource", "chartboost", "liftoff"],
     description: (availability, names) =>
       clipMeta(
-        `Does AppLovin work in China? Unavailable for mainland UA/monetization. Prefer ${names.slice(0, 3).join(", ") || "Tencent Advertising, Ocean Engine, Kuaishou Ads"}. Availability: ${availability}.`,
+        `AppLovin is Unavailable in mainland China — outbound ecommerce model, U.S.–China risk. Compare ${names.slice(0, 3).join(", ") || "Mintegral, zMaticoo, BlueX"}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
-      `<strong>Quick answer:</strong> <strong>AppLovin is Unavailable</strong> for meaningful mainland China user acquisition and ad monetization. Map paid growth and developer-side inventory to domestic platforms such as <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Tencent Advertising, Ocean Engine, Kuaishou Ads")}</strong> instead of running AppLovin as the China stack. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
-    guidanceTitle: "China ad platforms instead of AppLovin",
+      `<strong>Quick answer:</strong> <strong>AppLovin is Unavailable</strong> for mainland China user acquisition and ad monetization. Its China-related commercial model is primarily outbound — helping Chinese advertisers and ecommerce brands buy overseas inventory, including through a Greater China ecommerce first-tier agency — not a workable mainland ad stack. AppLovin SEC filings also list operations in China and U.S.–China tensions among material risk factors. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Mintegral, zMaticoo, BlueX")}</strong> as China-origin programmatic options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Why AppLovin is Unavailable in mainland China",
     sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 5,
+    indexCandidates: "Mintegral, zMaticoo, BlueX, Genimous, Tianyu Digital",
     guidanceHtml: `
-        <p><strong>AppLovin is Unavailable for mainland China production growth.</strong> Overseas UA and mediation stacks do not deliver reliable fill, auction access, or compliant data paths for China-facing apps. Prefer domestic advertiser and developer platforms that sit inside ByteDance, Tencent, and Kuaishou ecosystems.</p>
+        <p><strong>AppLovin is Unavailable for mainland China production growth.</strong> Do not plan AppLovin as the China UA or in-app monetization stack.</p>
+        <h3>Why teams should not depend on AppLovin in China</h3>
         <ul>
-          <li><strong>Tencent Advertising</strong> — WeChat/QQ ecosystem installs and performance campaigns.</li>
-          <li><strong>Ocean Engine</strong> — Douyin/Toutiao growth and conversion optimization.</li>
-          <li><strong>Kuaishou Ads</strong> — short-video acquisition through Kuaishou Magnet Engine.</li>
+          <li><strong>Outbound, not inbound:</strong> AppLovin's core China-related business is helping Chinese companies go overseas. The company appointed a Greater China ecommerce first-tier agency to support cross-border advertisers buying overseas inventory — that is not a mainland China ad-network or mediation stack.</li>
+          <li><strong>Geopolitical risk:</strong> AppLovin's SEC filings list operations in China and friction between the United States and China among material risk factors that may affect the business. Treat that as an operating signal against depending on AppLovin for China-facing production growth.</li>
         </ul>
-        <p>Also compare nearby pages for AdMob, ironSource, and Chartboost when your global stack mixes mediation and UA.</p>`,
+        <h3>Domestic platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mintegral (汇量科技)</td>
+                <td>China-origin programmatic mobile ad platform; strong in iOS and Android gaming ads and commonly cited among the global top three in that category</td>
+                <td>Performance UA and in-app ads, especially games</td>
+              </tr>
+              <tr>
+                <td>zMaticoo (易点天下)</td>
+                <td>Programmatic platform from a leading China intelligent-marketing group, with mature bidding algorithms and coverage of outbound plus domestic advertisers</td>
+                <td>Programmatic UA and publisher monetization for China-origin teams</td>
+              </tr>
+              <tr>
+                <td>BlueX (蓝色光标)</td>
+                <td>Self-built AI platform positioned against AppLovin's real-time bidding model, with ADX / SDK / DSP coverage for global traffic distribution</td>
+                <td>AI bidding and global inventory when a China-origin AppLovin analog is the brief</td>
+              </tr>
+              <tr>
+                <td>Genimous (智度股份)</td>
+                <td>Early China AI demand-side platform (DSP), using data plus algorithms for targeted buying and traffic aggregation</td>
+                <td>DSP-led performance buying rather than an AppLovin SDK swap</td>
+              </tr>
+              <tr>
+                <td>Tianyu Digital (天娱数科)</td>
+                <td>Early China AI DSP / intelligent-marketing group with data-plus-algorithm buying and traffic aggregation</td>
+                <td>DSP-led performance buying alongside Genimous-style paths</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Gaming UA and in-app ads:</strong> start with Mintegral.</li>
+          <li><strong>Programmatic buying for outbound or domestic advertisers:</strong> evaluate zMaticoo.</li>
+          <li><strong>AI real-time bidding modeled on AppLovin:</strong> evaluate BlueX.</li>
+          <li><strong>DSP / data-plus-algorithm buying:</strong> compare Genimous and Tianyu Digital.</li>
+        </ul>
+        <p>These candidates appear on the AppLovin alternatives page only — Chinaready does <strong>not</strong> add Mintegral, zMaticoo, BlueX, Genimous, or Tianyu Digital as Explore / Landscape product tiles from this rewrite. Confirm SDK access, settlement entity, and PIPL compliance before production adoption. Also compare nearby pages for AdMob, ironSource, and Chartboost when the global stack mixes mediation and UA.</p>`,
     faq: (availability, namesText) => [
       {
         question: "Does AppLovin work in China?",
-        answer: `No for meaningful mainland China UA or monetization. Chinaready labels AppLovin as ${availability}. Plan domestic advertiser and developer-side platforms instead of depending on AppLovin for China app growth.`,
+        answer: `No for mainland China production UA or monetization. Chinaready labels AppLovin as ${availability}. AppLovin's China-related commercial model is primarily outbound — helping Chinese companies buy overseas inventory, including through a Greater China ecommerce first-tier agency — not a workable mainland ad stack.`,
+      },
+      {
+        question: "Why is AppLovin Unavailable in mainland China?",
+        answer:
+          "Two reasons dominate. First, AppLovin's China-facing business is built around helping Chinese advertisers and ecommerce brands go overseas, not operating a mainland UA or mediation network. Second, AppLovin SEC filings list operations in China and U.S.–China tensions among material risk factors, so teams should not treat AppLovin as a dependable China production dependency.",
       },
       {
         question: "What are the best China alternatives to AppLovin?",
-        answer: `Chinaready Landscape currently maps AppLovin to ${namesText}. Prefer Tencent Advertising for WeChat/QQ ecosystem growth, Ocean Engine for Douyin/Toutiao campaigns, and Kuaishou Ads for short-video acquisition. Confirm SDK access, settlement entity, and PIPL compliance before production adoption.`,
+        answer: `Chinaready currently lists these China-market options for AppLovin: ${namesText}. Prefer Mintegral (汇量科技) for gaming UA and in-app ads, zMaticoo (易点天下) for programmatic buying, BlueX (蓝色光标) for AI real-time bidding, and Genimous (智度股份) or Tianyu Digital (天娱数科) as early China AI DSP paths. Confirm fit before production adoption.`,
       },
       {
         question: "Is there a direct drop-in replacement for AppLovin in mainland China?",
         answer:
-          "Usually no. China growth mixes advertiser platforms, mediation networks, and mini-program distribution. Expect a stack redesign rather than an AppLovin SDK swap.",
+          "Usually no. AppLovin combines UA, in-app bidding, and mediation-adjacent surfaces. China-origin substitutes split across programmatic networks, AI bidding platforms, and DSP buying. Expect a stack redesign rather than an AppLovin SDK swap.",
+      },
+      {
+        question: "How should teams choose among Mintegral, zMaticoo, BlueX, Genimous, and Tianyu Digital?",
+        answer:
+          "Choose Mintegral for iOS/Android gaming ads and performance UA. Choose zMaticoo when programmatic buying for outbound or domestic advertisers is the core job. Choose BlueX when the brief is an AI real-time bidding analog to AppLovin. Compare Genimous and Tianyu Digital when the need is DSP-led, data-plus-algorithm traffic buying.",
       },
       {
         question: "Where should teams go after shortlisting AppLovin alternatives?",
         answer:
-          "Use the interactive Chinaready Landscape to compare adjacent growth and monetization services, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+          "Validate SDK access, settlement entity, inventory mix, and PIPL constraints for each candidate. Use the interactive Chinaready Landscape to compare adjacent growth and monetization services, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -946,6 +1107,92 @@ const EDITORIAL_OVERRIDES = {
         question: "Where should teams go after shortlisting Apple MapKit alternatives?",
         answer:
           "Evaluate China map SDKs/APIs, coordinate conversion, free quotas, and commercial pricing before shipping. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  openstreetmap: {
+    relatedSlugs: ["google-maps-platform", "mapbox", "apple-mapkit"],
+    description: (availability, names) =>
+      clipMeta(
+        `OpenStreetMap is Limited in mainland China — official tiles are unstable and non-compliant. Prefer ${names.slice(0, 3).join(", ") || "Amap, Tencent Maps, Tianditu"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Do <strong>not</strong> use official OpenStreetMap tiles for a mainland China product. OSM itself is not fully blocked, but the default tile servers (<code>*.tile.openstreetmap.org</code>) are extremely unstable from mainland networks — failed loads, timeouts, and very slow tiles are common. For China-facing users, prefer <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Amap, Tencent Maps, Tianditu")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Why official OSM tiles fail in mainland China",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "Amap, Tencent Maps, Tianditu",
+    guidanceHtml: `
+        <p><strong>OpenStreetMap is Limited for mainland China production maps.</strong> The project is reachable in principle, but Chinaready does not recommend depending on OSM's official online tile service for a China-facing app or website. Three constraints matter more than the “is it blocked?” question:</p>
+        <ul>
+          <li><strong>Network:</strong> official tile servers sit overseas. Direct mainland connections are often throttled or interrupted, so raster tiles fail to load, time out, or crawl.</li>
+          <li><strong>Compliance:</strong> China's Surveying and Mapping Law (测绘法) requires map services offered inside China to hold the relevant qualification and a map review number (审图号). Shipping an unreviewed foreign basemap creates takedown and app-store risk.</li>
+          <li><strong>Coordinate offset:</strong> OSM uses WGS-84. Mainland products are expected to use GCJ-02 (the “Mars” coordinate system). Plotting unconverted WGS-84 points on a China map can shift markers by hundreds of meters.</li>
+        </ul>
+        <h3>Domestic tile paths commonly used instead</h3>
+        <p>If the product and users are in mainland China, switch to a compliant, in-country tile or SDK path rather than OSM's official CDN:</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Option</th>
+                <th>Why teams pick it</th>
+                <th>Access</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Amap (高德地图)</td>
+                <td>Mainstream China maps with fast mainland loading — a practical default for web and App tiles</td>
+                <td>Public raster tile URLs are commonly used for quick Leaflet-style integration without registering a key; keyed APIs remain available on the developer platform</td>
+              </tr>
+              <tr>
+                <td>Tencent Maps (腾讯地图)</td>
+                <td>Stable domestic tiles and strong mainland access — a close second to Amap for web maps</td>
+                <td>Likewise offers free raster tiles that teams often use without a key, plus keyed LBS APIs</td>
+              </tr>
+              <tr>
+                <td>Tianditu (天地图)</td>
+                <td>Official national basemap from the National Geomatics Center of China — strongest compliance story</td>
+                <td>Register a free account and use the issued Key</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Self-hosted OSM (advanced)</h3>
+        <p>Teams that need OSM's open data under their own control can download the extract, then serve tiles from a mainland private host with tools such as TileServer-GL. That removes the overseas-tile network problem. Publishing those tiles as a China map service still requires the relevant surveying and mapping qualifications and a map review number — self-hosting is not a shortcut around 测绘法.</p>
+        <h3>How to choose</h3>
+        <ul>
+          <li><strong>Default web / App tiles:</strong> start with Amap; use Tencent Maps when the stack already sits in the Tencent ecosystem.</li>
+          <li><strong>Highest official / government-adjacent compliance:</strong> evaluate Tianditu.</li>
+          <li><strong>OSM data you must keep:</strong> self-host tiles in mainland China and complete the mapping-qualification path before public launch.</li>
+        </ul>
+        <p>For China-facing products, drop OSM's official online tile service. Prefer Amap, Tencent Maps, or Tianditu so loading, coordinates, and map-review compliance stay in-country.</p>
+        <p>Tencent Maps and Tianditu appear on this alternatives page as orientation options — Chinaready does <strong>not</strong> add them as Explore / Landscape product tiles from this rewrite. Confirm tile terms, keys, GCJ-02 handling, and map-review requirements before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does OpenStreetMap work in China?",
+        answer: `Not as a production default. Chinaready labels OpenStreetMap as ${availability}. OSM itself is not fully blocked, but official tile servers (*.tile.openstreetmap.org) are extremely unstable from mainland China — failed loads, timeouts, and very slow tiles are common. Do not point China-facing maps at OSM's official CDN.`,
+      },
+      {
+        question: "Why shouldn't teams use official OSM tiles in mainland China?",
+        answer:
+          "Three reasons: official servers are overseas so tiles often fail to load; China's Surveying and Mapping Law requires a map-service qualification and a map review number (审图号), so an unreviewed foreign basemap is a compliance risk; and OSM uses WGS-84 while mainland maps require GCJ-02, which can offset points by hundreds of meters.",
+      },
+      {
+        question: "What are the best China alternatives to OpenStreetMap?",
+        answer: `Chinaready currently lists these China-market options for OpenStreetMap: ${namesText}. Prefer Amap (高德地图) or Tencent Maps (腾讯地图) for fast domestic raster tiles, and Tianditu (天地图) when official national-basemap compliance matters most. Confirm tile terms and keys before shipping.`,
+      },
+      {
+        question: "Can teams self-host OpenStreetMap tiles in China?",
+        answer:
+          "Yes as an advanced path. Download OSM data and serve tiles from a mainland host with tools such as TileServer-GL to avoid overseas tile outages. If you publish those tiles as a China map service, you still need the relevant surveying and mapping qualifications and a map review number — self-hosting does not by itself satisfy 测绘法.",
+      },
+      {
+        question: "Where should teams go after shortlisting OpenStreetMap alternatives?",
+        answer:
+          "Pick a domestic tile or SDK path, convert coordinates to GCJ-02, and confirm map-review / qualification requirements before launch. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -1825,6 +2072,62 @@ const EDITORIAL_OVERRIDES = {
       {
         question: "Where should teams go after shortlisting Liftoff alternatives?",
         answer: `Use the interactive Chinaready Landscape to compare adjacent mobile growth and monetization services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the path remains unclear, book a call with Chinaready.`,
+      },
+    ],
+  },
+  "apple-search-ads": {
+    relatedSlugs: ["google-ads", "tiktok-ads", "meta-ads", "applovin", "liftoff"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Apple Search Ads work in China? Available — official mainland launch, limited placements, local qualifications. Compare ${names.slice(0, 3).join(", ") || "Huawei Ads, Xiaomi Ads, OPPO Ads"}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Apple Search Ads (ASA)</strong> is <strong>Available</strong> in mainland China — it has launched officially. Inventory is still constrained (typically Search Results and the Today tab), and advertisers generally need mainland qualifications such as a Value-Added Telecommunications Business License (增值电信业务许可证). For China-first user acquisition, also compare <strong>${escapeHtml(names.slice(0, 4).join(", ") || "Huawei Ads, Xiaomi Ads, OPPO Ads, vivo Ads")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Apple Search Ads in mainland China",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 7,
+    indexCandidates: "Huawei Ads, Xiaomi Ads, OPPO Ads, vivo Ads, Ocean Engine, Tencent Advertising, Baidu Marketing",
+    guidanceHtml: `
+        <p><strong>Apple Search Ads is Available in mainland China.</strong> Apple launched ASA to grow China advertising revenue, but domestic regulation still limits live inventory and who can buy it. Availability is not the same as “run ASA as your only mainland UA channel.”</p>
+        <h3>Why the path is constrained</h3>
+        <ul>
+          <li><strong>Partial inventory:</strong> typical live placements are Search Results and the Today tab, not the full global ASA surface.</li>
+          <li><strong>Mainland qualifications:</strong> advertisers generally need a China entity and relevant local licenses — for example a Value-Added Telecommunications Business License (增值电信业务许可证) — before campaigns can run.</li>
+        </ul>
+        <h3>Domestic channels to evaluate for China-first users</h3>
+        <p>When the product and audience are mainland-first, these routes usually carry more volume than ASA alone:</p>
+        <ul>
+          <li><strong>Android app-store CPD (cost-per-download):</strong> Huawei AppGallery, Xiaomi GetApps, the OPPO / HeyTap software store, and the vivo App Store are the core install paths for mainland Android users.</li>
+          <li><strong>HarmonyOS / Huawei Ads (鲸鸿动能):</strong> Huawei's advertising platform sits on HarmonyOS and AppGallery inventory and is a newer, often lower-cost growth path inside that ecosystem.</li>
+          <li><strong>Feed advertising:</strong> Ocean Engine (巨量引擎) for Douyin / Toutiao, Tencent Advertising (腾讯广告) for WeChat / QQ, and Baidu Marketing (百度营销) for search and feed scale.</li>
+        </ul>
+        <h3>Budget guidance</h3>
+        <p>ASA's advantage is intercepting high-intent App Store search traffic, where conversion is often strong. Mainland iOS share is still limited, and the qualification bar is high. If the business targets mass-market mainland users, tilt spend toward Android OEM-store CPD and domestic feed ads first, and keep ASA as an iOS precision-acquisition assist rather than the primary China budget line.</p>
+        <p>Xiaomi Ads, OPPO Ads, and vivo Ads appear on this alternatives page as orientation options — Chinaready does <strong>not</strong> add them as Explore / Landscape product tiles from this rewrite. Confirm entity, store listing, and advertising qualifications before production spend.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Apple Search Ads work in China?",
+        answer: `Yes. Chinaready labels Apple Search Ads as ${availability}. ASA has launched officially in mainland China. Live inventory is still typically limited to placements such as Search Results and the Today tab, and advertisers generally need mainland qualifications — for example a Value-Added Telecommunications Business License (增值电信业务许可证) — before they can run campaigns.`,
+      },
+      {
+        question: "Why is Apple Search Ads constrained even though it is Available?",
+        answer:
+          "Apple opened ASA in mainland China to grow China advertising revenue, but domestic regulation still limits which placements are live and who can buy them. Search Results and the Today tab are the typical open surfaces, and advertisers generally need a China entity plus relevant local qualifications before spend can start.",
+      },
+      {
+        question: "What are the best China alternatives to Apple Search Ads?",
+        answer: `Chinaready currently lists these China-market options for Apple Search Ads: ${namesText}. Prefer Android OEM-store CPD on Huawei, Xiaomi, OPPO, and vivo for mass-market Android installs; Huawei Ads (鲸鸿动能) for HarmonyOS / AppGallery; and Ocean Engine, Tencent Advertising, and Baidu Marketing for feed and search scale.`,
+      },
+      {
+        question: "Should teams put most China UA budget into Apple Search Ads?",
+        answer:
+          "Usually no, if the audience is mass-market mainland users. ASA is strong at intercepting high-intent App Store search traffic, but mainland iOS share is limited and the qualification bar is high. Tilt primary budget toward Android OEM-store CPD and domestic feed ads, and keep ASA as an iOS precision-acquisition assist.",
+      },
+      {
+        question: "Where should teams go after shortlisting Apple Search Ads alternatives?",
+        answer:
+          "Confirm China entity, store listings, and advertising qualifications, then compare OEM-store CPD versus feed platforms for your mix of iOS and Android users. Use the interactive Chinaready Landscape for adjacent growth services, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -3797,6 +4100,102 @@ const EDITORIAL_OVERRIDES = {
         question: "Where should teams go after shortlisting Marketo alternatives?",
         answer:
           "Validate whether your priority is B2B CRM automation, WeChat-centric growth, ecommerce journeys, or SMB localization — then confirm deliverability, data residency, and vendor fit with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  amplitude: {
+    relatedSlugs: ["mixpanel", "posthog", "google-analytics", "firebase-analytics", "logrocket"],
+    description: (availability, names) =>
+      clipMeta(
+        `Amplitude is Unavailable in mainland China — api.amplitude.com DNS/blocking drops events. Compare ${names.slice(0, 3).join(", ") || "Sensors Data, GrowingIO, Umeng+"}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Amplitude is Unavailable</strong> (or extremely unstable) in mainland China. Ingestion API hosts such as <code>api.amplitude.com</code> frequently hit DNS pollution or network blocking, so client events often fail to reach Amplitude servers. When the product and users are in mainland China, prefer a domestic, compliant product-analytics stack: <strong>${escapeHtml(names.slice(0, 5).join(", ") || "Sensors Data, GrowingIO, Umeng+, Volcengine DataFinder / DataTester, PostHog (self-hosted)")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Product analytics platforms to evaluate instead of Amplitude",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 5,
+    indexCandidates: "Sensors Data, GrowingIO, Umeng+, Volcengine DataFinder / DataTester, PostHog (self-hosted)",
+    guidanceHtml: `
+        <p><strong>Amplitude is Unavailable for reliable mainland China use.</strong> The usual failure mode is collection, not the marketing site: Amplitude's data-ingestion API domains (for example <code>api.amplitude.com</code>) are frequently DNS-poisoned or blocked on mainland networks, so App and web SDKs cannot deliver events to Amplitude's servers. Do not plan Amplitude as a production analytics dependency when the business and users are in mainland China.</p>
+        <h3>Domestic platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Sensors Data (神策数据)</td>
+                <td>Leading China user-behavior analytics platform; closely comparable to Amplitude; private-deployment options; high data-security posture</td>
+                <td>Mainland-first products that need Amplitude-class event analytics and onshore data control</td>
+              </tr>
+              <tr>
+                <td>GrowingIO</td>
+                <td>Known for no-code / autocapture (无埋点) tracking and user-behavior analysis across Apps, web, and mini programs</td>
+                <td>China internet products that want faster instrumentation with less event-taxonomy work</td>
+              </tr>
+              <tr>
+                <td>Umeng+ (友盟+)</td>
+                <td>Alibaba-group mobile analytics with very high App SDK coverage; stats, push, and analysis in one low-friction onboarding path</td>
+                <td>China Apps that need fast, low-cost mobile analytics on domestic distribution channels</td>
+              </tr>
+              <tr>
+                <td>Volcengine DataFinder / DataTester (火山引擎增长分析)</td>
+                <td>ByteDance stack for growth analytics plus A/B experimentation; strong at recommendation, experiments, and large-scale analysis</td>
+                <td>Teams that need product analytics together with experimentation at mainland scale</td>
+              </tr>
+              <tr>
+                <td>PostHog (self-hosted)</td>
+                <td>Open-source Amplitude-class product analytics you can run on your own China servers</td>
+                <td>Teams with ops capacity that want full data control and to avoid cross-border collection</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Closest Amplitude-class analytics with private deployment:</strong> start with Sensors Data (神策数据).</li>
+          <li><strong>Fast autocapture across App / web / mini programs:</strong> evaluate GrowingIO.</li>
+          <li><strong>China App stats with the lowest onboarding cost:</strong> prefer Umeng+ (友盟+).</li>
+          <li><strong>Analytics plus large-scale A/B experiments:</strong> evaluate Volcengine DataFinder / DataTester (火山引擎增长分析).</li>
+          <li><strong>Full data control on mainland servers:</strong> self-host PostHog if the team can operate it.</li>
+        </ul>
+        <p>Volcengine DataFinder / DataTester and self-hosted PostHog appear on this alternatives page as orientation options only — Chinaready does <strong>not</strong> add them as Explore / Landscape product tiles from this rewrite. Confirm consent, PIPL, event taxonomy, and (for PostHog) mainland hosting before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Amplitude work in China?",
+        answer: `No for reliable mainland China production analytics. Chinaready labels Amplitude as ${availability} (or extremely unstable). Ingestion API hosts such as api.amplitude.com frequently hit DNS pollution or network blocking, so client events often never reach Amplitude servers.`,
+      },
+      {
+        question: "Why don't Amplitude events arrive from mainland China?",
+        answer:
+          "Amplitude SDKs send events to overseas ingestion API domains such as api.amplitude.com. On mainland networks those hosts are frequently DNS-poisoned or blocked, so the client cannot complete the upload even when the product UI still appears to work from some networks.",
+      },
+      {
+        question: "What are the best China alternatives to Amplitude?",
+        answer: namesText
+          ? `Chinaready currently lists these China-market options for Amplitude: ${namesText}. Prefer Sensors Data (神策数据) for Amplitude-class analytics with private deployment, GrowingIO for autocapture, Umeng+ (友盟+) for low-cost China App stats, Volcengine DataFinder / DataTester for analytics plus A/B experiments, and self-hosted PostHog when the team can run it on mainland servers. Confirm consent, PIPL, and event taxonomy before production adoption.`
+          : "Prefer Sensors Data (神策数据) for Amplitude-class analytics with private deployment, GrowingIO for autocapture, Umeng+ (友盟+) for low-cost China App stats, Volcengine DataFinder / DataTester for analytics plus A/B experiments, and self-hosted PostHog when the team can run it on mainland servers.",
+      },
+      {
+        question: "How should teams choose among Sensors Data, GrowingIO, Umeng+, Volcengine, and PostHog?",
+        answer:
+          "Choose Sensors Data (神策数据) when you need Amplitude-comparable event analytics and private deployment. Choose GrowingIO when no-code / autocapture (无埋点) across App, web, and mini programs matters most. Choose Umeng+ (友盟+) for the fastest, lowest-cost China App analytics path. Choose Volcengine DataFinder / DataTester when A/B experiments and large-scale growth analysis sit beside product analytics. Choose self-hosted PostHog when ops capacity and full onshore data control matter more than a managed SaaS.",
+      },
+      {
+        question: "Are Volcengine DataFinder / DataTester and PostHog on Chinaready Explore?",
+        answer:
+          "No. They are listed as Mapped China-ready candidates on this alternatives page only. Chinaready does not add Volcengine DataFinder / DataTester or self-hosted PostHog as Explore / Landscape product tiles from this Amplitude rewrite. Sensors Data, GrowingIO, and Umeng+ already exist on Explore as separate Landscape products.",
+      },
+      {
+        question: "Where should teams go after shortlisting Amplitude alternatives?",
+        answer:
+          "Validate whether you need Amplitude-class event analytics, autocapture, App-channel stats, or experimentation; then confirm consent, PIPL, and (for PostHog) mainland hosting. Use the interactive Chinaready Landscape to compare adjacent analytics services, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -6036,30 +6435,76 @@ const EDITORIAL_OVERRIDES = {
     relatedSlugs: ["zoho-crm", "mailchimp"],
     description: (availability, names) =>
       clipMeta(
-        `Does HubSpot work in China? Limited — prefer Fxiaoke, Neocrm, Zhichi for mainland GTM. Availability: ${availability}.`,
+        `Does HubSpot work in China? Limited — usable but slow, off-shore data, weak WeChat/DingTalk. Prefer ${names.slice(0, 4).join(", ") || "Beschannels, Jiandaoyun CRM, Fxiaoke, Marketingforce"}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
-      `<strong>Quick answer:</strong> <strong>HubSpot is Limited in mainland China</strong>. International teams may keep HubSpot for global CRM, but mainland GTM usually maps to <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Fxiaoke, Neocrm, Zhichi")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+      `<strong>Quick answer:</strong> <strong>HubSpot is Limited in mainland China</strong> — reachable, but the experience is constrained. International teams may keep HubSpot for global CRM, but mainland GTM usually maps to <strong>${escapeHtml(names.slice(0, 4).join(", ") || "Beschannels, Jiandaoyun CRM, Fxiaoke, Marketingforce")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
     guidanceTitle: "China CRM / GTM options instead of HubSpot",
     sectionTitle: "Mapped China-ready candidates",
     preferResearchCandidates: true,
-    indexOptions: 3,
-    indexCandidates: "Fxiaoke, Neocrm, Zhichi",
+    indexOptions: 4,
+    indexCandidates: "Beschannels, Jiandaoyun CRM, Fxiaoke, Marketingforce",
     guidanceHtml: `
-        <p><strong>HubSpot is Limited for mainland-first go-to-market.</strong> Prefer Fxiaoke (纷享销客) or Neocrm (销售易) for CRM, and evaluate Zhichi for service/engagement clouds. Orientation-only candidates — not Explore tiles. Confirm WeCom integrations and PIPL.</p>`,
+        <p><strong>HubSpot is Limited for mainland-first go-to-market.</strong> The product is usually reachable, but day-to-day use is constrained. Prefer a domestic CRM / marketing stack for China GTM rather than running HubSpot as the mainland system of record.</p>
+        <h3>Why HubSpot is Limited in mainland China</h3>
+        <ul>
+          <li><strong>Network and speed:</strong> Servers sit in Europe and the US, so mainland access is slow and connections drop easily.</li>
+          <li><strong>Compliance risk:</strong> Customer data is not stored in mainland China, which does not meet domestic data-residency requirements.</li>
+          <li><strong>Ecosystem disconnect:</strong> Weak native integration with WeChat, DingTalk, and other mainstream China workplace tools.</li>
+        </ul>
+        <h3>Domestic platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Positioning and strengths</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Beschannels (致趣百川)</td>
+                <td>Built around mainland traffic rules; seamless WeChat / WeCom connectivity</td>
+                <td>Private-domain and social selling</td>
+              </tr>
+              <tr>
+                <td>Jiandaoyun CRM (简道云 CRM)</td>
+                <td>Mainland-compliant low-code CRM with deep WeCom, DingTalk, and Feishu integration</td>
+                <td>Teams that need flexible CRM plus China collaboration stack fit</td>
+              </tr>
+              <tr>
+                <td>Fxiaoke (纷享销客)</td>
+                <td>Mainland data residency, mature mobile collaboration, and WeCom / DingTalk ecosystems</td>
+                <td>Fast China GTM rollout with onshore storage</td>
+              </tr>
+              <tr>
+                <td>Marketingforce (迈富时)</td>
+                <td>Closest to HubSpot in product philosophy: one-stop full-funnel marketing and sales</td>
+                <td>Teams replacing HubSpot's all-in-one marketing + sales suite</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>These candidates appear on the HubSpot alternatives page only — Chinaready does <strong>not</strong> add them as Landscape map product entries. Confirm WeCom / DingTalk integrations and PIPL before production adoption.</p>`,
     faq: (availability, namesText) => [
       {
         question: "Does HubSpot work in China?",
-        answer: `Chinaready labels HubSpot as ${availability}. It may be usable for global teams, but mainland GTM usually needs a domestic CRM/engagement stack.`,
+        answer: `Chinaready labels HubSpot as ${availability}: it is usually reachable, but the experience is constrained. EU/US hosting makes mainland access slow and drop-prone, data is not stored in China, and WeChat / DingTalk workplace integrations are weak.`,
       },
       {
         question: "What are the best China alternatives to HubSpot?",
-        answer: `Chinaready currently lists: ${namesText}.`,
+        answer: `Chinaready currently lists: ${namesText}. Prefer Beschannels (致趣百川) for WeChat / WeCom private-domain selling, Jiandaoyun CRM (简道云 CRM) for low-code CRM inside WeCom/DingTalk/Feishu, Fxiaoke (纷享销客) for onshore storage and fast rollout, and Marketingforce (迈富时) when you want a HubSpot-like all-in-one suite.`,
+      },
+      {
+        question: "How should teams choose among Beschannels, Jiandaoyun CRM, Fxiaoke, and Marketingforce?",
+        answer:
+          "Choose Beschannels for WeChat / WeCom social selling and private-domain GTM. Choose Jiandaoyun CRM when low-code flexibility and WeCom / DingTalk / Feishu workplace fit matter most. Choose Fxiaoke for mainland-compliant storage and a mature mobile / WeCom / DingTalk sales stack. Choose Marketingforce when you want a one-stop marketing-plus-sales suite closest to HubSpot's model.",
       },
       {
         question: "Where should teams go after shortlisting HubSpot alternatives?",
         answer:
-          "Validate WeCom, payment, and marketing-automation needs, then confirm PIPL. Book a call with Chinaready if the hybrid HubSpot-plus-China CRM design is unclear.",
+          "Validate WeCom / DingTalk integrations, data residency, and marketing-automation needs, then confirm PIPL. Book a call with Chinaready if the hybrid HubSpot-plus-China CRM design is unclear.",
       },
     ],
   },

@@ -646,6 +646,10 @@ if (exists("build/alternatives/index.html")) {
     alternativesIndex.includes("Polyv, Haoshitong, Agora, Tencent Cloud TRTC, ZEGO"),
     "alternatives index must show Kaltura mapped candidates",
   );
+  assert(
+    alternativesIndex.includes("Tencent Cloud TRTC, ZEGO, Huawei Cloud RTC, Haoshitong"),
+    "alternatives index must show Agora mapped candidates",
+  );
   assert(exists("build/alternatives/middleware-io.html"), "Middleware.io must get a dedicated alternatives page");
   const middlewarePage = read("build/alternatives/middleware-io.html");
   assert(middlewarePage.includes("Alibaba Cloud Observability"), "Middleware.io alternatives must list Alibaba Cloud Observability");
@@ -1107,6 +1111,21 @@ if (exists("build/alternatives/twilio-video.html")) {
   assert(twilioVideoPage.includes("Alibaba Cloud RTC"), "Twilio Video page must map to Alibaba Cloud RTC");
 }
 
+assert(exists("build/alternatives/agora.html"), "Agora must get a dedicated alternatives page");
+const agoraPage = read("build/alternatives/agora.html");
+assert(agoraPage.includes("Agora alternatives in China"), "Agora page must use an intent-matching H1");
+assert(
+  agoraPage.includes('cr-alt-availability-available">Available</span>'),
+  "Agora page must label mainland China availability as Available",
+);
+assert(agoraPage.includes("Tencent Cloud TRTC"), "Agora alternatives must list Tencent Cloud TRTC");
+assert(agoraPage.includes("ZEGO"), "Agora alternatives must list ZEGO");
+assert(agoraPage.includes("Huawei Cloud RTC"), "Agora alternatives must list Huawei Cloud RTC");
+assert(agoraPage.includes("Haoshitong"), "Agora alternatives must list Haoshitong");
+assert(agoraPage.includes("Mapped China-ready candidates"), "Agora alternatives must show Mapped China-ready candidates");
+assert(agoraPage.includes("Shanghai"), "Agora page must mention Shanghai origin");
+assert(!agoraPage.includes("Why Chinaready does not list these as Landscape products"), "Agora must not use empty uncertain framing");
+
 if (exists("build/alternatives/twilio-voice.html")) {
   const twilioVoicePage = read("build/alternatives/twilio-voice.html");
   assert(twilioVoicePage.includes("Twilio Voice alternatives in China"), "Twilio Voice alternatives page must use an intent-matching H1");
@@ -1165,9 +1184,61 @@ if (exists("build/alternatives/liftoff.html")) {
   assert(!liftoffPage.includes("Huawei Ads"), "Liftoff UA page must not list Huawei Ads among the four primary alternatives");
 }
 
+if (exists("build/alternatives/applovin.html")) {
+  const applovinPage = read("build/alternatives/applovin.html");
+  assert(applovinPage.includes("AppLovin alternatives in China"), "AppLovin page must use an intent-matching H1");
+  assert(
+    applovinPage.includes("cr-alt-availability-unavailable\">Unavailable</span>"),
+    "AppLovin page must label mainland China availability as Unavailable",
+  );
+  assert(applovinPage.includes("Greater China ecommerce first-tier agency"), "AppLovin page must explain the outbound ecommerce-agency model");
+  assert(applovinPage.includes("U.S.–China") || applovinPage.includes("U.S.-China"), "AppLovin page must cite U.S.–China tension as a disclosed risk");
+  assert(applovinPage.includes("Mintegral"), "AppLovin page must map to Mintegral");
+  assert(applovinPage.includes("zMaticoo"), "AppLovin page must map to zMaticoo");
+  assert(applovinPage.includes("BlueX"), "AppLovin page must map to BlueX");
+  assert(applovinPage.includes("Genimous"), "AppLovin page must map to Genimous");
+  assert(applovinPage.includes("Tianyu Digital"), "AppLovin page must map to Tianyu Digital");
+  assert(applovinPage.includes("Mintegral (汇量科技)"), "AppLovin guidance must use English-first Mintegral labeling");
+  assert(applovinPage.includes("zMaticoo (易点天下)"), "AppLovin guidance must use English-first zMaticoo labeling");
+  assert(applovinPage.includes("BlueX (蓝色光标)"), "AppLovin guidance must use English-first BlueX labeling");
+  assert(!applovinPage.includes("<h3>易点天下"), "AppLovin guidance must not lead headings with Chinese names");
+  assert(!applovinPage.includes("Ocean Engine"), "AppLovin page must not keep the previous Ocean Engine shortlist");
+}
+
 if (exists("build/alternatives/tiktok-ads.html")) {
   const tiktokAdsPage = read("build/alternatives/tiktok-ads.html");
   assert(tiktokAdsPage.includes("Ocean Engine"), "TikTok Ads page must map to Ocean Engine");
+}
+
+if (exists("build/alternatives/apple-search-ads.html")) {
+  const appleSearchAdsPage = read("build/alternatives/apple-search-ads.html");
+  assert(
+    appleSearchAdsPage.includes("Apple Search Ads alternatives in China"),
+    "Apple Search Ads page must use an intent-matching H1",
+  );
+  assert(
+    appleSearchAdsPage.includes('cr-alt-availability-available">Available</span>'),
+    "Apple Search Ads page must label mainland China availability as Available",
+  );
+  assert(
+    appleSearchAdsPage.includes("Search Results") && appleSearchAdsPage.includes("Today tab"),
+    "Apple Search Ads page must note constrained Search Results and Today tab placements",
+  );
+  assert(
+    appleSearchAdsPage.includes("Value-Added Telecommunications Business License"),
+    "Apple Search Ads page must note mainland advertising qualifications",
+  );
+  assert(appleSearchAdsPage.includes("Huawei Ads"), "Apple Search Ads page must map to Huawei Ads");
+  assert(appleSearchAdsPage.includes("Xiaomi Ads"), "Apple Search Ads page must map to Xiaomi Ads");
+  assert(appleSearchAdsPage.includes("OPPO Ads"), "Apple Search Ads page must map to OPPO Ads");
+  assert(appleSearchAdsPage.includes("vivo Ads"), "Apple Search Ads page must map to vivo Ads");
+  assert(appleSearchAdsPage.includes("Ocean Engine"), "Apple Search Ads page must map to Ocean Engine");
+  assert(appleSearchAdsPage.includes("Tencent Advertising"), "Apple Search Ads page must map to Tencent Advertising");
+  assert(appleSearchAdsPage.includes("Baidu Marketing"), "Apple Search Ads page must map to Baidu Marketing");
+  assert(
+    appleSearchAdsPage.includes("iOS precision-acquisition") || appleSearchAdsPage.includes("precision-acquisition assist"),
+    "Apple Search Ads page must advise keeping ASA as an iOS assist channel",
+  );
 }
 
 if (exists("build/alternatives/google-analytics.html")) {
@@ -1209,6 +1280,42 @@ if (exists("build/alternatives/firebase-analytics.html")) {
   );
   assert(firebaseAnalyticsPage.includes("Umeng+") || firebaseAnalyticsPage.includes("友盟+"), "Firebase Analytics page must map to Umeng+");
   assert(firebaseAnalyticsPage.includes("Alibaba Cloud EMAS"), "Firebase Analytics page must map to Alibaba Cloud EMAS");
+}
+
+if (exists("build/alternatives/amplitude.html")) {
+  const amplitudePage = read("build/alternatives/amplitude.html");
+  assert(
+    amplitudePage.includes("Amplitude alternatives in China"),
+    "Amplitude page must use an intent-matching H1",
+  );
+  assert(
+    amplitudePage.includes('cr-alt-availability-unavailable">Unavailable</span>'),
+    "Amplitude page must label mainland China availability as Unavailable",
+  );
+  assert(
+    amplitudePage.includes("api.amplitude.com"),
+    "Amplitude page must name the blocked ingestion API host",
+  );
+  assert(
+    amplitudePage.includes("DNS pollution") || amplitudePage.includes("DNS-poisoned"),
+    "Amplitude page must explain DNS pollution or blocking of event ingestion",
+  );
+  assert(amplitudePage.includes("Sensors Data"), "Amplitude page must map to Sensors Data");
+  assert(amplitudePage.includes("GrowingIO"), "Amplitude page must map to GrowingIO");
+  assert(amplitudePage.includes("Umeng+"), "Amplitude page must map to Umeng+");
+  assert(
+    amplitudePage.includes("Volcengine DataFinder / DataTester"),
+    "Amplitude page must map to Volcengine DataFinder / DataTester",
+  );
+  assert(
+    amplitudePage.includes("PostHog (self-hosted)"),
+    "Amplitude page must map to self-hosted PostHog",
+  );
+  assert(
+    amplitudePage.includes("does <strong>not</strong> add them as Explore") ||
+      amplitudePage.includes("does not add Volcengine"),
+    "Amplitude page must keep Explore disclaimer for Volcengine and PostHog",
+  );
 }
 
 if (exists("build/alternatives/joy-rewards-loyalty-program.html")) {

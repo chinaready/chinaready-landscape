@@ -229,7 +229,71 @@ OVERRIDES = {
     "microsoft clarity": ["GrowingIO", "Sensors Data"],
     "heap": ["Sensors Data", "GrowingIO"],
     "pendo": ["Sensors Data", "GrowingIO"],
-    "amplitude": ["Sensors Data", "Umeng+", "GrowingIO"],
+    "amplitude": [
+        {
+            "name": "Sensors Data",
+            "homepage_url": "https://www.sensorsdata.cn/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Product Analytics & User Insights",
+            "source": "research",
+            "note": (
+                "Sensors Data (神策数据) is a leading China user-behavior analytics platform, "
+                "closely comparable to Amplitude, with private-deployment options and a high "
+                "data-security posture — commonly evaluated when mainland-first products need "
+                "event analytics without overseas ingestion."
+            ),
+        },
+        {
+            "name": "GrowingIO",
+            "homepage_url": "https://www.growingio.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Product Analytics & User Insights",
+            "source": "research",
+            "note": (
+                "GrowingIO is known for no-code / autocapture (无埋点) tracking and user-behavior "
+                "analysis across Apps, web, and mini programs — a lower-friction path for China "
+                "internet products that need Amplitude-class insights without heavy event taxonomy."
+            ),
+        },
+        {
+            "name": "Umeng+",
+            "homepage_url": "https://www.umeng.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Product Analytics & User Insights",
+            "source": "research",
+            "note": (
+                "Umeng+ (友盟+) is an Alibaba-group mobile analytics platform with very high App "
+                "SDK coverage in China. Stats, push, and analysis onboard cheaply — strongest for "
+                "mainland Apps on domestic distribution channels."
+            ),
+        },
+        {
+            "name": "Volcengine DataFinder / DataTester",
+            "homepage_url": "https://www.volcengine.com/product/datafinder",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Product Analytics & User Insights",
+            "source": "research",
+            "note": (
+                "Volcengine DataFinder / DataTester (火山引擎增长分析) is ByteDance's mainland "
+                "growth-analytics and A/B experimentation stack — commonly evaluated when teams "
+                "need product analytics together with recommendation, experiments, and large-scale "
+                "analysis. Orientation-only on this alternatives page; not added as an Explore tile."
+            ),
+        },
+        {
+            "name": "PostHog (self-hosted)",
+            "homepage_url": "https://posthog.com/docs/self-host",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Product Analytics & User Insights",
+            "source": "research",
+            "note": (
+                "PostHog is an open-source Amplitude-class product-analytics platform. Teams with "
+                "ops capacity can self-host it on mainland servers to keep event data onshore and "
+                "avoid Amplitude's blocked ingestion path. Orientation-only on this alternatives "
+                "page; not added as an Explore tile."
+            ),
+        },
+    ],
     "mixpanel": ["Sensors Data", "Umeng+", "GrowingIO"],
     "posthog": ["Sensors Data", "GrowingIO"],
     "segment": ["Sensors Data", "GrowingIO"],
@@ -894,7 +958,54 @@ OVERRIDES = {
     "messagebird": ["Alibaba Cloud SMS"],
     "vonage": ["Alibaba Cloud SMS", "Alibaba Cloud RTC"],
     "sinch": ["Alibaba Cloud SMS", "Alibaba Cloud RTC"],
-    "agora": ["Alibaba Cloud RTC"],
+    "agora": [
+        {
+            "name": "Tencent Cloud TRTC",
+            "homepage_url": "https://cloud.tencent.com/product/trtc",
+            "category": "Engagement & Communication",
+            "subcategory": "Real-Time Communication (Voice / Video / Chat)",
+            "source": "research",
+            "note": (
+                "Tencent Cloud TRTC (腾讯云实时音视频) offers strong audio/video packet-loss "
+                "resilience (70%) and a strong overall price/performance mix for mainland China "
+                "real-time apps."
+            ),
+        },
+        {
+            "name": "ZEGO",
+            "homepage_url": "https://www.zego.im/",
+            "category": "Engagement & Communication",
+            "subcategory": "Real-Time Communication (Voice / Video / Chat)",
+            "source": "research",
+            "note": (
+                "ZEGO (即构) also cites 70% packet-loss resilience at a typically mid-to-low "
+                "price point — a practical fit for cost-sensitive mainland projects."
+            ),
+        },
+        {
+            "name": "Huawei Cloud RTC",
+            "homepage_url": "https://www.huaweicloud.com/product/cloudrtc.html",
+            "category": "Engagement & Communication",
+            "subcategory": "Real-Time Communication (Voice / Video / Chat)",
+            "source": "research",
+            "note": (
+                "Huawei Cloud RTC (华为云 SparkRTC) has HarmonyOS-native adaptation and mature "
+                "Xinchuang (信创) fit for government, enterprise, and finance workloads."
+            ),
+        },
+        {
+            "name": "Haoshitong",
+            "homepage_url": "https://www.hst.com/",
+            "category": "Communication & Collaboration",
+            "subcategory": "Video Conferencing & Collaboration",
+            "source": "research",
+            "note": (
+                "Haoshitong (好视通) offers full-stack domestic adaptation and mature private "
+                "deployment — commonly evaluated for government, healthcare, and other high "
+                "security/compliance scenarios."
+            ),
+        },
+    ],
     "daily": ["Alibaba Cloud RTC"],
     "mux": ["Alibaba Cloud RTC"],
     "brightcove": ["Alibaba Cloud RTC"],
@@ -934,7 +1045,45 @@ OVERRIDES = {
     "hcaptcha": ["GeeTest", "Alibaba Cloud CAPTCHA"],
     "mapbox": ["Amap", "Tencent Location Services"],
     "here": ["Amap", "Tencent Location Services"],
-    "openstreetmap": ["Amap", "Tencent Location Services"],
+    "openstreetmap": [
+        {
+            "name": "Amap",
+            "homepage_url": "https://lbs.amap.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Location & Map Services",
+            "source": "research",
+            "note": (
+                "Amap (高德地图) is the mainstream China map stack with fast mainland loading. "
+                "Public raster tile URLs are commonly used for quick Leaflet-style integration "
+                "without registering a key; keyed APIs remain on the developer platform. Primary "
+                "OSM-tile substitute for China-facing web and App maps."
+            ),
+        },
+        {
+            "name": "Tencent Maps",
+            "homepage_url": "https://lbs.qq.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Location & Map Services",
+            "source": "research",
+            "note": (
+                "Tencent Maps (腾讯地图) offers stable, fast mainland raster tiles that teams "
+                "often use without a key for basic web maps, plus keyed LBS APIs. A close second "
+                "to Amap when the product already sits in the Tencent ecosystem."
+            ),
+        },
+        {
+            "name": "Tianditu",
+            "homepage_url": "https://www.tianditu.gov.cn/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Location & Map Services",
+            "source": "research",
+            "note": (
+                "Tianditu (天地图) is the official national basemap from the National Geomatics "
+                "Center of China — the strongest compliance-oriented OSM substitute. Register a "
+                "free account to obtain a Key before serving tiles."
+            ),
+        },
+    ],
     "ipinfo": ["Amap", "Tencent Location Services"],
     "maxmind": ["Amap", "Tencent Location Services"],
     "apple mapkit": [
@@ -1100,11 +1249,66 @@ OVERRIDES = {
         "Kuaishou Ads",
     ],
     "applovin": [
-        "Tencent Advertising",
-        "Ocean Engine",
-        "Kuaishou Ads",
-        "Baidu Marketing",
-        "Huawei Ads",
+        {
+            "name": "Mintegral",
+            "homepage_url": "https://www.mintegral.com/en",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Mobile User Acquisition & Advertising",
+            "source": "research",
+            "note": (
+                "Mintegral (汇量科技) is a China-origin programmatic mobile advertising platform with "
+                "a strong position in iOS and Android gaming ads and a commonly cited global top-three "
+                "rank in that category — a close AppLovin-style path for performance UA and in-app ads."
+            ),
+        },
+        {
+            "name": "zMaticoo",
+            "homepage_url": "https://zmaticoo.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Mobile User Acquisition & Advertising",
+            "source": "research",
+            "note": (
+                "zMaticoo (易点天下) is eclicktech's programmatic advertising platform, with mature "
+                "bidding algorithms and deep coverage of Chinese outbound advertisers plus domestic "
+                "enterprises that need UA and publisher monetization."
+            ),
+        },
+        {
+            "name": "BlueX",
+            "homepage_url": "https://bluexad.ai/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Mobile User Acquisition & Advertising",
+            "source": "research",
+            "note": (
+                "BlueX (蓝色光标 / BlueFocus) is a self-built AI programmatic platform positioned "
+                "against AppLovin's real-time bidding model, combining ADX, SDK, and DSP coverage "
+                "for global traffic distribution."
+            ),
+        },
+        {
+            "name": "Genimous",
+            "homepage_url": "https://www.genimous.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Mobile User Acquisition & Advertising",
+            "source": "research",
+            "note": (
+                "Genimous (智度股份) is an early China AI demand-side platform (DSP) player, using "
+                "data plus algorithms for targeted buying and traffic aggregation across digital "
+                "inventory."
+            ),
+        },
+        {
+            "name": "Tianyu Digital",
+            "homepage_url": "https://www.tianyushuke.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Mobile User Acquisition & Advertising",
+            "source": "research",
+            "note": (
+                "Tianyu Digital (天娱数科) is another early China AI DSP / intelligent-marketing "
+                "group, using data-plus-algorithm buying and traffic aggregation rather than a "
+                "one-to-one AppLovin SDK swap."
+            ),
+        },
     ],
     "moloco": [
         "Tencent Advertising",
@@ -1114,10 +1318,67 @@ OVERRIDES = {
         "Huawei Ads",
     ],
     "apple search ads": [
-        "Tencent Advertising",
-        "Ocean Engine",
-        "Baidu Marketing",
-        "Huawei Ads",
+        {
+            "name": "Huawei Ads",
+            "note": (
+                "Huawei Ads (鲸鸿动能) covers AppGallery cost-per-download (CPD) and HarmonyOS "
+                "inventory — the Huawei-ecosystem path for mainland Android and HarmonyOS app installs."
+            ),
+        },
+        {
+            "name": "Xiaomi Ads",
+            "homepage_url": "https://e.mi.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Mobile User Acquisition & Advertising",
+            "source": "research",
+            "note": (
+                "Xiaomi Ads (小米商业营销) sells CPD placements in Xiaomi GetApps and related "
+                "Xiaomi-system inventory — a core store path for Xiaomi Android users."
+            ),
+        },
+        {
+            "name": "OPPO Ads",
+            "homepage_url": "https://e.oppo.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Mobile User Acquisition & Advertising",
+            "source": "research",
+            "note": (
+                "OPPO Ads (OPPO广告) sells CPD placements in the OPPO / HeyTap software store "
+                "and related OPPO-system inventory — a core store path for OPPO Android users."
+            ),
+        },
+        {
+            "name": "vivo Ads",
+            "homepage_url": "https://ad.vivo.com.cn/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Mobile User Acquisition & Advertising",
+            "source": "research",
+            "note": (
+                "vivo Ads (vivo营销平台) sells CPD placements in the vivo App Store and related "
+                "vivo-system inventory — a core store path for vivo Android users."
+            ),
+        },
+        {
+            "name": "Ocean Engine",
+            "note": (
+                "Ocean Engine (巨量引擎) is ByteDance's mainland feed-ad platform for Douyin and "
+                "Toutiao — the usual scale path for algorithm-driven user acquisition."
+            ),
+        },
+        {
+            "name": "Tencent Advertising",
+            "note": (
+                "Tencent Advertising (腾讯广告) covers WeChat, QQ, and Tencent-ecosystem feed "
+                "inventory for app installs and performance campaigns."
+            ),
+        },
+        {
+            "name": "Baidu Marketing",
+            "note": (
+                "Baidu Marketing (百度营销) covers search and feed app-promotion inventory when "
+                "intent-led mainland acquisition matters alongside store CPD and social feeds."
+            ),
+        },
     ],
     "meta ads": [
         "Tencent Advertising",
@@ -2851,36 +3112,47 @@ OVERRIDES = {
     ],
     "hubspot": [
         {
+            "name": "Beschannels",
+            "homepage_url": "https://www.beschannels.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "CRM & Marketing Automation",
+            "source": "research",
+            "note": (
+                "Beschannels (致趣百川) is built around mainland traffic rules and WeChat / WeCom "
+                "connectivity — a strong fit for private-domain and social selling instead of HubSpot."
+            ),
+        },
+        {
+            "name": "Jiandaoyun CRM",
+            "homepage_url": "https://www.jiandaoyun.com/index/crm",
+            "category": "Growth, Content & Experience",
+            "subcategory": "CRM & Marketing Automation",
+            "source": "research",
+            "note": (
+                "Jiandaoyun CRM (简道云 CRM) is a mainland-compliant low-code CRM with deep WeCom, "
+                "DingTalk, and Feishu integration and high workflow flexibility."
+            ),
+        },
+        {
             "name": "Fxiaoke",
             "homepage_url": "https://www.fxiaoke.com/",
             "category": "Growth, Content & Experience",
             "subcategory": "CRM & Marketing Automation",
             "source": "research",
             "note": (
-                "Fxiaoke (纷享销客) is a leading China CRM / sales-engagement suite commonly "
-                "evaluated instead of HubSpot for mainland go-to-market teams."
+                "Fxiaoke (纷享销客) supports mainland data residency, mature mobile collaboration, "
+                "and WeCom / DingTalk ecosystems — typically fast to implement for China GTM teams."
             ),
         },
         {
-            "name": "Neocrm",
-            "homepage_url": "https://www.xiaoshouyi.com/",
+            "name": "Marketingforce",
+            "homepage_url": "https://www.marketingforce.com/",
             "category": "Growth, Content & Experience",
             "subcategory": "CRM & Marketing Automation",
             "source": "research",
             "note": (
-                "Neocrm / Xiaoshouyi (销售易) is an enterprise CRM path with strong sales cloud "
-                "depth for mid-to-large China GTM organizations."
-            ),
-        },
-        {
-            "name": "Zhichi",
-            "homepage_url": "https://www.zhichi.com/",
-            "category": "Growth, Content & Experience",
-            "subcategory": "CRM & Marketing Automation",
-            "source": "research",
-            "note": (
-                "Zhichi (智齿科技) covers customer engagement / service cloud use cases that often "
-                "sit beside HubSpot Service Hub for China-facing support."
+                "Marketingforce (迈富时) is closest to HubSpot in product philosophy: a one-stop "
+                "full-funnel marketing and sales suite for mainland teams."
             ),
         },
     ],
@@ -3054,8 +3326,12 @@ AVAILABILITY_OVERRIDES = {
     "facebook login": "Unavailable",
     "google maps platform": "Unavailable",
     "apple mapkit": "Available",
+    "agora": "Available",
+    "apple search ads": "Available",
+    "openstreetmap": "Limited",
     "aws": "Limited",
     "microsoft azure": "Limited",
+    "amplitude": "Unavailable",
     "logrocket": "Limited",
 
     # === BEGIN HUB P0P1 OVERRIDES ===
@@ -3187,10 +3463,13 @@ RESEARCH_NOTES = {
         "Confirm connector coverage and data residency before adoption."
     ),
     "hubspot": (
-        "HubSpot is Limited in mainland China: the overseas CRM/marketing hub is usually reachable "
-        "for international teams, but China GTM usually needs Fxiaoke (纷享销客), Neocrm (销售易), "
-        "or adjacent service clouds such as Zhichi. These appear on the alternatives page only — "
-        "not as Explore / Landscape product tiles. Confirm WeCom integrations and PIPL before adoption."
+        "HubSpot is Limited in mainland China: the overseas CRM/marketing hub is usually reachable, "
+        "but the experience is constrained. Servers sit in Europe/US so mainland access is slow and "
+        "drop-prone; customer data is not stored in China, which conflicts with domestic residency "
+        "rules; and native WeChat / DingTalk workplace integrations are weak. Prefer Beschannels "
+        "(致趣百川), Jiandaoyun CRM (简道云 CRM), Fxiaoke (纷享销客), or Marketingforce (迈富时). "
+        "These appear on the alternatives page only — not as Explore / Landscape product tiles. "
+        "Confirm WeCom/DingTalk integrations and PIPL before adoption."
     ),
     "mailchimp": (
         "Mailchimp is Limited in mainland China: admin access may work, but deliverability into QQ/"
@@ -3357,6 +3636,16 @@ RESEARCH_NOTES = {
         "page as orientation options — not as Explore / Landscape product tiles from this research. "
         "Confirm product and SDK fit before production adoption."
     ),
+    "openstreetmap": (
+        "OpenStreetMap is Limited in mainland China: the project is not fully blocked, but official "
+        "tile servers (*.tile.openstreetmap.org) are extremely unstable from mainland networks, and "
+        "unreviewed foreign basemaps conflict with Surveying and Mapping Law / map-review (审图号) "
+        "expectations plus WGS-84 vs GCJ-02 offset. Prefer Amap (高德地图) or Tencent Maps (腾讯地图) "
+        "for domestic tiles, or Tianditu (天地图) for the official national basemap. Tencent Maps and "
+        "Tianditu appear on the alternatives page as orientation options — not as Explore / Landscape "
+        "product tiles from this research. Confirm tile terms, keys, and map-review requirements "
+        "before production adoption."
+    ),
     "activecampaign": (
         "ActiveCampaign is Limited in mainland China: the product is usually reachable, but marketing "
         "sends face extremely high interception risk into domestic inboxes (spam folder or outright "
@@ -3366,6 +3655,17 @@ RESEARCH_NOTES = {
         "dedicated domestic delivery channels. These appear on the alternatives page only — not as "
         "Explore / Landscape product tiles. Confirm deliverability and compliance before production "
         "adoption."
+    ),
+    "amplitude": (
+        "Amplitude is Unavailable (or extremely unstable) in mainland China: ingestion API "
+        "hosts such as api.amplitude.com frequently hit DNS pollution or network blocking, so "
+        "client events often fail to reach Amplitude servers. Prefer Sensors Data (神策数据) for "
+        "Amplitude-class analytics with private deployment, GrowingIO for autocapture, Umeng+ "
+        "(友盟+) for low-cost China App stats, Volcengine DataFinder / DataTester for analytics "
+        "plus A/B experiments, and self-hosted PostHog when the team can run it on mainland "
+        "servers. Volcengine DataFinder / DataTester and self-hosted PostHog appear on the "
+        "alternatives page only — not as Explore / Landscape product tiles. Confirm consent, "
+        "PIPL, and event taxonomy before production adoption."
     ),
     "logrocket": (
         "LogRocket is Limited in mainland China: availability is poor enough that day-to-day "
@@ -3680,8 +3980,15 @@ RESEARCH_NOTES = {
         "evaluate Pangle (穿山甲) when developer-side ad distribution matters; use Kuaishou Ads (快手磁力引擎) for Kuaishou short-video growth."
     ),
     "applovin": (
-        "Mainland China advertiser platforms for paid app installs and performance UA when replacing AppLovin. "
-        "Prefer Ocean Engine, Tencent Advertising, and Kuaishou Ads; confirm entity and compliance constraints."
+        "AppLovin is Unavailable for mainland China production UA and monetization. Its China-related "
+        "commercial model is primarily outbound — helping Chinese advertisers and ecommerce brands buy "
+        "overseas inventory, including through a Greater China ecommerce first-tier agency — not a "
+        "workable mainland ad stack. AppLovin SEC filings also list operations in China and U.S.–China "
+        "tensions among material risk factors. Prefer Mintegral (汇量科技) for gaming UA and in-app ads, "
+        "zMaticoo (易点天下) for programmatic buying, BlueX (蓝色光标) for AI real-time bidding, and "
+        "Genimous (智度股份) / Tianyu Digital (天娱数科) as early China AI DSP paths. These appear on "
+        "the alternatives page only — not as Explore / Landscape product tiles. Confirm SDK access, "
+        "settlement entity, and PIPL compliance before production adoption."
     ),
     "moloco": (
         "Mainland China advertiser platforms for programmatic / performance UA when replacing Moloco. "
@@ -3700,8 +4007,14 @@ RESEARCH_NOTES = {
         "Kuaishou Ads and Tencent Advertising are common complementary routes."
     ),
     "apple search ads": (
-        "Apple Search Ads can still matter for App Store traffic, but mainland acquisition usually also needs "
-        "domestic networks such as Huawei Ads (AppGallery), Ocean Engine, Tencent Advertising, and Baidu Marketing."
+        "Apple Search Ads is Available in mainland China: ASA has launched officially, but inventory is "
+        "still constrained (typically Search Results and the Today tab) and advertisers generally need "
+        "mainland qualifications such as a Value-Added Telecommunications Business License "
+        "(增值电信业务许可证). For China-first acquisition, also evaluate Android OEM-store CPD "
+        "(Huawei, Xiaomi, OPPO, vivo), Huawei Ads (鲸鸿动能) for HarmonyOS, and domestic feed ads "
+        "on Ocean Engine, Tencent Advertising, and Baidu Marketing. Xiaomi Ads, OPPO Ads, and vivo Ads "
+        "appear on the alternatives page as orientation options — not as Explore / Landscape product "
+        "tiles. Confirm entity, qualifications, and store listing before production spend."
     ),
     "barracuda": (
         "Barracuda can be used in mainland China with caveats. Existing stable deployments may continue with "
@@ -3737,6 +4050,17 @@ RESEARCH_NOTES = {
         "/ group enterprises and Neocrm (销售易) for social selling and Tencent-ecosystem teams. These domestic "
         "options appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm "
         "entity fit, WeCom/channel integrations, and compliance before production adoption."
+    ),
+    "agora": (
+        "Agora (声网) is Available in mainland China: it originated in Shanghai, operates through an "
+        "independent mainland China entity, and runs a complete domestic data-center network that fully "
+        "supports mainland China business. Teams that still want a domestic-first substitute for China "
+        "workloads commonly evaluate Tencent Cloud TRTC for packet-loss resilience and overall "
+        "price/performance, ZEGO (即构) for cost-sensitive projects, Huawei Cloud RTC for HarmonyOS-native "
+        "and government/finance Xinchuang (信创) fit, and Haoshitong (好视通) for full-stack domestic "
+        "adaptation and private deployment in government, healthcare, and other high-compliance scenarios. "
+        "These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm "
+        "SDK fit, deployment model, and compliance before production adoption."
     ),
     "akamai": (
         "Mainland China CDN options commonly evaluated when replacing Akamai. Prefer Alibaba Cloud CDN or "
@@ -3978,6 +4302,18 @@ def main() -> None:
         "apple mapkit": {
             "name": "Apple MapKit",
             "categories": ["Location & Map Services"],
+        },
+        "agora": {
+            "name": "Agora",
+            "categories": ["Engagement & Communication"],
+        },
+        "openstreetmap": {
+            "name": "OpenStreetMap",
+            "categories": ["Location & Map Services"],
+        },
+        "amplitude": {
+            "name": "Amplitude",
+            "categories": ["Growth, Content & Experience", "Product Analytics & User Insights"],
         },
         "aws": {
             "name": "AWS",
