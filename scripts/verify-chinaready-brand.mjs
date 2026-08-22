@@ -906,6 +906,20 @@ for (const googleSlug of [
   assert(googlePage.includes("Flutter"), `${googleSlug} page must list Flutter as active`);
 }
 
+if (exists("build/alternatives/google-cloud.html")) {
+  const googleCloudPage = read("build/alternatives/google-cloud.html");
+  assert(googleCloudPage.includes("AWS China Regions"), "Google Cloud page must list AWS China Regions");
+  assert(googleCloudPage.includes("Azure China"), "Google Cloud page must list Azure China");
+  assert(googleCloudPage.includes("Alibaba Cloud"), "Google Cloud page must list Alibaba Cloud");
+  assert(googleCloudPage.includes("Tencent Cloud"), "Google Cloud page must list Tencent Cloud");
+  assert(
+    googleCloudPage.includes("no mainland China region"),
+    "Google Cloud page must state GCP has no mainland China region",
+  );
+  assert(googleCloudPage.includes("aws-china-what-works"), "Google Cloud page must link the AWS China insight");
+  assert(googleCloudPage.includes("azure-china-what-works"), "Google Cloud page must link the Azure China insight");
+}
+
 if (exists("build/alternatives/amazon-ses.html")) {
   const sesPage = read("build/alternatives/amazon-ses.html");
   assert(sesPage.includes("Amazon SES alternatives in China"), "Amazon SES alternatives page must use an intent-matching H1");
@@ -1363,6 +1377,11 @@ if (exists("build/data/full.json")) {
   assert(fullSearchText("Alibaba Cloud DirectMail").match(/Amazon SES/i), "full.json search index tags must let SES find Alibaba Cloud DirectMail");
   assert(fullSearchText("Tencent Cloud SES").match(/Amazon SES/i), "full.json search index tags must let SES find Tencent Cloud SES");
   assert(fullSearchText("JPush").match(/\bFCM\b/i), "full.json search index tags must let FCM find JPush");
+  const tencentCloud = full.items.find((item) => item.name === "Tencent Cloud");
+  assert(tencentCloud, "full.json must include Tencent Cloud");
+  assert(fullSearchText("Tencent Cloud").match(/Google Cloud/i), "full.json search index tags must let Google Cloud find Tencent Cloud");
+  assert(fullSearchText("AWS China Regions").match(/Google Cloud/i), "full.json search index tags must let Google Cloud find AWS China Regions");
+  assert(fullSearchText("Azure China").match(/Google Cloud/i), "full.json search index tags must let Google Cloud find Azure China");
 }
 
 if (exists("hosted_logos/alibaba-cloud.svg")) {

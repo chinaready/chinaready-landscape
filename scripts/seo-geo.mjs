@@ -6180,6 +6180,19 @@ function googleChinaGuidanceHtml() {
         </ul>`;
 }
 
+function googleCloudOptionsHtml() {
+  return `
+        <h3>Google Cloud has no mainland China region</h3>
+        <p><strong>Google Cloud does not operate a China partition comparable to AWS China or Azure China.</strong> Global GCP projects, billing, and IAM cannot be extended into mainland China. Teams that need in-country compute usually choose a China-operated hyperscaler region or a domestic cloud.</p>
+        <ul>
+          <li><strong>AWS China Regions</strong> — separate AWS partition (Beijing / Ningxia) operated with China partners. Read <a href="${AWS_CHINA_INSIGHT_URL}" target="_blank" rel="noopener noreferrer">AWS China partition — what works vs global accounts</a>.</li>
+          <li><strong>Azure China</strong> — physically isolated Azure instance operated by 21Vianet. Read <a href="${AZURE_CHINA_INSIGHT_URL}" target="_blank" rel="noopener noreferrer">Azure China — 21Vianet partition vs global Azure</a>.</li>
+          <li><strong>Alibaba Cloud</strong> — native China cloud with broad compute, storage, networking, security, data, and application coverage; a common default for China-first stacks.</li>
+          <li><strong>Tencent Cloud</strong> — native China cloud, especially when the product already leans on Tencent ecosystems (WeChat / WeCom and related services).</li>
+        </ul>
+        <p>Confirm entity/account rails, ICP adjacency, and service-catalog fit before production adoption.</p>`;
+}
+
 function isGoogleService(group) {
   const name = String(group?.name || "");
   const slug = String(group?.slug || "");
@@ -6188,21 +6201,28 @@ function isGoogleService(group) {
 
 function buildGoogleEditorial(group) {
   const serviceName = group.name;
+  const isGoogleCloud = group.slug === "google-cloud";
+  const namePreviewCount = isGoogleCloud ? 4 : 3;
   return {
+    relatedSlugs: isGoogleCloud ? ["aws", "microsoft-azure", "amazon-cloudfront"] : undefined,
     description: (availability, names) =>
       clipMeta(
-        `Does ${serviceName} work in China? Google's consumer services are mostly blocked; mainland offices focus on B2B, developers, and hardware. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+        isGoogleCloud
+          ? `Does Google Cloud work in China? No mainland GCP region. Compare ${names.slice(0, namePreviewCount).join(", ") || "AWS China, Azure China, Alibaba Cloud, Tencent Cloud"}. Availability: ${availability}.`
+          : `Does ${serviceName} work in China? Google's consumer services are mostly blocked; mainland offices focus on B2B, developers, and hardware. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
       names.length > 0
-        ? `<strong>Quick answer:</strong> Google established a Chinese corporate entity in April 2006, but most core consumer services remain blocked in mainland China. Chinaready currently maps <strong>${escapeHtml(serviceName)}</strong> to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`
+        ? `<strong>Quick answer:</strong> Google established a Chinese corporate entity in April 2006, but most core consumer services remain blocked in mainland China. Chinaready currently maps <strong>${escapeHtml(serviceName)}</strong> to <strong>${escapeHtml(names.slice(0, namePreviewCount).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`
         : `<strong>Quick answer:</strong> Google established a Chinese corporate entity in April 2006, but most core consumer services remain blocked in mainland China. Chinaready labels <strong>${escapeHtml(serviceName)}</strong> as <strong>${escapeHtml(availability)}</strong> and has not yet confirmed a precise mainland substitute.`,
     guidanceTitle: "Google's presence in mainland China",
-    guidanceHtml: googleChinaGuidanceHtml(),
+    guidanceHtml: isGoogleCloud ? `${googleChinaGuidanceHtml()}${googleCloudOptionsHtml()}` : googleChinaGuidanceHtml(),
     faq: (availability, namesText) => [
       {
         question: `Does ${serviceName} work in China?`,
-        answer: `Google officially established its Chinese corporate entity in April 2006, but most core consumer services are blocked in mainland China due to local censorship regulations. Chinaready currently labels ${serviceName} as ${availability} for mainland China use. Treat this as an operating signal, then validate against your own account type, region, network path, and compliance constraints before relying on it in production.`,
+        answer: isGoogleCloud
+          ? `Limited. Google Cloud has no mainland China region comparable to AWS China or Azure China. Chinaready currently labels ${serviceName} as ${availability}. Treat this as an operating signal, then validate account type, region, network path, and compliance constraints before relying on it in production.`
+          : `Google officially established its Chinese corporate entity in April 2006, but most core consumer services are blocked in mainland China due to local censorship regulations. Chinaready currently labels ${serviceName} as ${availability} for mainland China use. Treat this as an operating signal, then validate against your own account type, region, network path, and compliance constraints before relying on it in production.`,
       },
       {
         question: "Which Google products are blocked in mainland China?",
@@ -6211,12 +6231,16 @@ function buildGoogleEditorial(group) {
       {
         question: `What are the best China alternatives to ${serviceName}?`,
         answer: namesText
-          ? `Chinaready Landscape currently lists these China-market options for ${serviceName}: ${namesText}. Replacement fit varies by product, so treat this as a research shortlist rather than a one-to-one endorsement.`
+          ? isGoogleCloud
+            ? `Chinaready Landscape currently lists these China-market options for Google Cloud: ${namesText}. Prefer AWS China Regions or Azure China when you want a China-operated hyperscaler partition; prefer Alibaba Cloud or Tencent Cloud for a native China cloud. Replacement fit varies by product, so treat this as a research shortlist rather than a one-to-one endorsement.`
+            : `Chinaready Landscape currently lists these China-market options for ${serviceName}: ${namesText}. Replacement fit varies by product, so treat this as a research shortlist rather than a one-to-one endorsement.`
           : `A precise China-market alternative for ${serviceName} is not yet confirmed in Chinaready Landscape. Contact Chinaready for a stack-specific recommendation before changing production architecture.`,
       },
       {
         question: `Where should teams go after shortlisting ${serviceName} alternatives?`,
-        answer: `Use the interactive Chinaready Landscape to compare adjacent services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the alternative remains uncertain, book a call with Chinaready.`,
+        answer: isGoogleCloud
+          ? `Compare AWS China, Azure China, Alibaba Cloud, and Tencent Cloud against your service bill of materials, ICP needs, and ecosystem fit. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.`
+          : `Use the interactive Chinaready Landscape to compare adjacent services, then read Chinaready's main site for launch operating guidance covering compliance, distribution, and go-to-market constraints beyond vendor selection. If the alternative remains uncertain, book a call with Chinaready.`,
       },
     ],
   };

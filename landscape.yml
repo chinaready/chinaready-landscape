@@ -14,9 +14,9 @@ landscape:
             description: AWS China Regions provide AWS cloud services operated for the China market through local partners.
             extra:
               annotations:
-                global_analogs: AWS, Amazon Web Services
+                global_analogs: AWS, Amazon Web Services, Google Cloud
                 replacement_fit: china-market-region
-                china_context: China-region cloud option frequently recommended when global AWS infrastructure is not suitable for mainland China deployments.
+                china_context: China-region cloud option frequently recommended when global AWS or Google Cloud infrastructure is not suitable for mainland China deployments.
                 vendor_type: global-provider-china-region
                 evidence_level: high
                 availability_status: china-region-only
@@ -27,8 +27,8 @@ landscape:
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
                 product_overview: "AWS China Regions provide AWS cloud services operated for the China market through local partners."
-                alternative_to: "China-market alternative or deployment route for: AWS, Amazon Web Services."
-                global_alternatives: "AWS, Amazon Web Services"
+                alternative_to: "China-market alternative or deployment route for: AWS, Amazon Web Services, Google Cloud."
+                global_alternatives: "AWS, Amazon Web Services, Google Cloud"
                 organization: "Amazon Web Services"
                 organization_overview: "Amazon Web Services provides cloud infrastructure and platform services; this profile covers its China-market regions operated through local partners."
                 developer_docs: "https://docs.amazonaws.cn/en_us/"
@@ -39,9 +39,9 @@ landscape:
             description: Azure China provides Microsoft Azure cloud services operated for the China market by a local operator.
             extra:
               annotations:
-                global_analogs: Microsoft Azure
+                global_analogs: Microsoft Azure, Google Cloud
                 replacement_fit: china-market-region
-                china_context: China-region cloud option for teams already using Microsoft Azure globally.
+                china_context: China-region cloud option for teams already using Microsoft Azure globally, and a common hyperscaler China-region path when Google Cloud has no mainland region.
                 vendor_type: global-provider-china-region
                 evidence_level: high
                 availability_status: china-region-only
@@ -52,8 +52,8 @@ landscape:
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
                 product_overview: "Azure China provides Microsoft Azure cloud services operated for the China market by a local operator."
-                alternative_to: "China-market alternative or deployment route for: Microsoft Azure."
-                global_alternatives: "Microsoft Azure"
+                alternative_to: "China-market alternative or deployment route for: Microsoft Azure, Google Cloud."
+                global_alternatives: "Microsoft Azure, Google Cloud"
                 organization: "Microsoft Azure China"
                 organization_overview: "Microsoft Azure China provides Azure services for mainland China through a local operating model."
                 developer_docs: "https://docs.azure.cn/en-us/"
@@ -82,6 +82,31 @@ landscape:
                 organization: "Alibaba Cloud"
                 organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
                 developer_docs: "https://www.alibabacloud.com/help/en/"
+          - item:
+            name: Tencent Cloud
+            homepage_url: https://www.tencentcloud.com/
+            logo: tencent-cloud.svg
+            description: Tencent Cloud is a major China cloud platform offering compute, storage, networking, security, data, and application services, with deep WeChat / WeCom ecosystem adjacency.
+            extra:
+              annotations:
+                global_analogs: Google Cloud
+                replacement_fit: direct
+                china_context: Native China cloud platform, especially relevant when the product already leans on Tencent ecosystems such as WeChat, WeCom, or other Tencent Cloud services.
+                vendor_type: china-cloud
+                evidence_level: medium
+                availability_status: generally-available
+                global_availability_in_china: limited
+                metadata_name: "Tencent Cloud"
+                primary_category: "Infrastructure & Edge"
+                official_website: "https://www.tencentcloud.com/"
+                github: "to-be-supplied-by-contributor"
+                social_media: "to-be-supplied-by-contributor"
+                product_overview: "Tencent Cloud is a major China cloud platform offering compute, storage, networking, security, data, and application services, with deep WeChat / WeCom ecosystem adjacency."
+                alternative_to: "China-market alternative or deployment route for: Google Cloud."
+                global_alternatives: "Google Cloud"
+                organization: "Tencent Cloud"
+                organization_overview: "Tencent Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
+                developer_docs: "https://www.tencentcloud.com/document"
       - subcategory:
         name: Network & Edge Security
         items:

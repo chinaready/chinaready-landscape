@@ -91,6 +91,7 @@ categories:
           Use this category for cloud platforms or China-region cloud offerings that can host application workloads. Mainland DNS and domain resolution are usually selected with the cloud platform (for example Alibaba Cloud DNS or Tencent Cloud DNS) rather than as a standalone landscape subcategory.
 
           Typical global services: [AWS](/alternatives/aws), [Microsoft Azure](/alternatives/microsoft-azure), [Google Cloud](/alternatives/google-cloud).
+          China-ready options often evaluated: AWS China Regions, Azure China, Alibaba Cloud, Tencent Cloud. Google Cloud has no mainland China region.
       - subcategory: "Network & Edge Security"
         content: |
           Use this category for WAF, DDoS protection, email security gateways, and related network/web security controls. Keep this separate from CDN acceleration and from application-layer CAPTCHA products under Bot Protection & CAPTCHA.
