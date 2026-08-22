@@ -2,9 +2,9 @@
   "source": "Chinaready Landscape research shortlist for taxonomy-relevant global services",
   "generated_for": "alternatives index SEO expansion",
   "counts": {
-    "services": 135,
+    "services": 136,
     "uncertain_alternatives": 0,
-    "researched_alternatives": 111,
+    "researched_alternatives": 112,
     "heuristic_alternatives": 24
   },
   "availability_lookup": {
@@ -203,6 +203,11 @@
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
     },
+    "datadog": {
+      "name": "Datadog",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
     "dataset": {
       "name": "DataSet",
       "availability": "Unavailable",
@@ -215,8 +220,8 @@
     },
     "docker hub mirror": {
       "name": "Docker Hub Mirror",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
     },
     "docusign": {
       "name": "DocuSign",
@@ -2189,6 +2194,67 @@
       "confidence": "researched"
     },
     {
+      "name": "Datadog",
+      "categories": [
+        "Release, Quality & Operations",
+        "Monitoring & Observability (APM / RUM)"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud ARMS",
+          "homepage_url": "https://www.aliyun.com/product/arms",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "research",
+          "note": "Alibaba Cloud ARMS is the native Alibaba Cloud APM and observability suite — pair with Log Service (SLS) for logs. Strongest when the mainland stack already runs on Alibaba Cloud: fast to turn on, billed with the cloud account, and a clear compliance path."
+        },
+        {
+          "name": "Tencent Cloud Observability Platform",
+          "homepage_url": "https://cloud.tencent.com/product/tcop",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "research",
+          "note": "Tencent Cloud Observability Platform (腾讯云可观测平台 / TCOP) unifies metrics, traces, and logs (including Cloud Log Service / CLS) with visualization and alerting — the practical Datadog-class path when the China stack already runs on Tencent Cloud."
+        },
+        {
+          "name": "Guance",
+          "homepage_url": "https://www.guance.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "research",
+          "note": "Guance (观测云) is an independent China observability SaaS covering infrastructure, APM, user experience, and logs, with OpenTelemetry and PromQL support, China plus overseas nodes, and pricing often cited at about half of Datadog — closest Datadog-like migration for multi-cloud or hybrid stacks."
+        },
+        {
+          "name": "Canway BlueWhale",
+          "homepage_url": "https://www.canway.net/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "research",
+          "note": "Canway BlueWhale (嘉为蓝鲸) is a private-deployment / Xinchuang observability and ops platform with onshore data, full-stack chip/OS/DB adaptation, and alert closed-loop plus automated operations — commonly evaluated for finance, government, and energy estates."
+        },
+        {
+          "name": "Tingyun",
+          "homepage_url": "https://www.tingyun.com/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "research",
+          "note": "Tingyun (基调听云) is a domestic full-stack observability and APM vendor with onshore data, OpenTelemetry-friendly tracing, and private-deployment options — a common Xinchuang / high-compliance alternative when Datadog SaaS cannot stay in China."
+        },
+        {
+          "name": "Prometheus + Grafana",
+          "homepage_url": "https://prometheus.io/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "research",
+          "note": "Self-hosted Prometheus plus Grafana is the zero-license, fully controllable observability path. Use it when budget is very tight and the team has strong SRE/DevOps capacity to own ingest, storage, dashboards, and alerting."
+        }
+      ],
+      "research_note": "Datadog is Unavailable (or extremely unstable) for practical mainland China use: APIs and the console sit behind cross-border network restrictions, so high latency, DNS failures, or outright blocking make ingest and dashboards unreliable, and pure SaaS data export cannot meet mainland Data Security Law, localization, or Xinchuang expectations. Prefer Alibaba Cloud ARMS or Tencent Cloud Observability Platform when already on those clouds; prefer Guance for a Datadog-like independent SaaS; prefer Canway BlueWhale or Tingyun for private / Xinchuang deployments; prefer Prometheus + Grafana when the team will self-host. These appear on the alternatives page only — not as Explore / Landscape product tiles except where already listed. Confirm OpenTelemetry fit, data residency, and compliance before production adoption.",
+      "confidence": "researched"
+    },
+    {
       "name": "DataSet",
       "categories": [
         "Business & Product Analytics"
@@ -2246,18 +2312,67 @@
       "categories": [
         "Developer Tools & APIs"
       ],
-      "availability": "Limited",
-      "global_availability_in_china": "limited",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
       "china_candidates": [
         {
-          "name": "Alibaba Cloud",
-          "homepage_url": "https://www.alibabacloud.com/",
-          "category": "Infrastructure & Edge",
-          "subcategory": "Cloud Platform & Hosting",
-          "source": "landscape"
+          "name": "Xuanyuan Mirror",
+          "homepage_url": "https://xuanyuan.cloud/",
+          "category": "Developer Tools & APIs",
+          "subcategory": "Container Registry & Image Mirrors",
+          "source": "research",
+          "note": "Xuanyuan Mirror (轩辕镜像, docker.xuanyuan.me) is a public mainland Docker Hub accelerator for faster image pulls. Best for development and CI — not a production private registry."
+        },
+        {
+          "name": "1ms Mirror",
+          "homepage_url": "https://1ms.run/",
+          "category": "Developer Tools & APIs",
+          "subcategory": "Container Registry & Image Mirrors",
+          "source": "research",
+          "note": "1ms Mirror (毫秒镜像, docker.1ms.run) is a public mainland Docker Hub accelerator commonly used to speed up Hub, GHCR, and related pulls. Best for development and CI — not a production private registry."
+        },
+        {
+          "name": "DaoCloud Mirror",
+          "homepage_url": "https://github.com/DaoCloud/public-image-mirror",
+          "category": "Developer Tools & APIs",
+          "subcategory": "Container Registry & Image Mirrors",
+          "source": "research",
+          "note": "DaoCloud Mirror (docker.m.daocloud.io) is a long-standing public image accelerator for Docker Hub and other overseas registries. Best for development and CI — not a production private registry."
+        },
+        {
+          "name": "Alibaba Cloud ACR",
+          "homepage_url": "https://www.aliyun.com/product/acr",
+          "category": "Developer Tools & APIs",
+          "subcategory": "Container Registry & Image Mirrors",
+          "source": "research",
+          "note": "Alibaba Cloud ACR (阿里云容器镜像服务) is a managed private container registry for production: stable mainland hosting, access control, and a clearer compliance path than public Hub mirrors."
+        },
+        {
+          "name": "Tencent Cloud TCR",
+          "homepage_url": "https://cloud.tencent.com/product/tcr",
+          "category": "Developer Tools & APIs",
+          "subcategory": "Container Registry & Image Mirrors",
+          "source": "research",
+          "note": "Tencent Cloud TCR (腾讯云容器镜像服务) is a managed private container registry for production workloads on Tencent Cloud — stable, access-controlled, and suited to mainland security expectations."
+        },
+        {
+          "name": "Huawei Cloud SWR",
+          "homepage_url": "https://www.huaweicloud.com/product/swr.html",
+          "category": "Developer Tools & APIs",
+          "subcategory": "Container Registry & Image Mirrors",
+          "source": "research",
+          "note": "Huawei Cloud SWR (华为云容器镜像服务) is a managed private container registry for production on Huawei Cloud — commonly evaluated for stable, secure image hosting in mainland environments."
+        },
+        {
+          "name": "Harbor",
+          "homepage_url": "https://goharbor.io/",
+          "category": "Developer Tools & APIs",
+          "subcategory": "Container Registry & Image Mirrors",
+          "source": "research",
+          "note": "Harbor is an open-source enterprise container registry for self-hosted private warehouses — strongest when teams need high security, on-prem control, and vulnerability scanning rather than a public Hub mirror."
         }
       ],
-      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "research_note": "Docker Hub Mirror is Unavailable for practical mainland China use: international network bandwidth limits make Hub pulls slow or fail, cross-border image distribution raises data-compliance issues, and some images are not filed (备案) for mainland distribution. Prefer public accelerators such as Xuanyuan Mirror (轩辕镜像), 1ms Mirror (毫秒镜像), and DaoCloud Mirror for development and CI pulls; prefer Alibaba Cloud ACR, Tencent Cloud TCR, or Huawei Cloud SWR for production; prefer Harbor for enterprise self-hosted registries. These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm image provenance, SLAs, and compliance before production adoption.",
       "confidence": "researched"
     },
     {
@@ -2450,14 +2565,23 @@
       "global_availability_in_china": "limited",
       "china_candidates": [
         {
-          "name": "Alibaba Cloud ARMS",
-          "homepage_url": "https://www.aliyun.com/product/arms",
+          "name": "Bonree ONE",
+          "homepage_url": "https://www.bonree.com/",
           "category": "Release, Quality & Operations",
           "subcategory": "Monitoring & Observability (APM / RUM)",
-          "source": "landscape"
+          "source": "research",
+          "note": "Bonree ONE (博睿数据) is a leading China APM and unified intelligent observability platform, often cited at the top of domestic APMO market share. It is widely adapted to Xinchuang environments (domestic CPU, OS, and databases), supports private deployment so data stays onshore, and provides localized China service — the practical path when the business and users are in mainland China."
+        },
+        {
+          "name": "Canway BlueWhale WhaleEye",
+          "homepage_url": "https://www.canway.net/",
+          "category": "Release, Quality & Operations",
+          "subcategory": "Monitoring & Observability (APM / RUM)",
+          "source": "research",
+          "note": "Canway BlueWhale WhaleEye (嘉为蓝鲸鲸眼) is a unified observability and ops platform built on Tencent BlueKing (蓝鲸) PaaS. It emphasizes full-stack Xinchuang adaptation and an operations closed loop — strongest when the estate already runs BlueKing, or for finance and government customers with deep Xinchuang requirements."
         }
       ],
-      "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "research_note": "Dynatrace is Limited in mainland China: the product is often reachable, but functionality is constrained and the day-to-day experience is poor. Cloud monitoring depends heavily on overseas AWS, Azure, and similar infrastructure, so mainland access is often slow or unstable; as a foreign vendor it also carries data-export compliance risk and lacks native support for Xinchuang stacks and local business scenarios. Prefer Bonree ONE (博睿数据) for a leading domestic APM / unified observability platform with private deployment and Xinchuang fit; prefer Canway BlueWhale WhaleEye (嘉为蓝鲸鲸眼) when the estate already runs Tencent BlueKing or needs a Xinchuang ops closed loop, especially in finance and government. These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm agent fit, data residency, and compliance before production adoption.",
       "confidence": "researched"
     },
     {

@@ -100,6 +100,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "visual-studio-app-center": "unavailable",
   "firebase-app-distribution": "limited",
   "firebase-crashlytics": "unavailable",
+  "firebase-authentication": "unavailable",
   "google-maps-platform": "unavailable",
   "apple-mapkit": "available",
   "apple-search-ads": "available",
@@ -127,6 +128,8 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "jw-player": "limited",
   kaltura: "unavailable",
   "middleware-io": "unavailable",
+  datadog: "unavailable",
+  dynatrace: "limited",
   "mia-platform": "unavailable",
   "zoho-crm": "available",
   "zenlayer-sd-wan": "available",
@@ -146,6 +149,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   hubspot: "limited",
   mailchimp: "limited",
   "github-pages": "limited",
+  "docker-hub-mirror": "unavailable",
   "google-authenticator": "limited",
   "microsoft-authenticator": "limited",
 // === END HUB P0P1 EDITORIAL ===
@@ -3848,6 +3852,125 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  "docker-hub-mirror": {
+    relatedSlugs: ["github-pages"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Docker Hub Mirror work in China? Unavailable — bandwidth, cross-border compliance, unfiled images. Prefer ${names.slice(0, 3).join(", ") || "Xuanyuan Mirror, 1ms Mirror, DaoCloud Mirror"}, ACR/TCR/SWR, Harbor. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Docker Hub Mirror is Unavailable in mainland China</strong> for practical production use. International bandwidth limits make Hub pulls slow or fail, cross-border image distribution raises data-compliance issues, and some images are not filed (备案) for mainland distribution. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 7).join(", ") || "Xuanyuan Mirror, 1ms Mirror, DaoCloud Mirror, Alibaba Cloud ACR, Tencent Cloud TCR, Huawei Cloud SWR, Harbor")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China container-image paths instead of Docker Hub",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 7,
+    indexCandidates:
+      "Xuanyuan Mirror, 1ms Mirror, DaoCloud Mirror, Alibaba Cloud ACR, Tencent Cloud TCR, Huawei Cloud SWR, Harbor",
+    guidanceHtml: `
+        <p><strong>Docker Hub Mirror is Unavailable for reliable mainland China use.</strong> Do not plan Docker Hub as a production image dependency for mainland builds or runtime pulls:</p>
+        <ul>
+          <li><strong>International bandwidth limits:</strong> Hub endpoints sit overseas, so mainland <code>docker pull</code> and CI image fetches are often slow, timed out, or interrupted.</li>
+          <li><strong>Cross-border data compliance:</strong> pulling and redistributing images across the border can conflict with mainland data-handling expectations for production systems.</li>
+          <li><strong>Unfiled images:</strong> some Hub images are not filed (备案) for mainland distribution, so they may be incomplete, blocked, or unsuitable for production.</li>
+        </ul>
+        <h3>Public image accelerators</h3>
+        <p>Use these for development and CI pull speed. They are not a production private registry, and public mirror availability can change.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Accelerator</th>
+                <th>Endpoint</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Xuanyuan Mirror (轩辕镜像)</td>
+                <td><code>docker.xuanyuan.me</code></td>
+                <td>Development and CI image pulls that need a mainland Hub accelerator</td>
+              </tr>
+              <tr>
+                <td>1ms Mirror (毫秒镜像)</td>
+                <td><code>docker.1ms.run</code></td>
+                <td>Development and CI pulls across Docker Hub and related overseas registries</td>
+              </tr>
+              <tr>
+                <td>DaoCloud Mirror</td>
+                <td><code>docker.m.daocloud.io</code></td>
+                <td>Long-standing public accelerator for Hub and other overseas registries</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Cloud vendor private image services</h3>
+        <p>Prefer these for production: stable mainland hosting, access control, and a clearer security path than public Hub mirrors.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Alibaba Cloud ACR</td>
+                <td>Alibaba Cloud Container Registry (阿里云容器镜像服务) — managed private registry on Alibaba Cloud</td>
+                <td>Production image hosting on an Alibaba Cloud stack</td>
+              </tr>
+              <tr>
+                <td>Tencent Cloud TCR</td>
+                <td>Tencent Cloud Container Registry (腾讯云容器镜像服务) — managed private registry on Tencent Cloud</td>
+                <td>Production image hosting on a Tencent Cloud stack</td>
+              </tr>
+              <tr>
+                <td>Huawei Cloud SWR</td>
+                <td>Huawei Cloud SoftWare Repository for Container (华为云容器镜像服务) — managed private registry on Huawei Cloud</td>
+                <td>Production image hosting on a Huawei Cloud stack</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Self-hosted private registry</h3>
+        <ul>
+          <li><strong>Harbor:</strong> open-source enterprise registry for teams that need a self-hosted private warehouse, vulnerability scanning, and high-security / on-prem control.</li>
+        </ul>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Development / CI pull speed:</strong> start with Xuanyuan Mirror, 1ms Mirror, or DaoCloud Mirror — treat them as accelerators, not the system of record.</li>
+          <li><strong>Production:</strong> host images in Alibaba Cloud ACR, Tencent Cloud TCR, or Huawei Cloud SWR on the cloud you already run.</li>
+          <li><strong>Enterprise high-security / on-prem:</strong> self-host Harbor.</li>
+        </ul>
+        <p>These candidates appear on the Docker Hub Mirror alternatives page only — Chinaready does <strong>not</strong> add Xuanyuan Mirror, 1ms Mirror, DaoCloud Mirror, Alibaba Cloud ACR, Tencent Cloud TCR, Huawei Cloud SWR, or Harbor as Landscape map product entries. Confirm image provenance, SLAs, and compliance before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Docker Hub work in China?",
+        answer:
+          "No for practical mainland China production use. Chinaready labels Docker Hub Mirror as Unavailable. International bandwidth limits make Hub pulls slow or fail, cross-border image distribution raises data-compliance issues, and some images are not filed (备案) for mainland distribution.",
+      },
+      {
+        question: "What are the best China alternatives to Docker Hub?",
+        answer: `Chinaready currently lists these China-market options for Docker Hub Mirror: ${namesText}. Prefer Xuanyuan Mirror, 1ms Mirror, or DaoCloud Mirror for development and CI pull speed; prefer Alibaba Cloud ACR, Tencent Cloud TCR, or Huawei Cloud SWR for production; prefer Harbor for enterprise self-hosted registries. Confirm fit before production adoption.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Docker Hub in mainland China?",
+        answer:
+          "Usually no. Public accelerators only speed up Hub pulls and are not a production registry. Production stacks typically move images into a cloud vendor private registry (ACR, TCR, or SWR) or a self-hosted Harbor, then retag CI/CD to pull from that warehouse.",
+      },
+      {
+        question: "Should teams use public Docker mirrors in production?",
+        answer:
+          "Prefer not to. Public accelerators such as Xuanyuan Mirror, 1ms Mirror, and DaoCloud Mirror help development and CI pull speed, but availability can change and they are a weak system of record. For production, use Alibaba Cloud ACR, Tencent Cloud TCR, Huawei Cloud SWR, or Harbor.",
+      },
+      {
+        question: "Where should teams go after shortlisting Docker Hub alternatives?",
+        answer:
+          "Decide whether you need pull acceleration, a managed private registry, or a self-hosted Harbor, then validate image provenance, access control, and mainland compliance. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
   bootstrapcdn: {
     relatedSlugs: ["cloudflare-cdn", "amazon-cloudfront"],
     description: (availability, names) =>
@@ -5257,6 +5380,177 @@ const EDITORIAL_OVERRIDES = {
         question: "Where should teams go after shortlisting Kaltura alternatives?",
         answer:
           "Validate workload type (VOD/live vs meeting vs custom RTC), deployment model, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  datadog: {
+    relatedSlugs: ["dynatrace", "new-relic", "grafana-cloud", "middleware-io", "sentry", "amazon-cloudwatch"],
+    description: (availability, names) =>
+      clipMeta(
+        `Datadog is Unavailable in mainland China — blocked/unstable ingest and SaaS data-export risk. Compare ${names.slice(0, 4).join(", ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Datadog is Unavailable</strong> (or extremely unstable) in mainland China. APIs and the console sit behind the international gateway — high latency, DNS failures, or outright blocking make ingest and dashboards unreliable — and pure SaaS data export cannot meet mainland Data Security Law, localization, or Xinchuang expectations. When the business and users are in China, do not keep Datadog as the production monitor. Map to <strong>${escapeHtml(names.slice(0, 6).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China observability platforms instead of Datadog",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 6,
+    indexCandidates:
+      "Alibaba Cloud ARMS, Tencent Cloud Observability Platform, Guance, Canway BlueWhale, Tingyun, Prometheus + Grafana",
+    guidanceHtml: `
+        <p><strong>Datadog is Unavailable for practical mainland China use.</strong> Treat it as a hard China-launch gap for metrics, APM, logs, and dashboards rather than a slow-but-usable global tool. Unstable ingest causes missed alerts; compliance for data leaving China is a hard line.</p>
+        <h3>Why Datadog fails in mainland China</h3>
+        <ul>
+          <li><strong>Network blocking:</strong> Datadog APIs and the console sit behind cross-border network restrictions. High latency, DNS resolution failures, or outright blocking make data ingest and dashboard access unreliable for mainland production monitoring.</li>
+          <li><strong>Compliance risk:</strong> Pure SaaS means telemetry leaves China. That path cannot meet mainland Data Security Law expectations, or the local-storage and Xinchuang (信创) requirements common in finance, government, and energy.</li>
+        </ul>
+        <h3>China-market options commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Platform</th>
+                <th>Core strengths</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Cloud-native</td>
+                <td>Alibaba Cloud ARMS / Tencent Cloud Observability Platform</td>
+                <td>Tight cloud-resource integration, fast to turn on, clear compliance path, strong price/performance</td>
+                <td>Workload already on that public cloud; need to ship monitoring quickly</td>
+              </tr>
+              <tr>
+                <td>Independent SaaS</td>
+                <td>Guance (观测云)</td>
+                <td>OpenTelemetry and PromQL compatible; China plus overseas nodes; often about half Datadog pricing; strong Chinese-language support</td>
+                <td>Multi-cloud or hybrid stacks, China plus overseas business, smoother Datadog-like migration</td>
+              </tr>
+              <tr>
+                <td>Private / Xinchuang</td>
+                <td>Canway BlueWhale (嘉为蓝鲸) / Tingyun (基调听云)</td>
+                <td>Onshore data, full-stack Xinchuang fit (chip / OS / DB), alert closed-loop and automated ops</td>
+                <td>Finance, government, energy, and other high-compliance industries; complex hybrid or legacy estates</td>
+              </tr>
+              <tr>
+                <td>Open-source self-host</td>
+                <td>Prometheus + Grafana</td>
+                <td>No license fee, strong community, full operational control</td>
+                <td>Very tight budget, a strong SRE/DevOps team, and willingness to run the stack</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>How to choose</h3>
+        <p>If the business and users are all in mainland China, do <strong>not</strong> keep Datadog. Network instability causes missed alerts, and data-export compliance is a hard constraint.</p>
+        <ul>
+          <li><strong>First choice:</strong> already on Alibaba Cloud or Tencent Cloud — use <strong>Alibaba Cloud ARMS</strong> (pair with Log Service / SLS for logs) or <strong>Tencent Cloud Observability Platform</strong> (including CLS for logs). Lowest cost and fastest integration.</li>
+          <li><strong>Second choice:</strong> multi-cloud or a unified view — use <strong>Guance</strong>. Closest Datadog-like experience with a mainland compliance path.</li>
+          <li><strong>Fallback:</strong> Xinchuang or private-deployment mandate — use <strong>Canway BlueWhale</strong> or <strong>Tingyun</strong>.</li>
+          <li><strong>Self-host:</strong> use <strong>Prometheus + Grafana</strong> only when the team can own day-to-day operations.</li>
+        </ul>
+        <p>These candidates appear on the Datadog alternatives page only — Chinaready does <strong>not</strong> add the non-Landscape options as Explore / Landscape product tiles. Confirm OpenTelemetry / agent fit, data residency, and compliance before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Datadog work in China?",
+        answer: `No for practical mainland China production use. Chinaready labels Datadog as ${availability} (or extremely unstable). APIs and the console are subject to cross-border network restrictions — high latency, DNS failures, or blocking — so ingest and dashboards are unreliable, and pure SaaS data export cannot meet mainland Data Security Law, localization, or Xinchuang expectations.`,
+      },
+      {
+        question: "What are the best China alternatives to Datadog?",
+        answer: `Chinaready currently maps Datadog to ${namesText}. Prefer Alibaba Cloud ARMS or Tencent Cloud Observability Platform when already on those clouds; prefer Guance (观测云) for a Datadog-like independent SaaS; prefer Canway BlueWhale (嘉为蓝鲸) or Tingyun (基调听云) for private / Xinchuang deployments; prefer Prometheus + Grafana when the team will self-host. Replacement fit varies by stack, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Datadog in mainland China?",
+        answer:
+          "Usually no. Datadog spans metrics, traces, logs, RUM, and alerting. Mainland replacements often split across a cloud-native suite, an independent SaaS, a private/Xinchuang platform, or a self-hosted Prometheus/Grafana stack — expect an agent, pipeline, and workflow redesign rather than a Datadog drop-in.",
+      },
+      {
+        question:
+          "How should teams choose among Alibaba Cloud ARMS, Tencent Cloud Observability Platform, Guance, Canway BlueWhale, Tingyun, and Prometheus + Grafana?",
+        answer:
+          "Choose Alibaba Cloud ARMS or Tencent Cloud Observability Platform when the workload already runs on that cloud and you want the fastest, lowest-cost integration. Choose Guance for multi-cloud or a unified Datadog-like SaaS. Choose Canway BlueWhale or Tingyun when data must stay onshore and Xinchuang or private deployment is required. Choose Prometheus + Grafana only when budget is tight and the SRE team will operate the stack.",
+      },
+      {
+        question: "Where should teams go after shortlisting Datadog alternatives?",
+        answer:
+          "Validate telemetry sources, OpenTelemetry compatibility, data residency, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  dynatrace: {
+    relatedSlugs: ["datadog", "new-relic", "grafana-cloud", "middleware-io", "amazon-cloudwatch"],
+    description: (availability, names) =>
+      clipMeta(
+        `Dynatrace is Limited in China: reachable, but constrained and a poor experience. Compare ${names.slice(0, 2).join(" and ") || "Bonree ONE and Canway BlueWhale WhaleEye"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Dynatrace is reachable in mainland China, but Chinaready labels it Limited</strong> — functionality is constrained and the day-to-day experience is poor. Cloud monitoring depends heavily on overseas AWS, Azure, and similar infrastructure, so mainland access is often slow or unstable. As a foreign vendor it also carries data-export compliance risk and lacks native support for Xinchuang (信创) stacks and local business scenarios. When the business and users are in mainland China, prefer <strong>${escapeHtml(names.slice(0, 2).join(" and ") || "Bonree ONE and Canway BlueWhale WhaleEye")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Why Dynatrace is Limited in China",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 2,
+    indexCandidates: "Bonree ONE, Canway BlueWhale WhaleEye",
+    guidanceHtml: `
+        <p><strong>Dynatrace can be reached from mainland China, but Chinaready does not treat it as a practical production monitor</strong> when the business and users are in China. Teams may log in, yet two structural gaps keep the product Limited:</p>
+        <ul>
+          <li><strong>Network constraints:</strong> Dynatrace cloud monitoring depends heavily on overseas infrastructure such as AWS and Azure. From mainland networks that path is often slow to load or unstable to keep connected.</li>
+          <li><strong>Compliance and local-stack fit:</strong> As a foreign vendor, shipping observability data abroad creates data-export compliance risk. The product also lacks native support for Xinchuang (信创) hardware and software (domestic CPU, OS, and databases) and for localized China business scenarios.</li>
+        </ul>
+        <h3>Domestic unified observability platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Core strengths</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Bonree ONE (博睿数据)</td>
+                <td>Leading China APM / APMO market share; full-stack Xinchuang adaptation; private deployment so data stays onshore; localized service</td>
+                <td>Business and users in mainland China; need a unified intelligent observability platform</td>
+              </tr>
+              <tr>
+                <td>Canway BlueWhale WhaleEye (嘉为蓝鲸鲸眼)</td>
+                <td>Built on Tencent BlueKing (蓝鲸) PaaS; full-stack Xinchuang adaptation and an operations closed loop</td>
+                <td>Already on BlueKing, or finance / government estates with deep Xinchuang requirements</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>How to choose</h3>
+        <ul>
+          <li><strong>Default for mainland-first stacks:</strong> start with <strong>Bonree ONE</strong> when you want a leading domestic APM and unified observability platform with private deployment and localized support.</li>
+          <li><strong>BlueKing / Xinchuang-heavy estates:</strong> prefer <strong>Canway BlueWhale WhaleEye</strong> when the operations platform is already BlueKing, or when finance and government buyers need a Xinchuang ops closed loop.</li>
+        </ul>
+        <p>These candidates appear on the Dynatrace alternatives page only — Chinaready does <strong>not</strong> add them as Explore / Landscape product tiles. Confirm agent fit, data residency, and compliance before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Dynatrace work in China?",
+        answer: `It is often reachable, but Chinaready labels Dynatrace as ${availability} for mainland production stacks. Functionality is constrained and the experience is poor: cloud monitoring depends on overseas AWS/Azure-class infrastructure, so access is often slow or unstable, and as a foreign vendor it carries data-export compliance risk plus weak native Xinchuang and local-scenario support.`,
+      },
+      {
+        question: "Why is Dynatrace Limited if teams can still log in from China?",
+        answer:
+          "Reachability is not the same as a usable mainland production monitor. Dynatrace cloud monitoring depends heavily on overseas infrastructure, so dashboards and ingest are often slow or unstable from China. Shipping telemetry abroad also creates data-export compliance risk, and the product is not built for Xinchuang hardware/software or localized China operating scenarios.",
+      },
+      {
+        question: "What are the best China alternatives to Dynatrace?",
+        answer: `When the business and users are in mainland China, Chinaready currently maps Dynatrace to ${namesText}. Prefer Bonree ONE (博睿数据) as a leading domestic APM / unified observability platform with private deployment and Xinchuang fit; prefer Canway BlueWhale WhaleEye (嘉为蓝鲸鲸眼) when the estate already runs Tencent BlueKing or needs a Xinchuang ops closed loop, especially in finance and government. Treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "How should teams choose between Bonree ONE and Canway BlueWhale WhaleEye?",
+        answer:
+          "Choose Bonree ONE when you want a leading China APM and unified intelligent observability platform with Xinchuang adaptation, private deployment, and localized service. Choose Canway BlueWhale WhaleEye when the operations estate already runs Tencent BlueKing (蓝鲸) PaaS, or when finance and government buyers need full-stack Xinchuang coverage and an ops closed loop.",
+      },
+      {
+        question: "Where should teams go after shortlisting Dynatrace alternatives?",
+        answer:
+          "Validate agent coverage, private-deployment needs, Xinchuang requirements, data residency, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },

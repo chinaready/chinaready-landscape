@@ -665,6 +665,36 @@ if (exists("build/alternatives/index.html")) {
     ),
     "alternatives index must show Middleware.io mapped candidates",
   );
+  assert(exists("build/alternatives/datadog.html"), "Datadog must get a dedicated alternatives page");
+  const datadogPage = read("build/alternatives/datadog.html");
+  assert(datadogPage.includes("Alibaba Cloud ARMS"), "Datadog alternatives must list Alibaba Cloud ARMS");
+  assert(datadogPage.includes("Tencent Cloud Observability Platform"), "Datadog alternatives must list Tencent Cloud Observability Platform");
+  assert(datadogPage.includes("Guance"), "Datadog alternatives must list Guance");
+  assert(datadogPage.includes("Canway BlueWhale"), "Datadog alternatives must list Canway BlueWhale");
+  assert(datadogPage.includes("Tingyun"), "Datadog alternatives must list Tingyun");
+  assert(datadogPage.includes("Prometheus + Grafana"), "Datadog alternatives must list Prometheus + Grafana");
+  assert(datadogPage.includes("Mapped China-ready candidates"), "Datadog alternatives must show Mapped China-ready candidates");
+  assert(datadogPage.includes("Unavailable"), "Datadog alternatives must label Unavailable availability");
+  assert(
+    alternativesIndex.includes(
+      "Alibaba Cloud ARMS, Tencent Cloud Observability Platform, Guance, Canway BlueWhale, Tingyun, Prometheus + Grafana",
+    ),
+    "alternatives index must show Datadog mapped candidates",
+  );
+  assert(exists("build/alternatives/dynatrace.html"), "Dynatrace must get a dedicated alternatives page");
+  const dynatracePage = read("build/alternatives/dynatrace.html");
+  assert(dynatracePage.includes("Bonree ONE"), "Dynatrace alternatives must list Bonree ONE");
+  assert(dynatracePage.includes("Canway BlueWhale WhaleEye"), "Dynatrace alternatives must list Canway BlueWhale WhaleEye");
+  assert(dynatracePage.includes("Mapped China-ready candidates"), "Dynatrace alternatives must show Mapped China-ready candidates");
+  assert(
+    dynatracePage.includes('cr-alt-availability-limited">Limited</span>'),
+    "Dynatrace alternatives must label Limited availability",
+  );
+  assert(dynatracePage.includes("Xinchuang"), "Dynatrace alternatives must explain Xinchuang / local-stack fit");
+  assert(
+    alternativesIndex.includes("Bonree ONE, Canway BlueWhale WhaleEye"),
+    "alternatives index must show Dynatrace mapped candidates",
+  );
   assert(exists("build/alternatives/mia-platform.html"), "Mia Platform must get a dedicated alternatives page");
   const miaPlatformPage = read("build/alternatives/mia-platform.html");
   assert(miaPlatformPage.includes("API7"), "Mia Platform alternatives must list API7");
@@ -690,6 +720,24 @@ if (exists("build/alternatives/index.html")) {
   assert(aweberPage.includes("Unavailable"), "AWeber alternatives must label Unavailable availability");
   assert(!aweberPage.includes("Why Chinaready does not list these as Landscape products"), "AWeber must not use empty uncertain framing");
   assert(alternativesIndex.includes("Fengyou EDM, Zoho Campaigns"), "alternatives index must show AWeber mapped candidates");
+  assert(exists("build/alternatives/docker-hub-mirror.html"), "Docker Hub Mirror must get a dedicated alternatives page");
+  const dockerHubPage = read("build/alternatives/docker-hub-mirror.html");
+  assert(dockerHubPage.includes("Xuanyuan Mirror"), "Docker Hub Mirror alternatives must list Xuanyuan Mirror");
+  assert(dockerHubPage.includes("1ms Mirror"), "Docker Hub Mirror alternatives must list 1ms Mirror");
+  assert(dockerHubPage.includes("DaoCloud Mirror"), "Docker Hub Mirror alternatives must list DaoCloud Mirror");
+  assert(dockerHubPage.includes("Alibaba Cloud ACR"), "Docker Hub Mirror alternatives must list Alibaba Cloud ACR");
+  assert(dockerHubPage.includes("Tencent Cloud TCR"), "Docker Hub Mirror alternatives must list Tencent Cloud TCR");
+  assert(dockerHubPage.includes("Huawei Cloud SWR"), "Docker Hub Mirror alternatives must list Huawei Cloud SWR");
+  assert(dockerHubPage.includes("Harbor"), "Docker Hub Mirror alternatives must list Harbor");
+  assert(dockerHubPage.includes("Mapped China-ready candidates"), "Docker Hub Mirror alternatives must show Mapped China-ready candidates");
+  assert(dockerHubPage.includes("Unavailable"), "Docker Hub Mirror alternatives must label Unavailable availability");
+  assert(!dockerHubPage.includes("Why Chinaready does not list these as Landscape products"), "Docker Hub Mirror must not use empty uncertain framing");
+  assert(
+    alternativesIndex.includes(
+      "Xuanyuan Mirror, 1ms Mirror, DaoCloud Mirror, Alibaba Cloud ACR, Tencent Cloud TCR, Huawei Cloud SWR, Harbor",
+    ),
+    "alternatives index must show Docker Hub Mirror mapped candidates",
+  );
   assert(exists("build/alternatives/sendspark.html"), "Sendspark must get a dedicated alternatives page");
   const sendsparkPage = read("build/alternatives/sendspark.html");
   assert(sendsparkPage.includes("Dongli Wuxian"), "Sendspark alternatives must list Dongli Wuxian");

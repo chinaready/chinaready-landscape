@@ -561,7 +561,7 @@ landscape:
               annotations:
                 global_analogs: Datadog, New Relic, Grafana Cloud
                 replacement_fit: direct
-                china_context: ARMS is a China-cloud observability suite used when Datadog, New Relic, or Grafana Cloud SaaS models are limited for mainland production monitoring.
+                china_context: ARMS is a China-cloud observability suite used when Datadog is unavailable or extremely unstable for mainland production monitoring, and when New Relic or Grafana Cloud SaaS models are limited.
                 vendor_type: china-cloud
                 evidence_level: high
                 availability_status: generally-available
