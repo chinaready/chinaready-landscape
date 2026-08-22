@@ -572,6 +572,17 @@ if (exists("build/alternatives/index.html")) {
     alternativesIndex.includes("Wanmi Shangyun, Shushangyun, Youzan, Weimob, Raycloud"),
     "alternatives index must show Commerce Layer mapped candidates",
   );
+  assert(exists("build/alternatives/zendesk.html"), "Zendesk must get a dedicated alternatives page");
+  const zendeskPage = read("build/alternatives/zendesk.html");
+  assert(zendeskPage.includes("Udesk"), "Zendesk alternatives must list Udesk");
+  assert(zendeskPage.includes("HOLLYCRM"), "Zendesk alternatives must list HOLLYCRM");
+  assert(zendeskPage.includes("Tencent Qidian Customer Service"), "Zendesk alternatives must list Tencent Qidian Customer Service");
+  assert(zendeskPage.includes("Mapped China-ready candidates"), "Zendesk alternatives must show Mapped China-ready candidates");
+  assert(zendeskPage.includes("Limited"), "Zendesk alternatives must label Limited availability");
+  assert(
+    alternativesIndex.includes("Udesk, HOLLYCRM, Tencent Qidian Customer Service"),
+    "alternatives index must show Zendesk mapped candidates",
+  );
   assert(exists("build/alternatives/marketo.html"), "Marketo must get a dedicated alternatives page");
   const marketoPage = read("build/alternatives/marketo.html");
   assert(marketoPage.includes("Fxiaoke"), "Marketo alternatives must list Fxiaoke");
@@ -623,15 +634,14 @@ if (exists("build/alternatives/index.html")) {
   assert(exists("build/alternatives/on24.html"), "ON24 must get a dedicated alternatives page");
   const on24Page = read("build/alternatives/on24.html");
   assert(on24Page.includes("Polyv"), "ON24 alternatives must list Polyv");
-  assert(on24Page.includes("VHall"), "ON24 alternatives must list VHall");
-  assert(on24Page.includes("Feishu Webinar"), "ON24 alternatives must list Feishu Webinar");
-  assert(on24Page.includes("NetEase Meeting"), "ON24 alternatives must list NetEase Meeting");
-  assert(on24Page.includes("Lark"), "ON24 alternatives must list Lark");
+  assert(on24Page.includes("Network restrictions"), "ON24 alternatives must explain network restrictions");
+  assert(on24Page.includes("Compliance risk"), "ON24 alternatives must explain compliance risk");
+  assert(on24Page.includes("Missing localization"), "ON24 alternatives must explain missing localization");
   assert(on24Page.includes("Mapped China-ready candidates"), "ON24 alternatives must show Mapped China-ready candidates");
   assert(on24Page.includes("Unavailable"), "ON24 alternatives must label Unavailable availability");
   assert(
-    alternativesIndex.includes("Polyv, VHall, Feishu Webinar, NetEase Meeting, Lark"),
-    "alternatives index must show ON24 mapped candidates",
+    alternativesIndex.includes(">Polyv<") || alternativesIndex.includes("Polyv"),
+    "alternatives index must show ON24 mapped candidate Polyv",
   );
   assert(exists("build/alternatives/kaltura.html"), "Kaltura must get a dedicated alternatives page");
   const kalturaPage = read("build/alternatives/kaltura.html");
@@ -711,6 +721,41 @@ if (exists("build/alternatives/index.html")) {
     alternativesIndex.includes("Bonree ONE, Canway BlueWhale WhaleEye"),
     "alternatives index must show Dynatrace mapped candidates",
   );
+  assert(exists("build/alternatives/splunk.html"), "Splunk must get a dedicated alternatives page");
+  const splunkPage = read("build/alternatives/splunk.html");
+  assert(splunkPage.includes("Alibaba Cloud Log Service (SLS)"), "Splunk alternatives must list Alibaba Cloud Log Service (SLS)");
+  assert(splunkPage.includes("Tencent Cloud Security Lake / CLS"), "Splunk alternatives must list Tencent Cloud Security Lake / CLS");
+  assert(splunkPage.includes("Huawei Cloud LTS"), "Splunk alternatives must list Huawei Cloud LTS");
+  assert(splunkPage.includes("Mapped China-ready candidates"), "Splunk alternatives must show Mapped China-ready candidates");
+  assert(
+    splunkPage.includes('cr-alt-availability-limited">Limited</span>'),
+    "Splunk alternatives must label Limited availability",
+  );
+  assert(splunkPage.includes("Splunk Enterprise"), "Splunk alternatives must mention Splunk Enterprise on-prem");
+  assert(splunkPage.includes("Splunk Cloud"), "Splunk alternatives must explain Splunk Cloud constraints");
+  assert(!splunkPage.includes("Alibaba Cloud ARMS"), "Splunk alternatives must not list Alibaba Cloud ARMS");
+  assert(
+    alternativesIndex.includes("Alibaba Cloud Log Service (SLS), Tencent Cloud Security Lake / CLS, Huawei Cloud LTS"),
+    "alternatives index must show Splunk mapped candidates",
+  );
+  assert(exists("build/alternatives/solarwinds.html"), "SolarWinds must get a dedicated alternatives page");
+  const solarwindsPage = read("build/alternatives/solarwinds.html");
+  assert(solarwindsPage.includes("ManageEngine OpManager"), "SolarWinds alternatives must list ManageEngine OpManager");
+  assert(solarwindsPage.includes("IP-guard"), "SolarWinds alternatives must list IP-guard");
+  assert(solarwindsPage.includes("Anqishen"), "SolarWinds alternatives must list Anqishen");
+  assert(solarwindsPage.includes("Xinqiwei"), "SolarWinds alternatives must list Xinqiwei");
+  assert(solarwindsPage.includes("Jusheng Network Manager"), "SolarWinds alternatives must list Jusheng Network Manager");
+  assert(solarwindsPage.includes("Mapped China-ready candidates"), "SolarWinds alternatives must show Mapped China-ready candidates");
+  assert(
+    solarwindsPage.includes('cr-alt-availability-available">Available</span>'),
+    "SolarWinds alternatives must label Available availability",
+  );
+  assert(solarwindsPage.includes("local reseller or partner"), "SolarWinds alternatives must recommend a local partner");
+  assert(solarwindsPage.includes("on-premise") || solarwindsPage.includes("On-premise"), "SolarWinds alternatives must mention on-premise deployment");
+  assert(
+    alternativesIndex.includes("ManageEngine OpManager, IP-guard / Anqishen / Xinqiwei, Jusheng Network Manager"),
+    "alternatives index must show SolarWinds mapped candidates",
+  );
   assert(exists("build/alternatives/mia-platform.html"), "Mia Platform must get a dedicated alternatives page");
   const miaPlatformPage = read("build/alternatives/mia-platform.html");
   assert(miaPlatformPage.includes("API7"), "Mia Platform alternatives must list API7");
@@ -780,6 +825,17 @@ if (exists("build/alternatives/index.html")) {
     alternativesIndex.includes("Pyecharts, NiceGUI, Dash (Plotly), Gradio, Taipy"),
     "alternatives index must show Streamlit mapped candidates",
   );
+  assert(exists("build/alternatives/substack.html"), "Substack must get a dedicated alternatives page");
+  const substackPage = read("build/alternatives/substack.html");
+  assert(substackPage.includes("Xiaobot"), "Substack alternatives must list Xiaobot");
+  assert(substackPage.includes("Zhiyuan"), "Substack alternatives must list Zhiyuan");
+  assert(substackPage.includes("Afdian"), "Substack alternatives must list Afdian");
+  assert(substackPage.includes("Mapped China-ready candidates"), "Substack alternatives must show Mapped China-ready candidates");
+  assert(substackPage.includes("Unavailable"), "Substack alternatives must label Unavailable availability");
+  assert(substackPage.includes("Stripe"), "Substack alternatives must mention Stripe-only payments");
+  assert(substackPage.includes("ICP"), "Substack alternatives must mention the mainland ICP gap");
+  assert(!substackPage.includes("Why Chinaready does not list these as Landscape products"), "Substack must not use empty uncertain framing");
+  assert(alternativesIndex.includes("Xiaobot, Zhiyuan, Afdian"), "alternatives index must show Substack mapped candidates");
   for (const file of fs.readdirSync(path.join(root, "build/alternatives")).filter((name) => name.endsWith(".html"))) {
     const page = read(`build/alternatives/${file}`);
     assert(

@@ -105,6 +105,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "apple-mapkit": "available",
   "apple-search-ads": "available",
   openstreetmap: "limited",
+  mapbox: "unavailable",
   "castle-io": "unavailable",
   airbase: "unavailable",
   altis: "unavailable",
@@ -121,6 +122,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   amplitude: "unavailable",
   logrocket: "limited",
   "streamlit-community-cloud": "unavailable",
+  substack: "unavailable",
   sendspark: "unavailable",
   on24: "unavailable",
   bigmarker: "unavailable",
@@ -130,6 +132,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   "middleware-io": "unavailable",
   datadog: "unavailable",
   dynatrace: "limited",
+  solarwinds: "available",
   "mia-platform": "unavailable",
   "zoho-crm": "available",
   "zenlayer-sd-wan": "available",
@@ -157,7 +160,11 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   shopify: "limited",
   "google-cloud": "unavailable",
   crowdstrike: "unavailable",
+  imperva: "unavailable",
   hcaptcha: "limited",
+  pantheon: "unavailable",
+  splunk: "limited",
+  zendesk: "limited",
 };
 
 /** Keep stable public URLs when display names change. */
@@ -628,7 +635,7 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   crowdstrike: {
-    relatedSlugs: ["barracuda"],
+    relatedSlugs: ["barracuda", "imperva"],
     description: (availability, names) =>
       clipMeta(
         `CrowdStrike is Unavailable in mainland China: official sales ban and Xinchuang/security-review pressure. Compare ${names.slice(0, 4).join(", ") || "Sangfor, ThreatBook, 360, Qi-Anxin"}. Availability: ${availability}.`,
@@ -672,6 +679,97 @@ const EDITORIAL_OVERRIDES = {
         question: "Where should teams go after shortlisting CrowdStrike alternatives?",
         answer:
           "Match the EDR to endpoint OS (including Kylin / UnionTech UOS), CPU architecture, and government vs commercial procurement. Use the interactive Chinaready Landscape for adjacent security choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  imperva: {
+    title: "Imperva Alternatives in China",
+    relatedSlugs: ["barracuda", "crowdstrike", "sucuri"],
+    description: (availability) =>
+      clipMeta(
+        `Imperva is Unavailable in China: cloud WAF, DDoS, and CDN face access, latency, and compliance risk. Compare Anhua Jinhe, Shengbang RayWAF, and Anheng.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Imperva is Unavailable</strong> — or strongly not recommended — for mainland China production. On-prem hardware can theoretically be imported, but Imperva's core cloud services (cloud WAF, DDoS protection, CDN) face severe access limits, latency, and compliance risk. Map China WAF and database-audit workloads to <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Anhua Jinhe DBAudit, Shengbang RayWAF, Anheng DAS-DBAuditor / Mingyu WAF")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Why Imperva is Unavailable in mainland China",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "Anhua Jinhe DBAudit, Shengbang RayWAF, Anheng Mingyu WAF",
+    guidanceHtml: `
+        <p><strong>Imperva is Unavailable for practical mainland China production.</strong> Do not plan cloud WAF, DDoS protection, or CDN on Imperva for China-facing traffic.</p>
+        <h3>Why teams should not depend on Imperva in China</h3>
+        <ul>
+          <li><strong>Network and infrastructure:</strong> Imperva cloud security depends on overseas data centers. Mainland users often see high latency or blocking on cloud WAF, DDoS, and CDN paths. Local appliances do not remove that cloud-control-plane dependency.</li>
+          <li><strong>Policy and compliance:</strong> Xinchuang (信创) requirements, data-sovereignty rules, and national-security reviews have directed many mainland enterprises to stop using certain US/Israeli foreign cybersecurity products. Imperva is commonly treated as in-scope for that replacement pressure.</li>
+        </ul>
+        <h3>Domestic options commonly evaluated instead</h3>
+        <p>For government, finance, and internet workloads in China, the shortlist below is commonly evaluated for functional coverage, Xinchuang fit, and local support — not as a one-to-one Imperva swap.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Positioning</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Anhua Jinhe DBAudit (安华金和)</td>
+                <td>Mainland data-security specialist. Database audit with high SQL-parse accuracy and broad risk-detection coverage; full-stack Xinchuang hardware/OS compatibility</td>
+                <td>Database audit replacement, especially government/enterprise and Xinchuang stacks</td>
+              </tr>
+              <tr>
+                <td>Shengbang RayWAF (盛邦安全)</td>
+                <td>Web application firewall with domestic chip/OS compatibility plus machine-learning and active-defense engines</td>
+                <td>WAF replacement when detection quality and Xinchuang fit both matter</td>
+              </tr>
+              <tr>
+                <td>Anheng DAS-DBAuditor / Mingyu WAF (安恒信息)</td>
+                <td>Balanced database-audit and WAF suite with mature multi-cloud / hybrid control and AI operations</td>
+                <td>General-purpose replacement when you need both DB audit and WAF from one vendor</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Database audit first:</strong> start with Anhua Jinhe DBAudit (安华金和).</li>
+          <li><strong>WAF first:</strong> evaluate Shengbang RayWAF (盛邦安全).</li>
+          <li><strong>Need both DB audit and WAF from one vendor:</strong> evaluate Anheng Information (安恒信息).</li>
+        </ul>
+        <p>Also commonly evaluated: <strong>Topsec (天融信)</strong> for government Xinchuang procurement, <strong>NSFOCUS (绿盟科技)</strong>, and <strong>Chaitin (长亭科技)</strong>. Candidates on this page are orientation options — Chinaready does <strong>not</strong> add them as Explore / Landscape product tiles from this rewrite. Confirm Xinchuang OS/CPU fit, procurement rules, and operating constraints before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Imperva work in China?",
+        answer: `No for practical mainland China production. Chinaready labels Imperva as ${availability}. On-prem hardware can theoretically enter China, but Imperva's core cloud WAF, DDoS protection, and CDN services face severe access limits, latency, and compliance risk — so Chinaready strongly recommends against depending on them.`,
+      },
+      {
+        question: "Why is Imperva Unavailable in mainland China?",
+        answer:
+          "Two constraints. Imperva cloud security depends on overseas data centers, so mainland access to cloud WAF, DDoS, and CDN is often slow or blocked. Separately, Xinchuang policy, data-sovereignty rules, and national-security reviews have directed many domestic enterprises off certain US/Israeli foreign cybersecurity products, and Imperva is commonly treated as in-scope.",
+      },
+      {
+        question: "What are the best China alternatives to Imperva?",
+        answer: namesText
+          ? `Chinaready currently lists these China-market options for Imperva: ${namesText}. Prefer Anhua Jinhe DBAudit (安华金和) for database audit, Shengbang RayWAF (盛邦安全) for WAF, and Anheng DAS-DBAuditor / Mingyu WAF (安恒信息) when you want both from one vendor. Topsec (天融信), NSFOCUS (绿盟科技), and Chaitin (长亭科技) are additional mainland security vendors. Treat this as a research shortlist rather than a one-to-one endorsement.`
+          : "Prefer Anhua Jinhe DBAudit (安华金和) for database audit, Shengbang RayWAF (盛邦安全) for WAF, and Anheng DAS-DBAuditor / Mingyu WAF (安恒信息) when you need both. Topsec, NSFOCUS, and Chaitin are additional mainland security vendors.",
+      },
+      {
+        question: "Is there a direct drop-in replacement for Imperva in mainland China?",
+        answer:
+          "Usually no. Imperva spans database audit, WAF, DDoS, and CDN. Domestic products cover those jobs, but architecture, cloud vs appliance deployment, and Xinchuang OS/CPU support differ. Expect a vendor and control-plane redesign rather than an Imperva config swap.",
+      },
+      {
+        question: "How should teams choose among Anhua Jinhe, Shengbang RayWAF, and Anheng?",
+        answer:
+          "Choose Anhua Jinhe DBAudit (安华金和) when database audit, SQL-parse accuracy, and Xinchuang data-security fit dominate. Choose Shengbang RayWAF (盛邦安全) when the job is Web application protection with domestic chip/OS support and stronger detection engines. Choose Anheng Information (安恒信息) when you want a balanced database-audit plus Mingyu WAF path with multi-cloud / hybrid operations.",
+      },
+      {
+        question: "Where should teams go after shortlisting Imperva alternatives?",
+        answer:
+          "Match the product to WAF vs database-audit scope, Xinchuang OS/CPU requirements, and government vs commercial procurement. Use the interactive Chinaready Landscape for adjacent security choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -1112,6 +1210,92 @@ const EDITORIAL_OVERRIDES = {
         question: "Where should teams go after shortlisting Apple MapKit alternatives?",
         answer:
           "Evaluate China map SDKs/APIs, coordinate conversion, free quotas, and commercial pricing before shipping. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  mapbox: {
+    relatedSlugs: ["google-maps-platform", "openstreetmap", "apple-mapkit"],
+    description: (availability, names) =>
+      clipMeta(
+        `Do not use Mapbox in mainland China. Overseas tiles, signup limits, and no map-review number. Prefer ${names.slice(0, 4).join(", ") || "Amap, Baidu Maps, Tencent Maps, Tianditu"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Do <strong>not</strong> use Mapbox directly for a mainland China product. Chinaready labels it <strong>Unavailable</strong>: overseas servers are slow or fail to load, new mainland signups are currently restricted, foreign basemaps lack a map review number (审图号), and Mapbox defaults to WGS-84 with no native GCJ-02 support. Prefer <strong>${escapeHtml(names.slice(0, 4).join(", ") || "Amap, Baidu Maps, Tencent Maps, Tianditu")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Why Mapbox is not recommended in mainland China",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 4,
+    indexCandidates: "Amap, Baidu Maps, Tencent Maps, Tianditu",
+    guidanceHtml: `
+        <p><strong>Chinaready strongly recommends against using Mapbox directly in mainland China.</strong> The former Mapbox.cn China product is discontinued, and global Mapbox is not a workable production path. Three constraints matter more than a partial load test:</p>
+        <ul>
+          <li><strong>Network and access:</strong> Mapbox servers sit overseas. Direct mainland connections are often extremely slow or fail to load tiles, styles, and SDKs. Mapbox currently restricts new user registration from mainland China for regulatory reasons, so teams often cannot even create a supported account.</li>
+          <li><strong>Legal / compliance risk:</strong> China regulates map publishing strictly. Map services offered inside China must hold the relevant qualification and a map review number (审图号). Overseas map services do not have that qualification. Shipping Mapbox tiles or SDKs as an in-country map is treated as a non-compliant “problem map” (问题地图) and creates app-store takedown risk.</li>
+          <li><strong>Coordinate offset:</strong> Mainland products are expected to use GCJ-02 (the “Mars” coordinate system). Mapbox defaults to international WGS-84 and does not natively support China coordinate systems, so developers must apply manual offset corrections. Unconverted points can shift by hundreds of meters.</li>
+        </ul>
+        <h3>Domestic commercial map vendors</h3>
+        <p>For navigation and location products, start with a licensed China map vendor. These stacks are built for mainland compliance, GCJ-02 (or vendor-specific) coordinates, fast local data updates, rich Chinese POI coverage, and complete web / App APIs:</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Option</th>
+                <th>Why teams pick it</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Amap (高德地图)</td>
+                <td>Mainstream default for China maps, routing, and LBS APIs</td>
+                <td>GCJ-02; strongest everyday substitute for Mapbox SDKs and tiles</td>
+              </tr>
+              <tr>
+                <td>Baidu Maps (百度地图)</td>
+                <td>Full domestic maps stack with rich POI and LBS coverage</td>
+                <td>Uses BD-09 (a further encryption of GCJ-02) — convert Mapbox WGS-84 points explicitly</td>
+              </tr>
+              <tr>
+                <td>Tencent Maps (腾讯地图)</td>
+                <td>Compliant mainland maps with WeChat / Mini Program-native location APIs</td>
+                <td>GCJ-02; a close fit when the product already sits in the Tencent ecosystem</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>National official basemap (free, compliant)</h3>
+        <p><strong>Tianditu (天地图)</strong>, from the National Geomatics Center of China, provides a stable, compliant domestic map data source. Teams that want a Mapbox-like vector rendering stack can pair Tianditu tiles with open-source <strong>MapLibre GL</strong> (the Mapbox GL fork) for zero-cost deployment and to avoid overseas Mapbox cloud uncertainty. Register a free Tianditu account and use the issued Key before serving tiles.</p>
+        <h3>How to choose</h3>
+        <ul>
+          <li><strong>Default commercial SDK / API:</strong> start with Amap; use Baidu Maps when POI depth or Baidu-ecosystem fit matters; use Tencent Maps for WeChat and Mini Program location.</li>
+          <li><strong>Free official basemap with a Mapbox-like GL workflow:</strong> Tianditu tiles rendered in MapLibre GL.</li>
+          <li><strong>Coordinates:</strong> convert WGS-84 → GCJ-02 for Amap / Tencent Maps / Tianditu; convert to BD-09 for Baidu Maps. Do not plot raw Mapbox WGS-84 points on a mainland map.</li>
+        </ul>
+        <p>For China-facing products, drop Mapbox. Prefer Amap, Baidu Maps, or Tencent Maps for commercial maps, or Tianditu plus MapLibre GL for an official national basemap.</p>
+        <p>Baidu Maps, Tencent Maps, and Tianditu appear on this alternatives page as orientation options — Chinaready does <strong>not</strong> add them as Explore / Landscape product tiles from this rewrite. Confirm SDK terms, keys, GCJ-02 / BD-09 handling, and map-review requirements before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Mapbox work in China?",
+        answer: `No as a production default. Chinaready labels Mapbox as ${availability} and strongly recommends against using it directly. Overseas Mapbox servers are often extremely slow or fail to load from mainland China, new mainland signups are currently restricted, and the former Mapbox.cn product is discontinued.`,
+      },
+      {
+        question: "Why shouldn't teams use Mapbox in mainland China?",
+        answer:
+          "Three reasons: Mapbox servers are overseas so maps often fail to load, and new mainland registration is restricted; China's map-publishing rules require a map-service qualification and a map review number (审图号), so an unreviewed foreign basemap is a non-compliant “problem map” with app-store takedown risk; and Mapbox uses WGS-84 with no native GCJ-02 support, which can offset points by hundreds of meters unless developers apply manual corrections.",
+      },
+      {
+        question: "What are the best China alternatives to Mapbox?",
+        answer: `Chinaready currently lists these China-market options for Mapbox: ${namesText}. Prefer Amap (高德地图), Baidu Maps (百度地图), or Tencent Maps (腾讯地图) for licensed commercial SDKs and LBS APIs. Prefer Tianditu (天地图) with MapLibre GL when you need a free official national basemap and a Mapbox-like open-source renderer.`,
+      },
+      {
+        question: "Can teams keep MapLibre GL instead of Mapbox?",
+        answer:
+          "MapLibre GL is the open-source fork of Mapbox GL and can render domestic tiles, but it is a renderer — not a China map data license. Pair it with a compliant mainland data source such as Tianditu (天地图), or use a licensed vendor SDK (Amap, Baidu Maps, Tencent Maps). MapLibre does not by itself satisfy 审图号 / Surveying and Mapping Law requirements.",
+      },
+      {
+        question: "Where should teams go after shortlisting Mapbox alternatives?",
+        answer:
+          "Pick a domestic SDK or Tianditu + MapLibre path, convert coordinates to GCJ-02 (or BD-09 for Baidu Maps), and confirm map-review / qualification requirements before launch. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -3045,18 +3229,23 @@ const EDITORIAL_OVERRIDES = {
   substack: {
     description: (availability, names) =>
       clipMeta(
-        `Substack is Limited in mainland China — restricted network access and weak email deliverability. Map to ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+        `Substack is Unavailable in mainland China — blocked overseas infra, Stripe-only payments, no ICP and weak email delivery. Compare ${names.slice(0, 3).join(", ") || "Xiaobot, Zhiyuan, Afdian"}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
-      `<strong>Quick answer:</strong> <strong>Substack is Limited in mainland China</strong>. Network access is often restricted, and email deliverability to mainland readers is weak. There is no exact Substack equivalent — map paid-content workflows to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
-    guidanceTitle: "How to choose among Substack alternatives in China",
+      `<strong>Quick answer:</strong> <strong>Substack is Unavailable in mainland China</strong>. Network restrictions mean the overseas cloud and some base services it depends on cannot be reached stably. Payments are Stripe-only, so mainland users cannot subscribe and pay directly. There is no mainland ICP filing, and newsletter delivery is easily intercepted or filtered by domestic mailbox providers. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Xiaobot, Zhiyuan, Afdian")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Creator platforms to evaluate instead of Substack",
     sectionTitle: "Mapped China-ready candidates",
-    indexOptions: 4,
-    indexCandidates: "Xiaobot, Quaily, Afdian, Knowledge Planet",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "Xiaobot, Zhiyuan, Afdian",
     guidanceHtml: `
-        <p><strong>Substack is Limited for mainland China creators and readers.</strong> Access from mainland China is often restricted as an overseas service, and Substack email delivery into mainland inboxes is commonly weak. If your primary audience and payments are in China, plan a domestic paid-content stack instead.</p>
-        <h3>How the mapped options differ</h3>
-        <p>China does not have a fully like-for-like Substack product. The candidates below are the closest paid-content and newsletter-adjacent routes Chinaready maps for evaluation.</p>
+        <p><strong>Substack is Unavailable for mainland China creators and readers.</strong> Do not plan it as a production dependency for a China-facing paid-content or newsletter business:</p>
+        <ul>
+          <li><strong>Network blocking:</strong> restricted networks mean the overseas cloud and some base services Substack depends on cannot be reached stably.</li>
+          <li><strong>Payment limits:</strong> checkout is Stripe and similar overseas rails only, so mainland users cannot subscribe and pay directly.</li>
+          <li><strong>Compliance gap:</strong> there is no mainland ICP filing, and newsletter delivery is easily intercepted or filtered by domestic mailbox providers.</li>
+        </ul>
+        <h3>Domestic platforms commonly evaluated instead</h3>
         <div class="cr-alt-table-scroll">
           <table>
             <thead>
@@ -3069,72 +3258,58 @@ const EDITORIAL_OVERRIDES = {
             <tbody>
               <tr>
                 <td>Xiaobot (小报童)</td>
-                <td>Currently the closest mainland Substack-like platform, operated by the flomo team; supports subscription and one-time buyout pricing; runs inside the WeChat ecosystem with a relatively complete paid-content loop; onboarding usually requires an existing audience (for example WeChat Official Account fans 3,000+, or larger followings elsewhere); platform take is about 15%</td>
-                <td>Creators who already have an audience and want the smoothest WeChat-native paid content experience</td>
-              </tr>
-              <tr>
-                <td>Quaily</td>
-                <td>Active, fast-iterating indie project with multi-channel distribution, AI-assisted features, and self-hosting options; mainland payments often rely on crypto, which is unfriendly for typical creators and readers</td>
-                <td>Technical creators who can accept crypto payments or self-hosting complexity</td>
-              </tr>
-              <tr>
-                <td>Afdian (爱发电)</td>
-                <td>Closer to a creator patronage model than a pure newsletter stack; supports memberships, product sales, and crowdfunding</td>
-                <td>Creators who need direct fan funding more than a Substack-style newsletter workflow</td>
-              </tr>
-              <tr>
-                <td>Knowledge Planet (知识星球)</td>
-                <td>Not a newsletter product, but in practice often fills Substack's paid-knowledge niche in China; users pay to join a community and creators publish deeper content; large traffic and user base; content relationships stay locked inside the platform, so creators cannot export a Substack-style subscriber list</td>
-                <td>Creators who want maximum mainland exposure and accept platform lock-in</td>
+                <td>Supports subscription and one-time buyout pricing; a practical way to turn insights into paid value; onboarding usually requires an existing audience / traffic</td>
+                <td>Creators who already have readers and want a mainland paid-content loop</td>
               </tr>
               <tr>
                 <td>Zhubai (竹白)</td>
-                <td>Was a one-stop newsletter creation and distribution tool with WeChat plus email delivery and analytics; shut down in 2025</td>
-                <td>Not recommended — service closed; not mapped as an active candidate</td>
+                <td>Was a one-stop creation and distribution tool with WeChat plus email channels for easier interaction; the original Zhubai service shut down in March 2025</td>
+                <td>Not a live option — historical orientation only</td>
+              </tr>
+              <tr>
+                <td>Zhiyuan (知园)</td>
+                <td>Digital-garden positioning with personal wiki features, membership management, and no platform transaction fees</td>
+                <td>Creators who want a long-term knowledge garden plus member relationships</td>
+              </tr>
+              <tr>
+                <td>Afdian (爱发电)</td>
+                <td>Connects creators and fans with memberships, virtual and physical goods, and crowdfunding</td>
+                <td>Creators who need broader fan funding beyond a newsletter paywall</td>
               </tr>
             </tbody>
           </table>
         </div>
         <h3>Selection guidance</h3>
-        <div class="cr-alt-table-scroll">
-          <table>
-            <thead>
-              <tr>
-                <th>Need</th>
-                <th>Start here</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Already have an audience and want smooth WeChat-native paid content</td>
-                <td>Xiaobot</td>
-              </tr>
-              <tr>
-                <td>Maximum mainland exposure</td>
-                <td>Knowledge Planet — plan for platform lock-in</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p>Confirm onboarding thresholds, payment rails, exportability, and compliance for your own creator workflow before adoption.</p>`,
+        <ul>
+          <li><strong>Turn insights into paid content:</strong> start with Xiaobot (小报童) when you already have traffic and want subscription or buyout pricing.</li>
+          <li><strong>Digital garden / membership without platform fees:</strong> evaluate Zhiyuan (知园).</li>
+          <li><strong>Fan funding, goods, and crowdfunding:</strong> evaluate Afdian (爱发电).</li>
+        </ul>
+        <p>These candidates appear on the Substack alternatives page only — Chinaready does <strong>not</strong> add Xiaobot, Zhiyuan, or Afdian as Landscape map product entries. Zhubai is listed for orientation because it previously filled the WeChat-plus-email newsletter niche, but it is not a live substitute. Confirm onboarding thresholds, payment rails, and compliance before adoption.</p>`,
     faq: (availability, namesText) => [
       {
         question: "Does Substack work in China?",
-        answer: `Only with Limited practical usefulness for mainland-focused creators and readers. Chinaready labels Substack as ${availability}. Network access from mainland China is often restricted as an overseas service, and email deliverability into mainland inboxes is commonly weak.`,
+        answer:
+          "No for mainland China production use. Chinaready labels Substack as Unavailable. Network restrictions block stable access to the overseas cloud and some base services it depends on, payments are Stripe-only so mainland users cannot subscribe directly, there is no mainland ICP filing, and newsletter delivery is easily filtered by domestic mailbox providers.",
       },
       {
         question: "What are the best China alternatives to Substack?",
-        answer: `Chinaready currently maps Substack to ${namesText}. Prefer Xiaobot (小报童) for the closest WeChat-native paid-content loop when you already have an audience, Quaily for multi-channel or self-hosted experiments, Afdian (爱发电) for patronage-style creator funding, and Knowledge Planet (知识星球) for paid knowledge communities with larger mainland reach. Zhubai (竹白) closed in 2025 and is not an active mapped option. Replacement fit varies, so confirm before production adoption.`,
+        answer: `Chinaready currently lists these China-market options for Substack: ${namesText}. Prefer Xiaobot (小报童) to turn insights into paid content when you already have an audience, Zhiyuan (知园) for a digital-garden membership path with no platform fees, and Afdian (爱发电) for fan funding, goods, and crowdfunding. Zhubai (竹白) previously offered WeChat plus email distribution but shut down in March 2025 and is not a live option. Confirm fit before production adoption.`,
       },
       {
         question: "Is there a direct drop-in replacement for Substack in mainland China?",
         answer:
-          "Usually no. Mainland paid-content growth depends on WeChat distribution, domestic payments, creator onboarding thresholds, and whether your model is newsletter, community, or patronage. Expect a platform and monetization redesign rather than a Substack drop-in.",
+          "Usually no. Mainland paid-content growth depends on WeChat distribution, domestic payments, creator onboarding thresholds, and whether your model is newsletter, digital garden, or patronage. Expect a platform and monetization redesign rather than a Substack drop-in.",
+      },
+      {
+        question: "How should teams choose among Xiaobot, Zhiyuan, and Afdian?",
+        answer:
+          "Choose Xiaobot (小报童) for subscription or buyout paid content when you already have traffic. Choose Zhiyuan (知园) for a digital-garden / personal-wiki membership path with no platform fees. Choose Afdian (爱发电) when you need memberships plus virtual/physical goods and crowdfunding.",
       },
       {
         question: "Where should teams go after shortlisting Substack alternatives?",
         answer:
-          "Validate audience location, WeChat distribution needs, payment rails, onboarding thresholds, and whether you can export subscribers or must accept platform lock-in. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+          "Validate audience location, WeChat distribution needs, domestic payment rails, onboarding thresholds, and membership versus goods monetization. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -5220,23 +5395,24 @@ const EDITORIAL_OVERRIDES = {
   on24: {
     description: (availability, names) =>
       clipMeta(
-        `ON24 is Unavailable in mainland China — overseas hosting, poor livestream quality, and compliance gaps. Compare ${names.slice(0, 5).join(", ")}. Availability: ${availability}.`,
+        `ON24 is Unavailable in mainland China (or extremely poor). Prefer ${names[0] || "Polyv"} for livestream. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
-      `<strong>Quick answer:</strong> <strong>ON24 is Unavailable in mainland China</strong> for practical production use. Mainland users generally cannot reach or run ON24 reliably — overseas servers and CDN nodes, cross-border latency that breaks livestream interaction, and overseas data residency without a clear Chinese UI or domestic payment path. For mainland audiences, map to <strong>${escapeHtml(names.slice(0, 5).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
-    guidanceTitle: "China webinar and virtual-event platforms instead of ON24",
+      `<strong>Quick answer:</strong> <strong>ON24 is Unavailable in mainland China</strong> (or the experience is extremely poor). Cross-border network and compliance restrictions create severe access barriers, and mainland users typically cannot reach the platform directly. For foreign companies launching livestream in China, start with <strong>${escapeHtml(names[0] || "Polyv")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China livestream platform instead of ON24",
     sectionTitle: "Mapped China-ready candidates",
-    indexOptions: 5,
-    indexCandidates: "Polyv, VHall, Feishu Webinar, NetEase Meeting, Lark",
+    indexOptions: 1,
+    indexCandidates: "Polyv",
     guidanceHtml: `
-        <p><strong>ON24 is Unavailable for practical mainland China use.</strong> Mainland users generally cannot access or operate ON24 as a dependable webinar stack. Treat it as a hard China-launch gap rather than a slow-but-usable global tool.</p>
+        <p><strong>ON24 is Unavailable in mainland China</strong> (or the experience is extremely poor). Cross-border network and compliance restrictions create severe access barriers. Mainland users typically cannot reach the platform directly.</p>
         <h3>Why ON24 fails in mainland China</h3>
         <ul>
-          <li><strong>Network access barriers:</strong> ON24 servers and CDN nodes sit overseas. Mainland users often cannot reach the product without special network tooling.</li>
-          <li><strong>Severe experience degradation:</strong> Even when a session connects, cross-border latency often means high delay, blurry video, frequent stalls, and broken livestream interaction.</li>
-          <li><strong>Data and operating gaps:</strong> Data defaults to overseas storage, which conflicts with mainland localization expectations, and the product lacks a mature Chinese UI and domestic payment path.</li>
+          <li><strong>Network restrictions:</strong> Servers and CDN nodes sit overseas. Cross-border network limits mean mainland users cannot access ON24 directly, or latency and stalls make it unusable.</li>
+          <li><strong>Compliance risk:</strong> Data defaults to overseas storage, which does not meet mainland China data-localization requirements.</li>
+          <li><strong>Missing localization:</strong> No Chinese UI and no domestic payment path, so operations and user experience both stall.</li>
         </ul>
-        <h3>Domestic platforms commonly evaluated instead</h3>
+        <h3>Domestic alternative for China livestream</h3>
+        <p>For foreign companies launching livestream in China, start with <strong>Polyv (保利威)</strong>.</p>
         <div class="cr-alt-table-scroll">
           <table>
             <thead>
@@ -5248,48 +5424,30 @@ const EDITORIAL_OVERRIDES = {
             <tbody>
               <tr>
                 <td>Polyv (保利威)</td>
-                <td>Mainland enterprise video SaaS for livestream and webinars — brand customization, interactive chat, multi-venue events, overseas push, and China network adaptation. Commonly evaluated by foreign companies running webinars for mainland audiences.</td>
-              </tr>
-              <tr>
-                <td>VHall (微吼)</td>
-                <td>Domestic virtual-event and webinar pioneer for large online seminars, virtual exhibition halls, and analytics. Widely used for enterprise training and marketing webinars.</td>
-              </tr>
-              <tr>
-                <td>Feishu Webinar (飞书网络研讨会)</td>
-                <td>ByteDance's Feishu webinar stack for large attendance, fine-grained permissions, simultaneous interpretation, rehearsal mode, and automated post-event reports — strong for large meetings and training when the team already uses Feishu.</td>
-              </tr>
-              <tr>
-                <td>NetEase Meeting (网易会议)</td>
-                <td>Large meetings and livestream scale with Xinchuang / national-crypto security options and full-stack domestic adaptation — often evaluated for government and enterprise scenarios.</td>
-              </tr>
-              <tr>
-                <td>Lark (飞书国际版)</td>
-                <td>Collaboration plus webinars for multinational teams that need overseas and China-facing workflows, including automation and AI meeting summaries.</td>
+                <td>Mainland enterprise video SaaS for livestream and webinars. Recommended path for foreign companies running live events for mainland audiences.</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <h3>How to choose</h3>
-        <p>If your audience is mainly in mainland China, start with <strong>Polyv</strong> or <strong>VHall</strong> — they are closest to ON24 for webinars and virtual events. If the company already runs on Feishu or a similar collaboration suite, prefer the built-in webinar path (<strong>Feishu Webinar</strong>, <strong>NetEase Meeting</strong>, or <strong>Lark</strong>) to reduce switching cost.</p>
-        <p>These candidates appear on the ON24 alternatives page only — Chinaready does <strong>not</strong> add them as Landscape map product entries. Confirm concurrent scale, audience location, and compliance before production adoption.</p>`,
+        <p>Polyv appears on the ON24 alternatives page only — Chinaready does <strong>not</strong> add it as a Landscape map product entry. Confirm concurrent scale, audience location, and compliance before production adoption.</p>`,
     faq: (availability, namesText) => [
       {
         question: "Does ON24 work in China?",
-        answer: `No for practical mainland China production use. Chinaready labels ON24 as ${availability}. Overseas hosting and CDN nodes are hard to reach from the mainland, cross-border latency often breaks livestream quality and interaction, and overseas data residency plus weak Chinese UI / domestic payment fit create compliance and operating gaps.`,
+        answer: `No. Chinaready labels ON24 as ${availability} (or the experience is extremely poor). Cross-border network and compliance restrictions create severe access barriers, and mainland users typically cannot reach the platform directly.`,
       },
       {
-        question: "What are the best China alternatives to ON24?",
-        answer: `Chinaready currently maps ON24 to ${namesText}. Prefer Polyv (保利威) or VHall (微吼) for webinar and virtual-event workloads closest to ON24; use Feishu Webinar (飞书网络研讨会), NetEase Meeting (网易会议), or Lark (飞书国际版) when the team already lives in those collaboration stacks. Replacement fit varies by event model, so treat this as a research shortlist rather than a one-to-one endorsement.`,
-      },
-      {
-        question: "Is there a direct drop-in replacement for ON24 in mainland China?",
+        question: "Why is ON24 unavailable in mainland China?",
         answer:
-          "Usually no. Mainland webinars and virtual events depend on domestic CDN/media paths, concurrent scale, registration flows, and compliance constraints. Expect a platform and workflow redesign rather than an ON24 drop-in.",
+          "Overseas servers and CDN nodes sit behind cross-border network limits, so access fails or latency is severe. Data defaults to overseas storage, which does not meet mainland data-localization requirements. There is also no Chinese UI or domestic payment path, so operations and user experience both stall.",
       },
       {
-        question: "How should teams choose among Polyv, VHall, Feishu Webinar, NetEase Meeting, and Lark?",
+        question: "What is the China alternative to ON24?",
+        answer: `For foreign companies launching livestream in China, start with Polyv (保利威). Chinaready currently lists ${namesText} as the Mapped China-ready candidate on this alternatives page only — not as an Explore / Landscape product tile.`,
+      },
+      {
+        question: "Is Polyv a drop-in replacement for ON24?",
         answer:
-          "Choose Polyv or VHall when webinars and virtual events are the primary job and the audience is mainly mainland China. Choose Feishu Webinar, NetEase Meeting, or Lark when the organization already runs on that collaboration suite and wants to keep webinars inside the existing stack.",
+          "Usually no. Mainland livestream and webinars still need domestic CDN/media paths, concurrent scale, registration flows, and compliance work. Expect a platform and workflow redesign rather than an ON24 drop-in.",
       },
       {
         question: "Where should teams go after shortlisting ON24 alternatives?",
@@ -5552,6 +5710,197 @@ const EDITORIAL_OVERRIDES = {
         question: "Where should teams go after shortlisting Dynatrace alternatives?",
         answer:
           "Validate agent coverage, private-deployment needs, Xinchuang requirements, data residency, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  solarwinds: {
+    relatedSlugs: ["datadog", "dynatrace", "new-relic", "grafana-cloud", "middleware-io", "amazon-cloudwatch"],
+    description: (availability, names) =>
+      clipMeta(
+        `SolarWinds is Available in China via local partners; on-prem monitoring does not need a cross-border link. Also compare ${names.slice(0, 3).join(", ") || "ManageEngine OpManager, IP-guard, Jusheng Network Manager"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>SolarWinds is Available in mainland China</strong>, but Chinaready recommends deploying through a local reseller or partner. The vendor has operated in the China market for years and provides Asia-Pacific channel support, professional training, and 24/7 service, including China. On-premise installs keep the core monitoring engine on the enterprise intranet. When the business and users are all in mainland China, also evaluate <strong>${escapeHtml(names.slice(0, 5).join(", ") || "ManageEngine OpManager, IP-guard, Anqishen, Xinqiwei, Jusheng Network Manager")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "SolarWinds availability in mainland China",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "ManageEngine OpManager, IP-guard / Anqishen / Xinqiwei, Jusheng Network Manager",
+    guidanceHtml: `
+        <p><strong>Available — deploy through a local partner.</strong> SolarWinds has conducted business in China for years. Channel support, professional training, and around-the-clock service are offered across Asia-Pacific, including China. Chinaready still recommends buying and deploying through a mainland value-added distributor or reseller rather than treating SolarWinds as a self-serve overseas SaaS.</p>
+        <h3>Why it works (short version)</h3>
+        <ul>
+          <li><strong>Localized operations:</strong> sales and technical support run through China value-added distributors and resellers.</li>
+          <li><strong>Deployment model:</strong> on-premise. The core monitoring engine runs on the enterprise intranet and does not depend on a cross-border network path.</li>
+        </ul>
+        <h3>China-market options when the business and users are in mainland China</h3>
+        <p>Keep SolarWinds via a local partner when you want to stay on that stack. The shortlist below is for teams that prefer a China-market path instead. These are orientation options, not drop-in clones of SolarWinds NPM/NCM/SAM.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Core strengths</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ManageEngine OpManager (卓豪)</td>
+                <td>IT automation and operations: unified management of network devices, servers, and applications, with bulk configuration and dynamic topology</td>
+                <td>Closest network/IT-ops substitute; multi-branch estates that need one console</td>
+              </tr>
+              <tr>
+                <td>IP-guard / Anqishen (安企神) / Xinqiwei (信企卫)</td>
+                <td>Domestic enterprise endpoint control and intranet security: real-time screen monitoring, operation audit, USB control, and file DLP</td>
+                <td>Mainland compliance-audit and insider-risk control — not a SolarWinds NPM clone</td>
+              </tr>
+              <tr>
+                <td>Jusheng Network Manager (聚生网管)</td>
+                <td>LAN traffic control and bandwidth allocation; commonly used to limit P2P downloads, video, and other bandwidth-hogging traffic</td>
+                <td>Office/LAN bandwidth policing rather than full infrastructure monitoring</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>How to choose</h3>
+        <ul>
+          <li><strong>Stay on SolarWinds:</strong> use a China partner for on-prem deployment when you need Orion-class network and IT monitoring with local channel support.</li>
+          <li><strong>Unified network / server / app ops:</strong> start with <strong>ManageEngine OpManager</strong>.</li>
+          <li><strong>Endpoint control, audit, and DLP:</strong> evaluate <strong>IP-guard</strong>, <strong>Anqishen (安企神)</strong>, or <strong>Xinqiwei (信企卫)</strong>.</li>
+          <li><strong>LAN bandwidth policing:</strong> evaluate <strong>Jusheng Network Manager (聚生网管)</strong>.</li>
+        </ul>
+        <p>These candidates appear on the SolarWinds alternatives page only — Chinaready does <strong>not</strong> add them as Explore / Landscape product tiles. Confirm partner coverage, on-prem fit, and compliance before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does SolarWinds work in China?",
+        answer: `Yes. Chinaready labels SolarWinds as ${availability}. Deploy through a local reseller or partner: SolarWinds has operated in China for years, with Asia-Pacific channel support, professional training, and 24/7 service that includes China. On-premise installs keep the core monitoring engine on the enterprise intranet.`,
+      },
+      {
+        question: "Why is SolarWinds Available in mainland China?",
+        answer:
+          "Two practical reasons. First, localized operations: sales and technical support run through China value-added distributors and resellers. Second, deployment: on-premise SolarWinds keeps the core monitoring engine inside the enterprise network, so day-to-day monitoring does not depend on a cross-border link.",
+      },
+      {
+        question: "Should teams buy SolarWinds directly or through a China partner?",
+        answer:
+          "Chinaready recommends a local reseller or value-added distributor. That is the practical path for mainland sales, deployment, training, and ongoing support — not a self-serve overseas SaaS signup.",
+      },
+      {
+        question: "What are the best China alternatives to SolarWinds?",
+        answer: namesText
+          ? `When the business and users are all in mainland China, Chinaready currently lists these China-market options for SolarWinds: ${namesText}. Prefer ManageEngine OpManager (卓豪) for unified network, server, and application operations; prefer IP-guard, Anqishen (安企神), or Xinqiwei (信企卫) for endpoint control, audit, USB control, and DLP; prefer Jusheng Network Manager (聚生网管) for LAN traffic and bandwidth control. Treat this as a research shortlist rather than a one-to-one endorsement.`
+          : "When the business and users are all in mainland China, prefer ManageEngine OpManager (卓豪) for unified network/server/app ops; IP-guard, Anqishen (安企神), or Xinqiwei (信企卫) for endpoint control and DLP; and Jusheng Network Manager (聚生网管) for LAN traffic control.",
+      },
+      {
+        question: "How should teams choose among OpManager, IP-guard, Anqishen, Xinqiwei, and Jusheng Network Manager?",
+        answer:
+          "Choose ManageEngine OpManager when you need unified monitoring and configuration of network devices, servers, and applications, especially across multiple branches. Choose IP-guard, Anqishen (安企神), or Xinqiwei (信企卫) when the job is endpoint control, screen monitoring, operation audit, USB control, and file DLP for mainland compliance. Choose Jusheng Network Manager (聚生网管) when the job is LAN bandwidth allocation and limiting P2P or video traffic.",
+      },
+      {
+        question: "Where should teams go after shortlisting SolarWinds options?",
+        answer:
+          "Validate whether you will keep SolarWinds on-prem through a China partner, or switch to a China-market ops, endpoint-security, or LAN-control tool. Confirm partner coverage, data residency, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  splunk: {
+    relatedSlugs: ["datadog", "dynatrace", "amazon-cloudwatch", "solarwinds"],
+    description: (availability, names) =>
+      clipMeta(
+        `Splunk is Limited in China: Enterprise on-prem and AWS China ingest work; Splunk Cloud is constrained. Compare ${names.slice(0, 3).join(", ") || "Alibaba Cloud SLS, Tencent CLS, Huawei LTS"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Splunk is usable in mainland China, but Chinaready labels it Limited</strong> because of significant restrictions. Splunk Enterprise can be deployed privately onshore, and AWS China regions support Splunk as a data-transfer destination. Splunk Cloud depends on overseas cloud providers, so mainland access is limited and unstable; some cloud features (mobile app downloads, +86 phone alert notifications) have been restricted or discontinued. When the business and users are in mainland China, prefer <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Alibaba Cloud Log Service (SLS), Tencent Cloud Security Lake / CLS, Huawei Cloud LTS")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Splunk availability in China",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "Alibaba Cloud Log Service (SLS), Tencent Cloud Security Lake / CLS, Huawei Cloud LTS",
+    guidanceHtml: `
+        <p><strong>Splunk is available in mainland China, but with significant restrictions.</strong> Do not treat reachability as a green light for Splunk Cloud on a China-first stack.</p>
+        <h3>What still works</h3>
+        <ul>
+          <li><strong>Private on-prem deployment:</strong> Splunk Enterprise can be deployed locally so logs and security data stay onshore.</li>
+          <li><strong>AWS China data transfer:</strong> Amazon Web Services China regions support Splunk as a data-transfer destination, which can keep ingest on a China-operated AWS partition.</li>
+        </ul>
+        <h3>What is constrained</h3>
+        <ul>
+          <li><strong>Splunk Cloud:</strong> it depends on overseas cloud providers. Mainland access is limited and unstable.</li>
+          <li><strong>Cloud-only features:</strong> some capabilities — including mobile app downloads and +86 phone alert notifications — have been restricted or discontinued.</li>
+        </ul>
+        <h3>Why Splunk is Limited</h3>
+        <ul>
+          <li><strong>Network limits:</strong> overseas cloud services and APIs that Splunk Cloud depends on are slow or unreliable from mainland networks.</li>
+          <li><strong>Compliance:</strong> mainland rules expect localized storage and data isolation for sensitive logs and security telemetry. Overseas SaaS is a poor fit for that bar.</li>
+        </ul>
+        <h3>Domestic log platforms commonly evaluated instead</h3>
+        <p>When both the business and the target users are in mainland China, prefer a hyperscaler log platform on the cloud you already run:</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Core strengths</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Alibaba Cloud Log Service (SLS)</td>
+                <td>Native Alibaba Cloud log collection, storage, search, and analysis</td>
+                <td>Workload already on Alibaba Cloud; need a Splunk-class logging path</td>
+              </tr>
+              <tr>
+                <td>Tencent Cloud Security Lake / CLS</td>
+                <td>CLS for logs; Security Lake (安全湖) for SIEM-style security analytics</td>
+                <td>Workload already on Tencent Cloud; logging plus security investigation</td>
+              </tr>
+              <tr>
+                <td>Huawei Cloud LTS</td>
+                <td>Huawei Cloud Log Tank Service for collection, storage, and analysis</td>
+                <td>Workload already on Huawei Cloud</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>How to choose</h3>
+        <ul>
+          <li><strong>Keep Splunk Enterprise</strong> only when you will run a private on-prem (or similarly isolated) deployment and can operate it yourself.</li>
+          <li><strong>Do not plan Splunk Cloud</strong> as the mainland production console or ingest path.</li>
+          <li><strong>Alibaba-first stacks:</strong> use <strong>Alibaba Cloud Log Service (SLS)</strong>.</li>
+          <li><strong>Tencent-first stacks:</strong> use <strong>Tencent Cloud CLS</strong> for logs, and evaluate <strong>Tencent Cloud Security Lake</strong> when the job is closer to Splunk SIEM.</li>
+          <li><strong>Huawei-first stacks:</strong> use <strong>Huawei Cloud LTS</strong>.</li>
+        </ul>
+        <p>These candidates appear on the Splunk alternatives page only — Chinaready does <strong>not</strong> add them as Explore / Landscape product tiles. Confirm ingest, retention, alerting, and compliance before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Splunk work in China?",
+        answer: `Yes with significant restrictions. Chinaready labels Splunk as ${availability}. Splunk Enterprise can be deployed privately onshore, and AWS China regions support Splunk as a data-transfer destination. Splunk Cloud depends on overseas cloud providers, so mainland access is limited and unstable, and some cloud features (mobile app downloads, +86 phone alerts) have been restricted or discontinued.`,
+      },
+      {
+        question: "Can teams use Splunk Cloud in mainland China?",
+        answer:
+          "Not as a reliable mainland production path. Splunk Cloud depends on overseas cloud providers, so access from China is limited and unstable. Some cloud-only features — including mobile app downloads and +86 phone alert notifications — have been restricted or discontinued. Prefer Splunk Enterprise on-prem, or a domestic log platform, when the business and users are in mainland China.",
+      },
+      {
+        question: "Why is Splunk Limited if Enterprise can be deployed in China?",
+        answer:
+          "On-prem Splunk Enterprise can keep data onshore, but that is not the default cloud experience. Splunk Cloud and related overseas APIs are hard to reach from mainland networks, and overseas SaaS storage struggles to meet mainland localization and data-isolation rules for sensitive logs and security telemetry.",
+      },
+      {
+        question: "What are the best China alternatives to Splunk?",
+        answer: `When the business and users are in mainland China, Chinaready currently maps Splunk to ${namesText}. Prefer Alibaba Cloud Log Service (SLS) on Alibaba Cloud, Tencent Cloud Security Lake / CLS on Tencent Cloud, and Huawei Cloud LTS on Huawei Cloud. Treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "How should teams choose among Alibaba Cloud SLS, Tencent Cloud Security Lake / CLS, and Huawei Cloud LTS?",
+        answer:
+          "Choose the log platform on the public cloud you already run. Use Alibaba Cloud Log Service (SLS) for Alibaba-stack logging, Tencent Cloud CLS (and Security Lake for SIEM-style analytics) for Tencent-stack workloads, and Huawei Cloud LTS for Huawei Cloud. Keep Splunk Enterprise only when you will operate a private on-prem deployment.",
+      },
+      {
+        question: "Where should teams go after shortlisting Splunk alternatives?",
+        answer:
+          "Validate ingest sources, retention, alerting, data residency, and compliance with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -5866,6 +6215,100 @@ const EDITORIAL_OVERRIDES = {
         question: "Where should teams go after shortlisting Pinecone alternatives?",
         answer:
           "Validate whether you need self-hosted Milvus, a managed Milvus route, or a China-cloud vector database, then confirm latency, DNS, gRPC, and data-residency fit. Use the interactive Chinaready Landscape for adjacent AI retrieval options, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  zendesk: {
+    relatedSlugs: ["freshdesk", "intercom", "helpscout", "crisp", "livechat"],
+    description: (availability, names) =>
+      clipMeta(
+        `Zendesk is Limited in mainland China — reachable, but slow and not guaranteed. Compare ${names.slice(0, 3).join(", ") || "Udesk, HOLLYCRM, Tencent Qidian Customer Service"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Zendesk is Limited in mainland China</strong>. It is often reachable and is not fully blocked, but Zendesk does not operate mainland data centers or a China-region hosting commitment, so quality and stability are not guaranteed. Day-to-day access is typically slow with high latency, some features can be constrained by mainland network filtering, and a pure overseas SaaS model is a weak fit for data-residency expectations. For mainland-deployed support with mainland users, Chinaready currently lists <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Udesk, HOLLYCRM, Tencent Qidian Customer Service")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China customer-support platforms instead of Zendesk",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "Udesk, HOLLYCRM, Tencent Qidian Customer Service",
+    guidanceHtml: `
+        <p><strong>Zendesk is Limited for mainland China operations.</strong> Teams can often open the product from the mainland — Zendesk is not fully blocked — but Zendesk does not host Subscriber Service Data in mainland China (published regions cover the United States, EEA, UK, Japan, and Australia). Quality and stability inside the mainland are therefore not guaranteed.</p>
+        <ul>
+          <li><strong>Missing mainland infrastructure:</strong> no China data center or cloud node, so domestic access is typically slow with high latency.</li>
+          <li><strong>Network and compliance limits:</strong> mainland network filtering can constrain features such as mobile push; a pure overseas SaaS model is a weak fit for data-residency expectations (keeping support data in mainland China).</li>
+        </ul>
+        <p>If the business and the people you support are in mainland China, prefer a localized helpdesk that can deploy onshore and connect WeCom, DingTalk, WeChat Official Accounts, and related private-domain channels.</p>
+        <h3>Domestic platforms commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Highlights</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Udesk (沃丰科技)</td>
+                <td>Strong omnichannel coverage with public-cloud, private-cloud, and hybrid deployment; WeCom and DingTalk connections; commonly cited for carrier-class mainland stability</td>
+                <td>Mid-to-large local enterprises and multi-region support teams</td>
+              </tr>
+              <tr>
+                <td>HOLLYCRM (合力亿捷)</td>
+                <td>Long-standing China contact-center vendor with strong AI agents, dialect and complex-intent recognition, and peak-load resilience (including Singles' Day / Double 11)</td>
+                <td>Teams that prioritize data security and business continuity</td>
+              </tr>
+              <tr>
+                <td>Tencent Qidian Customer Service (腾讯企点客服)</td>
+                <td>Deep WeChat-ecosystem fit (Official Accounts, mini programs, WeCom) for public-to-private-domain handoff</td>
+                <td>Retail, local life, and other WeChat-first private-domain operations</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Omnichannel mainland helpdesk with flexible deployment:</strong> start with Udesk for WeCom/DingTalk coverage and public, private, or hybrid cloud.</li>
+          <li><strong>AI agents, dialects, and peak-load continuity:</strong> evaluate HOLLYCRM.</li>
+          <li><strong>WeChat-first customer journeys:</strong> prefer Tencent Qidian Customer Service when Official Accounts, mini programs, and WeCom are the core channels.</li>
+        </ul>
+        <p>These candidates appear on the Zendesk alternatives page only — Chinaready does <strong>not</strong> add Udesk, HOLLYCRM, or Tencent Qidian Customer Service as Explore / Landscape product tiles for Zendesk. Confirm channel fit, deployment model, and compliance for your own entity before adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Zendesk work in China?",
+        answer: `Yes, but with Limited practical usefulness. Chinaready labels Zendesk as ${availability} for mainland China. The product is often reachable and is not fully blocked, but Zendesk does not operate mainland data centers, so quality and stability are not guaranteed. Access is typically slow, some features can be constrained by mainland network filtering, and overseas SaaS hosting is a weak fit for data-residency expectations.`,
+      },
+      {
+        question: "What are the best China alternatives to Zendesk?",
+        answer: namesText
+          ? `Chinaready currently lists these China-ready candidates for Zendesk: ${namesText}. Prefer Udesk for omnichannel WeCom/DingTalk support with flexible deployment, HOLLYCRM when AI agents, dialect coverage, and peak-load continuity matter, and Tencent Qidian Customer Service when the WeChat ecosystem is the primary customer channel. Confirm fit before production adoption.`
+          : "Prefer Udesk (沃丰科技) for omnichannel WeCom/DingTalk support with flexible deployment, HOLLYCRM (合力亿捷) when AI agents, dialect coverage, and peak-load continuity matter, and Tencent Qidian Customer Service (腾讯企点客服) when the WeChat ecosystem is the primary customer channel.",
+      },
+      {
+        question: "Why is Zendesk a poor fit for mainland China support?",
+        answer:
+          "Two practical gaps show up repeatedly: Zendesk has no mainland China data center or cloud node, so access is slow with high latency; and mainland network filtering plus data-residency rules constrain a pure overseas SaaS model — including features such as mobile push and the expectation that support data stays in mainland China.",
+      },
+      {
+        question: "Is there a direct drop-in replacement for Zendesk in mainland China?",
+        answer:
+          "Usually no. Mainland helpdesks are designed around WeCom, DingTalk, WeChat Official Accounts, onshore deployment, and data-residency — not a one-to-one Zendesk ticket-and-messaging swap. Expect a channel and workflow redesign rather than a drop-in migration.",
+      },
+      {
+        question: "How should teams choose among Udesk, HOLLYCRM, and Tencent Qidian Customer Service?",
+        answer:
+          "Choose Udesk (沃丰科技) for omnichannel mainland support with public, private, or hybrid deployment and WeCom/DingTalk connections. Choose HOLLYCRM (合力亿捷) when AI agents, Chinese dialects, and peak-load continuity matter most. Choose Tencent Qidian Customer Service (腾讯企点客服) when WeChat Official Accounts, mini programs, and WeCom are the core customer channels.",
+      },
+      {
+        question: "Are Udesk, HOLLYCRM, and Tencent Qidian Customer Service on Chinaready Explore?",
+        answer:
+          "No. They are listed as Mapped China-ready candidates on this alternatives page only. Chinaready does not add them as Explore / Landscape product tiles for Zendesk.",
+      },
+      {
+        question: "Where should teams go after shortlisting Zendesk alternatives?",
+        answer:
+          "Validate whether your priority is omnichannel helpdesk deployment, AI contact-center scale, or WeChat-first private-domain service — then confirm data residency, channel integrations, and vendor fit with your China entity. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -6881,6 +7324,89 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  pantheon: {
+    relatedSlugs: ["wordpress", "github-pages", "amazon-cloudfront"],
+    description: (availability, names) =>
+      clipMeta(
+        `Pantheon is Unavailable in China by default — Fastly CDN is about 5.3× slower with 55.6% packet loss. Compare ${names.slice(0, 3).join(", ") || "Alibaba Cloud, Tencent Cloud, Huawei Cloud"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Pantheon is Unavailable in mainland China by default</strong>. The default overseas CDN (Fastly) has insufficient mainland node coverage, so sites are typically about <strong>5.3× slower</strong> with about <strong>55.6% packet loss</strong> — effectively unusable for China visitors. Map to <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Alibaba Cloud, Tencent Cloud, Huawei Cloud")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Why default Pantheon is unusable in mainland China",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "Alibaba Cloud, Tencent Cloud, Huawei Cloud",
+    guidanceHtml: `
+        <p><strong>Pantheon is Unavailable for practical mainland China use by default.</strong> It is a WebOps host for WordPress and Drupal, but the default delivery path relies on Fastly's overseas CDN. Mainland China node coverage is thin, so China visitors typically see severe latency (about 5.3× slower on average) and high packet loss (about 55.6%). Do not plan default Pantheon as the production host for a China-facing site.</p>
+        <h3>Why the default Fastly CDN fails in mainland China</h3>
+        <ul>
+          <li><strong>Overseas CDN by default:</strong> Pantheon fronts sites with Fastly, whose mainland China POP coverage is insufficient for reliable delivery.</li>
+          <li><strong>Severe latency:</strong> mainland requests are about 5.3× slower on average than well-connected domestic paths.</li>
+          <li><strong>High packet loss:</strong> measured packet loss around 55.6% makes pages slow, incomplete, or effectively unreachable.</li>
+        </ul>
+        <h3>China cloud hosting and CDN commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Alibaba Cloud</td>
+                <td>One of China's most mainstream cloud providers, with website hosting, CDN acceleration, and enterprise services that fit the mainland network</td>
+                <td>Default China hosting + CDN path for most teams</td>
+              </tr>
+              <tr>
+                <td>Tencent Cloud</td>
+                <td>One of China's most mainstream cloud providers, with website hosting, CDN acceleration, and enterprise services well adapted to the domestic network</td>
+                <td>Teams already on Tencent Cloud or WeChat / WeCom-adjacent products</td>
+              </tr>
+              <tr>
+                <td>Huawei Cloud</td>
+                <td>Leading China cloud vendor with strong underlying infrastructure and enterprise-grade security and compliance capabilities</td>
+                <td>Enterprise, government-adjacent, or high-compliance hosting</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Mainstream default:</strong> start with Alibaba Cloud or Tencent Cloud for website hosting plus China CDN.</li>
+          <li><strong>Enterprise security and compliance:</strong> evaluate Huawei Cloud when infrastructure control and compliance matter most.</li>
+          <li><strong>Public sites:</strong> complete ICP filing before serving a mainland China audience on a China-hosted domain.</li>
+        </ul>
+        <p>Alibaba Cloud and Tencent Cloud already appear on the Chinaready Landscape map. Huawei Cloud is listed on this alternatives page as an orientation option — Chinaready does <strong>not</strong> add Huawei Cloud as a new Explore / Landscape product tile from this rewrite. Confirm region, ICP, and hosting/CDN fit before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Pantheon work in China?",
+        answer: `Not for practical mainland use on the default stack. Chinaready labels Pantheon as ${availability}. The default overseas CDN (Fastly) has insufficient mainland China node coverage, so sites are typically about 5.3× slower with about 55.6% packet loss — effectively unusable for China visitors.`,
+      },
+      {
+        question: "Why is Pantheon so slow in mainland China?",
+        answer:
+          "Pantheon's default CDN is Fastly. Fastly's mainland China node coverage is thin, which produces severe cross-border latency (about 5.3× slower on average) and high packet loss (about 55.6%). That combination makes WordPress/Drupal sites hosted on default Pantheon a poor fit for China visitors.",
+      },
+      {
+        question: "What are the best China alternatives to Pantheon?",
+        answer: `Chinaready currently lists these China-market options for Pantheon: ${namesText}. Prefer Alibaba Cloud or Tencent Cloud as the mainstream website hosting and CDN path, and evaluate Huawei Cloud when enterprise infrastructure and security/compliance matter most. Confirm fit before production adoption.`,
+      },
+      {
+        question: "How should teams choose among Alibaba Cloud, Tencent Cloud, and Huawei Cloud?",
+        answer:
+          "Choose Alibaba Cloud or Tencent Cloud as the default mainland hosting and CDN path — they are the most mainstream China cloud providers for websites. Choose Huawei Cloud when you need stronger enterprise infrastructure, security, and compliance. Public sites still need ICP filing.",
+      },
+      {
+        question: "Where should teams go after shortlisting Pantheon alternatives?",
+        answer:
+          "Decide hosting region, attach a China CDN, and confirm whether the public site needs ICP filing. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
   "github-pages": {
     description: (availability, names) =>
       clipMeta(
@@ -6943,33 +7469,79 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   "microsoft-authenticator": {
-    relatedSlugs: ["google-authenticator", "auth0"],
+    relatedSlugs: ["google-authenticator"],
     description: (availability, names) =>
       clipMeta(
-        `Does Microsoft Authenticator work in China? Limited as a universal MFA default — prefer Authing MFA or WeChat Login + SMS. Availability: ${availability}.`,
+        `Microsoft Authenticator is Limited in China — OEM-store Android install, no push, OTP only. Prefer ${names.slice(0, 2).join(", ") || "Ningdun 2FA (宁盾), Authenticator"}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
-      `<strong>Quick answer:</strong> <strong>Microsoft Authenticator is Limited as a universal MFA default in mainland China</strong>. Map to <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Authing MFA, WeChat Login, Alibaba Cloud MFA")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
-    guidanceTitle: "MFA options instead of Microsoft Authenticator defaults",
+      `<strong>Quick answer:</strong> <strong>Microsoft Authenticator is Limited in mainland China</strong> — usable, but functionally constrained. Mainland Android users typically need OEM app stores (vivo, OPPO, Samsung, and similar), and push-notification verification does not work; only manual one-time passwords (OTP) remain. When both the business and target users are in mainland China, Chinaready currently lists <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Ningdun 2FA (宁盾), Authenticator (双重认证密码管理器)")}</strong> as localized 2FA options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Localized 2FA options instead of Microsoft Authenticator",
     sectionTitle: "Mapped China-ready candidates",
     preferResearchCandidates: true,
-    indexOptions: 3,
-    indexCandidates: "Authing MFA, WeChat Login, Alibaba Cloud MFA",
+    indexOptions: 2,
+    indexCandidates: "Ningdun 2FA (宁盾), Authenticator (双重认证密码管理器)",
     guidanceHtml: `
-        <p><strong>Microsoft Authenticator should not be assumed for all mainland users.</strong> Prefer Authing MFA for product IdP, WeChat Login + SMS for consumers, and cloud-RAM MFA for Alibaba Cloud workforce accounts. Orientation-only — not Explore tiles.</p>`,
+        <p><strong>Microsoft Authenticator is Limited in mainland China.</strong> The app can still be used, but the practical experience is constrained:</p>
+        <ul>
+          <li><strong>Android distribution:</strong> mainland Android users typically need to install it from OEM stores such as vivo, OPPO, and Samsung — not Google Play.</li>
+          <li><strong>No push verification:</strong> network and platform limits block push-notification approval. Users can only enter a one-time password (OTP) manually.</li>
+        </ul>
+        <p><strong>Reason:</strong> mainland devices generally lack Google Play services, so push notifications and other features that depend on those services are blocked.</p>
+        <p>If both your business and your target users are in mainland China, prefer a localized 2FA product rather than relying on Microsoft Authenticator as the default second factor.</p>
+        <h3>Domestic 2FA options commonly evaluated instead</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ningdun 2FA (宁盾)</td>
+                <td>Mainland enterprise 2FA with app, WeChat mini program, SMS, and other token types; Android, iOS, and HarmonyOS; WeCom (企业微信) / Feishu (飞书) office-stack fit; China cryptography (国密) compliance</td>
+                <td>Workforce MFA when the company and users are both in mainland China</td>
+              </tr>
+              <tr>
+                <td>Authenticator (双重认证密码管理器)</td>
+                <td>China-developer TOTP / 2FA app with iCloud backup against device loss; compatible with Microsoft and other mainstream 2FA services</td>
+                <td>Individual or small-team authenticator-app replacement, especially on Apple devices</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Selection guidance</h3>
+        <ul>
+          <li><strong>Enterprise / office-stack MFA:</strong> start with Ningdun 2FA (宁盾) when you need app, mini-program, or SMS tokens and WeCom / Feishu / HarmonyOS coverage.</li>
+          <li><strong>Authenticator-app replacement:</strong> evaluate Authenticator (双重认证密码管理器) when users need a TOTP app that backs up to iCloud and works with Microsoft and other mainstream services.</li>
+        </ul>
+        <p>These candidates appear on the Microsoft Authenticator alternatives page only — Chinaready does <strong>not</strong> add Ningdun 2FA or Authenticator (双重认证密码管理器) as Landscape map product entries. Confirm device distribution, token type, and compliance before production adoption.</p>`,
     faq: (availability, namesText) => [
       {
         question: "Does Microsoft Authenticator work in China?",
-        answer: `Chinaready labels Microsoft Authenticator as ${availability} as a universal default. Some workforce users can use it; consumer mainland apps usually should not depend on it.`,
+        answer: `Yes, with limits. Chinaready labels Microsoft Authenticator as ${availability}. Mainland Android users typically install it from OEM stores such as vivo, OPPO, and Samsung. Push-notification verification does not work; only manual one-time passwords (OTP) remain.`,
+      },
+      {
+        question: "Why is Microsoft Authenticator push notification blocked in China?",
+        answer:
+          "Mainland Android devices generally lack Google Play services. Microsoft Authenticator push approval depends on those services, so push is blocked and users fall back to entering an OTP manually.",
       },
       {
         question: "What are the best China alternatives to Microsoft Authenticator?",
-        answer: `Chinaready currently lists: ${namesText}.`,
+        answer: `When both the business and target users are in mainland China, Chinaready currently lists these localized 2FA options: ${namesText}. Prefer Ningdun 2FA (宁盾) for enterprise tokens across app, WeChat mini program, and SMS, and Authenticator (双重认证密码管理器) as a China-developer TOTP app with iCloud backup. Confirm fit before production adoption.`,
+      },
+      {
+        question: "How should teams choose between Ningdun 2FA and Authenticator?",
+        answer:
+          "Choose Ningdun 2FA (宁盾) for mainland workforce MFA that needs WeCom, Feishu, HarmonyOS, or China cryptography (国密) compliance. Choose Authenticator (双重认证密码管理器) when the need is a consumer-style authenticator app that stays compatible with Microsoft and other mainstream TOTP services and can back up via iCloud.",
       },
       {
         question: "Where should teams go after shortlisting Microsoft Authenticator alternatives?",
         answer:
-          "Separate workforce vs consumer MFA policies, then validate device distribution. Book a call with Chinaready if needed.",
+          "Decide whether you still need a TOTP app or a full enterprise 2FA platform, then validate Android store coverage, HarmonyOS needs, and office-stack fit (WeCom / Feishu). Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -7129,6 +7701,7 @@ const ANALOG_ALIASES = {
   sentry: "Sentry",
   bugsnag: "Bugsnag",
   datadog: "Datadog",
+  splunk: "Splunk",
   "new relic": "New Relic",
   "grafana cloud": "Grafana Cloud",
   zendesk: "Zendesk",

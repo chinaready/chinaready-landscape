@@ -126,7 +126,105 @@ OVERRIDES = {
             ),
         },
     ],
-    "splunk": ["Alibaba Cloud ARMS"],
+    "solarwinds": [
+        {
+            "name": "ManageEngine OpManager",
+            "homepage_url": "https://www.manageengine.cn/network-monitoring/",
+            "category": "Release, Quality & Operations",
+            "subcategory": "Monitoring & Observability (APM / RUM)",
+            "source": "research",
+            "note": (
+                "ManageEngine OpManager (卓豪) is an IT automation and operations platform that "
+                "unifies network devices, servers, and applications, with bulk configuration and "
+                "dynamic topology. Strongest for multi-site / branch estates that need one ops console."
+            ),
+        },
+        {
+            "name": "IP-guard",
+            "homepage_url": "https://www.ip-guard.net/",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Network & Edge Security",
+            "source": "research",
+            "note": (
+                "IP-guard is a China enterprise endpoint-control and intranet-security suite focused "
+                "on real-time screen monitoring, operation audit, USB control, and file DLP — a common "
+                "fit for domestic compliance-audit requirements rather than SolarWinds-style NPM."
+            ),
+        },
+        {
+            "name": "Anqishen",
+            "homepage_url": "https://www.wgj7.com/",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Network & Edge Security",
+            "source": "research",
+            "note": (
+                "Anqishen (安企神) is a domestic endpoint and intranet security product covering "
+                "real-time screen monitoring, operation audit, USB control, and file DLP. Commonly "
+                "evaluated alongside IP-guard and Xinqiwei for China compliance-audit workloads."
+            ),
+        },
+        {
+            "name": "Xinqiwei",
+            "homepage_url": "https://www.xqwsoft.com/",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Network & Edge Security",
+            "source": "research",
+            "note": (
+                "Xinqiwei (信企卫) is a domestic enterprise endpoint-control and intranet-security "
+                "suite for real-time screen monitoring, operation audit, USB control, and file DLP — "
+                "commonly shortlisted with IP-guard and Anqishen for mainland compliance audit."
+            ),
+        },
+        {
+            "name": "Jusheng Network Manager",
+            "homepage_url": "https://www.grabsun.com/",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Network & Edge Security",
+            "source": "research",
+            "note": (
+                "Jusheng Network Manager (聚生网管) is strongest on LAN traffic control and bandwidth "
+                "allocation — commonly used to limit P2P downloads, video, and other bandwidth-hogging "
+                "behavior on mainland office networks."
+            ),
+        },
+    ],
+    "splunk": [
+        {
+            "name": "Alibaba Cloud Log Service (SLS)",
+            "homepage_url": "https://www.aliyun.com/product/sls",
+            "category": "Release, Quality & Operations",
+            "subcategory": "Monitoring & Observability (APM / RUM)",
+            "source": "research",
+            "note": (
+                "Alibaba Cloud Log Service (SLS) is the native Alibaba Cloud log platform for collection, "
+                "storage, search, and analysis — the practical Splunk-class logging path when the mainland "
+                "stack already runs on Alibaba Cloud."
+            ),
+        },
+        {
+            "name": "Tencent Cloud Security Lake / CLS",
+            "homepage_url": "https://cloud.tencent.com/product/cls",
+            "category": "Release, Quality & Operations",
+            "subcategory": "Monitoring & Observability (APM / RUM)",
+            "source": "research",
+            "note": (
+                "Tencent Cloud Log Service (CLS) covers collection, search, and analysis; Tencent Cloud "
+                "Security Lake (安全湖) is the closer Splunk SIEM / security-analytics path. Strongest "
+                "when the China stack already runs on Tencent Cloud."
+            ),
+        },
+        {
+            "name": "Huawei Cloud LTS",
+            "homepage_url": "https://www.huaweicloud.com/product/lts.html",
+            "category": "Release, Quality & Operations",
+            "subcategory": "Monitoring & Observability (APM / RUM)",
+            "source": "research",
+            "note": (
+                "Huawei Cloud LTS (Log Tank Service) is Huawei Cloud's log collection, storage, and "
+                "analysis service — the practical path when the mainland stack already runs on Huawei Cloud."
+            ),
+        },
+    ],
     "pagerduty": ["Alibaba Cloud ARMS"],
     "amazon cloudwatch": [
         {
@@ -317,7 +415,47 @@ OVERRIDES = {
     "gitlab ci": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
     "azure devops": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
     "jenkins": ["Alibaba Cloud Yunxiao", "Tencent Cloud DevOps (CODING)"],
-    "zendesk": ["Zhichi", "Easemob"],
+    "zendesk": [
+        {
+            "name": "Udesk",
+            "homepage_url": "https://udesk.cn/",
+            "category": "Engagement & Communication",
+            "subcategory": "Customer Support & In-App Messaging",
+            "source": "research",
+            "note": (
+                "Udesk (沃丰科技) is a mainland omnichannel customer-service platform with public-cloud, "
+                "private-cloud, and hybrid deployment. It connects WeCom, DingTalk, and related China "
+                "channels, and is commonly evaluated by mid-to-large local or multi-region support teams "
+                "that need stable mainland operations."
+            ),
+        },
+        {
+            "name": "HOLLYCRM",
+            "homepage_url": "https://www.hollycrm.com/",
+            "category": "Engagement & Communication",
+            "subcategory": "Customer Support & In-App Messaging",
+            "source": "research",
+            "note": (
+                "HOLLYCRM (合力亿捷) is a long-standing China contact-center and intelligent-agent vendor "
+                "with strong dialect and intent recognition. It is commonly cited for peak-load resilience "
+                "(including Singles' Day / Double 11 traffic) and for teams that prioritize data security "
+                "and business continuity."
+            ),
+        },
+        {
+            "name": "Tencent Qidian Customer Service",
+            "homepage_url": "https://qidian.qq.com/",
+            "category": "Engagement & Communication",
+            "subcategory": "Customer Support & In-App Messaging",
+            "source": "research",
+            "note": (
+                "Tencent Qidian Customer Service (腾讯企点客服) sits inside the WeChat stack (Official "
+                "Accounts, mini programs, WeCom, and related channels). Best when public-to-private-domain "
+                "handoff matters — especially retail and local-life brands whose customers already live "
+                "in WeChat."
+            ),
+        },
+    ],
     "freshdesk": ["Zhichi"],
     "intercom": ["Zhichi", "Easemob"],
     "hubspot": ["Zhichi"],
@@ -1113,7 +1251,44 @@ OVERRIDES = {
     "brightcove": ["Alibaba Cloud RTC"],
     "bunnycdn": ["Alibaba Cloud CDN", "Tencent Cloud CDN"],
     "fastly": ["Alibaba Cloud CDN", "Tencent Cloud CDN", "Cloudflare China Network"],
-    "imperva": ["Alibaba Cloud CDN", "Tencent Cloud CDN", "GeeTest"],
+    "imperva": [
+        {
+            "name": "Anhua Jinhe DBAudit (安华金和)",
+            "homepage_url": "https://www.dbsec.cn/",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Network & Edge Security",
+            "source": "research",
+            "note": (
+                "Anhua Jinhe DBAudit (安华金和) is a mainland data-security specialist. Its database-audit "
+                "product is commonly evaluated against Imperva for SQL-parse accuracy and risk detection, "
+                "with full-stack Xinchuang (信创) hardware/OS compatibility for government and enterprise estates."
+            ),
+        },
+        {
+            "name": "Shengbang RayWAF (盛邦安全)",
+            "homepage_url": "https://www.webray.com.cn/RayWAF.html",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Network & Edge Security",
+            "source": "research",
+            "note": (
+                "Shengbang RayWAF (盛邦安全) is a domestic Web application firewall with native chip/OS "
+                "compatibility plus machine-learning and active-defense engines — a common WAF upgrade path "
+                "when replacing imported application-security appliances."
+            ),
+        },
+        {
+            "name": "Anheng DAS-DBAuditor / Mingyu WAF (安恒信息)",
+            "homepage_url": "https://www.dbappsecurity.com.cn/",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Network & Edge Security",
+            "source": "research",
+            "note": (
+                "Anheng Information (安恒信息) covers both database audit (DAS-DBAuditor) and Mingyu WAF "
+                "(明御WAF), with mature multi-cloud / hybrid control and AI operations — a balanced path "
+                "when the Imperva replacement spans DB audit and Web application protection."
+            ),
+        },
+    ],
     "bootstrapcdn": [
         {
             "name": "Staticfile CDN",
@@ -1172,7 +1347,56 @@ OVERRIDES = {
             ),
         },
     ],
-    "mapbox": ["Amap", "Tencent Location Services"],
+    "mapbox": [
+        {
+            "name": "Amap",
+            "homepage_url": "https://lbs.amap.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Location & Map Services",
+            "source": "research",
+            "note": (
+                "Amap (高德地图) is the mainstream China maps SDK and LBS platform: GCJ-02 coordinates, "
+                "fast mainland loading, rich POI coverage, and full web / iOS / Android APIs — the "
+                "practical default Mapbox substitute for China-facing navigation and location products."
+            ),
+        },
+        {
+            "name": "Baidu Maps",
+            "homepage_url": "https://lbsyun.baidu.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Location & Map Services",
+            "source": "research",
+            "note": (
+                "Baidu Maps (百度地图) is a full domestic maps stack with timely data, strong Chinese "
+                "POI coverage, and complete LBS APIs. Uses BD-09 coordinates (a further encryption of "
+                "GCJ-02) — convert explicitly when migrating Mapbox WGS-84 points."
+            ),
+        },
+        {
+            "name": "Tencent Maps",
+            "homepage_url": "https://lbs.qq.com/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Location & Map Services",
+            "source": "research",
+            "note": (
+                "Tencent Maps (腾讯地图) provides compliant mainland maps, GCJ-02 coordinates, and "
+                "WeChat / Mini Program-native location APIs — a close commercial substitute when the "
+                "product already sits in the Tencent ecosystem."
+            ),
+        },
+        {
+            "name": "Tianditu",
+            "homepage_url": "https://www.tianditu.gov.cn/",
+            "category": "Growth, Content & Experience",
+            "subcategory": "Location & Map Services",
+            "source": "research",
+            "note": (
+                "Tianditu (天地图) is the official national basemap from the National Geomatics Center "
+                "of China. Pair it with open-source MapLibre GL (the Mapbox GL fork) for a free, "
+                "compliant Mapbox-like vector-map workflow without overseas Mapbox cloud."
+            ),
+        },
+    ],
     "here": ["Amap", "Tencent Location Services"],
     "openstreetmap": [
         {
@@ -1309,6 +1533,41 @@ OVERRIDES = {
     "vercel": ["Alibaba Cloud", "Alibaba Cloud Serverless App Engine"],
     "netlify": ["Alibaba Cloud", "Alibaba Cloud Serverless App Engine"],
     "heroku": ["Alibaba Cloud Serverless App Engine"],
+    "pantheon": [
+        {
+            "name": "Alibaba Cloud",
+            "homepage_url": "https://www.alibabacloud.com/",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Cloud Platform & Hosting",
+            "source": "research",
+            "note": (
+                "Alibaba Cloud is one of the most mainstream China cloud providers, with website "
+                "hosting, CDN acceleration, and enterprise services that fit the mainland network."
+            ),
+        },
+        {
+            "name": "Tencent Cloud",
+            "homepage_url": "https://www.tencentcloud.com/",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Cloud Platform & Hosting",
+            "source": "research",
+            "note": (
+                "Tencent Cloud is one of the most mainstream China cloud providers, with website "
+                "hosting, CDN acceleration, and enterprise services well adapted to the domestic network."
+            ),
+        },
+        {
+            "name": "Huawei Cloud",
+            "homepage_url": "https://www.huaweicloud.com/intl/en-us/",
+            "category": "Infrastructure & Edge",
+            "subcategory": "Cloud Platform & Hosting",
+            "source": "research",
+            "note": (
+                "Huawei Cloud is a leading China cloud vendor with strong underlying infrastructure "
+                "and enterprise-grade security and compliance capabilities."
+            ),
+        },
+    ],
     "digitalocean": ["Alibaba Cloud"],
     "linode": ["Alibaba Cloud"],
     "render": ["Alibaba Cloud Serverless App Engine"],
@@ -2197,56 +2456,9 @@ OVERRIDES = {
             "subcategory": "Webinars & Virtual Events",
             "source": "research",
             "note": (
-                "Polyv (保利威) is a mainland enterprise video SaaS for livestream and webinars — brand "
-                "customization, interactive chat, multi-venue events, overseas push, and China network "
-                "adaptation. Commonly evaluated by foreign companies running webinars for mainland audiences."
-            ),
-        },
-        {
-            "name": "VHall",
-            "homepage_url": "https://www.vhall.com/",
-            "category": "Communication & Collaboration",
-            "subcategory": "Webinars & Virtual Events",
-            "source": "research",
-            "note": (
-                "VHall (微吼) is a domestic virtual-event and webinar pioneer for large online seminars, "
-                "virtual exhibition halls, and post-event analytics. Widely used for enterprise training "
-                "and marketing webinars."
-            ),
-        },
-        {
-            "name": "Feishu Webinar",
-            "homepage_url": "https://www.feishu.cn/product/vc",
-            "category": "Communication & Collaboration",
-            "subcategory": "Webinars & Virtual Events",
-            "source": "research",
-            "note": (
-                "Feishu Webinar (飞书网络研讨会) supports large-scale attendance, fine-grained permissions, "
-                "simultaneous interpretation, rehearsal mode, and automated post-event reports. Strong fit "
-                "when the team already runs on Feishu."
-            ),
-        },
-        {
-            "name": "NetEase Meeting",
-            "homepage_url": "https://meeting.163.com/",
-            "category": "Communication & Collaboration",
-            "subcategory": "Webinars & Virtual Events",
-            "source": "research",
-            "note": (
-                "NetEase Meeting (网易会议) covers large meetings and livestream scale with Xinchuang / "
-                "national-crypto security options and full-stack domestic adaptation — often evaluated for "
-                "government and enterprise scenarios."
-            ),
-        },
-        {
-            "name": "Lark",
-            "homepage_url": "https://www.larksuite.com/",
-            "category": "Communication & Collaboration",
-            "subcategory": "Webinars & Virtual Events",
-            "source": "research",
-            "note": (
-                "Lark (飞书国际版) combines collaboration with webinars for multinational teams that need "
-                "overseas and China-facing workflows, including automation and AI meeting summaries."
+                "Polyv (保利威) is the recommended mainland enterprise video SaaS for foreign companies "
+                "launching livestream and webinars in China — domestic CDN, interactive live, and "
+                "China-network adaptation."
             ),
         },
     ],
@@ -2747,6 +2959,42 @@ OVERRIDES = {
             "note": (
                 "Taipy uses a frontend/backend-separated architecture with background-task support — best "
                 "for more complex production-style data applications beyond simple Streamlit demos."
+            ),
+        },
+    ],
+    "substack": [
+        {
+            "name": "Xiaobot",
+            "homepage_url": "https://xiaobot.net/",
+            "category": "Creator Platforms",
+            "subcategory": "Paid Newsletters & Creator Monetization",
+            "source": "research",
+            "note": (
+                "Xiaobot (小报童) supports subscription and one-time buyout pricing — a practical way to "
+                "turn insights into paid value. Onboarding usually requires an existing audience / traffic."
+            ),
+        },
+        {
+            "name": "Zhiyuan",
+            "homepage_url": "https://zhiy.cc/",
+            "category": "Creator Platforms",
+            "subcategory": "Paid Newsletters & Creator Monetization",
+            "source": "research",
+            "note": (
+                "Zhiyuan (知园) is a digital-garden creator platform with personal wiki features, "
+                "membership management, and no platform transaction fees — strongest for long-term "
+                "knowledge gardens and member relationships."
+            ),
+        },
+        {
+            "name": "Afdian",
+            "homepage_url": "https://afdian.com/",
+            "category": "Creator Platforms",
+            "subcategory": "Paid Newsletters & Creator Monetization",
+            "source": "research",
+            "note": (
+                "Afdian (爱发电) connects creators and fans with memberships, virtual and physical goods, "
+                "and crowdfunding — broader fan funding than a Substack-style newsletter paywall."
             ),
         },
     ],
@@ -3488,36 +3736,28 @@ OVERRIDES = {
     ],
     "microsoft authenticator": [
         {
-            "name": "Authing MFA",
-            "homepage_url": "https://www.authing.cn/",
+            "name": "Ningdun 2FA (宁盾)",
+            "homepage_url": "https://www.nington.com/mfa/",
             "category": "Trust, Identity & Compliance",
             "subcategory": "Multi-factor Authentication",
             "source": "research",
             "note": (
-                "Authing MFA is a China identity platform path when Microsoft Authenticator cannot "
-                "be the default second factor for mainland user populations."
+                "Ningdun 2FA (宁盾) is designed for mainland enterprises, with app, WeChat mini program, "
+                "SMS, and other token types across Android, iOS, and HarmonyOS. It fits domestic office "
+                "stacks such as WeCom (企业微信) and Feishu (飞书), and supports China cryptography "
+                "(国密) compliance."
             ),
         },
         {
-            "name": "WeChat Login",
-            "homepage_url": "https://open.weixin.qq.com/",
+            "name": "Authenticator (双重认证密码管理器)",
+            "homepage_url": "https://apps.apple.com/cn/app/id6497714349",
             "category": "Trust, Identity & Compliance",
             "subcategory": "Multi-factor Authentication",
             "source": "research",
             "note": (
-                "WeChat Login with SMS OTP is the mainstream consumer authentication pattern in "
-                "mainland China when authenticator-app MFA has poor coverage."
-            ),
-        },
-        {
-            "name": "Alibaba Cloud MFA",
-            "homepage_url": "https://www.aliyun.com/product/ram",
-            "category": "Trust, Identity & Compliance",
-            "subcategory": "Multi-factor Authentication",
-            "source": "research",
-            "note": (
-                "Alibaba Cloud RAM MFA covers cloud-console and workforce second-factor needs inside "
-                "Alibaba Cloud accounts as a Microsoft Authenticator operational substitute."
+                "Authenticator (双重认证密码管理器) is a China-developer 2FA app for mainland users, "
+                "with iCloud backup to reduce lockout after device loss, and compatibility with Microsoft "
+                "and other mainstream TOTP / 2FA services."
             ),
         },
     ],
@@ -3544,6 +3784,7 @@ AVAILABILITY_OVERRIDES = {
     "agora": "Available",
     "apple search ads": "Available",
     "openstreetmap": "Limited",
+    "mapbox": "Unavailable",
     "aws": "Limited",
     "microsoft azure": "Limited",
     "amplitude": "Unavailable",
@@ -3566,13 +3807,19 @@ AVAILABILITY_OVERRIDES = {
     "hubspot": "Limited",
     "mailchimp": "Limited",
     "github pages": "Limited",
+    "pantheon": "Unavailable",
     "google authenticator": "Limited",
     "microsoft authenticator": "Limited",
     "crowdstrike": "Unavailable",
+    "imperva": "Unavailable",
     # === END HUB P0P1 OVERRIDES ===
     "datadog": "Unavailable",
     "dynatrace": "Limited",
+    "solarwinds": "Available",
+    "splunk": "Limited",
     "docker hub": "Unavailable",
+    "substack": "Unavailable",
+    "zendesk": "Limited",
 
 }
 
@@ -3702,6 +3949,15 @@ RESEARCH_NOTES = {
         "on the alternatives page only — not as Explore / Landscape product tiles. Confirm ICP "
         "filing needs before public launch."
     ),
+    "pantheon": (
+        "Pantheon is Unavailable for practical mainland China use by default: its default overseas "
+        "CDN (Fastly) has insufficient mainland node coverage, producing severe latency (about 5.3× "
+        "slower on average) and high packet loss (about 55.6%). Prefer Alibaba Cloud or Tencent Cloud "
+        "for mainstream China website hosting and CDN, or Huawei Cloud when enterprise infrastructure "
+        "and security/compliance matter most. Huawei Cloud appears on the alternatives page as an "
+        "orientation option — not as an Explore / Landscape product tile from this research. Confirm "
+        "ICP filing for public sites before production adoption."
+    ),
     "google authenticator": (
         "Google Authenticator is Limited as a default MFA path for mainland China user bases: Play "
         "Store distribution and Google account assumptions break for many users. Prefer China IdP MFA "
@@ -3710,10 +3966,14 @@ RESEARCH_NOTES = {
         "tiles. Confirm app-store coverage before mandating authenticator MFA."
     ),
     "microsoft authenticator": (
-        "Microsoft Authenticator is Limited as a universal MFA default in mainland China. Prefer "
-        "Authing MFA, WeChat Login + SMS OTP for consumers, or cloud-RAM MFA for Alibaba Cloud "
-        "workforce accounts. These appear on the alternatives page only — not as Explore / Landscape "
-        "product tiles. Confirm device distribution before mandating the app."
+        "Microsoft Authenticator is Limited in mainland China: usable, but functionally constrained. "
+        "Mainland Android users typically install it from OEM stores such as vivo, OPPO, and Samsung. "
+        "Push-notification verification does not work because mainland devices generally lack Google "
+        "Play services; only manual one-time passwords (OTP) remain. When both the business and target "
+        "users are in mainland China, prefer localized 2FA: Ningdun 2FA (宁盾) for enterprise tokens, "
+        "and Authenticator (双重认证密码管理器) as a China-developer TOTP app with iCloud backup. "
+        "These appear on the alternatives page only — not as Explore / Landscape product tiles. "
+        "Confirm device distribution and MFA policy before production adoption."
     ),
     # === END HUB P0P1 OVERRIDES ===
     "visual studio app center": (
@@ -3874,6 +4134,17 @@ RESEARCH_NOTES = {
         "product tiles from this research. Confirm tile terms, keys, and map-review requirements "
         "before production adoption."
     ),
+    "mapbox": (
+        "Mapbox is Unavailable for mainland China production maps. Chinaready strongly recommends "
+        "against using Mapbox directly: overseas servers are slow or fail to load, new mainland "
+        "signups are currently restricted, foreign basemaps lack a map review number (审图号) and "
+        "count as non-compliant “problem maps,” and Mapbox defaults to WGS-84 with no native GCJ-02 "
+        "support. Prefer Amap (高德地图), Baidu Maps (百度地图), or Tencent Maps (腾讯地图) for "
+        "commercial SDKs, or Tianditu (天地图) with MapLibre GL for a free official basemap. Baidu "
+        "Maps, Tencent Maps, and Tianditu appear on the alternatives page as orientation options — "
+        "not as Explore / Landscape product tiles from this research. Confirm SDK terms, keys, "
+        "coordinate conversion, and map-review requirements before production adoption."
+    ),
     "activecampaign": (
         "ActiveCampaign is Limited in mainland China: the product is usually reachable, but marketing "
         "sends face extremely high interception risk into domestic inboxes (spam folder or outright "
@@ -3933,6 +4204,18 @@ RESEARCH_NOTES = {
         "enterprise dashboards, Gradio for ML demos, and Taipy for more complex data apps. These appear "
         "on the alternatives page only — not as Explore / Landscape product tiles. Confirm hosting "
         "model, dependency mirrors, and compliance before production adoption."
+    ),
+    "substack": (
+        "Substack is Unavailable for mainland China creators and readers: network restrictions mean "
+        "the overseas cloud and some base services it depends on cannot be reached stably; payments "
+        "are Stripe-only so mainland users cannot subscribe and pay directly; and there is no mainland "
+        "ICP filing, so newsletter delivery is easily intercepted or filtered by domestic mailbox "
+        "providers. Prefer Xiaobot (小报童) to turn insights into paid content when you already have "
+        "an audience; prefer Zhiyuan (知园) for a digital-garden membership path with no platform "
+        "fees; prefer Afdian (爱发电) for fan funding, goods, and crowdfunding. Zhubai (竹白) "
+        "previously offered WeChat plus email distribution but shut down in March 2025 and is not a "
+        "live option. These appear on the alternatives page only — not as Explore / Landscape product "
+        "tiles. Confirm onboarding thresholds, payment rails, and compliance before production adoption."
     ),
     "bombbomb": (
         "BombBomb is Unavailable for practical mainland China use: BombBomb's terms warn that access "
@@ -4073,6 +4356,18 @@ RESEARCH_NOTES = {
         "alternatives page only — not as Explore / Landscape product tiles. Contact Chinaready for China "
         "ecommerce and loyalty design guidance before production adoption."
     ),
+    "zendesk": (
+        "Zendesk is Limited in mainland China: the product is often reachable and is not fully blocked, "
+        "but Zendesk does not operate mainland data centers or a China-region hosting commitment, so "
+        "quality and stability are not guaranteed. Access is typically slow with high latency; mainland "
+        "network filtering can constrain features such as mobile push; and a pure overseas SaaS model "
+        "is a weak fit for data-residency expectations. Prefer Udesk for omnichannel WeCom/DingTalk "
+        "support with flexible deployment, HOLLYCRM when AI agents, dialect coverage, and peak-load "
+        "continuity matter, and Tencent Qidian Customer Service when the WeChat ecosystem is the "
+        "primary customer channel. These appear on the alternatives page only — not as Explore / "
+        "Landscape product tiles. Confirm channel fit, deployment model, and compliance before "
+        "production adoption."
+    ),
     "marketo": (
         "Marketo is Limited in mainland China: the product is often technically reachable, but practical "
         "experience is poor and core capabilities are constrained — cross-border email delivery is heavily "
@@ -4094,13 +4389,13 @@ RESEARCH_NOTES = {
         "compliance before production adoption."
     ),
     "on24": (
-        "ON24 is Unavailable for practical mainland China use: overseas servers and CDN nodes are hard to "
-        "reach from the mainland, cross-border latency often breaks livestream quality and interaction, and "
-        "default overseas data residency plus weak Chinese UI / domestic payment fit create compliance and "
-        "operating gaps. Prefer Polyv or VHall for webinar / virtual-event workloads closest to ON24; use "
-        "Feishu Webinar, NetEase Meeting, or Lark when the team already lives in those collaboration stacks. "
-        "These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm "
-        "audience location, concurrent scale, and compliance before production adoption."
+        "ON24 is Unavailable (or the experience is extremely poor) in mainland China: overseas servers "
+        "and CDN nodes face cross-border network restrictions, so mainland users typically cannot access "
+        "the platform directly or hit severe latency. Data defaults to overseas storage, which does not "
+        "meet mainland data-localization requirements, and there is no Chinese UI or domestic payment "
+        "path. Prefer Polyv (保利威) for foreign companies launching livestream in China. These appear "
+        "on the alternatives page only — not as Explore / Landscape product tiles. Confirm audience "
+        "location, concurrent scale, and compliance before production adoption."
     ),
     "jw player": (
         "JW Player is Limited in mainland China: the player and CDN path (cdn.jwplayer.com) sit overseas "
@@ -4156,6 +4451,29 @@ RESEARCH_NOTES = {
         "prefer Canway BlueWhale WhaleEye (嘉为蓝鲸鲸眼) when the estate already runs Tencent BlueKing "
         "or needs a Xinchuang ops closed loop, especially in finance and government. These appear on "
         "the alternatives page only — not as Explore / Landscape product tiles. Confirm agent fit, "
+        "data residency, and compliance before production adoption."
+    ),
+    "solarwinds": (
+        "SolarWinds is Available in mainland China, but Chinaready recommends deploying through a "
+        "local reseller or partner. The vendor has operated in China for years, with Asia-Pacific "
+        "(including China) channel support, professional training, and 24/7 service. On-premise "
+        "deployment keeps the core monitoring engine on the enterprise intranet, so it does not "
+        "depend on cross-border links. When the business and users are all in mainland China, "
+        "evaluate ManageEngine OpManager (卓豪) for unified network/server/app ops; IP-guard, "
+        "Anqishen (安企神), or Xinqiwei (信企卫) for endpoint control and DLP; and Jusheng Network "
+        "Manager (聚生网管) for LAN traffic and bandwidth control. These appear on the alternatives "
+        "page only — not as Explore / Landscape product tiles. Confirm partner coverage, on-prem "
+        "fit, and compliance before production adoption."
+    ),
+    "splunk": (
+        "Splunk is Limited in mainland China: Splunk Enterprise can be deployed privately onshore, "
+        "and AWS China regions support Splunk as a data-transfer destination, but Splunk Cloud "
+        "depends on overseas cloud providers so mainland access is limited and unstable. Some cloud "
+        "features (mobile app downloads, +86 phone alert notifications) have been restricted or "
+        "discontinued. Network limits plus onshore storage and data-isolation rules are the core "
+        "constraints. When the business and users are in mainland China, prefer Alibaba Cloud Log "
+        "Service (SLS), Tencent Cloud Security Lake / CLS, or Huawei Cloud LTS. These appear on the "
+        "alternatives page only — not as Explore / Landscape product tiles. Confirm ingest paths, "
         "data residency, and compliance before production adoption."
     ),
     "middleware": (
@@ -4278,6 +4596,16 @@ RESEARCH_NOTES = {
         "Xinchuang and national-security reviews directing domestic enterprises off foreign cybersecurity "
         "software. Prefer Sangfor NGES, ThreatBook OneSEC, 360 Digital Security, or Qi-Anxin Tianqing EDR. "
         "Anheng, Venustech, NSFOCUS, and Topsec are additional mainland EDR vendors. These appear on the "
+        "alternatives page only — not as Explore / Landscape product tiles. Confirm Xinchuang OS/CPU fit "
+        "and procurement rules before production adoption."
+    ),
+    "imperva": (
+        "Imperva is Unavailable in mainland China: on-prem hardware can theoretically be imported, but "
+        "cloud WAF, DDoS protection, and CDN face severe access limits, latency, and compliance risk. "
+        "Xinchuang and national-security reviews have also directed many enterprises off certain US/Israeli "
+        "foreign cybersecurity products. Prefer Anhua Jinhe DBAudit (安华金和) for database audit, "
+        "Shengbang RayWAF (盛邦安全) for WAF, and Anheng DAS-DBAuditor / Mingyu WAF (安恒信息) when you "
+        "need both. Topsec, NSFOCUS, and Chaitin are additional mainland vendors. These appear on the "
         "alternatives page only — not as Explore / Landscape product tiles. Confirm Xinchuang OS/CPU fit "
         "and procurement rules before production adoption."
     ),
@@ -4578,9 +4906,17 @@ def main() -> None:
             "name": "OpenStreetMap",
             "categories": ["Location & Map Services"],
         },
+        "mapbox": {
+            "name": "Mapbox",
+            "categories": ["Location & Map Services"],
+        },
         "amplitude": {
             "name": "Amplitude",
             "categories": ["Growth, Content & Experience", "Product Analytics & User Insights"],
+        },
+        "zendesk": {
+            "name": "Zendesk",
+            "categories": ["Engagement & Communication", "Customer Support & In-App Messaging"],
         },
         "aws": {
             "name": "AWS",
