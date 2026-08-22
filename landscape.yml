@@ -826,7 +826,7 @@ landscape:
             description: NetEase Yidun (网易易盾) provides China business-security APIs for registration protection, login protection, behavioral CAPTCHA, and device fingerprinting.
             extra:
               annotations:
-                global_analogs: Castle.io
+                global_analogs: Castle.io, hCaptcha
                 replacement_fit: partial
                 china_context: "Covers registration protection, login protection, behavioral CAPTCHA, and device fingerprinting. API integration is straightforward with free trial quota — suited to mid-size apps that need a fast launch. Behavioral CAPTCHA can stay frictionless and uses a Castle-like risk-score path (allow, step-up, or block). Best when you want quick go-live and stronger UI customization."
                 vendor_type: china-saas
@@ -839,8 +839,8 @@ landscape:
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
                 product_overview: "NetEase Yidun (网易易盾) business-security suite for registration/login protection, behavioral CAPTCHA, and device fingerprinting."
-                alternative_to: "China-market alternative or deployment route for: Castle.io."
-                global_alternatives: "Castle.io"
+                alternative_to: "China-market alternative or deployment route for: Castle.io, hCaptcha."
+                global_alternatives: "Castle.io, hCaptcha"
                 organization: "NetEase"
                 organization_overview: "NetEase operates mainland China internet services including the Yidun (易盾) business-security and content-moderation platform for developers."
                 developer_docs: "https://support.dun.163.com/"
@@ -926,7 +926,7 @@ landscape:
             description: Alibaba Cloud CAPTCHA provides human verification and bot-protection capabilities on Alibaba Cloud.
             extra:
               annotations:
-                global_analogs: Google reCAPTCHA, hCaptcha, Cloudflare Turnstile
+                global_analogs: Google reCAPTCHA, Cloudflare Turnstile
                 replacement_fit: direct
                 china_context: Alibaba Cloud CAPTCHA provides a China-market alternative for CAPTCHA and bot protection use cases.
                 vendor_type: china-cloud
@@ -939,8 +939,8 @@ landscape:
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
                 product_overview: "Alibaba Cloud CAPTCHA provides human verification and bot-protection capabilities on Alibaba Cloud."
-                alternative_to: "China-market alternative or deployment route for: Google reCAPTCHA, hCaptcha, Cloudflare Turnstile."
-                global_alternatives: "Google reCAPTCHA, hCaptcha, Cloudflare Turnstile"
+                alternative_to: "China-market alternative or deployment route for: Google reCAPTCHA, Cloudflare Turnstile."
+                global_alternatives: "Google reCAPTCHA, Cloudflare Turnstile"
                 organization: "Alibaba Cloud"
                 organization_overview: "Alibaba Cloud is a major China cloud provider with infrastructure, application, data, security, and developer platform services."
                 developer_docs: "https://help.aliyun.com/zh/captcha/"

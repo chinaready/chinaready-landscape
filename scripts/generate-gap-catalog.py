@@ -1144,7 +1144,34 @@ OVERRIDES = {
     "akamai": ["Alibaba Cloud CDN", "Tencent Cloud CDN"],
     "cloudflare cdn": ["Alibaba Cloud CDN", "Tencent Cloud CDN", "Cloudflare China Network"],
     "sucuri": ["GeeTest", "Alibaba Cloud CAPTCHA"],
-    "hcaptcha": ["GeeTest", "Alibaba Cloud CAPTCHA"],
+    "hcaptcha": [
+        {
+            "name": "GeeTest",
+            "homepage_url": "https://www.geetest.com/",
+            "category": "Users, Trust & Monetization",
+            "subcategory": "Bot Protection & CAPTCHA",
+            "source": "landscape",
+            "note": (
+                "GeeTest (极验) is a mainland industry benchmark for CAPTCHA and bot protection, "
+                "optimized for local infrastructure and compliance. It supports slider puzzles, "
+                "text-click challenges, and frictionless verification, with high penetration in "
+                "ecommerce and gaming."
+            ),
+        },
+        {
+            "name": "NetEase Yidun",
+            "homepage_url": "https://dun.163.com/",
+            "category": "Users, Trust & Monetization",
+            "subcategory": "Bot Protection & CAPTCHA",
+            "source": "landscape",
+            "note": (
+                "NetEase Yidun (网易易盾) is a strong mainland business-security suite. NetEase helped "
+                "lead related MIIT industry standards; the product can switch challenge difficulty by "
+                "risk level, keeps average verification time very low, and is comparatively friendly "
+                "for accessibility (including visually impaired users)."
+            ),
+        },
+    ],
     "mapbox": ["Amap", "Tencent Location Services"],
     "here": ["Amap", "Tencent Location Services"],
     "openstreetmap": [
@@ -3507,6 +3534,7 @@ AVAILABILITY_OVERRIDES = {
     "visual studio app center": "Unavailable",
     "firebase app distribution": "Limited",
     "firebase crashlytics": "Unavailable",
+    "hcaptcha": "Limited",
     "klaviyo": "Limited",
     "bitly": "Unavailable",
     "altis": "Unavailable",
@@ -4253,6 +4281,14 @@ RESEARCH_NOTES = {
         "alternatives page only — not as Explore / Landscape product tiles. Confirm Xinchuang OS/CPU fit "
         "and procurement rules before production adoption."
     ),
+    "hcaptcha": (
+        "hCaptcha is Available, but with instability risk, in mainland China: it is not comprehensively "
+        "blocked, but some mainland ISPs (for example China Telecom and China Mobile) fail to resolve "
+        "hCaptcha on default DNS or return the wrong address, so the CAPTCHA widget often cannot load. "
+        "If the product and users are in mainland China, prefer a domestic service for speed and "
+        "stability — GeeTest (极验) and NetEase Yidun (网易易盾). Confirm widget UX, accessibility, "
+        "and compliance before production adoption."
+    ),
     "castle": (
         "Chinaready's nationwide mainland probes of api.castle.io across 148 city/carrier paths all returned "
         "HTTP and DNS high latency — treat the Castle API as unavailable in China. Multiple domestic vendors offer "
@@ -4506,6 +4542,10 @@ def main() -> None:
             "categories": ["Developer Tools & Platforms"],
         },
         # === END HUB P0P1 OVERRIDES ===
+        "hcaptcha": {
+            "name": "hCaptcha",
+            "categories": ["Users, Trust & Monetization", "Bot Protection & CAPTCHA"],
+        },
         "datadog": {
             "name": "Datadog",
             "categories": ["Release, Quality & Operations", "Monitoring & Observability (APM / RUM)"],

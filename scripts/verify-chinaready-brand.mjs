@@ -681,6 +681,22 @@ if (exists("build/alternatives/index.html")) {
     ),
     "alternatives index must show Datadog mapped candidates",
   );
+  assert(exists("build/alternatives/hcaptcha.html"), "hCaptcha must get a dedicated alternatives page");
+  const hcaptchaPage = read("build/alternatives/hcaptcha.html");
+  assert(
+    hcaptchaPage.includes('cr-alt-availability-limited">Limited</span>'),
+    "hCaptcha page must label mainland China availability as Limited",
+  );
+  assert(hcaptchaPage.includes("Available, but with instability risk"), "hCaptcha page must state instability risk");
+  assert(hcaptchaPage.includes("default DNS"), "hCaptcha page must explain mainland DNS resolution failures");
+  assert(hcaptchaPage.includes("China Telecom"), "hCaptcha page must name China Telecom as an affected carrier");
+  assert(hcaptchaPage.includes("GeeTest"), "hCaptcha alternatives must list GeeTest");
+  assert(hcaptchaPage.includes("NetEase Yidun"), "hCaptcha alternatives must list NetEase Yidun");
+  assert(
+    !hcaptchaPage.includes('<h3><a href="https://www.aliyun.com/product/security/captcha">Alibaba Cloud CAPTCHA</a></h3>'),
+    "hCaptcha page must not list Alibaba Cloud CAPTCHA as a candidate card",
+  );
+  assert(alternativesIndex.includes("GeeTest, NetEase Yidun"), "alternatives index must show hCaptcha mapped candidates");
   assert(exists("build/alternatives/dynatrace.html"), "Dynatrace must get a dedicated alternatives page");
   const dynatracePage = read("build/alternatives/dynatrace.html");
   assert(dynatracePage.includes("Bonree ONE"), "Dynatrace alternatives must list Bonree ONE");

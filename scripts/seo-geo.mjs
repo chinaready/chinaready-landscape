@@ -157,6 +157,7 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   shopify: "limited",
   "google-cloud": "unavailable",
   crowdstrike: "unavailable",
+  hcaptcha: "limited",
 };
 
 /** Keep stable public URLs when display names change. */
@@ -6186,6 +6187,53 @@ const EDITORIAL_OVERRIDES = {
         question: "Where should teams go after shortlisting Okta alternatives?",
         answer:
           "Use the interactive Chinaready Landscape to compare adjacent identity pages, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  hcaptcha: {
+    relatedSlugs: ["google-recaptcha", "cloudflare-turnstile", "castle-io"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does hCaptcha work in China? Available, but with instability risk — some mainland ISP DNS paths fail. Prefer ${names.slice(0, 2).join(" and ") || "GeeTest and NetEase Yidun"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>hCaptcha is Available, but with instability risk</strong> in mainland China. It is not comprehensively blocked, but some mainland ISPs (for example China Telecom and China Mobile) fail to resolve hCaptcha on default DNS or return the wrong address, so the CAPTCHA widget often cannot load. If the product and users are in mainland China, prefer a domestic service for speed and stability: <strong>${escapeHtml(names.slice(0, 2).join(" and ") || "GeeTest and NetEase Yidun")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "China CAPTCHA paths instead of hCaptcha",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 2,
+    indexCandidates: "GeeTest, NetEase Yidun",
+    guidanceHtml: `
+        <p><strong>hCaptcha is Available, but with instability risk.</strong> The service is not comprehensively blocked in mainland China. The practical failure mode is DNS: some domestic carriers (including China Telecom and China Mobile) cannot resolve hCaptcha on their default resolvers, or they return the wrong address, so the challenge never loads.</p>
+        <p>If your business and users are in mainland China, use a domestic CAPTCHA / bot-protection service instead of depending on hCaptcha remaining reachable.</p>
+        <h3>GeeTest (极验)</h3>
+        <p>GeeTest is a mainland industry benchmark, optimized for local infrastructure and compliance. It supports slider puzzles, text-click challenges, and frictionless verification, and is widely used in ecommerce and gaming.</p>
+        <h3>NetEase Yidun (网易易盾)</h3>
+        <p>NetEase Yidun is a strong mainland business-security suite. NetEase helped lead related MIIT industry standards. The product can switch challenge difficulty by risk level, keeps average verification time very low, and is comparatively friendly for accessibility — including visually impaired users.</p>
+        <p>GeeTest and NetEase Yidun are already mapped Landscape products in Bot Protection &amp; CAPTCHA. Confirm widget UX, accessibility, and compliance before production adoption. Also compare the <a href="/alternatives/google-recaptcha">Google reCAPTCHA</a> and <a href="/alternatives/cloudflare-turnstile">Cloudflare Turnstile</a> pages if the global stack still mixes those libraries.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does hCaptcha work in China?",
+        answer: `It can, but with instability risk. Chinaready labels hCaptcha as ${availability}. It is not comprehensively blocked, but some mainland ISPs (China Telecom, China Mobile) fail to resolve hCaptcha on default DNS or return the wrong address, so the CAPTCHA often cannot load.`,
+      },
+      {
+        question: "What are the best China alternatives to hCaptcha?",
+        answer: `Chinaready currently lists: ${namesText}. Prefer GeeTest (极验) as the mainland industry benchmark for slider, click, and frictionless challenges; prefer NetEase Yidun (网易易盾) when you want risk-based difficulty, very low verification time, and stronger accessibility support.`,
+      },
+      {
+        question: "Why is hCaptcha unstable for some mainland users?",
+        answer:
+          "hCaptcha is not comprehensively blocked, but some mainland carrier default DNS resolvers fail to resolve hCaptcha or return the wrong address. When that happens, the CAPTCHA widget cannot load even though the rest of the site works.",
+      },
+      {
+        question: "Is there a direct drop-in replacement for hCaptcha in mainland China?",
+        answer:
+          "Usually no. Challenge UX, risk signals, and data residency differ. Expect client and server integration changes rather than a widget swap.",
+      },
+      {
+        question: "Where should teams go after shortlisting hCaptcha alternatives?",
+        answer:
+          "Validate mainland DNS and widget load from China Telecom and China Mobile networks, plus accessibility and PIPL handling for device signals. Use the interactive Chinaready Landscape for adjacent security pages, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
