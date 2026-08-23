@@ -227,10 +227,54 @@ function restoreGuideTables() {
 restoreGuideTables();
 
 let index = fs.readFileSync(indexPath, "utf8");
+
+// Keep search tags in data/base.json, but omit them from the HTML-inline baseDS blob so
+// the ~80KB tag payload does not delay discovery of the landscape2 module script.
+const inlineBase = JSON.parse(JSON.stringify(patchedBase));
+for (const item of inlineBase.items || []) {
+  if (item?.summary && Object.prototype.hasOwnProperty.call(item.summary, "tags")) {
+    const { tags: _omitTags, ...rest } = item.summary;
+    if (Object.keys(rest).length) item.summary = rest;
+    else delete item.summary;
+  }
+}
+const tagHydrateScript = `<script>
+(function () {
+  if (!window.baseDS || !Array.isArray(window.baseDS.items)) return;
+  fetch("/data/base.json")
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      var byId = Object.create(null);
+      (data.items || []).forEach(function (item) {
+        if (item && item.id) byId[item.id] = item;
+      });
+      window.baseDS.items.forEach(function (item) {
+        var src = byId[item.id];
+        var tags = src && src.summary && src.summary.tags;
+        if (!tags) return;
+        item.summary = Object.assign({}, item.summary || {}, { tags: tags });
+      });
+    })
+    .catch(function () {});
+})();
+</script>`;
+
 index = index.replace(
   /window\.baseDS = .*?;\n/s,
-  `window.baseDS = ${JSON.stringify(patchedBase)};\n`,
+  `window.baseDS = ${JSON.stringify(inlineBase)};\n${tagHydrateScript}\n`,
 );
+
+// Prefer WOFF with font-display:swap on generated landscape2 CSS (Orbitron @font-face).
+for (const file of fs.readdirSync(path.join(buildDir, "assets"))) {
+  if (!/^index-.*\.css$/.test(file)) continue;
+  const cssPath = path.join(buildDir, "assets", file);
+  let css = fs.readFileSync(cssPath, "utf8");
+  if (css.includes("@font-face") && !css.includes("font-display")) {
+    css = css.replace(/@font-face\s*\{/g, "@font-face{font-display:swap;");
+    fs.writeFileSync(cssPath, css);
+  }
+}
+
 const cacheBust = "20260720-seo-geo-ctr";
 // Match chinaready.co favicon declarations that Google already shows in SERPs.
 // Prefer ICO + square PNGs (>=48px); avoid SVG-first so Googlebot picks a raster brand mark.

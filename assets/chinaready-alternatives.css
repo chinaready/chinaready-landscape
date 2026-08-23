@@ -593,6 +593,12 @@ a.cr-guide-global-link:hover {
   color: #1f6b3a;
 }
 
+.cr-alt-availability-available-not-recommended {
+  border-color: #e2c78a;
+  background: #fff8ea;
+  color: #8a5a00;
+}
+
 .cr-alt-availability-limited {
   border-color: #e2c78a;
   background: #fff8ea;

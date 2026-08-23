@@ -54,6 +54,7 @@ const CHINA_AVAILABILITY_LABELS = {
   unavailable: "Unavailable",
   unknown: "Unknown",
   "supported-terraform": "Supported (Terraform workflows)",
+  "available-not-recommended": "Available, not recommended",
 };
 
 const CONTACT_CHINAREADY_URL = `${MAIN_SITE_URL}/book-call`;
@@ -203,6 +204,11 @@ const GLOBAL_SERVICE_AVAILABILITY_OVERRIDES = {
   splunk: "limited",
   zendesk: "limited",
   "zendesk-messaging": "limited",
+  appsflyer: "available-not-recommended",
+  "amazon-route-53": "limited",
+  "google-cloud-dns": "unavailable",
+  "cloudflare-dns": "limited",
+  "apollo-kotlin": "limited",
 };
 
 /** Keep stable public URLs when display names change. */
@@ -1013,7 +1019,7 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   applovin: {
-    relatedSlugs: ["google-admob", "ironsource", "chartboost", "liftoff"],
+    relatedSlugs: ["google-admob", "applovin-max", "ironsource", "unity-levelplay", "liftoff"],
     description: (availability, names) =>
       clipMeta(
         `AppLovin is Unavailable in mainland China — outbound ecommerce model, U.S.–China risk. Compare ${names.slice(0, 3).join(", ") || "Mintegral, zMaticoo, BlueX"}. Availability: ${availability}.`,
@@ -1078,7 +1084,7 @@ const EDITORIAL_OVERRIDES = {
           <li><strong>AI real-time bidding modeled on AppLovin:</strong> evaluate BlueX.</li>
           <li><strong>DSP / data-plus-algorithm buying:</strong> compare Genimous and Tianyu Digital.</li>
         </ul>
-        <p>These candidates appear on the AppLovin alternatives page only — Chinaready does <strong>not</strong> add Mintegral, zMaticoo, BlueX, Genimous, or Tianyu Digital as Explore / Landscape product tiles from this rewrite. Confirm SDK access, settlement entity, and PIPL compliance before production adoption. Also compare nearby pages for AdMob, ironSource, and Chartboost when the global stack mixes mediation and UA.</p>`,
+        <p>These candidates appear on the AppLovin alternatives page only — Chinaready does <strong>not</strong> add Mintegral, zMaticoo, BlueX, Genimous, or Tianyu Digital as Explore / Landscape product tiles from this rewrite. Confirm SDK access, settlement entity, and PIPL compliance before production adoption. Also compare nearby pages for <a href="/alternatives/google-admob">Google AdMob</a>, <a href="/alternatives/applovin-max">AppLovin MAX</a>, <a href="/alternatives/ironsource">ironSource</a>, <a href="/alternatives/unity-levelplay">Unity LevelPlay</a>, and <a href="/alternatives/liftoff">Liftoff</a> when the global stack mixes mediation and UA.</p>`,
     faq: (availability, namesText) => [
       {
         question: "Does AppLovin work in China?",
@@ -3448,7 +3454,7 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   megaphone: {
-    relatedSlugs: ["castos", "buzzsprout", "transistor-fm", "libsyn", "podbean"],
+    relatedSlugs: ["buzzsprout", "transistor", "libsyn", "podbean", "spotify-for-podcasters"],
     description: (availability, names) =>
       clipMeta(
         `Does Megaphone work in China? Unavailable — overseas Google Cloud hosting, slow access, and audio compliance risk. Compare ${names.slice(0, 5).join(", ")}. Availability: ${availability}.`,
@@ -4708,6 +4714,87 @@ const EDITORIAL_OVERRIDES = {
         question: "Where should teams go after shortlisting LogRocket alternatives?",
         answer:
           "Validate whether you need session replay, event analytics, or both; then confirm consent, PIPL, ICP/compliance, and event taxonomy with your China entity. Use the interactive Chinaready Landscape to compare adjacent growth and analytics services, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  appsflyer: {
+    relatedSlugs: ["adjust", "branch", "firebase-analytics", "google-analytics", "amplitude"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does AppsFlyer work in China? Available, but not recommended — cross-border data and weak China-store / WeChat fit. Compare ${names.slice(0, 2).join(", ") || "Umeng U-App, Qimai Data"}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>AppsFlyer is Available, but not recommended</strong> for mainland China production stacks. Attribution data typically has to leave the mainland, which creates Personal Information Protection Law (PIPL) and related privacy-compliance risk. The product also fits poorly with China's fragmented Android app stores and WeChat private-domain channels. For China-facing measurement, evaluate <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Umeng U-App, Qimai Data")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Why AppsFlyer is available but not recommended in China",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 2,
+    indexCandidates: "Umeng U-App, Qimai Data",
+    guidanceHtml: `
+        <p><strong>AppsFlyer is Available, but Chinaready does not recommend it</strong> as the default MMP for China-facing apps. Teams can often integrate the SDK, but two structural gaps make it a poor production choice when the product and users are in mainland China:</p>
+        <ul>
+          <li><strong>Cross-border data / PIPL risk:</strong> AppsFlyer attribution and device data typically transfer overseas. That creates mainland privacy-compliance risk under China's Personal Information Protection Law (PIPL) and related rules.</li>
+          <li><strong>Weak China-ecosystem fit:</strong> Coverage of fragmented domestic Android stores (Huawei, Xiaomi, OPPO, vivo, and others) and WeChat private-domain paths is incomplete compared with China-native measurement stacks.</li>
+        </ul>
+        <h3>Umeng U-App advantages for China-facing apps</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Advantage</th>
+                <th>What it means for mainland business</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Compliance and data residency</td>
+                <td>Full data storage on Alibaba Cloud mainland nodes, aligned with PIPL and related mainland rules, so teams can avoid AppsFlyer-style cross-border transfer risk</td>
+              </tr>
+              <tr>
+                <td>Local ecosystem fit</td>
+                <td>Native HarmonyOS support plus Huawei, Xiaomi, and other major China Android stores; WeChat mini-program fallback jumps, offline ground promotion, and KOL / short-video full-channel tracking</td>
+              </tr>
+              <tr>
+                <td>Pricing and onboarding</td>
+                <td>Tiered usage-based billing with no mandatory high annual fee; Chinese SDK and local technical support, so integration cost is usually lower than a global MMP contract</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>How to choose</h3>
+        <ul>
+          <li><strong>China App attribution, channels, and private-domain tracking:</strong> start with <strong>Umeng U-App</strong> (友盟+ U-App).</li>
+          <li><strong>App-store intelligence and ASO research:</strong> keep <strong>Qimai Data</strong> (七麦数据) for rankings across fragmented domestic stores — it is not a full AppsFlyer MMP replacement.</li>
+        </ul>
+        <p>Umeng U-App is named here as the AppsFlyer-oriented module of Umeng+ (友盟+), which already exists on Explore. Chinaready does <strong>not</strong> add a separate Umeng U-App Explore / Landscape tile from this rewrite. Confirm consent, PIPL, SDK coverage, and channel mix before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does AppsFlyer work in China?",
+        answer: `Technically yes, but Chinaready does not recommend it for China-facing production stacks. Chinaready labels AppsFlyer as ${availability}. The SDK can often be integrated, yet attribution data typically leaves the mainland and the product fits poorly with domestic Android stores and WeChat private-domain channels.`,
+      },
+      {
+        question: "Why is AppsFlyer not recommended if it is Available?",
+        answer:
+          "Availability means teams can often connect the SDK, not that it is a safe default. AppsFlyer usually sends attribution and device data across the border, which creates PIPL and related privacy-compliance risk. It also adapts poorly to China's fragmented Android app stores and WeChat private-domain ecosystems compared with China-native measurement platforms.",
+      },
+      {
+        question: "What are the best China alternatives to AppsFlyer?",
+        answer: `Chinaready currently lists these China-market options for AppsFlyer: ${namesText}. Prefer Umeng U-App (友盟+ U-App) for mainland-compliant App attribution, HarmonyOS / OEM-store coverage, and WeChat plus offline / KOL channel tracking. Use Qimai Data (七麦数据) when the need is app-store intelligence and ASO rather than a full MMP swap.`,
+      },
+      {
+        question: "Why prefer Umeng U-App for China-facing apps?",
+        answer:
+          "Umeng U-App stores data on Alibaba Cloud mainland nodes, which helps teams stay aligned with PIPL and avoid cross-border transfer risk. It is built for HarmonyOS and major China Android stores, and it covers WeChat mini-program fallback jumps, offline ground promotion, and KOL / short-video tracking. Billing is typically tiered and usage-based, with a Chinese SDK and local support, so onboarding is usually cheaper than a global MMP annual contract.",
+      },
+      {
+        question: "Is Umeng U-App on Chinaready Explore?",
+        answer:
+          "Umeng+ (友盟+) already exists on Explore as a Landscape product. This alternatives page names Umeng U-App as the AppsFlyer-oriented module. Chinaready does not add a separate Umeng U-App Explore / Landscape tile from this rewrite. Qimai Data is already listed on Explore under App Attribution & ASO.",
+      },
+      {
+        question: "Where should teams go after shortlisting AppsFlyer alternatives?",
+        answer:
+          "Confirm whether you need MMP-style attribution, ASO intelligence, or both; then validate consent, PIPL, OEM-store coverage, and WeChat / offline channel tracking. Use the interactive Chinaready Landscape for adjacent growth and analytics services, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -6723,7 +6810,7 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   "cloudflare-turnstile": {
-    relatedSlugs: ["google-recaptcha", "hcaptcha", "cloudflare", "cloudflare-cdn"],
+    relatedSlugs: ["google-recaptcha", "hcaptcha", "cloudflare-turnstile", "cloudflare-cdn"],
     description: (availability, names) =>
       clipMeta(
         `Does Cloudflare Turnstile work in China? Limited — prefer ${names.slice(0, 2).join(" and ") || "GeeTest and Alibaba Cloud CAPTCHA"} for mainland bot checks. Availability: ${availability}.`,
@@ -7584,6 +7671,149 @@ const EDITORIAL_OVERRIDES = {
         question: "Where should teams go after shortlisting Microsoft Authenticator alternatives?",
         answer:
           "Decide whether you still need a TOTP app or a full enterprise 2FA platform, then validate Android store coverage, HarmonyOS needs, and office-stack fit (WeCom / Feishu). Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  "amazon-route-53": {
+    relatedSlugs: ["google-cloud-dns", "cloudflare-dns", "aws", "amazon-cloudfront"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Amazon Route 53 work in China? Limited as mainland authoritative DNS — prefer ${names.slice(0, 2).join(" or ") || "Alibaba Cloud DNS or Tencent Cloud DNSPod"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Amazon Route 53 is Limited</strong> as a mainland China production DNS authority. Global Route 53 does not replace China-cloud DNS for ICP-ready domains; Chinaready treats managed DNS as part of the chosen China cloud platform. Map to <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Alibaba Cloud DNS, Tencent Cloud DNSPod")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Mainland DNS instead of Amazon Route 53",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 2,
+    indexCandidates: "Alibaba Cloud DNS, Tencent Cloud DNSPod",
+    guidanceHtml: `
+        <p><strong>Amazon Route 53 is Limited for mainland China authoritative DNS.</strong> Teams launching in China usually pick DNS with the China cloud account that hosts the site — not as a standalone global Route 53 zone for ICP-ready domains.</p>
+        <ul>
+          <li><strong>Cloud-coupled DNS:</strong> Alibaba Cloud DNS and Tencent Cloud DNSPod sit beside mainland hosting, CDN, and certificate workflows.</li>
+          <li><strong>ICP adjacency:</strong> China-facing domains need registrar and filing paths that match the China operating entity.</li>
+          <li><strong>Split DNS is common:</strong> keep Route 53 for global zones if needed, but point China-user traffic at China-cloud DNS.</li>
+        </ul>
+        <p>These candidates appear on the Amazon Route 53 alternatives page only — Chinaready does <strong>not</strong> re-add Managed DNS as an Explore subcategory from this page. Confirm registrar, ICP, and failover design before production adoption. Also compare <a href="/alternatives/google-cloud-dns">Google Cloud DNS</a>, <a href="/alternatives/cloudflare-dns">Cloudflare DNS</a>, and <a href="/alternatives/aws">AWS</a>.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Amazon Route 53 work in China?",
+        answer: `Only with Limited usefulness as a mainland production DNS authority. Chinaready labels Amazon Route 53 as ${availability}. Prefer China-cloud DNS (Alibaba Cloud DNS or Tencent Cloud DNSPod) for ICP-ready domains.`,
+      },
+      {
+        question: "What are the best China alternatives to Amazon Route 53?",
+        answer: `Chinaready currently lists these China-market options: ${namesText}. Prefer Alibaba Cloud DNS when the stack is on Alibaba Cloud; prefer Tencent Cloud DNSPod when the stack is on Tencent Cloud.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Route 53 alternatives?",
+        answer:
+          "Validate registrar, ICP filing adjacency, dual-DNS / split-horizon needs, and CDN coupling. Use the interactive Chinaready Landscape for adjacent infrastructure choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  "google-cloud-dns": {
+    relatedSlugs: ["amazon-route-53", "cloudflare-dns", "google-cloud", "aws"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Google Cloud DNS work in China? Unavailable as mainland authoritative DNS — prefer ${names.slice(0, 2).join(" or ") || "Alibaba Cloud DNS or Tencent Cloud DNSPod"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Google Cloud DNS is Unavailable</strong> as a practical mainland China production DNS authority. Google Cloud has no mainland China region comparable to AWS China or Azure China, so China-facing domains usually need authoritative DNS beside a China cloud account. Map to <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Alibaba Cloud DNS, Tencent Cloud DNSPod")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Mainland DNS instead of Google Cloud DNS",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 2,
+    indexCandidates: "Alibaba Cloud DNS, Tencent Cloud DNSPod",
+    guidanceHtml: `
+        <p><strong>Google Cloud DNS is Unavailable for mainland China production authority.</strong> Pair domain resolution with Alibaba Cloud DNS or Tencent Cloud DNSPod when users and hosting are in mainland China.</p>
+        <p>These candidates appear on the Google Cloud DNS alternatives page only — not as Explore / Landscape product tiles. Also compare <a href="/alternatives/google-cloud">Google Cloud</a>, <a href="/alternatives/amazon-route-53">Amazon Route 53</a>, and <a href="/alternatives/cloudflare-dns">Cloudflare DNS</a>.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Google Cloud DNS work in China?",
+        answer: `No as a practical mainland production DNS authority. Chinaready labels Google Cloud DNS as ${availability}. Prefer Alibaba Cloud DNS or Tencent Cloud DNSPod beside a China cloud account.`,
+      },
+      {
+        question: "What are the best China alternatives to Google Cloud DNS?",
+        answer: `Chinaready currently lists these China-market options: ${namesText}.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Google Cloud DNS alternatives?",
+        answer:
+          "Validate China cloud account rails, ICP adjacency, and whether global zones stay on Google Cloud DNS. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  "cloudflare-dns": {
+    relatedSlugs: ["amazon-route-53", "google-cloud-dns", "cloudflare-cdn", "amazon-cloudfront"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Cloudflare DNS work in China? Limited for mainland authority — prefer ${names.slice(0, 2).join(" or ") || "Alibaba Cloud DNS or Tencent Cloud DNSPod"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Cloudflare DNS is Limited</strong> for mainland China production authority. Teams often keep Cloudflare for global zones, but China-facing domains typically move authoritative DNS to <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Alibaba Cloud DNS, Tencent Cloud DNSPod")}</strong> beside mainland hosting and CDN. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Mainland DNS instead of Cloudflare DNS",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 2,
+    indexCandidates: "Alibaba Cloud DNS, Tencent Cloud DNSPod",
+    guidanceHtml: `
+        <p><strong>Cloudflare DNS is Limited as mainland authoritative DNS.</strong> Split-horizon designs are common: Cloudflare for global traffic, China-cloud DNS for ICP-ready China domains. Also compare <a href="/alternatives/cloudflare-cdn">Cloudflare CDN</a> and <a href="/alternatives/amazon-route-53">Amazon Route 53</a>.</p>
+        <p>These candidates appear on the Cloudflare DNS alternatives page only — not as Explore / Landscape product tiles.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Cloudflare DNS work in China?",
+        answer: `Only with Limited usefulness as a mainland production DNS authority. Chinaready labels Cloudflare DNS as ${availability}. Prefer Alibaba Cloud DNS or Tencent Cloud DNSPod for China-facing domains.`,
+      },
+      {
+        question: "What are the best China alternatives to Cloudflare DNS?",
+        answer: `Chinaready currently lists these China-market options: ${namesText}.`,
+      },
+      {
+        question: "Where should teams go after shortlisting Cloudflare DNS alternatives?",
+        answer:
+          "Validate dual-DNS design, CDN coupling, and ICP adjacency. Use the interactive Chinaready Landscape for adjacent edge choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  "apollo-kotlin": {
+    relatedSlugs: ["kong-gateway", "aws", "microsoft-azure"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Apollo Kotlin work in China? Limited — OSS client runs, but Maven fetch is often unstable. Prefer ${names.slice(0, 2).join(" or ") || "China Maven mirrors"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Apollo Kotlin is Limited</strong> as a mainland China operating dependency rather than a blocked library. The open-source GraphQL client can run in China apps, but Maven Central / Google repo fetch from mainland CI is often slow or unstable, and the GraphQL API still needs a China-reachable backend. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Apollo Kotlin via China Maven mirrors, Aliyun Maven, Tencent Cloud Mirror")}</strong> as operating paths on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "How to keep Apollo Kotlin workable in mainland China",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "Apollo Kotlin (via China Maven mirrors), Aliyun Maven Public Repository, Tencent Cloud Mirror (Maven)",
+    guidanceHtml: `
+        <p><strong>Apollo Kotlin is not a SaaS swap problem.</strong> Do not replace it with a cross-platform UI toolkit. The usual China friction is dependency download plus GraphQL API hosting — not the client library itself.</p>
+        <ul>
+          <li><strong>Keep the client:</strong> continue with Apollo Kotlin when the Android/Kotlin stack already uses it.</li>
+          <li><strong>Fix the registry path:</strong> point Gradle at Aliyun Maven or Tencent mirrors so mainland CI and laptops can resolve artifacts reliably.</li>
+          <li><strong>Host the API in China:</strong> run the GraphQL backend on a China cloud so queries do not depend on an overseas-only origin.</li>
+        </ul>
+        <p>These paths appear on the Apollo Kotlin alternatives page only — Chinaready does <strong>not</strong> add Maven mirrors as Explore / Landscape product tiles. Confirm mirror policy and API hosting before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Apollo Kotlin work in China?",
+        answer: `Yes, with Limited operating friction. Chinaready labels Apollo Kotlin as ${availability}. The OSS GraphQL client can run in mainland apps, but Maven Central fetch is often unstable and the GraphQL API must be China-reachable.`,
+      },
+      {
+        question: "What are the best China alternatives to Apollo Kotlin?",
+        answer: `Chinaready currently lists these operating paths: ${namesText}. Prefer keeping Apollo Kotlin with China Maven mirrors rather than swapping to an unrelated framework.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Apollo Kotlin in mainland China?",
+        answer:
+          "Usually you should not replace Apollo Kotlin. Fix mainland Maven resolution and host the GraphQL API on a China cloud. Treat this as an operating redesign of dependency fetch and backend placement, not a client-library swap.",
+      },
+      {
+        question: "Where should teams go after shortlisting Apollo Kotlin options?",
+        answer:
+          "Validate Gradle mirror configuration, CI authenticity controls, and GraphQL API hosting region. Use the interactive Chinaready Landscape for adjacent stack choices, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
       },
     ],
   },
@@ -8821,8 +9051,6 @@ function renderCloudflareRedirects() {
 /alternatives/castos.html /alternatives/buzzsprout 301
 /alternatives/callkit /alternatives/agora 301
 /alternatives/callkit.html /alternatives/agora 301
-/alternatives/amazon-route-53 / 301
-/alternatives/amazon-route-53.html / 301
 `;
 }
 
@@ -9647,6 +9875,34 @@ function enhanceIndexHtml(indexHtml, groups) {
   );
 
   let html = indexHtml;
+
+  // Discover hashed landscape2 assets before the large inline baseDS blocks parser progress.
+  const moduleMatch = html.match(/src="(\.\/assets\/index-[^"]+\.js)"/);
+  const cssMatch = html.match(/href="(\.\/assets\/index-[^"]+\.css)"/);
+  const earlyHints = [];
+  if (cssMatch) {
+    earlyHints.push(
+      `<link rel="preload" href="${cssMatch[1]}" as="style" crossorigin>`,
+    );
+  }
+  if (moduleMatch) {
+    earlyHints.push(
+      `<link rel="modulepreload" href="${moduleMatch[1]}" crossorigin>`,
+    );
+  }
+  earlyHints.push(
+    `<link rel="preload" href="/images/chinaready-landscape-logo.svg" as="image">`,
+  );
+  if (earlyHints.length && html.includes('<meta charset="UTF-8" />')) {
+    const hintBlock = earlyHints.map((line) => `        ${line}`).join("\n");
+    if (!html.includes('rel="modulepreload"') && !html.includes('chinaready-landscape-logo.svg" as="image"')) {
+      html = html.replace(
+        '<meta charset="UTF-8" />',
+        `<meta charset="UTF-8" />\n${hintBlock}`,
+      );
+    }
+  }
+
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`);
   html = html.replace(
     /<meta name="description" content="[^"]*"\s*\/?>/,

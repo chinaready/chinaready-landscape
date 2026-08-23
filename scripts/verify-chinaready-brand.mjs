@@ -338,6 +338,12 @@ if (exists("build/index.html")) {
     index.includes('property="og:image" content="https://landscape.chinaready.co/favicon-512x512.png"'),
     "build/index.html must declare og:image",
   );
+  assert(index.includes('rel="modulepreload"'), "build/index.html must modulepreload the landscape2 app bundle for LCP");
+  assert(
+    index.includes('href="/images/chinaready-landscape-logo.svg" as="image"'),
+    "build/index.html must preload the header logo for LCP",
+  );
+  assert(index.includes("/data/base.json"), "build/index.html must hydrate search tags from base.json after slim baseDS");
 }
 
 if (exists("build/robots.txt")) {
@@ -898,16 +904,22 @@ if (exists("build/alternatives/index.html")) {
   assert(!exists("build/alternatives/castos.html"), "Castos must be removed from Global alternatives");
   assert(!exists("build/alternatives/liftoff-monetize.html"), "Liftoff Monetize must be removed from Global alternatives");
   assert(!exists("build/alternatives/callkit.html"), "CallKit must be removed from Global alternatives");
-  // GSC 404 drilldown (2026-08): removed pages must 301, not soft-404.
+  // GSC 404 drilldown: removed podcast/CallKit pages must 301; DNS + Apollo Kotlin are restored pages.
   const redirects = read("build/_redirects");
   assert(redirects.includes("/alternatives/acast.html /alternatives/buzzsprout 301"), "Acast 404 must redirect to Buzzsprout");
   assert(redirects.includes("/alternatives/castos.html /alternatives/buzzsprout 301"), "Castos 404 must redirect to Buzzsprout");
   assert(redirects.includes("/alternatives/callkit.html /alternatives/agora 301"), "CallKit 404 must redirect to Agora");
-  assert(redirects.includes("/alternatives/amazon-route-53.html / 301"), "Amazon Route 53 404 must redirect home");
+  assert(
+    !redirects.includes("/alternatives/amazon-route-53.html / 301"),
+    "Amazon Route 53 must not redirect to the homepage",
+  );
+  assert(exists("build/alternatives/amazon-route-53.html"), "Amazon Route 53 must have a dedicated alternatives page");
+  assert(exists("build/alternatives/google-cloud-dns.html"), "Google Cloud DNS must have a dedicated alternatives page");
+  assert(exists("build/alternatives/cloudflare-dns.html"), "Cloudflare DNS must have a dedicated alternatives page");
+  assert(exists("build/alternatives/apollo-kotlin.html"), "Apollo Kotlin must have a dedicated alternatives page");
   assert(!exists("build/alternatives/vmware-vsphere.html"), "VMware vSphere must be removed from Global alternatives");
   assert(!exists("build/alternatives/sentence-bert.html"), "Sentence-BERT must be removed from Global alternatives");
   assert(!exists("build/alternatives/pangle-ads.html"), "Pangle Ads must be removed from Global alternatives");
-  assert(!exists("build/alternatives/apollo-kotlin.html"), "Apollo Kotlin must be removed from Global alternatives");
   assert(!alternativesIndex.includes("gRPC"), "alternatives index must not list gRPC");
   assert(!alternativesIndex.includes("Flutter"), "alternatives index must not list Flutter");
   assert(!alternativesIndex.includes("React Native"), "alternatives index must not list React Native");
@@ -919,7 +931,20 @@ if (exists("build/alternatives/index.html")) {
   assert(!alternativesIndex.includes("VMware vSphere"), "alternatives index must not list VMware vSphere");
   assert(!alternativesIndex.includes("Sentence-BERT"), "alternatives index must not list Sentence-BERT");
   assert(!alternativesIndex.includes("Pangle Ads"), "alternatives index must not list Pangle Ads");
-  assert(!alternativesIndex.includes("Apollo Kotlin"), "alternatives index must not list Apollo Kotlin");
+  assert(alternativesIndex.includes("Apollo Kotlin"), "alternatives index must list Apollo Kotlin");
+  assert(alternativesIndex.includes("Amazon Route 53"), "alternatives index must list Amazon Route 53");
+  const route53Page = read("build/alternatives/amazon-route-53.html");
+  assert(route53Page.includes("Alibaba Cloud DNS"), "Amazon Route 53 page must map to Alibaba Cloud DNS");
+  assert(route53Page.includes("Tencent Cloud DNSPod"), "Amazon Route 53 page must map to Tencent Cloud DNSPod");
+  assert(
+    route53Page.includes('rel="canonical" href="https://landscape.chinaready.co/alternatives/amazon-route-53"'),
+    "Amazon Route 53 canonical must be extensionless",
+  );
+  const apolloKotlinPage = read("build/alternatives/apollo-kotlin.html");
+  assert(apolloKotlinPage.includes("Apollo Kotlin alternatives in China"), "Apollo Kotlin page must use an intent-matching H1");
+  assert(apolloKotlinPage.includes("Maven"), "Apollo Kotlin page must discuss Maven mirrors");
+  assert(!apolloKotlinPage.includes("uni-app"), "Apollo Kotlin page must not use the old uni-app mapping");
+
   assert(exists("build/alternatives/kong-gateway.html"), "Kong Gateway must have a dedicated alternatives page");
   const kongPage = read("build/alternatives/kong-gateway.html");
   assert(kongPage.includes("Apache APISIX"), "Kong page must list Apache APISIX");
@@ -1036,7 +1061,6 @@ for (const googleSlug of [
   "google-analytics",
   "google-fonts",
   "google-cloud",
-  "google-cloud-dns",
   "google-sign-in",
   "google-recaptcha",
 ]) {
@@ -1351,6 +1375,11 @@ if (exists("build/alternatives/applovin.html")) {
   assert(applovinPage.includes("Mintegral (汇量科技)"), "AppLovin guidance must use English-first Mintegral labeling");
   assert(applovinPage.includes("zMaticoo (易点天下)"), "AppLovin guidance must use English-first zMaticoo labeling");
   assert(applovinPage.includes("BlueX (蓝色光标)"), "AppLovin guidance must use English-first BlueX labeling");
+  assert(applovinPage.includes('href="/alternatives/google-admob"'), "AppLovin page must link Google AdMob");
+  assert(applovinPage.includes('href="/alternatives/applovin-max"'), "AppLovin page must link AppLovin MAX");
+  assert(applovinPage.includes('href="/alternatives/ironsource"'), "AppLovin page must link ironSource");
+  assert(applovinPage.includes('href="/alternatives/unity-levelplay"'), "AppLovin page must link Unity LevelPlay");
+  assert(applovinPage.includes('href="/alternatives/liftoff"'), "AppLovin page must link Liftoff");
   assert(!applovinPage.includes("<h3>易点天下"), "AppLovin guidance must not lead headings with Chinese names");
   assert(!applovinPage.includes("Ocean Engine"), "AppLovin page must not keep the previous Ocean Engine shortlist");
 }
@@ -1465,6 +1494,33 @@ if (exists("build/alternatives/amplitude.html")) {
     amplitudePage.includes("does <strong>not</strong> add them as Explore") ||
       amplitudePage.includes("does not add Volcengine"),
     "Amplitude page must keep Explore disclaimer for Volcengine and PostHog",
+  );
+}
+
+if (exists("build/alternatives/appsflyer.html")) {
+  const appsflyerPage = read("build/alternatives/appsflyer.html");
+  assert(
+    appsflyerPage.includes("AppsFlyer alternatives in China"),
+    "AppsFlyer page must use an intent-matching H1",
+  );
+  assert(
+    appsflyerPage.includes('cr-alt-availability-available-not-recommended">Available, not recommended</span>'),
+    "AppsFlyer page must label mainland China availability as Available, not recommended",
+  );
+  assert(
+    appsflyerPage.includes("Personal Information Protection Law") || appsflyerPage.includes("PIPL"),
+    "AppsFlyer page must explain cross-border privacy / PIPL risk",
+  );
+  assert(
+    appsflyerPage.includes("WeChat") && (appsflyerPage.includes("Android") || appsflyerPage.includes("HarmonyOS")),
+    "AppsFlyer page must explain weak China-store and WeChat private-domain fit",
+  );
+  assert(appsflyerPage.includes("Umeng U-App"), "AppsFlyer page must map to Umeng U-App");
+  assert(appsflyerPage.includes("Qimai Data"), "AppsFlyer page must keep Qimai Data as an ASO candidate");
+  assert(
+    appsflyerPage.includes("does <strong>not</strong> add a separate Umeng U-App") ||
+      appsflyerPage.includes("does not add a separate Umeng U-App"),
+    "AppsFlyer page must keep Explore disclaimer for Umeng U-App",
   );
 }
 

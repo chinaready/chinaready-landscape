@@ -2,9 +2,9 @@
   "source": "Chinaready Landscape research shortlist for taxonomy-relevant global services",
   "generated_for": "alternatives index SEO expansion",
   "counts": {
-    "services": 139,
+    "services": 144,
     "uncertain_alternatives": 0,
-    "researched_alternatives": 117,
+    "researched_alternatives": 122,
     "heuristic_alternatives": 22
   },
   "availability_lookup": {
@@ -77,6 +77,11 @@
       "name": "AppLovin MAX",
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
+    },
+    "appsflyer": {
+      "name": "AppsFlyer",
+      "availability": "Available, not recommended",
+      "global_availability_in_china": "available-not-recommended"
     },
     "authorize.net": {
       "name": "Authorize.Net",
@@ -678,6 +683,11 @@
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
+    "zendesk messaging": {
+      "name": "Zendesk Messaging",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
     "zenlayer": {
       "name": "Zenlayer",
       "availability": "Limited",
@@ -698,8 +708,23 @@
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
     },
-    "zendesk messaging": {
-      "name": "Zendesk Messaging",
+    "amazon route 53": {
+      "name": "Amazon Route 53",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "google cloud dns": {
+      "name": "Google Cloud DNS",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
+    },
+    "cloudflare dns": {
+      "name": "Cloudflare DNS",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "apollo kotlin": {
+      "name": "Apollo Kotlin",
       "availability": "Limited",
       "global_availability_in_china": "limited"
     }
@@ -1015,6 +1040,35 @@
       "confidence": "researched"
     },
     {
+      "name": "Amazon Route 53",
+      "categories": [
+        "Infrastructure & Edge",
+        "Cloud Platform & Hosting"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud DNS",
+          "homepage_url": "https://www.aliyun.com/product/dns",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "research",
+          "note": "Alibaba Cloud DNS is the usual mainland authoritative DNS path when the China stack already runs on Alibaba Cloud — pair domain resolution with ICP-ready hosting and CDN."
+        },
+        {
+          "name": "Tencent Cloud DNSPod",
+          "homepage_url": "https://cloud.tencent.com/product/dns",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "research",
+          "note": "Tencent Cloud DNSPod (腾讯云 DNSPod) is the common Tencent-stack mainland DNS console for authoritative records, traffic management, and China-domain operations."
+        }
+      ],
+      "research_note": "Amazon Route 53 is Limited as a mainland China production DNS authority: global Route 53 does not replace China-cloud DNS for ICP-ready domains, and mainland DNS is usually selected with the China cloud platform (Alibaba Cloud DNS or Tencent Cloud DNSPod). Prefer those cloud-native DNS consoles when the product and users are in mainland China. These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm domain registrar, ICP adjacency, and failover needs before production adoption.",
+      "confidence": "researched"
+    },
+    {
       "name": "Amplitude",
       "categories": [
         "Growth, Content & Experience",
@@ -1065,6 +1119,43 @@
         }
       ],
       "research_note": "Amplitude is Unavailable (or extremely unstable) in mainland China: ingestion API hosts such as api.amplitude.com frequently hit DNS pollution or network blocking, so client events often fail to reach Amplitude servers. Prefer Sensors Data (神策数据) for Amplitude-class analytics with private deployment, GrowingIO for autocapture, Umeng+ (友盟+) for low-cost China App stats, Volcengine DataFinder / DataTester for analytics plus A/B experiments, and self-hosted PostHog when the team can run it on mainland servers. Volcengine DataFinder / DataTester and self-hosted PostHog appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm consent, PIPL, and event taxonomy before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Apollo Kotlin",
+      "categories": [
+        "Developer Tools & Platforms",
+        "Mobile & Client SDKs"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Apollo Kotlin (via China Maven mirrors)",
+          "homepage_url": "https://www.apollographql.com/docs/kotlin/",
+          "category": "Developer Tools & Platforms",
+          "subcategory": "Mobile & Client SDKs",
+          "source": "research",
+          "note": "Keep Apollo Kotlin as the GraphQL client when the stack already uses it. Point Gradle at Aliyun or Tencent Maven mirrors so dependency fetch stays reliable from mainland CI and developer machines — this is an operating fix, not a library swap."
+        },
+        {
+          "name": "Aliyun Maven Public Repository",
+          "homepage_url": "https://developer.aliyun.com/mvn/guide",
+          "category": "Developer Tools & Platforms",
+          "subcategory": "Mobile & Client SDKs",
+          "source": "research",
+          "note": "Aliyun Maven Public Repository is the common mainland mirror path for Android/Kotlin dependency resolution when Maven Central or Google's repos are slow or unstable."
+        },
+        {
+          "name": "Tencent Cloud Mirror (Maven)",
+          "homepage_url": "https://mirrors.cloud.tencent.com/",
+          "category": "Developer Tools & Platforms",
+          "subcategory": "Mobile & Client SDKs",
+          "source": "research",
+          "note": "Tencent Cloud open-source mirrors include Maven-compatible paths commonly used by mainland Android teams as a fallback when public registries are unreliable."
+        }
+      ],
+      "research_note": "Apollo Kotlin is Limited as a mainland China operating dependency rather than a blocked library: the open-source GraphQL client itself can run in China apps, but Maven Central / Google repo fetch from mainland CI and developer machines is often slow or unstable, and the GraphQL API still needs a China-reachable backend. Prefer keeping Apollo Kotlin while pointing Gradle at Aliyun or Tencent Maven mirrors, and host the GraphQL API on a China cloud. These mirror/operating paths appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm registry mirrors and API hosting before production adoption.",
       "confidence": "researched"
     },
     {
@@ -1271,6 +1362,35 @@
         }
       ],
       "research_note": "Mainland China publisher networks for mediation and in-app monetization when replacing AppLovin MAX. Confirm mediation adapters, settlement entity, and PIPL constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "AppsFlyer",
+      "categories": [
+        "Growth, Content & Experience",
+        "App Attribution & ASO"
+      ],
+      "availability": "Available, not recommended",
+      "global_availability_in_china": "available-not-recommended",
+      "china_candidates": [
+        {
+          "name": "Umeng U-App",
+          "homepage_url": "https://www.umeng.com/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "App Attribution & ASO",
+          "source": "research",
+          "note": "Umeng U-App (友盟+ U-App) is the China-first AppsFlyer-oriented path: data stays on Alibaba Cloud mainland nodes (PIPL-aligned, no default cross-border transfer), native HarmonyOS plus Huawei / Xiaomi and other China Android stores, WeChat mini-program fallback jumps, offline ground promotion, and KOL / short-video tracking, with tiered usage-based billing, a Chinese SDK, and local support."
+        },
+        {
+          "name": "Qimai Data",
+          "homepage_url": "https://www.qimai.cn/",
+          "category": "Growth, Content & Experience",
+          "subcategory": "App Attribution & ASO",
+          "source": "landscape",
+          "note": "Qimai Data (七麦数据) is China app-store intelligence and ASO research across fragmented domestic stores. Useful beside an MMP, not a full AppsFlyer attribution replacement."
+        }
+      ],
+      "research_note": "AppsFlyer is Available but not recommended for mainland China production stacks: attribution data typically transfers overseas (PIPL and related privacy-compliance risk), and fit with fragmented domestic Android stores and WeChat private-domain channels is weak. Prefer Umeng U-App (友盟+ U-App) for mainland-compliant App attribution and China-channel tracking; keep Qimai Data for app-store intelligence and ASO. Umeng U-App is named on this alternatives page as the AppsFlyer-oriented Umeng+ module — Chinaready does not add a separate U-App Explore / Landscape tile. Confirm consent, PIPL, and channel coverage before production adoption.",
       "confidence": "researched"
     },
     {
@@ -2025,6 +2145,35 @@
         }
       ],
       "research_note": "Research shortlist of China-market options commonly evaluated for this global service. Confirm replacement fit, compliance, and operating constraints before production adoption.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Cloudflare DNS",
+      "categories": [
+        "Infrastructure & Edge",
+        "Cloud Platform & Hosting"
+      ],
+      "availability": "Limited",
+      "global_availability_in_china": "limited",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud DNS",
+          "homepage_url": "https://www.aliyun.com/product/dns",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "research",
+          "note": "Alibaba Cloud DNS is the default mainland authoritative DNS option when Cloudflare DNS is not a workable China production authority — resolve domains beside Alibaba hosting/CDN."
+        },
+        {
+          "name": "Tencent Cloud DNSPod",
+          "homepage_url": "https://cloud.tencent.com/product/dns",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "research",
+          "note": "Tencent Cloud DNSPod is the Tencent-stack mainland DNS path for authoritative records and China-domain operations when Cloudflare DNS is left for global zones only."
+        }
+      ],
+      "research_note": "Cloudflare DNS is Limited for mainland China production authority: teams often keep Cloudflare for global zones, but China-facing domains typically move authoritative DNS to Alibaba Cloud DNS or Tencent Cloud DNSPod beside mainland hosting and CDN. These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm split-horizon / dual-DNS design before adoption.",
       "confidence": "researched"
     },
     {
@@ -3032,6 +3181,35 @@
         }
       ],
       "research_note": "Google Authenticator is Limited as a default MFA path for mainland China user bases: Play Store distribution and Google account assumptions break for many users. Prefer China IdP MFA (for example Authing), WeChat Login + SMS OTP for consumers, or alternate TOTP apps where needed. These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm app-store coverage before mandating authenticator MFA.",
+      "confidence": "researched"
+    },
+    {
+      "name": "Google Cloud DNS",
+      "categories": [
+        "Infrastructure & Edge",
+        "Cloud Platform & Hosting"
+      ],
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable",
+      "china_candidates": [
+        {
+          "name": "Alibaba Cloud DNS",
+          "homepage_url": "https://www.aliyun.com/product/dns",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "research",
+          "note": "Alibaba Cloud DNS is a practical mainland substitute when Google Cloud DNS cannot be the production authority for China-facing domains — keep DNS with the China cloud account."
+        },
+        {
+          "name": "Tencent Cloud DNSPod",
+          "homepage_url": "https://cloud.tencent.com/product/dns",
+          "category": "Infrastructure & Edge",
+          "subcategory": "Cloud Platform & Hosting",
+          "source": "research",
+          "note": "Tencent Cloud DNSPod covers authoritative DNS and China-domain workflows for teams standardizing on Tencent Cloud for mainland hosting."
+        }
+      ],
+      "research_note": "Google Cloud DNS is Unavailable as a practical mainland China production DNS authority: Google Cloud has no mainland China region comparable to AWS China or Azure China, and China-facing domains usually need authoritative DNS beside a China cloud account. Prefer Alibaba Cloud DNS or Tencent Cloud DNSPod. These appear on the alternatives page only — not as Explore / Landscape product tiles. Confirm ICP and registrar fit before production adoption.",
       "confidence": "researched"
     },
     {

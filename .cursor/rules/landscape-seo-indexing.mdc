@@ -19,6 +19,7 @@ alwaysApply: false
 - Do not remove working redirects solely to clear GSC “Page with redirect”.
 - Marketing site / workbench noindex issues are out of scope here (mvp-1).
 - Cloudflare Pages pretty-URLs: on-disk `build/alternatives/<slug>.html` is served at `/alternatives/<slug>` and `.html` 308s there. Sitemap, `rel=canonical`, JSON-LD, guide links, and internal hrefs must use the **extensionless** public URL. Do not list `.html` alternatives in `sitemap.xml`.
+- GSC “Page with redirect” / Inspection hits on `/alternatives/<slug>.html` are **expected** Cloudflare pretty-URL aliases when crawlers request `.html`. Do not migrate to `slug/index.html` just to clear that queue — keep extensionless canonicals and dual `/path` + `/path.html` only on deliberate alias `_redirects`.
 - Alternatives `<title>` / `og:title` / `twitter:title` must end with `| Chinaready` and stay ≤60 characters (via `brandedTitle` / `ensureBrandedPageTitle` in `scripts/seo-geo.mjs`). Do not put availability status in the title — it pushes the brand suffix past Google’s SERP truncation.
 
 ## Do not
