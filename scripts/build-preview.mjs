@@ -261,8 +261,22 @@ const tagHydrateScript = `<script>
 
 index = index.replace(
   /window\.baseDS = .*?;\n/s,
-  `window.baseDS = ${JSON.stringify(inlineBase)};\n${tagHydrateScript}\n`,
+  `window.baseDS = ${JSON.stringify(inlineBase)};\n`,
 );
+
+// Insert hydration as a sibling script AFTER the landscape2 data script.
+// Nested <script> tags inside that block close it early and leak `window.statsDS`
+// as visible body text (the homepage then renders only that assignment).
+if (!/window\.statsDS = \{\};\s*<\/script>/.test(index)) {
+  throw new Error("landscape2 data script is missing window.statsDS; cannot inject search-tag hydration");
+}
+index = index.replace(
+  /(window\.statsDS = \{\};\s*<\/script>)/,
+  `$1\n${tagHydrateScript}`,
+);
+if (/<\/script>\s*window\.statsDS/.test(index)) {
+  throw new Error("Search-tag hydration closed the landscape2 data script early; window.statsDS leaked into HTML");
+}
 
 // Prefer WOFF with font-display:swap on generated landscape2 CSS (Orbitron @font-face).
 for (const file of fs.readdirSync(path.join(buildDir, "assets"))) {

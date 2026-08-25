@@ -344,6 +344,14 @@ if (exists("build/index.html")) {
     "build/index.html must preload the header logo for LCP",
   );
   assert(index.includes("/data/base.json"), "build/index.html must hydrate search tags from base.json after slim baseDS");
+  assert(
+    /<script>\s*window\.baseDS[\s\S]*window\.statsDS = \{\};\s*<\/script>/.test(index),
+    "build/index.html must keep window.statsDS inside the landscape2 data script",
+  );
+  assert(
+    !/<\/script>\s*window\.statsDS/.test(index),
+    "build/index.html must not leak window.statsDS as visible text after a closed script tag",
+  );
 }
 
 if (exists("build/robots.txt")) {
