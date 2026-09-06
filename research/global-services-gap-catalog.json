@@ -4,8 +4,8 @@
   "counts": {
     "services": 144,
     "uncertain_alternatives": 0,
-    "researched_alternatives": 122,
-    "heuristic_alternatives": 22
+    "researched_alternatives": 123,
+    "heuristic_alternatives": 21
   },
   "availability_lookup": {
     "activecampaign": {
@@ -53,10 +53,20 @@
       "availability": "Available",
       "global_availability_in_china": "available"
     },
+    "amazon route 53": {
+      "name": "Amazon Route 53",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
     "amplitude": {
       "name": "Amplitude",
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
+    },
+    "apollo kotlin": {
+      "name": "Apollo Kotlin",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
     },
     "apple mapkit": {
       "name": "Apple MapKit",
@@ -185,6 +195,11 @@
     },
     "cloudflare analytics insight": {
       "name": "Cloudflare Analytics Insight",
+      "availability": "Limited",
+      "global_availability_in_china": "limited"
+    },
+    "cloudflare dns": {
+      "name": "Cloudflare DNS",
       "availability": "Limited",
       "global_availability_in_china": "limited"
     },
@@ -317,6 +332,11 @@
       "name": "Google Authenticator",
       "availability": "Limited",
       "global_availability_in_china": "limited"
+    },
+    "google cloud dns": {
+      "name": "Google Cloud DNS",
+      "availability": "Unavailable",
+      "global_availability_in_china": "unavailable"
     },
     "google maps platform": {
       "name": "Google Maps Platform",
@@ -707,26 +727,6 @@
       "name": "Zoom SDK",
       "availability": "Unavailable",
       "global_availability_in_china": "unavailable"
-    },
-    "amazon route 53": {
-      "name": "Amazon Route 53",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
-    },
-    "google cloud dns": {
-      "name": "Google Cloud DNS",
-      "availability": "Unavailable",
-      "global_availability_in_china": "unavailable"
-    },
-    "cloudflare dns": {
-      "name": "Cloudflare DNS",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
-    },
-    "apollo kotlin": {
-      "name": "Apollo Kotlin",
-      "availability": "Limited",
-      "global_availability_in_china": "limited"
     }
   },
   "services": [
@@ -1930,29 +1930,29 @@
       "global_availability_in_china": "limited",
       "china_candidates": [
         {
-          "name": "Sensors Data",
-          "homepage_url": "https://www.sensorsdata.cn/",
-          "category": "Growth, Content & Experience",
-          "subcategory": "Product Analytics & User Insights",
-          "source": "category-heuristic"
+          "name": "Apache ECharts",
+          "homepage_url": "https://echarts.apache.org/",
+          "category": "Developer Tools & APIs",
+          "subcategory": "Data Visualization & Charting",
+          "source": "research"
         },
         {
-          "name": "Umeng+",
-          "homepage_url": "https://www.umeng.com/",
-          "category": "Growth, Content & Experience",
-          "subcategory": "Product Analytics & User Insights",
-          "source": "category-heuristic"
+          "name": "AntV G2",
+          "homepage_url": "https://g2.antv.antgroup.com/",
+          "category": "Developer Tools & APIs",
+          "subcategory": "Data Visualization & Charting",
+          "source": "research"
         },
         {
-          "name": "GrowingIO",
-          "homepage_url": "https://www.growingio.com/",
-          "category": "Growth, Content & Experience",
-          "subcategory": "Product Analytics & User Insights",
-          "source": "category-heuristic"
+          "name": "AntV F2",
+          "homepage_url": "https://f2.antv.antgroup.com/",
+          "category": "Developer Tools & APIs",
+          "subcategory": "Data Visualization & Charting",
+          "source": "research"
         }
       ],
-      "research_note": "Suggested from related Chinaready Landscape categories as a research starting point, not a certified one-to-one replacement.",
-      "confidence": "heuristic"
+      "research_note": "CanvasJS is reachable from mainland China, but its commercial license and overseas CDN delivery make it an awkward default for China-hosted front ends. Apache ECharts, AntV G2, and AntV F2 are China-origin, Apache-2.0 or MIT licensed charting libraries that can be self-hosted or served from a domestic CDN. Confirm chart-type coverage and bundle size before migrating.",
+      "confidence": "researched"
     },
     {
       "name": "Captivate",

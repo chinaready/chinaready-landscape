@@ -1549,6 +1549,32 @@ OVERRIDES = {
         },
     ],
     "adtrace": ["Qimai Data", "Umeng+"],
+    # CanvasJS is a JavaScript charting library, so the category heuristic wrongly
+    # matched it to analytics platforms (Sensors Data, Umeng+, GrowingIO). The real
+    # substitutes are China-origin charting libraries.
+    "canvasjs": [
+        {
+            "name": "Apache ECharts",
+            "homepage_url": "https://echarts.apache.org/",
+            "category": "Developer Tools & APIs",
+            "subcategory": "Data Visualization & Charting",
+            "source": "research",
+        },
+        {
+            "name": "AntV G2",
+            "homepage_url": "https://g2.antv.antgroup.com/",
+            "category": "Developer Tools & APIs",
+            "subcategory": "Data Visualization & Charting",
+            "source": "research",
+        },
+        {
+            "name": "AntV F2",
+            "homepage_url": "https://f2.antv.antgroup.com/",
+            "category": "Developer Tools & APIs",
+            "subcategory": "Data Visualization & Charting",
+            "source": "research",
+        },
+    ],
     "vercel": ["Alibaba Cloud", "Alibaba Cloud Serverless App Engine"],
     "netlify": ["Alibaba Cloud", "Alibaba Cloud Serverless App Engine"],
     "heroku": ["Alibaba Cloud Serverless App Engine"],
@@ -3993,6 +4019,13 @@ RESEARCH_NOTE = (
     "Confirm replacement fit, compliance, and operating constraints before production adoption."
 )
 RESEARCH_NOTES = {
+    "canvasjs": (
+        "CanvasJS is reachable from mainland China, but its commercial license and overseas "
+        "CDN delivery make it an awkward default for China-hosted front ends. Apache ECharts, "
+        "AntV G2, and AntV F2 are China-origin, Apache-2.0 or MIT licensed charting libraries "
+        "that can be self-hosted or served from a domestic CDN. Confirm chart-type coverage and "
+        "bundle size before migrating."
+    ),
     # === BEGIN HUB P0P1 OVERRIDES ===
     "microsoft teams": (
         "Microsoft Teams is Limited in mainland China: the service is often reachable for "

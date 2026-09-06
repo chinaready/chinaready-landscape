@@ -298,10 +298,11 @@ const faviconLinks = [
   `<link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">`,
   `<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">`,
 ];
-const links = [
-  ...faviconLinks,
-  `<link rel="stylesheet" href="assets/chinaready-landscape.css?v=${cacheBust}">`,
-];
+// Homepage only: this sheet is ~11 KB, so inlining it beats spending another
+// round trip on the render-blocking path. The file still ships for /alternatives
+// and /guide, which link it normally.
+const homeCss = fs.readFileSync(path.join(root, "assets", "chinaready-landscape.css"), "utf8");
+const links = [...faviconLinks];
 const scripts = [
   `<script defer src="assets/chinaready-landscape-details.js?v=${cacheBust}"></script>`,
 ];
@@ -330,6 +331,17 @@ for (const link of links.slice(faviconLinks.length)) {
   if (!index.includes(link)) {
     index = index.replace("</head>", `  ${link}\n</head>`);
   }
+}
+
+index = index.replace(
+  /\s*<link\s+rel=["']stylesheet["']\s+href=["']assets\/chinaready-landscape\.css[^"']*["']\s*>/gi,
+  "",
+);
+if (!index.includes("cr-inline-home-css")) {
+  index = index.replace(
+    "</head>",
+    `  <style id="cr-inline-home-css">${homeCss}</style>\n</head>`,
+  );
 }
 
 for (const script of scripts) {

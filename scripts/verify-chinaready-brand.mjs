@@ -304,7 +304,13 @@ assert(detailsScript.includes("https://stackbreak.launchready.cn/public/results/
 if (exists("build/index.html")) {
   const index = read("build/index.html");
   assert(!index.includes("vendor/chinaready-design-system"), "build/index.html must not link the removed vendored design system");
-  assert(index.includes("assets/chinaready-landscape.css"), "build/index.html must link the Chinaready landscape override CSS");
+  // The homepage inlines this sheet to keep it off the render-blocking path; the
+  // other pages still link it. Either form satisfies the requirement.
+  assert(
+    index.includes('<style id="cr-inline-home-css">') || index.includes("assets/chinaready-landscape.css"),
+    "build/index.html must inline or link the Chinaready landscape override CSS",
+  );
+  assert(index.includes(".cr-visually-hidden"), "build/index.html must carry the Chinaready landscape override CSS rules");
   assert(index.includes("assets/chinaready-landscape-details.js?v=20260720-seo-geo-ctr"), "build/index.html must load the cache-busted Chinaready item detail extension");
   assert(index.includes('<link rel="icon" href="/favicon.ico" sizes="any">'), "build/index.html must declare the ICO favicon with sizes=any");
   assert(index.includes('href="/favicon-48x48.png"'), "build/index.html must declare the 48x48 PNG favicon for Google Search");

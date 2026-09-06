@@ -333,7 +333,7 @@ const EDITORIAL_OVERRIDES = {
     relatedSlugs: ["paypal", "apple-pay", "authorize-net", "checkout-com"],
     description: (availability, names) =>
       clipMeta(
-        `Stripe China alternative? For mainland deployments prefer ${names.slice(0, 3).join(", ")}. If the product stays overseas, Stripe can still connect Alipay/WeChat Pay. Availability: ${availability}.`,
+        `Stripe China alternative? For mainland deployments prefer ${names.slice(0, 3).join(", ")}. Overseas products can still connect Alipay/WeChat Pay.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> Looking for a <strong>Stripe China alternative</strong>? Decide where the product will run first. If it must be deployed in mainland China, Chinaready recommends not using Stripe for compliance reasons — map to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong> instead. If the product stays outside China, Stripe can still work as your global payment platform, including Alipay and WeChat Pay connections. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
@@ -1116,6 +1116,20 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  // Ad-mediation peers keep their generated copy; the explicit relatedSlugs only
+  // wire the cluster together so no page in it is a link-poor orphan.
+  chartboost: {
+    relatedSlugs: ["applovin", "applovin-max", "google-admob", "ironsource", "unity-levelplay"],
+  },
+  "unity-levelplay": {
+    relatedSlugs: ["applovin", "google-admob", "ironsource", "chartboost"],
+  },
+  "dt-exchange": {
+    relatedSlugs: ["applovin", "applovin-max", "google-admob", "ironsource"],
+  },
+  moloco: {
+    relatedSlugs: ["applovin", "liftoff", "google-ads", "tiktok-ads"],
+  },
   ironsource: {
     title: "ironSource alternatives in China",
     relatedSlugs: ["google-admob", "applovin", "chartboost", "unity-levelplay"],
@@ -1160,7 +1174,7 @@ const EDITORIAL_OVERRIDES = {
   "google-analytics": {
     description: (availability, names) =>
       clipMeta(
-        `Google Analytics is Unavailable for mainland China web/App traffic. Prefer Baidu Tongji for websites and Umeng+ for Apps. Compare ${names.slice(0, 3).join(", ")}.`,
+        `Google Analytics is Unavailable for mainland China web and App traffic. Prefer ${names[0] || "Baidu Tongji"} for websites and ${names[1] || "Umeng+"} for Apps.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> Google Analytics is <strong>Unavailable</strong> for reliable mainland China traffic measurement. For routine website, H5, and App monitoring — plus SEO effect tracking and channel-source analysis — map to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Prefer <strong>Baidu Tongji</strong> for web/H5 and <strong>Umeng+</strong> for native Apps. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
@@ -1570,7 +1584,13 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   "firebase-crashlytics": {
-    relatedSlugs: ["firebase", "firebase-analytics", "firebase-app-distribution", "firebase-remote-config"],
+    relatedSlugs: [
+      "firebase",
+      "firebase-cloud-messaging",
+      "firebase-analytics",
+      "firebase-app-distribution",
+      "firebase-remote-config",
+    ],
     description: (availability, names) =>
       clipMeta(
         `Does Firebase Crashlytics work in China? Unavailable — no local servers, blocked core path, missing GMS. Prefer ${names.slice(0, 3).join(", ") || "Tencent Bugly, Umeng+, Alibaba Cloud EMAS"}.`,
@@ -1664,8 +1684,112 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  "firebase-cloud-messaging": {
+    relatedSlugs: [
+      "firebase",
+      "onesignal",
+      "aws-sns",
+      "firebase-analytics",
+      "firebase-crashlytics",
+      "firebase-remote-config",
+    ],
+    description: (availability, names) =>
+      clipMeta(
+        `FCM does not work in mainland China: endpoints blocked, no Google Play Services on China Android. Map push to ${names.slice(0, 3).join(", ") || "JPush, Alibaba Cloud Mobile Push, Getui"}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Firebase Cloud Messaging (FCM) does not work in mainland China.</strong> Two things break it at once: the Google-hosted FCM endpoints are blocked from mainland networks, and mainland Android phones ship without Google Play Services, which FCM needs on the device to receive a push. iOS is the exception — an FCM-to-APNs path can still reach mainland iPhones. For Android coverage, map to a domestic push provider that aggregates the Chinese OEM channels: <strong>${escapeHtml(names.slice(0, 3).join(", ") || "JPush, Alibaba Cloud Mobile Push, Getui")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Replacing FCM for mainland China push notifications",
+    sectionTitle: "Mapped China-ready candidates",
+    guidanceHtml: `
+        <h3>Why FCM fails in mainland China</h3>
+        <p>Teams usually discover this when China Android installs simply stop receiving notifications while the same build works everywhere else. There are two independent causes, and fixing only one does not help.</p>
+        <ul>
+          <li><strong>Blocked transport.</strong> FCM's registration and delivery endpoints sit on Google infrastructure that is not reliably reachable from mainland networks.</li>
+          <li><strong>Missing device runtime.</strong> FCM delivery on Android depends on Google Play Services holding a persistent connection. Mainland-market phones from Xiaomi, OPPO, vivo, Honor, and Huawei ship without Google Play Services, so there is nothing on the device to receive the message even if the network allowed it.</li>
+        </ul>
+        <p>Chinaready's Firebase measurements from a mainland China node show FCM among the core Firebase services that are blocked or otherwise inaccessible. Treat FCM as unavailable for mainland Android rather than degraded.</p>
+        <h3>iOS is a real exception</h3>
+        <p>Mainland iPhones still reach the Apple Push Notification service, so a push that travels FCM → APNs → iPhone can work. This matters for iOS-heavy products, but it does not rescue Android. If you keep FCM for iOS, be explicit that your China Android audience is uncovered until you add a domestic provider.</p>
+        <h3>How domestic push providers solve it</h3>
+        <p>Mainland push is not one connection — it is a fan-out across each handset maker's own channel (Huawei HMS Push, Xiaomi, OPPO, vivo, Honor), plus a self-maintained socket as a fallback. Domestic providers exist mainly to aggregate those channels behind a single API so you do not integrate five vendor SDKs yourself. Using the OEM channel is also what gets a notification through aggressive background-process killing, which is the other common reason mainland notifications silently disappear.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Provider</th>
+                <th>Characteristics</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>JPush (极光推送)</td>
+                <td>Long-established independent China push platform with OEM channel aggregation, rich SDK coverage, and REST APIs familiar to teams migrating off FCM</td>
+                <td>Default first evaluation for most FCM migrations</td>
+              </tr>
+              <tr>
+                <td>Alibaba Cloud Mobile Push (阿里云移动推送)</td>
+                <td>Managed push within the Alibaba Cloud console, with OEM channel support and the usual cloud IAM, logging, and billing integration</td>
+                <td>Stacks already running on Alibaba Cloud</td>
+              </tr>
+              <tr>
+                <td>Getui (个推)</td>
+                <td>Independent provider with OEM channel aggregation and delivery analytics; commonly benchmarked against JPush</td>
+                <td>Teams comparing two independent vendors before committing</td>
+              </tr>
+              <tr>
+                <td>Umeng U-Push (友盟+ U-Push)</td>
+                <td>Push inside the Umeng+ mobile growth suite, so push sits alongside analytics and audience segmentation</td>
+                <td>Products already using Umeng+ for China analytics</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>What the migration actually involves</h3>
+        <p>This is not a credentials swap. Expect to plan for:</p>
+        <ul>
+          <li><strong>Per-OEM registration.</strong> Each handset maker's push channel needs its own developer account and app registration before delivery rates improve.</li>
+          <li><strong>A second device token space.</strong> Your backend needs to store and route domestic push tokens separately from FCM tokens, usually keyed by build or by user region.</li>
+          <li><strong>A build or runtime split.</strong> Most teams ship a China build with the domestic SDK and keep FCM elsewhere, rather than bundling both into one global binary.</li>
+          <li><strong>Notification-permission behaviour.</strong> Mainland Android permission prompts and background restrictions differ by OEM, so measured delivery rates matter more than documented ones.</li>
+        </ul>
+        <p>If FCM is one of several Firebase services in your stack, review the whole suite rather than only push — Authentication, Firestore, Storage, Functions, and Remote Config have the same mainland problem, and the Firebase pages linked below cover each one.</p>
+        <p>Candidates on this page are alternatives-page orientation options for research. Confirm SDK platform coverage, delivery-rate reporting, data-handling terms, and pricing before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Firebase Cloud Messaging work in China?",
+        answer: `No for mainland Android. Chinaready labels Firebase Cloud Messaging as ${availability} for mainland China. The Google-hosted FCM endpoints are not reliably reachable from mainland networks, and mainland-market Android phones ship without Google Play Services, which FCM requires on the device to receive a push. Mainland iPhones can still be reached through the FCM-to-APNs path, so iOS is a partial exception.`,
+      },
+      {
+        question: "Why do FCM push notifications not arrive on Chinese Android phones?",
+        answer:
+          "Two independent reasons, and fixing one does not help. First, FCM's registration and delivery endpoints sit on Google infrastructure that is blocked from mainland networks. Second, FCM delivery on Android depends on Google Play Services maintaining a persistent connection, and mainland-market phones from Xiaomi, OPPO, vivo, Honor, and Huawei ship without it. Aggressive OEM background-process killing then removes any remaining fallback path.",
+      },
+      {
+        question: "What are the best China alternatives to Firebase Cloud Messaging?",
+        answer: `Chinaready Landscape currently maps Firebase Cloud Messaging to ${namesText}. These providers aggregate the Chinese OEM push channels (Huawei HMS Push, Xiaomi, OPPO, vivo, Honor) behind one API, which is what gets a notification delivered on a device with no Google Play Services. Replacement fit varies by product, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Can I keep FCM for iOS and use a China provider only for Android?",
+        answer:
+          "Yes, and many teams do. Mainland iPhones still reach the Apple Push Notification service, so an FCM-to-APNs path can work for iOS while a domestic provider covers China Android. Your backend then needs to store and route two token spaces, usually keyed by build or user region.",
+      },
+      {
+        question: "Is migrating from FCM to a China push provider just a credentials change?",
+        answer:
+          "No. Plan for per-OEM developer accounts and app registrations, a second device token space in your backend, and usually a separate China build carrying the domestic SDK rather than one global binary. Measured delivery rates on real mainland devices matter more than documented ones, because OEM permission prompts and background restrictions differ.",
+      },
+      {
+        question: "Where should teams go after shortlisting FCM alternatives?",
+        answer:
+          "Review the rest of the Firebase suite in the same pass, since Authentication, Firestore, Storage, Functions, and Remote Config have the same mainland problem. Compare the OneSignal and AWS SNS pages if your push layer sits behind an aggregator, then use the Push Notifications & Multichannel Messaging section of the Chinaready Guide for where this fits in a China stack. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
   firebase: {
     relatedSlugs: [
+      "firebase-cloud-messaging",
       "firebase-crashlytics",
       "firebase-analytics",
       "firebase-authentication",
@@ -1674,7 +1798,7 @@ const EDITORIAL_OVERRIDES = {
     ],
     description: (availability, names) =>
       clipMeta(
-        `Does Firebase work in China? Limited — core Google paths are blocked for mainland apps. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+        `Does Firebase work in China? Limited — Auth, Firestore, Storage, Functions, and FCM are blocked for mainland apps. See the per-service China maps.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> <strong>Firebase is Limited</strong> for mainland China production stacks. Core services (Auth, Firestore, Storage, Functions, FCM, Analytics, Crashlytics) sit on Google infrastructure that is blocked or unreliable from mainland networks, and most China Android devices lack Google Mobile Services. Chinaready currently maps the Firebase suite toward <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong> and product-specific China pages linked below. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
@@ -2045,16 +2169,25 @@ const EDITORIAL_OVERRIDES = {
   "azure-monitor": {
     description: (availability, names) =>
       clipMeta(
-        `Azure Monitor is Available in Azure China, with fewer features than global. For a fuller mainland stack, compare ${names.slice(0, 2).join(" and ") || "Alibaba Cloud CloudMonitor and Tencent Cloud Observability Platform (TCOP)"}. Availability: ${availability}.`,
+        `Does Azure Monitor work in China? Available in Azure China (21Vianet) — separate subscription, fewer features. Compare ${names[0] || "Alibaba Cloud CloudMonitor"}.`,
       ),
     lede: (availability, names) =>
-      `<strong>Quick answer:</strong> <strong>Azure Monitor</strong> is <strong>Available</strong> in Azure China, but the China-region version is more limited than global Azure Monitor. If you need a more complete mainland China monitoring stack, evaluate <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Alibaba Cloud CloudMonitor, Tencent Cloud Observability Platform (TCOP)")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+      `<strong>Quick answer:</strong> <strong>Azure Monitor is ${escapeHtml(availability)}</strong> in mainland China — but only inside Azure China, which is operated separately by 21Vianet. Azure China is a distinct cloud with its own accounts, subscriptions, endpoints, and portal, so a global Azure tenant cannot monitor China-region resources and a China workspace cannot ingest global ones. Expect to run two monitoring estates and stitch them together yourself. The China-region feature set also trails global Azure Monitor, so do not assume parity. If you need a fuller mainland monitoring stack, evaluate <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Alibaba Cloud CloudMonitor, Tencent Cloud Observability Platform (TCOP)")}</strong>.`,
     guidanceTitle: "Azure Monitor in Azure China",
     sectionTitle: "Mapped China-ready candidates",
     indexOptions: 2,
     indexCandidates: "Alibaba Cloud CloudMonitor, Tencent Cloud Observability Platform (TCOP)",
     guidanceHtml: `
         <p><strong>Azure Monitor is Available in Azure China.</strong> Teams already running workloads in Azure China can keep using Azure Monitor for core metrics, logs, and alerts. Chinaready still flags an important caveat: the China-region Azure Monitor product set is more limited than the global Azure Monitor experience, so do not assume feature parity with commercial / global regions.</p>
+        <h3>The subscription boundary is the thing that surprises teams</h3>
+        <p>Azure China is a physically and logically separate cloud operated in China by 21Vianet under Chinese law, not a region of global Azure. It has its own account system, its own subscriptions, its own service endpoints, and its own portal. The practical consequences for monitoring:</p>
+        <ul>
+          <li><strong>A global Azure subscription cannot monitor China resources.</strong> You need an Azure China subscription, obtained through 21Vianet, and it requires a Chinese business entity.</li>
+          <li><strong>Workspaces do not span the boundary.</strong> A Log Analytics workspace in Azure China cannot ingest telemetry from global regions, and a global workspace cannot ingest China telemetry. There is no cross-cloud workspace.</li>
+          <li><strong>You end up with two monitoring estates.</strong> Dashboards, alert rules, action groups, and access control are configured twice. Teams that want one pane of glass usually export from both sides into a third system rather than trying to join them inside Azure Monitor.</li>
+          <li><strong>Tooling needs the right endpoints.</strong> CLI, SDK, and Terraform configurations must target the Azure China cloud explicitly; defaults point at global Azure and fail with authentication or endpoint errors that do not obviously name the cause.</li>
+        </ul>
+        <p>None of this makes Azure Monitor unusable in China — it makes it a second, parallel deployment. Budget for that rather than assuming your existing monitoring configuration extends into the mainland. Verify current region and feature coverage in the Azure China documentation, since the China-region service list changes over time.</p>
         <p>When you need a more complete mainland China monitoring and observability stack — broader cloud-product coverage, dial testing, APM/traces, or a non-Azure China cloud — compare the domestic platforms below. They appear on this alternatives page only — Chinaready does not add them as Explore / Landscape product tiles.</p>
         <h3>Alibaba Cloud CloudMonitor</h3>
         <p>Alibaba Cloud CloudMonitor is a monitoring service for Alibaba Cloud resources and internet applications. It provides an out-of-the-box enterprise monitoring path covering IT infrastructure metrics, external network quality probing, and business monitoring based on events, custom metrics, and logs. Cross-service and cross-region application groups plus alert templates help teams manage dozens of cloud services and large instance fleets. Typical capabilities include dashboards, host monitoring, event and custom monitoring, log monitoring, site monitoring, cloud-product monitoring, alerting, and container monitoring.</p>
@@ -2361,9 +2494,10 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   liftoff: {
+    relatedSlugs: ["applovin", "moloco", "google-ads", "tiktok-ads", "apple-search-ads"],
     description: (availability, names) =>
       clipMeta(
-        `Liftoff is Unavailable for mainland China UA. Compare ${names.slice(0, 4).join(", ")} — Ocean Engine, Tencent Advertising (TMS), Pangle, and Kuaishou Magnet Engine. Availability: ${availability}.`,
+        `Liftoff is Unavailable for mainland China UA. Compare ${names.slice(0, 4).join(", ")} — Ocean Engine, Tencent Advertising (TMS), Pangle, Kuaishou Magnet Engine.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> Liftoff is <strong>${escapeHtml(availability)}</strong> for meaningful mainland China user acquisition. Map paid app installs and performance growth to domestic platforms — typically <strong>${escapeHtml(names.slice(0, 4).join(", "))}</strong> — rather than running Liftoff as the China UA stack.`,
@@ -2777,19 +2911,93 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  adtrace: {
+    relatedSlugs: ["appsflyer", "adjust", "branch", "singular", "kochava"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Adtrace work in China? No documented mainland deployment path. For China app attribution, compare ${names.slice(0, 2).join(" and ") || "Qimai Data and Umeng+"}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Chinaready marks Adtrace <strong>${escapeHtml(availability)}</strong> for mainland China — not because it is blocked, but because there is no documented mainland deployment path: no China data region, no ICP-filed collection endpoint, and no published integration with the Chinese Android app stores and OEM channels that China attribution actually depends on. Mobile attribution is also the part of the stack where China diverges most from the rest of the world, so a general-purpose MMP rarely transfers cleanly. For China app attribution and store analytics, compare <strong>${escapeHtml(names.slice(0, 2).join(" and ") || "Qimai Data and Umeng+")}</strong>.`,
+    guidanceTitle: "China app attribution when your MMP has no mainland path",
+    sectionTitle: "Mapped China-ready candidates",
+    indexOptions: 2,
+    indexCandidates: "Qimai Data, Umeng+",
+    guidanceHtml: `
+        <p>Before choosing a tool, it is worth being precise about what breaks. Mobile attribution in China differs from the rest of the world in three ways that no vendor can configure around.</p>
+        <h3>Why China attribution is structurally different</h3>
+        <ul>
+          <li><strong>There is no Google Play install referrer.</strong> Google Play is not present on mainland Android, so the install-referrer mechanism most attribution SDKs rely on simply does not exist. Installs arrive through Huawei AppGallery, Xiaomi, OPPO, vivo, Honor, Tencent MyApp, and others, each with its own channel identification.</li>
+          <li><strong>No Google Advertising ID.</strong> Mainland Android has no GAID. The domestic equivalents are OAID and, on Huawei devices, its own identifier — these are administered through the Mobile Security Alliance rather than Google, and an SDK that only reads GAID collects nothing.</li>
+          <li><strong>Ad networks are domestic.</strong> Spend runs through Ocean Engine, Tencent Advertising, Kuaishou, Baidu, and Huawei Ads. Attribution is only useful if the tool has working postback integrations with those networks, which is a commercial relationship, not a configuration setting.</li>
+        </ul>
+        <p>iOS is the easier half: the App Store operates in China and SKAdNetwork and ATT behave as they do elsewhere, so an overseas MMP can often cover mainland iOS. Android is where the gap is real.</p>
+        <h3>What the domestic options actually do</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Option</th>
+                <th>What it covers</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Qimai Data (七麦数据)</td>
+                <td>China app store intelligence and ASO — rankings, keyword coverage, review and version tracking across the domestic Android stores and the China App Store</td>
+                <td>Understanding store-side performance and competitive position; it is market intelligence rather than an install-attribution SDK</td>
+              </tr>
+              <tr>
+                <td>Umeng+ (友盟+)</td>
+                <td>Mobile analytics suite with channel and campaign tracking built for the Chinese Android landscape, alongside product analytics, push, and remote config</td>
+                <td>Teams that want China analytics and channel attribution from one SDK already tuned to domestic stores and identifiers</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>A practical pattern</h3>
+        <p>Most teams do not find one tool that spans both worlds. The common arrangement is to keep the existing MMP for global traffic and mainland iOS, add a domestic analytics and channel-tracking SDK to the China Android build, and reconcile the two in your own warehouse on a shared user or order key rather than expecting either vendor to produce a unified view. Decide up front which system is authoritative for spend decisions, because the two will not agree.</p>
+        <p>Before committing, verify with each vendor: OAID and Huawei identifier support, per-store channel identification for the app stores you actually ship to, working postbacks with your ad networks, and where the data is stored. Options named here are alternatives-page orientation candidates for research, not Chinaready Explore tiles — confirm replacement fit, data-handling terms, and pricing before production adoption.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Adtrace work in China?",
+        answer: `Chinaready marks Adtrace ${availability} for mainland China. The issue is not blocking — it is that no mainland deployment path is documented: no China data region, no ICP-filed collection endpoint, and no published integration with the Chinese Android app stores, OAID identifiers, or domestic ad networks that China attribution depends on. Verify current China support directly with the vendor before you rely on it, and treat this page as orientation rather than a vendor statement.`,
+      },
+      {
+        question: "Why do overseas attribution SDKs fail on Chinese Android?",
+        answer:
+          "Three reasons stack up. Google Play is absent from mainland Android, so the install-referrer mechanism most attribution SDKs depend on does not exist. There is no Google Advertising ID — the domestic identifiers are OAID and Huawei's own, administered through the Mobile Security Alliance rather than Google — so an SDK that only reads GAID collects nothing. And spend runs through Ocean Engine, Tencent Advertising, Kuaishou, Baidu, and Huawei Ads, which require working postback integrations rather than configuration. Mainland iOS is the exception: the App Store operates in China and SKAdNetwork and ATT behave normally.",
+      },
+      {
+        question: "What are the best China alternatives for app attribution and ASO?",
+        answer: `Chinaready Landscape currently maps this page to ${namesText}. Qimai Data covers China app store intelligence and ASO across the domestic Android stores and the China App Store, and Umeng+ provides mobile analytics with channel and campaign tracking built for the Chinese Android landscape. They solve different halves of the problem, so read them as a shortlist to evaluate rather than a one-to-one replacement.`,
+      },
+      {
+        question: "Can I keep one attribution tool for both China and global traffic?",
+        answer:
+          "Usually not, and it is better to plan for two. The common pattern is to keep the existing MMP for global traffic and mainland iOS, add a domestic analytics and channel-tracking SDK to the China Android build, and reconcile the two in your own warehouse on a shared user or order key. Decide up front which system is authoritative for spend decisions, because the two will not agree.",
+      },
+      {
+        question: "Where should teams go after shortlisting China attribution options?",
+        answer:
+          "Compare the AppsFlyer, Adjust, Branch, Singular, and Kochava pages, since every overseas MMP hits the same OAID and app-store constraints and their China postures differ. Then use the App Attribution & ASO section of the Chinaready Guide for where this sits in a China stack. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
   aweber: {
     description: (availability, names) =>
       clipMeta(
-        `AWeber is Unavailable in mainland China — poor cross-border experience; not recommended for domestic China teams. Compare ${names.slice(0, 2).join(", ") || "Fengyou EDM, Zoho Campaigns"}. Availability: ${availability}.`,
+        `Does AWeber work in China? Reachable, but not viable for mainland email marketing — Chinaready marks it ${availability}. Compare ${names.slice(0, 2).join(", ") || "Fengyou EDM, Zoho Campaigns"}.`,
       ),
     lede: (availability, names) =>
-      `<strong>Quick answer:</strong> <strong>AWeber is unavailable in mainland China</strong> for practical production use. Cross-border experience is poor, and Chinaready does not recommend domestic China companies run AWeber directly. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Fengyou EDM, Zoho Campaigns")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+      `<strong>Quick answer:</strong> AWeber's site and dashboard are generally <strong>reachable</strong> from mainland China — the platform is not blocked. What fails is the job it is being asked to do: cross-border delivery into Chinese mailbox providers is unreliable, and the product carries no mainland sending infrastructure, ICP-filed sending domains, or China deliverability support. Chinaready therefore marks AWeber <strong>${escapeHtml(availability)}</strong> for mainland production email marketing and does not recommend that domestic China companies run it directly. Evaluate <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Fengyou EDM, Zoho Campaigns")}</strong> instead.`,
     guidanceTitle: "Email marketing platforms to evaluate instead of AWeber",
     sectionTitle: "Mapped China-ready candidates",
     indexOptions: 2,
     indexCandidates: "Fengyou EDM, Zoho Campaigns",
     guidanceHtml: `
-        <p><strong>AWeber is unavailable for reliable mainland China use.</strong> Cross-border delivery and day-to-day operating experience are poor enough that Chinaready does not recommend domestic China companies adopt AWeber directly. Plan a China-ready email marketing stack instead.</p>
+        <p><strong>AWeber is not blocked in mainland China — it is simply not built for the market.</strong> The dashboard loads and campaigns can be composed, so teams often assume the platform is fine and only discover the problem in the delivery numbers. Cross-border sending into Chinese mailbox providers such as QQ Mail, 163, and Sina is unreliable, and AWeber offers no mainland sending infrastructure, no ICP-filed sending domain, and no China deliverability support. That combination is why Chinaready does not recommend domestic China companies adopt AWeber directly. Plan a China-ready email marketing stack instead.</p>
         <h3>Domestic and localized platforms commonly evaluated instead</h3>
         <div class="cr-alt-table-scroll">
           <table>
@@ -2855,7 +3063,7 @@ const EDITORIAL_OVERRIDES = {
   drip: {
     description: (availability, names) =>
       clipMeta(
-        `Drip is Limited in mainland China — reachable but built for overseas ecommerce; English-only and USD billing. Compare ${names.slice(0, 4).join(", ") || "Dida EDM, U-Mail, Shierke, Reasonable Spread"}. Availability: ${availability}.`,
+        `Drip is Limited in mainland China — reachable but built for overseas ecommerce. Compare ${names.slice(0, 3).join(", ") || "Dida EDM, U-Mail, Shierke"}.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> <strong>Drip is Limited in mainland China</strong>. The US-hosted product is usually reachable and not clearly blocked, but speed and stability are unreliable, and the deeper problem is fit: Drip is built around Shopify, WooCommerce, and BigCommerce workflows that barely exist in mainland ecommerce, with English-only UI, no Chinese support, and USD billing. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 4).join(", ") || "Dida EDM, U-Mail, Shierke, Reasonable Spread")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
@@ -4172,7 +4380,7 @@ const EDITORIAL_OVERRIDES = {
     relatedSlugs: ["github-pages"],
     description: (availability, names) =>
       clipMeta(
-        `Does Docker Hub Mirror work in China? Unavailable — bandwidth, cross-border compliance, unfiled images. Prefer ${names.slice(0, 3).join(", ") || "Xuanyuan Mirror, 1ms Mirror, DaoCloud Mirror"}, ACR/TCR/SWR, Harbor. Availability: ${availability}.`,
+        `Does Docker Hub work in China? Pulls are slow or blocked. Prefer a domestic registry mirror: ${names.slice(0, 3).join(", ") || "Xuanyuan Mirror, 1ms Mirror, DaoCloud Mirror"}.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> <strong>Docker Hub Mirror is Unavailable in mainland China</strong> for practical production use. International bandwidth limits make Hub pulls slow or fail, cross-border image distribution raises data-compliance issues, and some images are not filed (备案) for mainland distribution. Chinaready currently lists <strong>${escapeHtml(names.slice(0, 7).join(", ") || "Xuanyuan Mirror, 1ms Mirror, DaoCloud Mirror, Alibaba Cloud ACR, Tencent Cloud TCR, Huawei Cloud SWR, Harbor")}</strong> as China-market options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
@@ -4287,14 +4495,90 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
-  bootstrapcdn: {
-    relatedSlugs: ["cloudflare-cdn", "amazon-cloudfront"],
+  canvasjs: {
+    relatedSlugs: ["bootstrapcdn", "cloudflare-cdn", "google-fonts"],
     description: (availability, names) =>
       clipMeta(
-        `Does BootstrapCDN work in China? Limited — use Chinaready domestic Bootstrap hosting, self-host on a China CDN, or test with ${names.slice(0, 2).join(" and ") || "Staticfile CDN and BootCDN"}. Availability: ${availability}.`,
+        `Does CanvasJS work in China? Reachable, but self-host it — the CDN is slow from the mainland. China-origin charting: ${names.slice(0, 2).join(", ") || "Apache ECharts, AntV G2"}.`,
       ),
     lede: (availability, names) =>
-      `<strong>Quick answer:</strong> <strong>BootstrapCDN is Limited in mainland China</strong> for production front-end stacks. Chinaready can provision a <strong>customer-specific, secure domestic Bootstrap hosting</strong> service based on your requirements, or your team can self-host Bootstrap assets on a China CDN. For testing and validation, Chinaready currently recommends <strong>${escapeHtml(names.slice(0, 2).join(" and ") || "Staticfile CDN and BootCDN")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+      `<strong>Quick answer:</strong> CanvasJS is a client-side JavaScript charting library, so nothing about it is blocked — charts render in the browser and never call a server. Chinaready marks it <strong>${escapeHtml(availability)}</strong> for one reason: if you load it from its overseas CDN, the script arrives slowly or stalls for mainland users. <strong>Self-hosting the library file on a China CDN fixes that outright</strong> and is the shortest path if you are happy with CanvasJS. The reason teams still switch is licensing — CanvasJS is commercial — so the China-origin, permissively licensed libraries <strong>${escapeHtml(names.slice(0, 2).join(" and ") || "Apache ECharts and AntV G2")}</strong> are the usual replacements. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Charting libraries for China-hosted front ends",
+    sectionTitle: "Mapped China-ready candidates",
+    preferResearchCandidates: true,
+    indexOptions: 3,
+    indexCandidates: "Apache ECharts, AntV G2, AntV F2",
+    guidanceHtml: `
+        <p>Charting libraries are the easiest category on this site to get right, because there is no service dependency to replace — the code runs in the visitor's browser. Only two things actually matter for China.</p>
+        <h3>1. Delivery, not availability</h3>
+        <p>If your page loads CanvasJS from an overseas CDN, mainland visitors wait on a cross-border request for a script that blocks your charts from rendering. Bundle the library with your application assets or serve it from a China CDN alongside them, and the problem disappears. This applies to every JavaScript library on the page, not just charts — the same fix covers Bootstrap, jQuery, and web fonts loaded the same way.</p>
+        <h3>2. Licensing and long-term fit</h3>
+        <p>CanvasJS is commercially licensed. That is often the real trigger for switching, especially for teams building a China product with a domestic engineering team, where an open-source library with Chinese documentation is easier to staff and maintain.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Library</th>
+                <th>What it is</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Apache ECharts</td>
+                <td>Apache-licensed charting library donated by Baidu to the Apache Software Foundation, with a very wide chart-type catalogue, Canvas and SVG renderers, and first-class Chinese documentation</td>
+                <td>The default first evaluation. Broadest coverage and the safest choice for a China-facing dashboard or data-heavy page</td>
+              </tr>
+              <tr>
+                <td>AntV G2</td>
+                <td>Grammar-of-graphics charting library from Ant Group's AntV suite, MIT licensed, composable rather than chart-type-per-config</td>
+                <td>Teams who want to compose visualisations from primitives, or who already use Ant Design</td>
+              </tr>
+              <tr>
+                <td>AntV F2</td>
+                <td>Mobile-first sibling of G2, built for small screens and WeChat Mini Program canvases</td>
+                <td>Charts inside Mini Programs and mobile web, where bundle size and touch interaction matter most</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Migration is mostly mechanical</h3>
+        <p>Because there is no backend, a migration is a rewrite of chart configuration objects and nothing more — no data residency question, no new vendor contract, no ICP implication. Budget for the config rewrite and for re-testing interactions and responsive behaviour. Check chart-type coverage against what you actually render before committing, and compare bundle size if the page is performance-sensitive; ECharts is feature-rich and correspondingly larger unless you build a custom bundle.</p>
+        <p>Options named here are alternatives-page orientation candidates for research — Chinaready does not add them as Explore / Landscape product tiles.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does CanvasJS work in China?",
+        answer: `Yes, functionally. CanvasJS is a client-side JavaScript charting library, so it renders entirely in the browser and never calls a server that could be blocked. Chinaready marks it ${availability} only because loading it from an overseas CDN is slow or stalls for mainland visitors. Self-hosting the library file on a China CDN, or bundling it with your application assets, resolves that completely.`,
+      },
+      {
+        question: "What are the best China alternatives to CanvasJS?",
+        answer: `Chinaready Landscape currently maps CanvasJS to ${namesText}. Apache ECharts is the usual default — Apache-licensed, originally from Baidu, now an Apache Software Foundation project, with a very wide chart-type catalogue and first-class Chinese documentation. AntV G2 from Ant Group is MIT licensed and takes a grammar-of-graphics approach, and AntV F2 is its mobile-first sibling for small screens and WeChat Mini Program canvases. These are research candidates rather than one-to-one endorsements.`,
+      },
+      {
+        question: "Why would I replace CanvasJS if it is not blocked in China?",
+        answer:
+          "Licensing, usually. CanvasJS is commercially licensed, while Apache ECharts and the AntV libraries are Apache-2.0 or MIT and free to self-host. Teams building a China product with a domestic engineering team also find an open-source library with Chinese documentation easier to staff and maintain. If neither applies to you, self-hosting CanvasJS on a China CDN is a perfectly reasonable answer.",
+      },
+      {
+        question: "How hard is migrating from CanvasJS to Apache ECharts?",
+        answer:
+          "Mechanical rather than architectural. There is no backend involved, so there is no data residency question, no new vendor contract, and no ICP implication — the work is rewriting chart configuration objects and re-testing interactions and responsive behaviour. Check chart-type coverage against what you actually render before committing, and compare bundle size if the page is performance-sensitive, since ECharts is feature-rich and correspondingly larger unless you build a custom bundle.",
+      },
+      {
+        question: "Where should teams go after shortlisting CanvasJS alternatives?",
+        answer:
+          "The same delivery problem affects every overseas-CDN asset on the page, so review the BootstrapCDN, Cloudflare CDN, and Google Fonts pages in the same pass — self-hosting or a domestic mirror fixes all of them together. Then use the Chinaready Guide for where front-end delivery sits in a China stack. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
+  bootstrapcdn: {
+    relatedSlugs: ["canvasjs", "cloudflare-cdn", "amazon-cloudfront"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does BootstrapCDN work in China? Limited — slow or stalling for mainland users. Self-host Bootstrap on a China CDN, or use ${names.slice(0, 2).join(" or ") || "Staticfile CDN or BootCDN"}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>BootstrapCDN is ${escapeHtml(availability)} in mainland China.</strong> It is not blocked, but it is served from overseas edges with no mainland presence, so Bootstrap's CSS and JavaScript arrive slowly or stall — and because a stylesheet is render-blocking, that delays first paint for every China visitor. The reliable fix is to stop depending on an overseas library CDN: <strong>self-host Bootstrap's assets on a China CDN alongside the rest of your front end</strong>, which also removes a third-party point of failure. If you want a hosted domestic mirror instead, <strong>${escapeHtml(names.slice(0, 2).join(" and ") || "Staticfile CDN and BootCDN")}</strong> serve the common Bootstrap versions from mainland nodes. Chinaready can also provision customer-specific, secure domestic Bootstrap hosting if you need it managed.`,
     guidanceTitle: "China Bootstrap hosting paths instead of BootstrapCDN",
     sectionTitle: "Mapped China-ready candidates",
     indexOptions: 2,
@@ -5767,7 +6051,7 @@ const EDITORIAL_OVERRIDES = {
     relatedSlugs: ["dynatrace", "new-relic", "grafana-cloud", "middleware-io", "sentry", "amazon-cloudwatch"],
     description: (availability, names) =>
       clipMeta(
-        `Datadog is Unavailable in mainland China — blocked/unstable ingest and SaaS data-export risk. Compare ${names.slice(0, 4).join(", ")}. Availability: ${availability}.`,
+        `Datadog is Unavailable in mainland China — blocked ingest and data-export risk. Compare ${names.slice(0, 3).join(", ")}.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> <strong>Datadog is Unavailable</strong> (or extremely unstable) in mainland China. APIs and the console sit behind the international gateway — high latency, DNS failures, or outright blocking make ingest and dashboards unreliable — and pure SaaS data export cannot meet mainland Data Security Law, localization, or Xinchuang expectations. When the business and users are in China, do not keep Datadog as the production monitor. Map to <strong>${escapeHtml(names.slice(0, 6).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
@@ -6762,6 +7046,93 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  "google-recaptcha": {
+    relatedSlugs: ["hcaptcha", "cloudflare-turnstile", "castle-io", "google-cloud"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does reCAPTCHA work in China? google.com/recaptcha is blocked. Switch to www.recaptcha.net, or map China traffic to ${names.slice(0, 2).join(" and ") || "GeeTest and Alibaba Cloud CAPTCHA"}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> Google reCAPTCHA is <strong>Limited</strong> in mainland China. The default <code>www.google.com/recaptcha/</code> endpoint is blocked, so forms and logins hang or never render. Google documents <code>www.recaptcha.net</code> as an alternate domain for regions where google.com is unreachable, and that domain usually resolves from the mainland — but it is not a guaranteed path, and any residual <code>www.gstatic.com</code> asset request can still stall the widget. For China-facing traffic that must work reliably, map to <strong>${escapeHtml(names.slice(0, 2).join(" and ") || "GeeTest and Alibaba Cloud CAPTCHA")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Making CAPTCHA work for mainland China users",
+    sectionTitle: "Mapped China-ready candidates",
+    // Lazy: the shared Google block reads consts declared after this object.
+    guidanceHtml: () => `
+        <h3>Why reCAPTCHA fails on the default domain</h3>
+        <p>The standard reCAPTCHA integration loads its script, iframe, and verification calls from <code>www.google.com/recaptcha/</code>. That host is blocked in mainland China, so the widget never finishes loading. The visible symptom is not usually an error message — it is a form that appears to hang, a submit button that stays disabled, or a login page that takes tens of seconds before failing.</p>
+        <h3>Option 1 — Switch to the recaptcha.net domain</h3>
+        <p>Google's own reCAPTCHA FAQ states that you can use <code>www.recaptcha.net</code> in your frontend code when <code>www.google.com</code> is not accessible to your users. Replace every reference to <code>www.google.com/recaptcha/</code> with <code>www.recaptcha.net/recaptcha/</code>, including the script tag, the API calls, and your Content-Security-Policy directives. Server-side verification should call <code>https://www.recaptcha.net/recaptcha/api/siteverify</code>.</p>
+        <p>Two caveats before you treat this as solved:</p>
+        <ul>
+          <li><strong>Not guaranteed.</strong> The alternate domain is generally reachable from the mainland, but reachability is measured, not promised. Test from real mainland networks on more than one carrier before shipping.</li>
+          <li><strong>Watch residual Google hosts.</strong> Assets or fallbacks that still point at <code>www.gstatic.com</code> can stall the widget even after the main domain is swapped. Audit the full request waterfall from a mainland vantage point, not just the script URL.</li>
+        </ul>
+        <p>This option suits products whose primary audience is outside China and that only need mainland visitors to get through a form occasionally.</p>
+        <h3>Option 2 — Use a domestic CAPTCHA provider</h3>
+        <p>If China is a core market — or if a blocked login screen is a revenue or support problem — serve a domestic provider to China-facing traffic instead of relying on an alternate Google domain. Domestic vendors run mainland nodes, so challenge latency is low, and their interaction patterns match what Chinese users already expect.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Approach</th>
+                <th>Mainland reliability</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>reCAPTCHA on <code>www.google.com</code></td>
+                <td>Blocked — the widget does not load</td>
+                <td>Nothing China-facing</td>
+              </tr>
+              <tr>
+                <td>reCAPTCHA on <code>www.recaptcha.net</code></td>
+                <td>Usually loads; not guaranteed, and gstatic.com assets can still stall</td>
+                <td>Global products with occasional mainland visitors</td>
+              </tr>
+              <tr>
+                <td>GeeTest (极验)</td>
+                <td>Mainland nodes; built for China traffic</td>
+                <td>China-facing login, registration, and abuse control</td>
+              </tr>
+              <tr>
+                <td>Alibaba Cloud CAPTCHA (阿里云验证码)</td>
+                <td>Mainland nodes; built for China traffic</td>
+                <td>Stacks already on Alibaba Cloud edge and security services</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Recommended pattern</h3>
+        <p>Most teams do not pick one globally. Keep reCAPTCHA for the rest of the world and branch on visitor geography or locale so China-facing sessions get a domestic provider. That keeps your existing risk-scoring history intact outside China while removing the blocked dependency from the path that matters for mainland conversion.</p>
+        <p>The domestic options above appear on this alternatives page as orientation candidates for research. Validate pricing, data-handling terms, and accessibility requirements before production adoption.</p>
+        <h3>Google's wider presence in mainland China</h3>${googleChinaGuidanceHtml()}`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Google reCAPTCHA work in China?",
+        answer: `Only partially. The default www.google.com/recaptcha/ endpoint is blocked in mainland China, so the widget does not load and forms appear to hang. Google's reCAPTCHA FAQ documents www.recaptcha.net as an alternate domain for regions where google.com is not accessible, and that domain generally resolves from the mainland — but reachability is not guaranteed and residual www.gstatic.com asset requests can still stall the widget. Chinaready labels Google reCAPTCHA as ${availability} for mainland production use.`,
+      },
+      {
+        question: "How do I fix reCAPTCHA not loading in China?",
+        answer:
+          "Replace every www.google.com/recaptcha/ reference with www.recaptcha.net/recaptcha/ — the script tag, the client API calls, your Content-Security-Policy directives, and the server-side siteverify endpoint. Then audit the full request waterfall from a real mainland network on more than one carrier, because assets still pointing at www.gstatic.com can stall the widget even after the main domain is swapped. If China is a core market, serve a domestic provider to China-facing traffic instead of depending on the alternate domain.",
+      },
+      {
+        question: "What are the best China alternatives to Google reCAPTCHA?",
+        answer: `Chinaready Landscape currently maps Google reCAPTCHA to ${namesText}. These run mainland nodes, so challenge latency is low and the interaction patterns match Chinese user expectations. Replacement fit varies by product, so treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Should I replace reCAPTCHA everywhere or only for China traffic?",
+        answer:
+          "Usually only for China traffic. Branch on visitor geography or locale so mainland sessions get a domestic CAPTCHA while the rest of the world keeps reCAPTCHA. That preserves your existing risk-scoring history outside China and removes the blocked dependency from the path that affects mainland conversion.",
+      },
+      {
+        question: "Where should teams go after shortlisting Google reCAPTCHA alternatives?",
+        answer:
+          "Compare the adjacent bot-protection pages for hCaptcha and Cloudflare Turnstile, since they share similar China failure modes, then use the Bot Protection & CAPTCHA section of the Chinaready Guide for where this sits in a China stack. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
   hcaptcha: {
     relatedSlugs: ["google-recaptcha", "cloudflare-turnstile", "castle-io"],
     description: (availability, names) =>
@@ -7246,42 +7617,200 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   wordpress: {
+    relatedSlugs: ["altis", "pantheon", "google-fonts", "cloudflare-cdn", "amazon-cloudfront"],
     description: (availability, names) =>
       clipMeta(
-        `Does WordPress work in China? Limited on WordPress.com/overseas CDNs — self-host on China cloud with ICP, or use PageAdmin/Baklib. Availability: ${availability}.`,
+        `Does WordPress work in China? Not blocked, but Gravatar and update endpoints stall pages. Self-host onshore with ICP filing. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
-      `<strong>Quick answer:</strong> <strong>WordPress is Limited for mainland China</strong> when you depend on WordPress.com or overseas plugin/theme CDNs. Self-hosted WordPress on China cloud with ICP filing can work; otherwise evaluate <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Self-hosted WordPress on China cloud, PageAdmin, Baklib")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
-    guidanceTitle: "Making WordPress (or a CMS) work for mainland China",
+      `<strong>Quick answer:</strong> <strong>WordPress is Limited for mainland China</strong> — the software itself is not blocked, but a default install reaches for third-party endpoints that mainland browsers cannot load reliably. Gravatar avatars are blocked outright, WordPress.com is inconsistently reachable, and mainland servers routinely get HTTP 429 responses from the wordpress.org update API, which breaks one-click core, plugin, and theme updates. The usual answer is to keep WordPress and decide hosting location first: onshore on Alibaba Cloud or Tencent Cloud with ICP filing, or Hong Kong / Singapore as a no-filing middle path. If the site is really a docs portal or a government / state-owned site cluster, evaluate <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Self-hosted WordPress on China cloud, PageAdmin, Baklib")}</strong> instead. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Running WordPress for a mainland China audience",
     sectionTitle: "Mapped China-ready candidates",
     preferResearchCandidates: true,
     indexOptions: 3,
     indexCandidates: "Self-hosted WordPress on China cloud, PageAdmin, Baklib",
     guidanceHtml: `
-        <p><strong>WordPress software is not categorically banned</strong>, but overseas WordPress.com hosting and plugin/theme update CDNs are often slow or unreliable from mainland China. Practical paths:</p>
+        <p><strong>WordPress is Limited rather than Unavailable in mainland China.</strong> Nothing bans the software, and self-hosted WordPress runs fine on mainland cloud. What fails is the set of overseas services a stock WordPress install assumes: the hosted WordPress.com service, the avatar service, and the update endpoints the admin dashboard calls. Answer three questions in order — what breaks in the page, where the site will be hosted, and how the admin stays patchable.</p>
+        <h3>1. What actually breaks, service by service</h3>
+        <p>Teams usually say WordPress is blocked in China when the truth is more specific. Separate the pieces before changing anything.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Dependency</th>
+                <th>Status from mainland China</th>
+                <th>Practical impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>WordPress software (self-hosted)</td>
+                <td>Not blocked</td>
+                <td>Core PHP / MySQL stack installs and runs normally on Alibaba Cloud, Tencent Cloud, or any mainland host</td>
+              </tr>
+              <tr>
+                <td>WordPress.com (hosted service)</td>
+                <td>Inconsistently reachable</td>
+                <td>GreatFire measurement across roughly 1,500 tested WordPress.com URLs shows a mixed picture — a large share blocked or intermittently disrupted, the rest loading normally. Not a dependable China-facing host</td>
+              </tr>
+              <tr>
+                <td>wordpress.org and api.wordpress.org</td>
+                <td>Reachable but rate-limited</td>
+                <td>Mainland server IPs frequently receive HTTP 429 Too Many Requests, reported continuously since October 2019. Core, plugin, and theme update checks and one-click installs fail in the admin</td>
+              </tr>
+              <tr>
+                <td>Gravatar (secure.gravatar.com and related hosts)</td>
+                <td>Blocked</td>
+                <td>Every Gravatar host GreatFire can reach a verdict on is blocked. Comment threads and author boxes hang on avatar requests until the browser times out</td>
+              </tr>
+              <tr>
+                <td>Google Fonts (fonts.googleapis.com, fonts.gstatic.com)</td>
+                <td>Unreliable</td>
+                <td>Measurement is mixed rather than uniformly blocked, but font CSS is render-blocking, so a stalled request delays first paint for every visitor. Widely reported as a leading cause of slow China page loads</td>
+              </tr>
+              <tr>
+                <td>Emoji assets from s.w.org</td>
+                <td>Third-party dependency you do not need</td>
+                <td>Core injects an inline emoji detection script plus a DNS prefetch to s.w.org on every page. Harmless overseas, avoidable weight in China</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The pattern is that the site resolves and the HTML arrives, then the page stalls on blocked or slow third-party sub-requests. Fix the in-page dependencies before blaming the host: serve avatars locally, self-host the font files you use, and strip the emoji script and its DNS prefetch. Those three changes are free and often the single largest improvement for a China audience.</p>
+        <h3>2. Decide hosting location before anything else</h3>
+        <p>Hosting location determines your compliance workload, not your company's location or your audience. The ICP filing requirement follows the physical location of the server that serves the public site.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Hosting posture</th>
+                <th>ICP filing</th>
+                <th>Latency to mainland users</th>
+                <th>Best fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mainland China (Alibaba Cloud, Tencent Cloud, and similar)</td>
+                <td>Required before the site may go live; also required to use a CDN with mainland points of presence</td>
+                <td>Best available — traffic stays on domestic networks</td>
+                <td>China-committed teams with a mainland entity and a real China audience</td>
+              </tr>
+              <tr>
+                <td>Hong Kong or Singapore</td>
+                <td>Not required, and not available — you cannot file for an offshore server</td>
+                <td>Better than Europe or North America but crosses the border, so expect congestion at the domestic evening peak. Hong Kong is commonly cited around 20–40 ms versus roughly 180–250 ms from the United States</td>
+                <td>Market testing, fast launches, teams without a mainland entity</td>
+              </tr>
+              <tr>
+                <td>Existing overseas host plus China optimization</td>
+                <td>Not required</td>
+                <td>Weakest of the three, and no mainland CDN nodes are available without a filing</td>
+                <td>Small China traffic share where the work is mostly removing blocked third-party assets</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Two consequences are easy to miss. First, an offshore origin cannot be paired with mainland CDN nodes: Alibaba Cloud requires an MIIT filing number for its Chinese Mainland and Global acceleration regions, and only the region that excludes the mainland is filing-free. Second, offshore hosting removes the filing burden but keeps the cross-border path, which is exactly what causes inconsistent load times. Neither option is strictly better — pick the one that matches how committed the China audience is.</p>
+        <h3>3. The self-host-onshore path and ICP filing</h3>
+        <p>This is the path most teams end on when China traffic matters. Sequence it in this order, because each step gates the next.</p>
+        <h4>Step 1 — Get the domain filing-eligible</h4>
+        <p>A domain registered with an overseas registrar cannot be filed. Transfer it to a registrar approved by the Ministry of Industry and Information Technology (MIIT), complete domain real-name verification, and make sure the verified registrant details match the entity that will file. Tencent Cloud advises waiting a few days after real-name verification so the record syncs into the MIIT database before you apply, otherwise the provincial review can fail on stale data.</p>
+        <h4>Step 2 — Buy the mainland server first</h4>
+        <p>Filing is submitted through your access service provider, and the provider requires an eligible mainland instance on the account before it will accept an application. Note that Alibaba Cloud filing is only available through the China site (aliyun.com) with a verified account, and the filing workflow is Chinese-language only — plan for a Chinese-reading colleague or a local partner.</p>
+        <h4>Step 3 — Submit through the provider and pass provincial review</h4>
+        <p>The provider does an initial check, then forwards the application to the provincial communications administration that has jurisdiction over your entity. That authority sets its own document list and verifies the domain registrant details against the filing entity. Published timelines vary widely by province and by whether the entity is filing for the first time, so treat any single number you read as indicative rather than a commitment.</p>
+        <h4>Step 4 — Publish the filing number and finish the follow-ups</h4>
+        <p>Once approved, the ICP number goes in the site footer linked to the MIIT verification site; some provinces require additional notices. A separate public security bureau filing is commonly required after go-live (often cited as within 30 days) for mainland-hosted sites. Timelines and document lists vary by province and change over time — <strong>confirm the current requirements with your hosting provider and your own counsel before you commit to a launch date</strong>. Chinaready does not provide legal advice on filings.</p>
+        <h4>Step 5 — Put assets on a China CDN</h4>
+        <p>With the filing in place, a mainland CDN is available for images, CSS, JavaScript, and media. This is where onshore hosting earns its keep, and it is unavailable to offshore origins.</p>
+        <h3>4. Keeping the WordPress admin usable on a mainland server</h3>
+        <p>The most common surprise after moving onshore is that the dashboard stops being able to install or update anything. This is the HTTP 429 rate limiting from the wordpress.org update API, not a firewall block, and it has been reported by mainland site owners since 2019. Do not respond by disabling updates — an unpatched core and plugin set is the larger risk. Practical mitigations, roughly in order of how much control they give you:</p>
         <ul>
-          <li><strong>Keep WordPress:</strong> host on Alibaba Cloud / Tencent Cloud (or similar), complete ICP filing, and serve assets on a China CDN.</li>
-          <li><strong>Domestic CMS:</strong> PageAdmin for government/education/Xinchuang sites; Baklib for knowledge-base / help-center portals.</li>
+          <li><strong>Route update traffic through a mirror.</strong> The community plugin WP-China-Yes redirects wordpress.org update, install, and translation requests to domestic mirrors. Kill 429 takes the other approach and proxies installs through overseas nodes. Both are third-party plugins that sit in your update path, so review the source and pin versions before trusting them on a production site.</li>
+          <li><strong>Give the server an outbound proxy.</strong> If your team already has a compliant outbound path, configuring WordPress to use it for outbound HTTP is the cleanest fix and leaves core update behaviour untouched.</li>
+          <li><strong>Manage updates from outside.</strong> Build and test the plugin and theme set on an overseas staging environment, then deploy to the mainland server as code. Slower per release, but it removes the runtime dependency entirely and is the usual answer for teams with a real deployment pipeline.</li>
+          <li><strong>Upload manually as a fallback.</strong> Downloading a plugin ZIP and uploading it always works and is a reasonable stopgap, but it does not scale past a handful of plugins.</li>
         </ul>
-        <p>Candidates on this page are orientation-only — not Explore tiles.</p>`,
+        <h3>5. Domestic CMS options worth knowing</h3>
+        <p>Switching CMS is the right call in a minority of cases — usually when the site is a documentation portal, or when a government or state-owned buyer imposes domestic-technology (Xinchuang / 信创) and security-grading requirements that a PHP plugin ecosystem cannot satisfy. None of these is a drop-in WordPress replacement; themes, plugins, and content models do not carry over.</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Option</th>
+                <th>What it actually is</th>
+                <th>Genuinely good for</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Self-hosted WordPress on China cloud</td>
+                <td>The same WordPress, hosted on Alibaba Cloud, Tencent Cloud, or similar, with ICP filing and a China CDN</td>
+                <td>Keeping your existing content, editors, and theme while fixing performance. The default recommendation for most teams</td>
+              </tr>
+              <tr>
+                <td>PageAdmin (from Zhongshan Huatuo Information Technology, 中山市华拓信息技术有限公司)</td>
+                <td>Private-deployment .NET / .NET Core CMS with a free edition, published since 2008. Runs on domestic operating systems and domestic databases, and is marketed around site-cluster management and security-grading compliance</td>
+                <td>Government, education, and state-owned enterprise site clusters where domestic-stack and security-grading requirements are contractual</td>
+              </tr>
+              <tr>
+                <td>Baklib</td>
+                <td>China SaaS content platform combining a knowledge base, a template-driven CMS, and digital asset management, and able to run headless with content in the knowledge base and presentation in the site layer</td>
+                <td>Help centers, product documentation, and public service portals — teams who used WordPress mainly as a docs tool</td>
+              </tr>
+              <tr>
+                <td>Z-BlogPHP</td>
+                <td>Long-running lightweight China PHP blog and small-site system with its own domestic theme and plugin ecosystem</td>
+                <td>Small content sites where WordPress feels heavy and the maintainer prefers a domestic ecosystem</td>
+              </tr>
+              <tr>
+                <td>Halo</td>
+                <td>Modern China-origin open-source Java CMS with a plugin system and a clean API surface, self-hosted</td>
+                <td>Developer-maintained blogs and content sites where API-first structure matters more than a large plugin catalogue</td>
+              </tr>
+              <tr>
+                <td>WeChat Official Account (微信公众号) and Mini Programs (小程序)</td>
+                <td>A distribution channel inside WeChat, not a CMS — no page templates, themes, or site structure to own</td>
+                <td>Reaching a China audience where they already read, usually alongside a website rather than instead of one. Accounts and Mini Programs carry their own registration and review requirements; confirm the current rules with the platform</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>One thing to avoid: DedeCMS (织梦) still appears in older Chinese build guides, but it now requires commercial licensing and has a long public vulnerability history, and current domestic selection write-ups advise against it for new projects. Treat legacy PHP CMS recommendations from a decade ago with suspicion.</p>
+        <h3>6. Headless WordPress with a China-hosted frontend</h3>
+        <p>A decoupled setup keeps WordPress overseas as the editing tool and content API, and serves mainland visitors from a China-hosted frontend that consumes it. It is attractive because editors keep the interface they know, the admin stays out of the mainland network path, and update management happens in a jurisdiction where the wordpress.org endpoints behave normally.</p>
+        <p><strong>It does not avoid ICP filing.</strong> The requirement attaches to the server that serves the public site, so a frontend hosted in the mainland needs a filing even though the WordPress admin sits overseas — the same logic that makes mainland CDN nodes require a filing number. Going headless changes where the CMS lives, not whether you file. Confirm the specifics for your architecture with your hosting provider and counsel.</p>
+        <p>Two practical notes. The frontend still needs to fetch content across the border at build or request time, so prefer building or caching content onshore rather than calling the overseas API on every page view. And an internet-exposed WordPress admin and REST endpoint is a standing security liability — restrict admin and API access to known networks, and authenticate the API rather than leaving it open.</p>
+        <p>Options named on this page are alternatives-page orientation candidates only — Chinaready does <strong>not</strong> add PageAdmin, Baklib, Z-BlogPHP, Halo, or WeChat channels as Explore / Landscape product tiles. Availability and blocking behaviour change; re-test from a mainland network before you commit. Compare nearby pages for <a href="/alternatives/altis">Altis</a>, <a href="/alternatives/pantheon">Pantheon</a>, <a href="/alternatives/google-fonts">Google Fonts</a>, <a href="/alternatives/cloudflare-cdn">Cloudflare CDN</a>, and <a href="/alternatives/amazon-cloudfront">Amazon CloudFront</a> when the stack also includes managed WordPress hosting or overseas CDN and font delivery.</p>`,
     faq: (availability, namesText) => [
       {
         question: "Does WordPress work in China?",
-        answer: `It depends on hosting. Chinaready labels WordPress as ${availability} for typical overseas WordPress.com / CDN setups. Self-hosted WordPress on mainland cloud with ICP can work; WordPress.com and overseas plugin CDNs usually do not.`,
+        answer: `Yes, with work. Chinaready labels WordPress as ${availability} for mainland China. The software is not blocked and self-hosted WordPress runs normally on mainland cloud, but a stock install depends on overseas services that mainland visitors cannot load reliably — Gravatar avatars are blocked, Google Fonts is unreliable, and the wordpress.org update API rate-limits mainland servers. Sites usually resolve and then stall on those sub-requests, which is why WordPress feels broken in China rather than simply unreachable.`,
       },
       {
-        question: "What are the best China alternatives to WordPress?",
-        answer: `Chinaready currently lists: ${namesText}. Many teams keep WordPress but move hosting onshore; others switch to PageAdmin or Baklib.`,
+        question: "Is WordPress.com or WordPress.org blocked in China?",
+        answer:
+          "They behave differently, and the distinction matters. WordPress.com, the hosted service, is inconsistently reachable — GreatFire measurement across roughly 1,500 tested WordPress.com URLs shows a large share blocked or intermittently disrupted and the rest loading normally, so it is not a dependable China-facing host. WordPress.org is not blocked, but mainland server IPs frequently receive HTTP 429 Too Many Requests from its update API, reported since October 2019, which is a rate-limiting problem rather than a firewall block. Gravatar, which core loads for avatars, is blocked across every host with a verdict.",
       },
       {
         question: "Do I need an ICP license for a WordPress site in China?",
         answer:
-          "Public websites on mainland China hosting generally require ICP filing (and sometimes additional licenses by content type). Confirm with your hosting provider and counsel before launch.",
+          "If the site is hosted on a mainland China server, you need an ICP filing before it may go live, and you also need one to use a CDN with mainland points of presence. The requirement follows the physical location of the server, not your company's location or your audience. Hosting in Hong Kong, Singapore, or anywhere offshore needs no filing — and cannot obtain one. Filing requires a filing-eligible domain at an MIIT-approved registrar with real-name verification matching the filing entity, an eligible mainland server on the provider's account, and the ICP number published in the site footer. Provincial requirements, document lists, and timelines vary and change, so confirm the current rules with your hosting provider and your own counsel. This is not legal advice.",
       },
       {
-        question: "Where should teams go after shortlisting WordPress alternatives?",
+        question: "Why can't the WordPress admin install plugins on a China server?",
         answer:
-          "Decide keep-vs-replace, then validate ICP, CDN, and plugin update strategy. Book a call with Chinaready if the hosting path is unclear.",
+          "That is the HTTP 429 rate limiting from the wordpress.org update API hitting mainland IP ranges, which disables update checks and one-click installs across core, plugins, and themes. Options are to route update traffic through a domestic mirror plugin such as WP-China-Yes, proxy installs through overseas nodes with a plugin such as Kill 429, give the server a compliant outbound proxy for WordPress HTTP requests, manage the plugin set from an overseas staging environment and deploy as code, or upload plugin ZIP files manually as a stopgap. Review any third-party plugin that sits in your update path before trusting it in production, and do not simply switch updates off — an unpatched install is the bigger risk.",
+      },
+      {
+        question: "Should I host WordPress in Hong Kong instead of mainland China?",
+        answer:
+          "Hong Kong is a legitimate middle path when you do not have a mainland entity or want to launch quickly. It needs no ICP filing, and latency to mainland cities is commonly cited around 20–40 ms versus roughly 180–250 ms from the United States. The honest tradeoff is that traffic still crosses the border, so it shares congested cross-border links and degrades during the domestic evening peak, and you cannot pair an offshore origin with mainland CDN nodes because those require a filing number. If China is a primary market with sustained traffic, onshore hosting with a filing is still the performance ceiling.",
+      },
+      {
+        question: "What are the best China alternatives to WordPress?",
+        answer: `Chinaready currently lists ${namesText} on this page. For most teams the answer is not a different CMS: keep WordPress, move hosting onshore or to Hong Kong, and remove the blocked third-party assets. Switch CMS when the job has changed — PageAdmin for government, education, and state-owned site clusters with domestic-stack and security-grading requirements, Baklib for help centers and documentation portals, and Z-BlogPHP or Halo for lighter self-hosted content sites. None is a drop-in replacement, since themes, plugins, and content models do not carry over. These are alternatives-page orientation candidates only, not Chinaready Explore tiles.`,
       },
     ],
   },
@@ -7890,7 +8419,7 @@ function buildGoogleEditorial(group) {
       clipMeta(
         isGoogleCloud
           ? `Does Google Cloud work in China? No mainland GCP region. Compare ${names.slice(0, namePreviewCount).join(", ") || "AWS China, Azure China, Alibaba Cloud, Tencent Cloud"}. Availability: ${availability}.`
-          : `Does ${serviceName} work in China? Google's consumer services are mostly blocked; mainland offices focus on B2B, developers, and hardware. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
+          : `Does ${serviceName} work in China? Most Google consumer services are blocked from the mainland. Compare ${names.slice(0, 3).join(", ")}. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
       names.length > 0
@@ -8386,10 +8915,19 @@ function renderStickyAssessmentCta() {
   </aside>`;
 }
 
+/**
+ * A snippet only earns the click if the named China candidates survive Google's
+ * ~155-character truncation. When copy runs long, drop the trailing
+ * `Availability: …` clause first: it repeats the on-page availability line, so
+ * losing it costs less than losing candidate names or the verdict.
+ */
 function clipMeta(text, max = 155) {
   const clean = String(text).replace(/\s+/g, " ").trim();
   if (clean.length <= max) return clean;
-  const sliced = clean.slice(0, max - 1);
+  const trimmed = clean.replace(/\s*(?:Mainland\s+)?availability:[^.]*\.?$/i, "").trim();
+  if (trimmed.length > 0 && trimmed.length <= max) return trimmed;
+  const base = trimmed.length > 0 ? trimmed : clean;
+  const sliced = base.slice(0, max - 1);
   return `${sliced.replace(/\s+\S*$/, "").replace(/[.,;:]\s*$/, "")}…`;
 }
 
@@ -8450,15 +8988,20 @@ function analogPageTitle(group, availability, names) {
   return brandedTitle(`Does ${group.name} work in China?`);
 }
 
+/**
+ * Lead with the verdict and the named candidates. Anything after those two
+ * facts tends to fall outside Google's snippet window, so the generic copy
+ * carries no closing boilerplate.
+ */
 function analogPageDescription(group, availability, names, uncertain) {
   if (uncertain) {
     return clipMeta(
-      `Does ${group.name} work in China? Chinaready marks it ${availability}. No confirmed drop-in substitute yet — get a stack-specific China recommendation from Chinaready.`,
+      `Does ${group.name} work in China? Chinaready marks it ${availability}. No confirmed drop-in substitute yet — ask Chinaready for a stack-specific recommendation.`,
     );
   }
   const lead = names.slice(0, 3).join(", ");
   return clipMeta(
-    `Looking for ${group.name} alternatives in China? Compare ${lead}. Mainland availability: ${availability}. Open-source Chinaready Landscape map for China launches.`,
+    `Does ${group.name} work in China? Chinaready marks it ${availability}. Compare China alternatives: ${lead}.`,
   );
 }
 
@@ -8556,7 +9099,7 @@ function renderAlternativesIndex(groups) {
   const serviceCount = groups.length;
   const withOptions = groups.filter((group) => candidateCount(group) > 0).length;
   const description = clipMeta(
-    `Find China alternatives to Firebase, AWS, Stripe, FCM, Google Maps, and ${serviceCount}+ global developer services. ${withOptions} entries include China-ready candidates. Free Chinaready Landscape map.`,
+    `Find China alternatives to Firebase, AWS, Stripe, FCM, and ${serviceCount} more global services — with mainland availability labels and China-ready candidates.`,
   );
   const rows = groups
     .map((group) => {
@@ -8725,7 +9268,68 @@ function relatedGroups(group, groups, limit = 5) {
   return [...preferred, ...fromScore, ...extras].slice(0, limit);
 }
 
-function renderAnalogPage(group, groups = []) {
+/**
+ * Index the Guide taxonomy by `category||subcategory` so alternatives pages can
+ * deep-link into the matching Guide section instead of the generic `/guide`.
+ * Keyed on the same names landscape.yml uses, so an unmatched pair simply
+ * yields no deep link rather than a broken anchor.
+ */
+function buildGuideAnchorIndex(guide) {
+  const index = new Map();
+  for (const category of guide?.categories || []) {
+    const categoryName = category.category;
+    if (!categoryName) continue;
+    index.set(guideAnchorKey(categoryName), {
+      id: buildGuideSectionId(categoryName),
+      label: categoryName,
+    });
+    for (const sub of category.subcategories || []) {
+      if (!sub.subcategory) continue;
+      index.set(guideAnchorKey(categoryName, sub.subcategory), {
+        id: buildGuideSectionId(categoryName, sub.subcategory),
+        label: sub.subcategory,
+      });
+    }
+  }
+  return index;
+}
+
+function guideAnchorKey(categoryName, subcategoryName) {
+  const category = String(categoryName || "").trim().toLowerCase();
+  const subcategory = String(subcategoryName || "").trim().toLowerCase();
+  return subcategory ? `${category}||${subcategory}` : category;
+}
+
+/**
+ * Pick the Guide section that best describes a group: the most common
+ * category/subcategory across its mapped items, falling back to research
+ * candidates for pages that have no Landscape tiles.
+ */
+function guideSectionForGroup(group, guideAnchors) {
+  if (!guideAnchors || guideAnchors.size === 0) return null;
+  const pools = [group.items || [], group.research_candidates || []];
+  for (const pool of pools) {
+    const counts = new Map();
+    for (const item of pool) {
+      if (!item.category || !item.subcategory) continue;
+      const key = guideAnchorKey(item.category, item.subcategory);
+      counts.set(key, (counts.get(key) || 0) + 1);
+    }
+    let bestKey = "";
+    let bestCount = 0;
+    for (const [key, count] of counts) {
+      if (count > bestCount) {
+        bestKey = key;
+        bestCount = count;
+      }
+    }
+    const match = bestKey && guideAnchors.get(bestKey);
+    if (match) return match;
+  }
+  return null;
+}
+
+function renderAnalogPage(group, groups = [], guideAnchors = new Map()) {
   const editorial = resolveEditorial(group);
   const names = candidateNames(group);
   const namesText = names.join(", ");
@@ -8857,12 +9461,15 @@ function renderAnalogPage(group, groups = []) {
       : "";
 
   const related = relatedGroups(group, groups);
+  const guideSection = guideSectionForGroup(group, guideAnchors);
   const relatedLinks = [
     ...related.map(
       (peer) =>
         `<li><a href="${escapeHtml(analogPublicPath(peer.slug))}">Does ${escapeHtml(peer.name)} work in China?</a></li>`,
     ),
-    `<li><a href="/guide">China developer stack Guide</a></li>`,
+    guideSection
+      ? `<li><a href="/guide#${escapeHtml(guideSection.id)}">${escapeHtml(guideSection.label)} in the China developer stack Guide</a></li>`
+      : `<li><a href="/guide">China developer stack Guide</a></li>`,
     `<li><a href="/alternatives/">All China alternatives</a></li>`,
   ];
   const relatedSection = `<section aria-labelledby="related-lookups">
@@ -9617,7 +10224,7 @@ function renderGuideIndexMenu(categories) {
 
 function renderGuidePage(guide) {
   const description = clipMeta(
-    "China developer stack guide by category — what belongs where for mainland launches, with notes on familiar global services and links to China alternative maps.",
+    "China developer stack guide by category — what belongs where for mainland launches, with notes on familiar global services and China alternative maps.",
   );
   const categories = guide?.categories || [];
   const sections = categories
@@ -9871,7 +10478,7 @@ function enhanceIndexHtml(indexHtml, groups) {
   // Keep the Firebase/AWS/Stripe phrase for verify + long-tail SERP match; brand suffix via brandedTitle.
   const title = brandedTitle("China Alternatives to Firebase, AWS, Stripe");
   const description = clipMeta(
-    `Does Firebase, AWS, or Stripe work in China? Explore ${groups.length}+ mainland alternatives, availability labels, and China-ready candidates on the open-source Chinaready Landscape map.`,
+    `Does Firebase, AWS, or Stripe work in China? Explore ${groups.length} mainland alternatives with availability labels and China-ready candidates.`,
   );
 
   let html = indexHtml;
@@ -10039,6 +10646,8 @@ function enhanceIndexHtml(indexHtml, groups) {
     );
   }
 
+  html = injectHomePrerender(html, description);
+
   if (!/<h1[\s>]/i.test(html)) {
     html = html.replace(
       /<body([^>]*)>/i,
@@ -10055,6 +10664,57 @@ function enhanceIndexHtml(indexHtml, groups) {
   }
 
   return html;
+}
+
+/**
+ * The landscape2 explorer paints nothing until its ~260 KB module bundle lands,
+ * so homepage LCP waits on the bundle even though the markup arrives early. Seed
+ * `#landscape` with real visible text — styled inline so it needs no extra
+ * stylesheet — and drop it once React mounts.
+ *
+ * landscape2 appends to `#landscape` rather than clearing it, so the placeholder
+ * must be removed explicitly or it stays on the page above the app. The H1 stays
+ * where it is; this block uses an H2 so the homepage keeps exactly one H1.
+ */
+function injectHomePrerender(html, description) {
+  if (!html.includes('<div id="landscape"></div>')) return html;
+
+  const heading = "China Alternatives to Firebase, AWS, Stripe";
+  const placeholder = `<div id="cr-home-prerender" style="max-width:52rem;margin:0 auto;padding:5rem 1.5rem 3rem;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:#0f172a">
+          <h2 style="margin:0 0 1rem;font-size:1.875rem;line-height:1.2;font-weight:700">${escapeHtml(heading)}</h2>
+          <p style="margin:0 0 1.5rem;font-size:1.125rem;line-height:1.6;color:#334155">${escapeHtml(description)}</p>
+          <p style="margin:0;font-size:1rem;line-height:1.6"><a href="/alternatives/" style="color:#1d4ed8">Browse the alternatives index</a> · <a href="/guide" style="color:#1d4ed8">Read the China stack Guide</a></p>
+        </div>`;
+
+  // 10s fallback in case the app never mounts; the placeholder must not outlive it.
+  const remover = `<script>
+      (function () {
+        var root = document.getElementById("landscape");
+        var block = document.getElementById("cr-home-prerender");
+        if (!root || !block) return;
+        var drop = function () {
+          if (block && block.parentNode) block.parentNode.removeChild(block);
+          block = null;
+        };
+        if (root.children.length > 1) return drop();
+        var observer = new MutationObserver(function () {
+          if (root.children.length > 1) {
+            observer.disconnect();
+            drop();
+          }
+        });
+        observer.observe(root, { childList: true });
+        setTimeout(function () {
+          observer.disconnect();
+          drop();
+        }, 10000);
+      })();
+    </script>`;
+
+  return html.replace(
+    '<div id="landscape"></div>',
+    `<div id="landscape">${placeholder}</div>\n    ${remover}`,
+  );
 }
 
 function noindexEmbedPages(buildDir) {
@@ -10091,17 +10751,21 @@ export function applySeoGeoEnhancements({ root, buildDir, indexHtml }) {
     throw new Error("SEO/GEO generation found no alternative pages to publish");
   }
 
+  // Load the Guide first so alternatives pages can deep-link into the matching
+  // Guide section rather than the generic /guide landing.
+  const guidePath = path.join(buildDir, "data", "guide.json");
+  const guide = fs.existsSync(guidePath) ? JSON.parse(fs.readFileSync(guidePath, "utf8")) : null;
+  const guideAnchors = buildGuideAnchorIndex(guide);
+
   const alternativesDir = path.join(buildDir, "alternatives");
   fs.mkdirSync(alternativesDir, { recursive: true });
   fs.writeFileSync(path.join(alternativesDir, "index.html"), renderAlternativesIndex(groups));
 
   for (const group of groups) {
-    fs.writeFileSync(path.join(alternativesDir, `${group.slug}.html`), renderAnalogPage(group, groups));
+    fs.writeFileSync(path.join(alternativesDir, `${group.slug}.html`), renderAnalogPage(group, groups, guideAnchors));
   }
 
-  const guidePath = path.join(buildDir, "data", "guide.json");
-  if (fs.existsSync(guidePath)) {
-    const guide = JSON.parse(fs.readFileSync(guidePath, "utf8"));
+  if (guide) {
     fs.writeFileSync(path.join(buildDir, "guide.html"), renderGuidePage(guide));
   }
 
