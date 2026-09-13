@@ -10516,6 +10516,25 @@ function enhanceIndexHtml(indexHtml, groups) {
     }
   }
 
+  // Homepage prerender is fully inline-styled. Keeping landscape2's ~41 KB CSS
+  // render-blocking delays FCP/LCP of that text (PSI mobile ~2.9s / ~4.8s even
+  // after the mount-removal fix). Load it async; React styles apply when ready.
+  // CLS stayed 0 in the prior mount-removal experiment that left this sheet
+  // blocking — re-check after deploy if logo/grid shift appears.
+  if (cssMatch) {
+    const cssHref = cssMatch[1];
+    const blocking = new RegExp(
+      `<link\\s+rel=["']stylesheet["'][^>]*href=["']${cssHref.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["'][^>]*>`,
+      "i",
+    );
+    if (blocking.test(html)) {
+      html = html.replace(
+        blocking,
+        `<link rel="stylesheet" href="${cssHref}" media="print" onload="this.media='all'" crossorigin>\n        <noscript><link rel="stylesheet" href="${cssHref}" crossorigin></noscript>`,
+      );
+    }
+  }
+
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`);
   html = html.replace(
     /<meta name="description" content="[^"]*"\s*\/?>/,

@@ -358,6 +358,11 @@ if (exists("build/index.html")) {
     index.includes('["pointerdown", "keydown", "touchstart"]'),
     "homepage prerender must drop on first input (not on React mount) so lab LCP stays on early text",
   );
+  assert(
+    /media=["']print["'][^>]*onload=["']this\.media=['"]all['"]/.test(index) ||
+      /onload=["']this\.media=['"]all['"]["'][^>]*media=["']print["']/.test(index),
+    "homepage must load landscape2 CSS non-blocking so prerender can paint before the sheet",
+  );
   assert(index.includes("/data/base.json"), "build/index.html must hydrate search tags from base.json after slim baseDS");
   assert(
     /<script>\s*window\.baseDS[\s\S]*window\.statsDS = \{\};\s*<\/script>/.test(index),
