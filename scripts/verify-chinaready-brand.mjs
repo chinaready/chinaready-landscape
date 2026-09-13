@@ -349,6 +349,15 @@ if (exists("build/index.html")) {
     index.includes('href="/images/chinaready-landscape-logo.svg" as="image"'),
     "build/index.html must preload the header logo for LCP",
   );
+  assert(
+    index.includes('chinaready-landscape-logo.svg" as="image" fetchpriority="high"'),
+    "build/index.html must fetchpriority=high the header logo preload",
+  );
+  assert(index.includes("cr-home-prerender"), "build/index.html must seed homepage prerender text for LCP");
+  assert(
+    index.includes('["pointerdown", "keydown", "touchstart"]'),
+    "homepage prerender must drop on first input (not on React mount) so lab LCP stays on early text",
+  );
   assert(index.includes("/data/base.json"), "build/index.html must hydrate search tags from base.json after slim baseDS");
   assert(
     /<script>\s*window\.baseDS[\s\S]*window\.statsDS = \{\};\s*<\/script>/.test(index),

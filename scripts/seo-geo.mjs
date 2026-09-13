@@ -2167,9 +2167,11 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   "azure-monitor": {
+    // Query lead: "azure monitor china" (GSC W37: 11 imp / pos 14 / 0 clicks).
+    title: "Azure Monitor China: does it work?",
     description: (availability, names) =>
       clipMeta(
-        `Does Azure Monitor work in China? Available in Azure China (21Vianet) — separate subscription, fewer features. Compare ${names[0] || "Alibaba Cloud CloudMonitor"}.`,
+        `Azure Monitor China: Available in Azure China (21Vianet) — separate subscription, fewer features. Compare ${names[0] || "Alibaba Cloud CloudMonitor"}.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> <strong>Azure Monitor is ${escapeHtml(availability)}</strong> in mainland China — but only inside Azure China, which is operated separately by 21Vianet. Azure China is a distinct cloud with its own accounts, subscriptions, endpoints, and portal, so a global Azure tenant cannot monitor China-region resources and a China workspace cannot ingest global ones. Expect to run two monitoring estates and stitch them together yourself. The China-region feature set also trails global Azure Monitor, so do not assume parity. If you need a fuller mainland monitoring stack, evaluate <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Alibaba Cloud CloudMonitor, Tencent Cloud Observability Platform (TCOP)")}</strong>.`,
@@ -2913,9 +2915,11 @@ const EDITORIAL_OVERRIDES = {
   },
   adtrace: {
     relatedSlugs: ["appsflyer", "adjust", "branch", "singular", "kochava"],
+    // Query lead: "adtrace china" (GSC W37: 22 imp / pos 11.4 / 0 clicks).
+    title: "Adtrace China: does it work?",
     description: (availability, names) =>
       clipMeta(
-        `Does Adtrace work in China? No documented mainland deployment path. For China app attribution, compare ${names.slice(0, 2).join(" and ") || "Qimai Data and Umeng+"}.`,
+        `Adtrace China: no documented mainland deployment path. For China app attribution, compare ${names.slice(0, 2).join(" and ") || "Qimai Data and Umeng+"}.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> Chinaready marks Adtrace <strong>${escapeHtml(availability)}</strong> for mainland China — not because it is blocked, but because there is no documented mainland deployment path: no China data region, no ICP-filed collection endpoint, and no published integration with the Chinese Android app stores and OEM channels that China attribution actually depends on. Mobile attribution is also the part of the stack where China diverges most from the rest of the world, so a general-purpose MMP rarely transfers cleanly. For China app attribution and store analytics, compare <strong>${escapeHtml(names.slice(0, 2).join(" and ") || "Qimai Data and Umeng+")}</strong>.`,
@@ -2986,9 +2990,11 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   aweber: {
+    // Query lead: "aweber china" (GSC W37: 14 imp / pos 6.3 / 0 clicks).
+    title: "AWeber China: does it work?",
     description: (availability, names) =>
       clipMeta(
-        `Does AWeber work in China? Reachable, but not viable for mainland email marketing — Chinaready marks it ${availability}. Compare ${names.slice(0, 2).join(", ") || "Fengyou EDM, Zoho Campaigns"}.`,
+        `AWeber China: reachable, but not viable for mainland email marketing — Chinaready marks it ${availability}. Compare ${names.slice(0, 2).join(", ") || "Fengyou EDM, Zoho Campaigns"}.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> AWeber's site and dashboard are generally <strong>reachable</strong> from mainland China — the platform is not blocked. What fails is the job it is being asked to do: cross-border delivery into Chinese mailbox providers is unreliable, and the product carries no mainland sending infrastructure, ICP-filed sending domains, or China deliverability support. Chinaready therefore marks AWeber <strong>${escapeHtml(availability)}</strong> for mainland production email marketing and does not recommend that domestic China companies run it directly. Evaluate <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Fengyou EDM, Zoho Campaigns")}</strong> instead.`,
@@ -10498,7 +10504,7 @@ function enhanceIndexHtml(indexHtml, groups) {
     );
   }
   earlyHints.push(
-    `<link rel="preload" href="/images/chinaready-landscape-logo.svg" as="image">`,
+    `<link rel="preload" href="/images/chinaready-landscape-logo.svg" as="image" fetchpriority="high">`,
   );
   if (earlyHints.length && html.includes('<meta charset="UTF-8" />')) {
     const hintBlock = earlyHints.map((line) => `        ${line}`).join("\n");
@@ -10670,11 +10676,18 @@ function enhanceIndexHtml(indexHtml, groups) {
  * The landscape2 explorer paints nothing until its ~260 KB module bundle lands,
  * so homepage LCP waits on the bundle even though the markup arrives early. Seed
  * `#landscape` with real visible text — styled inline so it needs no extra
- * stylesheet — and drop it once React mounts.
+ * stylesheet.
+ *
+ * Critical: do NOT remove the prerender when React mounts. PSI mobile (2026-09-13)
+ * showed final LCP as the header logo `<img>` (painted only after JS), because
+ * removing the larger prerender text forced LCP onto that later, smaller image
+ * (~4.5–4.9s). Keep the text until first user input (LCP reporting freezes on
+ * interaction) so lab LCP stays on the early text candidate. Fallback remove at
+ * 15s for abandoned sessions.
  *
  * landscape2 appends to `#landscape` rather than clearing it, so the placeholder
- * must be removed explicitly or it stays on the page above the app. The H1 stays
- * where it is; this block uses an H2 so the homepage keeps exactly one H1.
+ * still needs an explicit remove — just not on mount. The H1 stays where it is;
+ * this block uses an H2 so the homepage keeps exactly one H1.
  */
 function injectHomePrerender(html, description) {
   if (!html.includes('<div id="landscape"></div>')) return html;
@@ -10686,28 +10699,21 @@ function injectHomePrerender(html, description) {
           <p style="margin:0;font-size:1rem;line-height:1.6"><a href="/alternatives/" style="color:#1d4ed8">Browse the alternatives index</a> · <a href="/guide" style="color:#1d4ed8">Read the China stack Guide</a></p>
         </div>`;
 
-  // 10s fallback in case the app never mounts; the placeholder must not outlive it.
   const remover = `<script>
       (function () {
-        var root = document.getElementById("landscape");
         var block = document.getElementById("cr-home-prerender");
-        if (!root || !block) return;
+        if (!block) return;
         var drop = function () {
           if (block && block.parentNode) block.parentNode.removeChild(block);
           block = null;
         };
-        if (root.children.length > 1) return drop();
-        var observer = new MutationObserver(function () {
-          if (root.children.length > 1) {
-            observer.disconnect();
-            drop();
-          }
-        });
-        observer.observe(root, { childList: true });
-        setTimeout(function () {
-          observer.disconnect();
+        var onInput = function () {
           drop();
-        }, 10000);
+        };
+        ["pointerdown", "keydown", "touchstart"].forEach(function (type) {
+          window.addEventListener(type, onInput, { once: true, passive: true });
+        });
+        setTimeout(drop, 15000);
       })();
     </script>`;
 
