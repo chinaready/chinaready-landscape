@@ -10,6 +10,7 @@
     "build": "node scripts/build-preview.mjs",
     "serve": "node scripts/serve-preview.mjs --landscape-dir build",
     "verify": "node scripts/verify-chinaready-brand.mjs",
+    "indexnow": "node scripts/indexnow-submit.mjs",
     "validate": "npm run validate:data && npm run validate:settings && npm run validate:guide && npm run validate:games",
     "validate:data": "node scripts/landscape2.mjs validate data --data-file landscape.yml",
     "validate:settings": "node scripts/landscape2.mjs validate settings --settings-file settings.yml",

@@ -4,6 +4,8 @@ import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 
 const SITE_URL = "https://landscape.chinaready.co";
+// IndexNow verification key, served at `/${INDEXNOW_KEY}.txt` (Bing, Yandex, etc.; Google does not use IndexNow).
+export const INDEXNOW_KEY = "4787245444e7966666914b4c4df5fb19";
 const MAIN_SITE_URL = "https://chinaready.co";
 const REPO_URL = "https://github.com/chinaready/chinaready-landscape";
 const AWS_CHINA_INSIGHT_URL = `${MAIN_SITE_URL}/insights/aws-china-what-works/`;
@@ -8798,6 +8800,10 @@ function dedupeItems(items) {
   return result;
 }
 
+export function getIndexNowKey() {
+  return INDEXNOW_KEY;
+}
+
 export function renderGuideKeywordMap(groups) {
   // Kept for tests/import compatibility; Guide no longer embeds the keyword map.
   void groups;
@@ -10798,6 +10804,7 @@ export function applySeoGeoEnhancements({ root, buildDir, indexHtml }) {
   fs.writeFileSync(path.join(buildDir, "_redirects"), renderCloudflareRedirects());
   fs.writeFileSync(path.join(buildDir, "_headers"), renderCloudflareHeaders());
   fs.writeFileSync(path.join(buildDir, "robots.txt"), renderRobotsTxt());
+  fs.writeFileSync(path.join(buildDir, `${INDEXNOW_KEY}.txt`), INDEXNOW_KEY);
   fs.writeFileSync(path.join(buildDir, "sitemap.xml"), renderSitemap(groups));
   fs.writeFileSync(path.join(buildDir, "llms.txt"), renderLlmsTxt(groups));
   fs.writeFileSync(path.join(buildDir, "llms-full.txt"), renderLlmsFullTxt(groups));
