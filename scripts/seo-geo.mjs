@@ -10522,25 +10522,6 @@ function enhanceIndexHtml(indexHtml, groups) {
     }
   }
 
-  // Homepage prerender is fully inline-styled. Keeping landscape2's ~41 KB CSS
-  // render-blocking delays FCP/LCP of that text (PSI mobile ~2.9s / ~4.8s even
-  // after the mount-removal fix). Load it async; React styles apply when ready.
-  // CLS stayed 0 in the prior mount-removal experiment that left this sheet
-  // blocking — re-check after deploy if logo/grid shift appears.
-  if (cssMatch) {
-    const cssHref = cssMatch[1];
-    const blocking = new RegExp(
-      `<link\\s+rel=["']stylesheet["'][^>]*href=["']${cssHref.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["'][^>]*>`,
-      "i",
-    );
-    if (blocking.test(html)) {
-      html = html.replace(
-        blocking,
-        `<link rel="stylesheet" href="${cssHref}" media="print" onload="this.media='all'" crossorigin>\n        <noscript><link rel="stylesheet" href="${cssHref}" crossorigin></noscript>`,
-      );
-    }
-  }
-
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`);
   html = html.replace(
     /<meta name="description" content="[^"]*"\s*\/?>/,
@@ -10677,8 +10658,6 @@ function enhanceIndexHtml(indexHtml, groups) {
     );
   }
 
-  html = injectHomePrerender(html, description);
-
   if (!/<h1[\s>]/i.test(html)) {
     html = html.replace(
       /<body([^>]*)>/i,
@@ -10695,57 +10674,6 @@ function enhanceIndexHtml(indexHtml, groups) {
   }
 
   return html;
-}
-
-/**
- * The landscape2 explorer paints nothing until its ~260 KB module bundle lands,
- * so homepage LCP waits on the bundle even though the markup arrives early. Seed
- * `#landscape` with real visible text — styled inline so it needs no extra
- * stylesheet.
- *
- * Critical: do NOT remove the prerender when React mounts. PSI mobile (2026-09-13)
- * showed final LCP as the header logo `<img>` (painted only after JS), because
- * removing the larger prerender text forced LCP onto that later, smaller image
- * (~4.5–4.9s). Keep the text until first user input (LCP reporting freezes on
- * interaction) so lab LCP stays on the early text candidate. Fallback remove at
- * 15s for abandoned sessions.
- *
- * landscape2 appends to `#landscape` rather than clearing it, so the placeholder
- * still needs an explicit remove — just not on mount. The H1 stays where it is;
- * this block uses an H2 so the homepage keeps exactly one H1.
- */
-function injectHomePrerender(html, description) {
-  if (!html.includes('<div id="landscape"></div>')) return html;
-
-  const heading = "China Alternatives to Firebase, AWS, Stripe";
-  const placeholder = `<div id="cr-home-prerender" style="max-width:52rem;margin:0 auto;padding:5rem 1.5rem 3rem;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:#0f172a">
-          <h2 style="margin:0 0 1rem;font-size:1.875rem;line-height:1.2;font-weight:700">${escapeHtml(heading)}</h2>
-          <p style="margin:0 0 1.5rem;font-size:1.125rem;line-height:1.6;color:#334155">${escapeHtml(description)}</p>
-          <p style="margin:0;font-size:1rem;line-height:1.6"><a href="/alternatives/" style="color:#1d4ed8">Browse the alternatives index</a> · <a href="/guide" style="color:#1d4ed8">Read the China stack Guide</a></p>
-        </div>`;
-
-  const remover = `<script>
-      (function () {
-        var block = document.getElementById("cr-home-prerender");
-        if (!block) return;
-        var drop = function () {
-          if (block && block.parentNode) block.parentNode.removeChild(block);
-          block = null;
-        };
-        var onInput = function () {
-          drop();
-        };
-        ["pointerdown", "keydown", "touchstart"].forEach(function (type) {
-          window.addEventListener(type, onInput, { once: true, passive: true });
-        });
-        setTimeout(drop, 15000);
-      })();
-    </script>`;
-
-  return html.replace(
-    '<div id="landscape"></div>',
-    `<div id="landscape">${placeholder}</div>\n    ${remover}`,
-  );
 }
 
 function noindexEmbedPages(buildDir) {

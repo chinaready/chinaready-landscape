@@ -353,15 +353,13 @@ if (exists("build/index.html")) {
     index.includes('chinaready-landscape-logo.svg" as="image" fetchpriority="high"'),
     "build/index.html must fetchpriority=high the header logo preload",
   );
-  assert(index.includes("cr-home-prerender"), "build/index.html must seed homepage prerender text for LCP");
   assert(
-    index.includes('["pointerdown", "keydown", "touchstart"]'),
-    "homepage prerender must drop on first input (not on React mount) so lab LCP stays on early text",
+    !index.includes("cr-home-prerender"),
+    "homepage must not render a visible prerender/hero block at the top — the copy lives in <title>/meta description only (user-directed removal)",
   );
   assert(
-    /media=["']print["'][^>]*onload=["']this\.media=['"]all['"]/.test(index) ||
-      /onload=["']this\.media=['"]all['"]["'][^>]*media=["']print["']/.test(index),
-    "homepage must load landscape2 CSS non-blocking so prerender can paint before the sheet",
+    /<link\s+rel=["']stylesheet["'][^>]*href=["']\.\/assets\/index-[^"']+\.css["']/.test(index),
+    "homepage must load landscape2 CSS render-blocking now that no prerender text covers the blank period (avoids unstyled app flash)",
   );
   assert(index.includes("/data/base.json"), "build/index.html must hydrate search tags from base.json after slim baseDS");
   assert(
