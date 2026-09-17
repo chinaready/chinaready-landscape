@@ -603,14 +603,14 @@ if (exists("build/alternatives/index.html")) {
   assert(airtablePage.includes("Feishu Base"), "Airtable alternatives must list Feishu Base");
   assert(airtablePage.includes("Mingdao Cloud"), "Airtable alternatives must list Mingdao Cloud");
   assert(airtablePage.includes("Teable"), "Airtable alternatives must list Teable");
-  assert(airtablePage.includes("Mapped China-ready candidates"), "Airtable alternatives must show Mapped China-ready candidates");
+  assert(airtablePage.includes("Mapped Chinaready candidates"), "Airtable alternatives must show Mapped Chinaready candidates");
   assert(airtablePage.includes("Contact Chinaready"), "Airtable alternatives page must invite readers to contact Chinaready");
   assert(airtablePage.includes("Availability in China"), "gap alternatives pages must show Availability in China");
   assert(exists("build/alternatives/smile-io.html"), "Smile.io must get a dedicated alternatives page");
   const smilePage = read("build/alternatives/smile-io.html");
   assert(smilePage.includes("Youzan"), "Smile.io alternatives must list Youzan");
   assert(smilePage.includes("Weimob"), "Smile.io alternatives must list Weimob");
-  assert(smilePage.includes("Mapped China-ready candidates"), "Smile.io alternatives must show Mapped China-ready candidates");
+  assert(smilePage.includes("Mapped Chinaready candidates"), "Smile.io alternatives must show Mapped Chinaready candidates");
   assert(smilePage.includes("Limited"), "Smile.io alternatives must label Limited availability");
   assert(alternativesIndex.includes("Youzan, Weimob"), "alternatives index must show Youzan, Weimob for Smile.io");
   assert(exists("build/alternatives/commerce-layer.html"), "Commerce Layer must get a dedicated alternatives page");
@@ -620,7 +620,7 @@ if (exists("build/alternatives/index.html")) {
   assert(commerceLayerPage.includes("Youzan"), "Commerce Layer alternatives must list Youzan");
   assert(commerceLayerPage.includes("Weimob"), "Commerce Layer alternatives must list Weimob");
   assert(commerceLayerPage.includes("Raycloud"), "Commerce Layer alternatives must list Raycloud");
-  assert(commerceLayerPage.includes("Mapped China-ready candidates"), "Commerce Layer alternatives must show Mapped China-ready candidates");
+  assert(commerceLayerPage.includes("Mapped Chinaready candidates"), "Commerce Layer alternatives must show Mapped Chinaready candidates");
   assert(commerceLayerPage.includes("Limited"), "Commerce Layer alternatives must label Limited availability");
   assert(
     alternativesIndex.includes("Wanmi Shangyun, Shushangyun, Youzan, Weimob, Raycloud"),
@@ -631,7 +631,7 @@ if (exists("build/alternatives/index.html")) {
   assert(zendeskPage.includes("Udesk"), "Zendesk alternatives must list Udesk");
   assert(zendeskPage.includes("HOLLYCRM"), "Zendesk alternatives must list HOLLYCRM");
   assert(zendeskPage.includes("Tencent Qidian Customer Service"), "Zendesk alternatives must list Tencent Qidian Customer Service");
-  assert(zendeskPage.includes("Mapped China-ready candidates"), "Zendesk alternatives must show Mapped China-ready candidates");
+  assert(zendeskPage.includes("Mapped Chinaready candidates"), "Zendesk alternatives must show Mapped Chinaready candidates");
   assert(zendeskPage.includes("Limited"), "Zendesk alternatives must label Limited availability");
   assert(
     alternativesIndex.includes("Udesk, HOLLYCRM, Tencent Qidian Customer Service"),
@@ -642,7 +642,7 @@ if (exists("build/alternatives/index.html")) {
   assert(zendeskMessagingPage.includes("Udesk"), "Zendesk Messaging alternatives must list Udesk");
   assert(zendeskMessagingPage.includes("HOLLYCRM"), "Zendesk Messaging alternatives must list HOLLYCRM");
   assert(zendeskMessagingPage.includes("Tencent Qidian Customer Service"), "Zendesk Messaging alternatives must list Tencent Qidian Customer Service");
-  assert(zendeskMessagingPage.includes("Mapped China-ready candidates"), "Zendesk Messaging alternatives must show Mapped China-ready candidates");
+  assert(zendeskMessagingPage.includes("Mapped Chinaready candidates"), "Zendesk Messaging alternatives must show Mapped Chinaready candidates");
   assert(zendeskMessagingPage.includes("Limited"), "Zendesk Messaging alternatives must label Limited availability");
   assert(zendeskMessagingPage.includes("Does Zendesk Messaging work in China?"), "Zendesk Messaging page must use the work-in-China title");
   assert(exists("build/alternatives/marketo.html"), "Marketo must get a dedicated alternatives page");
@@ -651,7 +651,7 @@ if (exists("build/alternatives/index.html")) {
   assert(marketoPage.includes("Tencent Qidian"), "Marketo alternatives must list Tencent Qidian");
   assert(marketoPage.includes("Weimob Marketing Cloud"), "Marketo alternatives must list Weimob Marketing Cloud");
   assert(marketoPage.includes("Zoho CRM"), "Marketo alternatives must list Zoho CRM");
-  assert(marketoPage.includes("Mapped China-ready candidates"), "Marketo alternatives must show Mapped China-ready candidates");
+  assert(marketoPage.includes("Mapped Chinaready candidates"), "Marketo alternatives must show Mapped Chinaready candidates");
   assert(marketoPage.includes("Limited"), "Marketo alternatives must label Limited availability");
   assert(
     alternativesIndex.includes("Fxiaoke, Tencent Qidian, Weimob Marketing Cloud, Zoho CRM"),
@@ -666,7 +666,7 @@ if (exists("build/alternatives/index.html")) {
   );
   assert(zohoCrmPage.includes("Fxiaoke"), "Zoho CRM alternatives must list Fxiaoke");
   assert(zohoCrmPage.includes("Neocrm"), "Zoho CRM alternatives must list Neocrm");
-  assert(zohoCrmPage.includes("Mapped China-ready candidates"), "Zoho CRM alternatives must show Mapped China-ready candidates");
+  assert(zohoCrmPage.includes("Mapped Chinaready candidates"), "Zoho CRM alternatives must show Mapped Chinaready candidates");
   assert(zohoCrmPage.includes("Tencent Cloud"), "Zoho CRM page must mention Tencent Cloud data centers");
   assert(zohoCrmPage.includes("京ICP备15015257号-1"), "Zoho CRM page must mention ICP filing");
   assert(!zohoCrmPage.includes("Why Chinaready does not list these as Landscape products"), "Zoho CRM must not use empty uncertain framing");
@@ -685,7 +685,7 @@ if (exists("build/alternatives/index.html")) {
   assert(bigmarkerPage.includes("Haoshitong"), "BigMarker alternatives must list Haoshitong");
   assert(bigmarkerPage.includes("XYLink"), "BigMarker alternatives must list XYLink");
   assert(bigmarkerPage.includes("OrayMeeting"), "BigMarker alternatives must list OrayMeeting");
-  assert(bigmarkerPage.includes("Mapped China-ready candidates"), "BigMarker alternatives must show Mapped China-ready candidates");
+  assert(bigmarkerPage.includes("Mapped Chinaready candidates"), "BigMarker alternatives must show Mapped Chinaready candidates");
   assert(bigmarkerPage.includes("Unavailable"), "BigMarker alternatives must label Unavailable availability");
   assert(
     alternativesIndex.includes(
@@ -699,7 +699,7 @@ if (exists("build/alternatives/index.html")) {
   assert(on24Page.includes("Network restrictions"), "ON24 alternatives must explain network restrictions");
   assert(on24Page.includes("Compliance risk"), "ON24 alternatives must explain compliance risk");
   assert(on24Page.includes("Missing localization"), "ON24 alternatives must explain missing localization");
-  assert(on24Page.includes("Mapped China-ready candidates"), "ON24 alternatives must show Mapped China-ready candidates");
+  assert(on24Page.includes("Mapped Chinaready candidates"), "ON24 alternatives must show Mapped Chinaready candidates");
   assert(on24Page.includes("Unavailable"), "ON24 alternatives must label Unavailable availability");
   assert(
     alternativesIndex.includes(">Polyv<") || alternativesIndex.includes("Polyv"),
@@ -712,7 +712,7 @@ if (exists("build/alternatives/index.html")) {
   assert(kalturaPage.includes("Agora"), "Kaltura alternatives must list Agora");
   assert(kalturaPage.includes("Tencent Cloud TRTC"), "Kaltura alternatives must list Tencent Cloud TRTC");
   assert(kalturaPage.includes("ZEGO"), "Kaltura alternatives must list ZEGO");
-  assert(kalturaPage.includes("Mapped China-ready candidates"), "Kaltura alternatives must show Mapped China-ready candidates");
+  assert(kalturaPage.includes("Mapped Chinaready candidates"), "Kaltura alternatives must show Mapped Chinaready candidates");
   assert(kalturaPage.includes("Unavailable"), "Kaltura alternatives must label Unavailable availability");
   assert(
     alternativesIndex.includes("Polyv, Haoshitong, Agora, Tencent Cloud TRTC, ZEGO"),
@@ -729,7 +729,7 @@ if (exists("build/alternatives/index.html")) {
   assert(middlewarePage.includes("Guance"), "Middleware.io alternatives must list Guance");
   assert(middlewarePage.includes("Cloudwise"), "Middleware.io alternatives must list Cloudwise");
   assert(!middlewarePage.includes("uni-app"), "Middleware.io alternatives must not list uni-app");
-  assert(middlewarePage.includes("Mapped China-ready candidates"), "Middleware.io alternatives must show Mapped China-ready candidates");
+  assert(middlewarePage.includes("Mapped Chinaready candidates"), "Middleware.io alternatives must show Mapped Chinaready candidates");
   assert(middlewarePage.includes("Unavailable"), "Middleware.io alternatives must label Unavailable availability");
   assert(
     alternativesIndex.includes(
@@ -745,7 +745,7 @@ if (exists("build/alternatives/index.html")) {
   assert(datadogPage.includes("Canway BlueWhale"), "Datadog alternatives must list Canway BlueWhale");
   assert(datadogPage.includes("Tingyun"), "Datadog alternatives must list Tingyun");
   assert(datadogPage.includes("Prometheus + Grafana"), "Datadog alternatives must list Prometheus + Grafana");
-  assert(datadogPage.includes("Mapped China-ready candidates"), "Datadog alternatives must show Mapped China-ready candidates");
+  assert(datadogPage.includes("Mapped Chinaready candidates"), "Datadog alternatives must show Mapped Chinaready candidates");
   assert(datadogPage.includes("Unavailable"), "Datadog alternatives must label Unavailable availability");
   assert(
     alternativesIndex.includes(
@@ -773,7 +773,7 @@ if (exists("build/alternatives/index.html")) {
   const dynatracePage = read("build/alternatives/dynatrace.html");
   assert(dynatracePage.includes("Bonree ONE"), "Dynatrace alternatives must list Bonree ONE");
   assert(dynatracePage.includes("Canway BlueWhale WhaleEye"), "Dynatrace alternatives must list Canway BlueWhale WhaleEye");
-  assert(dynatracePage.includes("Mapped China-ready candidates"), "Dynatrace alternatives must show Mapped China-ready candidates");
+  assert(dynatracePage.includes("Mapped Chinaready candidates"), "Dynatrace alternatives must show Mapped Chinaready candidates");
   assert(
     dynatracePage.includes('cr-alt-availability-limited">Limited</span>'),
     "Dynatrace alternatives must label Limited availability",
@@ -788,7 +788,7 @@ if (exists("build/alternatives/index.html")) {
   assert(splunkPage.includes("Alibaba Cloud Log Service (SLS)"), "Splunk alternatives must list Alibaba Cloud Log Service (SLS)");
   assert(splunkPage.includes("Tencent Cloud Security Lake / CLS"), "Splunk alternatives must list Tencent Cloud Security Lake / CLS");
   assert(splunkPage.includes("Huawei Cloud LTS"), "Splunk alternatives must list Huawei Cloud LTS");
-  assert(splunkPage.includes("Mapped China-ready candidates"), "Splunk alternatives must show Mapped China-ready candidates");
+  assert(splunkPage.includes("Mapped Chinaready candidates"), "Splunk alternatives must show Mapped Chinaready candidates");
   assert(
     splunkPage.includes('cr-alt-availability-limited">Limited</span>'),
     "Splunk alternatives must label Limited availability",
@@ -807,7 +807,7 @@ if (exists("build/alternatives/index.html")) {
   assert(solarwindsPage.includes("Anqishen"), "SolarWinds alternatives must list Anqishen");
   assert(solarwindsPage.includes("Xinqiwei"), "SolarWinds alternatives must list Xinqiwei");
   assert(solarwindsPage.includes("Jusheng Network Manager"), "SolarWinds alternatives must list Jusheng Network Manager");
-  assert(solarwindsPage.includes("Mapped China-ready candidates"), "SolarWinds alternatives must show Mapped China-ready candidates");
+  assert(solarwindsPage.includes("Mapped Chinaready candidates"), "SolarWinds alternatives must show Mapped Chinaready candidates");
   assert(
     solarwindsPage.includes('cr-alt-availability-available">Available</span>'),
     "SolarWinds alternatives must label Available availability",
@@ -827,7 +827,7 @@ if (exists("build/alternatives/index.html")) {
   assert(miaPlatformPage.includes("Kingdee Cloud Cosmic gPaaS"), "Mia Platform alternatives must list Kingdee Cloud Cosmic gPaaS");
   assert(miaPlatformPage.includes("iSoftStone Cloud iPaaS"), "Mia Platform alternatives must list iSoftStone Cloud iPaaS");
   assert(miaPlatformPage.includes("Huawei Cloud DevCloud"), "Mia Platform alternatives must list Huawei Cloud DevCloud");
-  assert(miaPlatformPage.includes("Mapped China-ready candidates"), "Mia Platform alternatives must show Mapped China-ready candidates");
+  assert(miaPlatformPage.includes("Mapped Chinaready candidates"), "Mia Platform alternatives must show Mapped Chinaready candidates");
   assert(miaPlatformPage.includes("Unavailable"), "Mia Platform alternatives must label Unavailable availability");
   assert(
     alternativesIndex.includes(
@@ -839,7 +839,7 @@ if (exists("build/alternatives/index.html")) {
   const aweberPage = read("build/alternatives/aweber.html");
   assert(aweberPage.includes("Fengyou EDM"), "AWeber alternatives must list Fengyou EDM");
   assert(aweberPage.includes("Zoho Campaigns"), "AWeber alternatives must list Zoho Campaigns");
-  assert(aweberPage.includes("Mapped China-ready candidates"), "AWeber alternatives must show Mapped China-ready candidates");
+  assert(aweberPage.includes("Mapped Chinaready candidates"), "AWeber alternatives must show Mapped Chinaready candidates");
   assert(aweberPage.includes("Unavailable"), "AWeber alternatives must label Unavailable availability");
   assert(!aweberPage.includes("Why Chinaready does not list these as Landscape products"), "AWeber must not use empty uncertain framing");
   assert(alternativesIndex.includes("Fengyou EDM, Zoho Campaigns"), "alternatives index must show AWeber mapped candidates");
@@ -852,7 +852,7 @@ if (exists("build/alternatives/index.html")) {
   assert(dockerHubPage.includes("Tencent Cloud TCR"), "Docker Hub Mirror alternatives must list Tencent Cloud TCR");
   assert(dockerHubPage.includes("Huawei Cloud SWR"), "Docker Hub Mirror alternatives must list Huawei Cloud SWR");
   assert(dockerHubPage.includes("Harbor"), "Docker Hub Mirror alternatives must list Harbor");
-  assert(dockerHubPage.includes("Mapped China-ready candidates"), "Docker Hub Mirror alternatives must show Mapped China-ready candidates");
+  assert(dockerHubPage.includes("Mapped Chinaready candidates"), "Docker Hub Mirror alternatives must show Mapped Chinaready candidates");
   assert(dockerHubPage.includes("Unavailable"), "Docker Hub Mirror alternatives must label Unavailable availability");
   assert(!dockerHubPage.includes("Why Chinaready does not list these as Landscape products"), "Docker Hub Mirror must not use empty uncertain framing");
   assert(
@@ -866,7 +866,7 @@ if (exists("build/alternatives/index.html")) {
   assert(sendsparkPage.includes("Dongli Wuxian"), "Sendspark alternatives must list Dongli Wuxian");
   assert(sendsparkPage.includes("U-Mail"), "Sendspark alternatives must list U-Mail");
   assert(sendsparkPage.includes("Alibaba Cloud Sendify"), "Sendspark alternatives must list Alibaba Cloud Sendify");
-  assert(sendsparkPage.includes("Mapped China-ready candidates"), "Sendspark alternatives must show Mapped China-ready candidates");
+  assert(sendsparkPage.includes("Mapped Chinaready candidates"), "Sendspark alternatives must show Mapped Chinaready candidates");
   assert(sendsparkPage.includes("Unavailable"), "Sendspark alternatives must label Unavailable availability");
   assert(!sendsparkPage.includes("Why Chinaready does not list these as Landscape products"), "Sendspark must not use empty uncertain framing");
   assert(
@@ -880,7 +880,7 @@ if (exists("build/alternatives/index.html")) {
   assert(streamlitPage.includes("Dash (Plotly)"), "Streamlit alternatives must list Dash (Plotly)");
   assert(streamlitPage.includes("Gradio"), "Streamlit alternatives must list Gradio");
   assert(streamlitPage.includes("Taipy"), "Streamlit alternatives must list Taipy");
-  assert(streamlitPage.includes("Mapped China-ready candidates"), "Streamlit alternatives must show Mapped China-ready candidates");
+  assert(streamlitPage.includes("Mapped Chinaready candidates"), "Streamlit alternatives must show Mapped Chinaready candidates");
   assert(streamlitPage.includes("Unavailable"), "Streamlit alternatives must label Unavailable availability");
   assert(!streamlitPage.includes("Why Chinaready does not list these as Landscape products"), "Streamlit must not use empty uncertain framing");
   assert(
@@ -892,7 +892,7 @@ if (exists("build/alternatives/index.html")) {
   assert(substackPage.includes("Xiaobot"), "Substack alternatives must list Xiaobot");
   assert(substackPage.includes("Zhiyuan"), "Substack alternatives must list Zhiyuan");
   assert(substackPage.includes("Afdian"), "Substack alternatives must list Afdian");
-  assert(substackPage.includes("Mapped China-ready candidates"), "Substack alternatives must show Mapped China-ready candidates");
+  assert(substackPage.includes("Mapped Chinaready candidates"), "Substack alternatives must show Mapped Chinaready candidates");
   assert(substackPage.includes("Unavailable"), "Substack alternatives must label Unavailable availability");
   assert(substackPage.includes("Stripe"), "Substack alternatives must mention Stripe-only payments");
   assert(substackPage.includes("ICP"), "Substack alternatives must mention the mainland ICP gap");
@@ -1324,7 +1324,7 @@ assert(agoraPage.includes("Tencent Cloud TRTC"), "Agora alternatives must list T
 assert(agoraPage.includes("ZEGO"), "Agora alternatives must list ZEGO");
 assert(agoraPage.includes("Huawei Cloud RTC"), "Agora alternatives must list Huawei Cloud RTC");
 assert(agoraPage.includes("Haoshitong"), "Agora alternatives must list Haoshitong");
-assert(agoraPage.includes("Mapped China-ready candidates"), "Agora alternatives must show Mapped China-ready candidates");
+assert(agoraPage.includes("Mapped Chinaready candidates"), "Agora alternatives must show Mapped Chinaready candidates");
 assert(agoraPage.includes("Shanghai"), "Agora page must mention Shanghai origin");
 assert(!agoraPage.includes("Why Chinaready does not list these as Landscape products"), "Agora must not use empty uncertain framing");
 
@@ -1571,7 +1571,7 @@ if (exists("build/alternatives/joy-rewards-loyalty-program.html")) {
     "Joy Rewards page must explain China loyalty is ecosystem-embedded",
   );
   assert(joyRewardsPage.includes("88VIP"), "Joy Rewards page must mention platform membership examples");
-  assert(joyRewardsPage.includes("Mapped China-ready candidates"), "Joy Rewards page must list mapped candidates");
+  assert(joyRewardsPage.includes("Mapped Chinaready candidates"), "Joy Rewards page must list mapped candidates");
   assert(joyRewardsPage.includes("Platform membership"), "Joy Rewards page must map platform membership");
   assert(joyRewardsPage.includes("WeChat-first membership"), "Joy Rewards page must map WeChat-first membership");
   assert(joyRewardsPage.includes("Native-app membership"), "Joy Rewards page must map native-app membership");
@@ -1748,7 +1748,7 @@ if (exists("build/data/full.json")) {
 if (exists("hosted_logos/alibaba-cloud.svg")) {
   const alibabaLogo = read("hosted_logos/alibaba-cloud.svg");
   assert(alibabaLogo.includes("Alibaba Cloud (member) logo"), "Alibaba Cloud logo must use the CNCF hosted logo asset");
-  assert(!alibabaLogo.includes("China-ready"), "Alibaba Cloud logo must not use the placeholder Chinaready generated logo");
+  assert(!alibabaLogo.includes(`${"China"}-ready`), "Alibaba Cloud logo must not use the placeholder Chinaready generated logo");
 }
 
 const items = collectLandscapeItems(landscape);
@@ -1758,7 +1758,7 @@ for (const item of items) {
   const logoPath = `hosted_logos/${item.logo}`;
   assert(exists(logoPath), `${item.name} logo file must exist: ${logoPath}`);
   const logoSource = read(logoPath);
-  assert(!logoSource.includes("China-ready"), `${item.name} logo must not use the generated China-ready placeholder`);
+    assert(!logoSource.includes(`${"China"}-ready`), `${item.name} logo must not use the generated legacy placeholder`);
   assert(!logoSource.includes("Open for contribution"), `${item.name} logo must not use the empty-category placeholder`);
   assert(!logoSource.includes("@import url("), `${item.name} logo must not import external fonts or styles`);
   for (const field of requiredProfileFields) {
@@ -1801,7 +1801,7 @@ for (const item of items) {
     const file = `build/alternatives/${slug}.html`;
     assert(exists(file), `${slug} must have a dedicated alternatives page`);
     const page = read(file);
-    assert(page.includes("Mapped China-ready candidates"), `${slug} must show Mapped China-ready candidates`);
+    assert(page.includes("Mapped Chinaready candidates"), `${slug} must show Mapped Chinaready candidates`);
     assert(page.includes("Does ") && page.includes("work in China"), `${slug} must answer Does X work in China`);
     for (const marker of markers) {
       assert(page.includes(marker), `${slug} must list ${marker}`);
@@ -1814,5 +1814,47 @@ for (const item of items) {
   assert(redirects.includes("/alternatives/hellosign /alternatives/dropbox-sign 301"), "hellosign must redirect to dropbox-sign");
   assert(redirects.includes("/alternatives/adobe-sign /alternatives/adobe-acrobat-sign 301"), "adobe-sign must redirect to adobe-acrobat-sign");
 }
+
+// ---- Core blocking principle: Chinaready brand spelling gate ----
+// The brand is "Chinaready" — one word, no hyphen. Any hyphenated or spaced
+// variant in shipped copy or its sources is a release blocker. The pattern is
+// assembled from parts so this file never contains the banned spelling itself.
+const bannedSpellingPattern = new RegExp(`china[${"-"}\\u2010-\\u2015\\u2212]ready`, "i");
+
+function collectTextFiles(dir, result = []) {
+  for (const entry of fs.readdirSync(path.join(root, dir), { withFileTypes: true })) {
+    const rel = `${dir}/${entry.name}`;
+    if (entry.isDirectory()) {
+      collectTextFiles(rel, result);
+    } else if (entry.name.endsWith(".map")) {
+      continue;
+    } else if (/\.(html?|txt|json|xml|js|mjs|py|css|md|mdc|yml|svg)$/.test(entry.name) || !entry.name.includes(".")) {
+      result.push(rel);
+    }
+  }
+  return result;
+}
+
+const spellingScanTargets = [
+  "settings.yml",
+  "guide.yml",
+  "landscape.yml",
+  "README.md",
+  ...collectTextFiles("assets"),
+  ...(exists("build") ? collectTextFiles("build") : []),
+  "scripts/build-preview.mjs",
+  "scripts/seo-geo.mjs",
+  "scripts/generate-gap-catalog.py",
+  "research/global-services-gap-catalog.json",
+];
+
+const spellingOffenders = [];
+for (const file of spellingScanTargets) {
+  if (exists(file) && bannedSpellingPattern.test(read(file))) spellingOffenders.push(file);
+}
+assert(
+  spellingOffenders.length === 0,
+  `Banned hyphenated brand spelling found — the brand is "Chinaready" (one word, no hyphen): ${spellingOffenders.join(", ")}`,
+);
 
 console.log("Chinaready brand verification passed");

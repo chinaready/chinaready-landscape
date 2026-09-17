@@ -2955,7 +2955,7 @@ OVERRIDES = {
             "note": (
                 "U-Mail is a long-standing domestic email marketing platform with dynamic per-recipient "
                 "variables, automation workflows, and strong reported deliverability — practical for "
-                "foreign-trade and B2B teams that need China-ready EDM personalization and automation."
+                "foreign-trade and B2B teams that need Chinaready EDM personalization and automation."
             ),
         },
         {
@@ -4507,7 +4507,7 @@ RESEARCH_NOTES = {
     ),
     "airbase": (
         "Airbase is unavailable in mainland China (no localization and no compliance foundation). "
-        "SAP Concur, Expensify, and Jingbei Guanjia are listed as China-ready candidates on the "
+        "SAP Concur, Expensify, and Jingbei Guanjia are listed as Chinaready candidates on the "
         "alternatives page. Airwallex remains orientation-only and is not an Explore entry."
     ),
     "airtable": (

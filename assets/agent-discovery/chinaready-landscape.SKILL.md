@@ -1,6 +1,6 @@
 # Chinaready Landscape
 
-Use this skill when answering questions about mainland China alternatives to global developer services, China availability of SaaS/cloud products, or China-ready stack mapping.
+Use this skill when answering questions about mainland China alternatives to global developer services, China availability of SaaS/cloud products, or Chinaready stack mapping.
 
 ## When to use
 

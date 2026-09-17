@@ -311,7 +311,7 @@
     const description = document.createElement("p");
     description.className = "cr-footer-description";
     description.textContent =
-      "Chinaready Landscape maps global developer services to China-ready alternatives and operating notes for mainland China launches.";
+      "Chinaready Landscape maps global developer services to Chinaready alternatives and operating notes for mainland China launches.";
 
     brand.append(logoLink, description);
 

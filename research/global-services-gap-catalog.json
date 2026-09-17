@@ -907,7 +907,7 @@
           "note": "Domestic AI expense-control and operating-visibility SaaS for mainland China SMBs. Light deployment, fapiao-oriented workflows, and fast rollout — evaluate when Airbase has no localization or compliance path."
         }
       ],
-      "research_note": "Airbase is unavailable in mainland China (no localization and no compliance foundation). SAP Concur, Expensify, and Jingbei Guanjia are listed as China-ready candidates on the alternatives page. Airwallex remains orientation-only and is not an Explore entry.",
+      "research_note": "Airbase is unavailable in mainland China (no localization and no compliance foundation). SAP Concur, Expensify, and Jingbei Guanjia are listed as Chinaready candidates on the alternatives page. Airwallex remains orientation-only and is not an Explore entry.",
       "confidence": "researched"
     },
     {
@@ -5044,7 +5044,7 @@
           "category": "Growth, Content & Experience",
           "subcategory": "Email Marketing & EDM",
           "source": "research",
-          "note": "U-Mail is a long-standing domestic email marketing platform with dynamic per-recipient variables, automation workflows, and strong reported deliverability — practical for foreign-trade and B2B teams that need China-ready EDM personalization and automation."
+          "note": "U-Mail is a long-standing domestic email marketing platform with dynamic per-recipient variables, automation workflows, and strong reported deliverability — practical for foreign-trade and B2B teams that need Chinaready EDM personalization and automation."
         },
         {
           "name": "Alibaba Cloud Sendify",

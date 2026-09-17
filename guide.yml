@@ -1,11 +1,11 @@
 categories:
   - category: "Overview"
     content: |
-      Chinaready Landscape is an open-source map of China-ready developer services for global software teams. It organizes mainland China technology options from Level 1 categories down to Level 2 subcategories, with notes on which familiar global services usually sit in each area.
+      Chinaready Landscape is an open-source map of Chinaready developer services for global software teams. It organizes mainland China technology options from Level 1 categories down to Level 2 subcategories, with notes on which familiar global services usually sit in each area.
 
       The primary audience is foreign developer and product teams evaluating how to adapt a global software stack for mainland China.
 
-      Use this Guide to understand the China-side taxonomy and what typically belongs in each category. When you already know a global product keyword (Firebase, AWS, Stripe, Google Maps, and similar), open **Global** for the table index that maps international services to China-ready candidates. For the broader launch operating model beyond vendor selection, continue on [chinaready.co](https://chinaready.co).
+      Use this Guide to understand the China-side taxonomy and what typically belongs in each category. When you already know a global product keyword (Firebase, AWS, Stripe, Google Maps, and similar), open **Global** for the table index that maps international services to Chinaready candidates. For the broader launch operating model beyond vendor selection, continue on [chinaready.co](https://chinaready.co).
 
       ## Common global stack translations
 
@@ -20,7 +20,7 @@ categories:
       ## FAQ
 
       **Does Firebase, AWS, or Stripe work in China?**
-      Often with limits or not as a drop-in default. For Stripe specifically, answer the deployment question first: if the product must run in mainland China, Chinaready recommends native payment rails (WeChat Pay, Alipay, Youzan Cloud) rather than Stripe; if the product stays outside China, Stripe can still work globally. Apple Pay is Available in mainland China, but Alipay and WeChat Pay remain the habitual checkout methods for most Chinese internet users. Open **Global** to check Availability in China and compare mapped China-ready candidates before you change architecture.
+      Often with limits or not as a drop-in default. For Stripe specifically, answer the deployment question first: if the product must run in mainland China, Chinaready recommends native payment rails (WeChat Pay, Alipay, Youzan Cloud) rather than Stripe; if the product stays outside China, Stripe can still work globally. Apple Pay is Available in mainland China, but Alipay and WeChat Pay remain the habitual checkout methods for most Chinese internet users. Open **Global** to check Availability in China and compare mapped Chinaready candidates before you change architecture.
 
       **What is Chinaready Landscape?**
       It is an open-source, continuously updated catalog of China-market developer services and China-region routes, organized so global teams can compare familiar tools with practical mainland China options.
@@ -91,7 +91,7 @@ categories:
           Use this category for cloud platforms or China-region cloud offerings that can host application workloads. Mainland DNS and domain resolution are usually selected with the cloud platform (for example Alibaba Cloud DNS or Tencent Cloud DNS) rather than as a standalone landscape subcategory.
 
           Typical global services: [AWS](/alternatives/aws), [Microsoft Azure](/alternatives/microsoft-azure), [Google Cloud](/alternatives/google-cloud).
-          China-ready options often evaluated: AWS China Regions, Azure China, Alibaba Cloud, Tencent Cloud. Google Cloud has no mainland China region.
+          Chinaready options often evaluated: AWS China Regions, Azure China, Alibaba Cloud, Tencent Cloud. Google Cloud has no mainland China region.
       - subcategory: "Network & Edge Security"
         content: |
           Use this category for WAF, DDoS protection, email security gateways, and related network/web security controls. Keep this separate from CDN acceleration and from application-layer CAPTCHA products under Bot Protection & CAPTCHA.
@@ -104,7 +104,7 @@ categories:
           Use this category for CDN and edge acceleration products. Profile notes should distinguish product availability from ICP filing requirements.
 
           Typical global services: [Amazon CloudFront](/alternatives/amazon-cloudfront), [Cloudflare CDN](/alternatives/cloudflare-cdn), [Akamai](/alternatives/akamai).
-          China-ready options often evaluated: Alibaba Cloud CDN, Tencent Cloud CDN, Cloudflare China Network.
+          Chinaready options often evaluated: Alibaba Cloud CDN, Tencent Cloud CDN, Cloudflare China Network.
       - subcategory: "Service Mesh & Gateway"
         content: |
           Use this category for API gateways, service mesh dataplanes, and cloud-native traffic-management products.

@@ -19,7 +19,7 @@ If Explore / `landscape.yml` has no corresponding China product for the global s
 2. **Surface those domestic products on the current alternatives page** as the research shortlist:
    - `china_candidates` with `source: "research"` in `research/global-services-gap-catalog.json` (via `scripts/generate-gap-catalog.py` overrides when needed)
    - Matching `EDITORIAL_OVERRIDES` table, FAQ, `indexCandidates`, and `indexOptions` in `scripts/seo-geo.mjs`
-3. Use a candidates section that presents the products (for example `Mapped China-ready candidates` / research cards), **not** a heading like “Why Chinaready does not list these as Landscape products” with an empty uncertain card.
+3. Use a candidates section that presents the products (for example `Mapped Chinaready candidates` / research cards), **not** a heading like “Why Chinaready does not list these as Landscape products” with an empty uncertain card.
 4. Keep the disclaimer that they are alternatives-page orientation options only — still **do not** add them to Explore or Guide unless the user explicitly asks.
 
 ```text

@@ -1,0 +1,27 @@
+---
+description: Brand is "Chinaready" (one word) — hyphenated variants are a release blocker
+alwaysApply: true
+---
+
+# Chinaready brand spelling — core blocking principle
+
+The brand is **Chinaready**: one word, capital C, lowercase r, no hyphen, no space. This is a hard project rule at the same level as data validation — a page, meta tag, or asset that misspells the brand does not ship.
+
+## Blocked spellings
+
+Never write `China-ready`, `China-Ready`, `china-ready`, `China ready`, or any dash variant (ASCII hyphen, en dash, em dash, non-breaking hyphen) where the word refers to the brand — including compound copy such as "Chinaready candidates", "Chinaready alternatives", "Chinaready stack mapping", "Chinaready developer services".
+
+This applies to every surface: page copy, headings, section titles, meta / og / twitter descriptions, JSON-LD, FAQ answers, llms.txt / llms-full.txt, alt text, footer, SVG text, filenames, slugs, and repo docs that describe the site.
+
+## Enforcement — release blocker
+
+`npm run verify` (`scripts/verify-chinaready-brand.mjs`) scans the full `build/` output plus the copy sources (`settings.yml`, `guide.yml`, `landscape.yml`, `README.md`, `assets/`, `scripts/seo-geo.mjs`, `scripts/build-preview.mjs`, `scripts/generate-gap-catalog.py`, `research/global-services-gap-catalog.json`) and **fails the run** if any hyphenated variant appears.
+
+- Run `npm run build && npm run verify` before shipping; both must pass.
+- If the gate fails, fix the copy to "Chinaready". Never weaken, bypass, or special-case the gate.
+- New pages, generators, or templates must inherit this rule from day one.
+
+## Exceptions (do not copy their spelling into new work)
+
+- Historical snapshots and archives (`.tmp/`, `research/seo-baselines/`, saved live-HTML audits) keep the spelling of their era.
+- `verify-chinaready-brand.mjs` references the legacy hyphenated string only inside negated guards that detect an old generated placeholder logo; that string is assembled from parts and is detection of a historical artifact, not brand copy.

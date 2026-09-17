@@ -1,6 +1,6 @@
 # Chinaready China Tech Landscape
 
-An open-source `landscape2` site that maps global developer services to China-ready alternatives, operating notes, and product profiles.
+An open-source `landscape2` site that maps global developer services to Chinaready alternatives, operating notes, and product profiles.
 
 This repository intentionally keeps the standard CNCF `landscape2` workflow. Contributors familiar with CNCF Landscape should be able to recognize the data model, logo folder, settings file, guide file, and generated static preview.
 
