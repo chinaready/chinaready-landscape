@@ -800,3 +800,50 @@ a.cr-guide-global-link:hover {
     width: 100%;
   }
 }
+
+/* Availability facet bar (/alternatives/ index) — progressive enhancement:
+   chips only hide table rows; the table stays fully server-rendered. */
+.cr-alt-facetbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+}
+
+.cr-alt-facet-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #5b6b7c;
+}
+
+.cr-alt-facet-chip {
+  appearance: none;
+  border: 1px solid #d7dee8;
+  border-radius: 999px;
+  background: #fff;
+  color: #122033;
+  font: 600 13px/1.2 ui-sans-serif, system-ui, -apple-system, sans-serif;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition:
+    border-color 120ms ease,
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+.cr-alt-facet-chip:hover {
+  border-color: #1f6feb;
+  color: #1f6feb;
+}
+
+.cr-alt-facet-chip.is-active {
+  background: #1f6feb;
+  border-color: #1f6feb;
+  color: #fff;
+}
+
+.cr-alt-facet-chip:focus-visible {
+  outline: 2px solid #1f6feb;
+  outline-offset: 2px;
+}

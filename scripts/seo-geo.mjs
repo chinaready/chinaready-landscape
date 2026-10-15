@@ -9108,6 +9108,14 @@ ${body}
 }
 
 function renderAlternativesIndex(groups) {
+      const facetBucket = (raw) => {
+        if (raw === "available" || raw === "supported-terraform" || raw === "available-not-recommended") return "available";
+        if (raw === "limited") return "limited";
+        if (raw === "unavailable") return "unavailable";
+        return "unknown";
+      };
+      const bucketCounts = { available: 0, limited: 0, unavailable: 0, unknown: 0 };
+      for (const group of groups) bucketCounts[facetBucket(group.availability_in_china)] += 1;
   const serviceCount = groups.length;
   const withOptions = groups.filter((group) => candidateCount(group) > 0).length;
   const description = clipMeta(
@@ -9126,7 +9134,7 @@ function renderAlternativesIndex(groups) {
       const optionsCount =
         typeof editorial?.indexOptions === "number" ? editorial.indexOptions : candidateCount(group);
       const availability = availabilityLabel(group);
-      return `<tr>
+      return `<tr data-availability="${escapeHtml(group.availability_in_china || "unknown")}">
         <td><a href="${escapeHtml(analogPublicPath(group.slug))}">${escapeHtml(group.name)}</a></td>
         <td><span class="cr-alt-availability cr-alt-availability-${escapeHtml(group.availability_in_china || "unknown")}">${escapeHtml(availability)}</span></td>
         <td>${optionsCount}</td>
@@ -9165,6 +9173,13 @@ function renderAlternativesIndex(groups) {
       </section>
       <section aria-labelledby="all-analogs">
         <h2 id="all-analogs">All mapped global services</h2>
+        <div class="cr-alt-facetbar" role="group" aria-label="Filter by availability in Mainland China">
+          <span class="cr-alt-facet-label">Availability:</span>
+          <button type="button" class="cr-alt-facet-chip is-active" data-availability-filter="">All ${serviceCount}</button>
+          <button type="button" class="cr-alt-facet-chip" data-availability-filter="available">Available ${bucketCounts.available}</button>
+          <button type="button" class="cr-alt-facet-chip" data-availability-filter="limited">Limited ${bucketCounts.limited}</button>
+          <button type="button" class="cr-alt-facet-chip" data-availability-filter="unavailable">Unavailable ${bucketCounts.unavailable}</button>
+        </div>
         <p class="cr-alt-search-meta" id="cr-alt-search-meta" hidden></p>
         <div class="cr-alt-table-scroll">
           <table id="cr-alt-index-table">

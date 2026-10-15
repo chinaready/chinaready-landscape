@@ -29,7 +29,29 @@
     return `${item.name} ${item.category || ""} ${item.subcategory || ""} ${tags}`.toLowerCase();
   }
 
-  function filterTable(query) {
+  // Facet state shared by the text query and the availability chips.
+  const indexFilterState = { query: "", availability: "" };
+
+  function facetBucket(raw) {
+    if (raw === "available" || raw === "supported-terraform" || raw === "available-not-recommended") return "available";
+    if (raw === "limited") return "limited";
+    if (raw === "unavailable") return "unavailable";
+    return "unknown";
+  }
+
+  function syncFacetUrl() {
+    const params = new URLSearchParams(window.location.search);
+    if (indexFilterState.query) params.set("q", indexFilterState.query);
+    else params.delete("q");
+    if (indexFilterState.availability) params.set("availability", indexFilterState.availability);
+    else params.delete("availability");
+    const qs = params.toString();
+    window.history.replaceState(null, "", qs ? `?${qs}` : window.location.pathname);
+  }
+
+  function filterTable(query, availability) {
+    indexFilterState.query = query;
+    indexFilterState.availability = availability;
     const table = $("#cr-alt-index-table");
     const meta = $("#cr-alt-search-meta");
     if (!table) return;
@@ -37,18 +59,54 @@
     const normalized = query.trim().toLowerCase();
     let visible = 0;
     for (const row of rows) {
-      const match = !normalized || row.textContent.toLowerCase().includes(normalized);
+      const textMatch = !normalized || row.textContent.toLowerCase().includes(normalized);
+      const facetMatch = !availability || facetBucket(row.dataset.availability || "") === availability;
+      const match = textMatch && facetMatch;
       row.hidden = !match;
       if (match) visible += 1;
     }
+    syncFacetUrl();
     if (!meta) return;
-    if (!normalized) {
+    if (!normalized && !availability) {
       meta.hidden = true;
       meta.textContent = "";
       return;
     }
     meta.hidden = false;
-    meta.textContent = visible === 1 ? "1 matching service" : `${visible} matching services`;
+    meta.textContent =
+      visible === 1
+        ? "1 matching service"
+        : visible === 0
+          ? "No matching services — clear the search or the availability filter."
+          : `${visible} matching services`;
+  }
+
+  function setFacetChips(availability) {
+    const chips = Array.from(document.querySelectorAll("[data-availability-filter]"));
+    for (const chip of chips) {
+      const active = chip.dataset.availabilityFilter === availability;
+      chip.classList.toggle("is-active", active);
+      chip.setAttribute("aria-pressed", active ? "true" : "false");
+    }
+  }
+
+  function bindFacetBar() {
+    const chips = Array.from(document.querySelectorAll("[data-availability-filter]"));
+    if (!chips.length) return;
+    chips.forEach((chip) => {
+      chip.setAttribute("aria-pressed", chip.classList.contains("is-active") ? "true" : "false");
+      chip.addEventListener("click", () => {
+        const availability = chip.dataset.availabilityFilter || "";
+        setFacetChips(availability);
+        filterTable(indexFilterState.query, availability);
+      });
+    });
+    const params = new URLSearchParams(window.location.search);
+    const initial = params.get("availability");
+    if (initial && chips.some((chip) => chip.dataset.availabilityFilter === initial)) {
+      setFacetChips(initial);
+      filterTable(indexFilterState.query, initial);
+    }
   }
 
   function renderResults(root, matches, query) {
@@ -89,7 +147,7 @@
   }
 
   async function applyQuery(root, query) {
-    filterTable(query);
+    filterTable(query, indexFilterState.availability);
     const items = await loadItems();
     const normalized = query.trim().toLowerCase();
     const matches = !normalized
@@ -180,6 +238,7 @@
       bindSearch(root);
       bindSlashShortcut();
     }
+    bindFacetBar();
     bindStickyCtaHideOnFooter();
   }
 
