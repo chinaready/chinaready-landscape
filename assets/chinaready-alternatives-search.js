@@ -29,8 +29,10 @@
     return `${item.name} ${item.category || ""} ${item.subcategory || ""} ${tags}`.toLowerCase();
   }
 
-  // Facet state shared by the text query and the availability chips.
-  const indexFilterState = { query: "", availability: "" };
+  // Facet state shared by the text query and the three facet groups
+  // (availability / category / deployment). Grouped tbody headers hide when
+  // every row under them is filtered out.
+  const indexFilterState = { query: "", availability: "", category: "", deployment: "" };
 
   function facetBucket(raw) {
     if (raw === "available" || raw === "supported-terraform" || raw === "available-not-recommended") return "available";
@@ -39,35 +41,50 @@
     return "unknown";
   }
 
+  function rowMatches(row, normalized) {
+    const textMatch = !normalized || row.textContent.toLowerCase().includes(normalized);
+    if (!textMatch) return false;
+    if (indexFilterState.availability && facetBucket(row.dataset.availability || "") !== indexFilterState.availability) return false;
+    if (indexFilterState.category && (row.dataset.category || "") !== indexFilterState.category) return false;
+    if (indexFilterState.deployment && !(row.dataset.deployment || "").split(" ").includes(indexFilterState.deployment)) return false;
+    return true;
+  }
+
   function syncFacetUrl() {
     const params = new URLSearchParams(window.location.search);
-    if (indexFilterState.query) params.set("q", indexFilterState.query);
-    else params.delete("q");
-    if (indexFilterState.availability) params.set("availability", indexFilterState.availability);
-    else params.delete("availability");
+    const keys = { q: indexFilterState.query, availability: indexFilterState.availability, category: indexFilterState.category, deployment: indexFilterState.deployment };
+    for (const [key, value] of Object.entries(keys)) {
+      if (value) params.set(key, value);
+      else params.delete(key);
+    }
     const qs = params.toString();
     window.history.replaceState(null, "", qs ? `?${qs}` : window.location.pathname);
   }
 
-  function filterTable(query, availability) {
-    indexFilterState.query = query;
-    indexFilterState.availability = availability;
+  function applyIndexFilters() {
     const table = $("#cr-alt-index-table");
     const meta = $("#cr-alt-search-meta");
     if (!table) return;
-    const rows = Array.from(table.tBodies[0].rows);
-    const normalized = query.trim().toLowerCase();
+    const normalized = indexFilterState.query.trim().toLowerCase();
     let visible = 0;
-    for (const row of rows) {
-      const textMatch = !normalized || row.textContent.toLowerCase().includes(normalized);
-      const facetMatch = !availability || facetBucket(row.dataset.availability || "") === availability;
-      const match = textMatch && facetMatch;
-      row.hidden = !match;
-      if (match) visible += 1;
+    for (const tbody of Array.from(table.tBodies)) {
+      let tbodyVisible = 0;
+      for (const row of Array.from(tbody.rows)) {
+        if (row.classList.contains("cr-alt-group-head")) continue;
+        const match = rowMatches(row, normalized);
+        row.hidden = !match;
+        if (match) {
+          visible += 1;
+          tbodyVisible += 1;
+        }
+      }
+      const head = tbody.querySelector(".cr-alt-group-head");
+      if (head) head.hidden = tbodyVisible === 0;
     }
     syncFacetUrl();
     if (!meta) return;
-    if (!normalized && !availability) {
+    const anyFilter = normalized || indexFilterState.availability || indexFilterState.category || indexFilterState.deployment;
+    if (!anyFilter) {
       meta.hidden = true;
       meta.textContent = "";
       return;
@@ -77,36 +94,43 @@
       visible === 1
         ? "1 matching service"
         : visible === 0
-          ? "No matching services — clear the search or the availability filter."
+          ? "No matching services — clear the search or a filter."
           : `${visible} matching services`;
   }
 
-  function setFacetChips(availability) {
-    const chips = Array.from(document.querySelectorAll("[data-availability-filter]"));
+  function setFacetChips(facet, value) {
+    const chips = Array.from(document.querySelectorAll(`[data-facet="${facet}"]`));
     for (const chip of chips) {
-      const active = chip.dataset.availabilityFilter === availability;
+      const active = (chip.dataset.facetValue || "") === value;
       chip.classList.toggle("is-active", active);
       chip.setAttribute("aria-pressed", active ? "true" : "false");
     }
   }
 
   function bindFacetBar() {
-    const chips = Array.from(document.querySelectorAll("[data-availability-filter]"));
+    const chips = Array.from(document.querySelectorAll("[data-facet]"));
     if (!chips.length) return;
     chips.forEach((chip) => {
       chip.setAttribute("aria-pressed", chip.classList.contains("is-active") ? "true" : "false");
       chip.addEventListener("click", () => {
-        const availability = chip.dataset.availabilityFilter || "";
-        setFacetChips(availability);
-        filterTable(indexFilterState.query, availability);
+        const facet = chip.dataset.facet;
+        const value = chip.dataset.facetValue || "";
+        indexFilterState[facet] = value;
+        setFacetChips(facet, value);
+        applyIndexFilters();
       });
     });
     const params = new URLSearchParams(window.location.search);
-    const initial = params.get("availability");
-    if (initial && chips.some((chip) => chip.dataset.availabilityFilter === initial)) {
-      setFacetChips(initial);
-      filterTable(indexFilterState.query, initial);
+    let restored = false;
+    for (const facet of ["availability", "category", "deployment"]) {
+      const initial = params.get(facet);
+      if (initial) {
+        indexFilterState[facet] = initial;
+        setFacetChips(facet, initial);
+        restored = true;
+      }
     }
+    if (restored) applyIndexFilters();
   }
 
   function renderResults(root, matches, query) {
@@ -147,7 +171,8 @@
   }
 
   async function applyQuery(root, query) {
-    filterTable(query, indexFilterState.availability);
+    indexFilterState.query = query;
+    applyIndexFilters();
     const items = await loadItems();
     const normalized = query.trim().toLowerCase();
     const matches = !normalized

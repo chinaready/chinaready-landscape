@@ -18,6 +18,7 @@ landscape:
                 replacement_fit: china-market-region
                 china_context: China-region cloud option frequently recommended when global AWS or Google Cloud infrastructure is not suitable for mainland China deployments.
                 vendor_type: global-provider-china-region
+                deployment_models: "china-region"
                 evidence_level: high
                 availability_status: china-region-only
                 global_availability_in_china: limited
@@ -43,6 +44,7 @@ landscape:
                 replacement_fit: china-market-region
                 china_context: China-region cloud option for teams already using Microsoft Azure globally, and a common hyperscaler China-region path when Google Cloud has no mainland region.
                 vendor_type: global-provider-china-region
+                deployment_models: "china-region"
                 evidence_level: high
                 availability_status: china-region-only
                 global_availability_in_china: limited
@@ -68,6 +70,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Native China cloud platform with broad mainland China service coverage.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -93,6 +96,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Native China cloud platform, especially relevant when the product already leans on Tencent ecosystems such as WeChat, WeCom, or other Tencent Cloud services.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -121,6 +125,7 @@ landscape:
                 replacement_fit: direct
                 china_context: "Coremail is a well-known China email and email-security vendor with 22+ years in the category, and is frequently evaluated as a confidence choice when replacing foreign gateways such as Trend Micro (趋势科技), Barracuda (梭子鱼), and 守内安. CACTER strengths include high-precision interception and anti-phishing (claimed ~99.8% spam accuracy and <0.02% false positives), large-scale mainland honeypot/sample collection for evolving Chinese phishing tactics, exclusive in-domain anomaly detection plus automatic recall/isolation for delivered threats, and a China-hosted anti-spam big-data center (CAC) aligned with domestic data-security and Cybersecurity Law expectations. Mature replacement programs already cover banks, securities, funds, insurance, and government/enterprise users, with cloud, software, and hardware deployment options compatible with Coremail, Exchange, Microsoft 365, Gmail, and other mainstream mail systems."
                 vendor_type: china-saas
+                deployment_models: "cloud-and-onprem, self-hosted"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -146,6 +151,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Common mainland China evaluation path when replacing Barracuda network, WAF, and adjacent edge-security appliances. Topsec (天融信) covers next-generation firewall, Web application firewall, and broader perimeter/application security stacks used in domestic enterprise and government environments.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -175,6 +181,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Mainland China CDN deployments commonly require ICP filing and China-specific acceleration planning.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: high
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -200,6 +207,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Common domestic CDN alternative when teams prefer a Tencent Cloud stack, or when AWS China CloudFront feature limits (ICP CNAME, no ACM, no Lambda@Edge) make a local CDN preferable.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: high
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -225,6 +233,7 @@ landscape:
                 replacement_fit: china-market-region
                 china_context: Global-provider China-market route; classify separately from domestic CDN products.
                 vendor_type: global-provider-china-region
+                deployment_models: "china-region"
                 evidence_level: low
                 availability_status: china-region-only
                 global_availability_in_china: limited
@@ -254,6 +263,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Closest common Kong substitute in China. Same OpenResty/Nginx lineage and Lua plugin model; strong mainland community adoption and commercial support ecosystem.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -279,6 +289,7 @@ landscape:
                 replacement_fit: partial
                 china_context: China vendor option when teams need gateway plus service-mesh traffic management rather than a pure Kong-style edge gateway replacement.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -304,6 +315,7 @@ landscape:
                 replacement_fit: partial
                 china_context: Strong fit for teams already on Alibaba Cloud-native infrastructure who want an Envoy-based API gateway rather than an OpenResty/Kong stack.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -336,6 +348,7 @@ landscape:
                 replacement_fit: partial
                 china_context: uni-app is widely used for China mini-program and multi-end distribution workflows across WeChat and other China runtimes, H5, and native containers.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: high
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -365,6 +378,7 @@ landscape:
                 replacement_fit: partial
                 china_context: Needs product-profile review because SAE is application hosting rather than a full Firebase-style MBaaS.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: low
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -390,6 +404,7 @@ landscape:
                 replacement_fit: partial
                 china_context: Treat as a China deployment path for Supabase-style backend use cases, not a complete MBaaS replacement.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: low
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -418,6 +433,7 @@ landscape:
                 replacement_fit: partial
                 china_context: EMAS Remote Config is a China-cloud remote configuration module commonly evaluated when LaunchDarkly or Firebase Remote Config is limited for mainland apps.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -451,6 +467,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Alibaba Cloud's one-stop DevOps platform for mainland teams. Includes Codeup (code hosting), Flow (CI/CD pipelines), artifact repositories, and AppStack application delivery, with deep integration into the Alibaba Cloud ecosystem — a natural fit for teams already running on Alibaba Cloud infrastructure.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: high
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -476,6 +493,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Tencent Cloud's one-stop R&D management platform (CODING) for mainland teams. Covers code management, project management, continuous integration, and artifact repositories, with high concurrency capacity commonly evaluated for finance, ecommerce, and other large-scale delivery scenarios.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: high
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -505,6 +523,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Tencent WeTest provides a China-market alternative to AWS Device Farm for mobile device testing.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -535,6 +554,7 @@ landscape:
                 replacement_fit: partial
                 china_context: EMAS is Alibaba Cloud's mobile application suite covering crash/performance monitoring and analytics for China apps. Its push capability is profiled separately as Alibaba Cloud Mobile Push in Push Notifications & Multichannel Messaging.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: high
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -563,6 +583,7 @@ landscape:
                 replacement_fit: direct
                 china_context: ARMS is a China-cloud observability suite used when Datadog is unavailable or extremely unstable for mainland production monitoring, and when New Relic or Grafana Cloud SaaS models are limited.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: high
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -596,6 +617,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Authing provides a China-market identity platform alternative to Auth0, Okta, and Firebase Authentication.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -621,6 +643,7 @@ landscape:
                 replacement_fit: ecosystem-specific
                 china_context: Important for China consumer applications, especially when WeChat ecosystem integration is expected. Often added alongside Apple Login rather than as a hard replacement, because Apple Login itself remains usable in mainland China.
                 vendor_type: china-super-app
+                deployment_models: "saas"
                 evidence_level: low
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -649,6 +672,7 @@ landscape:
                 replacement_fit: ecosystem-specific
                 china_context: Core China payment rail for WeChat ecosystem and many consumer payment scenarios. Common Stripe substitute when the product must run inside mainland China and collect into a China entity or trusted partner.
                 vendor_type: china-super-app
+                deployment_models: "saas"
                 evidence_level: low
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -674,6 +698,7 @@ landscape:
                 replacement_fit: ecosystem-specific
                 china_context: Core China payment rail for consumer payments outside the WeChat-only ecosystem. Common Stripe substitute for mainland China deployments that need local collection instead of a global Stripe stack.
                 vendor_type: china-super-app
+                deployment_models: "saas"
                 evidence_level: low
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -699,6 +724,7 @@ landscape:
                 replacement_fit: partial
                 china_context: China-market commerce and payment integration path. Useful when teams need managed commerce/payment capabilities instead of Stripe for products deployed inside mainland China.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -727,6 +753,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Primary domestic AdMob alternative for mainland China. High eCPM and fill rates via ByteDance recommendation inventory; avoids GFW latency and PIPL cross-border AdMob risks. Also evaluated for Liftoff-style developer advertising distribution alongside Ocean Engine advertiser buying.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -752,6 +779,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Domestic AdMob alternative with large, stable inventory from WeChat and QQ. Common choice for apps already tied to the Tencent ecosystem.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -777,6 +805,7 @@ landscape:
                 replacement_fit: partial
                 china_context: Domestic monetization option strong in search-intent and contextual placements. Useful when content or search-adjacent inventory matters more than pure social/short-video fill.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -802,6 +831,7 @@ landscape:
                 replacement_fit: partial
                 china_context: Domestic AdMob alternative specializing in short-video formats with strong conversion and lower-tier market reach.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -830,6 +860,7 @@ landscape:
                 replacement_fit: partial
                 china_context: "Covers registration protection, login protection, behavioral CAPTCHA, and device fingerprinting. API integration is straightforward with free trial quota — suited to mid-size apps that need a fast launch. Behavioral CAPTCHA can stay frictionless and uses a Castle-like risk-score path (allow, step-up, or block). Best when you want quick go-live and stronger UI customization."
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -855,6 +886,7 @@ landscape:
                 replacement_fit: partial
                 china_context: "Started in CAPTCHA and now covers frictionless verification, identity anti-fraud, and device fingerprinting. Collects device and behavior signals, returns a real-time risk score, and supports silent protection plus custom block policies with a strong developer experience. Best for UX-sensitive apps — especially mobile — that want frictionless filtering of bot traffic and account attacks. Also a common Castle.io research option for mainland account-abuse and bot defense."
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -880,6 +912,7 @@ landscape:
                 replacement_fit: partial
                 china_context: "Cloud-metered service that integrates cleanly with the Alibaba stack. Exposes standalone APIs such as registration and login risk identification that return risk scores and labels (credential stuffing, junk registration, and similar), and can link directly to Alibaba Cloud CAPTCHA. Best for apps already on Alibaba Cloud that want risk controls tied into the same infrastructure."
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -905,6 +938,7 @@ landscape:
                 replacement_fit: partial
                 china_context: "Built on Tencent security data for real-time risk scoring across WeChat mini programs, apps, and web, with a free tier for early testing. Best for WeChat-ecosystem apps or teams that want Tencent social-graph signals to support risk decisions."
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -930,6 +964,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Alibaba Cloud CAPTCHA provides a China-market alternative for CAPTCHA and bot protection use cases.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: low
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -962,6 +997,7 @@ landscape:
                 replacement_fit: direct
                 china_context: JPush provides a China-market alternative to Firebase Cloud Messaging for mobile push notifications.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: high
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -987,6 +1023,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Native Alibaba Cloud / EMAS push for China apps. Integrates Huawei, Xiaomi, OPPO, vivo, Honor and other OEM channels, works without Google Play Services, and offers a REST API suited to enterprise stacks already on Alibaba Cloud. For global apps it is commonly paired with APNs and FCM overseas; this product primarily focuses on mainland delivery.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: high
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1012,6 +1049,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Independent China push SaaS widely used by consumer apps. Aggregates OEM push channels for high mainland delivery, with Android and iOS support plus user segmentation, scheduled push, and analytics. Strong fit for consumer apps, e-commerce, news, and content platforms replacing OneSignal or FCM in China.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: high
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1037,6 +1075,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Alibaba-backed push module in the Umeng ecosystem. Supports Android OEM channels plus Android, iOS, and HarmonyOS, with segmentation, scheduled campaigns, analytics integration, and marketing automation. Good fit for marketing/growth teams and apps already using Umeng Analytics when replacing OneSignal or FCM in China.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: high
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1062,6 +1101,7 @@ landscape:
                 replacement_fit: direct
                 china_context: China-market SMS for verification and notifications when Twilio SMS is unavailable. Commonly used to power phone-number OTP login alongside WeChat Login when international apps add mainland login options — Apple Login itself remains usable, but Chinese users often prefer phone or WeChat login.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -1087,6 +1127,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Jiguang SMS product for mainland China when Twilio SMS is unavailable. Covers text/voice verification codes, template notifications, and marketing SMS over China carrier channels, with REST API and console access. Strong fit for teams already using JPush who need SMS fallback or standalone SMS OTP/notification workflows.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -1112,6 +1153,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Closest common Amazon SES substitute for mainland China. Supports SMTP, REST API, templates, send queues, delivery stats, and SPF/DKIM domain authentication. If your app already sends over SMTP, migration is often a host/username/password change. Strong fit for signup verification, password reset, invoices, and SaaS notifications.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1137,6 +1179,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Independent China email provider with a strong developer experience. Offers SMTP, a simple API, template variables, webhooks, SDKs, and a usable console. Often compared to a Mailgun-plus-SES style workflow for teams that previously called SES APIs and need a mainland-friendly delivery path.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1162,6 +1205,7 @@ landscape:
                 replacement_fit: ecosystem-specific
                 china_context: Natural email choice when the stack already runs on Tencent Cloud (CVM, COS, CDN, CLS, and related services). Supports SMTP, API, template mail, and delivery statistics for transactional and notification email inside a Tencent-centric architecture.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1190,6 +1234,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Alibaba Cloud RTC provides a China-market alternative for real-time audio and video communication use cases when Twilio Video is unavailable for mainland China.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -1215,6 +1260,7 @@ landscape:
                 replacement_fit: direct
                 china_context: China-market voice option when Twilio Voice is unavailable for mainland China. Covers voice notification, voice OTP/verification, IVR interaction, and related calling workflows through China carrier networks. Number provisioning and template/script approval are required before production use.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1240,6 +1286,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Tencent Cloud Voice Message Service (VMS) closely parallels Alibaba Cloud VMS for mainland China when Twilio Voice is unavailable. Delivers voice OTP, voice notification, and voice alert workflows with high reach and low latency over Tencent Cloud voice dedicated lines; supports high concurrency (same infrastructure class as QQ/WeChat scale), dynamic variable templates, intelligent scheduling across regions and carriers, API/SDK/console access, and multi-dimension delivery analytics. Enterprise users only — enterprise real-name verification required.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1268,6 +1315,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Zhichi is a China-market customer support platform alternative for teams that need local helpdesk and messaging workflows instead of Zendesk or Freshdesk.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1293,6 +1341,7 @@ landscape:
                 replacement_fit: partial
                 china_context: Easemob is a China messaging and customer-communication SDK option for in-app chat when Intercom-style global messaging stacks are limited.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -1326,6 +1375,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Sensors Data provides a China-market alternative for product analytics and user behavior analysis.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: low
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -1351,6 +1401,7 @@ landscape:
                 replacement_fit: direct
                 china_context: First-choice Google Analytics replacement for China websites and marketing landing pages. High free coverage, native Baidu Search SEO linkage, and Baidu paid-search/ad data in one workflow. Prefer Umeng+ when the primary surface is a native App.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: high
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1379,6 +1430,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Default Google Analytics / Firebase Analytics replacement when the product is a China App, mini-program, or H5-in-App experience. App SDK coverage across domestic distribution channels is extremely high. Prefer Baidu Tongji for standalone websites and SEO-led landing pages.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: high
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1404,6 +1456,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Often shortlisted when teams need product-analytics depth beyond Baidu Tongji (web traffic/SEO) or Umeng+ (App retention/channels). Validate event taxonomy, consent flows, and activation tooling against your stack.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1432,6 +1485,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Amap provides a China-market alternative to Google Maps Platform for maps, location, and navigation APIs.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: high
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1457,6 +1511,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Tencent Location Services is a China maps and location API alternative when Google Maps Platform is unavailable or unsuitable for mainland apps.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: high
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1485,6 +1540,7 @@ landscape:
                 replacement_fit: partial
                 china_context: Qimai Data helps teams research China app-store rankings and ASO signals across fragmented domestic stores, which global attribution suites often cover only partially.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -1514,6 +1570,7 @@ landscape:
                 replacement_fit: ecosystem-specific
                 china_context: Primary Tencent-ecosystem route for paid app install and performance campaigns — especially strong in gaming and social apps. Distinct from Tencent Ads (优量汇), which is the publisher monetization network.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1539,6 +1596,7 @@ landscape:
                 replacement_fit: ecosystem-specific
                 china_context: Default ByteDance advertiser stack for mainland China app installs, gaming UA, and conversion optimization through Douyin and Toutiao. Distinct from Pangle (穿山甲), which is ByteDance's publisher monetization network.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1564,6 +1622,7 @@ landscape:
                 replacement_fit: ecosystem-specific
                 china_context: Strong for lower-tier city and short-video conversion campaigns via 快手磁力引擎. Distinct from Kuaishou Union (快手联盟), which is the publisher monetization network.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1589,6 +1648,7 @@ landscape:
                 replacement_fit: partial
                 china_context: Strong when search intent and Baidu ecosystem placements matter for mainland acquisition. Complements social/short-video networks rather than replacing them alone.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1616,6 +1676,7 @@ landscape:
                 replacement_fit: ecosystem-specific
                 china_context: Important for Huawei / HarmonyOS and AppGallery reach. Covers both advertiser acquisition and publisher monetization (鲸鸿动能), so it also appears under Ad Monetization & Mediation.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1645,6 +1706,7 @@ landscape:
                 replacement_fit: compatible-route
                 china_context: Practical alternative when fonts.googleapis.com is slow or blocked; allowlisted Origins only.
                 vendor_type: consulting-service
+                deployment_models: "saas"
                 evidence_level: high
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1678,6 +1740,7 @@ landscape:
                 replacement_fit: direct
                 china_context: DeepSeek offers mainland-reachable APIs and widely used open weights as a practical alternative when OpenAI or Anthropic are unavailable for China production stacks.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1703,6 +1766,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Kimi provides mainland-reachable long-context model APIs for teams replacing OpenAI or Anthropic in document-heavy China applications.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1728,6 +1792,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Model Studio and DashScope provide mainland-hosted Qwen APIs and enterprise cloud integration for China deployments that cannot rely on OpenAI, Anthropic, or other global model endpoints.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1753,6 +1818,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Zhipu AI offers mainland-reachable bilingual model APIs and enterprise services for production workloads that need a China-based alternative to OpenAI or Anthropic.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1778,6 +1844,7 @@ landscape:
                 replacement_fit: direct
                 china_context: MiniMax offers mainland-reachable multimodal APIs for China applications that need local text, speech, image, or video generation instead of OpenAI or Anthropic services.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1803,6 +1870,7 @@ landscape:
                 replacement_fit: partial
                 china_context: Ark provides mainland-hosted Doubao model endpoints and Volcengine integration for China workloads that cannot rely on OpenAI or Anthropic, though model behavior and platform interfaces are not fully drop-in compatible with global APIs.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1831,6 +1899,7 @@ landscape:
                 replacement_fit: direct
                 china_context: DashScope provides mainland-hosted embedding endpoints for Alibaba Cloud applications that need production RAG and semantic retrieval without relying on global APIs.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1856,6 +1925,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Zhipu offers mainland-reachable embedding APIs for China-hosted semantic search and RAG pipelines that cannot depend on OpenAI or Cohere endpoints.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1881,6 +1951,7 @@ landscape:
                 replacement_fit: partial
                 china_context: GTE models support self-hosted embedding inference for mainland China retrieval stacks, reducing reliance on overseas APIs while requiring local model operations.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1909,6 +1980,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Milvus can be self-hosted in mainland China for production vector search and RAG stacks that need local infrastructure control instead of an overseas managed endpoint.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1934,6 +2006,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Zilliz Cloud offers a managed route for teams using the Milvus ecosystem, with deployment options suited to China-facing vector retrieval workloads.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1959,6 +2032,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Tencent Cloud VectorDB provides mainland-hosted vector storage and retrieval integrated with Tencent Cloud for China production stacks that cannot depend on Pinecone.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -1984,6 +2058,7 @@ landscape:
                 replacement_fit: direct
                 china_context: DashVector offers mainland-hosted vector retrieval integrated with Alibaba Cloud, giving China applications a managed alternative to overseas vector search services.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -2009,6 +2084,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Baidu VectorDB supplies mainland-hosted vector retrieval within Baidu Cloud for China-facing RAG and semantic search systems that cannot rely on Pinecone.
                 vendor_type: china-cloud
+                deployment_models: "cloud-and-onprem"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -2037,6 +2113,7 @@ landscape:
                 replacement_fit: direct
                 china_context: Dify provides a China-origin application platform that global teams can self-host or connect to mainland-reachable models for production agent and RAG workloads.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -2062,6 +2139,7 @@ landscape:
                 replacement_fit: partial
                 china_context: RAGFlow offers a China-origin, self-hostable retrieval stack for teams that need document understanding and grounded generation inside mainland deployments.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: limited
@@ -2087,6 +2165,7 @@ landscape:
                 replacement_fit: partial
                 china_context: FastGPT can be self-hosted with mainland-reachable models and data services, supporting China-facing knowledge assistants without dependence on OpenAI.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -2112,6 +2191,7 @@ landscape:
                 replacement_fit: partial
                 china_context: Coze's mainland China service provides a locally reachable agent builder and publishing ecosystem for teams adapting conversational applications to the China market.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
@@ -2137,6 +2217,7 @@ landscape:
                 replacement_fit: partial
                 china_context: MaxKB supports self-hosted enterprise knowledge assistants with mainland-reachable models, helping teams retain data and deployment control in China.
                 vendor_type: china-saas
+                deployment_models: "saas"
                 evidence_level: medium
                 availability_status: generally-available
                 global_availability_in_china: unavailable
