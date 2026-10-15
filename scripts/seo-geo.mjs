@@ -59,6 +59,103 @@ const CHINA_AVAILABILITY_LABELS = {
   "available-not-recommended": "Available, not recommended",
 };
 
+// Display-category normalization for the /alternatives/ index facet: collapses
+// the 51 ad-hoc gap-catalog tags into 10 reader-facing buckets. Landscape-side
+// items keep their clean 7-category structure; catalog-only groups fall back
+// to their first mapped item's category, else "Other".
+const CATEGORY_NORMALIZATION = {
+  "Performance Monitoring & Alerting": "Analytics & Monitoring",
+  "Business & Product Analytics": "Analytics & Monitoring",
+  "Monitoring & Observability (APM / RUM)": "Analytics & Monitoring",
+  "Monitoring & Observability": "Analytics & Monitoring",
+  "User Experience & Behavior Analytics": "Analytics & Monitoring",
+  "Product Analytics & User Insights": "Analytics & Monitoring",
+  "Crash Reporting & Error Tracking": "Analytics & Monitoring",
+  "Release, Quality & Operations": "Analytics & Monitoring",
+  "Feature Management & Experimentation": "Analytics & Monitoring",
+  "Marketing & Automation": "Marketing & Growth",
+  "Growth, Content & Experience": "Marketing & Growth",
+  "User Acquisition": "Marketing & Growth",
+  "Mobile Advertising": "Marketing & Growth",
+  "Social Advertising": "Marketing & Growth",
+  "App Store Advertising": "Marketing & Growth",
+  "Search Advertising": "Marketing & Growth",
+  "Ad Monetization": "Marketing & Growth",
+  "Rewarded Video": "Marketing & Growth",
+  "Programmatic": "Marketing & Growth",
+  "Mediation": "Marketing & Growth",
+  "Users, Trust & Monetization": "Marketing & Growth",
+  "App Attribution & ASO": "Marketing & Growth",
+  "Developer Tools & APIs": "Developer Tools & CI/CD",
+  "Developer Platforms & CI/CD": "Developer Tools & CI/CD",
+  "Developer Tools & Platforms": "Developer Tools & CI/CD",
+  "Mobile Dev Ops": "Developer Tools & CI/CD",
+  "CI/CD & Mobile App Distribution": "Developer Tools & CI/CD",
+  "Mobile & Client SDKs": "Developer Tools & CI/CD",
+  "Media Platforms": "Media & Creator Platforms",
+  "Creator Platforms": "Media & Creator Platforms",
+  "Hosting & Infrastructure": "Hosting & Infrastructure",
+  "Cloud Platform & Hosting": "Hosting & Infrastructure",
+  "Infrastructure & Edge": "Hosting & Infrastructure",
+  "Traditional/Enterprise CMS": "Hosting & Infrastructure",
+  "E-commerce Tools": "E-commerce & Payments",
+  "Payment & Financial Tools": "E-commerce & Payments",
+  "Customer Support & CRM": "Support & CRM",
+  "Customer Support & In-App Messaging": "Support & CRM",
+  "Surveys & Feedback": "Support & CRM",
+  "Engagement & Communication": "Communication & Collaboration",
+  "Communication & Collaboration": "Communication & Collaboration",
+  "Collaboration & Productivity": "Communication & Collaboration",
+  "Cloud Communications Platforms (CPaaS)": "Communication & Collaboration",
+  "Security & Identity": "Security & Identity",
+  "Identity & Endpoint Security": "Security & Identity",
+  "Trust, Identity & Compliance": "Security & Identity",
+  "Authentication & Identity": "Security & Identity",
+  "Bot Protection & CAPTCHA": "Security & Identity",
+  "Network & Edge Security": "Security & Identity",
+  "Location & Map Services": "Maps & Location",
+  "Geospatial & Location APIs": "Maps & Location",
+};
+
+function normalizeCategoryTag(tag) {
+  return CATEGORY_NORMALIZATION[String(tag || "").trim()] || null;
+}
+
+function facetCategoryForGroup(group) {
+  const fromCatalog = [];
+  for (const tag of group.facet_categories || []) {
+    const bucket = normalizeCategoryTag(tag);
+    if (bucket) fromCatalog.push(bucket);
+  }
+  if (fromCatalog.length) return fromCatalog.sort()[0];
+  const firstItem = (group.items || [])[0];
+  const itemCategory = firstItem?.category || firstItem?.annotations?.primary_category;
+  if (itemCategory) {
+    const raw = String(itemCategory);
+    return normalizeCategoryTag(raw) || LANDSCAPE_CATEGORY_MAP[raw] || raw;
+  }
+  return "Other";
+}
+
+// Landscape-side categories are clean names but a different taxonomy —
+// map them into the same display buckets where the meaning is clear, and
+// keep well-formed landscape names (e.g. "AI Models & Platforms") as-is.
+const LANDSCAPE_CATEGORY_MAP = {
+  "Application Platform": "Hosting & Infrastructure",
+  "Infrastructure & Edge": "Hosting & Infrastructure",
+  "Engagement & Communication": "Communication & Collaboration",
+  "Users, Trust & Monetization": "Marketing & Growth",
+  "Growth, Content & Experience": "Marketing & Growth",
+  "Release, Quality & Operations": "Analytics & Monitoring",
+  "Monitoring & Analytics": "Analytics & Monitoring",
+  "Developer Tools & APIs": "Developer Tools & CI/CD",
+  "Developer Tools & Platforms": "Developer Tools & CI/CD",
+  "Media Platforms": "Media & Creator Platforms",
+  "Creator Platforms": "Media & Creator Platforms",
+  "E-commerce Tools": "E-commerce & Payments",
+  "Payment & Financial Tools": "E-commerce & Payments",
+};
+
 const CONTACT_CHINAREADY_URL = `${MAIN_SITE_URL}/book-call`;
 const GET_HELP_URL = "https://chinaready.co/contact/";
 const INTAKE_ASSESSMENT_URL = "https://chinaready.co/intake/";
@@ -8612,6 +8709,7 @@ for category in data.get("landscape", []):
                 "evidence_level": annotations.get("evidence_level") or "",
                 "availability_status": annotations.get("availability_status") or "",
                 "global_availability_in_china": annotations.get("global_availability_in_china") or "",
+                "deployment_models": annotations.get("deployment_models") or "",
                 "product_overview": annotations.get("product_overview") or item.get("description") or "",
             })
 print(json.dumps(items))
@@ -8762,6 +8860,7 @@ function mergeAnalogGroups(landscapeGroups, catalog) {
       const existing = bySlug.get(slug);
       existing.availability_in_china =
         service.global_availability_in_china || existing.availability_in_china || "unknown";
+      existing.facet_categories = service.categories || existing.facet_categories || [];
       if ((service.china_candidates || []).length) {
         existing.research_candidates = service.china_candidates;
         existing.research_note = service.research_note || existing.research_note || "";
@@ -8778,6 +8877,7 @@ function mergeAnalogGroups(landscapeGroups, catalog) {
       research_note: service.research_note || "",
       confidence: service.confidence || "uncertain",
       availability_in_china: service.global_availability_in_china || "unknown",
+      facet_categories: service.categories || [],
     });
   }
 
@@ -8786,7 +8886,18 @@ function mergeAnalogGroups(landscapeGroups, catalog) {
     if (group) group.availability_in_china = availability;
   }
 
-  return [...bySlug.values()].sort((a, b) => a.name.localeCompare(b.name, "en", { sensitivity: "base" }));
+  const merged = [...bySlug.values()].sort((a, b) => a.name.localeCompare(b.name, "en", { sensitivity: "base" }));
+  for (const group of merged) {
+    group.facet_category = facetCategoryForGroup(group);
+    const deployment = new Set();
+    for (const item of group.items || []) {
+      for (const model of splitList(item.annotations?.deployment_models ?? item.deployment_models)) {
+        deployment.add(model.trim());
+      }
+    }
+    group.deployment_models = [...deployment].sort();
+  }
+  return merged;
 }
 
 function dedupeItems(items) {
@@ -9108,52 +9219,101 @@ ${body}
 }
 
 function renderAlternativesIndex(groups) {
-      const facetBucket = (raw) => {
-        if (raw === "available" || raw === "supported-terraform" || raw === "available-not-recommended") return "available";
-        if (raw === "limited") return "limited";
-        if (raw === "unavailable") return "unavailable";
-        return "unknown";
-      };
-      const bucketCounts = { available: 0, limited: 0, unavailable: 0, unknown: 0 };
-      for (const group of groups) bucketCounts[facetBucket(group.availability_in_china)] += 1;
+  const facetBucket = (raw) => {
+    if (raw === "available" || raw === "supported-terraform" || raw === "available-not-recommended") return "available";
+    if (raw === "limited") return "limited";
+    if (raw === "unavailable") return "unavailable";
+    return "unknown";
+  };
+  const bucketCounts = { available: 0, limited: 0, unavailable: 0, unknown: 0 };
+  const categoryCounts = new Map();
+  const deploymentCounts = new Map();
+  for (const group of groups) {
+    bucketCounts[facetBucket(group.availability_in_china)] += 1;
+    categoryCounts.set(group.facet_category, (categoryCounts.get(group.facet_category) || 0) + 1);
+    for (const model of group.deployment_models || []) {
+      deploymentCounts.set(model, (deploymentCounts.get(model) || 0) + 1);
+    }
+  }
   const serviceCount = groups.length;
   const withOptions = groups.filter((group) => candidateCount(group) > 0).length;
+  const mappedProducts = new Set(
+    groups.flatMap((group) => (group.items || []).map((item) => item.name)),
+  ).size;
   const description = clipMeta(
-    `Find China alternatives to Firebase, AWS, Stripe, FCM, and ${serviceCount} more global services — with mainland availability labels and Chinaready candidates.`,
+    `The China digital infrastructure map: ${serviceCount} global services with mainland availability labels, faceted by category and deployment model, plus China alternatives from ${mappedProducts} mapped products.`,
   );
-  const rows = groups
-    .map((group) => {
-      const editorial = EDITORIAL_OVERRIDES[group.slug];
-      const names = candidateNames(group);
-      const namesHtml =
-        typeof editorial?.indexCandidates === "string"
-          ? escapeHtml(editorial.indexCandidates)
-          : names.length
-            ? names.map((name) => escapeHtml(name)).join(", ")
-            : `<span class="cr-alt-uncertain">Uncertain — contact Chinaready</span>`;
-      const optionsCount =
-        typeof editorial?.indexOptions === "number" ? editorial.indexOptions : candidateCount(group);
-      const availability = availabilityLabel(group);
-      return `<tr data-availability="${escapeHtml(group.availability_in_china || "unknown")}">
+
+  const categories = [...categoryCounts.entries()]
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+  const deployments = ["saas", "cloud-and-onprem", "china-region", "self-hosted"]
+    .map((name) => ({ name, count: deploymentCounts.get(name) || 0 }))
+    .filter((entry) => entry.count > 0);
+
+  const rowFor = (group) => {
+    const editorial = EDITORIAL_OVERRIDES[group.slug];
+    const names = candidateNames(group);
+    const namesHtml =
+      typeof editorial?.indexCandidates === "string"
+        ? escapeHtml(editorial.indexCandidates)
+        : names.length
+          ? names.map((name) => escapeHtml(name)).join(", ")
+          : `<span class="cr-alt-uncertain">Uncertain — contact Chinaready</span>`;
+    const optionsCount =
+      typeof editorial?.indexOptions === "number" ? editorial.indexOptions : candidateCount(group);
+    const availability = availabilityLabel(group);
+    const deployment = (group.deployment_models || []).join(" ");
+    return `<tr data-availability="${escapeHtml(group.availability_in_china || "unknown")}" data-category="${escapeHtml(group.facet_category || "Other")}"${deployment ? ` data-deployment="${escapeHtml(deployment)}"` : ""}>
         <td><a href="${escapeHtml(analogPublicPath(group.slug))}">${escapeHtml(group.name)}</a></td>
         <td><span class="cr-alt-availability cr-alt-availability-${escapeHtml(group.availability_in_china || "unknown")}">${escapeHtml(availability)}</span></td>
+        <td>${escapeHtml(group.facet_category || "Other")}</td>
         <td>${optionsCount}</td>
         <td>${namesHtml}</td>
       </tr>`;
+  };
+
+  // Grouped table bodies: one tbody per facet category, alphabetical within,
+  // categories ordered by size. Filters hide rows client-side only.
+  const groupedTbodies = categories
+    .slice()
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((category) => {
+      const members = groups
+        .filter((group) => (group.facet_category || "Other") === category.name)
+        .sort((a, b) => a.name.localeCompare(b.name, "en", { sensitivity: "base" }));
+      return `<tbody class="cr-alt-cat-group" data-category="${escapeHtml(category.name)}">
+          <tr class="cr-alt-group-head"><th colspan="5">${escapeHtml(category.name)} <span class="cr-alt-group-count">${category.count}</span></th></tr>
+${members.map(rowFor).join("\n")}
+        </tbody>`;
     })
     .join("\n");
 
+  const facetChips = (facet, entries, allLabel) =>
+    `<div class="cr-alt-facet-row" role="group" aria-label="Filter by ${facet}">
+          <span class="cr-alt-facet-label">${facet.charAt(0).toUpperCase() + facet.slice(1)}:</span>
+          <button type="button" class="cr-alt-facet-chip is-active" data-facet="${facet}" data-facet-value="">${allLabel}</button>
+          ${entries
+            .map(
+              (entry) =>
+                `<button type="button" class="cr-alt-facet-chip" data-facet="${facet}" data-facet-value="${escapeHtml(entry.name)}">${escapeHtml(entry.name)} ${entry.count}</button>`,
+            )
+            .join("")}
+        </div>`;
+
   const body = `
       <p class="cr-alt-kicker">Global</p>
-      <h1>${escapeHtml("China Alternatives to Firebase, AWS & Stripe")}</h1>
+      <h1>${escapeHtml("China Digital Infrastructure Map")}</h1>
       ${renderUpdatedLine()}
-      <p class="cr-alt-lede">Search ${serviceCount} global services alphabetically and jump to Chinaready candidates, China-region routes, and availability notes. ${withOptions} pages already list concrete options. For the China taxonomy by category, read the <a href="/guide">Guide</a>; for broader launch guidance, continue on <a href="${MAIN_SITE_URL}">chinaready.co</a>.</p>
+      <p class="cr-alt-counters"><strong>${serviceCount}</strong> global services · <span class="cr-alt-counter-available"><strong>${bucketCounts.available}</strong> available</span> · <span class="cr-alt-counter-limited"><strong>${bucketCounts.limited}</strong> limited</span> · <span class="cr-alt-counter-unavailable"><strong>${bucketCounts.unavailable}</strong> unavailable</span> · <strong>${mappedProducts}</strong> mapped China products</p>
+      <p class="cr-alt-lede">Search ${serviceCount} global services — alternatives to Firebase, AWS, Stripe and ${serviceCount} more — and slice the map by category, availability, and deployment model. ${withOptions} pages already list concrete options. For the China taxonomy by category, read the <a href="/guide">Guide</a>; for broader launch guidance, continue on <a href="${MAIN_SITE_URL}">chinaready.co</a>.</p>
+      <p class="cr-alt-legend"><strong>Availability labels:</strong> <em>Available</em> — usable from Mainland China (verify per region); <em>Limited</em> — reachable for some users/regions or degraded; <em>Unavailable</em> — not reachable without replacement or a China route. Availability is measured, not guaranteed — see Chinaready's <a href="${MAIN_SITE_URL}/research/">reachability research</a>.</p>
       <section aria-labelledby="how-to-use">
         <h2 id="how-to-use">How to use this map</h2>
         <ol>
-          <li>Search or scan for the global service your product already depends on.</li>
+          <li>Search or slice for the global service your product already depends on.</li>
           <li>Check Availability in China before assuming the global product remains usable.</li>
-          <li>Compare listed China-market options, or contact Chinaready when the alternative is still uncertain.</li>
+          <li>Compare listed China-market options by deployment model, or contact Chinaready when the alternative is still uncertain.</li>
           <li>Use <a href="${MAIN_SITE_URL}">Chinaready</a> when you need the full launch operating model, not just a product shortlist.</li>
         </ol>
       </section>
@@ -9173,12 +9333,14 @@ function renderAlternativesIndex(groups) {
       </section>
       <section aria-labelledby="all-analogs">
         <h2 id="all-analogs">All mapped global services</h2>
-        <div class="cr-alt-facetbar" role="group" aria-label="Filter by availability in Mainland China">
-          <span class="cr-alt-facet-label">Availability:</span>
-          <button type="button" class="cr-alt-facet-chip is-active" data-availability-filter="">All ${serviceCount}</button>
-          <button type="button" class="cr-alt-facet-chip" data-availability-filter="available">Available ${bucketCounts.available}</button>
-          <button type="button" class="cr-alt-facet-chip" data-availability-filter="limited">Limited ${bucketCounts.limited}</button>
-          <button type="button" class="cr-alt-facet-chip" data-availability-filter="unavailable">Unavailable ${bucketCounts.unavailable}</button>
+        <div class="cr-alt-facetbar">
+${facetChips("availability", [
+  { name: "available", count: bucketCounts.available },
+  { name: "limited", count: bucketCounts.limited },
+  { name: "unavailable", count: bucketCounts.unavailable },
+], `All ${serviceCount}`)}
+${facetChips("category", categories, `All ${serviceCount}`)}
+${facetChips("deployment", deployments, "All models")}
         </div>
         <p class="cr-alt-search-meta" id="cr-alt-search-meta" hidden></p>
         <div class="cr-alt-table-scroll">
@@ -9187,21 +9349,21 @@ function renderAlternativesIndex(groups) {
               <tr>
                 <th>Global service</th>
                 <th>Availability in China</th>
+                <th>Category</th>
                 <th>Options</th>
                 <th>Chinaready candidates</th>
               </tr>
             </thead>
-            <tbody>
-${rows}
-            </tbody>
+${groupedTbodies}
           </table>
         </div>
       </section>`;
 
   return pageShell({
-    title: brandedTitle("China Alternatives to Firebase, AWS & Stripe"),
+    title: brandedTitle("China Digital Infrastructure Map"),
     description,
     canonicalPath: "/alternatives/",
+    body,
     breadcrumbs: [
       { name: "Home", path: "/" },
       { name: "Alternatives", path: "/alternatives/" },
@@ -9210,23 +9372,19 @@ ${rows}
       {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        name: "China Alternatives to Firebase, AWS & Stripe",
+        name: "China Digital Infrastructure Map",
         description,
         url: `${SITE_URL}/alternatives/`,
-        isPartOf: { "@type": "WebSite", name: "Chinaready Landscape", url: SITE_URL },
-        about: "China-market alternatives to global developer services",
-        ...webpageFreshnessFields(),
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        numberOfItems: groups.length,
-        itemListElement: groups.map((group, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          name: group.name,
-          url: analogPublicUrl(group.slug),
-        })),
+        mainEntity: {
+          "@type": "ItemList",
+          numberOfItems: serviceCount,
+          itemListElement: groups.map((group, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: `${group.name} alternatives in China`,
+            url: analogPublicUrl(group.slug),
+          })),
+        },
       },
       {
         "@context": "https://schema.org",
@@ -9242,16 +9400,15 @@ ${rows}
           },
           {
             "@type": "Question",
-            name: "How should teams use the China alternatives index?",
+            name: "How should teams use the China digital infrastructure map?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Search the global service you already depend on, check Availability in China, compare listed China-market options, then validate replacement fit before changing production architecture.",
+              text: "Search or filter by category, availability, and deployment model for the global service you already depend on, check Availability in China, compare listed China-market options, then validate replacement fit before changing production architecture.",
             },
           },
         ],
       },
     ],
-    body,
   });
 }
 
@@ -10449,7 +10606,8 @@ ${top
   .map((group) => {
     const names = candidateNames(group);
     const suffix = names.length ? names.join(", ") : "alternative uncertain — contact Chinaready";
-    return `- [${group.name} alternatives in China](${analogPublicUrl(group.slug)}): ${suffix}`;
+    const meta = [group.facet_category, availabilityLabel(group)].filter(Boolean).join(" · ");
+    return `- [${group.name} alternatives in China](${analogPublicUrl(group.slug)}) [${meta}]: ${suffix}`;
   })
   .join("\n")}
 

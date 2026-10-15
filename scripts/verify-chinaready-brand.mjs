@@ -551,7 +551,7 @@ if (exists("build/_redirects")) {
 if (exists("build/alternatives/index.html")) {
   const alternativesIndex = read("build/alternatives/index.html");
   assert(
-    alternativesIndex.includes("China Alternatives to Firebase, AWS"),
+    alternativesIndex.includes("China Digital Infrastructure Map"),
     "alternatives index must use a clear H1 topic aligned with the title",
   );
   assert(alternativesIndex.includes("Firebase"), "alternatives index must include Firebase mappings");

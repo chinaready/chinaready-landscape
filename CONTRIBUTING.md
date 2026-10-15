@@ -22,6 +22,7 @@ Each item should include:
 - `extra.annotations.replacement_fit`
 - `extra.annotations.china_context`
 - `extra.annotations.vendor_type`
+- `extra.annotations.deployment_models` — how the China product can be consumed: one or more of `saas` / `china-region` / `hybrid-onprem` / `self-hosted` / `cloud-and-onprem` (comma-separated). Drives the deployment facet on `/alternatives/`.
 - `extra.annotations.evidence_level`
 - `extra.annotations.availability_status` — status of **this China product / China-region route**
 - `extra.annotations.global_availability_in_china` — typical mainland China availability of the **listed global analogs** (primary / representative when several are listed)
