@@ -1697,7 +1697,7 @@ landscape:
         items:
           - item:
             name: Chinaready Google Fonts Hosting
-            homepage_url: https://gfonts.launchready.cn/
+            homepage_url: https://launchready.cn/gfonts/
             logo: chinaready-google-fonts.svg
             description: Free open-source Google Fonts CDN mirror for mainland China, delivering WOFF2 and CSS via Alibaba Cloud CDN for allowlisted Origins.
             extra:
@@ -1712,7 +1712,7 @@ landscape:
                 global_availability_in_china: unavailable
                 metadata_name: "Chinaready Google Fonts Hosting"
                 primary_category: "Growth, Content & Experience"
-                official_website: "https://gfonts.launchready.cn/"
+                official_website: "https://launchready.cn/gfonts/"
                 github: "to-be-supplied-by-contributor"
                 social_media: "to-be-supplied-by-contributor"
                 product_overview: "Free open-source Google Fonts CDN mirror for mainland China, delivering WOFF2 and CSS via Alibaba Cloud CDN for allowlisted Origins."
@@ -1720,7 +1720,7 @@ landscape:
                 global_alternatives: "Google Fonts"
                 organization: "Chinaready"
                 organization_overview: "Chinaready helps global software teams understand and implement Chinaready product, infrastructure, and go-to-market requirements."
-                developer_docs: "https://gfonts.launchready.cn/"
+                developer_docs: "https://launchready.cn/gfonts/"
 
 
   - category:
