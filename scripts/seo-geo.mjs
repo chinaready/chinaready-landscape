@@ -8235,7 +8235,7 @@ const EDITORIAL_OVERRIDES = {
     relatedSlugs: ["google-authenticator"],
     description: (availability, names) =>
       clipMeta(
-        `Microsoft Authenticator is Limited in China — OEM-store Android install, no push, OTP only. Prefer ${names.slice(0, 2).join(", ") || "Ningdun 2FA (宁盾), Authenticator"}. Availability: ${availability}.`,
+        `Microsoft Authenticator is Limited in China — no push verification, OTP only, and it often fails outright on mainland Android without Google services. Availability: ${availability}.`,
       ),
     lede: (availability, names) =>
       `<strong>Quick answer:</strong> <strong>Microsoft Authenticator is Limited in mainland China</strong> — usable, but functionally constrained. Mainland Android users typically need OEM app stores (vivo, OPPO, Samsung, and similar), and push-notification verification does not work; only manual one-time passwords (OTP) remain. When both the business and target users are in mainland China, Chinaready currently lists <strong>${escapeHtml(names.slice(0, 2).join(", ") || "Ningdun 2FA (宁盾), Authenticator (双重认证密码管理器)")}</strong> as localized 2FA options on this alternatives page. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
