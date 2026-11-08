@@ -428,7 +428,7 @@ function zendeskFamilyEditorial(productName, relatedSlugs) {
 
 const EDITORIAL_OVERRIDES = {
   stripe: {
-    title: "Stripe alternatives in China",
+    title: "Does Stripe work in China?",
     relatedSlugs: ["paypal", "apple-pay", "authorize-net", "checkout-com"],
     description: (availability, names) =>
       clipMeta(
@@ -465,7 +465,7 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   paypal: {
-    title: "PayPal alternatives in China",
+    title: "Does PayPal work in China?",
     relatedSlugs: ["stripe", "apple-pay", "authorize-net", "checkout-com"],
     description: (availability, names) =>
       clipMeta(
@@ -922,7 +922,7 @@ const EDITORIAL_OVERRIDES = {
     ],
   },
   imperva: {
-    title: "Imperva alternatives in China",
+    title: "Does Imperva work in China?",
     relatedSlugs: ["barracuda", "crowdstrike", "sucuri"],
     description: (availability) =>
       clipMeta(
@@ -1230,7 +1230,7 @@ const EDITORIAL_OVERRIDES = {
     relatedSlugs: ["applovin", "liftoff", "google-ads", "tiktok-ads"],
   },
   ironsource: {
-    title: "ironSource alternatives in China",
+    title: "Does ironSource work in China?",
     relatedSlugs: ["google-admob", "applovin", "chartboost", "unity-levelplay"],
     description: (availability, names) =>
       clipMeta(
@@ -2267,7 +2267,7 @@ const EDITORIAL_OVERRIDES = {
   },
   "azure-monitor": {
     // Query lead: "azure monitor china" (GSC W37: 11 imp / pos 14 / 0 clicks).
-    title: "Azure Monitor China: does it work?",
+    title: "Does Azure Monitor work in China?",
     description: (availability, names) =>
       clipMeta(
         `Azure Monitor China: Available in Azure China (21Vianet) — separate subscription, fewer features. Compare ${names[0] || "Alibaba Cloud CloudMonitor"}.`,
@@ -3015,7 +3015,7 @@ const EDITORIAL_OVERRIDES = {
   adtrace: {
     relatedSlugs: ["appsflyer", "adjust", "branch", "singular", "kochava"],
     // Query lead: "adtrace china" (GSC W37: 22 imp / pos 11.4 / 0 clicks).
-    title: "Adtrace China: does it work?",
+    title: "Does Adtrace work in China?",
     description: (availability, names) =>
       clipMeta(
         `Adtrace China: no documented mainland deployment path. For China app attribution, compare ${names.slice(0, 2).join(" and ") || "Qimai Data and Umeng+"}.`,
@@ -3090,7 +3090,7 @@ const EDITORIAL_OVERRIDES = {
   },
   aweber: {
     // Query lead: "aweber china" (GSC W37: 14 imp / pos 6.3 / 0 clicks).
-    title: "AWeber China: does it work?",
+    title: "Does AWeber work in China?",
     description: (availability, names) =>
       clipMeta(
         `AWeber China: reachable, but not viable for mainland email marketing — Chinaready marks it ${availability}. Compare ${names.slice(0, 2).join(", ") || "Fengyou EDM, Zoho Campaigns"}.`,
