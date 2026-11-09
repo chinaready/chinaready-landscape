@@ -771,6 +771,58 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  "twilio-conversations": {
+    relatedSlugs: ["intercom", "zendesk-messaging", "twilio-sms", "twilio-video", "agora"],
+    description: (availability, names) =>
+      clipMeta(
+        `Twilio Conversations is Limited in China: chat SDK websocket delivery degrades cross-border. Compare ${names.slice(0, 3).join(", ") || "Easemob"}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Twilio Conversations is Limited</strong> for mainland China production stacks. In-app chat delivery depends on long-lived connections to Twilio's overseas infrastructure, so mainland clients often see slow joins, dropped sessions, and delayed messages. Chinaready currently maps in-app messaging to <strong>${escapeHtml(names.slice(0, 3).join(", ") || "Easemob")}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Why Twilio Conversations degrades for mainland users",
+    sectionTitle: "Mapped Chinaready candidates",
+    guidanceHtml: `
+        <p>Twilio Conversations unifies chat, SMS, and other channels behind one API. For mainland China users, the practical failure modes are structural, not occasional:</p>
+        <ul>
+          <li><strong>No mainland region:</strong> Conversations traffic terminates on Twilio's overseas infrastructure. Cross-border connections add latency to every message round-trip.</li>
+          <li><strong>Long-lived websocket sessions:</strong> in-app chat keeps persistent connections open, and those sessions are exactly the kind of cross-border traffic that degrades or drops from mainland networks. Typical symptoms: delayed messages, reconnect loops, missed delivery receipts.</li>
+          <li><strong>Channel reachability compounds it:</strong> SMS legs to mainland numbers have their own constraints (see <a href="/alternatives/twilio-sms">Twilio SMS</a>), and WhatsApp-style channels are not part of mainland user habits anyway.</li>
+        </ul>
+        <h3>China in-app messaging stacks to evaluate instead</h3>
+        <ul>
+          <li><strong>Easemob (环信)</strong> — the mapped Chinaready candidate on this page: a mainland messaging and customer-communication SDK for in-app chat, with domestic infrastructure and China-market delivery assumptions built in.</li>
+          <li><strong>Tencent Cloud IM (腾讯云即时通信 IM)</strong> — commonly evaluated for chat plus audio/video integration; strong fit for products already inside the Tencent ecosystem.</li>
+          <li><strong>Rongyun (融云)</strong> — commonly evaluated domestic chat SDK with broad channel and community coverage.</li>
+        </ul>
+        <p>Tencent Cloud IM and Rongyun are orientation names to scope the evaluation — the confirmed shortlist on this page is Easemob. Also compare <a href="/alternatives/intercom">Intercom</a> and <a href="/alternatives/zendesk-messaging">Zendesk Messaging</a> if the real job is customer-support conversation rather than embedded social chat.</p>
+        <h3>What to validate before committing to a chat migration</h3>
+        <ul>
+          <li><strong>Delivery under kill-and-reconnect:</strong> mainland Android vendors aggressively background-kill apps, so test push wake-up and message catch-up after force-close, not just foreground chat.</li>
+          <li><strong>History and multi-device sync:</strong> confirm how conversation history, unread state, and multi-device login behave — Conversations customers often rely on exactly these semantics.</li>
+          <li><strong>Moderation duties:</strong> in-app chat for mainland users carries content-moderation obligations under Chinese regulations; domestic SDKs ship with moderation hooks, which is also a migration consideration rather than only a legal footnote.</li>
+          <li><strong>Cutover path:</strong> dual-write during migration so users on old and new stacks stay in one conversation, then retire the Twilio channel after retention windows close.</li>
+        </ul>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Twilio Conversations work in China?",
+        answer: `Only with degraded reliability. Chinaready labels Twilio Conversations as ${availability}. In-app chat rides long-lived connections to Twilio's overseas infrastructure, which mainland networks treat poorly: slow channel joins, reconnect loops, and delayed messages are typical. Production chat for mainland users usually needs a domestic messaging stack.`,
+      },
+      {
+        question: "What are the best China alternatives to Twilio Conversations?",
+        answer: `Chinaready Landscape currently maps Twilio Conversations to ${namesText}. Easemob (环信) provides in-app chat and customer-communication SDKs on mainland infrastructure. Tencent Cloud IM and Rongyun (融云) are also commonly evaluated domestic chat SDKs. Treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Twilio Conversations in mainland China?",
+        answer:
+          "No. Conversations blends chat SDKs, cross-channel orchestration, and SMS/WhatsApp legs. A China replacement is usually an in-app chat SDK (Easemob, Tencent Cloud IM, Rongyun) plus domestic SMS providers for notification legs, rebuilt around mainland delivery assumptions rather than swapped API-for-API.",
+      },
+      {
+        question: "Where should teams go after shortlisting Twilio Conversations alternatives?",
+        answer:
+          "Prototype delivery from a mainland network before committing: join latency, reconnect behavior, message ordering, and read receipts. Use the interactive Chinaready Landscape to compare adjacent engagement and communication services, then read Chinaready's main site for launch operating guidance. If the chat architecture remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
   env0: {
     description: () =>
       clipMeta(
@@ -1039,6 +1091,36 @@ const EDITORIAL_OVERRIDES = {
           <li><strong>ICP filing:</strong> Public mainland API endpoints on China-hosted domains need ICP filing; without it, cloud providers cut ports 80/443.</li>
           <li><strong>Data residency:</strong> Sensitive personal data on overseas Kong SaaS may conflict with China’s Data Security Law and PIPL export rules.</li>
         </ul>
+        <h3>The mapped substitutes, side by side</h3>
+        <p>All three mapped candidates self-host in the mainland, so the choice is lineage and ecosystem fit, not availability:</p>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Gateway</th>
+                <th>Lineage and origin</th>
+                <th>China angle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Apache APISIX</td>
+                <td>OpenResty/Nginx lineage like Kong; Apache top-level project created by API7 (支流科技)</td>
+                <td>Closest drop-in mindset for Kong teams; large mainland community and Chinese documentation</td>
+              </tr>
+              <tr>
+                <td>Higress</td>
+                <td>Envoy-based cloud-native gateway open-sourced from Alibaba's internal traffic-gateway practice</td>
+                <td>Strong fit for Alibaba Cloud / Kubernetes stacks; integrates microservice governance and Wasm plugins</td>
+              </tr>
+              <tr>
+                <td>Flomesh</td>
+                <td>Built on Pipy, an open-source programmable proxy, by Flomesh</td>
+                <td>Gateway plus service-mesh combination; domestic vendor with open-source core</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <h3>Recommendation</h3>
         <p>For mainland operations, prefer in-country self-hosted Kong (Docker/Kubernetes) over Konnect. If you want a China-native substitute stack, evaluate the mapped options below — <strong>Apache APISIX</strong> as the closest OpenResty-lineage substitute, <strong>Flomesh</strong> for gateway plus mesh, and <strong>Higress</strong> for Envoy/cloud-native stacks.</p>`,
     faq: (availability, namesText) => [
@@ -1905,13 +1987,63 @@ const EDITORIAL_OVERRIDES = {
     sectionTitle: "Mapped Chinaready candidates",
     guidanceHtml: `
         <p><strong>Firebase is not a single China decision.</strong> Auth, messaging, crash reporting, analytics, remote config, and hosting each need a mainland-reachable path. Start from the product you depend on most, then open the dedicated alternatives page:</p>
+        <h3>Failure mode by subsystem</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Firebase service</th>
+                <th>Mainland failure mode</th>
+                <th>Typical China path</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Cloud Messaging (FCM)</td>
+                <td>Delivery rides Google Play Services connections that mainland Android devices do not have</td>
+                <td>Vendor push channels (Huawei/Xiaomi/OPPO/vivo/Honor) via a China push provider — <a href="/alternatives/firebase-cloud-messaging">FCM page</a></td>
+              </tr>
+              <tr>
+                <td>Authentication</td>
+                <td>Google sign-in is blocked; phone and anonymous auth depend on blocked Google endpoints</td>
+                <td>Phone-SMS login and domestic identity paths — <a href="/alternatives/firebase-authentication">Authentication page</a></td>
+              </tr>
+              <tr>
+                <td>Firestore / Storage / Functions</td>
+                <td>Realtime and REST endpoints on blocked Google infrastructure</td>
+                <td>China-cloud mobile backend or BaaS with in-country data residency</td>
+              </tr>
+              <tr>
+                <td>Crashlytics</td>
+                <td>Crash upload endpoints unreachable, so reports silently stop arriving</td>
+                <td>Tencent Bugly, Umeng+, Alibaba Cloud EMAS — <a href="/alternatives/firebase-crashlytics">Crashlytics page</a></td>
+              </tr>
+              <tr>
+                <td>Analytics</td>
+                <td>Same blocked endpoints, plus PIPL consent duties for device signals</td>
+                <td>Umeng+, Alibaba Cloud EMAS — <a href="/alternatives/firebase-analytics">Analytics page</a></td>
+              </tr>
+              <tr>
+                <td>App Distribution</td>
+                <td>Console and install links unstable and slow for mainland testers</td>
+                <td>Pgyer, Fir.im, Tencent Bugly — <a href="/alternatives/firebase-app-distribution">App Distribution page</a></td>
+              </tr>
+              <tr>
+                <td>Remote Config</td>
+                <td>Config fetches hit blocked Google endpoints, so flags stop updating</td>
+                <td>Domestic config and feature-flag stacks — <a href="/alternatives/firebase-remote-config">Remote Config page</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Suggested migration order</h3>
         <ul>
-          <li><a href="/alternatives/firebase-crashlytics">Firebase Crashlytics</a> — Tencent Bugly, Umeng+, Alibaba Cloud EMAS</li>
-          <li><a href="/alternatives/firebase-analytics">Firebase Analytics</a> — Umeng+, Alibaba Cloud EMAS</li>
-          <li><a href="/alternatives/firebase-authentication">Firebase Authentication</a> — phone / WeChat / domestic IdP paths</li>
-          <li><a href="/alternatives/firebase-app-distribution">Firebase App Distribution</a> — Pgyer, Bugly, Fir.im</li>
-          <li><a href="/alternatives/firebase-remote-config">Firebase Remote Config</a> — domestic config and feature-flag stacks</li>
+          <li><strong>Push first:</strong> FCM failures are user-visible immediately (notifications never arrive), so replace push before anything else.</li>
+          <li><strong>Then observability:</strong> Crashlytics and Analytics fail silently — reports just stop — so instrument Bugly/Umeng+ before you lose signal during the migration itself.</li>
+          <li><strong>Then identity and data:</strong> Authentication and Firestore/Storage cutovers touch user accounts and data, so plan them with entity, PIPL, and data-residency work rather than as an emergency swap.</li>
         </ul>
+        <h3>iOS vs Android reality</h3>
+        <p>The Firebase China problem is mostly an Android problem. Mainland iPhones still receive push through APNs, so iOS notifications can limp along while Android delivery is dead outright — most mainland Android devices ship without Google Mobile Services, which FCM depends on. Plan the Android vendor-channel work (Huawei HMS, Xiaomi, OPPO, vivo, Honor) as the critical path, and treat iOS as the smaller follow-up. See <a href="/alternatives/onesignal">OneSignal in China</a> for the same iOS-works/Android-breaks split with a global push vendor.</p>
         <p>Use the mapped candidates on this page as the umbrella shortlist, then validate each subsystem before cutting over a China build.</p>`,
     faq: (availability, namesText) => [
       {
@@ -2156,6 +2288,52 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  bitrise: {
+    relatedSlugs: ["github-actions", "azure-devops", "visual-studio-app-center", "firebase-app-distribution", "firebase-test-lab"],
+    description: (availability, names) =>
+      clipMeta(
+        `Bitrise is Unavailable in China: overseas builds and artifact links are unreliable. Compare ${names.slice(0, 2).join(" or ")}. Availability: ${availability}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Bitrise is Unavailable</strong> for mainland China mobile CI/CD. Bitrise offers no China region — build machines, the control plane, and artifact delivery all run on overseas infrastructure, and every build pulls source from GitHub or GitLab, whose mainland access is itself slow and intermittent. Chinaready currently maps China DevOps platforms to <strong>${escapeHtml(names.slice(0, 2).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Why Bitrise breaks for mainland mobile teams",
+    sectionTitle: "Mapped Chinaready candidates",
+    guidanceHtml: `
+        <p>Bitrise is a hosted mobile CI/CD service: the console, build orchestration, macOS and Linux build fleets, and artifact hosting all operate from overseas data centers. For a team physically working from mainland China, each layer adds a cross-border hop:</p>
+        <ul>
+          <li><strong>Source pulls:</strong> every build clones from GitHub, GitLab, or Bitbucket. Mainland access to those hosts is slow and intermittent, so builds fail or queue at the very first step.</li>
+          <li><strong>Control plane:</strong> triggering builds, streaming logs, and calling the Bitrise API from mainland offices is unstable across the border.</li>
+          <li><strong>Artifact delivery:</strong> IPA/APK download links are served from overseas hosting, so mainland testers and app stores see slow or failed downloads. Beta feedback loops built on those links do not survive contact with real mainland networks.</li>
+          <li><strong>Self-hosted runners do not fix it:</strong> Bitrise can run builds on your own machines, but orchestration still goes through the overseas bitrise.io control plane — the cross-border dependency remains.</li>
+        </ul>
+        <h3>China mobile DevOps paths instead of Bitrise</h3>
+        <ul>
+          <li><strong>Alibaba Cloud Yunxiao (云效)</strong> — Codeup code hosting, Flow pipelines, artifact repositories, and AppStack delivery inside China, with Yunxiao app distribution for mobile release workflows.</li>
+          <li><strong>Tencent Cloud DevOps (CODING)</strong> — code hosting, CI/CD pipelines, and artifact management on Tencent Cloud for Tencent-centric stacks.</li>
+          <li><strong>Distribution and testing as separate modules:</strong> mainland beta distribution usually moves to Pgyer (蒲公英) or Fir.im, and device testing to domestic device clouds — see the <a href="/alternatives/firebase-app-distribution">Firebase App Distribution</a> and <a href="/alternatives/firebase-test-lab">Firebase Test Lab</a> pages for the same pattern after App Center.</li>
+        </ul>
+        <p>If repository hosting also moves onshore (Codeup or CODING repos instead of GitHub), the whole build path stops crossing the border at all.</p>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Bitrise work in China?",
+        answer: `Not reliably. Chinaready labels Bitrise as ${availability}. Bitrise has no mainland region: builds pull source from GitHub/GitLab (slow and intermittent from mainland networks), the control plane and logs sit overseas, and artifact download links are unstable for mainland testers. Day-to-day mobile CI/CD from China usually fails at the source-pull step alone.`,
+      },
+      {
+        question: "What are the best China alternatives to Bitrise?",
+        answer: `Chinaready Landscape currently maps Bitrise to ${namesText}. Alibaba Cloud Yunxiao (云效) bundles Codeup hosting, Flow pipelines, and app distribution on China infrastructure; Tencent Cloud DevOps (CODING) does the same for Tencent-centric stacks. Add Pgyer or Fir.im for beta distribution. Treat this as a research shortlist rather than a one-to-one endorsement.`,
+      },
+      {
+        question: "Do Bitrise self-hosted runners solve the China problem?",
+        answer:
+          "No. Self-hosted runners move build execution onto your own machines, but triggering builds, streaming logs, and reading artifacts still round-trip through the overseas bitrise.io control plane. The cross-border dependency — the actual failure mode — remains, so mainland teams usually move to a China DevOps platform instead.",
+      },
+      {
+        question: "Where should teams go after shortlisting Bitrise alternatives?",
+        answer:
+          "Move repository hosting onshore (Codeup or CODING) if builds keep cloning from GitHub, then validate iOS signing credentials, artifact distribution to mainland testers, and app store upload paths from a mainland network. Use the interactive Chinaready Landscape for adjacent mobile DevOps services, then read Chinaready's main site for launch operating guidance. If the path remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
   "amazon-cloudfront": {
     description: (availability, names) =>
       clipMeta(
@@ -2344,6 +2522,12 @@ const EDITORIAL_OVERRIDES = {
           <li><strong>Keep Apple Pay</strong> when you already support Apple devices and want familiar wallet checkout for iPhone users.</li>
           <li><strong>Add Alipay and WeChat Pay</strong> for mainstream mainland conversion — most users will look for those options first.</li>
           <li><strong>Do not equate “Available” with “sufficient alone.”</strong> Availability means Apple Pay can work; habit and conversion usually still require local rails.</li>
+        </ul>
+        <h3>Integration reality for mainland merchants</h3>
+        <ul>
+          <li><strong>UnionPay rails:</strong> Apple Pay launched in mainland China in partnership with UnionPay, and China-issued bank cards in Apple Wallet settle over UnionPay's network. There is no separate "Apple acquirer" path the way teams might assume from Western checkout integrations.</li>
+          <li><strong>Entity and licensing:</strong> collecting payments from mainland users through any rail — Apple Pay included — normally requires a China entity and an arrangement with a licensed domestic acquirer or aggregator. Plan that compliance work with your Alipay / WeChat Pay onboarding, not separately.</li>
+          <li><strong>Do not confuse Apple Pay with In-App Purchase:</strong> digital goods sold inside an iOS app route through Apple's In-App Purchase system with its own China considerations; Apple Pay covers wallet card payments for physical goods and services. They are different rails with different rules.</li>
         </ul>
         <h3>Chinaready recommendation</h3>
         <p>Treat Apple Pay as an optional additive method for Apple users, and treat Alipay / WeChat Pay as the primary mainland checkout path for China-facing products.</p>`,
@@ -5974,6 +6158,12 @@ const EDITORIAL_OVERRIDES = {
           <li><strong>Enterprise / batch workloads:</strong> evaluate Suowo (缩我) or 3WT (三维推).</li>
           <li><strong>WeChat-first promotion:</strong> prefer 3WT (三维推) for WeChat card-style short links and anti-block fit.</li>
         </ul>
+        <h3>Domain and blocking dynamics unique to China</h3>
+        <ul>
+          <li><strong>Platform blocking:</strong> WeChat, Douyin, and other super-apps aggressively restrict short-link domains. Domestic platforms sell anti-block capability (domain rotation, card-style links) because link longevity inside those apps is a first-class requirement — Bitly has no answer for it.</li>
+          <li><strong>Custom domains want ICP filing:</strong> at promotion scale, teams usually point short links at their own branded domain; for mainland hosting and stable ad-channel approval, that domain should be ICP-filed.</li>
+          <li><strong>QR codes carry the offline traffic:</strong> in China the short link usually lives inside a QR code on packaging, posters, or screens. Evaluate providers on stable QR generation and scan analytics together with redirect speed, not redirect speed alone.</li>
+        </ul>
         <p>These candidates appear on the Bitly alternatives page only — Chinaready does <strong>not</strong> add Aifabu, Xiaoma Short Link, 3WT, Suowo, or C1N Short URL as Landscape map product entries. Confirm redirect stability inside your target apps (especially WeChat), analytics needs, custom domains, and compliance before production adoption.</p>`,
     faq: (availability, namesText) => [
       {
@@ -6828,6 +7018,56 @@ const EDITORIAL_OVERRIDES = {
       },
     ],
   },
+  weaviate: {
+    relatedSlugs: ["pinecone", "qdrant", "weaviate-cloud", "openai"],
+    description: (availability, names) =>
+      clipMeta(
+        `Does Weaviate work in China? The managed cloud is Unavailable; self-hosted OSS runs fine. China vector stack: ${names.slice(0, 3).join(", ")}.`,
+      ),
+    lede: (availability, names) =>
+      `<strong>Quick answer:</strong> <strong>Weaviate is Unavailable as a managed service in mainland China</strong> — Weaviate Cloud (WCS) endpoints are overseas with no China region, so mainland reachability is unstable. The open-source engine itself is just software and self-hosts fine in China. Chinaready currently maps the China vector stack to <strong>${escapeHtml(names.slice(0, 3).join(", "))}</strong>. Availability in China: <strong>${escapeHtml(availability)}</strong>.`,
+    guidanceTitle: "Separate the Weaviate engine from the Weaviate cloud",
+    sectionTitle: "Mapped Chinaready candidates",
+    guidanceHtml: `
+        <p>The China question for Weaviate has two very different answers depending on which Weaviate you mean:</p>
+        <ul>
+          <li><strong>Weaviate Cloud (WCS) — Unavailable in practice:</strong> managed clusters run on overseas infrastructure with no mainland region, so API calls and dashboard access from mainland networks are unstable, and overseas-only hosting creates data-residency friction under PIPL and the Data Security Law.</li>
+          <li><strong>Weaviate OSS self-hosted — runs in China:</strong> the engine is open source, so you can run it on Alibaba Cloud, Tencent Cloud, or your own mainland servers. The catch is the rest of the RAG pipeline: if embeddings come from an overseas model API, that dependency carries the same cross-border risk (see <a href="/alternatives/openai">OpenAI in China</a>).</li>
+        </ul>
+        <h3>China vector database stack to evaluate instead</h3>
+        <ul>
+          <li><strong>Milvus</strong> — the mapped Chinaready candidate: an open-source vector database created by Zilliz, an Apache Software Foundation project with a strong Chinese community. Self-host it in the mainland for local infrastructure control, exactly the production vector search and RAG role Weaviate plays elsewhere.</li>
+          <li><strong>Managed Milvus routes:</strong> Zilliz Cloud and the China-cloud vector databases mapped on the <a href="/alternatives/pinecone">Pinecone</a> page (Tencent Cloud VectorDB, Alibaba Cloud DashVector, Baidu VectorDB) when you want a operated service instead of running Milvus yourself.</li>
+        </ul>
+        <p>If you already run self-hosted Weaviate in-country, migration is a choice about ecosystem fit (Milvus's mainland community and managed options) rather than an emergency. Also compare <a href="/alternatives/qdrant">Qdrant</a> and <a href="/alternatives/weaviate-cloud">Weaviate Cloud</a> for the same engine-vs-cloud split.</p>
+        <h3>Checklist for a mainland vector stack</h3>
+        <ul>
+          <li><strong>Embeddings first:</strong> pick a China-reachable embedding model or self-hosted encoder before choosing the database — the vector DB is useless if the pipeline that fills it cannot be reached.</li>
+          <li><strong>Where the index lives:</strong> self-hosted Milvus on Alibaba Cloud/Tencent Cloud gives infrastructure control; managed routes (Zilliz Cloud, cloud-vendor vector databases) trade that for less operations work.</li>
+          <li><strong>Retrieval behavior parity:</strong> if you use Weaviate's hybrid search or modules, confirm Milvus equivalents (hybrid sparse-dense search, reranking) meet your recall targets before migrating collections.</li>
+          <li><strong>Data residency:</strong> keep embeddings of China-user content on mainland infrastructure to stay inside PIPL and Data Security Law expectations.</li>
+        </ul>`,
+    faq: (availability, namesText) => [
+      {
+        question: "Does Weaviate work in China?",
+        answer: `Split the answer. Chinaready labels Weaviate ${availability} because Weaviate Cloud (WCS) has no mainland region — managed endpoints are unstable from mainland networks and raise data-residency friction. The open-source engine itself is not blocked: self-hosted Weaviate runs on mainland infrastructure like any other software.`,
+      },
+      {
+        question: "What are the best China alternatives to Weaviate?",
+        answer: `Chinaready Landscape currently maps Weaviate to ${namesText}. Milvus is the primary candidate: open source, created by Zilliz, and self-hostable in the mainland for vector search and RAG. Zilliz Cloud and China-cloud vector databases (Tencent Cloud VectorDB, Alibaba Cloud DashVector, Baidu VectorDB) serve teams that want a managed path.`,
+      },
+      {
+        question: "Is there a direct drop-in replacement for Weaviate in mainland China?",
+        answer:
+          "Closer than for most SaaS, but still not a swap. Weaviate and Milvus both speak vector search, yet schemas, hybrid-search behavior, and client SDKs differ, so migration means re-embedding or re-importing collections and rewriting client code. Budget a migration project, not a configuration change.",
+      },
+      {
+        question: "Where should teams go after shortlisting Weaviate alternatives?",
+        answer:
+          "Check the embedding side before the database side: a China-hosted Milvus fed by an unreachable overseas embedding API still fails end to end. Use the interactive Chinaready Landscape to compare adjacent AI retrieval services, then read Chinaready's main site for launch operating guidance. If the RAG architecture remains unclear, book a call with Chinaready.",
+      },
+    ],
+  },
   zendesk: zendeskFamilyEditorial("Zendesk", ["zendesk-messaging", "freshdesk", "intercom", "helpscout", "crisp"]),
   "zendesk-messaging": zendeskFamilyEditorial("Zendesk Messaging", ["zendesk", "intercom", "freshdesk", "helpscout", "crisp"]),
   "zoho-crm": {
@@ -7258,7 +7498,38 @@ const EDITORIAL_OVERRIDES = {
         <p>GeeTest is a mainland industry benchmark, optimized for local infrastructure and compliance. It supports slider puzzles, text-click challenges, and frictionless verification, and is widely used in ecommerce and gaming.</p>
         <h3>NetEase Yidun (网易易盾)</h3>
         <p>NetEase Yidun is a strong mainland business-security suite. NetEase helped lead related MIIT industry standards. The product can switch challenge difficulty by risk level, keeps average verification time very low, and is comparatively friendly for accessibility — including visually impaired users.</p>
-        <p>GeeTest and NetEase Yidun are already mapped Landscape products in Bot Protection &amp; CAPTCHA. Confirm widget UX, accessibility, and compliance before production adoption. Also compare the <a href="/alternatives/google-recaptcha">Google reCAPTCHA</a> and <a href="/alternatives/cloudflare-turnstile">Cloudflare Turnstile</a> pages if the global stack still mixes those libraries.</p>`,
+        <p>GeeTest and NetEase Yidun are already mapped Landscape products in Bot Protection &amp; CAPTCHA. Confirm widget UX, accessibility, and compliance before production adoption. Also compare the <a href="/alternatives/google-recaptcha">Google reCAPTCHA</a> and <a href="/alternatives/cloudflare-turnstile">Cloudflare Turnstile</a> pages if the global stack still mixes those libraries.</p>
+        <h3>Global CAPTCHA stacks compared for mainland reachability</h3>
+        <div class="cr-alt-table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Mainland status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Google reCAPTCHA</td>
+                <td>Blocked — the widget and verification calls hit Google infrastructure, which mainland users cannot reach</td>
+              </tr>
+              <tr>
+                <td>Cloudflare Turnstile</td>
+                <td>Depends on Cloudflare challenge endpoints; mainland reachability is intermittent, so challenges can hang</td>
+              </tr>
+              <tr>
+                <td>hCaptcha</td>
+                <td>Not comprehensively blocked, but some carrier default DNS resolvers fail to resolve it, so the widget often cannot load</td>
+              </tr>
+              <tr>
+                <td>GeeTest / NetEase Yidun</td>
+                <td>Domestic infrastructure — fast, stable, and aligned with mainland compliance expectations</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Hybrid deployments</h3>
+        <p>Products serving both mainland and overseas users commonly geo-split the challenge: mainland traffic gets GeeTest or NetEase Yidun, overseas traffic keeps hCaptcha. Two cautions: keep risk scoring consistent across the two providers so one path is not trivially weaker, and verify the geo-split itself (by IP or client region) cannot be gamed to always route attackers to the easier challenge.</p>`,
     faq: (availability, namesText) => [
       {
         question: "Does hCaptcha work in China?",
